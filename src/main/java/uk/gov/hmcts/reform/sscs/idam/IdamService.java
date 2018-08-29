@@ -68,10 +68,11 @@ public class IdamService {
     }
 
     public IdamTokens getIdamTokens() {
+        String idamOauth2Token = getIdamOauth2Token();
         return IdamTokens.builder()
-                .idamOauth2Token(getIdamOauth2Token())
+                .idamOauth2Token(idamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())
-                .userId(getUserId(getIdamOauth2Token()))
+                .userId(getUserId(idamOauth2Token))
                 .build();
     }
 }

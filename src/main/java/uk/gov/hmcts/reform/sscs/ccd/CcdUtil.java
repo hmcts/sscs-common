@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 
-public class CcdUtil {
+class CcdUtil {
 
     private static final Logger LOG = getLogger(CcdUtil.class);
 
@@ -17,7 +17,7 @@ public class CcdUtil {
 
     }
 
-    public static SscsCaseData getCaseData(Map<String, Object> dataMap) {
+    private static SscsCaseData getCaseData(Map<String, Object> dataMap) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
@@ -30,7 +30,7 @@ public class CcdUtil {
         }
     }
 
-    public static SscsCaseDetails getCaseDetails(uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails) {
+    static SscsCaseDetails getCaseDetails(uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails) {
         return SscsCaseDetails.builder()
                 .id(caseDetails.getId())
                 .jurisdiction(caseDetails.getJurisdiction())

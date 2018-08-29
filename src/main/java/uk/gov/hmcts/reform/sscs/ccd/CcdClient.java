@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
+import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -24,7 +25,7 @@ public class CcdClient {
 
     public List<SscsCaseDetails> findCaseBy(CcdRequestDetails ccdRequestDetails, Map<String, String> searchCriteria) {
         IdamTokens idamTokens = idamService.getIdamTokens();
-        List<uk.gov.hmcts.reform.ccd.client.model.CaseDetails> caseDetailsList = coreCaseDataApi.searchForCaseworker(
+        List<CaseDetails> caseDetailsList = coreCaseDataApi.searchForCaseworker(
                 idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(),
                 idamTokens.getUserId(),
