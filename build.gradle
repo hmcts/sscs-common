@@ -8,8 +8,10 @@ plugins {
     id 'jacoco'
 }
 
+def buildNumber = System.getenv("TRAVIS_BUILD_NUMBER") ?: "DEV-SNAPSHOT"
+
 group 'uk.gov.hmcts.reform'
-version '0.0.0'
+version '0.0.' + buildNumber
 
 sourceCompatibility = 1.8
 
