@@ -1,82 +1,81 @@
 plugins {
-  id 'java'
-  id 'maven'
-  id 'maven-publish'
-  id 'checkstyle'
-  id 'java-library'
-  id "com.jfrog.bintray" version "1.7.3"
-  id 'io.spring.dependency-management' version '1.0.5.RELEASE'
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.8.4'
+    id 'checkstyle'
+    id 'pmd'
+    id 'jacoco'
 }
-
-repositories {
-
-  maven {
-    url "https://dl.bintray.com/hmcts/hmcts-maven"
-  }
-
-  maven {
-    url 'https://repo.spring.io/libs-milestone'
-  }
-
-  jcenter()
-  mavenCentral()
-
-  // jitpack should be last resort
-  // see: https://github.com/jitpack/jitpack.io/issues/1939
-  maven { url 'https://jitpack.io' }
-}
-
 
 group 'uk.gov.hmcts.reform'
-version '0.0.1'
-
-checkstyle.toolVersion = '8.10.1'
-checkstyle.configFile = new File(rootDir, "checkstyle.xml")
-
-// make build fail on Checkstyle issues (https://github.com/gradle/gradle/issues/881)
-tasks.withType(Checkstyle).each { checkstyleTask ->
-  checkstyleTask.doLast {
-    reports.all { report ->
-      def outputFile = report.destination
-      if (outputFile.exists() && outputFile.text.contains("<error ")) {
-        throw new GradleException("There were checkstyle warnings! For more info check $outputFile")
-      }
-    }
-  }
-}
+version '0.0.0'
 
 sourceCompatibility = 1.8
 
 repositories {
-  mavenLocal()
-  jcenter()
+
+    maven {
+        url "https://dl.bintray.com/hmcts/hmcts-maven"
+    }
+
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+
+    jcenter()
+    mavenCentral()
+
+    // jitpack should be last resort
+    // see: https://github.com/jitpack/jitpack.io/issues/1939
+    maven { url 'https://jitpack.io' }
 }
 
-jar {
-  manifest {
-    attributes 'Implementation-Title': project.name, 'Implementation-Version': project.version
-  }
+// region static code analysis
+
+checkstyle {
+    maxWarnings = 0
+    toolVersion = '8.10.1'
+    // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
+    configDir = new File(rootDir, 'config/checkstyle')
 }
 
-task printVersion {
-  doLast {
-    print project.version
-  }
+pmd {
+    toolVersion = "6.5.0"
+    ignoreFailures = true
+    sourceSets = [sourceSets.main, sourceSets.test]
+    reportsDir = file("$project.buildDir/reports/pmd")
+    ruleSetFiles = files("config/pmd/ruleset.xml")
 }
+
+// endregion
+
+// region test coverage
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        csv.enabled = false
+    }
+}
+
+// endregion
+
+// region publishing
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-  classifier = 'sources'
-  from sourceSets.main.allSource
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
-  archives sourcesJar
-  archives javadocJar
+    archives sourcesJar
+    archives javadocJar
 }
 
 publishing {
@@ -93,29 +92,23 @@ publishing {
 }
 
 bintray {
-  user = System.getenv('BINTRAY_USER')
-  key = System.getenv('BINTRAY_KEY')
-  publications = ['Main']
-  publish = true
-  pkg {
-    repo = 'hmcts-maven'
-    name = 'sscs-common'
-    userOrg = 'hmcts'
-    licenses = ['MIT']
-    vcsUrl = 'https://github.com/hmcts/sscs-common'
-    version {
-      name = project.version
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+    publications = ['Main']
+    publish = true
+    pkg {
+        repo = 'hmcts-maven'
+        name = 'sscs-common'
+        userOrg = 'hmcts'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/hmcts/sscs-common'
+        version {
+            name = project.version
+        }
     }
-  }
 }
 
-def springBootVersion = '2.0.1.RELEASE'
-
-dependencyManagement {
-  imports {
-    mavenBom "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
-  }
-}
+// endregion
 
 dependencies {
   compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: '3.0.1'
