@@ -28,7 +28,7 @@ repositories {
 
 
 group 'uk.gov.hmcts.reform'
-version '6.0.0'
+version '0.0.1'
 
 checkstyle.toolVersion = '8.10.1'
 checkstyle.configFile = new File(rootDir, "checkstyle.xml")
