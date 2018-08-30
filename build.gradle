@@ -80,24 +80,16 @@ artifacts {
 }
 
 publishing {
-  publications {
-    Main(MavenPublication) {
-      from components.java
-      artifact sourcesJar
-      artifact javadocJar
-      groupId project.group
-      artifactId 'sscs-common'
-      version project.version
-
-      pom.withXml {
-        def root = asNode()
-        root.appendNode('description', 'Common library for sscs code')
-        root.appendNode('name', 'SSCS common')
-        root.appendNode('url', 'https://github.com/hmcts/sscs-common')
-        root.children().last() + pomConfig
-      }
+    publications {
+        Main(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId project.group
+            artifactId 'sscs-common'
+            version project.version
+        }
     }
-  }
 }
 
 bintray {
