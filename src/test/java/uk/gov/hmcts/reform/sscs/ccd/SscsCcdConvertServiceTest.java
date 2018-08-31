@@ -8,7 +8,7 @@ import org.junit.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 
-public class CcdUtilTest {
+public class SscsCcdConvertServiceTest {
 
     @Test
     public void canBuildCaseDetails() {
@@ -24,7 +24,7 @@ public class CcdUtilTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = CcdUtil.getCaseDetails(build);
+        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
         assertThat(caseDetails.getId(), is(id));
         assertThat(caseDetails.getData().getCaseReference(), is(caseReference));

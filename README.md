@@ -1,9 +1,35 @@
-## This is the common code for sscs
+## Sscs-common
 
-Currently it contains the following
+This is the common code for sscs. Currently it contains the following
 
 - Code to connect to CCD.
 - Code to get the Idam OAuth and service authorization tokens.
+
+###Build
+
+To build run
+
+```bash
+./gradlew clean build
+```
+This will create a jar file in the projects build libs directory with a version of DEV-SNAPSHOT.
+If you want to then depend on this without publishing it you can add the following to your build.gradle file
+in the dependencies section.
+
+```gradle
+compile files('{PROJECT_DIR}/sscs-common/build/libs/sscs-common-0.0.DEV-SNAPSHOT.jar')
+```
+Once the changes have been merged into master a new verison of the library will be build on travis and 
+published to bintray with a version number of X.X.{TRAVIS_BUULD_NUMBER}.
+
+Travis build
+https://travis-ci.org/hmcts/sscs-common
+
+Bintray repo
+https://dl.bintray.com/hmcts/hmcts-maven/uk/gov/hmcts/reform/sscs-common/ 
+
+
+###Usage
 
 To use this you will need to have setup the following properties in your application.yaml.
 
