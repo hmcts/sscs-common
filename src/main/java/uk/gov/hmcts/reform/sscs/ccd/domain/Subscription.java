@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -35,4 +36,26 @@ public class Subscription {
         this.subscribeSms = subscribeSms;
         this.reason = reason;
     }
+
+    @JsonIgnore
+    public Boolean isSmsSubscribed() {
+        if (subscribeSms == null || subscribeSms.toLowerCase().equals("no")) {
+            return false;
+        }
+        return true;
+    }
+
+    @JsonIgnore
+    public Boolean isEmailSubscribed() {
+        if (subscribeEmail == null || subscribeEmail.toLowerCase().equals("no"))  {
+            return false;
+        }
+        return true;
+    }
+
+    @JsonIgnore
+    public Boolean doesCaseHaveSubscriptions() {
+        return (isSmsSubscribed() || isEmailSubscribed()) ? true : false;
+    }
+
 }

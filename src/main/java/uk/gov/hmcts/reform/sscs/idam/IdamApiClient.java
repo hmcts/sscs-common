@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "idam-api", url = "${idam.oauth2.url}")
+@FeignClient(name = "idam-api", url = "${idam.url}")
 public interface IdamApiClient {
 
     @RequestMapping(

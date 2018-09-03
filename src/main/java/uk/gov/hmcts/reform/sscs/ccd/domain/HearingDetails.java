@@ -1,8 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import lombok.Builder;
 import lombok.Value;
 
@@ -27,5 +31,10 @@ public class HearingDetails {
         this.time = time;
         this.adjourned = adjourned;
         this.eventDate = eventDate;
+    }
+
+    @JsonIgnore
+    public LocalDateTime getHearingDateTime() {
+        return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
     }
 }

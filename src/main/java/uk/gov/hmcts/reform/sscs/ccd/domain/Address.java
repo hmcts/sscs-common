@@ -1,11 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import static com.google.common.collect.Lists.newArrayList;
+
+import com.fasterxml.jackson.annotation.*;
+import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Value;
+import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -29,5 +30,18 @@ public class Address {
         this.town = town;
         this.county = county;
         this.postcode = postcode;
+    }
+
+    @JsonIgnore
+    public String getFullAddress() {
+        return newArrayList(
+                line1,
+                line2,
+                town,
+                county,
+                postcode)
+                .stream()
+                .filter(StringUtils::isNotBlank)
+                .collect(Collectors.joining(", "));
     }
 }
