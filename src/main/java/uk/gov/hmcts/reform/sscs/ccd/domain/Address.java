@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 import com.fasterxml.jackson.annotation.*;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import lombok.Builder;
 import lombok.Value;
@@ -34,7 +33,7 @@ public class Address {
 
     @JsonIgnore
     public String getFullAddress() {
-        return newArrayList(
+        return Arrays.asList(
                 line1,
                 line2,
                 town,
