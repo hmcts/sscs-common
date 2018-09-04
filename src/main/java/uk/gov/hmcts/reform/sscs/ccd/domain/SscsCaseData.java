@@ -6,13 +6,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsCaseData {
+    private String caseId;
     private String caseReference;
     private String caseCreated;
     private String region;
@@ -32,9 +33,11 @@ public class SscsCaseData {
     private String generatedDob;
     private String evidencePresent;
     private OnlinePanel onlinePanel;
+    private EventType notificationType;
 
     @JsonCreator
-    public SscsCaseData(@JsonProperty("caseReference") String caseReference,
+    public SscsCaseData(@JsonProperty("caseId") String caseId,
+                        @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("region") String region,
                         @JsonProperty("appeal") Appeal appeal,
@@ -51,7 +54,9 @@ public class SscsCaseData {
                         @JsonProperty("generatedMobile") String generatedMobile,
                         @JsonProperty("generatedDOB") String generatedDob,
                         @JsonProperty("evidencePresent") String evidencePresent,
-                        @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel) {
+                        @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel,
+                        @JsonProperty("notificationType") EventType notificationType) {
+        this.caseId = caseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.region = region;
@@ -70,5 +75,6 @@ public class SscsCaseData {
         this.generatedDob = generatedDob;
         this.evidencePresent = evidencePresent;
         this.onlinePanel = onlineOnlinePanel;
+        this.notificationType = notificationType;
     }
 }

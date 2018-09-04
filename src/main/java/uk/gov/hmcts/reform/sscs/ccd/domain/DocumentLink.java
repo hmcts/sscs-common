@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Value
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DocumentLink {

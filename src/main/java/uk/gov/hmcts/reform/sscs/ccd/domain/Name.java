@@ -28,4 +28,9 @@ public class Name {
     public String getFullName() {
         return title + " " + firstName + " " + lastName;
     }
+
+    @JsonIgnore
+    public String getFullNameNoTitle() {
+        return firstName + " " + lastName;
+    }
 }

@@ -5,31 +5,41 @@ import com.google.common.base.CaseFormat;
 public enum EventType {
 
     APPEAL_RECEIVED("appealReceived", "appealReceived", 1, true),
-    DWP_RESPOND("dwpRespond", "responseReceived", 2, true),
+    DWP_RESPONSE_RECEIVED("dwpRespond", "responseReceived", 2, true),
     HEARING_BOOKED("hearingBooked", "hearingBooked", 3, true),
     HEARING("hearing", "hearing", 4, false),
     ADJOURNED("adjourned", "hearingAdjourned", 5, true),
-    LAPSED_REVISED("lapsedRevised", "appealLapsed", 6, true),
-    WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
-    POSTPONED("postponed", "hearingPostponed",8, true),
+    APPEAL_LAPSED("lapsedRevised", "appealLapsed", 6, true),
+    APPEAL_WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
+    POSTPONEMENT("postponed", "hearingPostponed", 8, true),
     NEW_HEARING_BOOKED("newHearingBooked", "newHearingBooked", 9, true),
     PAST_HEARING_BOOKED("pastHearingBooked", "pastHearingBooked", 10, true),
-    DORMANT("dormant", "appealDormant", 11, false),
+    APPEAL_DORMANT("dormant", "appealDormant", 11, false),
     CLOSED("closed", "appealClosed", 12, false),
     DWP_RESPOND_OVERDUE("dwpRespondOverdue", "responseOverdue", 13, true),
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
     EVIDENCE_REMINDER("evidenceRemainder", "evidenceReminder", -2, true),
-    SUBSCRIBE_APPELLANT(0, true),
-    SUBSCRIBE_SUPPORTER(0, true),
-    SUBSCRIBE_APPELLANT_UPDATE_OLD(0, true),
-    SUBSCRIBE_APPELLANT_UPDATE_NEW(0, true);
+    SYA_APPEAL_CREATED("appealCreated", 0, true),
+    SUBSCRIPTION_CREATED("subscriptionCreated", 0, true),
+    SUBSCRIPTION_UPDATED("subscriptionUpdated", 0, true),
+    FIRST_HEARING_HOLDING_REMINDER("hearingHoldingReminder", 0, true),
+    SECOND_HEARING_HOLDING_REMINDER("secondHearingHoldingReminder", 0, true),
+    THIRD_HEARING_HOLDING_REMINDER("thirdHearingHoldingReminder", 0, true),
+    FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
+    HEARING_REMINDER("hearingReminder", 0, true),
+    DWP_RESPONSE_LATE_REMINDER("dwpResponseLateReminder", 0, true),
+    //TODO: This should be moved out of CCD domain
+    QUESTION_ROUND_ISSUED("question_round_issued", 0, true),
+    //TODO: This should be moved out of CCD domain??
+    DO_NOT_SEND("", 0, false);
 
     private String type;
     private String ccdType;
     private final int order;
     private boolean notifiable;
 
-    EventType(int order, boolean notifiable) {
+    EventType(String ccdType, int order, boolean notifiable) {
+        this.ccdType = ccdType;
         this.order = order;
         this.notifiable = notifiable;
     }
@@ -68,7 +78,7 @@ public enum EventType {
     public static EventType getEventTypeByCcdType(String ccdType) {
         EventType e = null;
         for (EventType event : EventType.values()) {
-            if (ccdType.equals(event.ccdType)) {
+            if (event.getCcdType().equals(ccdType)) {
                 e = event;
             }
         }

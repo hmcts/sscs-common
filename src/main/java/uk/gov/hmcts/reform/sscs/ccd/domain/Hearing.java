@@ -19,6 +19,6 @@ public class Hearing implements Comparable<Hearing> {
 
     @Override
     public int compareTo(Hearing o) {
-        return value.getHearingDate().compareTo(o.getValue().getHearingDate());
+        return value.getHearingDateTime().compareTo(o.getValue().getHearingDateTime());
     }
 }

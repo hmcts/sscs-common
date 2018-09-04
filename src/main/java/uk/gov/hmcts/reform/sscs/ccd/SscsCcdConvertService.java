@@ -13,6 +13,7 @@ import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.exception.CcdDeserializationException;
 
 @Service
 class SscsCcdConvertService {
@@ -55,9 +56,9 @@ class SscsCcdConvertService {
         try {
             return mapper.convertValue(dataMap, SscsCaseData.class);
         } catch (Exception e) {
-            CcdDeserializationError ccdDeserializationError = new CcdDeserializationError(e);
-            LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationError);
-            throw ccdDeserializationError;
+            CcdDeserializationException ccdDeserializationException = new CcdDeserializationException(e);
+            LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationException);
+            throw ccdDeserializationException;
         }
     }
 }
