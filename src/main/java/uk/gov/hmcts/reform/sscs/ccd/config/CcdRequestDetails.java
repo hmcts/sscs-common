@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd;
+package uk.gov.hmcts.reform.sscs.ccd.config;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

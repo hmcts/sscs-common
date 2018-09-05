@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd;
+package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -16,11 +16,11 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.exception.CcdDeserializationException;
 
 @Service
-class SscsCcdConvertService {
+public class SscsCcdConvertService {
 
     private static final Logger LOG = getLogger(SscsCcdConvertService.class);
 
-    CaseDataContent getCaseDataContent(SscsCaseData caseData, StartEventResponse startEventResponse,
+    public CaseDataContent getCaseDataContent(SscsCaseData caseData, StartEventResponse startEventResponse,
                                                String summary, String description) {
         return CaseDataContent.builder()
                 .eventToken(startEventResponse.getToken())
@@ -33,7 +33,7 @@ class SscsCcdConvertService {
                 .build();
     }
 
-    SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
+    public SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
         return SscsCaseDetails.builder()
                 .id(caseDetails.getId())
                 .jurisdiction(caseDetails.getJurisdiction())

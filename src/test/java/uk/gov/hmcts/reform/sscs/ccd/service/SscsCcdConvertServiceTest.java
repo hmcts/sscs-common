@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd;
+package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -7,6 +7,7 @@ import java.util.HashMap;
 import org.junit.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public class SscsCcdConvertServiceTest {
 
