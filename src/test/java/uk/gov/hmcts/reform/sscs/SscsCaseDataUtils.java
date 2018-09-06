@@ -100,7 +100,6 @@ public final class SscsCaseDataUtils {
     public static SscsCaseData buildBasicSscsCaseData(EventType notificationType) {
         return SscsCaseData.builder()
             .caseId(CASE_ID)
-            .notificationType(notificationType)
             .events(Collections.emptyList())
             .hearings(Collections.emptyList())
             .build();
@@ -123,7 +122,6 @@ public final class SscsCaseDataUtils {
 
         return SscsCaseData.builder()
             .caseId(CASE_ID)
-            .notificationType(notificationType)
             .events(Collections.singletonList(event))
             .hearings(Collections.emptyList())
             .build();
@@ -146,7 +144,6 @@ public final class SscsCaseDataUtils {
 
         return SscsCaseData.builder()
             .caseId(CASE_ID)
-            .notificationType(notificationType)
             .events(Collections.emptyList())
             .hearings(Collections.singletonList(hearing))
             .build();
