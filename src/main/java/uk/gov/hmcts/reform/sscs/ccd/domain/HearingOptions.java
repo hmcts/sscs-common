@@ -41,4 +41,8 @@ public class HearingOptions {
         this.excludeDates = excludeDates;
         this.other = other;
     }
+
+    public Boolean isWantsToAttendHearing() {
+        return wantsToAttend != null && wantsToAttend.toLowerCase().equals("yes");
+    }
 }
