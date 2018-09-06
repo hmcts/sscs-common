@@ -26,12 +26,7 @@ public enum EventType {
     SECOND_HEARING_HOLDING_REMINDER("secondHearingHoldingReminder", 0, true),
     THIRD_HEARING_HOLDING_REMINDER("thirdHearingHoldingReminder", 0, true),
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
-    HEARING_REMINDER("hearingReminder", 0, true),
-    DWP_RESPONSE_LATE_REMINDER("dwpResponseLateReminder", 0, true),
-    //TODO: This should be moved out of CCD domain
-    QUESTION_ROUND_ISSUED("question_round_issued", 0, true),
-    //TODO: This should be moved out of CCD domain??
-    DO_NOT_SEND("", 0, false);
+    HEARING_REMINDER("hearingReminder", 0, true);
 
     private String type;
     private String ccdType;
