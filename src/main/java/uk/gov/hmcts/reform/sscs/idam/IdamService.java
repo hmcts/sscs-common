@@ -36,7 +36,7 @@ public class IdamService {
         this.idamApiClient = idamApiClient;
     }
 
-    private String generateServiceAuthorization() {
+    public String generateServiceAuthorization() {
         return authTokenGenerator.generate();
     }
 
@@ -45,7 +45,7 @@ public class IdamService {
         return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
-    private String getIdamOauth2Token() {
+    public String getIdamOauth2Token() {
         String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
         String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
 
