@@ -49,7 +49,7 @@ public class SscsCcdConvertService {
                 .build();
     }
 
-    private SscsCaseData getCaseData(Map<String, Object> dataMap) {
+    public SscsCaseData getCaseData(Map<String, Object> dataMap) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
