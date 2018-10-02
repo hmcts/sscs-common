@@ -177,6 +177,83 @@ public final class CaseDataUtils {
                 .build();
     }
 
+    public static SscsCaseData buildMinimalCaseData() {
+        Name name = Name.builder()
+                .title("Mr")
+                .firstName("User")
+                .lastName("Test")
+                .build();
+        Contact contact = Contact.builder()
+                .email("mail@example.com")
+                .phone("01234567890")
+                .mobile("01234567890")
+                .build();
+        Identity identity = Identity.builder()
+                .dob("1904-03-10")
+                .nino("AB 22 55 66 B")
+                .build();
+        Appellant appellant = Appellant.builder()
+                .name(name)
+                .contact(contact)
+                .identity(identity)
+                .build();
+        BenefitType benefitType = BenefitType.builder()
+                .code("1325")
+                .build();
+
+        DateRange dateRange = DateRange.builder()
+                .start("2018-06-30")
+                .end("2018-06-30")
+                .build();
+        ExcludeDate excludeDate = ExcludeDate.builder()
+                .value(dateRange)
+                .build();
+
+        HearingOptions hearingOptions = HearingOptions.builder()
+                .wantsToAttend("Yes")
+                .arrangements(Arrays.asList("disabledAccess", "hearingLoop"))
+                .excludeDates(Collections.singletonList(excludeDate))
+                .other("No")
+                .build();
+
+        MrnDetails mrnDetails = MrnDetails.builder()
+                .mrnDate("2018-06-30")
+                .dwpIssuingOffice("1")
+                .build();
+
+        Representative representative = Representative.builder()
+                .hasRepresentative("Yes")
+                .build();
+
+        final Appeal appeal = Appeal.builder()
+                .appellant(appellant)
+                .benefitType(benefitType)
+                .hearingOptions(hearingOptions)
+                .mrnDetails(mrnDetails)
+                .rep(representative)
+                .signer("Signer")
+                .build();
+
+        EventDetails event = EventDetails.builder()
+                .type("appealCreated")
+                .description("Appeal Created")
+                .date("2001-12-14T21:59:43.10")
+                .build();
+        Event events = Event.builder()
+                .value(event)
+                .build();
+
+        return SscsCaseData.builder()
+                .appeal(appeal)
+                .events(Collections.singletonList(events))
+                .generatedNino(identity.getNino())
+                .generatedSurname(name.getLastName())
+                .generatedEmail(contact.getEmail())
+                .generatedMobile(contact.getMobile())
+                .generatedDob(identity.getDob())
+                .build();
+    }
+
     public static SscsCaseDetails convertCaseDetailsToSscsCaseDetails(CaseDetails caseDetails) {
         return new SscsCcdConvertService().getCaseDetails(caseDetails);
     }
