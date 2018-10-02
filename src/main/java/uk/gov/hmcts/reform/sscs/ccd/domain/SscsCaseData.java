@@ -1,9 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -73,5 +70,16 @@ public class SscsCaseData {
         this.generatedDob = generatedDob;
         this.evidencePresent = evidencePresent;
         this.onlinePanel = onlineOnlinePanel;
+    }
+
+    @JsonIgnore
+    private EventDetails getLatestEvent() {
+        return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
+    public String getLatestEventType() {
+        EventDetails latestEvent = getLatestEvent();
+        return latestEvent != null ? latestEvent.getType() : null;
     }
 }
