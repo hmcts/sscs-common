@@ -41,7 +41,7 @@ public class IdamService {
     }
 
     @Retryable
-    private String getUserId(String oauth2Token) {
+    public String getUserId(String oauth2Token) {
         return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
