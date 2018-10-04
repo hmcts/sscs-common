@@ -10,7 +10,10 @@ import lombok.Data;
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsCaseData {
-    private String caseId;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String ccdCaseId;
+
     private String caseReference;
     private String caseCreated;
     private String region;
@@ -32,7 +35,7 @@ public class SscsCaseData {
     private OnlinePanel onlinePanel;
 
     @JsonCreator
-    public SscsCaseData(@JsonProperty("caseId") String caseId,
+    public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("region") String region,
@@ -51,7 +54,7 @@ public class SscsCaseData {
                         @JsonProperty("generatedDOB") String generatedDob,
                         @JsonProperty("evidencePresent") String evidencePresent,
                         @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel) {
-        this.caseId = caseId;
+        this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.region = region;
