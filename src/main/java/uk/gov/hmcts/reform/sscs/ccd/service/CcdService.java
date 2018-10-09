@@ -21,6 +21,7 @@ import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 @Service
 @Slf4j
 public class CcdService {
+    public static final String ERROR_WHILE_GETTING_CASE_FROM_CCD = "Error while getting case from ccd";
     private final CreateCcdCaseService createCcdCaseService;
     private final SearchCcdCaseService searchCcdCaseService;
     private final UpdateCcdCaseService updateCcdCaseService;
@@ -43,7 +44,7 @@ public class CcdService {
         try {
             return searchCcdCaseService.findCaseBySearchCriteria(searchCriteria, idamTokens);
         } catch (Exception ex) {
-            throw logCcdException("Error while getting case from ccd", ex);
+            throw logCcdException(ERROR_WHILE_GETTING_CASE_FROM_CCD, ex);
         }
     }
 
@@ -51,7 +52,7 @@ public class CcdService {
         try {
             return getCaseByAppealNumber(appealNumber, idamTokens);
         } catch (Exception ex) {
-            throw logCcdException("Error while getting case from ccd", ex);
+            throw logCcdException(ERROR_WHILE_GETTING_CASE_FROM_CCD, ex);
         }
     }
 
@@ -78,7 +79,7 @@ public class CcdService {
 
                 return !caseDetails.isEmpty() ? caseDetails.get(0) : null;
             } catch (Exception ex) {
-                throw logCcdException("Error while getting case from ccd", ex);
+                throw logCcdException(ERROR_WHILE_GETTING_CASE_FROM_CCD, ex);
             }
         }
         return null;
@@ -113,6 +114,7 @@ public class CcdService {
             throw new AppealNotFoundException(appealNumber);
         }
         SscsCaseData caseData = details.getData();
+        caseData.setCcdCaseId(String.valueOf(details.getId()));
         return caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null
                 && caseData.getAppeal().getAppellant().getName() != null
                 && caseData.getAppeal().getAppellant().getName().getLastName() != null

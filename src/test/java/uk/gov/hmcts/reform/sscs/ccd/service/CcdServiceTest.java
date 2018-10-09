@@ -154,6 +154,7 @@ public class CcdServiceTest {
 
         assertNotNull(caseData);
         assertEquals("Test", caseData.getAppeal().getAppellant().getName().getLastName());
+        assertEquals("1", caseData.getCcdCaseId());
     }
 
     @Test
