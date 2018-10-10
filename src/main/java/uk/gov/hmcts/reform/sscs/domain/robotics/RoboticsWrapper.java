@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.domain.robotics;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Value;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 
 @Data
