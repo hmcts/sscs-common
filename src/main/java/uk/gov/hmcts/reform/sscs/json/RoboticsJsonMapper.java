@@ -25,7 +25,7 @@ public class RoboticsJsonMapper {
         obj.put("evidencePresent", wrapper.getEvidencePresent());
         obj.put("appellant", buildAppellantDetails(sscsCaseData.getAppeal().getAppellant()));
 
-        if (sscsCaseData.getAppeal().getRep() != null) {
+        if (sscsCaseData.getAppeal().getRep() != null && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals("Yes")) {
             obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
         }
 
