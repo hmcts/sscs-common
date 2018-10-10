@@ -19,7 +19,7 @@ public class RoboticsJsonValidatorTest {
     public void validateInvalidRoboticsJson() {
 
         JSONObject invalidRoboticsJson = createRoboticsJson();
-        invalidRoboticsJson.remove("caseId");
+        invalidRoboticsJson.remove("caseCode");
 
         roboticsJsonValidator.validate(invalidRoboticsJson);
     }

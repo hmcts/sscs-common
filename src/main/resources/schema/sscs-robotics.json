@@ -70,7 +70,6 @@
   "additionalProperties": false,
   "required": [
     "caseCode",
-    "caseId",
     "appellantNino",
     "appealDate",
     "hearingType",
