@@ -10,6 +10,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public final class CaseDataUtils {
+
     private CaseDataUtils() {
     }
 
@@ -23,8 +24,17 @@ public final class CaseDataUtils {
                 .firstName("User")
                 .lastName(surname)
                 .build();
+        Name repName = Name.builder()
+                .title("Mrs")
+                .firstName("Wendy")
+                .lastName("Giles")
+                .build();
         Address address = Address.builder()
-                .postcode("L17 7AE")
+                .line1("123 Hairy Lane")
+                .line2("Off Hairy Park")
+                .town("Hairyfield")
+                .county("Kent")
+                .postcode("TN32 6PL")
                 .build();
         Contact contact = Contact.builder()
                 .email("mail@email.com")
@@ -45,28 +55,55 @@ public final class CaseDataUtils {
                 .code("JSA")
                 .build();
 
-        DateRange dateRange = DateRange.builder()
+        DateRange dateRange1 = DateRange.builder()
                 .start("2018-06-30")
                 .end("2018-06-30")
                 .build();
-        ExcludeDate excludeDate = ExcludeDate.builder()
-                .value(dateRange)
+        DateRange dateRange2 = DateRange.builder()
+                .start("2018-07-30")
+                .end("2018-07-30")
                 .build();
+        DateRange dateRange3 = DateRange.builder()
+                .start("2018-08-30")
+                .end("2018-08-30")
+                .build();
+        ExcludeDate excludeDate1 = ExcludeDate.builder()
+                .value(dateRange1)
+                .build();
+        ExcludeDate excludeDate2 = ExcludeDate.builder()
+                .value(dateRange2)
+                .build();
+        ExcludeDate excludeDate3 = ExcludeDate.builder()
+                .value(dateRange3)
+                .build();
+
+        List<ExcludeDate> excludeDates = new ArrayList<>();
+        excludeDates.add(excludeDate1);
+        excludeDates.add(excludeDate2);
+        excludeDates.add(excludeDate3);
 
         HearingOptions hearingOptions = HearingOptions.builder()
                 .wantsToAttend("Yes")
-                .arrangements(Arrays.asList("disabledAccess", "hearingLoop"))
-                .excludeDates(Collections.singletonList(excludeDate))
-                .other("No")
+                .languageInterpreter("Yes")
+                .languages("Spanish")
+                .signLanguageType("A sign language")
+                .arrangements(Arrays.asList("hearingLoop", "signLanguageInterpreter"))
+                .other("Yes, this...")
+                .excludeDates(excludeDates)
                 .build();
 
         MrnDetails mrnDetails = MrnDetails.builder()
-                .mrnDate("2018-06-30")
+                .mrnDate("2018-06-29")
                 .dwpIssuingOffice("1")
+                .mrnLateReason("Lost my paperwork")
                 .build();
 
         Representative representative = Representative.builder()
                 .hasRepresentative("Yes")
+                .name(repName)
+                .address(address)
+                .contact(contact)
+                .organisation("HP Ltd")
                 .build();
 
         final Appeal appeal = Appeal.builder()
