@@ -200,4 +200,15 @@ public class RoboticsJsonMapperTest {
 
         assertFalse(roboticsJson.getJSONObject("hearingArrangements").has("signLanguageInterpreter"));
     }
+
+    @Test
+    public void givenCcdCaseIdIsNull_thenDoNotSetCcdCaseId() {
+        appeal.setCcdCaseId(null);
+
+        JSONObject roboticsJson = roboticsJsonMapper.map(appeal);
+
+        roboticsJsonValidator.validate(roboticsJson);
+
+        assertFalse(roboticsJson.has("caseId"));
+    }
 }

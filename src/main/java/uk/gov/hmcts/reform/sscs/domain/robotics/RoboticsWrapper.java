@@ -1,16 +1,17 @@
 package uk.gov.hmcts.reform.sscs.domain.robotics;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Value;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 
-@Value
+@Data
 @Builder
 public class RoboticsWrapper {
 
     private SscsCaseData sscsCaseData;
 
-    private long ccdCaseId;
+    private Long ccdCaseId;
 
     private String venueName;
 
