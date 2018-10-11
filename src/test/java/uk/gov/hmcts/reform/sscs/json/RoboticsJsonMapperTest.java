@@ -211,4 +211,18 @@ public class RoboticsJsonMapperTest {
 
         assertFalse(roboticsJson.has("caseId"));
     }
+
+    @Test
+    public void givenAMissingRepresentative_thenProcessRobotics() {
+
+        appeal.getSscsCaseData().getAppeal().getRep().setAddress(null);
+        appeal.getSscsCaseData().getAppeal().getRep().setName(null);
+        appeal.getSscsCaseData().getAppeal().getRep().setOrganisation(null);
+        appeal.getSscsCaseData().getAppeal().getRep().setHasRepresentative("No");
+
+        JSONObject roboticsJson = roboticsJsonMapper.map(appeal);
+
+        assertFalse(roboticsJson.has("representative"));
+
+    }
 }
