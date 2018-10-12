@@ -10,6 +10,8 @@ import java.util.List;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DateRange;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ExcludeDate;
 import uk.gov.hmcts.reform.sscs.domain.robotics.RoboticsWrapper;
 
 public class RoboticsJsonMapperTest {
@@ -139,6 +141,27 @@ public class RoboticsJsonMapperTest {
         JSONObject roboticsJson = roboticsJsonMapper.map(appeal);
 
         assertEquals("My Language", roboticsJson.getJSONObject("hearingArrangements").get("languageInterpreter"));
+    }
+
+    @Test
+    public void givenHearingArrangementIsNull_thenSetToExcludeDatesHearingLoopAndAccHearingRoom() {
+
+        DateRange dateRange1 = DateRange.builder()
+                .start("2018-06-30")
+                .end("2018-06-30")
+                .build();
+        List<ExcludeDate> excludeDates = new ArrayList<>();
+        excludeDates.add(ExcludeDate.builder()
+                .value(dateRange1)
+                .build());
+        appeal.getSscsCaseData().getAppeal().getHearingOptions().setArrangements(null);
+        appeal.getSscsCaseData().getAppeal().getHearingOptions().setExcludeDates(excludeDates);
+
+        JSONObject roboticsJson = roboticsJsonMapper.map(appeal);
+
+        assertEquals("No", roboticsJson.getJSONObject("hearingArrangements").get("hearingLoop"));
+        assertEquals("No", roboticsJson.getJSONObject("hearingArrangements").get("accessibleHearingRoom"));
+        assertEquals("2018-06-30", roboticsJson.getJSONObject("hearingArrangements").getJSONArray("datesCantAttend").get(0));
     }
 
     @Test
