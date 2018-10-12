@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseDetailsWithSurname;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
@@ -42,12 +44,16 @@ public class CcdServiceTest {
     private CreateCcdCaseService createCcdCaseService;
     private SearchCcdCaseService searchCcdCaseService;
     private UpdateCcdCaseService updateCcdCaseService;
+
+    @Mock
     private ReadCcdCaseService readCcdCaseService;
+
     @Captor
     private ArgumentCaptor<CaseDataContent> captor;
 
     @Before
     public void setUp() {
+        initMocks(this);
         searchCriteria = new HashMap<String, String>() {{
                 put("case.subscriptions.appellantSubscription.tya", "12345");
             }
@@ -65,7 +71,6 @@ public class CcdServiceTest {
         createCcdCaseService = new CreateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
-        readCcdCaseService = new ReadCcdCaseService(idamService, ccdClient);
         ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
     }
 
@@ -81,11 +86,11 @@ public class CcdServiceTest {
 
     @Test
     public void givenACaseId_thenGetTheCaseDetailsById() {
-        when(ccdClient.readForCaseworker(idamTokens, 1L)).thenReturn(caseDetails);
+        when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(sscsCaseDetails);
 
-        CaseDetails result = ccdService.getByCaseId(1L, idamTokens);
+        SscsCaseDetails result = ccdService.getByCaseId(1L, idamTokens);
 
-        assertThat(result, is(caseDetails));
+        assertThat(result, is(sscsCaseDetails));
     }
 
     @Test

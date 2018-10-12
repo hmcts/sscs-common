@@ -9,7 +9,6 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Subscription;
@@ -56,7 +55,7 @@ public class CcdService {
         }
     }
 
-    public CaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
+    public SscsCaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
         return readCcdCaseService.getByCaseId(caseId, idamTokens);
     }
 

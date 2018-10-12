@@ -3,10 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 import uk.gov.hmcts.reform.ccd.client.model.Classification;
 
-@Value
+@Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SscsCaseDetails {
