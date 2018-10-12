@@ -111,6 +111,10 @@ public class RoboticsJsonMapper {
 
             hearingArrangements.put("hearingLoop", convertBooleanToYesNo(hearingOptions.wantsHearingLoop()));
             hearingArrangements.put("accessibleHearingRoom", convertBooleanToYesNo(hearingOptions.wantsAccessibleHearingRoom()));
+        } else if (hearingOptions.getOther() != null || hearingOptions.getExcludeDates() != null) {
+
+            hearingArrangements.put("hearingLoop", convertBooleanToYesNo(false));
+            hearingArrangements.put("accessibleHearingRoom", convertBooleanToYesNo(false));
         }
 
         if (hearingOptions.getOther() != null) {
