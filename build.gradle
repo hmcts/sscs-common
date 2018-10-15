@@ -115,8 +115,6 @@ bintray {
 dependencies {
     compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: '3.0.1'
     compile group: 'uk.gov.hmcts.reform', name: 'core-case-data-store-client', version: '4.2.0'
-    compile group: 'uk.gov.hmcts.reform', name: 'document-management-client', version: '3.0.0'
-    compile group: 'uk.gov.hmcts.reform', name: 'pdf-service-client', version: '5.0.0'
 
     compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
     compile group: 'io.github.openfeign.form', name: 'feign-form', version: '3.3.0'
