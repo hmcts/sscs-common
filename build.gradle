@@ -119,8 +119,6 @@ dependencies {
     compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
     compile group: 'io.github.openfeign.form', name: 'feign-form', version: '3.3.0'
     compile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '1.0.0'
-    compile group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.9.2'
-    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 
     compile group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
