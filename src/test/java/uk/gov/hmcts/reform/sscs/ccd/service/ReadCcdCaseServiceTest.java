@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -42,6 +44,7 @@ public class ReadCcdCaseServiceTest {
 
         SscsCaseDetails byCaseId = readCcdCaseService.getByCaseId(caseId, idamTokens);
 
+        verify(ccdClient, times(1)).readForCaseworker(idamTokens, caseId);
         assertNotNull(byCaseId);
         assertEquals(caseId.longValue(), byCaseId.getId().longValue());
     }
@@ -59,6 +62,7 @@ public class ReadCcdCaseServiceTest {
 
         SscsCaseDetails byCaseId = readCcdCaseService.recover(caseId);
 
+        verify(ccdClient, times(1)).readForCaseworker(idamTokens, caseId);
         assertNotNull(byCaseId);
         assertEquals(caseId.longValue(), byCaseId.getId().longValue());
     }
@@ -73,6 +77,7 @@ public class ReadCcdCaseServiceTest {
 
         SscsCaseDetails byCaseId = readCcdCaseService.getByCaseId(caseId, idamTokens);
 
+        verify(ccdClient, times(1)).readForCaseworker(idamTokens, caseId);
         assertNull(byCaseId);
     }
 }
