@@ -24,6 +24,7 @@ public class Name {
         this.lastName = lastName;
     }
 
+    @JsonIgnore
     public String getFullName() {
         return title + " " + firstName + " " + lastName;
     }
