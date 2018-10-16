@@ -35,7 +35,7 @@ public class ReadCcdCaseService {
         CaseDetails caseDetails = ccdClient.readForCaseworker(idamTokens, caseId);
 
         if (null != caseDetails) {
-            return sscsCcdConvertService.getCaseDetails(ccdClient.readForCaseworker(idamTokens, caseId));
+            return sscsCcdConvertService.getCaseDetails(caseDetails);
         }
         return null;
     }
