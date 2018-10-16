@@ -62,4 +62,17 @@ public class ReadCcdCaseServiceTest {
         assertNotNull(byCaseId);
         assertEquals(caseId.longValue(), byCaseId.getId().longValue());
     }
+
+
+    @Test
+    public void shouldReturnNullForGivenCaseId() {
+        Long caseId = new Long(1);
+        IdamTokens idamTokens = IdamTokens.builder().build();
+
+        when(ccdClient.readForCaseworker(idamTokens, caseId)).thenReturn(null);
+
+        SscsCaseDetails byCaseId = readCcdCaseService.getByCaseId(caseId, idamTokens);
+
+        assertNull(byCaseId);
+    }
 }

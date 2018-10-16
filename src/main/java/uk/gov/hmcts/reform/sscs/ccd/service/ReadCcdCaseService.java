@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -31,13 +32,18 @@ public class ReadCcdCaseService {
     protected SscsCaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
         log.info("Get getByCaseId " + caseId);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.readForCaseworker(idamTokens, caseId));
+        CaseDetails caseDetails = ccdClient.readForCaseworker(idamTokens, caseId);
+
+        if (null != caseDetails) {
+            return sscsCcdConvertService.getCaseDetails(ccdClient.readForCaseworker(idamTokens, caseId));
+        }
+        return null;
     }
 
     @Recover
     protected SscsCaseDetails recover(Long caseId) {
         IdamTokens idamTokens = idamService.getIdamTokens();
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.readForCaseworker(idamTokens, caseId));
+        return getByCaseId(caseId, idamTokens);
     }
 }
