@@ -47,15 +47,15 @@ public class HearingOptions {
         return wantsToAttend != null && wantsToAttend.toLowerCase().equals("yes");
     }
 
-    public Boolean wantsSignLanguageInterpreter() {
+    public Boolean getWantsSignLanguageInterpreter() {
         return arrangements.contains("signLanguageInterpreter");
     }
 
-    public Boolean wantsHearingLoop() {
+    public Boolean getWantsHearingLoop() {
         return arrangements.contains("hearingLoop");
     }
 
-    public Boolean wantsAccessibleHearingRoom() {
+    public Boolean getWantsAccessibleHearingRoom() {
         return arrangements.contains("disabledAccess");
     }
 }
