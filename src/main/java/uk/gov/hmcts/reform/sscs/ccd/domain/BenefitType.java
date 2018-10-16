@@ -11,9 +11,12 @@ import lombok.Value;
 @Builder
 public class BenefitType {
     private String code;
+    private String description;
 
     @JsonCreator
-    public BenefitType(@JsonProperty("code") String code) {
+    public BenefitType(@JsonProperty("code") String code,
+                       @JsonProperty("description") String description) {
         this.code = code;
+        this.description = description;
     }
 }
