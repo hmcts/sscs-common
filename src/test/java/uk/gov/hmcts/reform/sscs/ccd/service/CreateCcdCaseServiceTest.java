@@ -1,0 +1,85 @@
+package uk.gov.hmcts.reform.sscs.ccd.service;
+
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.springframework.retry.backoff.FixedBackOffPolicy;
+import org.springframework.retry.support.RetryTemplate;
+import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
+import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils;
+import uk.gov.hmcts.reform.sscs.idam.IdamService;
+import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+
+public class CreateCcdCaseServiceTest {
+
+
+    private IdamTokens idamTokens;
+    private CaseDetails caseDetails;
+    private SscsCaseData sscsCaseData;
+
+    @Mock
+    private IdamService idamService;
+
+    @Mock
+    private CcdClient ccdClient;
+
+    @Mock
+    private SearchCcdCaseService searchCcdCaseService;
+
+    private RetryTemplate retryTemplate;
+    private SscsCcdConvertService sscsCcdConvertService;
+
+    private CreateCcdCaseService createCcdCaseService;
+
+
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+        retryTemplate = retryTemplate();
+        sscsCcdConvertService = new SscsCcdConvertService();
+        idamTokens = IdamTokens.builder()
+                .idamOauth2Token("oauthToken")
+                .serviceAuthorization("serviceAuthToken")
+                .userId("user-id")
+                .build();
+        caseDetails = CaseDataUtils.buildCaseDetails();
+        sscsCaseData = CaseDataUtils.buildCaseData();
+
+        createCcdCaseService = new CreateCcdCaseService(idamService,
+                sscsCcdConvertService, ccdClient, retryTemplate, searchCcdCaseService);
+    }
+
+    @Test
+    public void shouldCreateTheCaseInCcd() {
+        StartEventResponse startEventResponse = StartEventResponse.builder().build();
+        when(ccdClient.startCaseForCaseworker(idamTokens, "appealCreated")).thenReturn(startEventResponse);
+
+        when(ccdClient.submitForCaseworker(eq(idamTokens), any())).thenReturn(caseDetails);
+        when(searchCcdCaseService.findCaseByCaseRefOrCaseId(any(), any())).thenReturn(null);
+
+        SscsCaseDetails sscsCaseDetails = createCcdCaseService.createCase(sscsCaseData, idamTokens);
+
+        assertNotNull(sscsCaseDetails);
+    }
+
+
+    private RetryTemplate retryTemplate() {
+        RetryTemplate retryTemplate = new RetryTemplate();
+
+        FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
+        fixedBackOffPolicy.setBackOffPeriod(2000L);
+        retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
+
+        return retryTemplate;
+    }
+}
