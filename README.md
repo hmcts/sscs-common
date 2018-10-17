@@ -1,9 +1,11 @@
 ## Sscs-common
 
-This is the common code for sscs. Currently it contains the following
+This is the common code library for sscs. Currently it contains:
 
-- Code to connect to CCD.
-- Code to get the Idam OAuth and service authorization tokens.
+- CCD domain objects
+- Create, Update and Search for cases in CCD
+- Idam OAuth and service authorization tokens
+- Airlookup service
 
 ###Build
 
