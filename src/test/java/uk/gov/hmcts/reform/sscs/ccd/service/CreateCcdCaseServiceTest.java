@@ -36,17 +36,12 @@ public class CreateCcdCaseServiceTest {
     @Mock
     private SearchCcdCaseService searchCcdCaseService;
 
-    private RetryTemplate retryTemplate;
-    private SscsCcdConvertService sscsCcdConvertService;
-
     private CreateCcdCaseService createCcdCaseService;
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         initMocks(this);
-        retryTemplate = retryTemplate();
-        sscsCcdConvertService = new SscsCcdConvertService();
         idamTokens = IdamTokens.builder()
                 .idamOauth2Token("oauthToken")
                 .serviceAuthorization("serviceAuthToken")
@@ -56,7 +51,7 @@ public class CreateCcdCaseServiceTest {
         sscsCaseData = CaseDataUtils.buildCaseData();
 
         createCcdCaseService = new CreateCcdCaseService(idamService,
-                sscsCcdConvertService, ccdClient, retryTemplate, searchCcdCaseService);
+                new SscsCcdConvertService(), ccdClient, retryTemplate(), searchCcdCaseService);
     }
 
     @Test
