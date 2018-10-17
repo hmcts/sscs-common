@@ -41,12 +41,14 @@ public class CcdServiceTest {
     private CcdClient ccdClient;
     private CcdService ccdService;
     private SscsCcdConvertService sscsCcdConvertService;
-    private CreateCcdCaseService createCcdCaseService;
     private SearchCcdCaseService searchCcdCaseService;
     private UpdateCcdCaseService updateCcdCaseService;
 
     @Mock
     private ReadCcdCaseService readCcdCaseService;
+
+    @Mock
+    private CreateCcdCaseService createCcdCaseService;
 
     @Captor
     private ArgumentCaptor<CaseDataContent> captor;
@@ -68,8 +70,7 @@ public class CcdServiceTest {
         sscsCaseDetails = CaseDataUtils.convertCaseDetailsToSscsCaseDetails(caseDetails);
         ccdClient = mock(CcdClient.class);
         sscsCcdConvertService = new SscsCcdConvertService();
-        createCcdCaseService = new CreateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
-        searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
+        searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
         updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
     }
@@ -96,14 +97,11 @@ public class CcdServiceTest {
     @Test
     public void canCreateACase() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-        StartEventResponse startEventResponse = StartEventResponse.builder().build();
-        when(ccdClient.startCaseForCaseworker(idamTokens, "appealCreated")).thenReturn(startEventResponse);
-
-        when(ccdClient.submitForCaseworker(eq(idamTokens), any())).thenReturn(caseDetails);
 
         SscsCaseDetails result = ccdService.createCase(sscsCaseData, idamTokens);
 
-        assertThat(result, is(sscsCaseDetails));
+        verify(createCcdCaseService).createCase(sscsCaseData,idamTokens);
+
     }
 
     @Test
