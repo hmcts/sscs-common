@@ -1,21 +1,29 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 
+@RunWith(MockitoJUnitRunner.class)
 public class RegionalProcessingCenterServiceTest {
 
     public static final String SSCS_LIVERPOOL = "SSCS Liverpool";
+
+    @Mock
+    private AirLookupService airLookupService;
 
     private RegionalProcessingCenterService regionalProcessingCenterService;
 
     @Before
     public void setUp() throws Exception {
-        regionalProcessingCenterService = new RegionalProcessingCenterService();
+        regionalProcessingCenterService = new RegionalProcessingCenterService(airLookupService);
     }
 
     @Test
@@ -125,6 +133,17 @@ public class RegionalProcessingCenterServiceTest {
 
         String leedsVenueId = "10";
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByVenueId(leedsVenueId);
+
+        assertEquals("LEEDS", rpc.getName());
+    }
+
+    @Test
+    public void getRegionalProcessingCentreFromPostcode() {
+        regionalProcessingCenterService.init();
+
+        String somePostcode = "AB1 1AB";
+        when(airLookupService.lookupRegionalCentre(somePostcode)).thenReturn("Leeds");
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode);
 
         assertEquals("LEEDS", rpc.getName());
     }
