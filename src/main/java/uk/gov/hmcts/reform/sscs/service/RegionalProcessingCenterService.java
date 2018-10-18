@@ -30,7 +30,7 @@ public class RegionalProcessingCenterService {
 
     private Map<String, RegionalProcessingCenter>  regionalProcessingCenterMap  = newHashMap();
     private final Map<String, String> sccodeRegionalProcessingCentermap = newHashMap();
-
+    private final Map<String, String> venueIdToRegionalProcessingCentre = newHashMap();
 
     @PostConstruct
     public void init() {
@@ -43,9 +43,10 @@ public class RegionalProcessingCenterService {
         try (CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()))) {
 
             List<String[]> linesList = reader.readAll();
-            linesList.forEach(line ->
-                    sccodeRegionalProcessingCentermap.put(line[1], line[2])
-            );
+            linesList.forEach(line -> {
+                sccodeRegionalProcessingCentermap.put(line[1], line[2]);
+                venueIdToRegionalProcessingCentre.put(line[0], line[2]);
+            });
         } catch (IOException e) {
             LOG.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH, new RegionalProcessingCenterServiceException(e));
         }
@@ -112,6 +113,11 @@ public class RegionalProcessingCenterService {
 
     public Map<String, String> getSccodeRegionalProcessingCentermap() {
         return sccodeRegionalProcessingCentermap;
+    }
+
+    public RegionalProcessingCenter getByVenueId(String venueId) {
+        String rpc = venueIdToRegionalProcessingCentre.get(venueId);
+        return regionalProcessingCenterMap.get(rpc);
     }
 
 }

@@ -119,6 +119,16 @@ public class RegionalProcessingCenterServiceTest {
         assertBirminghamRpc(regionalProcessingCenter);
     }
 
+    @Test
+    public void getRegionalProcessingCentreFromVenueId() {
+        regionalProcessingCenterService.init();
+
+        String leedsVenueId = "10";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByVenueId(leedsVenueId);
+
+        assertEquals("LEEDS", rpc.getName());
+    }
+
     private void assertBirminghamRpc(RegionalProcessingCenter regionalProcessingCenter) {
         assertEquals("BIRMINGHAM", regionalProcessingCenter.getName());
         assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
