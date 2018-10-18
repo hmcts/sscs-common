@@ -3,10 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Value
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOptions {
@@ -48,14 +48,14 @@ public class HearingOptions {
     }
 
     public Boolean wantsSignLanguageInterpreter() {
-        return arrangements.contains("signLanguageInterpreter");
+        return arrangements != null && arrangements.contains("signLanguageInterpreter");
     }
 
     public Boolean wantsHearingLoop() {
-        return arrangements.contains("hearingLoop");
+        return arrangements != null && arrangements.contains("hearingLoop");
     }
 
     public Boolean wantsAccessibleHearingRoom() {
-        return arrangements.contains("disabledAccess");
+        return arrangements != null && arrangements.contains("disabledAccess");
     }
 }
