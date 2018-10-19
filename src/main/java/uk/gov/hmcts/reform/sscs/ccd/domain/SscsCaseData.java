@@ -25,6 +25,7 @@ public class SscsCaseData {
     private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<SscsDocument> sscsDocument;
+    private List<CorDocument> corDocument;
     private String generatedNino;
     private String generatedSurname;
     private String generatedEmail;
@@ -47,6 +48,7 @@ public class SscsCaseData {
                         @JsonProperty("subscriptions") Subscriptions subscriptions,
                         @JsonProperty("regionalProcessingCenter") RegionalProcessingCenter regionalProcessingCenter,
                         @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
+                        @JsonProperty("corDocument") List<CorDocument> corDocument,
                         @JsonProperty("generatedNino") String generatedNino,
                         @JsonProperty("generatedSurname") String generatedSurname,
                         @JsonProperty("generatedEmail") String generatedEmail,
@@ -66,6 +68,7 @@ public class SscsCaseData {
         this.subscriptions = subscriptions;
         this.regionalProcessingCenter = regionalProcessingCenter;
         this.sscsDocument = sscsDocument;
+        this.corDocument = corDocument;
         this.generatedNino = generatedNino;
         this.generatedSurname = generatedSurname;
         this.generatedEmail = generatedEmail;
