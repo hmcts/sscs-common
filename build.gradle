@@ -6,6 +6,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
+    id 'maven'
 }
 
 def buildNumber = System.getenv("TRAVIS_BUILD_NUMBER") ?: "DEV-SNAPSHOT"
@@ -27,6 +28,7 @@ repositories {
 
     jcenter()
     mavenCentral()
+    mavenLocal()
 
     // jitpack should be last resort
     // see: https://github.com/jitpack/jitpack.io/issues/1939

@@ -21,7 +21,7 @@ public class ReadCcdCaseService {
 
     @Autowired
     public ReadCcdCaseService(IdamService idamService,
-                                CcdClient ccdClient,
+                              CcdClient ccdClient,
                               SscsCcdConvertService sscsCcdConvertService) {
         this.idamService = idamService;
         this.ccdClient = ccdClient;
@@ -30,10 +30,8 @@ public class ReadCcdCaseService {
 
     @Retryable
     protected SscsCaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
-        log.info("Get getByCaseId " + caseId);
-
+        log.info("searching cases by ccdID {}", caseId);
         CaseDetails caseDetails = ccdClient.readForCaseworker(idamTokens, caseId);
-
         if (null != caseDetails) {
             return sscsCcdConvertService.getCaseDetails(caseDetails);
         }
