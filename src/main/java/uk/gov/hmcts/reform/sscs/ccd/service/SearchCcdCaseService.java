@@ -38,8 +38,8 @@ public class SearchCcdCaseService {
         this.readCcdCaseService = readCcdCaseService;
     }
 
-    SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
-        log.info("*** case-loader *** searching cases by SC number {}", caseRef);
+    public SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
+        log.info("searching cases by SC number {}", caseRef);
         ImmutableMap<String, String> searchCriteria = ImmutableMap.of("case.caseReference", caseRef);
         List<SscsCaseDetails> sscsCaseDetailsList = findCaseBySearchCriteria(searchCriteria, idamTokens);
         return !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;

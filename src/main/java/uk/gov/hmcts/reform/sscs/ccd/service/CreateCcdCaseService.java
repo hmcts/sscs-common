@@ -42,7 +42,7 @@ public class CreateCcdCaseService {
     }
 
     public SscsCaseDetails createCase(SscsCaseData caseData, IdamTokens idamTokens) {
-        log.info("*** case-loader *** Starting create case process with SC number {} and ccdID {} ...",
+        log.info("Starting create case process with SC number {} and ccdID {} ...",
                 caseData.getCaseReference(), caseData.getCcdCaseId());
         try {
             return retryTemplate.execute(getRetryCallback(caseData, idamTokens),
@@ -56,7 +56,7 @@ public class CreateCcdCaseService {
 
     private RecoveryCallback<SscsCaseDetails> getRecoveryCallback(SscsCaseData caseData, IdamTokens idamTokens) {
         return context -> {
-            log.info("*** case-loader *** Recovery method called when creating case with SC number {} and ccdID {}...",
+            log.info("Recovery method called when creating case with SC number {} and ccdID {}...",
                     caseData.getCaseReference(), caseData.getCcdCaseId());
             requestNewIdamTokens(idamTokens);
             return createCaseIfDoesNotExist(caseData, idamTokens, context);
@@ -71,7 +71,7 @@ public class CreateCcdCaseService {
     private RetryCallback<SscsCaseDetails, ? extends Throwable> getRetryCallback(SscsCaseData caseData,
                                                                              IdamTokens idamTokens) {
         return (RetryCallback<SscsCaseDetails, Throwable>) context -> {
-            log.info("*** case-loader *** create case with SC number {} and ccdID {} and retry number {}",
+            log.info("create case with SC number {} and ccdID {} and retry number {}",
                     caseData.getCaseReference(), caseData.getCcdCaseId(), context.getRetryCount());
             return createCaseIfDoesNotExist(caseData, idamTokens, context);
         };
