@@ -38,44 +38,41 @@ public class SearchCcdCaseService {
         this.readCcdCaseService = readCcdCaseService;
     }
 
-    @Retryable
-    protected List<SscsCaseDetails> findCaseBySearchCriteria(Map<String, String> searchCriteria, IdamTokens idamTokens) {
+    SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
+        log.info("*** case-loader *** searching cases by SC number {}", caseRef);
+        ImmutableMap<String, String> searchCriteria = ImmutableMap.of("case.caseReference", caseRef);
+        List<SscsCaseDetails> sscsCaseDetailsList = findCaseBySearchCriteria(searchCriteria, idamTokens);
+        return !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;
+    }
+
+    public List<SscsCaseDetails> findCaseBySearchCriteria(Map<String, String> searchCriteria, IdamTokens idamTokens) {
         List<CaseDetails> caseDetailsList = ccdClient.searchForCaseworker(idamTokens, searchCriteria);
-
-        return caseDetailsList.stream().map(sscsCcdConvertService::getCaseDetails).collect(toList());
+        return caseDetailsList.stream()
+                .map(sscsCcdConvertService::getCaseDetails)
+                .collect(toList());
     }
 
-    @Recover
-    protected List<SscsCaseDetails> recover(Map<String, String> searchCriteria, IdamTokens idamTokens) {
-        idamTokens = idamService.getIdamTokens();
-
-        return findCaseBySearchCriteria(searchCriteria, idamTokens);
-    }
-
-
-    public SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
-        log.info("Finding case by appeal reference number {}", caseRef);
-
-        List<SscsCaseDetails> caseDetailsList = this.findCaseBySearchCriteria(ImmutableMap.of(
-                "case.caseReference", caseRef), idamTokens);
-
-        return !caseDetailsList.isEmpty() ? caseDetailsList.get(0) : null;
-    }
-
+    @Retryable
     public SscsCaseDetails findCaseByCaseRefOrCaseId(SscsCaseData caseData, IdamTokens idamTokens) {
+        return retryLogic(caseData, idamTokens);
+    }
 
+    private SscsCaseDetails retryLogic(SscsCaseData caseData, IdamTokens idamTokens) {
         SscsCaseDetails sscsCaseDetails = null;
-
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
-            log.info("*** case-loader *** searching cases by SC number {}", caseData.getCaseReference());
             sscsCaseDetails = this.findCaseByCaseRef(caseData.getCaseReference(), idamTokens);
         }
-
         if (null == sscsCaseDetails && StringUtils.isNotBlank(caseData.getCcdCaseId())) {
-            log.info("*** case-loader *** searching cases by ccdID {}", caseData.getCcdCaseId());
             sscsCaseDetails = readCcdCaseService.getByCaseId(Long.parseLong(caseData.getCcdCaseId()), idamTokens);
         }
         return sscsCaseDetails;
     }
+
+    @Recover
+    public SscsCaseDetails recoverLogic(SscsCaseData caseData, IdamTokens idamTokens) {
+        idamTokens = idamService.getIdamTokens();
+        return retryLogic(caseData, idamTokens);
+    }
+
 
 }

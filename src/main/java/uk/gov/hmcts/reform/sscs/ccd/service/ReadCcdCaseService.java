@@ -2,8 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.retry.annotation.Recover;
-import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
@@ -21,26 +19,22 @@ public class ReadCcdCaseService {
 
     @Autowired
     public ReadCcdCaseService(IdamService idamService,
-                                CcdClient ccdClient,
+                              CcdClient ccdClient,
                               SscsCcdConvertService sscsCcdConvertService) {
         this.idamService = idamService;
         this.ccdClient = ccdClient;
         this.sscsCcdConvertService = sscsCcdConvertService;
     }
 
-    @Retryable
     protected SscsCaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
-        log.info("Get getByCaseId " + caseId);
-
+        log.info("*** case-loader *** searching cases by ccdID {}", caseId);
         CaseDetails caseDetails = ccdClient.readForCaseworker(idamTokens, caseId);
-
         if (null != caseDetails) {
             return sscsCcdConvertService.getCaseDetails(caseDetails);
         }
         return null;
     }
 
-    @Recover
     protected SscsCaseDetails recover(Long caseId) {
         IdamTokens idamTokens = idamService.getIdamTokens();
 
