@@ -62,10 +62,12 @@ public class RegionalProcessingCenterService {
 
     private void populateRpcMetadata() {
         ClassPathResource classPathResource = new ClassPathResource(RPC_DATA_JSON);
+        LOG.info("Try to populate RCP DATA from path {}",classPathResource.getPath());
         try (InputStream inputStream  = classPathResource.getInputStream()) {
             ObjectMapper mapper = new ObjectMapper();
             regionalProcessingCenterMap =
                     mapper.readValue(inputStream, new TypeReference<Map<String,RegionalProcessingCenter>>(){});
+            LOG.info("RCP DATA populated successfully");
 
         } catch (IOException e) {
             LOG.error("Error while reading RegionalProcessingCenter from " + RPC_DATA_JSON, new RegionalProcessingCenterServiceException(e));
@@ -80,11 +82,12 @@ public class RegionalProcessingCenterService {
         }
 
         String[] splitReferenceNumber = StringUtils.split(referenceNumber, SEPARATOR_CHAR);
+        LOG.info("SplitReferenceNumber {}",splitReferenceNumber.toString());
         String regionalProcessingCenter = sccodeRegionalProcessingCentermap.get(splitReferenceNumber[0]);
 
         if (null != regionalProcessingCenter) {
             if (regionalProcessingCenterMap.get(regionalProcessingCenter) == null) {
-                String text = "Venue could not be mapped to a valid RPC that SSCS knows about";
+                String text = "Venue could not be mapped to a valid RPC that SSCS knows about" + referenceNumber;
                 LOG.error(text, new RegionalProcessingCenterServiceException(new Exception(text)));
                 return null;
             } else {
