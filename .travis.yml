@@ -3,11 +3,9 @@ language: java
 branches:
   only:
   - master
-
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
 cache:
   directories:
   - $HOME/.gradle/caches/
@@ -20,6 +18,18 @@ deploy:
 - provider: script
   script: ./gradlew bintrayUpload
   skip_cleanup: true
+  on:
+    repo: hmcts/sscs-common
+    tags: true
+- provider: releases
+  api_key:
+    secure: m1tGlk4SAw4skqwyOp2R+RCfPVgtT2AFnVAdkaylDlEyqZfT/I0QcmNuHiN52ChweecX5wG5qAhPtgu+zfIHavciwn48wh3fFgKq6hVW4pELnsP3Ow2plMr0xgetklTfHDkFii7Nl9U7AGKXM9PNAQIuU5MiwZISQS0oc/cnlgrsgM9ON7V3xYiQG4LoMoZ/8K3hlaGspBiVuBnaF0pp7CfiBU8Q7sQRhyQf39gC/2gBUH8Wi6rBiXkOOGMioJm5tk0g5RSoojp+po7kBinqNjffjZSq15BgbQxjwnuNxOaMRi8vM4lVR2ta/0rQlkb4mvKpJ33UezcIs3HLkZUV13yU7vmalxJrDAVC9+IQy9P7o0B29T63orqPyHgQGEdySvhi75QyK/ii/sOY7zI9akM31na3Aujd+bjUQp0ZaowC5q8Eg/t40KQJ2Xr+qeIGO0nUvXvGYE1ikm3a1OEET6Gtn77xKSMfpK6gsR7yuKwNXii5GXko7xN+27Li6+BODxUOVost04DutLuZCDmhYfP+hwT8R0JIn3One1i4ZI5bKYu2QQODrsYU8gqzElcOXENJuBwGM6ZmdFURdwuuLzkwXlMXZsALx6RTVItiyljfH2jwZifuLiZb3GDE1lrGWvkyWlnp17jbujMhxVqN2M1ssnZ6rHKI9NgCdl7nzEw=
+  file: build/libs/sscs-common-*.jar
+  file_glob: true
+  skip_cleanup: true
+  on:
+    repo: hmcts/sscs-common
+    tags: true
 
 env:
   global:
