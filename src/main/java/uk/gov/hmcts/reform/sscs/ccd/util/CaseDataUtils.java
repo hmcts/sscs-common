@@ -175,7 +175,7 @@ public final class CaseDataUtils {
                 .subscribeSms("Yes")
                 .reason("")
                 .build();
-        Subscription supporterSubscription = Subscription.builder()
+        Subscription representativeSubscription = Subscription.builder()
                 .tya("")
                 .email("supporter@email.com")
                 .mobile("")
@@ -185,7 +185,7 @@ public final class CaseDataUtils {
                 .build();
         Subscriptions subscriptions = Subscriptions.builder()
                 .appellantSubscription(appellantSubscription)
-                .supporterSubscription(supporterSubscription)
+                .representativeSubscription(representativeSubscription)
                 .build();
 
         RegionalProcessingCenter rpc = RegionalProcessingCenter.builder()
