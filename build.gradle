@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'uk.gov.hmcts.reform'
-version '0.0.107'
+version '0.0.108'
 
 sourceCompatibility = 1.8
 
