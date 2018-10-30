@@ -84,8 +84,8 @@ public class RegionalProcessingCenterService {
 
         if (null != regionalProcessingCenter) {
             if (regionalProcessingCenterMap.get(regionalProcessingCenter) == null) {
-                String text = "Venue could not be mapped to a valid RPC that SSCS knows about" + referenceNumber;
-                LOG.error(text, new RegionalProcessingCenterServiceException(new Exception(text)));
+                LOG.warn("Venue could not be mapped to a valid RPC - {} for the SC number - {} "
+                        + "that SSCS knows about", regionalProcessingCenter, referenceNumber);
                 return null;
             } else {
                 return regionalProcessingCenterMap.get(regionalProcessingCenter);
