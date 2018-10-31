@@ -12,11 +12,14 @@ import lombok.Value;
 public class Subscriptions {
     Subscription appellantSubscription;
     Subscription supporterSubscription;
+    Subscription representativeSubscription;
 
     @JsonCreator
     public Subscriptions(@JsonProperty("appellantSubscription") Subscription appellantSubscription,
-                        @JsonProperty("supporterSubscription") Subscription supporterSubscription) {
+                         @JsonProperty("supporterSubscription") Subscription supporterSubscription,
+                         @JsonProperty("representativeSubscription") Subscription representativeSubscription) {
         this.appellantSubscription = appellantSubscription;
         this.supporterSubscription = supporterSubscription;
+        this.representativeSubscription = representativeSubscription;
     }
 }
