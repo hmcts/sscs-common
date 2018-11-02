@@ -11,6 +11,7 @@ import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseDetailsWithSurname;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.Before;
@@ -32,6 +33,10 @@ import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 @RunWith(MockitoJUnitRunner.class)
 public class CcdServiceTest {
 
+    public static final String APPELLANT_APPEAL_NUMBER = "app-appeal-number";
+    public static final String REPRESENTATIVE_APPEAL_NUMBER = "rep-appeal-number";
+    public static final String UPDATED_TEST_COM = "updated@test.com";
+    public static final String YES = "yes";
     private IdamService idamService = mock(IdamService.class);
     private HashMap<String, String> searchCriteria;
     private String userId;
@@ -57,7 +62,7 @@ public class CcdServiceTest {
     public void setUp() {
         initMocks(this);
         searchCriteria = new HashMap<String, String>() {{
-                put("case.subscriptions.appellantSubscription.tya", "12345");
+                put("case.subscriptions.appellantSubscription.tya", APPELLANT_APPEAL_NUMBER);
             }
         };
         userId = "userId";
@@ -119,7 +124,7 @@ public class CcdServiceTest {
     }
 
     @Test
-    public void shouldUpdateSubscriptionInCcd() {
+    public void shouldUpdateAppellantSubscriptionInCcd() {
 
         StartEventResponse startEventResponse = StartEventResponse.builder().build();
 
@@ -128,14 +133,14 @@ public class CcdServiceTest {
 
         when(ccdClient.submitEventForCaseworker(eq(idamTokens), eq(1L), captor.capture())).thenReturn(caseDetails);
 
-        ccdService.updateSubscription("12345", "updated@test.com", idamTokens);
+        ccdService.updateSubscription(APPELLANT_APPEAL_NUMBER, UPDATED_TEST_COM, idamTokens);
 
-        assertEquals("updated@test.com", ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getEmail());
-        assertEquals("yes", ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getSubscribeEmail());
+        assertEquals(UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getEmail());
+        assertEquals(YES, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getSubscribeEmail());
     }
 
     @Test
-    public void shouldUnSubscribeEmailNotification() {
+    public void shouldUnSubscribeAppellantEmailNotification() {
         StartEventResponse startEventResponse = StartEventResponse.builder().build();
 
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
@@ -143,7 +148,7 @@ public class CcdServiceTest {
 
         when(ccdClient.submitEventForCaseworker(eq(idamTokens), eq(1L), captor.capture())).thenReturn(caseDetails);
 
-        ccdService.updateSubscription("12345", null, idamTokens);
+        ccdService.updateSubscription(APPELLANT_APPEAL_NUMBER, null, idamTokens);
 
         assertNull(((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getEmail());
         assertEquals("no", ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getSubscribeEmail());
@@ -153,7 +158,7 @@ public class CcdServiceTest {
     public void shouldReturnCaseGivenSurnameAndAppealNumber() {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "Test", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "Test", idamTokens);
 
         assertNotNull(caseData);
         assertEquals("Test", caseData.getAppeal().getAppellant().getName().getLastName());
@@ -164,7 +169,7 @@ public class CcdServiceTest {
     public void shouldReturnCaseGivenWhenSurnameHasAccent() {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "Tést", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "Tést", idamTokens);
 
         assertNotNull(caseData);
         assertEquals("Test", caseData.getAppeal().getAppellant().getName().getLastName());
@@ -175,7 +180,7 @@ public class CcdServiceTest {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria))
                 .thenReturn(singletonList(buildCaseDetailsWithSurname("Tést")));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "Test", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "Test", idamTokens);
 
         assertNotNull(caseData);
         assertEquals("Tést", caseData.getAppeal().getAppellant().getName().getLastName());
@@ -185,7 +190,7 @@ public class CcdServiceTest {
     public void shouldReturnCaseGivenSurnameContainsNotAlphaCharacter() {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "Te-st", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "Te-st", idamTokens);
 
         assertNotNull(caseData);
         assertEquals("Test", caseData.getAppeal().getAppellant().getName().getLastName());
@@ -196,7 +201,7 @@ public class CcdServiceTest {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria))
                 .thenReturn(singletonList(buildCaseDetailsWithSurname("Te-st")));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "Test", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "Test", idamTokens);
 
         assertNotNull(caseData);
         assertEquals("Te-st", caseData.getAppeal().getAppellant().getName().getLastName());
@@ -206,7 +211,7 @@ public class CcdServiceTest {
     public void shouldReturnNullIfSurnameInvalid() {
         when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
 
-        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname("12345", "XXX", idamTokens);
+        SscsCaseData caseData = ccdService.findCcdCaseByAppealNumberAndSurname(APPELLANT_APPEAL_NUMBER, "XXX", idamTokens);
 
         verify(ccdClient).searchForCaseworker(eq(idamTokens), any());
 
@@ -270,6 +275,98 @@ public class CcdServiceTest {
         SscsCaseDetails caseDetails = ccdService.findCcdCaseByNinoAndBenefitTypeAndMrnDate(caseData, idamTokens);
 
         assertNull(caseDetails);
+    }
+
+    @Test
+    public void shouldRetrieveAppealByRepresentativeAppealNumber() {
+
+        searchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.appellantSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        HashMap<String, String> representativeSearchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.representativeSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.emptyList());
+        when(ccdClient.searchForCaseworker(idamTokens, representativeSearchCriteria))
+                .thenReturn(singletonList(caseDetails));
+
+        SscsCaseDetails caseByAppealNumber = ccdService.findCaseByAppealNumber(REPRESENTATIVE_APPEAL_NUMBER, idamTokens);
+
+
+        verify(ccdClient).searchForCaseworker(idamTokens,searchCriteria);
+        verify(ccdClient).searchForCaseworker(idamTokens,representativeSearchCriteria);
+        assertNotNull(caseByAppealNumber);
+    }
+
+    @Test
+    public void shouldReturnNullIfNoAppealFoundForGivenAppealNumber() {
+        when(ccdClient.searchForCaseworker(any(), any())).thenReturn(Collections.emptyList())
+        .thenReturn(Collections.emptyList());
+
+        SscsCaseDetails caseByAppealNumber = ccdService.findCaseByAppealNumber(REPRESENTATIVE_APPEAL_NUMBER, idamTokens);
+
+        verify(ccdClient, times(2)).searchForCaseworker(any(), any());
+        assertNull(caseByAppealNumber);
+    }
+
+
+    @Test
+    public void shouldReturnSscsCaseDetailsIfAppealNumberAndLastNameMatchForRepresentative() {
+        searchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.appellantSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        HashMap<String, String> representativeSearchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.representativeSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.emptyList());
+        when(ccdClient.searchForCaseworker(idamTokens, representativeSearchCriteria))
+                .thenReturn(singletonList(caseDetails));
+
+        SscsCaseData sscsCaseData = ccdService
+                .findCcdCaseByAppealNumberAndSurname(REPRESENTATIVE_APPEAL_NUMBER, "Giles", idamTokens);
+
+        assertNotNull(sscsCaseData);
+    }
+
+    @Test
+    public void shouldUpdateRepresentativeSubscriptionInCcd() {
+
+        searchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.appellantSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        HashMap<String, String> representativeSearchCriteria = new HashMap<String, String>() {
+            {
+                put("case.subscriptions.representativeSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+            }
+        };
+
+        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.emptyList());
+        when(ccdClient.searchForCaseworker(idamTokens, representativeSearchCriteria))
+                .thenReturn(singletonList(caseDetails));
+
+        StartEventResponse startEventResponse = StartEventResponse.builder().build();
+        when(ccdClient.startEvent(idamTokens, 1L, "subscriptionUpdated")).thenReturn(startEventResponse);
+        when(ccdClient.submitEventForCaseworker(eq(idamTokens), eq(1L), captor.capture())).thenReturn(caseDetails);
+
+        ccdService.updateSubscription(REPRESENTATIVE_APPEAL_NUMBER, UPDATED_TEST_COM, idamTokens);
+
+        assertEquals(UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getEmail());
+        assertEquals(YES, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getSubscribeEmail());
     }
 
 }

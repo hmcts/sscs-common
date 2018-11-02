@@ -93,17 +93,36 @@ public class CcdService {
 
                 String subscribeEmail = null != email ? YES : NO;
 
-                Subscription appellantSubscription = caseData.getSubscriptions().getAppellantSubscription().toBuilder().email(email).subscribeEmail(subscribeEmail).build();
-
-                Subscriptions subscriptions = caseData.getSubscriptions().toBuilder().appellantSubscription(appellantSubscription).build();
-
-                caseData.setSubscriptions(subscriptions);
-                return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(), "SSCS - appeal updated event", "Update SSCS subscription", idamTokens);
+                if (appealNumber.equals(caseData.getSubscriptions().getAppellantSubscription().getTya())) {
+                    updateAppellantSubscription(email, caseData, subscribeEmail);
+                } else if (appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())) {
+                    updateRepresentativeSubscription(email, caseData, subscribeEmail);
+                }
+                return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(),
+                        "SSCS - appeal updated event", "Update SSCS subscription", idamTokens);
             }
         } catch (Exception ex) {
             throw logCcdException("Error while updating details in ccd", ex);
         }
         return null;
+    }
+
+    private void updateAppellantSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
+        Subscription appellantSubscription = caseData.getSubscriptions()
+                .getAppellantSubscription().toBuilder().email(email).subscribeEmail(subscribeEmail).build();
+
+        Subscriptions subscriptions = caseData.getSubscriptions().toBuilder().appellantSubscription(appellantSubscription).build();
+
+        caseData.setSubscriptions(subscriptions);
+    }
+
+    private void updateRepresentativeSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
+        Subscription representativeSubscription = caseData.getSubscriptions()
+                .getRepresentativeSubscription().toBuilder().email(email).subscribeEmail(subscribeEmail).build();
+
+        Subscriptions subscriptions = caseData.getSubscriptions().toBuilder().representativeSubscription(representativeSubscription).build();
+
+        caseData.setSubscriptions(subscriptions);
     }
 
     public SscsCaseData findCcdCaseByAppealNumberAndSurname(String appealNumber, String surname, IdamTokens idamTokens) {
@@ -114,24 +133,50 @@ public class CcdService {
         }
         SscsCaseData caseData = details.getData();
         caseData.setCcdCaseId(String.valueOf(details.getId()));
+        return (doesMatchAppellantAppealNumberAndLastname(surname, caseData, appealNumber)
+                || doesMatchRepresentativeAppealNumberAndLastname(surname, caseData, appealNumber)) ? caseData : null;
+    }
+
+    private boolean doesMatchAppellantAppealNumberAndLastname(String surname, SscsCaseData caseData, String appealNumber) {
         return caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null
                 && caseData.getAppeal().getAppellant().getName() != null
                 && caseData.getAppeal().getAppellant().getName().getLastName() != null
-                && compareSurnames(surname, caseData)
-                ? caseData : null;
+                && caseData.getSubscriptions().getAppellantSubscription().getTya().equals(appealNumber)
+                && compareSurnames(surname, caseData.getAppeal().getAppellant().getName().getLastName());
+    }
+
+    private boolean doesMatchRepresentativeAppealNumberAndLastname(String surname, SscsCaseData caseData, String appealNumber) {
+        return caseData.getAppeal() != null && caseData.getAppeal().getRep() != null
+                && caseData.getAppeal().getRep().getName() != null
+                && caseData.getAppeal().getRep().getName().getLastName() != null
+                && caseData.getSubscriptions().getRepresentativeSubscription().getTya().equals(appealNumber)
+                && compareSurnames(surname, caseData.getAppeal().getRep().getName().getLastName());
     }
 
     private SscsCaseDetails getCaseByAppealNumber(String appealNumber, IdamTokens idamTokens) {
         log.info("Finding case by appeal number {}", appealNumber);
 
-        List<SscsCaseDetails> caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
-                "case.subscriptions.appellantSubscription.tya", appealNumber), idamTokens);
+        List<SscsCaseDetails> caseDetailsList = getSscsCaseDetailsByAppellantAppealNumber(appealNumber, idamTokens);
+
+        if (caseDetailsList.isEmpty()) {
+            caseDetailsList = getSscsCaseDetailsByRepresentativeAppealNumber(appealNumber, idamTokens);
+        }
 
         return !caseDetailsList.isEmpty() ? caseDetailsList.get(0) : null;
     }
 
-    private boolean compareSurnames(String surname, SscsCaseData caseData) {
-        String caseDataSurname = unidecode(caseData.getAppeal().getAppellant().getName().getLastName())
+    private List<SscsCaseDetails> getSscsCaseDetailsByAppellantAppealNumber(String appealNumber, IdamTokens idamTokens) {
+        return searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
+                    "case.subscriptions.appellantSubscription.tya", appealNumber), idamTokens);
+    }
+
+    private List<SscsCaseDetails> getSscsCaseDetailsByRepresentativeAppealNumber(String appealNumber, IdamTokens idamTokens) {
+        return searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
+                "case.subscriptions.representativeSubscription.tya", appealNumber), idamTokens);
+    }
+
+    private boolean compareSurnames(String surname, String caseDataLastName) {
+        String caseDataSurname = unidecode(caseDataLastName)
                 .replaceAll("[^a-zA-Z]", "");
         String unidecodeSurname = unidecode(surname).replaceAll("[^a-zA-Z]", "");
         return caseDataSurname.equalsIgnoreCase(unidecodeSurname);
