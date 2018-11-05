@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.*;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
