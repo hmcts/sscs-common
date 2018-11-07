@@ -148,6 +148,22 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("LEEDS", rpc.getName());
     }
 
+    @Test
+    public void givenAPostcode_thenRemoveLastThreeCharacters() {
+        assertEquals("AB12", regionalProcessingCenterService.getFirstHalfOfPostcode("AB12 3TH"));
+    }
+
+    @Test
+    public void givenAPostcodeWithLessThanThreeCharacters_thenReturnEmpty() {
+        assertEquals("", regionalProcessingCenterService.getFirstHalfOfPostcode("AB"));
+
+    }
+
+    @Test
+    public void givenANullPostcode_thenReturnEmpty() {
+        assertEquals("", regionalProcessingCenterService.getFirstHalfOfPostcode(null));
+    }
+
     private void assertBirminghamRpc(RegionalProcessingCenter regionalProcessingCenter) {
         assertEquals("BIRMINGHAM", regionalProcessingCenter.getName());
         assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
