@@ -15,9 +15,13 @@ public class DocumentLink {
 
     @JsonProperty("document_url")
     private String documentUrl;
+    @JsonProperty("document_binary_url")
+    private String documentBinaryUrl;
 
     @JsonCreator
-    public DocumentLink(@JsonProperty("document_url") String documentUrl) {
+    public DocumentLink(@JsonProperty("document_url") String documentUrl,
+                        @JsonProperty("document_binary_url") String documentBinaryUrl) {
         this.documentUrl = documentUrl;
+        this.documentBinaryUrl = documentBinaryUrl;
     }
 }
