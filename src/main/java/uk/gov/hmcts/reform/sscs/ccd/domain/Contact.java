@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
 @Builder
 public class Contact {
     private String email;
