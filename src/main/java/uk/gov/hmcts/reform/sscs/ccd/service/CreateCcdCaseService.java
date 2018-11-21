@@ -21,17 +21,14 @@ public class CreateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
-    private final SearchCcdCaseService searchCcdCaseService;
 
     @Autowired
     public CreateCcdCaseService(IdamService idamService,
-                      SscsCcdConvertService sscsCcdConvertService,
-                      CcdClient ccdClient,
-                      SearchCcdCaseService searchCcdCaseService) {
+                                SscsCcdConvertService sscsCcdConvertService,
+                                CcdClient ccdClient) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
-        this.searchCcdCaseService = searchCcdCaseService;
     }
 
     public SscsCaseDetails createCase(SscsCaseData caseData, IdamTokens idamTokens) {
@@ -40,10 +37,10 @@ public class CreateCcdCaseService {
         try {
             requestNewIdamTokens(idamTokens);
             return createCaseInCcd(caseData, idamTokens);
-        } catch (Throwable throwable) {
+        } catch (Exception e) {
             throw new CreateCcdCaseException(String.format(
                     "Creating case failed with SC %s and ccdID %s...",
-                    caseData.getCaseReference(), caseData.getCcdCaseId()), throwable);
+                    caseData.getCaseReference(), caseData.getCcdCaseId()), e);
         }
     }
 
@@ -53,20 +50,14 @@ public class CreateCcdCaseService {
     }
 
     private SscsCaseDetails createCaseInCcd(SscsCaseData caseData, IdamTokens idamTokens) {
-        try {
-            BenefitType benefitType = caseData.getAppeal() != null ? caseData.getAppeal().getBenefitType() : null;
-            log.info("Creating CCD case for Nino {} and benefit type {}", caseData.getGeneratedNino(), benefitType);
+        BenefitType benefitType = caseData.getAppeal() != null ? caseData.getAppeal().getBenefitType() : null;
+        log.info("Creating CCD case for Nino {} and benefit type {}", caseData.getGeneratedNino(), benefitType);
 
-            StartEventResponse startEventResponse = ccdClient.startCaseForCaseworker(idamTokens, "appealCreated");
+        StartEventResponse startEventResponse = ccdClient.startCaseForCaseworker(idamTokens, "appealCreated");
 
-            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, "SSCS - appeal created event", "Created SSCS");
-            CaseDetails caseDetails = ccdClient.submitForCaseworker(idamTokens, caseDataContent);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, "SSCS - appeal created event", "Created SSCS");
+        CaseDetails caseDetails = ccdClient.submitForCaseworker(idamTokens, caseDataContent);
 
-            return sscsCcdConvertService.getCaseDetails(caseDetails);
-        } catch (Exception e) {
-            log.error("Failed to create ccd case for Nino - {} and Benefit type - {} but carrying on ",
-                caseData.getGeneratedNino(), caseData.getAppeal().getBenefitType().getCode(), e);
-            return SscsCaseDetails.builder().build();
-        }
+        return sscsCcdConvertService.getCaseDetails(caseDetails);
     }
 }
