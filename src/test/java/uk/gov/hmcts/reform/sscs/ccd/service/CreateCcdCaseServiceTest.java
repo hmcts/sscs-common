@@ -51,7 +51,7 @@ public class CreateCcdCaseServiceTest {
         sscsCaseData = CaseDataUtils.buildCaseData();
 
         createCcdCaseService = new CreateCcdCaseService(idamService,
-                new SscsCcdConvertService(), ccdClient, retryTemplate(), searchCcdCaseService);
+                new SscsCcdConvertService(), ccdClient);
     }
 
     @Test
