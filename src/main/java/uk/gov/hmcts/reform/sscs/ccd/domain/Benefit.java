@@ -37,4 +37,13 @@ public enum Benefit {
     public String getDescription() {
         return description;
     }
+
+    public static Boolean isBenefitTypeValid(String field) {
+        for (Benefit benefit : Benefit.values()) {
+            if (benefit.toString().toLowerCase().equals(field.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
