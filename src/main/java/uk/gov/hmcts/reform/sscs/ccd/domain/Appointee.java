@@ -15,18 +15,15 @@ public class Appointee {
     private Address address;
     private Contact contact;
     private Identity identity;
-    private Boolean sameAddressAsAppellant;
 
     @JsonCreator
     public Appointee(@JsonProperty("name") Name name,
                      @JsonProperty("address") Address address,
                      @JsonProperty("contact") Contact contact,
-                     @JsonProperty("identity") Identity identity,
-                     @JsonProperty("sameAddressAsAppellant") Boolean sameAddressAsAppellant) {
+                     @JsonProperty("identity") Identity identity) {
         this.name = name;
         this.address = address;
         this.contact = contact;
         this.identity = identity;
-        this.sameAddressAsAppellant = sameAddressAsAppellant;
     }
 }
