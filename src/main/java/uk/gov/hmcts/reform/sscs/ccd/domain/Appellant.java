@@ -16,7 +16,7 @@ public class Appellant {
     private Contact contact;
     private Identity identity;
     private Appointee appointee;
-    private Boolean isAddressSameAsAppointee;
+    private String isAddressSameAsAppointee;
 
     @JsonCreator
     public Appellant(@JsonProperty("name") Name name,
@@ -24,7 +24,7 @@ public class Appellant {
                      @JsonProperty("contact") Contact contact,
                      @JsonProperty("identity") Identity identity,
                      @JsonProperty("appointee") Appointee appointee,
-                     @JsonProperty("isAddressSameAsAppointee") Boolean isAddressSameAsAppointee) {
+                     @JsonProperty("isAddressSameAsAppointee") String isAddressSameAsAppointee) {
         this.name = name;
         this.address = address;
         this.contact = contact;
