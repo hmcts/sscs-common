@@ -87,16 +87,15 @@ public class CcdService {
     public SscsCaseDetails updateSubscription(String appealNumber, String email, IdamTokens idamTokens) {
         try {
             SscsCaseDetails caseDetails = getCaseByAppealNumber(appealNumber, idamTokens);
-
             if (caseDetails != null) {
                 SscsCaseData caseData = caseDetails.getData();
-
                 String subscribeEmail = null != email ? YES : NO;
-
                 if (appealNumber.equals(caseData.getSubscriptions().getAppellantSubscription().getTya())) {
                     updateAppellantSubscription(email, caseData, subscribeEmail);
                 } else if (appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())) {
                     updateRepresentativeSubscription(email, caseData, subscribeEmail);
+                } else if (appealNumber.equals(caseData.getSubscriptions().getAppointeeSubscription().getTya())) {
+                    updateAppointeeSubscription(email, caseData, subscribeEmail);
                 }
                 return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(),
                         "SSCS - appeal updated event", "Update SSCS subscription", idamTokens);
@@ -105,6 +104,13 @@ public class CcdService {
             throw logCcdException("Error while updating details in ccd", ex);
         }
         return null;
+    }
+
+    private void updateAppointeeSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
+        Subscription appointeeSubscription = caseData.getSubscriptions()
+                .getAppointeeSubscription().toBuilder().email(email).subscribeEmail(subscribeEmail).build();
+        Subscriptions subscriptions = caseData.getSubscriptions().toBuilder().appointeeSubscription(appointeeSubscription).build();
+        caseData.setSubscriptions(subscriptions);
     }
 
     private void updateAppellantSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
