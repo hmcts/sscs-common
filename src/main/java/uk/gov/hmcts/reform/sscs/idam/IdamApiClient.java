@@ -13,7 +13,8 @@ public interface IdamApiClient {
 
     @RequestMapping(
             method = RequestMethod.POST,
-            value = "/oauth2/authorize"
+            value = "/oauth2/authorize",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
     Authorize authorizeCodeType(
             @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorisation,
@@ -37,7 +38,8 @@ public interface IdamApiClient {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/details"
+            value = "/details",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
     UserDetails getUserDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token);
 
