@@ -159,7 +159,7 @@ public class AirLookupService {
     /**
      * Get the map with the first half of post code as the key and
      * the Regional Centre as the value.
-     * @return
+     * @return map with the first half of post code as the key and the Regional Centre as the value
      */
     protected Map<String, String> getLookupRegionalCentreByPostCode() {
         return lookupRegionalCentreByPostCode;
@@ -168,7 +168,7 @@ public class AirLookupService {
     /**
      * Get the map with the first half of the post code as the key
      * and the venue name as the value.
-     * @return
+     * @return map with the first half of the post code as the key and the venue name as the value
      */
     protected Map<String, String> getLookupAirVenueNameByPostCode() {
         return lookupAirVenueNameByPostCode;
@@ -177,7 +177,7 @@ public class AirLookupService {
     /**
      * Get the map with the air venue name as the key and the venue id
      * as the value.
-     * @return
+     * @return map with the air venue name as the key and the venue id as the value
      */
     protected Map<String, Integer> getLookupVenueIdByAirVenueName() {
         return lookupVenueIdByAirVenueName;
@@ -186,7 +186,7 @@ public class AirLookupService {
     /**
      * Return the venue name in the AirLookup spreadsheet for the given post code.
      * @param postcode The first half of a post code
-     * @return
+     * @return first half of a post code
      */
     protected String lookupAirVenueNameByPostCode(String postcode) {
         String value = getLookupAirVenueNameByPostCode().get(postcode.toLowerCase());
@@ -199,7 +199,7 @@ public class AirLookupService {
     /**
      * Method to find a venue ID from the postcode.
      * @param postcode first half of post code
-     * @return
+     * @return first half of post code
      */
     public int lookupVenueId(String postcode) {
         String venueName = lookupAirVenueNameByPostCode(postcode);

@@ -16,17 +16,20 @@ public class Appellant {
     private Contact contact;
     private Identity identity;
     private Appointee appointee;
+    private String isAddressSameAsAppointee;
 
     @JsonCreator
     public Appellant(@JsonProperty("name") Name name,
                      @JsonProperty("address") Address address,
                      @JsonProperty("contact") Contact contact,
                      @JsonProperty("identity") Identity identity,
-                     @JsonProperty("appointee") Appointee appointee) {
+                     @JsonProperty("appointee") Appointee appointee,
+                     @JsonProperty("isAddressSameAsAppointee") String isAddressSameAsAppointee) {
         this.name = name;
         this.address = address;
         this.contact = contact;
         this.identity = identity;
         this.appointee = appointee;
+        this.isAddressSameAsAppointee = isAddressSameAsAppointee;
     }
 }
