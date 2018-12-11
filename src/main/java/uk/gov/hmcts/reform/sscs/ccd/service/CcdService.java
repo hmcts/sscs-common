@@ -94,8 +94,6 @@ public class CcdService {
                     updateAppellantSubscription(email, caseData, subscribeEmail);
                 } else if (caseData.getSubscriptions().getRepresentativeSubscription() != null && appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())) {
                     updateRepresentativeSubscription(email, caseData, subscribeEmail);
-                } else if (caseData.getSubscriptions().getAppointeeSubscription() != null && appealNumber.equals(caseData.getSubscriptions().getAppointeeSubscription().getTya())) {
-                    updateAppointeeSubscription(email, caseData, subscribeEmail);
                 }
                 return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(),
                         "SSCS - appeal updated event", "Update SSCS subscription", idamTokens);
@@ -104,13 +102,6 @@ public class CcdService {
             throw logCcdException("Error while updating details in ccd", ex);
         }
         return null;
-    }
-
-    private void updateAppointeeSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
-        Subscription appointeeSubscription = caseData.getSubscriptions()
-                .getAppointeeSubscription().toBuilder().email(email).subscribeEmail(subscribeEmail).build();
-        Subscriptions subscriptions = caseData.getSubscriptions().toBuilder().appointeeSubscription(appointeeSubscription).build();
-        caseData.setSubscriptions(subscriptions);
     }
 
     private void updateAppellantSubscription(String email, SscsCaseData caseData, String subscribeEmail) {
