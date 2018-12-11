@@ -38,8 +38,7 @@ public interface IdamApiClient {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/details",
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+            value = "/details"
     )
     UserDetails getUserDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token);
 
