@@ -11,22 +11,18 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CreateCcdCaseException;
-import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
 
 @Slf4j
 @Service
 public class CreateCcdCaseService {
-    private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
 
     @Autowired
-    public CreateCcdCaseService(IdamService idamService,
-                                SscsCcdConvertService sscsCcdConvertService,
+    public CreateCcdCaseService(SscsCcdConvertService sscsCcdConvertService,
                                 CcdClient ccdClient) {
-        this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
     }
@@ -35,7 +31,6 @@ public class CreateCcdCaseService {
         log.info("Starting create case process with SC number {} and ccdID {} ...",
                 caseData.getCaseReference(), caseData.getCcdCaseId());
         try {
-            requestNewIdamTokens(idamTokens);
             return createCaseInCcd(caseData, idamTokens);
         } catch (Exception e) {
             throw new CreateCcdCaseException(String.format(
@@ -44,11 +39,6 @@ public class CreateCcdCaseService {
                     caseData.getCaseReference(), caseData.getCcdCaseId(), caseData.getGeneratedNino(),
                     caseData.getAppeal().getBenefitType().getCode()), e);
         }
-    }
-
-    private void requestNewIdamTokens(IdamTokens idamTokens) {
-        idamTokens.setIdamOauth2Token(idamService.getIdamOauth2Token());
-        idamTokens.setServiceAuthorization(idamService.generateServiceAuthorization());
     }
 
     private SscsCaseDetails createCaseInCcd(SscsCaseData caseData, IdamTokens idamTokens) {
