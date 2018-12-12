@@ -11,6 +11,8 @@ import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public final class CaseDataUtils {
 
+    public static final String YES = "Yes";
+
     private CaseDataUtils() {
     }
 
@@ -18,7 +20,7 @@ public final class CaseDataUtils {
         return buildCaseData("Test");
     }
 
-    public static SscsCaseData buildCaseData(String surname) {
+    public static SscsCaseData buildCaseData(final String surname) {
         Name name = Name.builder()
                 .title("Mr")
                 .firstName("User")
@@ -83,8 +85,8 @@ public final class CaseDataUtils {
         excludeDates.add(excludeDate3);
 
         HearingOptions hearingOptions = HearingOptions.builder()
-                .wantsToAttend("Yes")
-                .languageInterpreter("Yes")
+                .wantsToAttend(YES)
+                .languageInterpreter(YES)
                 .languages("Spanish")
                 .signLanguageType("A sign language")
                 .arrangements(Arrays.asList("hearingLoop", "signLanguageInterpreter"))
@@ -99,7 +101,7 @@ public final class CaseDataUtils {
                 .build();
 
         Representative representative = Representative.builder()
-                .hasRepresentative("Yes")
+                .hasRepresentative(YES)
                 .name(repName)
                 .address(address)
                 .contact(contact)
@@ -127,7 +129,7 @@ public final class CaseDataUtils {
                 .venue(venue)
                 .hearingDate("2017-05-24")
                 .time("10:45")
-                .adjourned("Yes")
+                .adjourned(YES)
                 .build();
         Hearing hearings = Hearing.builder()
                 .value(hearingDetails)
@@ -149,8 +151,8 @@ public final class CaseDataUtils {
                 .build();
 
         DwpTimeExtensionDetails dwpTimeExtensionDetails = DwpTimeExtensionDetails.builder()
-                .requested("Yes")
-                .granted("Yes")
+                .requested(YES)
+                .granted(YES)
                 .build();
         DwpTimeExtension dwpTimeExtension = DwpTimeExtension.builder()
                 .value(dwpTimeExtensionDetails)
@@ -171,8 +173,8 @@ public final class CaseDataUtils {
                 .tya("app-appeal-number")
                 .email("appellant@email.com")
                 .mobile("")
-                .subscribeEmail("Yes")
-                .subscribeSms("Yes")
+                .subscribeEmail(YES)
+                .subscribeSms(YES)
                 .reason("")
                 .build();
         Subscription supporterSubscription = Subscription.builder()
@@ -187,8 +189,8 @@ public final class CaseDataUtils {
                 .tya("rep-appeal-number")
                 .email("representative@email.com")
                 .mobile("07777777777")
-                .subscribeEmail("Yes")
-                .subscribeSms("Yes")
+                .subscribeEmail(YES)
+                .subscribeSms(YES)
                 .build();
         Subscriptions subscriptions = Subscriptions.builder()
                 .appellantSubscription(appellantSubscription)
@@ -255,7 +257,7 @@ public final class CaseDataUtils {
                 .build();
 
         HearingOptions hearingOptions = HearingOptions.builder()
-                .wantsToAttend("Yes")
+                .wantsToAttend(YES)
                 .arrangements(Arrays.asList("disabledAccess", "hearingLoop"))
                 .excludeDates(Collections.singletonList(excludeDate))
                 .other("No")
@@ -267,7 +269,7 @@ public final class CaseDataUtils {
                 .build();
 
         Representative representative = Representative.builder()
-                .hasRepresentative("Yes")
+                .hasRepresentative(YES)
                 .build();
 
         final Appeal appeal = Appeal.builder()
@@ -299,7 +301,7 @@ public final class CaseDataUtils {
                 .build();
     }
 
-    public static SscsCaseDetails convertCaseDetailsToSscsCaseDetails(CaseDetails caseDetails) {
+    public static SscsCaseDetails convertCaseDetailsToSscsCaseDetails(final CaseDetails caseDetails) {
         return new SscsCcdConvertService().getCaseDetails(caseDetails);
     }
 
@@ -307,16 +309,16 @@ public final class CaseDataUtils {
         return CaseDetails.builder().id(1L).data(buildCaseDataMap(buildCaseData())).build();
     }
 
-    public static CaseDetails buildCaseDetailsWithSurname(String surname) {
-        SscsCaseData caseData = buildCaseData(surname).toBuilder().build();
+    public static CaseDetails buildCaseDetailsWithSurname(final String surname) {
+        final SscsCaseData caseData = buildCaseData(surname).toBuilder().build();
         return CaseDetails.builder().data(buildCaseDataMap(caseData)).build();
     }
 
-    private static Map<String, Object> buildCaseDataMap(SscsCaseData caseData) {
-        ObjectMapper mapper = new ObjectMapper();
+    public static Map<String, Object> buildCaseDataMap(final SscsCaseData caseData) {
+        final ObjectMapper mapper = new ObjectMapper();
 
         try {
-            String json = mapper.writeValueAsString(caseData);
+            final String json = mapper.writeValueAsString(caseData);
             return mapper.readValue(json, new TypeReference<Map<String, Object>>(){});
         } catch (IOException e) {
             throw new RuntimeException(e);
