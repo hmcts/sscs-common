@@ -9,8 +9,11 @@ plugins {
     id 'maven'
 }
 
+def buildNumber = System.getenv("TRAVIS_BRANCH") ?: "DEV-SNAPSHOT"
+
 group 'uk.gov.hmcts.reform'
-version '0.0.124'
+// Do not change this version number
+version buildNumber
 
 sourceCompatibility = 1.8
 
