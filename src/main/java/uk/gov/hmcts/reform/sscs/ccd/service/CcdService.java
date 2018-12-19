@@ -87,15 +87,12 @@ public class CcdService {
     public SscsCaseDetails updateSubscription(String appealNumber, String email, IdamTokens idamTokens) {
         try {
             SscsCaseDetails caseDetails = getCaseByAppealNumber(appealNumber, idamTokens);
-
             if (caseDetails != null) {
                 SscsCaseData caseData = caseDetails.getData();
-
                 String subscribeEmail = null != email ? YES : NO;
-
-                if (appealNumber.equals(caseData.getSubscriptions().getAppellantSubscription().getTya())) {
+                if (caseData.getSubscriptions().getAppellantSubscription() != null && appealNumber.equals(caseData.getSubscriptions().getAppellantSubscription().getTya())) {
                     updateAppellantSubscription(email, caseData, subscribeEmail);
-                } else if (appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())) {
+                } else if (caseData.getSubscriptions().getRepresentativeSubscription() != null && appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())) {
                     updateRepresentativeSubscription(email, caseData, subscribeEmail);
                 }
                 return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(),
