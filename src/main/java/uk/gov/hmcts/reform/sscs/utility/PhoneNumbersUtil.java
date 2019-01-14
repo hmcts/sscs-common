@@ -15,10 +15,10 @@ public final class PhoneNumbersUtil {
         // Void
     }
 
-    public static String cleanPhoneNumber(final String phone) {
+    public static Optional<String> cleanPhoneNumber(final String phone) {
         final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
         final Optional<Phonenumber.PhoneNumber> phoneNumberOpt = parsePhoneNumber(phone, phoneNumberUtil);
-        return phoneNumberOpt.map(phoneNumber -> String.format("+%d%d", phoneNumber.getCountryCode(), phoneNumber.getNationalNumber())).orElse("");
+        return phoneNumberOpt.map(phoneNumber -> String.format("+%d%d", phoneNumber.getCountryCode(), phoneNumber.getNationalNumber()));
     }
 
     public static boolean isValidUkMobileNumber(final String phone) {

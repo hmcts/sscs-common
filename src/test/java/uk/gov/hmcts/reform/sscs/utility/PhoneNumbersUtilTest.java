@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
 import org.junit.Test;
 
 @SuppressWarnings({"PMD.JUnitTestContainsTooManyAsserts", "PMD.LongVariable"})
@@ -65,22 +66,27 @@ public class PhoneNumbersUtilTest {
     }
 
     @Test
-    public void cleanNumberTestForUkMobile() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, "+447861675377", PhoneNumbersUtil.cleanPhoneNumber(UK_MOBILE_NUMBER));
+    public void cleanNumberForUkMobile() {
+        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+447861675377"), PhoneNumbersUtil.cleanPhoneNumber(UK_MOBILE_NUMBER));
     }
 
     @Test
-    public void cleanNumberTestForUkLandLine() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, "+442037374299", PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE));
+    public void cleanNumberForUkLandLine() {
+        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE));
     }
 
     @Test
-    public void cleanNumberTestForUkLandLineWithCountryCode() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, "+442037374299", PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE_WITH_COUNTRY_CODE));
+    public void cleanNumberForUkLandLineWithCountryCode() {
+        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE_WITH_COUNTRY_CODE));
     }
 
     @Test
-    public void cleanNumberTestForAnAmericanLandLine() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, "+15417543010", PhoneNumbersUtil.cleanPhoneNumber(US_LAND_LINE_WITH_COUNTRY_CODE));
+    public void cleanNumberForAnAmericanLandLine() {
+        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+15417543010"), PhoneNumbersUtil.cleanPhoneNumber(US_LAND_LINE_WITH_COUNTRY_CODE));
+    }
+
+    @Test
+    public void cleanNumberForAnInvalidNumberReturnsEmptyOption() {
+        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.empty(), PhoneNumbersUtil.cleanPhoneNumber("99a"));
     }
 }
