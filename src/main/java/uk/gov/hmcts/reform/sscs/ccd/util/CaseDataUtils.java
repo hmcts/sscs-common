@@ -116,6 +116,7 @@ public final class CaseDataUtils {
                 .rep(representative)
                 .signer("Signer")
                 .hearingType("oral")
+                .receivedVia("Online")
                 .build();
 
         Address venueAddress = Address.builder()
@@ -279,6 +280,7 @@ public final class CaseDataUtils {
                 .mrnDetails(mrnDetails)
                 .rep(representative)
                 .signer("Signer")
+                .receivedVia("Online")
                 .build();
 
         EventDetails event = EventDetails.builder()
