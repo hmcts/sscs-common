@@ -117,4 +117,14 @@ public class AirLookupServiceTest {
         assertEquals(1223, airLookupService.lookupVenueId("NN85"));
     }
 
+    //Business asked for SL0 to SL9 to change venure to high wycombe
+    @Test
+    public void checkChangeMaidenheadToHighWycombe() {
+        String highWycombe = "High Wycombe";
+
+        for (int i = 0; i < 10; i++) {
+            String venue = airLookupService.lookupAirVenueNameByPostCode("sl" + i);
+            assertEquals(highWycombe, venue);
+        }
+    }
 }
