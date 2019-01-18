@@ -47,12 +47,47 @@ public final class CaseDataUtils {
                 .dob("1904-03-10")
                 .nino("AB 22 55 66 B")
                 .build();
+
+        Name appointeeName = Name.builder()
+                .title("Mrs")
+                .firstName("April")
+                .lastName("Appointer")
+                .build();
+
+        Address appointeeAddress = Address.builder()
+                .line1("42 Appointed Mews")
+                .line2("Apford")
+                .town("Apton")
+                .county("Appshire")
+                .postcode("AP12 4PA")
+                .build();
+
+        Contact appointeeContact = Contact.builder()
+                .email("appointee@hmcts.net")
+                .phone("0207 946 0555")
+                .mobile("07700 900555")
+                .build();
+
+        Identity appointeeIdentity = Identity.builder()
+                .dob("1905-05-05")
+                .nino("ZZ 11 22 33 B")
+                .build();
+
+        Appointee appointee = Appointee.builder()
+                .name(appointeeName)
+                .address(appointeeAddress)
+                .contact(appointeeContact)
+                .identity(appointeeIdentity)
+                .build(); 
+
         Appellant appellant = Appellant.builder()
                 .name(name)
                 .address(address)
                 .contact(contact)
                 .identity(identity)
+                .appointee(appointee)
                 .build();
+
         BenefitType benefitType = BenefitType.builder()
                 .code("JSA")
                 .build();
@@ -174,6 +209,14 @@ public final class CaseDataUtils {
                 .tya("app-appeal-number")
                 .email("appellant@email.com")
                 .mobile("")
+                .subscribeEmail(YES)
+                .subscribeSms(YES)
+                .reason("")
+                .build();
+        Subscription appointeeSubscription = Subscription.builder()
+                .tya("appointee-appeal-number")
+                .email("appointee@hmcts.net")
+                .mobile("07700 900555")
                 .subscribeEmail(YES)
                 .subscribeSms(YES)
                 .reason("")
