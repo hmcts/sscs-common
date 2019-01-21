@@ -46,6 +46,7 @@ public class CcdServiceTest {
     private SscsCcdConvertService sscsCcdConvertService;
     private SearchCcdCaseService searchCcdCaseService;
     private UpdateCcdCaseService updateCcdCaseService;
+    private CreateCcdCaseService createCcdCaseService;
 
     @Mock
     private IdamService idamService;
@@ -53,8 +54,6 @@ public class CcdServiceTest {
     @Mock
     private ReadCcdCaseService readCcdCaseService;
 
-    @Mock
-    private CreateCcdCaseService createCcdCaseService;
 
     @Captor
     private ArgumentCaptor<CaseDataContent> captor;
@@ -91,6 +90,7 @@ public class CcdServiceTest {
         sscsCcdConvertService = new SscsCcdConvertService();
         searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
         updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
+        createCcdCaseService = new CreateCcdCaseService(sscsCcdConvertService, ccdClient);
         ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
     }
 
@@ -116,11 +116,15 @@ public class CcdServiceTest {
     @Test
     public void canCreateACase() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        StartEventResponse startEventResponse = StartEventResponse.builder().token("1234").build();
 
-        SscsCaseDetails result = ccdService.createCase(sscsCaseData, idamTokens);
+        when(ccdClient.startCaseForCaseworker(idamTokens,  "appealCreated")).thenReturn(startEventResponse);
 
-        verify(createCcdCaseService).createCase(sscsCaseData,idamTokens);
+        when(ccdClient.submitForCaseworker(eq(idamTokens), any())).thenReturn(caseDetails);
 
+        SscsCaseDetails result = ccdService.createCase(sscsCaseData, "appealCreated", "Summary", "Description", idamTokens);
+
+        assertThat(result, is(sscsCaseDetails));
     }
 
     @Test
