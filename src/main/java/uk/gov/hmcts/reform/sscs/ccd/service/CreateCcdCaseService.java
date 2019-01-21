@@ -27,11 +27,11 @@ public class CreateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    public SscsCaseDetails createCase(SscsCaseData caseData, IdamTokens idamTokens) {
-        log.info("Starting create case process with SC number {} and ccdID {} ...",
-                caseData.getCaseReference(), caseData.getCcdCaseId());
+    public SscsCaseDetails createCase(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
+        log.info("Starting create case process with SC number {} and ccdID {} and eventType {} ...",
+                caseData.getCaseReference(), caseData.getCcdCaseId(), eventType);
         try {
-            return createCaseInCcd(caseData, idamTokens);
+            return createCaseInCcd(caseData, eventType, summary, description, idamTokens);
         } catch (Exception e) {
             throw new CreateCcdCaseException(String.format(
                     "Error found in the case creation or callback process for the ccd case "
@@ -41,13 +41,13 @@ public class CreateCcdCaseService {
         }
     }
 
-    private SscsCaseDetails createCaseInCcd(SscsCaseData caseData, IdamTokens idamTokens) {
+    private SscsCaseDetails createCaseInCcd(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
         BenefitType benefitType = caseData.getAppeal() != null ? caseData.getAppeal().getBenefitType() : null;
-        log.info("Creating CCD case for Nino {} and benefit type {}", caseData.getGeneratedNino(), benefitType);
+        log.info("Creating CCD case for Nino {} and benefit type {} with event {}", caseData.getGeneratedNino(), benefitType, eventType);
 
-        StartEventResponse startEventResponse = ccdClient.startCaseForCaseworker(idamTokens, "appealCreated");
+        StartEventResponse startEventResponse = ccdClient.startCaseForCaseworker(idamTokens, eventType);
 
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, "SSCS - appeal created event", "Created SSCS");
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
         CaseDetails caseDetails = ccdClient.submitForCaseworker(idamTokens, caseDataContent);
 
         return sscsCcdConvertService.getCaseDetails(caseDetails);

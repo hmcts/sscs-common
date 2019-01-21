@@ -26,7 +26,9 @@ public enum EventType {
     SECOND_HEARING_HOLDING_REMINDER("secondHearingHoldingReminder", 0, true),
     THIRD_HEARING_HOLDING_REMINDER("thirdHearingHoldingReminder", 0, true),
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
-    HEARING_REMINDER("hearingReminder", 0, true);
+    HEARING_REMINDER("hearingReminder", 0, true),
+    NON_COMPLIANT("nonCompliant", 0, true),
+    INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true);
 
     private String type;
     private String ccdType;
