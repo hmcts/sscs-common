@@ -61,7 +61,7 @@ public class CreateCcdCaseServiceTest {
         when(ccdClient.submitForCaseworker(eq(idamTokens), any())).thenReturn(caseDetails);
         when(searchCcdCaseService.findCaseByCaseRefOrCaseId(any(), any())).thenReturn(null);
 
-        SscsCaseDetails sscsCaseDetails = createCcdCaseService.createCase(sscsCaseData, idamTokens);
+        SscsCaseDetails sscsCaseDetails = createCcdCaseService.createCase(sscsCaseData, "appealCreated", "Summary", "Description", idamTokens);
 
         assertNotNull(sscsCaseDetails);
     }

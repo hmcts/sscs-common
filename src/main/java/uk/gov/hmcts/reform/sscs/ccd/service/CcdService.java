@@ -61,8 +61,8 @@ public class CcdService {
         return readCcdCaseService.getByCaseId(caseId, idamTokens);
     }
 
-    public SscsCaseDetails createCase(SscsCaseData caseData, IdamTokens idamTokens) {
-        return createCcdCaseService.createCase(caseData, idamTokens);
+    public SscsCaseDetails createCase(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
+        return createCcdCaseService.createCase(caseData, eventType, summary, description, idamTokens);
     }
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
