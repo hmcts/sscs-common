@@ -94,9 +94,9 @@ public class CcdService {
                 SscsCaseData caseData = caseDetails.getData();
                 Subscriptions caseSubscriptions = caseData.getSubscriptions();
 
-                updateAppellantSubscription(appealNumber, email, caseSubscriptions);
-                updateAppointeeSubscription(appealNumber, email, caseSubscriptions);
-                updateRepresentativeSubscription(appealNumber, email, caseSubscriptions);
+                caseSubscriptions = updateAppellantSubscription(appealNumber, email, caseSubscriptions);
+                caseSubscriptions = updateAppointeeSubscription(appealNumber, email, caseSubscriptions);
+                caseSubscriptions = updateRepresentativeSubscription(appealNumber, email, caseSubscriptions);
                 
                 caseData.setSubscriptions(caseSubscriptions);
 
@@ -117,31 +117,31 @@ public class CcdService {
         return Optional.empty();
     }
 
-    private void updateAppellantSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
+    private Subscriptions updateAppellantSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
         Subscription appellantSubscription = caseSubscriptions.getAppellantSubscription();
 
-        updateSubscription(appellantSubscription, appealNumber, email)
-            .ifPresent(updatedSubscription -> {
-                caseSubscriptions.toBuilder().appellantSubscription(updatedSubscription).build();
-            });
+        return updateSubscription(appellantSubscription, appealNumber, email)
+            .map(updatedSubscription ->
+                    caseSubscriptions.toBuilder().appellantSubscription(updatedSubscription).build()
+            ).orElse(caseSubscriptions);
     }
 
-    private void updateAppointeeSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
+    private Subscriptions updateAppointeeSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
         Subscription appointeeSubscription = caseSubscriptions.getAppointeeSubscription();
         
-        updateSubscription(appointeeSubscription, appealNumber, email)
-            .ifPresent(updatedSubscription -> {
-                caseSubscriptions.toBuilder().appointeeSubscription(updatedSubscription).build();
-            });
+        return updateSubscription(appointeeSubscription, appealNumber, email)
+            .map(updatedSubscription ->
+                    caseSubscriptions.toBuilder().appointeeSubscription(updatedSubscription).build()
+            ).orElse(caseSubscriptions);
     }
 
-    private void updateRepresentativeSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
+    private Subscriptions updateRepresentativeSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
         Subscription representativeSubscription = caseSubscriptions.getRepresentativeSubscription();
 
-        updateSubscription(representativeSubscription, appealNumber, email)
-            .ifPresent(updatedSubscription -> {
-                caseSubscriptions.toBuilder().representativeSubscription(updatedSubscription).build();
-            });
+        return updateSubscription(representativeSubscription, appealNumber, email)
+            .map(updatedSubscription ->
+                    caseSubscriptions.toBuilder().representativeSubscription(updatedSubscription).build()
+            ).orElse(caseSubscriptions);
     }
 
     public SscsCaseData findCcdCaseByAppealNumberAndSurname(String appealNumber, String surname, IdamTokens idamTokens) {
