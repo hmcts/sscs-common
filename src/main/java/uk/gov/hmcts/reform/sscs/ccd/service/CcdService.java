@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static gcardone.junidecode.Junidecode.unidecode;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SUBSCRIPTION_UPDATED;
 
 import com.google.common.collect.ImmutableMap;
@@ -16,6 +15,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Subscriptions;
 import uk.gov.hmcts.reform.sscs.ccd.exception.AppealNotFoundException;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CcdException;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+import uk.gov.hmcts.reform.sscs.utility.SurnameUtil;
 
 @Service
 @Slf4j
@@ -139,7 +139,7 @@ public class CcdService {
                 && caseData.getAppeal().getAppellant().getName() != null
                 && caseData.getAppeal().getAppellant().getName().getLastName() != null
                 && caseData.getSubscriptions().getAppellantSubscription().getTya().equals(appealNumber)
-                && compareSurnames(surname, caseData.getAppeal().getAppellant().getName().getLastName());
+                && SurnameUtil.compare(surname, caseData.getAppeal().getAppellant().getName().getLastName());
     }
 
     private boolean doesMatchRepresentativeAppealNumberAndLastname(String surname, SscsCaseData caseData, String appealNumber) {
@@ -147,7 +147,7 @@ public class CcdService {
                 && caseData.getAppeal().getRep().getName() != null
                 && caseData.getAppeal().getRep().getName().getLastName() != null
                 && caseData.getSubscriptions().getRepresentativeSubscription().getTya().equals(appealNumber)
-                && compareSurnames(surname, caseData.getAppeal().getRep().getName().getLastName());
+                && SurnameUtil.compare(surname, caseData.getAppeal().getRep().getName().getLastName());
     }
 
     private SscsCaseDetails getCaseByAppealNumber(String appealNumber, IdamTokens idamTokens) {
@@ -170,13 +170,6 @@ public class CcdService {
     private List<SscsCaseDetails> getSscsCaseDetailsByRepresentativeAppealNumber(String appealNumber, IdamTokens idamTokens) {
         return searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
                 "case.subscriptions.representativeSubscription.tya", appealNumber), idamTokens);
-    }
-
-    private boolean compareSurnames(String surname, String caseDataLastName) {
-        String caseDataSurname = unidecode(caseDataLastName)
-                .replaceAll("[^a-zA-Z]", "");
-        String unidecodeSurname = unidecode(surname).replaceAll("[^a-zA-Z]", "");
-        return caseDataSurname.equalsIgnoreCase(unidecodeSurname);
     }
 
     private CcdException logCcdException(String message, Exception ex) {
