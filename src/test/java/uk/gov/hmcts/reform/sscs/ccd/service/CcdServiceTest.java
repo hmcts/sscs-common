@@ -314,7 +314,7 @@ public class CcdServiceTest {
 
         SscsCaseDetails caseByAppealNumber = ccdService.findCaseByAppealNumber(REPRESENTATIVE_APPEAL_NUMBER, idamTokens);
 
-        verify(ccdClient, times(2)).searchForCaseworker(any(), any());
+        verify(ccdClient, times(3)).searchForCaseworker(any(), any());
         assertNull(caseByAppealNumber);
     }
 
