@@ -8,7 +8,7 @@ import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class Hearing implements Comparable<Hearing> {
     private HearingDetails value;
 

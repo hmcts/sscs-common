@@ -28,7 +28,8 @@ public enum EventType {
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
     HEARING_REMINDER("hearingReminder", 0, true),
     NON_COMPLIANT("nonCompliant", 0, true),
-    INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true);
+    INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true),
+    UPDATE_HEARING_TYPE("updateHearingType", 0, false);
 
     private String type;
     private String ccdType;
