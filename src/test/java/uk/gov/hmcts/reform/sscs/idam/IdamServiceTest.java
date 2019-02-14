@@ -49,7 +49,8 @@ public class IdamServiceTest {
         when(idamApiClient.authorizeCodeType("Basic " + base64Authorisation,
                 "code",
                 "id",
-                "redirect/")).thenReturn(authToken);
+                "redirect/",
+                "0")).thenReturn(authToken);
         when(idamApiClient.authorizeToken(authToken.getCode(),
                 "authorization_code",
                 "redirect/",
