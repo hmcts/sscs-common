@@ -18,10 +18,10 @@ public interface IdamApiClient {
     )
     Authorize authorizeCodeType(
             @RequestHeader(HttpHeaders.AUTHORIZATION) final String authorisation,
+            @RequestHeader("Content-Length") final String contentLength,
             @RequestParam("response_type") final String responseType,
             @RequestParam("client_id") final String clientId,
-            @RequestParam("redirect_uri") final String redirectUri,
-            @RequestParam("Content-Length") final String contentLength
+            @RequestParam("redirect_uri") final String redirectUri
     );
 
     @RequestMapping(
