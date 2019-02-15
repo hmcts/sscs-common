@@ -47,15 +47,17 @@ public class IdamServiceTest {
 
         String base64Authorisation = Base64.getEncoder().encodeToString("email:pass".getBytes());
         when(idamApiClient.authorizeCodeType("Basic " + base64Authorisation,
-                "0",
                 "code",
                 "id",
-                "redirect/")).thenReturn(authToken);
+                "redirect/",
+                " ")
+        ).thenReturn(authToken);
         when(idamApiClient.authorizeToken(authToken.getCode(),
                 "authorization_code",
                 "redirect/",
                 "id",
-                "secret")).thenReturn(authToken);
+                "secret")
+        ).thenReturn(authToken);
 
         UserDetails expectedUserDetails = new UserDetails("16");
         given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);

@@ -51,10 +51,10 @@ public class IdamService {
 
         Authorize authorize = idamApiClient.authorizeCodeType(
                 "Basic " + base64Authorisation,
-                "0",
                 "code",
                 idamOauth2ClientId,
-                idamOauth2RedirectUrl
+                idamOauth2RedirectUrl,
+                " "
         );
 
         Authorize authorizeToken = idamApiClient.authorizeToken(
