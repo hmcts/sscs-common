@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
 import feign.Body;
-import feign.Headers;
 import org.apache.http.HttpHeaders;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
