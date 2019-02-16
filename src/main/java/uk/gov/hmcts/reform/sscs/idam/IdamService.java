@@ -62,7 +62,8 @@ public class IdamService {
                 "authorization_code",
                 idamOauth2RedirectUrl,
                 idamOauth2ClientId,
-                idamOauth2ClientSecret
+                idamOauth2ClientSecret,
+                " "
         );
 
         return "Bearer " + authorizeToken.getAccessToken();

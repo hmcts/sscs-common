@@ -56,7 +56,8 @@ public class IdamServiceTest {
                 "authorization_code",
                 "redirect/",
                 "id",
-                "secret")
+                "secret",
+                " ")
         ).thenReturn(authToken);
 
         UserDetails expectedUserDetails = new UserDetails("16");

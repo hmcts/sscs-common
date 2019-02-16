@@ -35,7 +35,8 @@ public interface IdamApiClient {
             @RequestParam("grant_type") final String grantType,
             @RequestParam("redirect_uri") final String redirectUri,
             @RequestParam("client_id") final String clientId,
-            @RequestParam("client_secret") final String clientSecret
+            @RequestParam("client_secret") final String clientSecret,
+            @RequestBody String body
     );
 
     @RequestMapping(
