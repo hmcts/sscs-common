@@ -35,6 +35,7 @@ public class SscsCaseData {
     private String evidencePresent;
     private OnlinePanel onlinePanel;
     private String bulkScanCaseReference;
+    private String decisionNotes;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -57,7 +58,8 @@ public class SscsCaseData {
                         @JsonProperty("generatedDOB") String generatedDob,
                         @JsonProperty("evidencePresent") String evidencePresent,
                         @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel,
-                        @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference) {
+                        @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
+                        @JsonProperty("decisionNotes") String decisionNotes) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -79,6 +81,7 @@ public class SscsCaseData {
         this.evidencePresent = evidencePresent;
         this.onlinePanel = onlineOnlinePanel;
         this.bulkScanCaseReference = bulkScanCaseReference;
+        this.decisionNotes = decisionNotes;
     }
 
     @JsonIgnore

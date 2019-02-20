@@ -7,7 +7,7 @@ This is the common code library for sscs. Currently it contains:
 - Idam OAuth and service authorization tokens
 - Airlookup service
 
-###Build
+### Build
 
 To build run
 
@@ -31,7 +31,7 @@ Bintray repo
 https://dl.bintray.com/hmcts/hmcts-maven/uk/gov/hmcts/reform/sscs-common/ 
 
 
-###Usage
+### Usage
 
 To use this you will need to have setup the following properties in your application.yaml.
 

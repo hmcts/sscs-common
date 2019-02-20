@@ -7,7 +7,7 @@ import lombok.Data;
 import uk.gov.hmcts.reform.ccd.client.model.Classification;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SscsCaseDetails {
     private Long id;

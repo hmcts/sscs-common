@@ -8,7 +8,7 @@ import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Representative {
 
     private String hasRepresentative;
