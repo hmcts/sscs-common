@@ -53,7 +53,8 @@ public class IdamService {
                 "Basic " + base64Authorisation,
                 "code",
                 idamOauth2ClientId,
-                idamOauth2RedirectUrl
+                idamOauth2RedirectUrl,
+                " "
         );
 
         Authorize authorizeToken = idamApiClient.authorizeToken(
@@ -61,7 +62,8 @@ public class IdamService {
                 "authorization_code",
                 idamOauth2RedirectUrl,
                 idamOauth2ClientId,
-                idamOauth2ClientSecret
+                idamOauth2ClientSecret,
+                " "
         );
 
         return "Bearer " + authorizeToken.getAccessToken();
