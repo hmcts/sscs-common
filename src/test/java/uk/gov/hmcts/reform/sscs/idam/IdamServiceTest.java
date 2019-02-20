@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.idam;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
@@ -51,14 +50,14 @@ public class IdamServiceTest {
                 "code",
                 "id",
                 "redirect/",
-                anyString())
+                " ")
         ).thenReturn(authToken);
         when(idamApiClient.authorizeToken(authToken.getCode(),
                 "authorization_code",
                 "redirect/",
                 "id",
                 "secret",
-                anyString())
+                " ")
         ).thenReturn(authToken);
 
         UserDetails expectedUserDetails = new UserDetails("16");
