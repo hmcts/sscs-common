@@ -1,12 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.exception;
 
-import uk.gov.hmcts.reform.logging.exception.AlertLevel;
-import uk.gov.hmcts.reform.logging.exception.UnknownErrorCodeException;
-
 @SuppressWarnings("squid:MaximumInheritanceDepth")
-public class CreateCcdCaseException extends UnknownErrorCodeException {
+public class CreateCcdCaseException extends RuntimeException {
 
     public CreateCcdCaseException(String message, Throwable cause) {
-        super(AlertLevel.P1, message, cause);
+        super(message, cause);
     }
 }
