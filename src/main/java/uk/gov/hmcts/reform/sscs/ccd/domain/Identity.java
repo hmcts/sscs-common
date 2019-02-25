@@ -8,7 +8,7 @@ import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Identity {
     private String dob;
     private String nino;

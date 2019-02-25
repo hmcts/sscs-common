@@ -8,7 +8,7 @@ import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class DwpTimeExtensionDetails {
     private String requested;
     private String granted;

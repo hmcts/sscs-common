@@ -8,7 +8,7 @@ import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
-@Builder
+@Builder(toBuilder = true)
 public class MrnDetails {
     private String dwpIssuingOffice;
     private String mrnDate;

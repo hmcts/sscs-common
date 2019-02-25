@@ -7,7 +7,7 @@ import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@Builder
+@Builder(toBuilder = true)
 public class Appeal {
     private MrnDetails mrnDetails;
     private Appellant appellant;
