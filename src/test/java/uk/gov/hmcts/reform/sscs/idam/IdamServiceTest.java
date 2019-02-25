@@ -51,14 +51,14 @@ public class IdamServiceTest {
                 "code",
                 "id",
                 "redirect/",
-                anyString())
+                " ")
         ).thenReturn(authToken);
         when(idamApiClient.authorizeToken(authToken.getCode(),
                 "authorization_code",
                 "redirect/",
                 "id",
                 "secret",
-                anyString())
+                " ")
         ).thenReturn(authToken);
 
         UserDetails expectedUserDetails = new UserDetails("16");
