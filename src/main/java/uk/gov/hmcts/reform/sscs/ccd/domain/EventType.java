@@ -29,7 +29,17 @@ public enum EventType {
     HEARING_REMINDER("hearingReminder", 0, true),
     NON_COMPLIANT("nonCompliant", 0, true),
     INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true),
-    UPDATE_HEARING_TYPE("updateHearingType", 0, false);
+    UPDATE_HEARING_TYPE("updateHearingType", 0, false),
+    COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
+    COH_QUESTION_DEADLINE_ELAPSED("cohQuestionDeadlineElapsed", 0, false),
+    COH_QUESTION_DEADLINE_EXTENDED("cohQuestionDeadlineExtended", 0, false),
+    COH_QUESTION_DEADLINE_EXTENSION_DENIED("cohQuestionDeadlineExtensionDenied", 0, false),
+    COH_QUESTION_DEADLINE_EXTENSION_GRANTED("cohQuestionDeadlineExtensionGranted", 0, false),
+    COH_QUESTION_DEADLINE_REMINDER("cohQuestionDeadlineReminder", 0, false),
+    COH_ANSWERS_SUBMITTED("cohAnswersSubmitted", 0, false),
+    COH_DECISION_REJECTED("cohDecisionRejected", 0, false),
+    COH_ONLINE_HEARING_RELISTED("cohContinuousOnlineHearingRelisted", 0, false),
+    COH_DECISION_ISSUED("cohDecisionIssued", 0, false);
 
     private String type;
     private String ccdType;
