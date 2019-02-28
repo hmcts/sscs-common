@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SscsCaseData {
+public class SscsCaseData implements CaseData {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String ccdCaseId;
