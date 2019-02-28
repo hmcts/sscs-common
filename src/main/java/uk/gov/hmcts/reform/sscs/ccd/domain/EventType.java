@@ -30,6 +30,7 @@ public enum EventType {
     NON_COMPLIANT("nonCompliant", 0, true),
     INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true),
     UPDATE_HEARING_TYPE("updateHearingType", 0, false),
+    FINAL_DECISION("corDecision", 0, false),
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
     COH_QUESTION_DEADLINE_ELAPSED("cohQuestionDeadlineElapsed", 0, false),
     COH_QUESTION_DEADLINE_EXTENDED("cohQuestionDeadlineExtended", 0, false),
