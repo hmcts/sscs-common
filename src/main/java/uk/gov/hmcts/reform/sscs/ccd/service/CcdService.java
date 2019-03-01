@@ -150,7 +150,7 @@ public class CcdService {
             log.info("Appeal does not exist for appeal number: {}", appealNumber);
             throw new AppealNotFoundException(appealNumber);
         }
-        SscsCaseData caseData = details.getData();
+        SscsCaseData caseData = (SscsCaseData) details.getData();
         caseData.setCcdCaseId(String.valueOf(details.getId()));
         return (doesMatchAppellantAppealNumberAndLastname(surname, caseData, appealNumber)
                 || doesMatchRepresentativeAppealNumberAndLastname(surname, caseData, appealNumber)) ? caseData : null;

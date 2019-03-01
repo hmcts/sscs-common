@@ -93,5 +93,10 @@ public enum EventType {
         }
         return e;
     }
+
+    @Override
+    public String toString() {
+        return ccdType;
+    }
 }
 
