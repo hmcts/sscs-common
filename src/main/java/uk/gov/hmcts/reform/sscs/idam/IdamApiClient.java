@@ -22,7 +22,7 @@ public interface IdamApiClient {
             @RequestParam("response_type") final String responseType,
             @RequestParam("client_id") final String clientId,
             @RequestParam("redirect_uri") final String redirectUri,
-            @RequestBody String body
+            @RequestBody final String body
     );
 
     @RequestMapping(
@@ -36,7 +36,7 @@ public interface IdamApiClient {
             @RequestParam("redirect_uri") final String redirectUri,
             @RequestParam("client_id") final String clientId,
             @RequestParam("client_secret") final String clientSecret,
-            @RequestBody String body
+            @RequestBody final String body
     );
 
     @RequestMapping(
