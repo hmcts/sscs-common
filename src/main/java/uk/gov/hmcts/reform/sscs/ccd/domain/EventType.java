@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.CaseFormat;
+import java.util.Arrays;
 
 public enum EventType {
 
@@ -94,9 +97,9 @@ public enum EventType {
         return e;
     }
 
-    @Override
-    public String toString() {
-        return ccdType;
+    @JsonCreator
+    static EventType findValue(@JsonProperty("ccdType") String ccdType) {
+        return Arrays.stream(EventType.values()).filter(pt -> pt.ccdType.equals(ccdType)).findFirst().get();
     }
 }
 
