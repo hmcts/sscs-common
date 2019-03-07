@@ -149,6 +149,7 @@ public final class CaseDataUtils {
                 .hearingOptions(hearingOptions)
                 .mrnDetails(mrnDetails)
                 .rep(representative)
+                .appointee(appointee)
                 .signer("Signer")
                 .hearingType("oral")
                 .receivedVia("Online")
@@ -240,6 +241,7 @@ public final class CaseDataUtils {
                 .appellantSubscription(appellantSubscription)
                 .supporterSubscription(supporterSubscription)
                 .representativeSubscription(representativeSubscription)
+                .appointeeSubscription(appointeeSubscription)
                 .build();
 
         RegionalProcessingCenter rpc = RegionalProcessingCenter.builder()

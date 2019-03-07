@@ -153,7 +153,8 @@ public class CcdService {
         SscsCaseData caseData = (SscsCaseData) details.getData();
         caseData.setCcdCaseId(String.valueOf(details.getId()));
         return (doesMatchAppellantAppealNumberAndLastname(surname, caseData, appealNumber)
-                || doesMatchRepresentativeAppealNumberAndLastname(surname, caseData, appealNumber)) ? caseData : null;
+                || doesMatchRepresentativeAppealNumberAndLastname(surname, caseData, appealNumber)
+                || doesMatchAppointeeAppealNumberAndLastname(surname, caseData, appealNumber)) ? caseData : null;
     }
 
     private boolean doesMatchAppellantAppealNumberAndLastname(String surname, SscsCaseData caseData, String appealNumber) {
@@ -170,6 +171,14 @@ public class CcdService {
                 && caseData.getAppeal().getRep().getName().getLastName() != null
                 && appealNumber.equals(caseData.getSubscriptions().getRepresentativeSubscription().getTya())
                 && SurnameUtil.compare(surname, caseData.getAppeal().getRep().getName().getLastName());
+    }
+
+    private boolean doesMatchAppointeeAppealNumberAndLastname(String surname, SscsCaseData caseData, String appealNumber) {
+        return caseData.getAppeal() != null && caseData.getAppeal().getAppointee() != null
+                && caseData.getAppeal().getAppointee().getName() != null
+                && caseData.getAppeal().getAppointee().getName().getLastName() != null
+                && appealNumber.equals(caseData.getSubscriptions().getAppointeeSubscription().getTya())
+                && SurnameUtil.compare(surname, caseData.getAppeal().getAppointee().getName().getLastName());
     }
 
     private SscsCaseDetails getCaseByAppealNumber(String appealNumber, IdamTokens idamTokens) {
