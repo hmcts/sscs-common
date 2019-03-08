@@ -240,6 +240,7 @@ public final class CaseDataUtils {
                 .appellantSubscription(appellantSubscription)
                 .supporterSubscription(supporterSubscription)
                 .representativeSubscription(representativeSubscription)
+                .appointeeSubscription(appointeeSubscription)
                 .build();
 
         RegionalProcessingCenter rpc = RegionalProcessingCenter.builder()
