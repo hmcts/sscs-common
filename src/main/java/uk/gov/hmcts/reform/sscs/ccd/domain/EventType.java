@@ -21,6 +21,7 @@ public enum EventType {
     CLOSED("closed", "appealClosed", 12, false),
     DWP_RESPOND_OVERDUE("dwpRespondOverdue", "responseOverdue", 13, true),
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
+    DRAFT("draft", "draft", 0, false),
     EVIDENCE_REMINDER("evidenceRemainder", "evidenceReminder", -2, true),
     SYA_APPEAL_CREATED("appealCreated", 0, true),
     SUBSCRIPTION_CREATED("subscriptionCreated", 0, true),
