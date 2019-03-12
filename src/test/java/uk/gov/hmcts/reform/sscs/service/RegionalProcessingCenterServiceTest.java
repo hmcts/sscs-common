@@ -143,6 +143,10 @@ public class RegionalProcessingCenterServiceTest {
         assertNull("RPC Service getbyName() should have failed when venueID was used",
                     regionalProcessingCenterService.getByName(venueId));
 
+        String scCode = "SC024";
+        assertNull("RPC Service getbyName() should have failed when SC Code was used",
+                    regionalProcessingCenterService.getByName(scCode));
+                    
         String postCode = "B4 6BJ";
         assertNull("RPC Service getbyName() should have failed when postcode was used",
                     regionalProcessingCenterService.getByName(postCode));
