@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.when;
 
 import java.util.Map;
@@ -125,6 +126,26 @@ public class RegionalProcessingCenterServiceTest {
 
         //Then
         assertBirminghamRpc(regionalProcessingCenter);
+    }
+
+    @Test
+    public void testGetRegionalProcessingCentreByName() {
+        regionalProcessingCenterService.init();
+
+        String birminghamVenueName = "Birmingham";
+        assertBirminghamRpc(regionalProcessingCenterService.getByName(birminghamVenueName));
+
+        String jsonKey = "SSCS Birmingham";
+        assertNull("RPC Service getbyName() should have failed when JSON key was used",
+                    regionalProcessingCenterService.getByName(jsonKey));
+
+        String venueId = "24";
+        assertNull("RPC Service getbyName() should have failed when venueID was used",
+                    regionalProcessingCenterService.getByName(venueId));
+
+        String postCode = "B4 6BJ";
+        assertNull("RPC Service getbyName() should have failed when postcode was used",
+                    regionalProcessingCenterService.getByName(postCode));
     }
 
     @Test
