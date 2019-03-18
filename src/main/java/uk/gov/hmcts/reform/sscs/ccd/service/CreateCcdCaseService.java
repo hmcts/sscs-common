@@ -35,9 +35,9 @@ public class CreateCcdCaseService {
         } catch (Exception e) {
             throw new CreateCcdCaseException(String.format(
                     "Error found in the case creation or callback process for the ccd case "
-                            + "with SC (%s) and ccdID (%s) and Nino (%s) and Benefit Type (%s) but carrying on",
+                            + "with SC (%s) and ccdID (%s) and Nino (%s) and Benefit Type (%s) and exception: (%s) ",
                     caseData.getCaseReference(), caseData.getCcdCaseId(), caseData.getGeneratedNino(),
-                    caseData.getAppeal().getBenefitType().getCode()), e);
+                    caseData.getAppeal().getBenefitType().getCode(), e.getMessage()), e);
         }
     }
 
