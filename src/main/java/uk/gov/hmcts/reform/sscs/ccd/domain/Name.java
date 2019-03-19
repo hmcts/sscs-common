@@ -33,4 +33,9 @@ public class Name {
     public String getFullNameNoTitle() {
         return firstName + " " + lastName;
     }
+
+    @JsonIgnore
+    public String getAbbreviatedFullName() {
+        return title + " " + firstName.substring(0, 1) + " " + lastName;
+    }
 }

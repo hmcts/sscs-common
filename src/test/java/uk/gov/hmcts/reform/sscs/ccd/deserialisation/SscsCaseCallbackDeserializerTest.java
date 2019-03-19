@@ -66,6 +66,7 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals(EventType.APPEAL_RECEIVED, actualSscsCaseCallback.getEvent());
         assertEquals(State.APPEAL_CREATED, actualSscsCaseCallback.getCaseDetails().getState());
         assertEquals("12345656789", actualSscsCaseCallback.getCaseDetails().getCaseData().getCcdCaseId());
+        assertEquals("2018-10-23T15:04:48.187", actualSscsCaseCallback.getCaseDetails().getCaseData().getCaseCreated());
     }
 
     @Test
