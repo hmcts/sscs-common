@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -32,5 +33,10 @@ public class Name {
     @JsonIgnore
     public String getFullNameNoTitle() {
         return firstName + " " + lastName;
+    }
+
+    @JsonIgnore
+    public String getAbbreviatedFullName() {
+        return title + " " + StringUtils.defaultIfBlank(StringUtils. substring(firstName, 0, 1), StringUtils.EMPTY) + " " + lastName;
     }
 }

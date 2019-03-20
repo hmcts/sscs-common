@@ -18,11 +18,16 @@ public class SscsCaseCallbackDeserializer implements Deserializer<Callback<SscsC
 
     public Callback<SscsCaseData> deserialize(String source) {
         try {
-            return mapper.readValue(
-                source,
-                new TypeReference<Callback<SscsCaseData>>() {
-                }
+            Callback<SscsCaseData> callback = mapper.readValue(
+                    source,
+                    new TypeReference<Callback<SscsCaseData>>() {
+                    }
             );
+
+            callback.getCaseDetails().getCaseData().setCcdCaseId(String.valueOf(callback.getCaseDetails().getId()));
+            callback.getCaseDetails().getCaseData().setCaseCreated(callback.getCaseDetails().getCreatedDate().toString());
+
+            return callback;
 
         } catch (IOException e) {
             throw new IllegalArgumentException("Could not deserialize callback", e);
