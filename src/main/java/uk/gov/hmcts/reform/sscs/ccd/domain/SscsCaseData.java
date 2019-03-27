@@ -90,6 +90,7 @@ public class SscsCaseData implements CaseData {
         this.onlinePanel = onlineOnlinePanel;
         this.bulkScanCaseReference = bulkScanCaseReference;
         this.decisionNotes = decisionNotes;
+        this.isCorDecision = isCorDecision;
     }
 
     @JsonIgnore
