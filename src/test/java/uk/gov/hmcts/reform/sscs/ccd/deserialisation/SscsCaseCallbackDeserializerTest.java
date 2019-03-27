@@ -18,6 +18,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,9 +27,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
-import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.State;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SscsCaseCallbackDeserializerTest {
@@ -55,17 +54,40 @@ public class SscsCaseCallbackDeserializerTest {
     }
 
     @Test
-    public void should_deserialize_callback_source_to_sscs_case_callback() throws IOException {
+    public void should_deserialize_callback_source_to_sscs_case_callback_with_latest_event() throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
-        String path = getClass().getClassLoader().getResource("appealReceivedCallback.json").getFile();
+        String path = getClass().getClassLoader().getResource("responseReceivedCallback.json").getFile();
         String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
 
         Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
 
-        assertEquals(EventType.APPEAL_RECEIVED, actualSscsCaseCallback.getEvent());
+        assertEquals(EventType.DWP_RESPOND, actualSscsCaseCallback.getEvent());
         assertEquals(State.APPEAL_CREATED, actualSscsCaseCallback.getCaseDetails().getState());
+        assertEquals(EventType.DWP_RESPOND, actualSscsCaseCallback.getCaseDetails().getCaseData().getEvents().get(0).getValue().getEventType());
         assertEquals("12345656789", actualSscsCaseCallback.getCaseDetails().getCaseData().getCcdCaseId());
+    }
+
+    @Test
+    public void should_deserialize_callback_and_sort_hearings_and_evidence_by_latest_date() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource("responseReceivedCallbackMultipleHearingsAndEvidence.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        List<Hearing> hearings = actualSscsCaseCallback.getCaseDetails().getCaseData().getHearings();
+
+        assertEquals("2018-07-01", hearings.get(0).getValue().getHearingDate());
+        assertEquals("2018-06-01", hearings.get(1).getValue().getHearingDate());
+        assertEquals("2018-05-01", hearings.get(2).getValue().getHearingDate());
+
+        Evidence evidence = actualSscsCaseCallback.getCaseDetails().getCaseData().getEvidence();
+
+        assertEquals("2019-04-12", evidence.getDocuments().get(0).getValue().getDateReceived());
+        assertEquals("2019-03-10", evidence.getDocuments().get(1).getValue().getDateReceived());
+        assertEquals("2019-02-12", evidence.getDocuments().get(2).getValue().getDateReceived());
     }
 
     @Test

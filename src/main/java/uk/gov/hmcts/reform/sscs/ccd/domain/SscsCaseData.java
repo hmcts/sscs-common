@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import java.util.Collections;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
@@ -107,5 +108,19 @@ public class SscsCaseData implements CaseData {
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
+    }
+
+    public void sortCollections() {
+        if (getEvents() != null) {
+            Collections.sort(getEvents(), Collections.reverseOrder());
+        }
+
+        if (getHearings() != null) {
+            Collections.sort(getHearings(), Collections.reverseOrder());
+        }
+
+        if (getEvidence() != null && getEvidence().getDocuments() != null) {
+            Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+        }
     }
 }
