@@ -110,6 +110,7 @@ public class SscsCaseData implements CaseData {
         return latestEvent != null ? latestEvent.getType() : null;
     }
 
+    @JsonIgnore
     public void sortCollections() {
         if (getEvents() != null) {
             Collections.sort(getEvents(), Collections.reverseOrder());
@@ -122,5 +123,10 @@ public class SscsCaseData implements CaseData {
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
         }
+    }
+
+    @JsonIgnore
+    public Subscriptions getSubscriptions() {
+        return null != subscriptions ? subscriptions : Subscriptions.builder().build();
     }
 }
