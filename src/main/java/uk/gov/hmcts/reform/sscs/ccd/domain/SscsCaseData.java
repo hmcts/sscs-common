@@ -39,6 +39,7 @@ public class SscsCaseData implements CaseData {
     private OnlinePanel onlinePanel;
     private String bulkScanCaseReference;
     private String decisionNotes;
+    private String isCorDecision;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -65,7 +66,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("evidencePresent") String evidencePresent,
                         @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel,
                         @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
-                        @JsonProperty("decisionNotes") String decisionNotes) {
+                        @JsonProperty("decisionNotes") String decisionNotes,
+                        @JsonProperty("isCorDecision") String isCorDecision) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -91,11 +93,17 @@ public class SscsCaseData implements CaseData {
         this.onlinePanel = onlineOnlinePanel;
         this.bulkScanCaseReference = bulkScanCaseReference;
         this.decisionNotes = decisionNotes;
+        this.isCorDecision = isCorDecision;
     }
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
+    public boolean isCorDecision() {
+        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
     }
 
     @JsonIgnore
