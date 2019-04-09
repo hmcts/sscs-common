@@ -22,7 +22,7 @@ public enum EventType {
     DWP_RESPOND_OVERDUE("dwpRespondOverdue", "responseOverdue", 13, true),
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
     DRAFT("draft", "draft", 0, false),
-    EVIDENCE_REMINDER("evidenceRemainder", "evidenceReminder", -2, true),
+    EVIDENCE_REMINDER("evidenceReminder", "evidenceReminder", -2, true),
     SYA_APPEAL_CREATED("appealCreated", 0, true),
     SUBSCRIPTION_CREATED("subscriptionCreated", 0, true),
     SUBSCRIPTION_UPDATED("subscriptionUpdated", 0, true),
@@ -31,10 +31,12 @@ public enum EventType {
     THIRD_HEARING_HOLDING_REMINDER("thirdHearingHoldingReminder", 0, true),
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
     HEARING_REMINDER("hearingReminder", 0, true),
+    DWP_RESPONSE_LATE_REMINDER("dwpResponseLateReminder", 0, false),
     NON_COMPLIANT("nonCompliant", 0, true),
     INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true),
     UPDATE_HEARING_TYPE("updateHearingType", 0, false),
     FINAL_DECISION("corDecision", 0, false),
+    CASE_UPDATED("caseUpdated", 0, false),
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
     COH_QUESTION_DEADLINE_ELAPSED("cohQuestionDeadlineElapsed", 0, false),
     COH_QUESTION_DEADLINE_EXTENDED("cohQuestionDeadlineExtended", 0, false),
@@ -44,7 +46,9 @@ public enum EventType {
     COH_ANSWERS_SUBMITTED("cohAnswersSubmitted", 0, false),
     COH_DECISION_REJECTED("cohDecisionRejected", 0, false),
     COH_ONLINE_HEARING_RELISTED("cohContinuousOnlineHearingRelisted", 0, false),
-    COH_DECISION_ISSUED("cohDecisionIssued", 0, false);
+    COH_DECISION_ISSUED("cohDecisionIssued", 0, false),
+    STRUCK_OUT("struckOut", 0, false),
+    DIRECTION_ISSUED("directionIssued", 0, false);
 
     private String type;
     private String ccdType;
