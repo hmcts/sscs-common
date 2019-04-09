@@ -54,7 +54,12 @@ public class SscsCcdConvertService {
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
 
         try {
-            return mapper.convertValue(dataMap, SscsCaseData.class);
+            SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
+            if (sscsCaseData != null) {
+                sscsCaseData.sortCollections();
+            }
+
+            return sscsCaseData;
         } catch (Exception e) {
             CcdDeserializationException ccdDeserializationException = new CcdDeserializationException(e);
             LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationException);
