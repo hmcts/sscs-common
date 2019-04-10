@@ -1,26 +1,26 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.LinkedList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
-public class Bundle {
+public class Bundle implements Comparable<Bundle> {
 
-    private Long id;
-    private String title;
-    private String description;
-    private String eligibleForStitching;
-    private DocumentLink documentLink;
-    private List<BundleDocument> documents = new LinkedList<>();
+    private BundleDetails value;
 
-    @JsonIgnore
-    public String generateEligibleForStitchingAsBoolean(boolean eligibleForStitching) {
-        return eligibleForStitching ? "yes" : "no";
+    @JsonCreator
+    public Bundle(@JsonProperty("value") BundleDetails value) {
+        this.value = value;
     }
+
+    @Override
+    public int compareTo(Bundle o) {
+        return value.getDateGenerated().compareTo(o.getValue().getDateGenerated());
+    }
+
 }

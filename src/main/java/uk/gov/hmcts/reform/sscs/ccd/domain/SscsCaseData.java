@@ -128,6 +128,10 @@ public class SscsCaseData implements CaseData {
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
         }
+
+        if (getCaseBundles() != null) {
+            Collections.sort(getCaseBundles(), Collections.reverseOrder());
+        }
     }
 
     public Subscriptions getSubscriptions() {
