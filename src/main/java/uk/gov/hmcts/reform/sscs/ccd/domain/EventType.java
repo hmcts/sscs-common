@@ -48,7 +48,8 @@ public enum EventType {
     COH_ONLINE_HEARING_RELISTED("cohContinuousOnlineHearingRelisted", 0, false),
     COH_DECISION_ISSUED("cohDecisionIssued", 0, false),
     STRUCK_OUT("struckOut", 0, false),
-    DIRECTION_ISSUED("directionIssued", 0, false);
+    DIRECTION_ISSUED("directionIssued", 0, false),
+    REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false);
 
     private String type;
     private String ccdType;
