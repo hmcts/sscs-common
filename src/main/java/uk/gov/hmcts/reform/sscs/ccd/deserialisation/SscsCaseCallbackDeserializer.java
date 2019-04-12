@@ -25,6 +25,7 @@ public class SscsCaseCallbackDeserializer implements Deserializer<Callback<SscsC
             );
 
             callback.getCaseDetails().getCaseData().setCcdCaseId(String.valueOf(callback.getCaseDetails().getId()));
+            callback.getCaseDetails().getCaseData().sortCollections();
 
             return callback;
 

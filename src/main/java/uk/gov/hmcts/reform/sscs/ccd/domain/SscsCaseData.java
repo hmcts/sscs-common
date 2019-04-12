@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import java.util.Collections;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -22,7 +25,7 @@ public class SscsCaseData implements CaseData {
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
-    private Subscriptions subscriptions;
+    @Getter(AccessLevel.NONE) private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
@@ -107,5 +110,24 @@ public class SscsCaseData implements CaseData {
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
+    }
+
+    @JsonIgnore
+    public void sortCollections() {
+        if (getEvents() != null) {
+            Collections.sort(getEvents(), Collections.reverseOrder());
+        }
+
+        if (getHearings() != null) {
+            Collections.sort(getHearings(), Collections.reverseOrder());
+        }
+
+        if (getEvidence() != null && getEvidence().getDocuments() != null) {
+            Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+        }
+    }
+
+    public Subscriptions getSubscriptions() {
+        return null != subscriptions ? subscriptions : Subscriptions.builder().build();
     }
 }
