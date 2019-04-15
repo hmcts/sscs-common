@@ -52,7 +52,8 @@ public enum EventType {
     DIRECTION_ISSUED("directionIssued", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
     SEND_TO_DWP("sendToDwp", 0, false),
-    SENT_TO_DWP("sentToDwp", 0, false);
+    SENT_TO_DWP("sentToDwp", 0, false),
+    REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false);
 
     private String type;
     private String ccdType;

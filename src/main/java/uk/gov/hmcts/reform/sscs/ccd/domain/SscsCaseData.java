@@ -19,6 +19,7 @@ public class SscsCaseData implements CaseData {
 
     private String caseReference;
     private String caseCreated;
+    private InfoRequests infoRequests;
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
@@ -48,6 +49,7 @@ public class SscsCaseData implements CaseData {
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
+                        @JsonProperty("infoRequests") InfoRequests infoRequests,
                         @JsonProperty("region") String region,
                         @JsonProperty("appeal") Appeal appeal,
                         @JsonProperty("hearings") List<Hearing> hearings,
@@ -74,6 +76,7 @@ public class SscsCaseData implements CaseData {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
+        this.infoRequests = infoRequests;
         this.region = region;
         this.appeal = appeal;
         this.hearings = hearings;
