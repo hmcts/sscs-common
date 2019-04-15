@@ -19,6 +19,7 @@ public class SscsCaseData implements CaseData {
 
     private String caseReference;
     private String caseCreated;
+    private InfoRequests infoRequests;
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
@@ -27,6 +28,7 @@ public class SscsCaseData implements CaseData {
     private List<Event> events;
     @Getter(AccessLevel.NONE) private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
+    private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
     private List<CorDocument> corDocument;
@@ -47,6 +49,7 @@ public class SscsCaseData implements CaseData {
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
+                        @JsonProperty("infoRequests") InfoRequests infoRequests,
                         @JsonProperty("region") String region,
                         @JsonProperty("appeal") Appeal appeal,
                         @JsonProperty("hearings") List<Hearing> hearings,
@@ -55,6 +58,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("events") List<Event> events,
                         @JsonProperty("subscriptions") Subscriptions subscriptions,
                         @JsonProperty("regionalProcessingCenter") RegionalProcessingCenter regionalProcessingCenter,
+                        @JsonProperty("caseBundles") List<Bundle> caseBundles,
                         @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
                         @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
                         @JsonProperty("corDocument") List<CorDocument> corDocument,
@@ -72,6 +76,7 @@ public class SscsCaseData implements CaseData {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
+        this.infoRequests = infoRequests;
         this.region = region;
         this.appeal = appeal;
         this.hearings = hearings;
@@ -80,6 +85,7 @@ public class SscsCaseData implements CaseData {
         this.events = events;
         this.subscriptions = subscriptions;
         this.regionalProcessingCenter = regionalProcessingCenter;
+        this.caseBundles = caseBundles;
         this.sscsDocument = sscsDocument;
         this.draftSscsDocument = draftSscsDocument;
         this.corDocument = corDocument;
@@ -124,6 +130,10 @@ public class SscsCaseData implements CaseData {
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+        }
+
+        if (getCaseBundles() != null) {
+            Collections.sort(getCaseBundles(), Collections.reverseOrder());
         }
     }
 

@@ -21,7 +21,8 @@ public enum EventType {
     CLOSED("closed", "appealClosed", 12, false),
     DWP_RESPOND_OVERDUE("dwpRespondOverdue", "responseOverdue", 13, true),
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
-    DRAFT("draft", "draft", 0, false),
+    CREATE_DRAFT("createDraft", "createDraft", 0, false),
+    UPDATE_DRAFT("updateDraft", "updateDraft", 0, false),
     EVIDENCE_REMINDER("evidenceReminder", "evidenceReminder", -2, true),
     SYA_APPEAL_CREATED("appealCreated", 0, true),
     SUBSCRIPTION_CREATED("subscriptionCreated", 0, true),
@@ -48,7 +49,11 @@ public enum EventType {
     COH_ONLINE_HEARING_RELISTED("cohContinuousOnlineHearingRelisted", 0, false),
     COH_DECISION_ISSUED("cohDecisionIssued", 0, false),
     STRUCK_OUT("struckOut", 0, false),
-    DIRECTION_ISSUED("directionIssued", 0, false);
+    DIRECTION_ISSUED("directionIssued", 0, false),
+    CREATE_BUNDLE("createBundle", 0, false),
+    SEND_TO_DWP("sendToDwp", 0, false),
+    SENT_TO_DWP("sentToDwp", 0, false),
+    REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false);
 
     private String type;
     private String ccdType;
