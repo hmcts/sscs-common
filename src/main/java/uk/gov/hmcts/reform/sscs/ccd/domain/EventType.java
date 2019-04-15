@@ -50,6 +50,9 @@ public enum EventType {
     COH_DECISION_ISSUED("cohDecisionIssued", 0, false),
     STRUCK_OUT("struckOut", 0, false),
     DIRECTION_ISSUED("directionIssued", 0, false),
+    CREATE_BUNDLE("createBundle", 0, false),
+    SEND_TO_DWP("sendToDwp", 0, false),
+    SENT_TO_DWP("sentToDwp", 0, false),
     REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false);
 
     private String type;

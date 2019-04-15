@@ -28,6 +28,7 @@ public class SscsCaseData implements CaseData {
     private List<Event> events;
     @Getter(AccessLevel.NONE) private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
+    private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
     private List<CorDocument> corDocument;
@@ -57,6 +58,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("events") List<Event> events,
                         @JsonProperty("subscriptions") Subscriptions subscriptions,
                         @JsonProperty("regionalProcessingCenter") RegionalProcessingCenter regionalProcessingCenter,
+                        @JsonProperty("caseBundles") List<Bundle> caseBundles,
                         @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
                         @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
                         @JsonProperty("corDocument") List<CorDocument> corDocument,
@@ -83,6 +85,7 @@ public class SscsCaseData implements CaseData {
         this.events = events;
         this.subscriptions = subscriptions;
         this.regionalProcessingCenter = regionalProcessingCenter;
+        this.caseBundles = caseBundles;
         this.sscsDocument = sscsDocument;
         this.draftSscsDocument = draftSscsDocument;
         this.corDocument = corDocument;
@@ -127,6 +130,10 @@ public class SscsCaseData implements CaseData {
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+        }
+
+        if (getCaseBundles() != null) {
+            Collections.sort(getCaseBundles(), Collections.reverseOrder());
         }
     }
 
