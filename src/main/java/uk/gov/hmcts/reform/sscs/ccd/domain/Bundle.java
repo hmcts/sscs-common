@@ -9,18 +9,13 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
-public class Bundle implements Comparable<Bundle> {
+public class Bundle {
 
     private BundleDetails value;
 
     @JsonCreator
     public Bundle(@JsonProperty("value") BundleDetails value) {
         this.value = value;
-    }
-
-    @Override
-    public int compareTo(Bundle o) {
-        return value.getDateGenerated().compareTo(o.getValue().getDateGenerated());
     }
 
 }
