@@ -132,8 +132,13 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: 4.12
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.2.7'
 <<<<<<< HEAD
+<<<<<<< HEAD
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.1.6.RELEASE'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.0'
+=======
+    testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.7.RELEASE'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+>>>>>>> ec980ba... Bump assertj-core from 3.12.0 to 3.12.2
 =======
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.7.RELEASE'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
