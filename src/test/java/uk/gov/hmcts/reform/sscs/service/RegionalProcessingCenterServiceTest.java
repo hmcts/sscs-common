@@ -49,7 +49,7 @@ public class RegionalProcessingCenterServiceTest {
         Map<String, RegionalProcessingCenter> regionalProcessingCenterMap
                 = regionalProcessingCenterService.getRegionalProcessingCenterMap();
 
-        assertEquals(6, regionalProcessingCenterMap.size());
+        assertEquals(7, regionalProcessingCenterMap.size());
         RegionalProcessingCenter regionalProcessingCenter = regionalProcessingCenterMap.get(SSCS_LIVERPOOL);
         assertEquals("LIVERPOOL", regionalProcessingCenter.getName());
         assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
