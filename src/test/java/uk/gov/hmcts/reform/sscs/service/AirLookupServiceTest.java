@@ -1,15 +1,15 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
 public class AirLookupServiceTest {
     AirLookupService airLookupService;
 
-    private static String DEFAULT_VENUE_NAME = "Birmingham";
+    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaVenue("Birmingham").build();
 
     @Before
     public void setUp() {
@@ -93,38 +93,27 @@ public class AirLookupServiceTest {
         assertEquals("Leeds", adminGroup);
     }
 
-    //Tests for parsing the venue
-    @Test
-    public void checkForPip() {
-        String cellWithPip = "Bristol Magistrates- 03 - PIP/DLA";
-        assertTrue(airLookupService.hasPip(cellWithPip));
-    }
-
     //Tests for the venue ID lookup
     @Test
     public void checkAirPostcodeWithNoPipReturnsBirmingham() {
         //n1w1 is a sorting office
-        assertEquals(DEFAULT_VENUE_NAME, airLookupService.lookupAirVenueNameByPostCode("n1w1"));
+        assertEquals(DEFAULT_VENUE, airLookupService.lookupAirVenueNameByPostCode("n1w1"));
     }
 
     @Test
     public void checkVenueIdForPostCodeWithNoPip() {
-        assertEquals(24, airLookupService.lookupVenueId("n1w1"));
+
+        AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode("n1w1");
+
+        assertEquals(24,lookupVenueId(venues.getPipVenue()));
     }
 
     @Test
     public void checkVenueIdForValidPostCode() {
-        assertEquals(1223, airLookupService.lookupVenueId("NN85"));
+        assertEquals(1223, airLookupService.lookupVenueId("NN85", "pip"));
     }
 
-    //Business asked for SL0 to SL9 to change venure to high wycombe
-    @Test
-    public void checkChangeMaidenheadToHighWycombe() {
-        String highWycombe = "High Wycombe";
-
-        for (int i = 0; i < 10; i++) {
-            String venue = airLookupService.lookupAirVenueNameByPostCode("sl" + i);
-            assertEquals(highWycombe, venue);
-        }
+    private int lookupVenueId(String venue) {
+        return airLookupService.getLookupVenueIdByAirVenueName().get(venue);
     }
 }
