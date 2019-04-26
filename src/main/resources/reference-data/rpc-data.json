@@ -65,5 +65,15 @@
     "postcode" : "NE1 6PA",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 5784"
+  },
+  "SSCS Glasgow": {
+    "address1": "HM Courts & Tribunals Service",
+    "address2": "Social, Security & Child Support Appeals",
+    "address3": "The Glasgow Tribunals Centre",
+    "address4": "20 York Street",
+    "city": "GLASGOW",
+    "postcode": "G2 8GT",
+    "phoneNumber" : "0300 790 6234",
+    "faxNumber" : "01264 347 981"
   }
 }
