@@ -11,6 +11,7 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
+import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
 /**
  * Tests to look at the integrity of the data in a business spreadsheet
@@ -19,7 +20,7 @@ import org.springframework.core.io.ClassPathResource;
 public class AirLookRcSpreadSheetTest {
     AirLookupService airLookupService;
     Map<String, String> lookupData;
-    Map<String, String> venueData;
+    Map<String, AirlookupBenefitToVenue> venueData;
     Map<String, Integer> lookupVenueIdByAirLookupName;
 
     @Before
@@ -108,14 +109,8 @@ public class AirLookRcSpreadSheetTest {
                 missingPipVenuePostcodes.size() == 0);
     }
 
-    //TODO venues that are in spreadsheet but not in our list of venues
-    static Set<String> venuesThatAreNotInSpreadsheet = new HashSet<>(Arrays.asList("Teeside Justice Centre", "Dover", "Gateshead Law Courts"));
-
-    //TODO venues that the business are coming back to us as to how to process
-    static Set<String> venuesWithIssues = new HashSet<>(Arrays.asList("St.Helens(if WA3 3** use Wigan)", "Liverpool (if Banks area use Wigan)"));
-
     @Test
-    public void testAllPipsMapToVenueId() {
+    public void testAllPipsAndEsasMapToVenueId() {
         Set<String> postCodesForVenueNames = venueData.keySet();
 
         Set<String> missingAirLookupNames = new HashSet<>();
@@ -124,25 +119,27 @@ public class AirLookRcSpreadSheetTest {
         Iterator postCodeIterator = postCodesForVenueNames.iterator();
         while (postCodeIterator.hasNext()) {
             Object postCode = postCodeIterator.next();
-            String airLookupName = venueData.get(postCode);
-            Integer venueId = lookupVenueIdByAirLookupName.get(airLookupName);
+            String pipVenue = venueData.get(postCode).getPipVenue();
+            String esaVenue = venueData.get(postCode).getEsaVenue();
 
-            if (venueId == null || venueId.intValue() == 0) {
-                if (venuesThatAreNotInSpreadsheet.contains(airLookupName)
-                        || venuesWithIssues.contains(airLookupName)) {
-                    //ignore
-                } else {
-                    missingAirLookupNames.add(airLookupName);
-                }
-            } else {
-                workingAirLookupNames.add(airLookupName);
-            }
+            checkVenueExists(missingAirLookupNames, workingAirLookupNames, pipVenue);
+            checkVenueExists(missingAirLookupNames, workingAirLookupNames, esaVenue);
         }
 
         assertTrue(missingAirLookupNames.size() + " airLookupNames don't map to a venueId"
                         + "\nMissing: " + Arrays.toString(missingAirLookupNames.toArray())
                         + "\nWorking: " + Arrays.toString(workingAirLookupNames.toArray()),
                 missingAirLookupNames.size() == 0);
+    }
+
+    private void checkVenueExists(Set<String> missingAirLookupNames, Set<String> workingAirLookupNames, String venue) {
+        Integer venueId = lookupVenueIdByAirLookupName.get(venue);
+
+        if (venueId == null || venueId.intValue() == 0) {
+            missingAirLookupNames.add(venue);
+        } else {
+            workingAirLookupNames.add(venue);
+        }
     }
 
     /*
@@ -178,7 +175,7 @@ public class AirLookRcSpreadSheetTest {
                     System.out.println(postcode.trim());
                 }
             }
-            System.out.println("Total postcodes missing is  " + counterOut);
+            System.out.println("Total postcodes missing is: " + counterOut);
             if (counterOut > 0) {
                 fail("The postcodes above are missing from the spreadsheet");
             }
