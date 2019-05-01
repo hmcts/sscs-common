@@ -67,6 +67,7 @@
     "faxNumber" : "0870 739 5784"
   },
   "SSCS Glasgow": {
+    "name" : "GLASGOW",
     "address1": "HM Courts & Tribunals Service",
     "address2": "Social, Security & Child Support Appeals",
     "address3": "The Glasgow Tribunals Centre",
