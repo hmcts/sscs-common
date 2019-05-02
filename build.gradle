@@ -124,7 +124,7 @@ dependencies {
     compile group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
     compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
     compile group: 'com.opencsv', name: 'opencsv', version: '4.5'
-    compile group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.10.10'
+    compile group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.10.11'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
 
     compileOnly 'org.projectlombok:lombok:1.18.6'
