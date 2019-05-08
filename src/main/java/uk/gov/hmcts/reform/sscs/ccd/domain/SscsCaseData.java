@@ -45,6 +45,7 @@ public class SscsCaseData implements CaseData {
     private String decisionNotes;
     private String isCorDecision;
     private String relistingReason;
+    private String dateSentToDwp;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -74,7 +75,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
                         @JsonProperty("decisionNotes") String decisionNotes,
                         @JsonProperty("isCorDecision") String isCorDecision,
-                        @JsonProperty("relistingReason") String relistingReason) {
+                        @JsonProperty("relistingReason") String relistingReason,
+                        @JsonProperty("dateSentToDwp") String dateSentToDwp) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -103,6 +105,7 @@ public class SscsCaseData implements CaseData {
         this.decisionNotes = decisionNotes;
         this.isCorDecision = isCorDecision;
         this.relistingReason = relistingReason;
+        this.dateSentToDwp = dateSentToDwp;
     }
 
     @JsonIgnore
