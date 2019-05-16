@@ -55,7 +55,9 @@ public enum EventType {
     SENT_TO_DWP("sentToDwp", 0, false),
     REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false),
     CREATE_APPEAL_PDF("createAppealPDF", 0, false),
-    RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false);
+    RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
+    VALID_APPEAL("validAppeal", 0, false),
+    INTERLOC_VALID_APPEAL("interlocValidAppeal", 0, false);
 
     private String type;
     private String ccdType;
