@@ -23,6 +23,7 @@ public enum EventType {
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
     CREATE_DRAFT("createDraft", "createDraft", 0, false),
     UPDATE_DRAFT("updateDraft", "updateDraft", 0, false),
+    DRAFT_ARCHIVED("draftArchived", "draftArchived", 0, false),
     EVIDENCE_REMINDER("evidenceReminder", "evidenceReminder", -2, true),
     SYA_APPEAL_CREATED("appealCreated", 0, true),
     SUBSCRIPTION_CREATED("subscriptionCreated", 0, true),
