@@ -10,7 +10,9 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class AppellantInfo {
+    @JsonProperty("appellantInfoParagraph")
     private String paragraph;
+    @JsonProperty("appellantInfoRequestDate")
     private String requestDate;
 
     @JsonCreator

@@ -2,6 +2,9 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
@@ -62,5 +65,24 @@ public class SscsCaseDataTest {
         assertEquals("2019-03-01", sscsCaseData.getEvidence().getDocuments().get(0).getValue().getDateReceived());
         assertEquals("2019-02-01", sscsCaseData.getEvidence().getDocuments().get(1).getValue().getDateReceived());
         assertEquals("2019-01-01", sscsCaseData.getEvidence().getDocuments().get(2).getValue().getDateReceived());
+    }
+
+    @Test
+    public void shouldCreateInfoRequest() throws JsonParseException, IOException {
+        String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
+                ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
+        List<AppellantInfoRequest> appellantInfoRequests = new ArrayList<>();
+        AppellantInfoRequest appellantInfoRequest1 = AppellantInfoRequest.builder()
+                .appellantInfo(AppellantInfo.builder().paragraph("Par1").requestDate("date1").build()).build();
+
+        appellantInfoRequests.add(appellantInfoRequest1);
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequests.builder()
+                .appellantInfoRequest(appellantInfoRequests).build()).build();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String infoRequestValue = mapper.writeValueAsString(sscsCaseData.getInfoRequests());
+
+        assertEquals(expectedValue, infoRequestValue);
     }
 }

@@ -11,6 +11,7 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class InfoRequests {
+    @JsonProperty("appellantInfoRequestCollection")
     private List<AppellantInfoRequest> appellantInfoRequest;
 
     @JsonCreator
