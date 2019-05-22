@@ -60,7 +60,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("L2 5UZ", regionalProcessingCenter.getPostcode());
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
-
+        assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
     }
 
     @Test
@@ -83,6 +83,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("L2 5UZ", regionalProcessingCenter.getPostcode());
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
     }
 
     @Test
@@ -174,5 +175,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("B16 6FR", regionalProcessingCenter.getPostcode());
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
+
     }
 }

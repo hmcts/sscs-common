@@ -253,6 +253,7 @@ public final class CaseDataUtils {
                 .postcode("CF24 0AB")
                 .phoneNumber("0300 123 1142")
                 .faxNumber("0870 739 4438")
+                .email("Cardiff_SYA_Respon@justice.gov.uk")
                 .build();
 
         return SscsCaseData.builder()
