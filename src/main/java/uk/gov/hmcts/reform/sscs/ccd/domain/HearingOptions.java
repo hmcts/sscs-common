@@ -19,6 +19,7 @@ public class HearingOptions {
     private List<String> arrangements;
     private String scheduleHearing;
     private List<ExcludeDate> excludeDates;
+    private String agreeLessNotice;
     private String other;
 
     @JsonCreator
@@ -30,6 +31,7 @@ public class HearingOptions {
                           @JsonProperty("arrangements") List<String> arrangements,
                           @JsonProperty("scheduleHearing") String scheduleHearing,
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
+                          @JsonProperty("agreeLessNotice") String agreeLessNotice,
                           @JsonProperty("other") String other) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
@@ -39,12 +41,18 @@ public class HearingOptions {
         this.arrangements = arrangements;
         this.scheduleHearing = scheduleHearing;
         this.excludeDates = excludeDates;
+        this.agreeLessNotice = agreeLessNotice;
         this.other = other;
     }
 
     @JsonIgnore
     public Boolean isWantsToAttendHearing() {
         return wantsToAttend != null && wantsToAttend.toLowerCase().equals("yes");
+    }
+
+    @JsonIgnore
+    public Boolean isAgreeLessNotice() {
+        return agreeLessNotice != null && agreeLessNotice.toLowerCase().equals("yes");
     }
 
     public Boolean wantsSignLanguageInterpreter() {
