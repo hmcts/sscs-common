@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -47,12 +48,12 @@ public class HearingOptions {
 
     @JsonIgnore
     public Boolean isWantsToAttendHearing() {
-        return wantsToAttend != null && wantsToAttend.toLowerCase().equals("yes");
+        return StringUtils.isNotBlank(wantsToAttend) && wantsToAttend.toLowerCase().equals("yes");
     }
 
     @JsonIgnore
     public Boolean isAgreeLessNotice() {
-        return agreeLessNotice != null && agreeLessNotice.toLowerCase().equals("yes");
+        return StringUtils.isNotBlank(agreeLessNotice) && agreeLessNotice.toLowerCase().equals("yes");
     }
 
     public Boolean wantsSignLanguageInterpreter() {
