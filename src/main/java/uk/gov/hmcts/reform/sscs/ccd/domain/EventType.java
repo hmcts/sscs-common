@@ -59,7 +59,8 @@ public enum EventType {
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
     VALID_APPEAL("validAppeal", 0, false),
     INTERLOC_VALID_APPEAL("interlocValidAppeal", 0, false),
-    VALID_APPEAL_CREATED("validAppealCreated", 0, false);
+    VALID_APPEAL_CREATED("validAppealCreated", 0, false),
+    MOVE_TO_APPEAL_CREATED("moveToAppealCreated", 0, false);
 
     private String type;
     private String ccdType;
