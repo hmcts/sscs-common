@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -39,7 +40,7 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean isSmsSubscribed() {
-        if (subscribeSms == null || subscribeSms.toLowerCase().equals("no")) {
+        if (StringUtils.isBlank(subscribeSms) || subscribeSms.toLowerCase().equals("no")) {
             return false;
         }
         return true;
@@ -47,7 +48,7 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean isEmailSubscribed() {
-        if (subscribeEmail == null || subscribeEmail.toLowerCase().equals("no"))  {
+        if (StringUtils.isBlank(subscribeEmail) || subscribeEmail.toLowerCase().equals("no"))  {
             return false;
         }
         return true;
@@ -55,7 +56,7 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean doesCaseHaveSubscriptions() {
-        return (isSmsSubscribed() || isEmailSubscribed()) ? true : false;
+        return isSmsSubscribed() || isEmailSubscribed();
     }
 
 }
