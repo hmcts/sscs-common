@@ -46,7 +46,7 @@ public class RegionalProcessingCenterServiceTest {
     }
 
     @Test
-    @Parameters(method = "getDifferentRPCScenarios")
+    @Parameters(method = "getDifferentRpcScenarios")
     public void givenRpcMetaData_shouldLoadRpcMetadataToMap(RegionalProcessingCenter expectedRpc, String rpcKey) {
         //When
         regionalProcessingCenterService.init();
@@ -70,7 +70,7 @@ public class RegionalProcessingCenterServiceTest {
     }
 
     @SuppressWarnings("unused")
-    private Object[] getDifferentRPCScenarios() {
+    private Object[] getDifferentRpcScenarios() {
         RegionalProcessingCenter liverpoolRpc = RegionalProcessingCenter.builder()
             .name("LIVERPOOL")
             .address1("HM Courts & Tribunals Service")
