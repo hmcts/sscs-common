@@ -13,6 +13,7 @@ public enum State {
     VOID_STATE("voidState"),
     WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
     DORMANT_APPEAL_STATE("dormantAppealState"),
+    VALID_APPEAL("validAppeal"),
 
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
