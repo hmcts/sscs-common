@@ -4,13 +4,18 @@ import java.util.Base64;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.retry.annotation.Retryable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 
 @Service
 @Slf4j
 public class IdamService {
+    @Autowired
+    CacheManager cacheManager;
 
     private final AuthTokenGenerator authTokenGenerator;
     private final IdamApiClient idamApiClient;
@@ -45,6 +50,7 @@ public class IdamService {
         return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
+    @Cacheable("idamTokenCache")
     public String getIdamOauth2Token() {
         String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
         String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
@@ -67,6 +73,12 @@ public class IdamService {
         );
 
         return "Bearer " + authorizeToken.getAccessToken();
+    }
+
+//    @Scheduled(fixedRate = 1000 * 60 * 10)
+    public void evictCachesAtIntervals() {
+        log.info("Evicting idam token cache");
+        cacheManager.getCache("idamTokenCache").clear();
     }
 
     public IdamTokens getIdamTokens() {
