@@ -37,6 +37,8 @@ public class IdamService {
     @Value("${idam.oauth2.redirectUrl}")
     private String idamOauth2RedirectUrl;
 
+    // Tactical idam token caching solution implemented
+    // SSCS-5895 - will deliver the strategic caching solution
     private String cachedToken;
 
     @Autowired
