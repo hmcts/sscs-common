@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.CacheManager;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,6 @@ import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 @Slf4j
 public class IdamService {
     public static final int ONE_HOUR = 1000 * 60 * 60;
-
-    @Autowired
-    CacheManager cacheManager;
 
     private final AuthTokenGenerator authTokenGenerator;
     private final IdamApiClient idamApiClient;
