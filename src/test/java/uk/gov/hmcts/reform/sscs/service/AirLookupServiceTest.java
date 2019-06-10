@@ -101,9 +101,9 @@ public class AirLookupServiceTest {
 
     @Test
     public void checkVenueIdForPostCodeWithNoPip() {
-        AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode("dn1");
+        AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode("b4");
 
-        assertEquals(1236, lookupVenueId(venues.getPipVenue()));
+        assertEquals(1234, lookupVenueId(venues.getPipVenue()));
     }
 
     @Test
