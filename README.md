@@ -35,6 +35,9 @@ https://dl.bintray.com/hmcts/hmcts-maven/uk/gov/hmcts/reform/sscs-common/
 
 To use this you will need to have setup the following properties in your application.yaml.
 
+Dependent projects must implement the Spring Annotation ```@EnableScheduling``` on the
+class which is defined as the ```@SpringBootApplication```.
+
 ```$yaml
 idam:
   s2s-auth:
