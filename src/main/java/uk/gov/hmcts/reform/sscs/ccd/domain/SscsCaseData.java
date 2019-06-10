@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -26,7 +30,8 @@ public class SscsCaseData implements CaseData {
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
-    @Getter(AccessLevel.NONE) private Subscriptions subscriptions;
+    @Getter(AccessLevel.NONE)
+    private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
@@ -46,6 +51,7 @@ public class SscsCaseData implements CaseData {
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
+    private String hmctsDwpSecondaryState;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -76,7 +82,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionNotes") String decisionNotes,
                         @JsonProperty("isCorDecision") String isCorDecision,
                         @JsonProperty("relistingReason") String relistingReason,
-                        @JsonProperty("dateSentToDwp") String dateSentToDwp) {
+                        @JsonProperty("dateSentToDwp") String dateSentToDwp,
+                        @JsonProperty("hmctsDwpSecondaryState") String hmctsDwpSecondaryState) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -106,6 +113,7 @@ public class SscsCaseData implements CaseData {
         this.isCorDecision = isCorDecision;
         this.relistingReason = relistingReason;
         this.dateSentToDwp = dateSentToDwp;
+        this.hmctsDwpSecondaryState = hmctsDwpSecondaryState;
     }
 
     @JsonIgnore
