@@ -52,7 +52,7 @@ public class SscsCaseData implements CaseData {
     private String relistingReason;
     private String dateSentToDwp;
     private String interlocSecondaryState;
-    private String hmctsDwpSecondaryState;
+    private String hmctsDwpState;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -85,7 +85,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("relistingReason") String relistingReason,
                         @JsonProperty("dateSentToDwp") String dateSentToDwp,
                         @JsonProperty("interlocSecondaryState") String interlocSecondaryState,
-                        @JsonProperty("hmctsDwpSecondaryState") String hmctsDwpSecondaryState) {
+                        @JsonProperty("hmctsDwpState") String hmctsDwpState) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -116,7 +116,7 @@ public class SscsCaseData implements CaseData {
         this.relistingReason = relistingReason;
         this.dateSentToDwp = dateSentToDwp;
         this.interlocSecondaryState = interlocSecondaryState;
-        this.hmctsDwpSecondaryState = hmctsDwpSecondaryState;
+        this.hmctsDwpState = hmctsDwpState;
     }
 
     @JsonIgnore
