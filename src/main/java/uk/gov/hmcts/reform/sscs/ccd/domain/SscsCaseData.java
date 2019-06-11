@@ -52,6 +52,7 @@ public class SscsCaseData implements CaseData {
     private String relistingReason;
     private String dateSentToDwp;
     private String interlocReviewState;
+    private String hmctsDwpState;
     private List<ScannedDocument> scannedDocuments;
 
     @JsonCreator
@@ -85,6 +86,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("relistingReason") String relistingReason,
                         @JsonProperty("dateSentToDwp") String dateSentToDwp,
                         @JsonProperty("interlocReviewState") String interlocReviewState,
+                        @JsonProperty("hmctsDwpState") String hmctsDwpState,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -116,6 +118,7 @@ public class SscsCaseData implements CaseData {
         this.relistingReason = relistingReason;
         this.dateSentToDwp = dateSentToDwp;
         this.interlocReviewState = interlocReviewState;
+        this.hmctsDwpState = hmctsDwpState;
         this.scannedDocuments = scannedDocuments;
     }
 
