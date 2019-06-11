@@ -56,7 +56,7 @@ public class AirLookupService {
         lookupAirVenueNameByPostCode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
 
-        String airlookupFilePath = "reference-data/AIRLookup8.xlsx";
+        String airlookupFilePath = "reference-data/AIRLookup9.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
 
@@ -85,7 +85,7 @@ public class AirLookupService {
     private void parseAirLookupData(Workbook wb)  {
 
         for (Sheet sheet: wb) {
-            if (sheet.getSheetName().equals("All")) {
+            if (sheet.getSheetName().equalsIgnoreCase("All")) {
                 for (Row row : sheet) {
                     if (row.getRowNum() == 0 || row.getRowNum() == 1) {
                         continue;
@@ -117,7 +117,7 @@ public class AirLookupService {
     public void parseVenueData(Workbook wb) {
 
         for (Sheet sheet: wb) {
-            if (sheet.getSheetName().equals("airLookupVenueIds.csv")) {
+            if (sheet.getSheetName().equalsIgnoreCase("airLookupVenueIds.csv")) {
                 for (Row row : sheet) {
                     if (row.getRowNum() == 0) {
                         continue;
