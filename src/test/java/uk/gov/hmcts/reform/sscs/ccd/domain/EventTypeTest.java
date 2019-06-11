@@ -1,10 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import org.junit.Test;
+import static org.junit.Assert.fail;
 
 import java.util.NoSuchElementException;
-
-import static org.junit.Assert.fail;
+import org.junit.Test;
 
 public class EventTypeTest {
 
