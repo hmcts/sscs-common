@@ -85,11 +85,13 @@ public class EventTypeTest {
             "createDraft\n" +
             "updateDraft\n" +
             "draftArchived\n" +
-            "sendToDwpOffiline\n" +
+            "sendToDwpOffline\n" +
             "validAppealCreated\n" +
             "moveToAppealCreated\n" +
             "uploadDraftDocument\n" +
-            "uploadDraftCorDocument";
+            "uploadDraftCorDocument\n" +
+            "attachScannedDocs\n" +
+            "handleEvidence";
 
 
     @Test
