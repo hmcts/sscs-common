@@ -93,7 +93,6 @@ public class EventTypeTest {
             "attachScannedDocs\n" +
             "handleEvidence";
 
-
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
         String[] allEventTypes = ALL_EVENT_TYPES.split("\n");
