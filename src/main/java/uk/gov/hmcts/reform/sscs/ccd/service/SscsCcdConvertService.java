@@ -5,6 +5,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
@@ -78,7 +80,7 @@ public class SscsCcdConvertService {
             && sscsCaseData.getAppeal().getAppellant().getIdentity() != null;
     }
 
-    public static final String removeSpacesFromNino(String unclean) {
-        return unclean.replaceAll("\\s", "");
+    public static String removeSpacesFromNino(String unclean) {
+        return StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "");
     }
 }
