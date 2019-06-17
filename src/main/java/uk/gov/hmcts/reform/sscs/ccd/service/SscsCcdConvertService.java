@@ -71,7 +71,7 @@ public class SscsCcdConvertService {
         }
     }
 
-    private static boolean hasAppellantIdentify(SscsCaseData sscsCaseData) {
+    public static boolean hasAppellantIdentify(SscsCaseData sscsCaseData) {
         return sscsCaseData != null
             && sscsCaseData.getAppeal() != null
             && sscsCaseData.getAppeal().getAppellant() != null
