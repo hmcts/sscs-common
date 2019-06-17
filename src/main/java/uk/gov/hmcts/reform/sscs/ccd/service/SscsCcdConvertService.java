@@ -56,6 +56,10 @@ public class SscsCcdConvertService {
         try {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
             if (sscsCaseData != null) {
+                sscsCaseData.getAppeal().getAppellant().getIdentity().setNino(
+                    removeSpacesFromNino(sscsCaseData.getAppeal().getAppellant().getIdentity().getNino())
+                );
+
                 sscsCaseData.sortCollections();
             }
 
@@ -65,5 +69,9 @@ public class SscsCcdConvertService {
             LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationException);
             throw ccdDeserializationException;
         }
+    }
+
+    public static final String removeSpacesFromNino(String unclean) {
+        return unclean.replaceAll("\\s", "");
     }
 }
