@@ -80,11 +80,11 @@ public enum EventType {
     RESEND_APPEAL_CREATED("resendAppealCreated", 0, false),
     ATTACH_ROBOTICS_JSON("attachRoboticsJson", 0, false),
     INTERLOC_VOID_APPEAL("interlocVoidAppeal", 0, false),
-    iNTERLOC_SEND_TO_TCW("interlocSendToTcw", 0, false),
+    INTERLOC_SEND_TO_TCW("interlocSendToTcw", 0, false),
     TCW_DIRECTION_ISSUED("tcwDirectionIssued", 0, false),
     INTERLOC_INFORMATION_RECEIVED("interlocInformationReceived", 0, false),
     TCW_DECISION_STRIKE_OUT("tcwDecisionStrikeOut", 0, false),
-    INTERLOC_SEND_TO_JUDGE("interlocSentToJudge", 0, false),
+    INTERLOC_SENT_TO_JUDGE("interlocSentToJudge", 0, false),
     JUDGE_DECISION_ADMIT_APPEAL("judgeDecisionAdmitAppeal", 0, false),
     TCW_DECISION_ADMIT_APPEAL("tcwDecisionAdmitAppeal", 0, false),
     JUDGE_DIRECTION_ISSUED("judgeDirectionIssued", 0, false),
@@ -92,11 +92,13 @@ public enum EventType {
     TCW_REFER_TO_JUDGE("tcwReferToJudge", 0, false),
     EDIT_BUNDLE("editBundle", 0, false),
     STITCH_BUNDLE("stitchBundle", 0, false),
-    SEND_TO_DWP_OFFILINE("sendToDwpOffiline", 0, false), // IS THIS A SPELLING ERROR?
+    SEND_TO_DWP_OFFLINE("sendToDwpOffline", 0, false),
     UPLOAD_DRAFT_DOCUMENT("uploadDraftDocument", 0, false),
     UPLOAD_DRAFT_COR_DOCUMENT("uploadDraftCorDocument", 0, false),
     JUDGE_DECISION_APPEAL_TO_PROCEED("judgeDecisionAppealToProceed", 0, false),
-    TCW_DECISION_APPEAL_TO_PROCEED("tcwDecisionAppealToProceed", 0, false);
+    TCW_DECISION_APPEAL_TO_PROCEED("tcwDecisionAppealToProceed", 0, false),
+    ATTACH_SCANNED_DOCS("attachScannedDocs", 0, false),
+    HANDLE_EVIDENCE("handleEvidence", 0, false);
 
     private String type;
     private String ccdType;
