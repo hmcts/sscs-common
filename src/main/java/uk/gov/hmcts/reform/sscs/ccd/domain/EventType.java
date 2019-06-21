@@ -99,7 +99,8 @@ public enum EventType {
     TCW_DECISION_APPEAL_TO_PROCEED("tcwDecisionAppealToProceed", 0, false),
     ATTACH_SCANNED_DOCS("attachScannedDocs", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
-    ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),;
+    ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
+    UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false);
 
     private String type;
     private String ccdType;
