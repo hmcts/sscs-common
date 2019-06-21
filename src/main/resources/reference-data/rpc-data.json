@@ -8,7 +8,8 @@
     "city" : "LIVERPOOL",
     "postcode" : "L2 5UZ",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 324 0109"
+    "faxNumber" : "0870 324 0109",
+    "email" : "Liverpool_SYA_Resp@justice.gov.uk"
   },
   "SSCS Cardiff":{
     "name" : "CARDIFF",
@@ -19,7 +20,8 @@
     "city" : "CARDIFF",
     "postcode" : "CF24 0AB",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 739 4438"
+    "faxNumber" : "0870 739 4438",
+    "email" : "Cardiff_SYA_Respon@justice.gov.uk"
   },
   "SSCS Leeds":{
     "name" : "LEEDS",
@@ -30,7 +32,8 @@
     "city" : "LEEDS",
     "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 739 4331"
+    "faxNumber" : "0870 739 4331",
+    "email" : "Leeds_SYA_Response@justice.gov.uk"
 
   },
   "SSCS Sutton":{
@@ -42,7 +45,8 @@
     "city" : "SUTTON",
     "postcode" : "SM1 1DA",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 739 4229"
+    "faxNumber" : "0870 739 4229",
+    "email" : "Sutton_SYA_Respons@justice.gov.uk"
   },
   "SSCS Birmingham":{
     "name" : "BIRMINGHAM",
@@ -53,7 +57,8 @@
     "city" : "BIRMINGHAM",
     "postcode" : "B16 6FR",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0126 434 7983"
+    "faxNumber" : "0126 434 7983",
+    "email" : "Birmingham-SYA-Receipts@justice.gov.uk"
   },
   "SSCS Newcastle":{
     "name" : "NEWCASTLE",
@@ -64,7 +69,8 @@
     "city" : "NEWCASTLE UPON TYNE",
     "postcode" : "NE1 6PA",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 739 5784"
+    "faxNumber" : "0870 739 5784",
+    "email" : "Newcastle_SYA_Resp@justice.gov.uk"
   },
   "SSCS Glasgow": {
     "name" : "GLASGOW",
@@ -75,6 +81,7 @@
     "city": "GLASGOW",
     "postcode": "G2 8GT",
     "phoneNumber" : "0300 790 6234",
-    "faxNumber" : "01264 347 981"
+    "faxNumber" : "01264 347 981",
+    "email" : "GlasgowSYAresponse@justice.gov.uk"
   }
 }

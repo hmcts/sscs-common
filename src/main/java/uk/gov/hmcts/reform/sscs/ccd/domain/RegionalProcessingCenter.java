@@ -20,7 +20,8 @@ public class RegionalProcessingCenter {
                                     @JsonProperty("address2") String address2,
                                     @JsonProperty("address3") String address3,
                                     @JsonProperty("postcode") String postcode,
-                                    @JsonProperty("city") String city) {
+                                    @JsonProperty("city") String city,
+                                    @JsonProperty("email") String email) {
         this.faxNumber = faxNumber;
         this.address4 = address4;
         this.phoneNumber = phoneNumber;
@@ -30,6 +31,7 @@ public class RegionalProcessingCenter {
         this.address3 = address3;
         this.postcode = postcode;
         this.city = city;
+        this.email = email;
     }
 
     private String faxNumber;
@@ -50,4 +52,5 @@ public class RegionalProcessingCenter {
 
     private String city;
 
+    private String email;
 }

@@ -54,6 +54,7 @@ public class SscsCaseData implements CaseData {
     private String interlocReviewState;
     private String hmctsDwpState;
     private List<ScannedDocument> scannedDocuments;
+    private String outcome;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -87,7 +88,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dateSentToDwp") String dateSentToDwp,
                         @JsonProperty("interlocReviewState") String interlocReviewState,
                         @JsonProperty("hmctsDwpState") String hmctsDwpState,
-                        @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments) {
+                        @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
+                        @JsonProperty("outcome") String outcome) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -120,6 +122,7 @@ public class SscsCaseData implements CaseData {
         this.interlocReviewState = interlocReviewState;
         this.hmctsDwpState = hmctsDwpState;
         this.scannedDocuments = scannedDocuments;
+        this.outcome = outcome;
     }
 
     @JsonIgnore

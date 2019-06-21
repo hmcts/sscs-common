@@ -4,17 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 import java.util.Map;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnitParamsRunner.class)
 public class RegionalProcessingCenterServiceTest {
 
-    public static final String SSCS_LIVERPOOL = "SSCS Liverpool";
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
     private AirLookupService airLookupService;
@@ -22,7 +27,7 @@ public class RegionalProcessingCenterServiceTest {
     private RegionalProcessingCenterService regionalProcessingCenterService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         regionalProcessingCenterService = new RegionalProcessingCenterService(airLookupService);
     }
 
@@ -34,33 +39,69 @@ public class RegionalProcessingCenterServiceTest {
         //Then
         Map<String, String> sccodeRegionalProcessingCentermap
                 = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
-        assertEquals(246, sccodeRegionalProcessingCentermap.size());
-        assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC038"));
+        assertEquals(176, sccodeRegionalProcessingCentermap.size());
+        assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
         assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
         assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
     }
 
     @Test
-    public void givenRpcMetaData_shouldLoadRpcMetadataToMap() {
+    @Parameters(method = "getDifferentRpcScenarios")
+    public void givenRpcMetaData_shouldLoadRpcMetadataToMap(RegionalProcessingCenter expectedRpc, String rpcKey) {
         //When
         regionalProcessingCenterService.init();
 
         //Then
         Map<String, RegionalProcessingCenter> regionalProcessingCenterMap
-                = regionalProcessingCenterService.getRegionalProcessingCenterMap();
+            = regionalProcessingCenterService.getRegionalProcessingCenterMap();
 
         assertEquals(7, regionalProcessingCenterMap.size());
-        RegionalProcessingCenter regionalProcessingCenter = regionalProcessingCenterMap.get(SSCS_LIVERPOOL);
-        assertEquals("LIVERPOOL", regionalProcessingCenter.getName());
-        assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
-        assertEquals("Social Security & Child Support Appeals", regionalProcessingCenter.getAddress2());
-        assertEquals("Prudential Buildings", regionalProcessingCenter.getAddress3());
-        assertEquals("36 Dale Street", regionalProcessingCenter.getAddress4());
-        assertEquals("LIVERPOOL", regionalProcessingCenter.getCity());
-        assertEquals("L2 5UZ", regionalProcessingCenter.getPostcode());
-        assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
-        assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
+        RegionalProcessingCenter actualRpc = regionalProcessingCenterMap.get(rpcKey);
+        assertEquals(expectedRpc.getName(), actualRpc.getName());
+        assertEquals(expectedRpc.getAddress1(), actualRpc.getAddress1());
+        assertEquals(expectedRpc.getAddress2(), actualRpc.getAddress2());
+        assertEquals(expectedRpc.getAddress3(), actualRpc.getAddress3());
+        assertEquals(expectedRpc.getAddress4(), actualRpc.getAddress4());
+        assertEquals(expectedRpc.getCity(), actualRpc.getCity());
+        assertEquals(expectedRpc.getPostcode(), actualRpc.getPostcode());
+        assertEquals(expectedRpc.getPhoneNumber(), actualRpc.getPhoneNumber());
+        assertEquals(expectedRpc.getFaxNumber(), actualRpc.getFaxNumber());
+        assertEquals(expectedRpc.getEmail(), actualRpc.getEmail());
+    }
 
+    @SuppressWarnings("unused")
+    private Object[] getDifferentRpcScenarios() {
+        RegionalProcessingCenter liverpoolRpc = RegionalProcessingCenter.builder()
+            .name("LIVERPOOL")
+            .address1("HM Courts & Tribunals Service")
+            .address2("Social Security & Child Support Appeals")
+            .address3("Prudential Buildings")
+            .address4("36 Dale Street")
+            .city("LIVERPOOL")
+            .postcode("L2 5UZ")
+            .phoneNumber("0300 123 1142")
+            .faxNumber("0870 324 0109")
+            .email("Liverpool_SYA_Resp@justice.gov.uk")
+            .build();
+
+        RegionalProcessingCenter cardiffRpc = RegionalProcessingCenter.builder()
+            .name("CARDIFF")
+            .address1("HM Courts & Tribunals Service")
+            .address2("Social Security & Child Support Appeals")
+            .address3("Eastgate House")
+            .address4("Newport Road")
+            .city("CARDIFF")
+            .postcode("CF24 0AB")
+            .phoneNumber("0300 123 1142")
+            .faxNumber("0870 739 4438")
+            .email("Cardiff_SYA_Respon@justice.gov.uk")
+            .build();
+
+
+        return new Object[]{
+            new Object[]{liverpoolRpc, "SSCS Liverpool"},
+            new Object[]{cardiffRpc, "SSCS Cardiff"}
+        };
     }
 
     @Test
@@ -71,7 +112,7 @@ public class RegionalProcessingCenterServiceTest {
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
-                regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
+            regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
 
         //Then
         assertEquals("LIVERPOOL", regionalProcessingCenter.getName());
@@ -83,6 +124,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("L2 5UZ", regionalProcessingCenter.getPostcode());
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
     }
 
     @Test
@@ -94,7 +136,7 @@ public class RegionalProcessingCenterServiceTest {
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
-                regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
+            regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
 
         //Then
         assertBirminghamRpc(regionalProcessingCenter);
@@ -108,7 +150,7 @@ public class RegionalProcessingCenterServiceTest {
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
-                regionalProcessingCenterService.getByScReferenceCode(null);
+            regionalProcessingCenterService.getByScReferenceCode(null);
 
         //Then
         assertBirminghamRpc(regionalProcessingCenter);
@@ -121,7 +163,7 @@ public class RegionalProcessingCenterServiceTest {
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
-                regionalProcessingCenterService.getByScReferenceCode("");
+            regionalProcessingCenterService.getByScReferenceCode("");
 
         //Then
         assertBirminghamRpc(regionalProcessingCenter);
@@ -174,5 +216,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("B16 6FR", regionalProcessingCenter.getPostcode());
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
+
     }
 }
