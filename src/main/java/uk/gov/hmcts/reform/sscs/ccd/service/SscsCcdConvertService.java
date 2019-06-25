@@ -5,6 +5,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
@@ -55,7 +57,11 @@ public class SscsCcdConvertService {
 
         try {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
-            if (sscsCaseData != null) {
+            if (hasAppellantIdentify(sscsCaseData)) {
+                sscsCaseData.getAppeal().getAppellant().getIdentity().setNino(
+                    normaliseNino(sscsCaseData.getAppeal().getAppellant().getIdentity().getNino())
+                );
+
                 sscsCaseData.sortCollections();
             }
 
@@ -65,5 +71,16 @@ public class SscsCcdConvertService {
             LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationException);
             throw ccdDeserializationException;
         }
+    }
+
+    public static boolean hasAppellantIdentify(SscsCaseData sscsCaseData) {
+        return sscsCaseData != null
+            && sscsCaseData.getAppeal() != null
+            && sscsCaseData.getAppeal().getAppellant() != null
+            && sscsCaseData.getAppeal().getAppellant().getIdentity() != null;
+    }
+
+    public static String normaliseNino(String unclean) {
+        return StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "").toUpperCase();
     }
 }
