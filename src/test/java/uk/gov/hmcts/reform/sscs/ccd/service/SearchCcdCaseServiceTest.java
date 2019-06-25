@@ -166,4 +166,15 @@ public class SearchCcdCaseServiceTest {
     public void shouldNormaliseNino(String uncleanNino) {
         assertEquals("AB123456C", normaliseNino(uncleanNino));
     }
+
+    @Test
+    @Parameters({"", " "})
+    public void shouldReturnOriginalNinoIfEmpty(String emptyNino) {
+        assertEquals(emptyNino, normaliseNino(emptyNino));
+    }
+
+    @Test
+    public void shouldReturnOriginalNinoIfNull() {
+        assertNull(normaliseNino(null));
+    }
 }

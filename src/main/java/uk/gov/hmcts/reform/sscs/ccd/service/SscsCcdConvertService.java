@@ -81,6 +81,6 @@ public class SscsCcdConvertService {
     }
 
     public static String normaliseNino(String unclean) {
-        return (StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "")).toUpperCase();
+        return StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "").toUpperCase();
     }
 }
