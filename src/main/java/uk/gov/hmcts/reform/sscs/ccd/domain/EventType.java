@@ -54,6 +54,7 @@ public enum EventType {
     CREATE_BUNDLE("createBundle", 0, false),
     SEND_TO_DWP("sendToDwp", 0, false),
     SENT_TO_DWP("sentToDwp", 0, false),
+    SENT_TO_DWP_ERROR("sendToDwpError", 0, false),
     REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false),
     CREATE_APPEAL_PDF("createAppealPDF", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
