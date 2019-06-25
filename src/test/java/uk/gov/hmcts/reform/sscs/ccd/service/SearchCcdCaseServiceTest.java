@@ -5,11 +5,16 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normaliseNino;
 
 import java.util.Collections;
 import java.util.HashMap;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
@@ -19,6 +24,7 @@ import uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
+@RunWith(JUnitParamsRunner.class)
 public class SearchCcdCaseServiceTest {
 
     public static final String CASE_REF = "SC068/17/00013";
@@ -155,5 +161,9 @@ public class SearchCcdCaseServiceTest {
 
     }
 
-
+    @Test
+    @Parameters({"AB123456C", "AB 12 34 56 C", " AB12 34 56C ", "ab123456C", " ab 1 2 3 4 5 6 C"})
+    public void shouldNormaliseNino(String uncleanNino) {
+        assertEquals("AB123456C", normaliseNino(uncleanNino));
+    }
 }

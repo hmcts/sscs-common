@@ -59,7 +59,7 @@ public class SscsCcdConvertService {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
             if (hasAppellantIdentify(sscsCaseData)) {
                 sscsCaseData.getAppeal().getAppellant().getIdentity().setNino(
-                    removeSpacesFromNino(sscsCaseData.getAppeal().getAppellant().getIdentity().getNino())
+                    normaliseNino(sscsCaseData.getAppeal().getAppellant().getIdentity().getNino())
                 );
 
                 sscsCaseData.sortCollections();
@@ -80,7 +80,7 @@ public class SscsCcdConvertService {
             && sscsCaseData.getAppeal().getAppellant().getIdentity() != null;
     }
 
-    public static String removeSpacesFromNino(String unclean) {
-        return StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "");
+    public static String normaliseNino(String unclean) {
+        return (StringUtils.isEmpty(unclean) ? unclean : unclean.replaceAll("\\s", "")).toUpperCase();
     }
 }
