@@ -19,6 +19,7 @@ public class SscsDocumentDetails {
     private String documentDateAdded;
     private DocumentLink documentLink;
     private String documentComment;
+    private String controlNumber;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -26,12 +27,14 @@ public class SscsDocumentDetails {
                                @JsonProperty("documentEmailContent") String documentEmailContent,
                                @JsonProperty("documentDateAdded") String documentDateAdded,
                                @JsonProperty("documentLink") DocumentLink documentLink,
-                               @JsonProperty("documentComment") String documentComment) {
+                               @JsonProperty("documentComment") String documentComment,
+                               @JsonProperty("controlNumber") String controlNumber) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentEmailContent = documentEmailContent;
         this.documentDateAdded = documentDateAdded;
         this.documentLink = documentLink;
         this.documentComment = documentComment;
+        this.controlNumber = controlNumber;
     }
 }

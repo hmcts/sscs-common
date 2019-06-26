@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -26,7 +30,8 @@ public class SscsCaseData implements CaseData {
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
-    @Getter(AccessLevel.NONE) private Subscriptions subscriptions;
+    @Getter(AccessLevel.NONE)
+    private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
@@ -46,6 +51,12 @@ public class SscsCaseData implements CaseData {
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
+    private String interlocReviewState;
+    private String hmctsDwpState;
+    private DynamicList originalSender;
+    private DynamicList furtherEvidenceAction;
+    private List<ScannedDocument> scannedDocuments;
+    private String outcome;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -76,7 +87,13 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionNotes") String decisionNotes,
                         @JsonProperty("isCorDecision") String isCorDecision,
                         @JsonProperty("relistingReason") String relistingReason,
-                        @JsonProperty("dateSentToDwp") String dateSentToDwp) {
+                        @JsonProperty("dateSentToDwp") String dateSentToDwp,
+                        @JsonProperty("interlocReviewState") String interlocReviewState,
+                        @JsonProperty("hmctsDwpState") String hmctsDwpState,
+                        @JsonProperty("originalSender") DynamicList originalSender,
+                        @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
+                        @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
+                        @JsonProperty("outcome") String outcome) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -106,6 +123,12 @@ public class SscsCaseData implements CaseData {
         this.isCorDecision = isCorDecision;
         this.relistingReason = relistingReason;
         this.dateSentToDwp = dateSentToDwp;
+        this.interlocReviewState = interlocReviewState;
+        this.hmctsDwpState = hmctsDwpState;
+        this.originalSender = originalSender;
+        this.furtherEvidenceAction = furtherEvidenceAction;
+        this.scannedDocuments = scannedDocuments;
+        this.outcome = outcome;
     }
 
     @JsonIgnore

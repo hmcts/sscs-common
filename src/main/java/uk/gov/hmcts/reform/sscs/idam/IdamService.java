@@ -2,15 +2,18 @@ package uk.gov.hmcts.reform.sscs.idam;
 
 import java.util.Base64;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.retry.annotation.Retryable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 
 @Service
 @Slf4j
 public class IdamService {
+    public static final int ONE_HOUR = 1000 * 60 * 60;
 
     private final AuthTokenGenerator authTokenGenerator;
     private final IdamApiClient idamApiClient;
@@ -30,6 +33,10 @@ public class IdamService {
     @Value("${idam.oauth2.redirectUrl}")
     private String idamOauth2RedirectUrl;
 
+    // Tactical idam token caching solution implemented
+    // SSCS-5895 - will deliver the strategic caching solution
+    private String cachedToken;
+
     @Autowired
     IdamService(AuthTokenGenerator authTokenGenerator, IdamApiClient idamApiClient) {
         this.authTokenGenerator = authTokenGenerator;
@@ -46,6 +53,7 @@ public class IdamService {
     }
 
     public String getIdamOauth2Token() {
+        log.info("Getting new idam token");
         String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
         String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
 
@@ -66,11 +74,19 @@ public class IdamService {
                 " "
         );
 
-        return "Bearer " + authorizeToken.getAccessToken();
+        cachedToken = "Bearer " + authorizeToken.getAccessToken();
+
+        return cachedToken;
+    }
+
+    @Scheduled(fixedRate = ONE_HOUR)
+    public void evictCacheAtIntervals() {
+        log.info("Evicting idam token cache");
+        cachedToken = null;
     }
 
     public IdamTokens getIdamTokens() {
-        String idamOauth2Token = getIdamOauth2Token();
+        String idamOauth2Token = StringUtils.isEmpty(cachedToken) ? getIdamOauth2Token() : cachedToken;
         return IdamTokens.builder()
                 .idamOauth2Token(idamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())

@@ -40,18 +40,12 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean isSmsSubscribed() {
-        if (StringUtils.isBlank(subscribeSms) || subscribeSms.toLowerCase().equals("no")) {
-            return false;
-        }
-        return true;
+        return !StringUtils.isBlank(subscribeSms) && !subscribeSms.toLowerCase().equals("no");
     }
 
     @JsonIgnore
     public Boolean isEmailSubscribed() {
-        if (StringUtils.isBlank(subscribeEmail) || subscribeEmail.toLowerCase().equals("no"))  {
-            return false;
-        }
-        return true;
+        return !StringUtils.isBlank(subscribeEmail) && !subscribeEmail.toLowerCase().equals("no");
     }
 
     @JsonIgnore
