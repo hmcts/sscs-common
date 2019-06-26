@@ -13,10 +13,19 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsInterlocDecisionDocument {
 
-    private InterlocDocumentDetails value;
+    private String documentType;
+    private String documentFileName;
+    private String documentDateAdded;
+    private DocumentLink documentLink;
 
     @JsonCreator
-    public SscsInterlocDecisionDocument(@JsonProperty("value") InterlocDocumentDetails value) {
-        this.value = value;
+    public SscsInterlocDecisionDocument(@JsonProperty("documentType") String documentType,
+                                   @JsonProperty("documentFileName") String documentFileName,
+                                   @JsonProperty("documentDateAdded") String documentDateAdded,
+                                   @JsonProperty("documentLink") DocumentLink documentLink) {
+        this.documentType = documentType;
+        this.documentFileName = documentFileName;
+        this.documentDateAdded = documentDateAdded;
+        this.documentLink = documentLink;
     }
 }
