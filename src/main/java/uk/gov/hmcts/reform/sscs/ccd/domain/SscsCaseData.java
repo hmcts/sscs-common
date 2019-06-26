@@ -38,8 +38,8 @@ public class SscsCaseData implements CaseData {
     private List<SscsDocument> draftSscsDocument;
     private List<CorDocument> corDocument;
     private List<CorDocument> draftCorDocument;
-    private List<SscsInterlocDecisionDocument> sscsInterlocDecisionDocument;
-    private List<SscsInterlocDirectionDocument> sscsInterlocDirectionDocument;
+    private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
+    private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
     private String generatedNino;
     private String generatedSurname;
     private String generatedEmail;
@@ -78,8 +78,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
                         @JsonProperty("corDocument") List<CorDocument> corDocument,
                         @JsonProperty("draftCorDocument") List<CorDocument> draftCorDocument,
-                        @JsonProperty("sscsInterlocDecisionDocument") List<SscsInterlocDecisionDocument> sscsInterlocDecisionDocument,
-                        @JsonProperty("sscsInterlocDirectionDocument") List<SscsInterlocDirectionDocument> sscsInterlocDirectionDocument,
+                        @JsonProperty("sscsInterlocDecisionDocument") SscsInterlocDecisionDocument sscsInterlocDecisionDocument,
+                        @JsonProperty("sscsInterlocDirectionDocument") SscsInterlocDirectionDocument sscsInterlocDirectionDocument,
                         @JsonProperty("generatedNino") String generatedNino,
                         @JsonProperty("generatedSurname") String generatedSurname,
                         @JsonProperty("generatedEmail") String generatedEmail,
