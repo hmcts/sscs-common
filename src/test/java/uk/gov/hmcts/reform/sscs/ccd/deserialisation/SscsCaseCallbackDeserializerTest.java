@@ -27,11 +27,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
-import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Evidence;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Hearing;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.State;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SscsCaseCallbackDeserializerTest {
@@ -107,5 +103,53 @@ public class SscsCaseCallbackDeserializerTest {
         assertThatThrownBy(() -> sscsCaseCallbackDeserializer.deserialize(source))
             .hasMessage("Could not deserialize callback")
             .isExactlyInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void should_deserialize_appeal_to_proceed_callback() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource("decisionAppealToProceed.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        SscsInterlocDecisionDocument sscsInterlocDecisionDocument = actualSscsCaseCallback.getCaseDetails().getCaseData().getSscsInterlocDecisionDocument();
+
+        assertEquals("2019-06-26", sscsInterlocDecisionDocument.getDocumentDateAdded());
+        assertEquals("DecisionNotice.pdf", sscsInterlocDecisionDocument.getDocumentFileName());
+        assertEquals("Decision Notice", sscsInterlocDecisionDocument.getDocumentType());
+    }
+
+    @Test
+    public void should_deserialize_struck_out_callback() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource("struckOut.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        SscsStrikeOutDocument sscsStrikeOutDocument = actualSscsCaseCallback.getCaseDetails().getCaseData().getSscsStrikeOutDocument();
+
+        assertEquals("2019-06-26", sscsStrikeOutDocument.getDocumentDateAdded());
+        assertEquals("StruckOutNotice.pdf", sscsStrikeOutDocument.getDocumentFileName());
+        assertEquals("Struck Out Notice", sscsStrikeOutDocument.getDocumentType());
+    }
+
+    @Test
+    public void should_deserialize_direction_issed_callback() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource("directionIssued.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        SscsInterlocDirectionDocument sscsInterlocDirectionDocument = actualSscsCaseCallback.getCaseDetails().getCaseData().getSscsInterlocDirectionDocument();
+
+        assertEquals("2019-06-26", sscsInterlocDirectionDocument.getDocumentDateAdded());
+        assertEquals("DirectionNotice.pdf", sscsInterlocDirectionDocument.getDocumentFileName());
+        assertEquals("Direction Notice", sscsInterlocDirectionDocument.getDocumentType());
     }
 }
