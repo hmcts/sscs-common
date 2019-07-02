@@ -53,9 +53,10 @@ public class IdamService {
     }
 
     public String getIdamOauth2Token() {
-        log.info("Getting new idam token");
         String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
         String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
+
+        log.info("Getting authorization code from IDAM");
 
         Authorize authorize = idamApiClient.authorizeCodeType(
                 "Basic " + base64Authorisation,
@@ -65,6 +66,8 @@ public class IdamService {
                 " "
         );
 
+        log.info("Passing authorization code to IDAM to get a token");
+
         Authorize authorizeToken = idamApiClient.authorizeToken(
                 authorize.getCode(),
                 "authorization_code",
@@ -73,6 +76,8 @@ public class IdamService {
                 idamOauth2ClientSecret,
                 " "
         );
+
+        log.info("Authorization token received from IDAM");
 
         cachedToken = "Bearer " + authorizeToken.getAccessToken();
 
@@ -86,7 +91,17 @@ public class IdamService {
     }
 
     public IdamTokens getIdamTokens() {
-        String idamOauth2Token = StringUtils.isEmpty(cachedToken) ? getIdamOauth2Token() : cachedToken;
+
+        String idamOauth2Token;
+
+        if (StringUtils.isEmpty(cachedToken)) {
+            log.info("No cached IDAM token found, requesting from IDAM service.");
+            idamOauth2Token =  getIdamOauth2Token();
+        } else {
+            log.info("Using cached IDAM token.");
+            idamOauth2Token =  cachedToken;
+        }
+
         return IdamTokens.builder()
                 .idamOauth2Token(idamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())
