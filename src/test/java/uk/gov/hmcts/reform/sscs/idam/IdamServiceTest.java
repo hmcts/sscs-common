@@ -7,11 +7,13 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.core.Appender;
+
 import java.util.Base64;
 import java.util.List;
 
-import ch.qos.logback.core.Appender;
-import org.apache.logging.log4j.LogManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,14 +22,10 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 
-import ch.qos.logback.classic.Level;
-
-import ch.qos.logback.classic.Logger;
-import org.slf4j.LoggerFactory;
-import ch.qos.logback.classic.spi.LoggingEvent;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IdamServiceTest {
