@@ -67,7 +67,6 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("infoRequests") InfoRequests infoRequests,
-                        @JsonProperty("informationFromAppellant") String informationFromAppellant,
                         @JsonProperty("region") String region,
                         @JsonProperty("appeal") Appeal appeal,
                         @JsonProperty("hearings") List<Hearing> hearings,
@@ -101,6 +100,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("originalSender") DynamicList originalSender,
                         @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
+                        @JsonProperty("informationFromAppellant") String informationFromAppellant,
                         @JsonProperty("outcome") String outcome) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
