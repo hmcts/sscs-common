@@ -152,4 +152,18 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("DirectionNotice.pdf", sscsInterlocDirectionDocument.getDocumentFileName());
         assertEquals("Direction Notice", sscsInterlocDirectionDocument.getDocumentType());
     }
+
+    @Test
+    public void should_deserialize_info_request_callback() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource("infoRequest.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        String informationFromAppellant = actualSscsCaseCallback.getCaseDetails().getCaseData().getInformationFromAppellant();
+
+        assertEquals("No", informationFromAppellant);
+    }
 }
