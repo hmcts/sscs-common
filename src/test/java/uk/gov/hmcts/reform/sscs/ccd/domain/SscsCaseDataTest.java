@@ -85,16 +85,4 @@ public class SscsCaseDataTest {
 
         assertEquals(expectedValue, infoRequestValue);
     }
-
-    @Test
-    public void shouldParseInformationFromAppellant() throws JsonParseException, IOException {
-        String expectedValue = "\"Yes\"";
-
-        SscsCaseData sscsCaseData = SscsCaseData.builder().informationFromAppellant("Yes").build();
-
-        ObjectMapper mapper = new ObjectMapper();
-        String informationFromAppellant = mapper.writeValueAsString(sscsCaseData.getInformationFromAppellant());
-
-        assertEquals(expectedValue, informationFromAppellant);
-    }
 }
