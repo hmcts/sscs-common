@@ -24,7 +24,6 @@ public class SscsCaseData implements CaseData {
     private String caseReference;
     private String caseCreated;
     private InfoRequests infoRequests;
-    private String informationFromAppellant;
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
@@ -60,6 +59,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
+    private String informationFromAppellant;
     private String outcome;
 
     @JsonCreator
@@ -106,7 +106,6 @@ public class SscsCaseData implements CaseData {
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.infoRequests = infoRequests;
-        this.informationFromAppellant = informationFromAppellant;
         this.region = region;
         this.appeal = appeal;
         this.hearings = hearings;
@@ -141,6 +140,7 @@ public class SscsCaseData implements CaseData {
         this.sscsInterlocDirectionDocument = sscsInterlocDirectionDocument;
         this.sscsInterlocDecisionDocument = sscsInterlocDecisionDocument;
         this.sscsStrikeOutDocument = sscsStrikeOutDocument;
+        this.informationFromAppellant = informationFromAppellant;
     }
 
     @JsonIgnore
