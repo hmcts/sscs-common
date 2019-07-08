@@ -40,11 +40,9 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean isSmsSubscribed() {
-        if (StringUtils.isNotBlank(wantSmsNotifications)
-            && wantSmsNotifications.equalsIgnoreCase("yes")) {
-            return !StringUtils.isBlank(subscribeSms) && !subscribeSms.equalsIgnoreCase("no");
-        }
-        return false;
+        return !StringUtils.isBlank(subscribeSms) && !subscribeSms.equalsIgnoreCase("no")
+               && StringUtils.isNotBlank(wantSmsNotifications)
+               && !wantSmsNotifications.equalsIgnoreCase("no");
     }
 
     @JsonIgnore
