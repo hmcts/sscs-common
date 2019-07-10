@@ -59,6 +59,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
+    private String informationFromAppellant;
     private String outcome;
 
     @JsonCreator
@@ -99,6 +100,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("originalSender") DynamicList originalSender,
                         @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
+                        @JsonProperty("informationFromAppellant") String informationFromAppellant,
                         @JsonProperty("outcome") String outcome) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -138,6 +140,7 @@ public class SscsCaseData implements CaseData {
         this.sscsInterlocDirectionDocument = sscsInterlocDirectionDocument;
         this.sscsInterlocDecisionDocument = sscsInterlocDecisionDocument;
         this.sscsStrikeOutDocument = sscsStrikeOutDocument;
+        this.informationFromAppellant = informationFromAppellant;
     }
 
     @JsonIgnore
