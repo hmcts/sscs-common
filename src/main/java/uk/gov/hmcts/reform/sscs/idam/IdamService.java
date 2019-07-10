@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
 import java.util.Base64;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,30 +54,37 @@ public class IdamService {
     }
 
     public String getIdamOauth2Token() {
-        log.info("Getting new idam token");
-        String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
-        String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
+        try {
+            log.info("Requesting idam token");
+            String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
+            String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
 
-        Authorize authorize = idamApiClient.authorizeCodeType(
+            Authorize authorize = idamApiClient.authorizeCodeType(
                 "Basic " + base64Authorisation,
                 "code",
                 idamOauth2ClientId,
                 idamOauth2RedirectUrl,
                 " "
-        );
+            );
 
-        Authorize authorizeToken = idamApiClient.authorizeToken(
+            Authorize authorizeToken = idamApiClient.authorizeToken(
                 authorize.getCode(),
                 "authorization_code",
                 idamOauth2RedirectUrl,
                 idamOauth2ClientId,
                 idamOauth2ClientSecret,
                 " "
-        );
+            );
 
-        cachedToken = "Bearer " + authorizeToken.getAccessToken();
+            cachedToken = "Bearer " + authorizeToken.getAccessToken();
 
-        return cachedToken;
+            log.info("Requesting idam token successful");
+
+            return cachedToken;
+        } catch (Exception e) {
+            log.error("Requesting idam token failed: " + e.getMessage());
+            throw e;
+        }
     }
 
     @Scheduled(fixedRate = ONE_HOUR)
