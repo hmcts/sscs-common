@@ -126,6 +126,6 @@ public class IdamServiceTest {
         //Check the message being logged is correct
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
         assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed"));
+        assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
     }
 }
