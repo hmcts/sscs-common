@@ -60,7 +60,11 @@ public class SearchCcdCaseService {
     @Recover
     public List<SscsCaseDetails> findCaseBySearchCriteriaRecoverLogic(Map<String, String> searchCriteria,
                                                                       IdamTokens idamTokens) {
+
+        log.info("Requesting IDAM tokens for search");
         idamTokens = idamService.getIdamTokens();
+        log.info("Received IDAM tokens for search");
+
         return findCaseBySearchCriteriaRetryLogic(searchCriteria, idamTokens);
     }
 
@@ -82,7 +86,15 @@ public class SearchCcdCaseService {
 
     @Recover
     public SscsCaseDetails findCaseByCaseRefOrCaseIdRecoverLogic(SscsCaseData caseData, IdamTokens idamTokens) {
+
+        final String caseId = caseData.getCcdCaseId();
+
+        log.info("Requesting IDAM tokens to get caseId {}", caseId);
+
         idamTokens = idamService.getIdamTokens();
+
+        log.info("Received IDAM tokens for getting caseId {}", caseId);
+
         return findCaseByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
     }
 
