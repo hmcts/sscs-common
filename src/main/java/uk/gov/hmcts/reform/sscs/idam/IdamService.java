@@ -85,7 +85,7 @@ public class IdamService {
 
             return cachedToken;
         } catch (Exception e) {
-            log.error("Requesting idam token failed");
+            log.error("Requesting idam token failed: " + e.getMessage());
             throw e;
         }
     }
