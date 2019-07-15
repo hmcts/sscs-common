@@ -61,6 +61,7 @@ public class SscsCaseData implements CaseData {
     private List<ScannedDocument> scannedDocuments;
     private String informationFromAppellant;
     private String outcome;
+    private String evidenceHandled;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -101,7 +102,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
                         @JsonProperty("informationFromAppellant") String informationFromAppellant,
-                        @JsonProperty("outcome") String outcome) {
+                        @JsonProperty("outcome") String outcome,
+                        @JsonProperty("evidenceHandled") String evidenceHandled) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -141,6 +143,7 @@ public class SscsCaseData implements CaseData {
         this.sscsInterlocDecisionDocument = sscsInterlocDecisionDocument;
         this.sscsStrikeOutDocument = sscsStrikeOutDocument;
         this.informationFromAppellant = informationFromAppellant;
+        this.evidenceHandled = evidenceHandled;
     }
 
     @JsonIgnore
