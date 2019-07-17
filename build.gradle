@@ -57,6 +57,10 @@ pmd {
 
 // region test coverage
 
+jacoco {
+    toolVersion = "0.8.2"
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true
