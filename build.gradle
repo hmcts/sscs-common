@@ -135,3 +135,4 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 }
+
