@@ -101,6 +101,7 @@ public enum EventType {
     ATTACH_SCANNED_DOCS("attachScannedDocs", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
     ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
+    ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false);
 
     private String type;
