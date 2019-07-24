@@ -70,14 +70,14 @@ public class EventTypeTest {
             "interlocSendToTcw\n" +
             "tcwDirectionIssued\n" +
             "interlocInformationReceived\n" +
-            "tcwDecisionStrikeOut\n" +
-            "interlocSentToJudge\n" +
+            "tcwDecisionStrikeout\n" +
             "judgeDecisionAdmitAppeal\n" +
             "tcwDecisionAdmitAppeal\n" +
             "judgeDirectionIssued\n" +
             "judgeDecisionStrikeout\n" +
             "tcwReferToJudge\n" +
             "sendToDwp\n" +
+            "sendToDwpError\n" +
             "sentToDwp\n" +
             "createBundle\n" +
             "editBundle\n" +
@@ -90,8 +90,27 @@ public class EventTypeTest {
             "moveToAppealCreated\n" +
             "uploadDraftDocument\n" +
             "uploadDraftCorDocument\n" +
+            "associateCase\n" +
+            "linkACase\n" +
+            "logDocsToDwp\n" +
+            "judgeDecisionAppealToProceed\n" +
+            "tcwDecisionAppealToProceed\n" +
+            "makeCaseUrgent\n" +
             "attachScannedDocs\n" +
-            "handleEvidence";
+            "handleEvidence\n" +
+            "actionFurtherEvidence\n" +
+            "dwpAppealRegistered\n" +
+            "dwpRaiseException\n" +
+            "dwpNotAbleToRegister\n" +
+            "dwpUploadResponse\n" +
+            "dwpSupplementaryResponse\n" +
+            "dwpNoAction\n" +
+            "dwpEvidenceInProgress\n" +
+            "dwpLapseCase\n" +
+            "uploadFurtherEvidence\n" +
+            "dwpCaseInProgress\n" +
+            "hmctsLapseCase\n" +
+            "hmctsResponseReviewed";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
