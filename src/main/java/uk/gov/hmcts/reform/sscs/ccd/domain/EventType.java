@@ -102,6 +102,7 @@ public enum EventType {
     HANDLE_EVIDENCE("handleEvidence", 0, false),
     ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
     ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
+    UPDATE_CASE_ONLY("updateCaseOnly", 0, false),
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false);
 
     private String type;
