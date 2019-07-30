@@ -8,109 +8,112 @@ import org.junit.Test;
 public class EventTypeTest {
 
     // copied from the CaseEvent TAB in the CCD Definition file
-    private static final String ALL_EVENT_TYPES = "appealCreated\n" +
-            "appealLapsed\n" +
-            "appealReceived\n" +
-            "appealWithdrawn\n" +
-            "evidenceReceived\n" +
-            "hearingAdjourned\n" +
-            "hearingBooked\n" +
-            "hearingPostponed\n" +
-            "responseReceived\n" +
-            "subscriptionUpdated\n" +
-            "appealDormant\n" +
-            "assignToJudge\n" +
-            "hearingReminder\n" +
-            "evidenceReminder\n" +
-            "eventsUpdates\n" +
-            "addSCnumber\n" +
-            "uploadDocument\n" +
-            "hearingHoldingReminder\n" +
-            "finalHearingHoldingReminder\n" +
-            "caseUpdated\n" +
-            "panelUpdate\n" +
-            "dwpResponseLateReminder\n" +
+    private static final String ALL_EVENT_TYPES =
             "secondHearingHoldingReminder\n" +
             "thirdHearingHoldingReminder\n" +
-            "unassignToJudge\n" +
-            "updateHearingType\n" +
-            "uploadCorDocument\n" +
-            "incompleteApplicationReceived\n" +
-            "updateIncompleteApplication\n" +
-            "requestInfoIncompleteApplication\n" +
-            "voidIncompleteApplication\n" +
-            "validAppeal\n" +
-            "nonCompliant\n" +
-            "addRepresentative\n" +
-            "nonCompliantSendToInterloc\n" +
-            "interlocValidAppeal\n" +
-            "createAppealPDF\n" +
-            "voidCase\n" +
-            "resendCaseToGAPS2\n" +
-            "struckOut\n" +
-            "reinstateAppeal\n" +
-            "corDecision\n" +
-            "reinstateVoidAppeal\n" +
+            "actionFurtherEvidence\n" +
+            "addSCnumber\n" +
             "addNote\n" +
-            "sentToJudge\n" +
-            "resendAppealCreated\n" +
+            "addRepresentative\n" +
+            "judgeDecisionAdmitAppeal\n" +
+            "tcwDecisionAdmitAppeal\n" +
+            "editBundle\n" +
+            "appealCreated\n" +
+            "appealDormant\n" +
+            "appealLapsed\n" +
+            "appealReceived\n" +
+            "dwpAppealRegistered\n" +
+            "judgeDecisionAppealToProceed\n" +
+            "tcwDecisionAppealToProceed\n" +
+            "appealWithdrawn\n" +
+            "draftArchived\n" +
+            "assignToJudge\n" +
+            "associateCase\n" +
             "attachRoboticsJson\n" +
-            "directionIssued\n" +
-            "interlocVoidAppeal\n" +
-            "cohQuestionRoundIssued\n" +
-            "cohQuestionDeadlineElapsed\n" +
-            "cohQuestionDeadlineExtended\n" +
+            "attachScannedDocs\n" +
+            "dwpCaseInProgress\n" +
+            "cohAnswersSubmitted\n" +
             "cohQuestionDeadlineExtensionDenied\n" +
             "cohQuestionDeadlineExtensionGranted\n" +
-            "cohQuestionDeadlineReminder\n" +
-            "cohAnswersSubmitted\n" +
             "cohDecisionRejected\n" +
             "cohContinuousOnlineHearingRelisted\n" +
             "cohDecisionIssued\n" +
-            "interlocSendToTcw\n" +
-            "tcwDirectionIssued\n" +
+            "cohQuestionDeadlineElapsed\n" +
+            "cohQuestionDeadlineReminder\n" +
+            "cohQuestionDeadlineExtended\n" +
+            "cohQuestionRoundIssued\n" +
+            "createBundle\n" +
+            "createDraft\n" +
+            "panelUpdate\n" +
+            "logDocsToDwp\n" +
+            "dwpRaiseException\n" +
+            "dwpResponseLateReminder\n" +
+            "evidenceReceived\n" +
+            "evidenceReminder\n" +
+            "finalHearingHoldingReminder\n" +
+            "dwpEvidenceInProgress\n" +
+            "createAppealPDF\n" +
+            "handleEvidence\n" +
+            "hearingAdjourned\n" +
+            "hearingBooked\n" +
+            "hearingHoldingReminder\n" +
+            "hearingPostponed\n" +
+            "hearingReminder\n" +
+            "incompleteApplicationReceived\n" +
             "interlocInformationReceived\n" +
-            "tcwDecisionStrikeout\n" +
-            "judgeDecisionAdmitAppeal\n" +
-            "tcwDecisionAdmitAppeal\n" +
+            "directionIssued\n" +
             "judgeDirectionIssued\n" +
-            "judgeDecisionStrikeout\n" +
-            "tcwReferToJudge\n" +
+            "tcwDirectionIssued\n" +
+            "issueFurtherEvidence\n" +
+            "dwpLapseCase\n" +
+            "hmctsLapseCase\n" +
+            "linkACase\n" +
+            "sentToJudge\n" +
+            "makeCaseUrgent\n" +
+            "moveToAppealCreated\n" +
+            "dwpNoAction\n" +
+            "nonCompliant\n" +
+            "dwpNotAbleToRegister\n" +
+            "corDecision\n" +
+            "reinstateAppeal\n" +
+            "reinstateVoidAppeal\n" +
+            "requestInfoIncompleteApplication\n" +
+            "resendAppealCreated\n" +
+            "resendCaseToGAPS2\n" +
+            "responseReceived\n" +
+            "hmctsResponseReviewed\n" +
+            "interlocSendToTcw\n" +
             "sendToDwp\n" +
             "sendToDwpError\n" +
-            "sentToDwp\n" +
-            "createBundle\n" +
-            "editBundle\n" +
-            "stitchBundle\n" +
-            "createDraft\n" +
-            "updateDraft\n" +
-            "draftArchived\n" +
             "sendToDwpOffline\n" +
-            "validAppealCreated\n" +
-            "moveToAppealCreated\n" +
-            "uploadDraftDocument\n" +
-            "uploadDraftCorDocument\n" +
-            "associateCase\n" +
-            "linkACase\n" +
-            "logDocsToDwp\n" +
-            "judgeDecisionAppealToProceed\n" +
-            "tcwDecisionAppealToProceed\n" +
-            "makeCaseUrgent\n" +
-            "attachScannedDocs\n" +
-            "handleEvidence\n" +
-            "actionFurtherEvidence\n" +
-            "dwpAppealRegistered\n" +
-            "dwpRaiseException\n" +
-            "dwpNotAbleToRegister\n" +
-            "dwpUploadResponse\n" +
+            "nonCompliantSendToInterloc\n" +
+            "tcwReferToJudge\n" +
+            "sentToDwp\n" +
+            "stitchBundle\n" +
+            "judgeDecisionStrikeout\n" +
+            "tcwDecisionStrikeout\n" +
+            "struckOut\n" +
             "dwpSupplementaryResponse\n" +
-            "dwpNoAction\n" +
-            "dwpEvidenceInProgress\n" +
-            "dwpLapseCase\n" +
+            "unassignToJudge\n" +
+            "updateCaseOnly\n" +
+            "updateDraft\n" +
+            "eventsUpdates\n" +
+            "updateHearingType\n" +
+            "updateIncompleteApplication\n" +
+            "caseUpdated\n" +
+            "subscriptionUpdated\n" +
+            "uploadCorDocument\n" +
+            "uploadDocument\n" +
+            "uploadDraftCorDocument\n" +
+            "uploadDraftDocument\n" +
             "uploadFurtherEvidence\n" +
-            "dwpCaseInProgress\n" +
-            "hmctsLapseCase\n" +
-            "hmctsResponseReviewed";
+            "dwpUploadResponse\n" +
+            "validAppealCreated\n" +
+            "validAppeal\n" +
+            "interlocValidAppeal\n" +
+            "voidCase\n" +
+            "voidIncompleteApplication\n" +
+            "interlocVoidAppeal";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
