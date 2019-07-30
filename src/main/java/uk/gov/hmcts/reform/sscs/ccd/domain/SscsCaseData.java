@@ -56,6 +56,7 @@ public class SscsCaseData implements CaseData {
     private String dateSentToDwp;
     private String interlocReviewState;
     private String hmctsDwpState;
+    private String dwpFurtherEvidenceStates;
     private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
@@ -98,6 +99,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dateSentToDwp") String dateSentToDwp,
                         @JsonProperty("interlocReviewState") String interlocReviewState,
                         @JsonProperty("hmctsDwpState") String hmctsDwpState,
+                        @JsonProperty("dwpFurtherEvidenceStates") String dwpFurtherEvidenceStates,
                         @JsonProperty("originalSender") DynamicList originalSender,
                         @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
@@ -135,6 +137,7 @@ public class SscsCaseData implements CaseData {
         this.dateSentToDwp = dateSentToDwp;
         this.interlocReviewState = interlocReviewState;
         this.hmctsDwpState = hmctsDwpState;
+        this.dwpFurtherEvidenceStates = dwpFurtherEvidenceStates;
         this.originalSender = originalSender;
         this.furtherEvidenceAction = furtherEvidenceAction;
         this.scannedDocuments = scannedDocuments;

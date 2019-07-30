@@ -84,8 +84,7 @@ public enum EventType {
     INTERLOC_SEND_TO_TCW("interlocSendToTcw", 0, false),
     TCW_DIRECTION_ISSUED("tcwDirectionIssued", 0, false),
     INTERLOC_INFORMATION_RECEIVED("interlocInformationReceived", 0, false),
-    TCW_DECISION_STRIKE_OUT("tcwDecisionStrikeOut", 0, false),
-    INTERLOC_SENT_TO_JUDGE("interlocSentToJudge", 0, false),
+    TCW_DECISION_STRIKE_OUT("tcwDecisionStrikeout", 0, false),
     JUDGE_DECISION_ADMIT_APPEAL("judgeDecisionAdmitAppeal", 0, false),
     TCW_DECISION_ADMIT_APPEAL("tcwDecisionAdmitAppeal", 0, false),
     JUDGE_DIRECTION_ISSUED("judgeDirectionIssued", 0, false),
@@ -101,7 +100,24 @@ public enum EventType {
     ATTACH_SCANNED_DOCS("attachScannedDocs", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
     ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
-    UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false);
+    UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false),
+    ASSOCIATE_CASE("associateCase", 0, false),
+    LINK_A_CASE("linkACase", 0, false),
+    LOG_DOCS_TO_DWP("logDocsToDwp", 0, false),
+    MAKE_CASE_URGENT("makeCaseUrgent", 0, false),
+    DWP_APPEAL_REGISTERED("dwpAppealRegistered", 0, false),
+    DWP_RAISE_EXCEPTION("dwpRaiseException", 0, false),
+    DWP_NOT_ABLE_TO_REGISTER("dwpNotAbleToRegister", 0, false),
+    DWP_UPLOAD_RESPONSE("dwpUploadResponse", 0, false),
+    DWP_SUPPLEMENTARY_RESPONSE("dwpSupplementaryResponse", 0, false),
+    DWP_NO_ACTION("dwpNoAction", 0, false),
+    DWP_EVIDENCE_IN_PROGRESS("dwpEvidenceInProgress", 0, false),
+    DWP_LAPSE_CASE("dwpLapseCase", 0, false),
+    DWP_CASE_IN_PROGRESS("dwpCaseInProgress", 0, false),
+    HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
+    HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
+    ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
+    UPDATE_CASE_ONLY("updateCaseOnly", 0, false);
 
     private String type;
     private String ccdType;
