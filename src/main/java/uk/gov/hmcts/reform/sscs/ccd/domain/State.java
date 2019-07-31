@@ -14,6 +14,9 @@ public enum State {
     WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
     DORMANT_APPEAL_STATE("dormantAppealState"),
     VALID_APPEAL("validAppeal"),
+    RESPONSE_RECEIVED("responseReceived"),
+    READY_FOR_HEARING("readyForHearing"),
+    HEARING("hearing"),
 
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
