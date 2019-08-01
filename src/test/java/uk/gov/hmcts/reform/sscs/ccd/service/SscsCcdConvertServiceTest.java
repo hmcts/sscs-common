@@ -2,11 +2,13 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.hasAppellantIdentify;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.junit.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
@@ -161,5 +163,31 @@ public class SscsCcdConvertServiceTest {
         SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
         assertTrue(hasAppellantIdentify(caseDetails.getData()));
+    }
+
+    @Test
+    public void testBuilderMissingCaseId() {
+        Long caseId = 1001L;
+
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("caseReference", "SC924/39/23210");
+
+        uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder().id(caseId)
+                .data(data)
+                .build();
+
+        assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+    }
+
+    @Test
+    public void testBuilderNullCaseId() {
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("caseReference", "SC924/39/23210");
+
+        uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder()
+                .data(data)
+                .build();
+
+        assertNull(new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
 }
