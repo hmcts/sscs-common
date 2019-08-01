@@ -116,8 +116,8 @@ public enum EventType {
     DWP_CASE_IN_PROGRESS("dwpCaseInProgress", 0, false),
     HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
     HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
-    ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
-    UPDATE_CASE_ONLY("updateCaseOnly", 0, false);
+    UPDATE_CASE_ONLY("updateCaseOnly", 0, false),
+    ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false);
 
     private String type;
     private String ccdType;
