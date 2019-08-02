@@ -16,7 +16,6 @@ public enum State {
     VALID_APPEAL("validAppeal"),
     RESPONSE_RECEIVED("responseReceived"),
     READY_FOR_HEARING("readyForHearing"),
-    HEARING("hearing"),
 
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
