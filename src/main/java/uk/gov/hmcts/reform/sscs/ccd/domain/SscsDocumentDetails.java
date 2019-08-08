@@ -21,7 +21,7 @@ public class SscsDocumentDetails {
     private String documentComment;
     private String controlNumber;
     private String evidenceIssued;
-    private String appendix;
+    private String bundleAddition;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -32,7 +32,7 @@ public class SscsDocumentDetails {
                                @JsonProperty("documentComment") String documentComment,
                                @JsonProperty("controlNumber") String controlNumber,
                                @JsonProperty("evidenceIssued") String evidenceIssued,
-                               @JsonProperty("appendix") String appendix) {
+                               @JsonProperty("bundleAddition") String bundleAddition) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentEmailContent = documentEmailContent;
@@ -41,6 +41,6 @@ public class SscsDocumentDetails {
         this.documentComment = documentComment;
         this.controlNumber = controlNumber;
         this.evidenceIssued = evidenceIssued;
-        this.appendix = appendix;
+        this.bundleAddition = bundleAddition;
     }
 }
