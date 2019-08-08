@@ -40,7 +40,12 @@ public class ReadCcdCaseService {
 
     @Recover
     protected SscsCaseDetails recover(Long caseId) {
+
+        log.info("Requesting IDAM tokens to get caseId {}", caseId);
+
         IdamTokens idamTokens = idamService.getIdamTokens();
+
+        log.info("Received IDAM tokens for getting caseId {}", caseId);
 
         return getByCaseId(caseId, idamTokens);
     }

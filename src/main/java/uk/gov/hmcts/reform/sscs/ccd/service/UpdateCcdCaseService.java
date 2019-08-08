@@ -43,7 +43,12 @@ public class UpdateCcdCaseService {
 
     @Recover
     protected SscsCaseDetails recover(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+
+        log.info("Requesting IDAM tokens to update caseId {} with eventType {}", caseId, eventType);
+
         idamTokens = idamService.getIdamTokens();
+
+        log.info("Received IDAM tokens for updating caseId {} with eventType {}", caseId, eventType);
 
         return updateCase(caseData, caseId, eventType, summary, description, idamTokens);
     }

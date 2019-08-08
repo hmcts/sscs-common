@@ -48,7 +48,6 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("generatedDOB")
     private String generatedDob;
     private String evidencePresent;
-    private OnlinePanel onlinePanel;
     private String bulkScanCaseReference;
     private String decisionNotes;
     private String isCorDecision;
@@ -56,11 +55,17 @@ public class SscsCaseData implements CaseData {
     private String dateSentToDwp;
     private String interlocReviewState;
     private String hmctsDwpState;
+    private String dwpFurtherEvidenceStates;
     private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
     private String informationFromAppellant;
     private String outcome;
+    private String evidenceHandled;
+    private String assignedToJudge;
+    private String assignedToDisabilityMember;
+    private String assignedToMedicalMember;
+
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -89,7 +94,6 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("generatedMobile") String generatedMobile,
                         @JsonProperty("generatedDOB") String generatedDob,
                         @JsonProperty("evidencePresent") String evidencePresent,
-                        @JsonProperty("onlinePanel") OnlinePanel onlineOnlinePanel,
                         @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
                         @JsonProperty("decisionNotes") String decisionNotes,
                         @JsonProperty("isCorDecision") String isCorDecision,
@@ -97,11 +101,17 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dateSentToDwp") String dateSentToDwp,
                         @JsonProperty("interlocReviewState") String interlocReviewState,
                         @JsonProperty("hmctsDwpState") String hmctsDwpState,
+                        @JsonProperty("dwpFurtherEvidenceStates") String dwpFurtherEvidenceStates,
                         @JsonProperty("originalSender") DynamicList originalSender,
                         @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
                         @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
                         @JsonProperty("informationFromAppellant") String informationFromAppellant,
-                        @JsonProperty("outcome") String outcome) {
+                        @JsonProperty("outcome") String outcome,
+                        @JsonProperty("evidenceHandled") String evidenceHandled,
+                        @JsonProperty("assignedToJudge") String assignedToJudge,
+                        @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
+                        @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -125,7 +135,6 @@ public class SscsCaseData implements CaseData {
         this.generatedMobile = generatedMobile;
         this.generatedDob = generatedDob;
         this.evidencePresent = evidencePresent;
-        this.onlinePanel = onlineOnlinePanel;
         this.bulkScanCaseReference = bulkScanCaseReference;
         this.decisionNotes = decisionNotes;
         this.isCorDecision = isCorDecision;
@@ -133,6 +142,7 @@ public class SscsCaseData implements CaseData {
         this.dateSentToDwp = dateSentToDwp;
         this.interlocReviewState = interlocReviewState;
         this.hmctsDwpState = hmctsDwpState;
+        this.dwpFurtherEvidenceStates = dwpFurtherEvidenceStates;
         this.originalSender = originalSender;
         this.furtherEvidenceAction = furtherEvidenceAction;
         this.scannedDocuments = scannedDocuments;
@@ -141,6 +151,10 @@ public class SscsCaseData implements CaseData {
         this.sscsInterlocDecisionDocument = sscsInterlocDecisionDocument;
         this.sscsStrikeOutDocument = sscsStrikeOutDocument;
         this.informationFromAppellant = informationFromAppellant;
+        this.evidenceHandled = evidenceHandled;
+        this.assignedToJudge = assignedToJudge;
+        this.assignedToDisabilityMember = assignedToDisabilityMember;
+        this.assignedToMedicalMember = assignedToMedicalMember;
     }
 
     @JsonIgnore
