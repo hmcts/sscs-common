@@ -36,7 +36,7 @@ public class SscsCcdConvertService {
     }
 
     public SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
-        if (caseDetails.getId() != null) {
+        if (caseDetails.getId() != null && caseDetails.getData() != null) {
             caseDetails.getData().put("ccdCaseId", caseDetails.getId().toString());
         }
         return SscsCaseDetails.builder()
