@@ -169,11 +169,8 @@ public class SscsCcdConvertServiceTest {
     public void testBuilderMissingCaseId() {
         Long caseId = 1001L;
 
-        Map<String, Object> data = new LinkedHashMap<>();
-        data.put("caseReference", "SC924/39/23210");
-
         uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder().id(caseId)
-                .data(data)
+                .data(new HashMap<>())
                 .build();
 
         assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
@@ -185,9 +182,20 @@ public class SscsCcdConvertServiceTest {
         data.put("caseReference", "SC924/39/23210");
 
         uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder()
-                .data(data)
+                .data(new HashMap<>())
                 .build();
 
         assertNull(new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+    }
+
+    @Test
+    public void testBuilderWithNullData() {
+        Long caseId = 1001L;
+
+        uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder().id(caseId)
+                .data(null)
+                .build();
+
+        assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
 }
