@@ -4,6 +4,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +38,10 @@ public class SscsCcdConvertService {
     }
 
     public SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
-        if (caseDetails.getId() != null && caseDetails.getData() != null) {
+        if (caseDetails.getId() != null) {
+            if (caseDetails.getData() == null) {
+                caseDetails = caseDetails.toBuilder().data(new HashMap<>()).build();
+            }
             caseDetails.getData().put("ccdCaseId", caseDetails.getId().toString());
         }
         return SscsCaseDetails.builder()

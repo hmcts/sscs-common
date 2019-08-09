@@ -187,4 +187,15 @@ public class SscsCcdConvertServiceTest {
 
         assertNull(new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
+
+    @Test
+    public void testBuilderWithNullData() {
+        Long caseId = 1001L;
+
+        uk.gov.hmcts.reform.ccd.client.model.CaseDetails caseDetails = CaseDetails.builder().id(caseId)
+                .data(null)
+                .build();
+
+        assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+    }
 }
