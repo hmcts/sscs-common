@@ -17,6 +17,9 @@ public class BundleDetails {
     private String title;
     private String description;
     private String eligibleForStitching;
+    private String hasTableOfContents;
+    private String hasCoversheets;
+    private String fileName;
     private DocumentLink stitchedDocument;
     private String stitchStatus;
 
@@ -26,6 +29,9 @@ public class BundleDetails {
                          @JsonProperty("title") String title,
                          @JsonProperty("description") String description,
                          @JsonProperty("eligibleForStitching") String eligibleForStitching,
+                         @JsonProperty("hasTableOfContents") String hasTableOfContents,
+                         @JsonProperty("hasCoversheets") String hasCoversheets,
+                         @JsonProperty("fileName") String fileName,
                          @JsonProperty("stitchedDocument") DocumentLink stitchedDocument,
                          @JsonProperty("stitchStatus") String stitchStatus) {
         this.id = id;
@@ -33,6 +39,9 @@ public class BundleDetails {
         this.title = title;
         this.description = description;
         this.eligibleForStitching = eligibleForStitching;
+        this.hasTableOfContents = hasTableOfContents;
+        this.hasCoversheets = hasCoversheets;
+        this.fileName = fileName;
         this.stitchedDocument = stitchedDocument;
         this.stitchStatus = stitchStatus;
     }
