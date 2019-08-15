@@ -47,6 +47,7 @@ public class SscsCaseData implements CaseData {
     private String generatedMobile;
     @JsonProperty("generatedDOB")
     private String generatedDob;
+    private DirectionResponse directionResponse;
     private String evidencePresent;
     private String bulkScanCaseReference;
     private String decisionNotes;
@@ -93,6 +94,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("generatedEmail") String generatedEmail,
                         @JsonProperty("generatedMobile") String generatedMobile,
                         @JsonProperty("generatedDOB") String generatedDob,
+                        @JsonProperty("directionResponse") DirectionResponse directionResponse,
                         @JsonProperty("evidencePresent") String evidencePresent,
                         @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
                         @JsonProperty("decisionNotes") String decisionNotes,
@@ -134,6 +136,7 @@ public class SscsCaseData implements CaseData {
         this.generatedEmail = generatedEmail;
         this.generatedMobile = generatedMobile;
         this.generatedDob = generatedDob;
+        this.directionResponse = directionResponse;
         this.evidencePresent = evidencePresent;
         this.bulkScanCaseReference = bulkScanCaseReference;
         this.decisionNotes = decisionNotes;
