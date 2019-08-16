@@ -117,6 +117,7 @@ public enum EventType {
     HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
     HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
     UPDATE_CASE_ONLY("updateCaseOnly", 0, false),
+    REISSUE_FURTHER_EVIDENCE("reissueFurtherEvidence", 0, false),
     ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false);
 
     private String type;

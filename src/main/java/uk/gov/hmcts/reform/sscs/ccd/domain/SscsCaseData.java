@@ -66,6 +66,7 @@ public class SscsCaseData implements CaseData {
     private String assignedToJudge;
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
+    private DynamicList reissueFurtherEvidenceDocument;
 
 
     @JsonCreator
@@ -112,7 +113,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("evidenceHandled") String evidenceHandled,
                         @JsonProperty("assignedToJudge") String assignedToJudge,
                         @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
-                        @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember
+                        @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember,
+                        @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -158,6 +160,7 @@ public class SscsCaseData implements CaseData {
         this.assignedToJudge = assignedToJudge;
         this.assignedToDisabilityMember = assignedToDisabilityMember;
         this.assignedToMedicalMember = assignedToMedicalMember;
+        this.reissueFurtherEvidenceDocument = reissueFurtherEvidenceDocument;
     }
 
     @JsonIgnore
