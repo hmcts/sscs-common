@@ -9,9 +9,10 @@ plugins {
     id 'maven'
 }
 
-def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "")
+def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
 
 group 'uk.gov.hmcts.reform'
+// Do not change this version number
 version buildNumber
 
 sourceCompatibility = 1.8
