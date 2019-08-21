@@ -9,7 +9,7 @@ plugins {
     id 'maven'
 }
 
-def buildNumber = "3.0.46-test"
+def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
 
 group 'uk.gov.hmcts.reform'
 version buildNumber
