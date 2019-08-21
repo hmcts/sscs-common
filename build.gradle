@@ -9,10 +9,9 @@ plugins {
     id 'maven'
 }
 
-def buildNumber = System.getenv("TRAVIS_BRANCH") ?: "DEV-SNAPSHOT"
+def buildNumber = "3.0.46-test"
 
 group 'uk.gov.hmcts.reform'
-// Do not change this version number
 version buildNumber
 
 sourceCompatibility = 1.8
