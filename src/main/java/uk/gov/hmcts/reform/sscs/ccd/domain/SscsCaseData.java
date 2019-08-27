@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -67,7 +68,9 @@ public class SscsCaseData implements CaseData {
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
-
+    private String resendToAppellant;
+    private String resendToRepresentative;
+    private String resendToDwp;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -114,7 +117,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("assignedToJudge") String assignedToJudge,
                         @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
                         @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember,
-                        @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument
+                        @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument,
+                        @JsonProperty("resendToAppellant") String resendToAppellant,
+                        @JsonProperty("resendToRepresentative") String resendToRepresentative,
+                        @JsonProperty("resendToDwp") String resendToDwp
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -161,6 +167,9 @@ public class SscsCaseData implements CaseData {
         this.assignedToDisabilityMember = assignedToDisabilityMember;
         this.assignedToMedicalMember = assignedToMedicalMember;
         this.reissueFurtherEvidenceDocument = reissueFurtherEvidenceDocument;
+        this.resendToAppellant = resendToAppellant;
+        this.resendToRepresentative = resendToRepresentative;
+        this.resendToDwp = resendToDwp;
     }
 
     @JsonIgnore
@@ -171,6 +180,21 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isCorDecision() {
         return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+    }
+
+    @JsonIgnore
+    public boolean isResendToAppellant() {
+        return stringToBoolean(resendToAppellant);
+    }
+
+    @JsonIgnore
+    public boolean isResendToRepresentative() {
+        return stringToBoolean(resendToRepresentative);
+    }
+
+    @JsonIgnore
+    public boolean isResendToDwp() {
+        return stringToBoolean(resendToDwp);
     }
 
     @JsonIgnore
@@ -196,5 +220,10 @@ public class SscsCaseData implements CaseData {
 
     public Subscriptions getSubscriptions() {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
+    }
+
+    @JsonIgnore
+    private boolean stringToBoolean(String value) {
+        return StringUtils.equalsIgnoreCase("yes", value);
     }
 }
