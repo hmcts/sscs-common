@@ -1,10 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -71,6 +67,16 @@ public class SscsCaseData implements CaseData {
     private String resendToAppellant;
     private String resendToRepresentative;
     private String resendToDwp;
+    private String caseCode;
+    private String benefitCode;
+    private String issueCode;
+    private String dwpOriginatingOffice;
+    private String dwpPresentingOffice;
+    private String dwpIsOfficerAttending;
+    private String dwpUcb;
+    private String dwpPhme;
+    private String dwpComplexAppeal;
+    private String dwpFurtherInfo;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -120,7 +126,17 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument,
                         @JsonProperty("resendToAppellant") String resendToAppellant,
                         @JsonProperty("resendToRepresentative") String resendToRepresentative,
-                        @JsonProperty("resendToDwp") String resendToDwp
+                        @JsonProperty("resendToDwp") String resendToDwp,
+                        @JsonProperty("caseCode") String caseCode,
+                        @JsonProperty("benefitCode") String benefitCode,
+                        @JsonProperty("issueCode") String issueCode,
+                        @JsonProperty("dwpOriginatingOffice") String dwpOriginatingOffice,
+                        @JsonProperty("dwpPresentingOffice") String dwpPresentingOffice,
+                        @JsonProperty("dwpIsOfficerAttending") String dwpIsOfficerAttending,
+                        @JsonProperty("dwpUCB") String dwpUcb,
+                        @JsonProperty("dwpPHME") String dwpPhme,
+                        @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
+                        @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -170,6 +186,16 @@ public class SscsCaseData implements CaseData {
         this.resendToAppellant = resendToAppellant;
         this.resendToRepresentative = resendToRepresentative;
         this.resendToDwp = resendToDwp;
+        this.caseCode = caseCode;
+        this.benefitCode = benefitCode;
+        this.issueCode = issueCode;
+        this.dwpOriginatingOffice = dwpOriginatingOffice;
+        this.dwpPresentingOffice = dwpPresentingOffice;
+        this.dwpIsOfficerAttending = dwpIsOfficerAttending;
+        this.dwpUcb = dwpUcb;
+        this.dwpPhme = dwpPhme;
+        this.dwpComplexAppeal = dwpComplexAppeal;
+        this.dwpFurtherInfo = dwpFurtherInfo;
     }
 
     @JsonIgnore
