@@ -9,7 +9,7 @@ plugins {
     id 'maven'
 }
 
-def buildNumber = System.getenv("TRAVIS_BRANCH") ?: "DEV-SNAPSHOT"
+def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
 
 group 'uk.gov.hmcts.reform'
 // Do not change this version number

@@ -112,7 +112,7 @@ public enum EventType {
     DWP_SUPPLEMENTARY_RESPONSE("dwpSupplementaryResponse", 0, false),
     DWP_NO_ACTION("dwpNoAction", 0, false),
     DWP_EVIDENCE_IN_PROGRESS("dwpEvidenceInProgress", 0, false),
-    DWP_LAPSE_CASE("dwpLapseCase", 0, false),
+    DWP_LAPSE_CASE("dwpLapseCase", "dwpLapseCase", 0, false),
     DWP_CASE_IN_PROGRESS("dwpCaseInProgress", 0, false),
     HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
     HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
