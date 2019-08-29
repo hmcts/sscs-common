@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import java.util.List;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.MrnDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
-import uk.gov.hmcts.reform.sscs.model.DwpAddress;
+import uk.gov.hmcts.reform.sscs.model.dwp.OfficeAddress;
 
 @RunWith(JUnitParamsRunner.class)
 public class DwpAddressLookupServiceTest {
@@ -42,7 +43,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
-        DwpAddress address = dwpAddressLookup.lookup(PIP, dwpIssuingOffice);
+        OfficeAddress address = dwpAddressLookup.lookup(PIP, dwpIssuingOffice);
         assertNotNull(address);
     }
 
@@ -52,19 +53,19 @@ public class DwpAddressLookupServiceTest {
         "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
     })
     public void benefitTypeIsCaseInsensitive(final String benefitType, String dwpIssuingOffice) {
-        DwpAddress address = dwpAddressLookup.lookup(benefitType, dwpIssuingOffice);
+        OfficeAddress address = dwpAddressLookup.lookup(benefitType, dwpIssuingOffice);
         assertNotNull(address);
     }
 
     @Test
     public void dwpOfficeStripsText() {
-        DwpAddress address = dwpAddressLookup.lookup("PIP", "DWP Issuing Office(10)");
+        OfficeAddress address = dwpAddressLookup.lookup("PIP", "DWP Issuing Office(10)");
         assertNotNull(address);
     }
 
     @Test
     public void handleCaseInsensitiveAddresses() {
-        DwpAddress address = dwpAddressLookup.lookup("ESA", "BALHAM DRT");
+        OfficeAddress address = dwpAddressLookup.lookup("ESA", "BALHAM DRT");
         assertNotNull(address);
     }
 
@@ -75,7 +76,7 @@ public class DwpAddressLookupServiceTest {
         "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
-        DwpAddress address = dwpAddressLookup.lookup(ESA, dwpIssuingOffice);
+        OfficeAddress address = dwpAddressLookup.lookup(ESA, dwpIssuingOffice);
         assertNotNull(address);
     }
 
@@ -98,18 +99,11 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void pip_1_isConfiguredCorrectly() {
-        DwpAddress address = dwpAddressLookup.lookup(PIP, "1");
-        assertNotNull(address);
-        assertArrayEquals(new String[]{"Mail Handling Site A", "WOLVERHAMPTON", "WV98 1AA"}, address.lines());
-    }
-
-    @Test
     @Parameters({"PIP", "ESA", "JOB", "UNK", "PLOP", "BIG", "11"})
     public void willAlwaysReturnTestAddressForATestDwpIssuingOffice(final String benefitType) {
-        DwpAddress address = dwpAddressLookup.lookup(benefitType, "test-hmcts-address");
+        OfficeAddress address = dwpAddressLookup.lookup(benefitType, "testHmctsAddress");
         assertNotNull(address);
-        assertEquals("E1 8FA", address.lines()[3]);
+        assertEquals("E1 8FA", address.getPostCode());
     }
 
     @Test(expected = NoMrnDetailsException.class)
@@ -129,5 +123,13 @@ public class DwpAddressLookupServiceTest {
         caseData = caseData.toBuilder().appeal(caseData.getAppeal().toBuilder().mrnDetails(
             MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
+    }
+
+    @Test
+    public void generateListOfDwpGapsOfficeNames() {
+        List<String> result = dwpAddressLookup.getDwpGapsOffices();
+
+        assertEquals("DWP PIP (1)", result.get(0));
+        assertEquals(23, result.size());
     }
 }
