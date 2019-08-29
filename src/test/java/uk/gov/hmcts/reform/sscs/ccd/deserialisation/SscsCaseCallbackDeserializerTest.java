@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -141,8 +142,8 @@ public class SscsCaseCallbackDeserializerTest {
     public void should_deserialize_direction_issed_callback() throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
-        String path = getClass().getClassLoader().getResource("directionIssued.json").getFile();
-        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+        String file = Objects.requireNonNull(getClass().getClassLoader().getResource("directionIssued.json")).getFile();
+        String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
 
         Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
 

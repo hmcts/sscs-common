@@ -146,7 +146,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("correspondence") List<Correspondence> correspondence,
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
-                        @JsonProperty("dwpFurtherInfo") String dwpState
+                        @JsonProperty("dwpState") String dwpState
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
