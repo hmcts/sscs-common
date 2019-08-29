@@ -89,7 +89,7 @@ public final class CaseDataUtils {
                 .build();
 
         BenefitType benefitType = BenefitType.builder()
-                .code("JSA")
+                .code("PIP")
                 .build();
 
         DateRange dateRange1 = DateRange.builder()
