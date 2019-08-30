@@ -66,8 +66,8 @@ public class SscsCaseData implements CaseData {
     private String caseCode;
     private String benefitCode;
     private String issueCode;
-    private String dwpOriginatingOffice;
-    private String dwpPresentingOffice;
+    private DynamicList dwpOriginatingOffice;
+    private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
     private String dwpUcb;
     private String dwpPhme;
@@ -123,8 +123,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("caseCode") String caseCode,
                         @JsonProperty("benefitCode") String benefitCode,
                         @JsonProperty("issueCode") String issueCode,
-                        @JsonProperty("dwpOriginatingOffice") String dwpOriginatingOffice,
-                        @JsonProperty("dwpPresentingOffice") String dwpPresentingOffice,
+                        @JsonProperty("dwpOriginatingOffice") DynamicList dwpOriginatingOffice,
+                        @JsonProperty("dwpPresentingOffice") DynamicList dwpPresentingOffice,
                         @JsonProperty("dwpIsOfficerAttending") String dwpIsOfficerAttending,
                         @JsonProperty("dwpUCB") String dwpUcb,
                         @JsonProperty("dwpPHME") String dwpPhme,
