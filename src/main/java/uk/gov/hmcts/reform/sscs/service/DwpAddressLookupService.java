@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import com.google.gson.Gson;
 import java.nio.charset.Charset;
 import java.util.Objects;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -59,13 +60,13 @@ public class DwpAddressLookupService {
     }
 
     private OfficeAddress lookup(String benefitType, String dwpIssuingOffice) {
-        OfficeAddress dwpAddress = getDwpAddress(benefitType, dwpIssuingOffice);
+        Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
 
-        if (dwpAddress == null) {
+        if (!officeMapping.isPresent()) {
             throw new DwpAddressLookupException(String.format("could not find dwp officeAddress for benefitType %s and dwpIssuingOffice %s",
                     benefitType, dwpIssuingOffice));
         }
-        return dwpAddress;
+        return officeMapping.get().getAddress();
     }
 
     private Address buildAddress(OfficeAddress dwpAddress) {
@@ -77,13 +78,13 @@ public class DwpAddressLookupService {
             .build();
     }
 
-    public OfficeAddress getDwpAddress(String benefitType, String dwpIssuingOffice) {
+    public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
         log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
 
         if (StringUtils.equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
-            return dwpMappings.getTestHmctsAddress().getAddress();
+            return Optional.of(dwpMappings.getTestHmctsAddress());
         }
-        OfficeMapping officeMapping = null;
+        Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
             String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped);
@@ -91,20 +92,16 @@ public class DwpAddressLookupService {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice);
         }
 
-        if (officeMapping != null) {
-            return officeMapping.getAddress();
-        } else {
-            return null;
-        }
+        return officeMapping;
     }
 
-    public OfficeMapping getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
+    public Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
         for (OfficeMapping office : allDwpBenefitOffices) {
             if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
-                return office;
+                return Optional.of(office);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     public OfficeMapping[] allDwpBenefitOffices() {
