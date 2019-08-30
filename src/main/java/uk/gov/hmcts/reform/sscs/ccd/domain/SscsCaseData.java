@@ -69,7 +69,9 @@ public class SscsCaseData implements CaseData {
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
+    @JsonProperty("dwpUCB")
     private String dwpUcb;
+    @JsonProperty("dwpPHME")
     private String dwpPhme;
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
