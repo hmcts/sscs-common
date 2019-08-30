@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -142,7 +143,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenDwpIssuingOffice_thenReturnTheCorrectOfficeMapping() {
-        OfficeMapping mapping = dwpAddressLookup.getOfficeMappingByDwpIssuingOffice("1");
-        assertEquals("1", mapping.getCode());
+        Optional<OfficeMapping> mapping = dwpAddressLookup.getOfficeMappingByDwpIssuingOffice("1");
+        assertEquals("1", mapping.get().getCode());
     }
 }
