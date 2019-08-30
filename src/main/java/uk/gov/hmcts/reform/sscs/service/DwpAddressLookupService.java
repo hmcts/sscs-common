@@ -2,8 +2,6 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import com.google.gson.Gson;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
@@ -60,7 +58,7 @@ public class DwpAddressLookupService {
         }
     }
 
-    OfficeAddress lookup(String benefitType, String dwpIssuingOffice) {
+    private OfficeAddress lookup(String benefitType, String dwpIssuingOffice) {
         OfficeAddress dwpAddress = getDwpAddress(benefitType, dwpIssuingOffice);
 
         if (dwpAddress == null) {
@@ -85,31 +83,31 @@ public class DwpAddressLookupService {
         if (StringUtils.equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
             return dwpMappings.getTestHmctsAddress().getAddress();
         }
+        OfficeMapping officeMapping = null;
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
             String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
-            return getOfficeAddressByOffice(dwpIssuingOfficeStripped);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped);
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
-            return getOfficeAddressByOffice(dwpIssuingOffice);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice);
         }
-        return null;
+
+        if (officeMapping != null) {
+            return officeMapping.getAddress();
+        } else {
+            return null;
+        }
     }
 
-    private OfficeAddress getOfficeAddressByOffice(String dwpIssuingOffice) {
+    public OfficeMapping getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
         for (OfficeMapping office : allDwpBenefitOffices) {
             if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
-                return office.getAddress();
+                return office;
             }
         }
         return null;
     }
 
-    public List<String> getDwpGapsOffices() {
-
-        List<String> gapsOffices = new ArrayList<>();
-        for (OfficeMapping office : allDwpBenefitOffices) {
-            gapsOffices.add(office.getMapping().getGaps());
-        }
-        return gapsOffices;
+    public OfficeMapping[] allDwpBenefitOffices() {
+        return allDwpBenefitOffices;
     }
-
 }
