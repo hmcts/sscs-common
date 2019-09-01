@@ -55,6 +55,18 @@ public class SscsCaseCallbackDeserializerTest {
     }
 
     @Test
+    public void givenAdminAppealWithdrawnEvent_shouldDeserializeAppealNotePad() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+        String file = Objects.requireNonNull(getClass().getClassLoader().getResource(
+            "adminAppealWithdrawnCallback.json")).getFile();
+        String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        System.out.println(actualSscsCaseCallback.getCaseDetails().getCaseData().getAppealNotePad());
+    }
+
+    @Test
     public void should_deserialize_callback_source_to_sscs_case_callback_with_latest_event() throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
