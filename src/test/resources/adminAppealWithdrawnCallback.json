@@ -1,12 +1,12 @@
 {
   "case_details": {
-    "id": 1567341998065230,
+    "id": 1567344021039321,
     "jurisdiction": "SSCS",
     "state": "dormantAppealState",
     "version": 1,
     "case_type_id": "Benefit",
-    "created_date": [2019, 9, 1, 12, 46, 38, 62000000],
-    "last_modified": [2019, 9, 1, 12, 47, 33, 696000000],
+    "created_date": [2019, 9, 1, 13, 20, 21, 73000000],
+    "last_modified": [2019, 9, 1, 13, 21, 24, 530000000],
     "security_classification": "PUBLIC",
     "case_data": {
       "evidencePresent": "No",
@@ -41,10 +41,10 @@
       "appealNotePad": {
         "notesCollection": [{
           "value": {
-            "noteDate": "",
-            "noteDetail": "hi world!"
+            "noteDate": "2019-09-01",
+            "noteDetail": "this is a withdrawn note"
           },
-          "id": "4ea3022d-ba83-4727-8adf-bf837a2bb16e"
+          "id": "baa2d443-2722-4cbb-89fc-9a94fa71d870"
         }]
       },
       "generatedSurname": "Test",
@@ -128,16 +128,16 @@
           "evidenceIssued": null,
           "bundleAddition": null,
           "documentLink": {
-            "document_url": "http://dm-store:8080/documents/a29e996d-467a-4875-9ba4-2a7f2dafe28b",
-            "document_binary_url": "http://dm-store:8080/documents/a29e996d-467a-4875-9ba4-2a7f2dafe28b/binary",
+            "document_url": "http://dm-store:8080/documents/7d80b978-51d1-49e9-9791-07f86ae83bc6",
+            "document_binary_url": "http://dm-store:8080/documents/7d80b978-51d1-49e9-9791-07f86ae83bc6/binary",
             "document_filename": "Screenshot 2019-08-30 at 16.56.20.pdf"
           }
         },
-        "id": "a10b236c-cb15-4946-b337-7bd1a5481992"
+        "id": "1e745b1e-3c9b-4eb2-8ce4-97aebe9f737f"
       }],
       "dwpTimeExtension": [],
       "hearings": [{
-        "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+        "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
         "value": {
           "time": "11:40:00",
           "venue": {
@@ -172,28 +172,28 @@
       "region": "BIRMINGHAM",
       "generatedDOB": "1900-01-01",
       "events": [{
-        "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+        "id": "930063e1-2023-49c6-ac04-224db44755b6",
         "value": {
           "date": "2018-07-05T14:38:26.443",
           "type": "appealDormant",
           "description": "Appeal dormant"
         }
       }, {
-        "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+        "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
         "value": {
           "date": "2018-05-09T11:16:01.867",
           "type": "responseReceived",
           "description": "Response received"
         }
       }, {
-        "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+        "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
         "value": {
           "date": "2018-02-09T14:38:26.443",
           "type": "hearingBooked",
           "description": "Hearing booked"
         }
       }, {
-        "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+        "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
         "value": {
           "date": "2017-10-06T09:38:25.190",
           "type": "appealReceived",
@@ -263,7 +263,7 @@
                 "noteDate": "PUBLIC",
                 "noteDetail": "PUBLIC"
               },
-              "id": "4ea3022d-ba83-4727-8adf-bf837a2bb16e"
+              "id": "baa2d443-2722-4cbb-89fc-9a94fa71d870"
             }]
           }
         }
@@ -397,7 +397,7 @@
             "bundleAddition": "PUBLIC",
             "documentLink": "PUBLIC"
           },
-          "id": "a10b236c-cb15-4946-b337-7bd1a5481992"
+          "id": "1e745b1e-3c9b-4eb2-8ce4-97aebe9f737f"
         }]
       },
       "dwpTimeExtension": {
@@ -407,7 +407,7 @@
       "hearings": {
         "classification": "PUBLIC",
         "value": [{
-          "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+          "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
           "value": {
             "time": "PUBLIC",
             "venue": {
@@ -454,28 +454,28 @@
       "events": {
         "classification": "PUBLIC",
         "value": [{
-          "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+          "id": "930063e1-2023-49c6-ac04-224db44755b6",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+          "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+          "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+          "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
@@ -551,7 +551,7 @@
                 "noteDate": "PUBLIC",
                 "noteDetail": "PUBLIC"
               },
-              "id": "4ea3022d-ba83-4727-8adf-bf837a2bb16e"
+              "id": "baa2d443-2722-4cbb-89fc-9a94fa71d870"
             }]
           }
         }
@@ -685,7 +685,7 @@
             "bundleAddition": "PUBLIC",
             "documentLink": "PUBLIC"
           },
-          "id": "a10b236c-cb15-4946-b337-7bd1a5481992"
+          "id": "1e745b1e-3c9b-4eb2-8ce4-97aebe9f737f"
         }]
       },
       "dwpTimeExtension": {
@@ -695,7 +695,7 @@
       "hearings": {
         "classification": "PUBLIC",
         "value": [{
-          "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+          "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
           "value": {
             "time": "PUBLIC",
             "venue": {
@@ -742,28 +742,28 @@
       "events": {
         "classification": "PUBLIC",
         "value": [{
-          "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+          "id": "930063e1-2023-49c6-ac04-224db44755b6",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+          "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+          "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+          "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
@@ -775,13 +775,13 @@
     }
   },
   "case_details_before": {
-    "id": 1567341998065230,
+    "id": 1567344021039321,
     "jurisdiction": "SSCS",
     "state": "withDwp",
     "version": 1,
     "case_type_id": "Benefit",
-    "created_date": [2019, 9, 1, 12, 46, 38, 62000000],
-    "last_modified": [2019, 9, 1, 12, 46, 39, 299000000],
+    "created_date": [2019, 9, 1, 13, 20, 21, 73000000],
+    "last_modified": [2019, 9, 1, 13, 20, 23, 282000000],
     "security_classification": "PUBLIC",
     "case_data": {
       "evidencePresent": "No",
@@ -885,7 +885,7 @@
       "dateSentToDwp": "2019-09-01",
       "dwpTimeExtension": [],
       "hearings": [{
-        "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+        "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
         "value": {
           "time": "11:40:00",
           "venue": {
@@ -920,28 +920,28 @@
       "region": "BIRMINGHAM",
       "generatedDOB": "1900-01-01",
       "events": [{
-        "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+        "id": "930063e1-2023-49c6-ac04-224db44755b6",
         "value": {
           "date": "2018-07-05T14:38:26.443",
           "type": "appealDormant",
           "description": "Appeal dormant"
         }
       }, {
-        "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+        "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
         "value": {
           "date": "2018-05-09T11:16:01.867",
           "type": "responseReceived",
           "description": "Response received"
         }
       }, {
-        "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+        "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
         "value": {
           "date": "2018-02-09T14:38:26.443",
           "type": "hearingBooked",
           "description": "Hearing booked"
         }
       }, {
-        "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+        "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
         "value": {
           "date": "2017-10-06T09:38:25.190",
           "type": "appealReceived",
@@ -1122,7 +1122,7 @@
       },
       "hearings": {
         "value": [{
-          "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+          "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
           "value": {
             "time": "PUBLIC",
             "venue": {
@@ -1169,28 +1169,28 @@
       "generatedDOB": "PUBLIC",
       "events": {
         "value": [{
-          "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+          "id": "930063e1-2023-49c6-ac04-224db44755b6",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+          "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+          "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+          "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
@@ -1378,7 +1378,7 @@
       },
       "hearings": {
         "value": [{
-          "id": "b38f99c7-8f1a-42cc-84b1-c971cee1b6dd",
+          "id": "a2884c6f-e184-4fbf-b4eb-05366c696978",
           "value": {
             "time": "PUBLIC",
             "venue": {
@@ -1425,28 +1425,28 @@
       "generatedDOB": "PUBLIC",
       "events": {
         "value": [{
-          "id": "ddee83bc-1fda-4e04-83b0-ba5663e3e144",
+          "id": "930063e1-2023-49c6-ac04-224db44755b6",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "e0aeebb2-9fd7-496e-a19e-1abe19510e62",
+          "id": "dc3e224f-60c8-4347-a0a0-82a264d22b4d",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "a28dce2d-99da-4520-a391-05fbcde841cb",
+          "id": "010d6431-7348-45d4-b6e8-42660f03b7d3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
             "description": "PUBLIC"
           }
         }, {
-          "id": "54c18ea5-75d8-498e-9e92-b3358b62adbd",
+          "id": "84659a30-832c-4a1e-bb45-671d6cb70bf3",
           "value": {
             "date": "PUBLIC",
             "type": "PUBLIC",
