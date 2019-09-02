@@ -1,9 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,6 +16,7 @@ public class CorrespondenceDetails {
     private final String body;
     private final DocumentLink documentLink;
     private final CorrespondenceType correspondenceType;
+    private final String eventType;
 
     @JsonCreator
     public CorrespondenceDetails(@JsonProperty("sentOn") String sentOn,
@@ -27,7 +25,8 @@ public class CorrespondenceDetails {
                                  @JsonProperty("subject") String subject,
                                  @JsonProperty("body") String body,
                                  @JsonProperty("documentLink") DocumentLink documentLink,
-                                 @JsonProperty("correspondenceType") CorrespondenceType correspondenceType) {
+                                 @JsonProperty("correspondenceType") CorrespondenceType correspondenceType,
+                                 @JsonProperty("eventType") String eventType) {
         this.sentOn = sentOn;
         this.from = from;
         this.to = to;
@@ -35,5 +34,6 @@ public class CorrespondenceDetails {
         this.body = body;
         this.documentLink = documentLink;
         this.correspondenceType = correspondenceType;
+        this.eventType = eventType;
     }
 }

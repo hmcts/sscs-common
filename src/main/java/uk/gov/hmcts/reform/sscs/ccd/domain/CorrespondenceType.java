@@ -4,13 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum CorrespondenceType {
-    EMAIL("Email"),
-    LETTER("Letter"),
-    SMS("Sms");
-
-    private String value;
-
-    CorrespondenceType(String value) {
-        this.value = value;
-    }
+    Email,
+    Letter,
+    Sms
 }
