@@ -95,7 +95,7 @@ public class DwpAddressLookupService {
         return officeMapping;
     }
 
-    public Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
+    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
         for (OfficeMapping office : allDwpBenefitOffices) {
             if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
                 return Optional.of(office);
