@@ -62,6 +62,7 @@ public class SscsCaseData implements CaseData {
     private String assignedToJudge;
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
+    private DynamicList reissueFurtherEvidenceDocument;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
@@ -119,6 +120,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("assignedToJudge") String assignedToJudge,
                         @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
                         @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember,
+                        @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument,
                         @JsonProperty("caseCode") String caseCode,
                         @JsonProperty("benefitCode") String benefitCode,
                         @JsonProperty("issueCode") String issueCode,
@@ -175,6 +177,7 @@ public class SscsCaseData implements CaseData {
         this.assignedToJudge = assignedToJudge;
         this.assignedToDisabilityMember = assignedToDisabilityMember;
         this.assignedToMedicalMember = assignedToMedicalMember;
+        this.reissueFurtherEvidenceDocument = reissueFurtherEvidenceDocument;
         this.caseCode = caseCode;
         this.benefitCode = benefitCode;
         this.issueCode = issueCode;

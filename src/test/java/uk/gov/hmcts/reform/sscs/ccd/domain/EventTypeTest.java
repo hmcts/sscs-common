@@ -77,6 +77,7 @@ public class EventTypeTest {
             "corDecision\n" +
             "reinstateAppeal\n" +
             "reinstateVoidAppeal\n" +
+            "reissueFurtherEvidence\n" +
             "requestInfoIncompleteApplication\n" +
             "resendAppealCreated\n" +
             "resendCaseToGAPS2\n" +
