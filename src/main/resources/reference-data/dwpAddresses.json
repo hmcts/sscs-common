@@ -299,15 +299,7 @@
       }
     }
   ],
-  "excela": {
-    "address": {
-      "line1": "PO BOX XXX",
-      "line2": "Exela BSP Services",
-      "line3": "Harlow",
-      "postCode": "CM19 5QS"
-    }
-  },
-  "test-hmcts-address": {
+  "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
       "line2": "3rd Floor, Aldgate Tower",
