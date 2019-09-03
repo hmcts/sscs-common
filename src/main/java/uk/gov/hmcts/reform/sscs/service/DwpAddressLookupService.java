@@ -1,22 +1,21 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import com.google.gson.Gson;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
-import uk.gov.hmcts.reform.sscs.model.BenefitLookup;
-import uk.gov.hmcts.reform.sscs.model.DwpAddress;
+import uk.gov.hmcts.reform.sscs.model.dwp.DwpMappings;
+import uk.gov.hmcts.reform.sscs.model.dwp.OfficeAddress;
+import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 
 @Service
 @Slf4j
@@ -24,34 +23,34 @@ public class DwpAddressLookupService {
 
     private static final String PIP = "PIP";
     private static final String ESA = "ESA";
-    private static final String ADDRESS = "address";
-    private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
+    private static final String TEST_HMCTS_ADDRESS = "testHmctsAddress";
 
-    private static JSONObject configObject;
+    private static String json;
+    private static DwpMappings dwpMappings;
+    private static OfficeMapping[] allDwpBenefitOffices;
 
     static {
-        JSONParser parser = new JSONParser();
         try {
-            configObject = (JSONObject) parser.parse(IOUtils.resourceToString("reference-data/dwpAddresses.json",
-                Charset.forName("UTF-8"), Thread.currentThread().getContextClassLoader()));
+            json = IOUtils.resourceToString("reference-data/dwpAddresses.json",
+                    Charset.forName("UTF-8"), Thread.currentThread().getContextClassLoader());
+            Gson gson = new Gson();
+            dwpMappings = gson.fromJson(json, DwpMappings.class);
+            OfficeMapping[] pipOffices = dwpMappings.getPip();
+            OfficeMapping[] esaOffices = dwpMappings.getEsa();
 
+            allDwpBenefitOffices = ArrayUtils.addAll(pipOffices, esaOffices);
         } catch (Exception exception) {
             log.error("Cannot parse dwp addresses. " + exception.getMessage(), exception);
             throw new RuntimeException("cannot parse dwp addresses", exception);
         }
     }
 
-    private static final BenefitLookup PIP_LOOKUP = new BenefitLookup(getJsonArray(PIP));
-    private static final BenefitLookup ESA_LOOKUP = new BenefitLookup(getJsonArray(ESA));
-    private static final JSONObject TEST_ADDRESS_CONFIG = (JSONObject) configObject.get(TEST_HMCTS_ADDRESS);
-    private static final DwpAddress TEST_ADDRESS = BenefitLookup.getAddress((JSONObject) TEST_ADDRESS_CONFIG.get(ADDRESS));
-
 
     public Address lookupDwpAddress(SscsCaseData caseData) {
         if (Objects.nonNull(caseData.getAppeal()) && Objects.nonNull(caseData.getAppeal().getMrnDetails())
             && Objects.nonNull(caseData.getAppeal().getMrnDetails().getDwpIssuingOffice())) {
 
-            final DwpAddress dwpAddress = lookup(caseData.getAppeal().getBenefitType().getCode(),
+            final OfficeAddress dwpAddress = lookup(caseData.getAppeal().getBenefitType().getCode(),
                 caseData.getAppeal().getMrnDetails().getDwpIssuingOffice());
 
             return buildAddress(dwpAddress);
@@ -60,44 +59,52 @@ public class DwpAddressLookupService {
         }
     }
 
-    DwpAddress lookup(String benefitType, String dwpIssuingOffice) {
-        Optional<DwpAddress> dwpAddressOptional = getDwpAddress(benefitType, dwpIssuingOffice);
+    private OfficeAddress lookup(String benefitType, String dwpIssuingOffice) {
+        Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
 
-        if (!dwpAddressOptional.isPresent()) {
-            throw new DwpAddressLookupException(String.format("could not find dwp address for benefitType %s and dwpIssuingOffice %s",
+        if (!officeMapping.isPresent()) {
+            throw new DwpAddressLookupException(String.format("could not find dwp officeAddress for benefitType %s and dwpIssuingOffice %s",
                     benefitType, dwpIssuingOffice));
         }
-        return dwpAddressOptional.get();
+        return officeMapping.get().getAddress();
     }
 
-    private Address buildAddress(DwpAddress dwpAddress) {
+    private Address buildAddress(OfficeAddress dwpAddress) {
         return Address.builder()
-            .line1(dwpAddress.getLine1().orElse(null))
-            .town(dwpAddress.getLine2().orElse(null))
-            .county(dwpAddress.getLine3().orElse(null))
-            .postcode(dwpAddress.getPostCode().orElse(null))
+            .line1(dwpAddress.getLine1())
+            .town(dwpAddress.getLine2())
+            .county(dwpAddress.getLine3())
+            .postcode(dwpAddress.getPostCode())
             .build();
     }
 
-    public Optional<DwpAddress> getDwpAddress(String benefitType, String dwpIssuingOffice) {
-        log.info("looking up address for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
+    public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
+        log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
 
         if (StringUtils.equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
-            return Optional.of(TEST_ADDRESS);
+            return Optional.of(dwpMappings.getTestHmctsAddress());
         }
+        Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
             String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
-            return Optional.ofNullable(PIP_LOOKUP.get(StringUtils.stripToEmpty(dwpIssuingOfficeStripped)));
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped);
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
-            return Optional.ofNullable(ESA_LOOKUP.get(StringUtils.stripToEmpty(dwpIssuingOffice)));
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice);
+        }
+
+        return officeMapping;
+    }
+
+    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
+        for (OfficeMapping office : allDwpBenefitOffices) {
+            if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
+                return Optional.of(office);
+            }
         }
         return Optional.empty();
     }
 
-    private static List<JSONObject> getJsonArray(String benefitType) {
-        @SuppressWarnings("unchecked")
-        ArrayList<JSONObject>  jsonArray = (ArrayList<JSONObject>) configObject.get(StringUtils.lowerCase(benefitType));
-        return jsonArray;
+    public OfficeMapping[] allDwpBenefitOffices() {
+        return allDwpBenefitOffices;
     }
-
 }
