@@ -108,7 +108,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({"PIP", "ESA", "JOB", "UNK", "PLOP", "BIG", "11"})
     public void willAlwaysReturnTestAddressForATestDwpIssuingOffice(final String benefitType) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("testHmctsAddress").build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("test-hmcts-address").build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
         assertEquals("E1 8FA", address.getPostcode());

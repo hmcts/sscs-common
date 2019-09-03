@@ -23,7 +23,7 @@ public class DwpAddressLookupService {
 
     private static final String PIP = "PIP";
     private static final String ESA = "ESA";
-    private static final String TEST_HMCTS_ADDRESS = "testHmctsAddress";
+    private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
 
     private static String json;
     private static DwpMappings dwpMappings;
