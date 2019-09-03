@@ -28,6 +28,8 @@ public class DwpAddressLookupService {
     private static String json;
     private static DwpMappings dwpMappings;
     private static OfficeMapping[] allDwpBenefitOffices;
+    private static OfficeMapping[] pipOffices;
+    private static OfficeMapping[] esaOffices;
 
     static {
         try {
@@ -35,8 +37,8 @@ public class DwpAddressLookupService {
                     Charset.forName("UTF-8"), Thread.currentThread().getContextClassLoader());
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
-            OfficeMapping[] pipOffices = dwpMappings.getPip();
-            OfficeMapping[] esaOffices = dwpMappings.getEsa();
+            pipOffices = dwpMappings.getPip();
+            esaOffices = dwpMappings.getEsa();
 
             allDwpBenefitOffices = ArrayUtils.addAll(pipOffices, esaOffices);
         } catch (Exception exception) {
@@ -87,16 +89,16 @@ public class DwpAddressLookupService {
         Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
             String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, pipOffices);
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, esaOffices);
         }
 
         return officeMapping;
     }
 
-    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice) {
-        for (OfficeMapping office : allDwpBenefitOffices) {
+    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
+        for (OfficeMapping office : mappings) {
             if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
                 return Optional.of(office);
             }
