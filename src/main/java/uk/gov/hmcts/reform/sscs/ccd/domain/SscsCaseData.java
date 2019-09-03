@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import org.apache.commons.lang.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -63,13 +64,18 @@ public class SscsCaseData implements CaseData {
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
+    private String resendToAppellant;
+    private String resendToRepresentative;
+    private String resendToDwp;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
-    private String dwpOriginatingOffice;
-    private String dwpPresentingOffice;
+    private DynamicList dwpOriginatingOffice;
+    private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
+    @JsonProperty("dwpUCB")
     private String dwpUcb;
+    @JsonProperty("dwpPHME")
     private String dwpPhme;
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
@@ -121,11 +127,14 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
                         @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember,
                         @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument,
+                        @JsonProperty("resendToAppellant") String resendToAppellant,
+                        @JsonProperty("resendToRepresentative") String resendToRepresentative,
+                        @JsonProperty("resendToDwp") String resendToDwp,
                         @JsonProperty("caseCode") String caseCode,
                         @JsonProperty("benefitCode") String benefitCode,
                         @JsonProperty("issueCode") String issueCode,
-                        @JsonProperty("dwpOriginatingOffice") String dwpOriginatingOffice,
-                        @JsonProperty("dwpPresentingOffice") String dwpPresentingOffice,
+                        @JsonProperty("dwpOriginatingOffice") DynamicList dwpOriginatingOffice,
+                        @JsonProperty("dwpPresentingOffice") DynamicList dwpPresentingOffice,
                         @JsonProperty("dwpIsOfficerAttending") String dwpIsOfficerAttending,
                         @JsonProperty("dwpUCB") String dwpUcb,
                         @JsonProperty("dwpPHME") String dwpPhme,
@@ -178,6 +187,9 @@ public class SscsCaseData implements CaseData {
         this.assignedToDisabilityMember = assignedToDisabilityMember;
         this.assignedToMedicalMember = assignedToMedicalMember;
         this.reissueFurtherEvidenceDocument = reissueFurtherEvidenceDocument;
+        this.resendToAppellant = resendToAppellant;
+        this.resendToRepresentative = resendToRepresentative;
+        this.resendToDwp = resendToDwp;
         this.caseCode = caseCode;
         this.benefitCode = benefitCode;
         this.issueCode = issueCode;
@@ -199,6 +211,21 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isCorDecision() {
         return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+    }
+
+    @JsonIgnore
+    public boolean isResendToAppellant() {
+        return stringToBoolean(resendToAppellant);
+    }
+
+    @JsonIgnore
+    public boolean isResendToRepresentative() {
+        return stringToBoolean(resendToRepresentative);
+    }
+
+    @JsonIgnore
+    public boolean isResendToDwp() {
+        return stringToBoolean(resendToDwp);
     }
 
     @JsonIgnore
@@ -224,5 +251,10 @@ public class SscsCaseData implements CaseData {
 
     public Subscriptions getSubscriptions() {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
+    }
+
+    @JsonIgnore
+    private boolean stringToBoolean(String value) {
+        return StringUtils.equalsIgnoreCase("yes", value);
     }
 }
