@@ -168,4 +168,11 @@ public class DwpAddressLookupServiceTest {
 
         assertEquals(Optional.empty(), result);
     }
+
+    @Test
+    public void givenATestOffice_thenReturnTestAddress() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", "test-hmcts-address");
+
+        assertEquals("Josh Greencroft", result.get().getAddress().getLine1());
+    }
 }
