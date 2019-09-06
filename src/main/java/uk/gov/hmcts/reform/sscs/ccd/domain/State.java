@@ -15,7 +15,7 @@ public enum State {
     DORMANT_APPEAL_STATE("dormantAppealState"),
     VALID_APPEAL("validAppeal"),
     RESPONSE_RECEIVED("responseReceived"),
-    READY_FOR_HEARING("readyForHearing"),
+    READY_TO_LIST("readyToList"),
 
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
