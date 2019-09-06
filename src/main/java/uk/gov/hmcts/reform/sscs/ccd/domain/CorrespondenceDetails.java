@@ -1,13 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
