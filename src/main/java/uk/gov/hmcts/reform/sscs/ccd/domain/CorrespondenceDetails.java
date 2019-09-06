@@ -4,11 +4,17 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CorrespondenceDetails {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
     private final String sentOn;
     private final String from;
     private final String to;
@@ -35,5 +41,10 @@ public class CorrespondenceDetails {
         this.documentLink = documentLink;
         this.correspondenceType = correspondenceType;
         this.eventType = eventType;
+    }
+
+    @JsonIgnore
+    public LocalDateTime getSentOnDateTime() {
+        return LocalDateTime.parse(sentOn, DATE_TIME_FORMATTER);
     }
 }

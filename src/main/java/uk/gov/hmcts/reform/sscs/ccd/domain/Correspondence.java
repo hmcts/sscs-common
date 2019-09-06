@@ -11,11 +11,17 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Correspondence {
+public class Correspondence implements Comparable<Correspondence> {
     private CorrespondenceDetails value;
 
     @JsonCreator
     public Correspondence(@JsonProperty("value") CorrespondenceDetails value) {
         this.value = value;
     }
+
+    @Override
+    public int compareTo(Correspondence o) {
+        return value.getSentOnDateTime().compareTo(o.getValue().getSentOnDateTime());
+    }
+
 }

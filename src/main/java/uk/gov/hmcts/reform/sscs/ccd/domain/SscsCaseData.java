@@ -236,6 +236,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void sortCollections() {
+
+        if (getCorrespondence() != null) {
+            Collections.sort(getCorrespondence(), Collections.reverseOrder());
+        }
         if (getEvents() != null) {
             Collections.sort(getEvents(), Collections.reverseOrder());
         }
