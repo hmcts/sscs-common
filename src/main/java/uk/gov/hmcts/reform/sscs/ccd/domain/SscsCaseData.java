@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -80,6 +84,7 @@ public class SscsCaseData implements CaseData {
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
     private String dwpRegionalCentre;
+    private String dwpState;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -140,7 +145,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpPHME") String dwpPhme,
                         @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
                         @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
-                        @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre
+                        @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
+                        @JsonProperty("dwpState") String dwpState
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -201,6 +207,7 @@ public class SscsCaseData implements CaseData {
         this.dwpComplexAppeal = dwpComplexAppeal;
         this.dwpFurtherInfo = dwpFurtherInfo;
         this.dwpRegionalCentre = dwpRegionalCentre;
+        this.dwpState = dwpState;
     }
 
     @JsonIgnore
@@ -237,15 +244,15 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public void sortCollections() {
         if (getEvents() != null) {
-            Collections.sort(getEvents(), Collections.reverseOrder());
+            getEvents().sort(Collections.reverseOrder());
         }
 
         if (getHearings() != null) {
-            Collections.sort(getHearings(), Collections.reverseOrder());
+            getHearings().sort(Collections.reverseOrder());
         }
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
-            Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+            getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
     }
 
