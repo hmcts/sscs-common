@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -252,15 +256,15 @@ public class SscsCaseData implements CaseData {
             Collections.sort(getCorrespondence(), Collections.reverseOrder());
         }
         if (getEvents() != null) {
-            Collections.sort(getEvents(), Collections.reverseOrder());
+            getEvents().sort(Collections.reverseOrder());
         }
 
         if (getHearings() != null) {
-            Collections.sort(getHearings(), Collections.reverseOrder());
+            getHearings().sort(Collections.reverseOrder());
         }
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
-            Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+            getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
     }
 
