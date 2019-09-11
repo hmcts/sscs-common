@@ -81,6 +81,9 @@ public class SscsCaseData implements CaseData {
     private String dwpFurtherInfo;
     private String interlocReferralDate;
     private String dwpRegionalCentre;
+    private String generateNotice;
+    private DocumentLink previewDocument;
+    private String bodyContent;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -142,7 +145,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
                         @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
-                        @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre
+                        @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
+                        @JsonProperty("generateNotice") String generateNotice,
+                        @JsonProperty("previewDocument") DocumentLink previewDocument,
+                        @JsonProperty("bodyContent") String bodyContent
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -204,6 +210,9 @@ public class SscsCaseData implements CaseData {
         this.dwpFurtherInfo = dwpFurtherInfo;
         this.interlocReferralDate = interlocReferralDate;
         this.dwpRegionalCentre = dwpRegionalCentre;
+        this.generateNotice = generateNotice;
+        this.previewDocument = previewDocument;
+        this.bodyContent = bodyContent;
     }
 
     @JsonIgnore
@@ -229,6 +238,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isResendToDwp() {
         return stringToBoolean(resendToDwp);
+    }
+
+    @JsonIgnore
+    public boolean isGenerateNotice() {
+        return stringToBoolean(generateNotice);
     }
 
     @JsonIgnore
