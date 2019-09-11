@@ -92,7 +92,7 @@ public class EventTypeTest {
             "sentToDwp\n" +
             "stitchBundle\n" +
             "judgeDecisionStrikeout\n" +
-            "tcwDecisionStrikeout\n" +
+            "tcwDecisionStrikeOut\n" +
             "struckOut\n" +
             "dwpSupplementaryResponse\n" +
             "unassignToJudge\n" +
