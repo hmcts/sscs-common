@@ -120,7 +120,8 @@ public enum EventType {
     REISSUE_FURTHER_EVIDENCE("reissueFurtherEvidence", 0, false),
     ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
-    DWP_ACTION_WITHDRAWAL("dwpActionWithdrawal", 0, false);
+    DWP_ACTION_WITHDRAWAL("dwpActionWithdrawal", 0, false),
+    FE_NO_ACTION("feNoAction", 0, false);
 
     private String type;
     private String ccdType;
