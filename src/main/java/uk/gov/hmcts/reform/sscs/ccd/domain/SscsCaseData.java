@@ -79,6 +79,7 @@ public class SscsCaseData implements CaseData {
     private String dwpPhme;
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
+    private String interlocReferralDate;
     private String dwpRegionalCentre;
 
     @JsonCreator
@@ -140,6 +141,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpPHME") String dwpPhme,
                         @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
                         @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
+                        @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -200,6 +202,7 @@ public class SscsCaseData implements CaseData {
         this.dwpPhme = dwpPhme;
         this.dwpComplexAppeal = dwpComplexAppeal;
         this.dwpFurtherInfo = dwpFurtherInfo;
+        this.interlocReferralDate = interlocReferralDate;
         this.dwpRegionalCentre = dwpRegionalCentre;
     }
 
