@@ -84,6 +84,8 @@ public class SscsCaseData implements CaseData {
     private String generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
+    private String signedBy;
+    private String signedRole;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -148,7 +150,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("generateNotice") String generateNotice,
                         @JsonProperty("previewDocument") DocumentLink previewDocument,
-                        @JsonProperty("bodyContent") String bodyContent
+                        @JsonProperty("bodyContent") String bodyContent,
+                        @JsonProperty("signedBy") String signedBy,
+                        @JsonProperty("signedRole") String signedRole
+
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -213,6 +218,8 @@ public class SscsCaseData implements CaseData {
         this.generateNotice = generateNotice;
         this.previewDocument = previewDocument;
         this.bodyContent = bodyContent;
+        this.signedBy = signedBy;
+        this.signedRole = signedRole;
     }
 
     @JsonIgnore
