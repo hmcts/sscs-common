@@ -119,7 +119,7 @@ public class AirLookRcSpreadSheetTest {
         Iterator postCodeIterator = postCodesForVenueNames.iterator();
         while (postCodeIterator.hasNext()) {
             Object postCode = postCodeIterator.next();
-            String pipVenue = venueData.get(postCode).getPipVenue();
+            String pipVenue = venueData.get(postCode).getPipOrUcVenue();
             String esaVenue = venueData.get(postCode).getEsaVenue();
 
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, pipVenue);
