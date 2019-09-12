@@ -2,18 +2,20 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Data
+@Value
 @Builder(toBuilder = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CaseLink {
     private String caseReference;
 
     @JsonCreator
-    public CaseLink(@JsonProperty("caseReference") String caseReference) {
+    public CaseLink(@JsonProperty("value") String caseReference) {
         this.caseReference = caseReference;
     }
 }
