@@ -9,7 +9,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 public class AirLookupServiceTest {
     AirLookupService airLookupService;
 
-    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipOrUcVenue("Birmingham").esaVenue("Birmingham").build();
+    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
 
     @Before
     public void setUp() {
@@ -103,14 +103,14 @@ public class AirLookupServiceTest {
     public void checkVenueIdForPostCodeWithNoPip() {
         AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode("b4");
 
-        assertEquals(1234, lookupVenueId(venues.getPipOrUcVenue()));
+        assertEquals(1234, lookupVenueId(venues.getPipVenue()));
     }
 
     @Test
     public void checkVenueIdForValidPostCode() {
         AirlookupBenefitToVenue venueName = airLookupService.lookupAirVenueNameByPostCode("NN85");
 
-        assertEquals(1223, lookupVenueId(venueName.getPipOrUcVenue()));
+        assertEquals(1223, lookupVenueId(venueName.getPipVenue()));
     }
 
     private int lookupVenueId(String venue) {
