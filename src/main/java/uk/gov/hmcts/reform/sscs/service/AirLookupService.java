@@ -39,9 +39,9 @@ public class AirLookupService {
     private static int POSTCODE_COLUMN = 0;
     private static int REGIONAL_CENTRE_COLUMN = 7;
     private static int ESA_COLUMN = 3;
-    private static int PIP_COLUMN = 6;
+    private static int PIP_UC_COLUMN = 6;
 
-    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaVenue("Birmingham").build();
+    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipOrUcVenue("Birmingham").esaVenue("Birmingham").build();
 
     private Map<String, String> lookupRegionalCentreByPostCode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
@@ -93,7 +93,7 @@ public class AirLookupService {
                     Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
                     Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
                     Cell esaCell = row.getCell(ESA_COLUMN);
-                    Cell pipCell = row.getCell(PIP_COLUMN);
+                    Cell pipOrUcCell = row.getCell(PIP_UC_COLUMN);
 
                     if (postcodeCell != null && adminGroupCell != null
                             && postcodeCell.getCellTypeEnum() == CellType.STRING && adminGroupCell.getCellTypeEnum() == CellType.STRING) {
@@ -102,7 +102,7 @@ public class AirLookupService {
                         lookupAirVenueNameByPostCode.put(postcodeCell.getRichStringCellValue().getString().toLowerCase().trim(),
                             AirlookupBenefitToVenue.builder()
                                     .esaVenue(esaCell.getRichStringCellValue().getString())
-                                    .pipVenue(pipCell.getRichStringCellValue().getString())
+                                    .pipOrUcVenue(pipOrUcCell.getRichStringCellValue().getString())
                                     .build());
                     }
                 }

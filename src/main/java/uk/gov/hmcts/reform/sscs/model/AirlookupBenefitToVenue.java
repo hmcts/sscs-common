@@ -7,11 +7,11 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class AirlookupBenefitToVenue {
 
-    private String pipVenue;
+    private String pipOrUcVenue;
     private String esaVenue;
 
-    public String getPipVenue() {
-        return pipVenue.trim();
+    public String getPipOrUcVenue() {
+        return pipOrUcVenue.trim();
     }
 
     public String getEsaVenue() {
