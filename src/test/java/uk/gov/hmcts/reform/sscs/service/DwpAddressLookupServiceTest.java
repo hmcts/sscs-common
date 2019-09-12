@@ -138,7 +138,7 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertEquals(23, result.length);
+        assertEquals(24, result.length);
     }
 
     @Test
@@ -167,5 +167,12 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", "Balham DRT");
 
         assertEquals(Optional.empty(), result);
+    }
+
+    @Test
+    public void givenAUcBenefitType_thenReturnTheUcOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("uc", null);
+
+        assertEquals("Universal Credit", result.get().getCode());
     }
 }
