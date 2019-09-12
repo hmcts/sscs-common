@@ -83,6 +83,7 @@ public class SscsCaseData implements CaseData {
     private String dwpPhme;
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
+    private List<Correspondence> correspondence;
     private String interlocReferralDate;
     private String dwpRegionalCentre;
     private String dwpState;
@@ -147,6 +148,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpPHME") String dwpPhme,
                         @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
                         @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
+                        @JsonProperty("correspondence") List<Correspondence> correspondence,
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("dwpState") String dwpState,
@@ -210,6 +212,7 @@ public class SscsCaseData implements CaseData {
         this.dwpPhme = dwpPhme;
         this.dwpComplexAppeal = dwpComplexAppeal;
         this.dwpFurtherInfo = dwpFurtherInfo;
+        this.correspondence = correspondence;
         this.interlocReferralDate = interlocReferralDate;
         this.dwpRegionalCentre = dwpRegionalCentre;
         this.dwpState = dwpState;
@@ -249,6 +252,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void sortCollections() {
+
+        if (getCorrespondence() != null) {
+            Collections.sort(getCorrespondence(), Collections.reverseOrder());
+        }
         if (getEvents() != null) {
             getEvents().sort(Collections.reverseOrder());
         }
