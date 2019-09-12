@@ -299,6 +299,19 @@
       }
     }
   ],
+  "uc": {
+    "code": "Universal Credit",
+    "mapping": {
+      "ccd": "Universal Credit",
+      "gaps": "Universal Credit"
+    },
+    "address": {
+      "line1": "Universal Credit",
+      "line2": "Post Handling Site B",
+      "line3": "WOLVERHAMPTON",
+      "postCode": "WV99 1AJ"
+    }
+  },
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
