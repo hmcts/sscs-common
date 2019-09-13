@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -84,6 +88,7 @@ public class SscsCaseData implements CaseData {
     private String dwpRegionalCentre;
     private String dwpState;
     private NotePad appealNotePad;
+    private String interlocReferralReason;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -148,7 +153,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("dwpState") String dwpState,
-                        @JsonProperty("appealNotePad") NotePad appealNotePad) {
+                        @JsonProperty("appealNotePad") NotePad appealNotePad,
+                        @JsonProperty("interlocReferralReason") String interlocReferralReason
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -209,6 +216,7 @@ public class SscsCaseData implements CaseData {
         this.dwpFurtherInfo = dwpFurtherInfo;
         this.correspondence = correspondence;
         this.interlocReferralDate = interlocReferralDate;
+        this.interlocReferralReason = interlocReferralReason;
         this.dwpRegionalCentre = dwpRegionalCentre;
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
