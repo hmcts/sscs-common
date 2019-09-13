@@ -2,11 +2,12 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import com.google.gson.Gson;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
@@ -23,13 +24,12 @@ public class DwpAddressLookupService {
 
     private static final String PIP = "PIP";
     private static final String ESA = "ESA";
+    private static final String UC = "UC";
     private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
 
     private static String json;
     private static DwpMappings dwpMappings;
     private static OfficeMapping[] allDwpBenefitOffices;
-    private static OfficeMapping[] pipOffices;
-    private static OfficeMapping[] esaOffices;
 
     static {
         try {
@@ -37,10 +37,14 @@ public class DwpAddressLookupService {
                     Charset.forName("UTF-8"), Thread.currentThread().getContextClassLoader());
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
-            pipOffices = dwpMappings.getPip();
-            esaOffices = dwpMappings.getEsa();
 
-            allDwpBenefitOffices = ArrayUtils.addAll(pipOffices, esaOffices);
+            allDwpBenefitOffices = Stream.of(dwpMappings.getPip(), dwpMappings.getEsa())
+                    .flatMap(Stream::of)
+                    .toArray(OfficeMapping[]::new);
+
+            allDwpBenefitOffices = Arrays.copyOf(allDwpBenefitOffices, allDwpBenefitOffices.length + 1);
+            allDwpBenefitOffices[allDwpBenefitOffices.length - 1] = dwpMappings.getUc();
+
         } catch (Exception exception) {
             log.error("Cannot parse dwp addresses. " + exception.getMessage(), exception);
             throw new RuntimeException("cannot parse dwp addresses", exception);
@@ -89,9 +93,11 @@ public class DwpAddressLookupService {
         Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
             String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, pipOffices);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, esaOffices);
+            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
+        }  else if (StringUtils.equalsIgnoreCase(UC, benefitType)) {
+            return Optional.of(dwpMappings.getUc());
         }
 
         return officeMapping;
