@@ -84,6 +84,7 @@ public class SscsCaseData implements CaseData {
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
     private String interlocReferralDate;
+    private String interlocReferralReason;
     private String dwpRegionalCentre;
     private String generateNotice;
     private DocumentLink previewDocument;
@@ -158,6 +159,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
                         @JsonProperty("correspondence") List<Correspondence> correspondence,
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
+                        @JsonProperty("interlocReferralReason") String interlocReferralReason,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("generateNotice") String generateNotice,
                         @JsonProperty("previewDocument") DocumentLink previewDocument,
@@ -232,6 +234,7 @@ public class SscsCaseData implements CaseData {
         this.dwpFurtherInfo = dwpFurtherInfo;
         this.correspondence = correspondence;
         this.interlocReferralDate = interlocReferralDate;
+        this.interlocReferralReason = interlocReferralReason;
         this.dwpRegionalCentre = dwpRegionalCentre;
         this.generateNotice = generateNotice;
         this.previewDocument = previewDocument;
