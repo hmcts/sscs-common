@@ -17,11 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
@@ -173,13 +170,4 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390/binary", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentBinaryUrl());
     }
 
-    @Test
-    public void printObject() throws JsonProcessingException {
-        Map<String, String> map = new HashMap();
-        map.put("CaseReference", "1234567");
-        CaseLink caseLink = CaseLink.builder().value(map).build();
-
-        String temp = mapper.writeValueAsString(caseLink);
-        System.out.println(temp);
-    }
 }

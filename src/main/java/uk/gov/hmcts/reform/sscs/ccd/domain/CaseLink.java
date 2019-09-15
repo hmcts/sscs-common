@@ -3,10 +3,11 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import lombok.Builder;
 import lombok.Value;
 
-import java.util.Map;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
