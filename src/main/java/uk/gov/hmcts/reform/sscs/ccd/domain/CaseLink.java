@@ -6,14 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.Map;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 public class CaseLink {
-    private String caseReference;
+    private Map value;
 
     @JsonCreator
-    public CaseLink(@JsonProperty("value") String caseReference) {
-        this.caseReference = caseReference;
+    public CaseLink(@JsonProperty("value") Map value) {
+        this.value = value;
     }
 }
