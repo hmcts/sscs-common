@@ -8,14 +8,14 @@ import lombok.Data;
 public class AirlookupBenefitToVenue {
 
     private String pipVenue;
-    private String esaVenue;
+    private String esaOrUcVenue;
 
     public String getPipVenue() {
         return pipVenue.trim();
     }
 
-    public String getEsaVenue() {
-        return esaVenue.trim();
+    public String getEsaOrUcVenue() {
+        return esaOrUcVenue.trim();
     }
 
 }
