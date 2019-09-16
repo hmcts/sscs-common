@@ -9,7 +9,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 public class AirLookupServiceTest {
     AirLookupService airLookupService;
 
-    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaVenue("Birmingham").build();
+    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
 
     @Before
     public void setUp() {

@@ -9,10 +9,7 @@ public class DwpMappings {
 
     private OfficeMapping[] pip;
     private OfficeMapping[] esa;
+    private OfficeMapping uc;
     private OfficeMapping testHmctsAddress;
 }
-
-
-
-
 

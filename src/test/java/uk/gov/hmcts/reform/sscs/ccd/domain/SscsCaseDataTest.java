@@ -67,6 +67,26 @@ public class SscsCaseDataTest {
         assertEquals("2019-01-01", sscsCaseData.getEvidence().getDocuments().get(2).getValue().getDateReceived());
     }
 
+
+    @Test
+    public void sortCorrespondenceByDateAndTime() {
+        List<Correspondence> correspondence = new ArrayList<>();
+        Correspondence correspondence1 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Feb 2019 11:22").build()).build();
+        Correspondence correspondence2 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:22").build()).build();
+        Correspondence correspondence3 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:23").build()).build();
+
+        correspondence.add(correspondence1);
+        correspondence.add(correspondence2);
+        correspondence.add(correspondence3);
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().correspondence(correspondence).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("1 Feb 2019 11:22", sscsCaseData.getCorrespondence().get(0).getValue().getSentOn());
+        assertEquals("1 Jan 2019 11:23", sscsCaseData.getCorrespondence().get(1).getValue().getSentOn());
+        assertEquals("1 Jan 2019 11:22", sscsCaseData.getCorrespondence().get(2).getValue().getSentOn());
+    }
+
     @Test
     public void shouldCreateInfoRequest() throws JsonParseException, IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
