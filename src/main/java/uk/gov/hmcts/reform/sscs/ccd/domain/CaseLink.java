@@ -16,7 +16,7 @@ public class CaseLink {
     private String caseReference;
 
     @JsonCreator
-    public CaseLink(@JsonProperty(value = "CaseReference") String value) {
+    public CaseLink(@JsonProperty(value = "CaseReference") String caseReference) {
         this.caseReference = caseReference;
     }
 }
