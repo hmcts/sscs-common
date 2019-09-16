@@ -11,12 +11,11 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SscsDocument {
-
-    private SscsDocumentDetails value;
+public class Note {
+    private NoteDetails value;
 
     @JsonCreator
-    public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
+    public Note(@JsonProperty("value") NoteDetails value) {
         this.value = value;
     }
 }
