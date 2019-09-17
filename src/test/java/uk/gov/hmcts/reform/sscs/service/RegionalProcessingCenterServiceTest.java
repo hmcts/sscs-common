@@ -39,7 +39,7 @@ public class RegionalProcessingCenterServiceTest {
         //Then
         Map<String, String> sccodeRegionalProcessingCentermap
                 = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
-        assertEquals(176, sccodeRegionalProcessingCentermap.size());
+        assertEquals(183, sccodeRegionalProcessingCentermap.size());
         assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
         assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
         assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
