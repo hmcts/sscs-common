@@ -26,6 +26,7 @@
     "case_data": {
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
+      "dateAdded": "2019-06-26",
       "sscsInterlocDirectionDocument": {
         "documentType": "Direction Notice",
         "documentDateAdded": "2019-06-26",

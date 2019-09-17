@@ -1,8 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -87,6 +92,8 @@ public class SscsCaseData implements CaseData {
     private String bodyContent;
     private String signedBy;
     private String signedRole;
+    private LocalDate dateAdded;
+    private List<SscsInterlocDirectionDocument> historicSscsInterlocDirectionDocs;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -154,7 +161,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("previewDocument") DocumentLink previewDocument,
                         @JsonProperty("bodyContent") String bodyContent,
                         @JsonProperty("signedBy") String signedBy,
-                        @JsonProperty("signedRole") String signedRole
+                        @JsonProperty("signedRole") String signedRole,
+                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+                            @JsonSerialize(using = LocalDateSerializer.class)
+                            @JsonProperty("dateAdded") LocalDate dateAdded,
+                        @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocument> historicSscsInterlocDirectionDocs
+
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -223,6 +235,8 @@ public class SscsCaseData implements CaseData {
         this.bodyContent = bodyContent;
         this.signedBy = signedBy;
         this.signedRole = signedRole;
+        this.dateAdded = dateAdded;
+        this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
     }
 
     @JsonIgnore
