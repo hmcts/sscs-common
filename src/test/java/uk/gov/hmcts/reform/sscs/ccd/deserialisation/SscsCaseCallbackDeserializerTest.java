@@ -18,7 +18,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +29,18 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
-import uk.gov.hmcts.reform.sscs.ccd.domain.*;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DirectionResponse;
+import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Evidence;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Hearing;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Note;
+import uk.gov.hmcts.reform.sscs.ccd.domain.NoteDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.NotePad;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsInterlocDecisionDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsInterlocDirectionDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsStrikeOutDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SscsCaseCallbackDeserializerTest {
@@ -43,14 +56,34 @@ public class SscsCaseCallbackDeserializerTest {
     public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
-                new Jackson2ObjectMapperBuilder()
-                        .featuresToEnable(READ_ENUMS_USING_TO_STRING)
-                        .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
-                        .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
-                        .serializationInclusion(JsonInclude.Include.NON_ABSENT);
+            new Jackson2ObjectMapperBuilder()
+                .featuresToEnable(READ_ENUMS_USING_TO_STRING)
+                .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
+                .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
+                .serializationInclusion(JsonInclude.Include.NON_ABSENT);
 
         mapper = objectMapperBuilder.createXmlMapper(false).build();
         mapper.registerModule(new JavaTimeModule());
+    }
+
+    @Test
+    public void givenAdminAppealWithdrawnEvent_shouldDeserializeAppealNotePad() throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+        String file = Objects.requireNonNull(getClass().getClassLoader().getResource(
+            "adminAppealWithdrawnCallback.json")).getFile();
+        String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        NotePad expectedAppealNotePad = NotePad.builder()
+            .notesCollection(Collections.singletonList(Note.builder()
+                .value(NoteDetails.builder()
+                    .noteDate("2019-09-01")
+                    .noteDetail("this is a withdrawn note")
+                    .build())
+                .build()))
+            .build();
+        assertEquals(expectedAppealNotePad, actualSscsCaseCallback.getCaseDetails().getCaseData().getAppealNotePad());
     }
 
     @Test
@@ -141,8 +174,8 @@ public class SscsCaseCallbackDeserializerTest {
     public void should_deserialize_direction_issed_callback() throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
-        String path = getClass().getClassLoader().getResource("directionIssued.json").getFile();
-        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+        String file = Objects.requireNonNull(getClass().getClassLoader().getResource("directionIssued.json")).getFile();
+        String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
 
         Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
 

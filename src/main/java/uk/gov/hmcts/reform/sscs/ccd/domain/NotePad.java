@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 
@@ -11,12 +12,11 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SscsDocument {
-
-    private SscsDocumentDetails value;
+public class NotePad {
+    private List<Note> notesCollection;
 
     @JsonCreator
-    public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
-        this.value = value;
+    public NotePad(@JsonProperty("notesCollection") List<Note> notesCollection) {
+        this.notesCollection = notesCollection;
     }
 }
