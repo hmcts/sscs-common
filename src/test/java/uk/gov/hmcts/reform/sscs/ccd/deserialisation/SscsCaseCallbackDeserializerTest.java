@@ -20,11 +20,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
-<<<<<<< HEAD
-
-=======
 import java.util.Objects;
->>>>>>> master
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;

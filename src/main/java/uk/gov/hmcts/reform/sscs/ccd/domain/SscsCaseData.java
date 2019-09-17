@@ -149,8 +149,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("dwpState") String dwpState,
-                        @JsonProperty("appealNotePad") NotePad appealNotePad),
-                        @JsonProperty("associatedCase") List<CaseLink> associatedCase {
+                        @JsonProperty("appealNotePad") NotePad appealNotePad,
+                        @JsonProperty("associatedCase") List<CaseLink> associatedCase) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
