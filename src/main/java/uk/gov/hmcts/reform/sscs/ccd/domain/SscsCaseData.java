@@ -92,7 +92,7 @@ public class SscsCaseData implements CaseData {
     private String signedBy;
     private String signedRole;
     private LocalDate dateAdded;
-    private List<SscsInterlocDirectionDocument> historicSscsInterlocDirectionDocs;
+    private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
 
@@ -166,7 +166,7 @@ public class SscsCaseData implements CaseData {
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                             @JsonSerialize(using = LocalDateSerializer.class)
                             @JsonProperty("dateAdded") LocalDate dateAdded,
-                        @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocument> historicSscsInterlocDirectionDocs,
+                        @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad) {
         this.ccdCaseId = ccdCaseId;

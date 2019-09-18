@@ -27,6 +27,32 @@
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
       "dateAdded": "2019-06-26",
+      "historicSscsInterlocDirectionDocs" : [
+        {
+          "value": {
+            "documentType": "Direction Notice",
+            "documentDateAdded": "2019-06-26",
+            "documentFileName": "DirectionNotice1.pdf",
+            "documentLink": {
+              "document_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60",
+              "document_binary_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60/binary",
+              "document_filename": "DirectionNotice.pdf"
+            }
+          }
+        },
+        {
+          "value": {
+            "documentType": "Direction Notice",
+            "documentDateAdded": "2019-06-26",
+            "documentFileName": "DirectionNotice2.pdf",
+            "documentLink": {
+              "document_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60",
+              "document_binary_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60/binary",
+              "document_filename": "DirectionNotice.pdf"
+            }
+          }
+        }
+      ],
       "sscsInterlocDirectionDocument": {
         "documentType": "Direction Notice",
         "documentDateAdded": "2019-06-26",
