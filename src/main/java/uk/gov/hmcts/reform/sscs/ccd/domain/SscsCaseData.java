@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
@@ -95,6 +94,8 @@ public class SscsCaseData implements CaseData {
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
+    private DynamicList dwpStateFeNoAction;
+    private String createdInGapsFrom;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -168,7 +169,9 @@ public class SscsCaseData implements CaseData {
                             @JsonProperty("dateAdded") LocalDate dateAdded,
                         @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
-                        @JsonProperty("appealNotePad") NotePad appealNotePad) {
+                        @JsonProperty("appealNotePad") NotePad appealNotePad,
+                        @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
+                        @JsonProperty("createdInGapsFrom") String createdInGapsFrom) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -239,6 +242,8 @@ public class SscsCaseData implements CaseData {
         this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
+        this.dwpStateFeNoAction = dwpStateFeNoAction;
+        this.createdInGapsFrom = createdInGapsFrom;
     }
 
     @JsonIgnore
@@ -284,15 +289,15 @@ public class SscsCaseData implements CaseData {
             Collections.sort(getCorrespondence(), Collections.reverseOrder());
         }
         if (getEvents() != null) {
-            Collections.sort(getEvents(), Collections.reverseOrder());
+            getEvents().sort(Collections.reverseOrder());
         }
 
         if (getHearings() != null) {
-            Collections.sort(getHearings(), Collections.reverseOrder());
+            getHearings().sort(Collections.reverseOrder());
         }
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
-            Collections.sort(getEvidence().getDocuments(), Collections.reverseOrder());
+            getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
     }
 
