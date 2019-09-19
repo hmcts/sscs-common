@@ -89,6 +89,7 @@ public class SscsCaseData implements CaseData {
     private String dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
+    private String createdInGapsFrom;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -154,8 +155,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
-                        @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction
-    ) {
+                        @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
+                        @JsonProperty("createdInGapsFrom") String createdInGapsFrom) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -220,6 +221,7 @@ public class SscsCaseData implements CaseData {
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
         this.dwpStateFeNoAction = dwpStateFeNoAction;
+        this.createdInGapsFrom = createdInGapsFrom;
     }
 
     @JsonIgnore
