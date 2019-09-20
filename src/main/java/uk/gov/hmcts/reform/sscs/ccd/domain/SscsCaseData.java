@@ -1,10 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import lombok.AccessLevel;
@@ -86,6 +85,13 @@ public class SscsCaseData implements CaseData {
     private List<Correspondence> correspondence;
     private String interlocReferralDate;
     private String dwpRegionalCentre;
+    private String generateNotice;
+    private DocumentLink previewDocument;
+    private String bodyContent;
+    private String signedBy;
+    private String signedRole;
+    private LocalDate dateAdded;
+    private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
@@ -153,6 +159,15 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("correspondence") List<Correspondence> correspondence,
                         @JsonProperty("interlocReferralDate") String interlocReferralDate,
                         @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
+                        @JsonProperty("generateNotice") String generateNotice,
+                        @JsonProperty("previewDocument") DocumentLink previewDocument,
+                        @JsonProperty("bodyContent") String bodyContent,
+                        @JsonProperty("signedBy") String signedBy,
+                        @JsonProperty("signedRole") String signedRole,
+                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+                            @JsonSerialize(using = LocalDateSerializer.class)
+                            @JsonProperty("dateAdded") LocalDate dateAdded,
+                        @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
                         @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
@@ -218,6 +233,13 @@ public class SscsCaseData implements CaseData {
         this.correspondence = correspondence;
         this.interlocReferralDate = interlocReferralDate;
         this.dwpRegionalCentre = dwpRegionalCentre;
+        this.generateNotice = generateNotice;
+        this.previewDocument = previewDocument;
+        this.bodyContent = bodyContent;
+        this.signedBy = signedBy;
+        this.signedRole = signedRole;
+        this.dateAdded = dateAdded;
+        this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
         this.dwpStateFeNoAction = dwpStateFeNoAction;
@@ -247,6 +269,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isResendToDwp() {
         return stringToBoolean(resendToDwp);
+    }
+
+    @JsonIgnore
+    public boolean isGenerateNotice() {
+        return stringToBoolean(generateNotice);
     }
 
     @JsonIgnore
