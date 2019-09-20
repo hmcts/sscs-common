@@ -171,7 +171,7 @@ public class SscsCaseCallbackDeserializerTest {
     }
 
     @Test
-    public void should_deserialize_direction_issed_callback() throws IOException {
+    public void should_deserialize_direction_issued_callback() throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
         String file = Objects.requireNonNull(getClass().getClassLoader().getResource("directionIssued.json")).getFile();
@@ -181,9 +181,13 @@ public class SscsCaseCallbackDeserializerTest {
 
         SscsInterlocDirectionDocument sscsInterlocDirectionDocument = actualSscsCaseCallback.getCaseDetails().getCaseData().getSscsInterlocDirectionDocument();
 
-        assertEquals("2019-06-26", sscsInterlocDirectionDocument.getDocumentDateAdded());
+        assertEquals("2019-06-26", sscsInterlocDirectionDocument.getDocumentDateAdded().toString());
         assertEquals("DirectionNotice.pdf", sscsInterlocDirectionDocument.getDocumentFileName());
         assertEquals("Direction Notice", sscsInterlocDirectionDocument.getDocumentType());
+        assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDateAdded().toString());
+        assertEquals(2, actualSscsCaseCallback.getCaseDetails().getCaseData().getHistoricSscsInterlocDirectionDocs().size());
+        assertEquals("DirectionNotice1.pdf", actualSscsCaseCallback.getCaseDetails().getCaseData().getHistoricSscsInterlocDirectionDocs().get(0).getValue().getDocumentFileName());
+
     }
 
     @Test
