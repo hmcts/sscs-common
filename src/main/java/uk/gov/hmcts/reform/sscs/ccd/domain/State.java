@@ -16,6 +16,7 @@ public enum State {
     VALID_APPEAL("validAppeal"),
     RESPONSE_RECEIVED("responseReceived"),
     READY_TO_LIST("readyToList"),
+    WITH_DWP("withDwp"),
 
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
@@ -24,6 +25,10 @@ public enum State {
 
     State(String id) {
         this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override

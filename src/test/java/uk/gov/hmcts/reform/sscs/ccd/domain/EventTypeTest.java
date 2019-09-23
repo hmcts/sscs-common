@@ -114,6 +114,7 @@ public class EventTypeTest {
             "interlocValidAppeal\n" +
             "voidCase\n" +
             "voidIncompleteApplication\n" +
+            "readyToList\n" +
             "interlocVoidAppeal";
 
     @Test
