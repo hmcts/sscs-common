@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,7 @@ public class SscsCcdConvertService {
     public SscsCaseData getCaseData(Map<String, Object> dataMap) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-
+        mapper.registerModule(new JavaTimeModule());
         try {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
             if (hasAppellantIdentify(sscsCaseData)) {

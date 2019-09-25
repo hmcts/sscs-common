@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.hasAppellantIdentify;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -197,5 +198,34 @@ public class SscsCcdConvertServiceTest {
                 .build();
 
         assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+    }
+
+    @Test
+    public void canTranslateADateField() {
+        String caseReference = "caseRef";
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("caseReference", caseReference);
+        HashMap<String, Object> appealMap = new HashMap<>();
+        String signer = "signerName";
+        appealMap.put("signer", signer);
+        Appellant appellant = Appellant.builder().identity(Identity.builder().nino("AB 12 34 56 C").build()).build();
+        appealMap.put("appellant", appellant);
+        data.put("appeal", appealMap);
+        HashMap<String, Object> doc = new HashMap<>();
+        doc.put("documentType", "blah");
+        doc.put("documentFileName", "blah.pdf");
+        doc.put("documentDateAdded", "2019-07-04");
+
+        data.put("sscsInterlocDirectionDocument", doc);
+        long id = 123L;
+        CaseDetails build = CaseDetails.builder()
+                .id(id)
+                .data(data)
+                .build();
+        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+
+        assertTrue(hasAppellantIdentify(caseDetails.getData()));
+
+        assertEquals(LocalDate.of(2019, 07, 04), caseDetails.getData().getSscsInterlocDirectionDocument().getDocumentDateAdded());
     }
 }
