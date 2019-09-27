@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -20,16 +21,10 @@ public class Hearing implements Comparable<Hearing> {
 
     @Override
     public int compareTo(Hearing o) {
-
-        int idCompare = 0;
-
-        if (!StringUtils.isEmpty(o.getValue().getHearingId()) && !StringUtils.isEmpty(value.getHearingId())) {
-            idCompare = o.getValue().getHearingId().compareTo(value.getHearingId());
-        }
-
-        if (idCompare != 0) {
-            return -1 * idCompare;
-        }
-        return -1 * o.getValue().getHearingDateTime().compareTo(value.getHearingDateTime());
+        return new CompareToBuilder()
+                .append(NumberUtils.createInteger(this.value.getHearingId()),
+                        NumberUtils.createInteger(o.getValue().getHearingId()))
+                .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
+                .toComparison();
     }
 }
