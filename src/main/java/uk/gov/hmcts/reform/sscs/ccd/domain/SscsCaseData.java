@@ -98,6 +98,9 @@ public class SscsCaseData implements CaseData {
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
     private List<CaseLink> associatedCase;
+    private DwpResponseDocument dwpAT38Document;
+    private DwpResponseDocument dwpEvidenceBundleDocument;
+    private DwpResponseDocument dwpResponseDocument;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -175,7 +178,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
                         @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
                         @JsonProperty("createdInGapsFrom") String createdInGapsFrom,
-                        @JsonProperty("associatedCase") List<CaseLink> associatedCase) {
+                        @JsonProperty("associatedCase") List<CaseLink> associatedCase,
+                        @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
+                        @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
+                        @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument
+
+                        ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -250,6 +258,9 @@ public class SscsCaseData implements CaseData {
         this.dwpStateFeNoAction = dwpStateFeNoAction;
         this.createdInGapsFrom = createdInGapsFrom;
         this.associatedCase = associatedCase;
+        this.dwpAT38Document = dwpAT38Document;
+        this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
+        this.dwpResponseDocument = dwpResponseDocument;
     }
 
     @JsonIgnore
