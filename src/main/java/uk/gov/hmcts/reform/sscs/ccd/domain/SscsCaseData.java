@@ -101,6 +101,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
     private DwpResponseDocument dwpResponseDocument;
+    private String dwpResponseDate;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -181,7 +182,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("associatedCase") List<CaseLink> associatedCase,
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
-                        @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument
+                        @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
+                        @JsonProperty("dwpResponseDate") String dwpResponseDate
 
                         ) {
         this.ccdCaseId = ccdCaseId;
@@ -261,6 +263,7 @@ public class SscsCaseData implements CaseData {
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
         this.dwpResponseDocument = dwpResponseDocument;
+        this.dwpResponseDate = dwpResponseDate;
     }
 
     @JsonIgnore
