@@ -92,6 +92,7 @@ public class SscsCaseData implements CaseData {
     private String signedBy;
     private String signedRole;
     private LocalDate dateAdded;
+    private List<SscsInterlocDecisionDocuments> historicSscsInterlocDecisionDocs;
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
@@ -103,6 +104,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpResponseDocument;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
+    private String decisionType;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -175,6 +177,7 @@ public class SscsCaseData implements CaseData {
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                             @JsonSerialize(using = LocalDateSerializer.class)
                             @JsonProperty("dateAdded") LocalDate dateAdded,
+                        @JsonProperty("historicSscsInterlocDecisionDocs") List<SscsInterlocDecisionDocuments> historicSscsInterlocDecisionDocs,
                         @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
@@ -185,8 +188,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
-                        @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean
-
+                        @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
+                        @JsonProperty("decisionType") String decisionType
                         ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
@@ -256,6 +259,7 @@ public class SscsCaseData implements CaseData {
         this.signedBy = signedBy;
         this.signedRole = signedRole;
         this.dateAdded = dateAdded;
+        this.historicSscsInterlocDecisionDocs = historicSscsInterlocDecisionDocs;
         this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
@@ -267,6 +271,7 @@ public class SscsCaseData implements CaseData {
         this.dwpResponseDocument = dwpResponseDocument;
         this.dwpResponseDate = dwpResponseDate;
         this.linkedCasesBoolean = linkedCasesBoolean;
+        this.decisionType = decisionType;
     }
 
     @JsonIgnore
