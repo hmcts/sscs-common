@@ -26,6 +26,33 @@
     "case_data": {
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
+      "dateAdded": "2019-06-26",
+      "historicSscsInterlocDecisionDocs" : [
+        {
+          "value": {
+            "documentType": "Decision Notice",
+            "documentDateAdded": "2019-06-26",
+            "documentFileName": "DecisionNotice1.pdf",
+            "documentLink": {
+              "document_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60",
+              "document_binary_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60/binary",
+              "document_filename": "DecisionNotice.pdf"
+            }
+          }
+        },
+        {
+          "value": {
+            "documentType": "Decision Notice",
+            "documentDateAdded": "2019-06-26",
+            "documentFileName": "Decision2.pdf",
+            "documentLink": {
+              "document_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60",
+              "document_binary_url": "http://dm-store:4506/documents/3b18db2a-08ce-466b-babe-42c19ea95d60/binary",
+              "document_filename": "DecisionNotice.pdf"
+            }
+          }
+        }
+      ],
       "sscsInterlocDecisionDocument": {
         "documentType": "Decision Notice",
         "documentDateAdded": "2019-06-26",
