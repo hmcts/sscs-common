@@ -5,6 +5,7 @@ import java.util.Map;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import uk.gov.hmcts.reform.sscs.exception.UnknownFileTypeException;
 
 @Data
@@ -48,8 +49,9 @@ public class AllowedFileTypes {
     public static String getContentTypeForFileName(String fileName) {
         String fileTypeExtension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 
-        if (ALLOWED_CONTENT_TYPES.containsKey(fileTypeExtension)) {
-            return ALLOWED_CONTENT_TYPES.get(fileTypeExtension);
+        String trimmedExtension = StringUtils.trim(fileTypeExtension);
+        if (ALLOWED_CONTENT_TYPES.containsKey(trimmedExtension)) {
+            return ALLOWED_CONTENT_TYPES.get(trimmedExtension);
         } else {
             String message = "Evidence file type '" + fileTypeExtension + "' unknown";
             throw new UnknownFileTypeException(message, new Exception(message));
