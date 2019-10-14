@@ -6,7 +6,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -329,6 +328,10 @@ public class SscsCaseData implements CaseData {
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
+
+        if (getSscsDocument() != null) {
+            Collections.sort(getSscsDocument());
+        }
     }
 
     public Subscriptions getSubscriptions() {
@@ -340,13 +343,14 @@ public class SscsCaseData implements CaseData {
         return StringUtils.equalsIgnoreCase("yes", value);
     }
 
+    @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredDocs = getSscsDocument().stream().filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
 
             List<SscsDocument> docs = new ArrayList<>(filteredDocs.collect(Collectors.toList()));
 
-            docs = sortDocumentsByDateAdded(docs);
+            Collections.sort(docs);
 
             if (docs.size() > 0) {
                 return docs.get(0);
@@ -354,24 +358,4 @@ public class SscsCaseData implements CaseData {
         }
         return null;
     }
-
-    public List<SscsDocument> sortDocumentsByDateAdded(List<SscsDocument> docs) {
-        Comparator<SscsDocument> compareBydDate = (o1, o2) -> {
-            SscsDocumentDetails documentDetails = o1.getValue();
-            SscsDocumentDetails nextDocumentDetails = o2.getValue();
-
-            if (documentDetails.getDocumentDateAdded() == null) {
-                return 0;
-            }
-
-            if (documentDetails.getDocumentDateAdded().equals(nextDocumentDetails.getDocumentDateAdded())) {
-                return -1;
-            }
-            return -1 * documentDetails.getDocumentDateAdded().compareTo(nextDocumentDetails.getDocumentDateAdded());
-        };
-
-        Collections.sort(docs, compareBydDate);
-        return docs;
-    }
-
 }
