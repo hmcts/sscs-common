@@ -6,11 +6,15 @@ import static org.junit.Assert.assertNull;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
 public class SscsCaseDataTest {
+
+    LocalDate now = LocalDate.now();
 
     @Test
     public void sortHearingsByDateWhenIdsAreBlank() {
@@ -153,4 +157,104 @@ public class SscsCaseDataTest {
 
         assertEquals(expectedValue, infoRequestValue);
     }
+
+    @Test
+    public void givenACaseHasOneDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        assertEquals("testUrl", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleDocumentsOfSameType_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildSscsDocument("oldTestUrl", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString()));
+        documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
+
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenAWithMultipleDocuments_thenSortByDateAdded() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString()));
+        documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenAWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenSortByDateAddedAndPutEmptyDocumentLast() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString()));
+        documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
+        documents.add(buildSscsDocument("emptyDateAddedDoc", DocumentType.OTHER_DOCUMENT, null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("emptyDateAddedDoc", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date) {
+        return SscsDocument.builder().value(
+                SscsDocumentDetails.builder().documentType(documentType.getValue())
+                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                        .documentDateAdded(date)
+                        .build()).build();
+    }
+
 }

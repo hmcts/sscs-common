@@ -153,8 +153,6 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("DecisionNotice.pdf", sscsInterlocDecisionDocument.getDocumentFileName());
         assertEquals("Decision Notice", sscsInterlocDecisionDocument.getDocumentType());
         assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDateAdded().toString());
-        assertEquals(2, actualSscsCaseCallback.getCaseDetails().getCaseData().getHistoricSscsInterlocDecisionDocs().size());
-        assertEquals("DecisionNotice1.pdf", actualSscsCaseCallback.getCaseDetails().getCaseData().getHistoricSscsInterlocDecisionDocs().get(0).getValue().getDocumentFileName());
     }
 
     @Test

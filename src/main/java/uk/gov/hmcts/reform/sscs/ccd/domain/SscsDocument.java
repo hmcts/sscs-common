@@ -11,12 +11,26 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SscsDocument {
+public class SscsDocument implements Comparable<SscsDocument> {
 
     private SscsDocumentDetails value;
 
     @JsonCreator
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         this.value = value;
+    }
+
+    @Override
+    public int compareTo(SscsDocument doc2) {
+        SscsDocumentDetails nextDocumentDetails = doc2.getValue();
+
+        if (value.getDocumentDateAdded() == null) {
+            return 0;
+        }
+
+        if (value.getDocumentDateAdded().equals(nextDocumentDetails.getDocumentDateAdded())) {
+            return -1;
+        }
+        return -1 * value.getDocumentDateAdded().compareTo(nextDocumentDetails.getDocumentDateAdded());
     }
 }

@@ -4,13 +4,17 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
+import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -92,7 +96,6 @@ public class SscsCaseData implements CaseData {
     private String signedBy;
     private String signedRole;
     private LocalDate dateAdded;
-    private List<SscsInterlocDecisionDocuments> historicSscsInterlocDecisionDocs;
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
@@ -177,7 +180,6 @@ public class SscsCaseData implements CaseData {
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                             @JsonSerialize(using = LocalDateSerializer.class)
                             @JsonProperty("dateAdded") LocalDate dateAdded,
-                        @JsonProperty("historicSscsInterlocDecisionDocs") List<SscsInterlocDecisionDocuments> historicSscsInterlocDecisionDocs,
                         @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
@@ -190,7 +192,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType
-                        ) {
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
@@ -259,7 +261,6 @@ public class SscsCaseData implements CaseData {
         this.signedBy = signedBy;
         this.signedRole = signedRole;
         this.dateAdded = dateAdded;
-        this.historicSscsInterlocDecisionDocs = historicSscsInterlocDecisionDocs;
         this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
         this.dwpState = dwpState;
         this.appealNotePad = appealNotePad;
@@ -327,6 +328,10 @@ public class SscsCaseData implements CaseData {
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
+
+        if (getSscsDocument() != null) {
+            Collections.sort(getSscsDocument());
+        }
     }
 
     public Subscriptions getSubscriptions() {
@@ -336,5 +341,21 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     private boolean stringToBoolean(String value) {
         return StringUtils.equalsIgnoreCase("yes", value);
+    }
+
+    @JsonIgnore
+    public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
+        if (getSscsDocument() != null && getSscsDocument().size() > 0) {
+            Stream<SscsDocument> filteredDocs = getSscsDocument().stream().filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
+
+            List<SscsDocument> docs = new ArrayList<>(filteredDocs.collect(Collectors.toList()));
+
+            Collections.sort(docs);
+
+            if (docs.size() > 0) {
+                return docs.get(0);
+            }
+        }
+        return null;
     }
 }
