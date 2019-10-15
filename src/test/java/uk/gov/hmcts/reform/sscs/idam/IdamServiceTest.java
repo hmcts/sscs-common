@@ -93,15 +93,6 @@ public class IdamServiceTest {
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
         assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
-
-        verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
-        final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
-
-        //Check the message being logged is correct
-        assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Passing authorization code to IDAM to get a token"));
-        assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam token successful"));
     }
 
     @Test
@@ -119,13 +110,5 @@ public class IdamServiceTest {
         } catch (RuntimeException rte) {
             // Ignore for the purposes of this test
         }
-
-        verify(mockAppender, times(3)).doAppend(captorLoggingEvent.capture());
-        final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
-
-        //Check the message being logged is correct
-        assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
     }
 }
