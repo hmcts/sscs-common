@@ -123,6 +123,7 @@ public enum EventType {
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
     DWP_ACTION_WITHDRAWAL("dwpActionWithdrawal", 0, false),
     FE_NO_ACTION("feNoAction", 0, false),
+    SEND_TO_ADMIN("sendToAdmin", 0, false),
     READY_TO_LIST("readyToList", 0, false);
 
     private String type;
