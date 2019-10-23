@@ -128,7 +128,6 @@ public enum EventType {
     DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false),
     VALID_SENT_TO_INTERLOC("validSendToInterloc", 0, false);
 
-
     private String type;
     private String ccdType;
     private final int order;
