@@ -193,7 +193,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
-                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
+                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase
     ) {
         this.ccdCaseId = ccdCaseId;
         this.caseReference = caseReference;
