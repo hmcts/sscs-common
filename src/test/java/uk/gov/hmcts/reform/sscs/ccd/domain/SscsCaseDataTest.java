@@ -263,6 +263,20 @@ public class SscsCaseDataTest {
         assertEquals("anotherTestUrl2", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
+    @Test
+    public void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, null, null));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, null, null));
+        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, null, null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition) {
         return SscsDocument.builder().value(
                 SscsDocumentDetails.builder().documentType(documentType.getValue())
