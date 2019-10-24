@@ -24,8 +24,12 @@ public class SscsDocument implements Comparable<SscsDocument> {
     public int compareTo(SscsDocument doc2) {
         SscsDocumentDetails nextDocumentDetails = doc2.getValue();
 
-        if (value.getDocumentDateAdded() == null) {
+        if (value.getDocumentDateAdded() == null || doc2.getValue().getDocumentDateAdded() == null) {
             return 0;
+        }
+
+        if (value.getBundleAddition() != null && nextDocumentDetails.getBundleAddition() != null) {
+            return -1 * value.getBundleAddition().compareTo(nextDocumentDetails.getBundleAddition());
         }
 
         if (value.getDocumentDateAdded().equals(nextDocumentDetails.getDocumentDateAdded())) {
