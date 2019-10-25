@@ -135,13 +135,14 @@
     {
       "code": "Balham DRT",
       "mapping": {
-        "ccd": "Balham DRT",
-        "gaps": "Balham DRT"
+        "ccd": "Watford DRT",
+        "gaps": "Watford Service Centre"
       },
       "address": {
-        "line1": "Mail Handling Site A",
-        "line2": "WOLVERHAMPTON",
-        "postCode": "WV98 1HJ"
+        "line1": "Watford Service Centre",
+        "line2": "Post Handling Site B",
+        "line3": "WOLVERHAMPTON",
+        "postCode": "WV99 1RH"
       }
     },
     {
@@ -199,26 +200,27 @@
     {
       "code": "Lowestoft DRT",
       "mapping": {
-        "ccd": "Lowestoft DRT",
-        "gaps": "Lowestoft DRT"
+        "ccd": "Watford DRT",
+        "gaps": "Watford Service Centre"
       },
       "address": {
-        "line1": "Post Handling Site B",
-        "line2": "WOLVERHAMPTON",
-        "postCode": "WV99 1NH"
+        "line1": "Watford Service Centre",
+        "line2": "Post Handling Site B",
+        "line3": "WOLVERHAMPTON",
+        "postCode": "WV99 1RH"
       }
     },
     {
       "code": "Milton Keynes DRT",
       "mapping": {
-        "ccd": "Milton Keynes DRT",
-        "gaps": "Milton Keynes Benefit Centre"
+        "ccd": "Worthing DRT",
+        "gaps": "Worthing DRT"
       },
       "address": {
-        "line1": "Milton Keynes Benefit Centre",
+        "line1": "Worthing Benefit Centre",
         "line2": "Post Handling Site B",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1RA"
+        "postCode": "WV99 1QJ"
       }
     },
     {
