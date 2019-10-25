@@ -1,13 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.Test;
 
 public class StateTest {
     // copied from the State TAB in the CCD Definition file
