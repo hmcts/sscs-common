@@ -44,6 +44,24 @@ public enum State {
     @JsonProperty("withDwp")
     WITH_DWP("withDwp"),
 
+    @JsonProperty("closed")
+    CLOSED("closed"),
+
+    @JsonProperty("draft")
+    DRAFT("draft"),
+
+    @JsonProperty("draftArchived")
+    DRAFT_ARCHIVED("draftArchived"),
+
+    @JsonProperty("hearing")
+    HEARING("hearing"),
+
+    @JsonProperty("outcome")
+    OUTCOME("outcome"),
+
+    @JsonProperty("pendingAppeal")
+    PENDING_APPEAL("pendingAppeal"),
+
     @JsonProperty("unknown")
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
