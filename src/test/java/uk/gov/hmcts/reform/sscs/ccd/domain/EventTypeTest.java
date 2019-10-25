@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
 import org.junit.Test;
 
 public class EventTypeTest {
@@ -122,7 +121,7 @@ public class EventTypeTest {
             "voidCase\n" +
             "voidIncompleteApplication\n" +
             "readyToList\n" +
-            "validSendToInterloc\n"+
+            "validSendToInterloc\n" +
             "interlocVoidAppeal";
 
     @Test
