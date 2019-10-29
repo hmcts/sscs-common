@@ -12,10 +12,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public class SscsCcdConvertServiceTest {
@@ -227,5 +224,22 @@ public class SscsCcdConvertServiceTest {
         assertTrue(hasAppellantIdentify(caseDetails.getData()));
 
         assertEquals(LocalDate.of(2019, 07, 04), caseDetails.getData().getSscsInterlocDirectionDocument().getDocumentDateAdded());
+    }
+
+    @Test
+    public void canTranslateAnEnum() {
+        String caseReference = "caseRef";
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("caseReference", caseReference);
+        data.put("directionType", DirectionType.APPEAL_TO_PROCEED);
+
+        long id = 123L;
+        CaseDetails build = CaseDetails.builder()
+                .id(id)
+                .data(data)
+                .build();
+        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+
+        assertEquals(DirectionType.APPEAL_TO_PROCEED, caseDetails.getData().getDirectionType());
     }
 }

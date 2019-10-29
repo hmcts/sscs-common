@@ -25,6 +25,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String ccdCaseId;
 
+    private State state;
     private String caseReference;
     private String caseCreated;
     private InfoRequests infoRequests;
@@ -108,9 +109,11 @@ public class SscsCaseData implements CaseData {
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
+    private DirectionType directionType;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
+                        @JsonProperty(value = "state") State state,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("infoRequests") InfoRequests infoRequests,
@@ -191,9 +194,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
-                        @JsonProperty("decisionType") String decisionType
+                        @JsonProperty("decisionType") String decisionType,
+                        @JsonProperty("directionType") DirectionType directionType
     ) {
         this.ccdCaseId = ccdCaseId;
+        this.state = state;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.infoRequests = infoRequests;
@@ -273,6 +278,7 @@ public class SscsCaseData implements CaseData {
         this.dwpResponseDate = dwpResponseDate;
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
+        this.directionType = directionType;
     }
 
     @JsonIgnore
