@@ -106,6 +106,8 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpSupplementaryResponseDoc;
+    private DwpResponseDocument dwpOtherDoc;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
@@ -192,6 +194,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
+                        @JsonProperty("dwpSupplementaryResponseDoc") DwpResponseDocument dwpSupplementaryResponseDoc,
+                        @JsonProperty("dwpOtherDoc") DwpResponseDocument dwpOtherDoc,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
@@ -275,6 +279,8 @@ public class SscsCaseData implements CaseData {
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
         this.dwpResponseDocument = dwpResponseDocument;
+        this.dwpSupplementaryResponseDoc = dwpSupplementaryResponseDoc;
+        this.dwpOtherDoc = dwpOtherDoc;
         this.dwpResponseDate = dwpResponseDate;
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
