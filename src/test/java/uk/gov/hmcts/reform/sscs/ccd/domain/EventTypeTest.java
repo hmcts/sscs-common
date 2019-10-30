@@ -115,6 +115,7 @@ public class EventTypeTest {
             "voidCase\n" +
             "voidIncompleteApplication\n" +
             "readyToList\n" +
+            "dwpChallengeValidity\n" +
             "interlocVoidAppeal";
 
     @Test
