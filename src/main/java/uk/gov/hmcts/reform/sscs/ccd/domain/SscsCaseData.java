@@ -25,6 +25,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String ccdCaseId;
 
+    private State state;
     private String caseReference;
     private String caseCreated;
     private InfoRequests infoRequests;
@@ -109,9 +110,11 @@ public class SscsCaseData implements CaseData {
     private String linkedCasesBoolean;
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
+    private DirectionType directionType;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
+                        @JsonProperty(value = "state") State state,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("infoRequests") InfoRequests infoRequests,
@@ -193,9 +196,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
-                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase
+                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
+                        @JsonProperty("directionType") DirectionType directionType
     ) {
         this.ccdCaseId = ccdCaseId;
+        this.state = state;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.infoRequests = infoRequests;
@@ -276,6 +281,7 @@ public class SscsCaseData implements CaseData {
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
+        this.directionType = directionType;
     }
 
     @JsonIgnore
