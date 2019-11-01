@@ -112,6 +112,7 @@ public class SscsCaseData implements CaseData {
     private String linkedCasesBoolean;
     private String decisionType;
     private DirectionType directionType;
+    private DynamicList selectDirectionType;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -199,8 +200,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
-                        @JsonProperty("directionType") DirectionType directionType
-    ) {
+                        @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType
+                        ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -285,6 +287,7 @@ public class SscsCaseData implements CaseData {
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
         this.directionType = directionType;
+        this.selectDirectionType = selectDirectionType;
     }
 
     @JsonIgnore
