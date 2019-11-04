@@ -14,11 +14,11 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
 public class SscsCaseDataTest {
 
-    LocalDate now = LocalDate.now();
+    private LocalDate now = LocalDate.now();
 
     @Test
     public void sortHearingsByDateWhenIdsAreBlank() {
-        List<Hearing> hearings = new ArrayList();
+        List<Hearing> hearings = new ArrayList<>();
         Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-01-01").time("12:00").build()).build();
         Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-03-01").time("12:00").build()).build();
         Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-02-01").time("12:00").build()).build();
@@ -36,7 +36,7 @@ public class SscsCaseDataTest {
 
     @Test
     public void sortHearingsByIdFirstThenDate() {
-        List<Hearing> hearings = new ArrayList();
+        List<Hearing> hearings = new ArrayList<>();
         Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingId("2").hearingDate("2019-04-01").time("12:00").build()).build();
         Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-03-01").time("12:00").build()).build();
         Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-02-01").time("12:00").build()).build();
@@ -62,7 +62,7 @@ public class SscsCaseDataTest {
 
     @Test
     public void sortHearingsByIdWhenFewHearingsHaveBlankId() {
-        List<Hearing> hearings = new ArrayList();
+        List<Hearing> hearings = new ArrayList<>();
         Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-04-01").time("12:00").build()).build();
         Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-05-01").time("12:00").build()).build();
         Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("1").hearingDate("2019-02-01").time("12:00").build()).build();
@@ -83,7 +83,7 @@ public class SscsCaseDataTest {
 
     @Test
     public void sortEventsByDate() {
-        List<Event> events = new ArrayList();
+        List<Event> events = new ArrayList<>();
         Event event1 = Event.builder().value(EventDetails.builder().date("2019-01-01").build()).build();
         Event event2 = Event.builder().value(EventDetails.builder().date("2019-03-01").build()).build();
         Event event3 = Event.builder().value(EventDetails.builder().date("2019-02-01").build()).build();
@@ -101,7 +101,7 @@ public class SscsCaseDataTest {
 
     @Test
     public void sortEvidenceByDate() {
-        List<Document> documents = new ArrayList();
+        List<Document> documents = new ArrayList<>();
         Document document1 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-01-01").build()).build();
         Document document2 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-03-01").build()).build();
         Document document3 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-02-01").build()).build();

@@ -1,10 +1,14 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -113,6 +117,7 @@ public class SscsCaseData implements CaseData {
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
     private DirectionType directionType;
+    private DwpResponseDocument tl1Form;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -201,7 +206,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
-                        @JsonProperty("directionType") DirectionType directionType
+                        @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("tl1Form") DwpResponseDocument tl1Form
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -288,6 +294,7 @@ public class SscsCaseData implements CaseData {
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
+        this.tl1Form = tl1Form;
     }
 
     @JsonIgnore
@@ -361,11 +368,10 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
-            Stream<SscsDocument> filteredDocs = getSscsDocument().stream().filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
+            Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
+                .filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
 
-            List<SscsDocument> docs = new ArrayList<>(filteredDocs.collect(Collectors.toList()));
-
-            Collections.sort(docs);
+            List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
 
             if (docs.size() > 0) {
                 return docs.get(0);
