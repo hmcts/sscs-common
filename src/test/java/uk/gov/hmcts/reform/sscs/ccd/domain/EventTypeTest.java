@@ -1,8 +1,14 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
+
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 public class EventTypeTest {
@@ -115,6 +121,7 @@ public class EventTypeTest {
             "voidCase\n" +
             "voidIncompleteApplication\n" +
             "readyToList\n" +
+            "validSendToInterloc\n" +
             "interlocVoidAppeal";
 
     @Test
@@ -124,6 +131,23 @@ public class EventTypeTest {
         for (String eventType : allEventTypes) {
             try {
                 EventType.findValue(eventType);
+            } catch (NoSuchElementException e) {
+                fail(String.format("missing %s", eventType));
+            }
+        }
+    }
+
+    @Test
+    public void eventNameIsCorrect() {
+        List<EventType> exceptions = Arrays.asList(DWP_RESPOND, ADJOURNED,
+                LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
+                SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
+                SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER, LINK_A_CASE);
+        for (EventType eventType : EventType.values()) {
+            try {
+                if (!exceptions.contains(eventType)) {
+                    assertEquals(StringUtils.upperCase(eventType.getCcdType().replaceAll("(.)([A-Z])", "$1_$2")), eventType.name());
+                }
             } catch (NoSuchElementException e) {
                 fail(String.format("missing %s", eventType));
             }
