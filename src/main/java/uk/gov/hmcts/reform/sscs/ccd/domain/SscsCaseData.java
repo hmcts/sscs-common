@@ -1,6 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
@@ -111,6 +116,7 @@ public class SscsCaseData implements CaseData {
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
+    private DynamicList selectWhoReviewsCase;
     private DirectionType directionType;
     private DynamicList selectDirectionType;
 
@@ -201,8 +207,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("directionType") DirectionType directionType,
-                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType
-                        ) {
+                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType,
+                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -286,6 +293,7 @@ public class SscsCaseData implements CaseData {
         this.dwpResponseDate = dwpResponseDate;
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
+        this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
         this.selectDirectionType = selectDirectionType;
     }
@@ -363,9 +371,7 @@ public class SscsCaseData implements CaseData {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredDocs = getSscsDocument().stream().filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
 
-            List<SscsDocument> docs = new ArrayList<>(filteredDocs.collect(Collectors.toList()));
-
-            Collections.sort(docs);
+            List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
 
             if (docs.size() > 0) {
                 return docs.get(0);
