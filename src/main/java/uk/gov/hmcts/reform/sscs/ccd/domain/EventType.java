@@ -126,7 +126,8 @@ public enum EventType {
     SEND_TO_ADMIN("sendToAdmin", 0, false),
     READY_TO_LIST("readyToList", 0, false),
     DWP_CHALLENGE_VALIDITY("dwpChallengeValidity", 0, false),
-    DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false);
+    DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false),
+    VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false);
 
     private String type;
     private String ccdType;
