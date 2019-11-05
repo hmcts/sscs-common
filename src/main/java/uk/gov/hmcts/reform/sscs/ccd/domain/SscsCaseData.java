@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -206,9 +205,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
+                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
-                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType,
-                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase
+                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -294,8 +293,8 @@ public class SscsCaseData implements CaseData {
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
-        this.directionType = directionType;
         this.selectDirectionType = selectDirectionType;
+        this.directionType = directionType;
     }
 
     @JsonIgnore
