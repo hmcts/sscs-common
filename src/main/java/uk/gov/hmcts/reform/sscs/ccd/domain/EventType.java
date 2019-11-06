@@ -125,6 +125,7 @@ public enum EventType {
     FE_NO_ACTION("feNoAction", 0, false),
     SEND_TO_ADMIN("sendToAdmin", 0, false),
     READY_TO_LIST("readyToList", 0, false),
+    DWP_CHALLENGE_VALIDITY("dwpChallengeValidity", 0, false),
     DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false),
     VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false),
     DWP_REQUEST_TIME_EXTENSION("dwpRequestTimeExtension", 0, false);
