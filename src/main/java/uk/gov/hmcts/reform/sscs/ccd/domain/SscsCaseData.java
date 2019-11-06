@@ -108,9 +108,12 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
+    private DwpLT203 dwpLT203;
+    private DwpLapseLetter dwpLapseLetter;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
+    private DynamicList selectWhoReviewsCase;
     private DirectionType directionType;
 
     @JsonCreator
@@ -196,9 +199,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
                         @JsonProperty("dwpSupplementaryResponseDoc") DwpResponseDocument dwpSupplementaryResponseDoc,
                         @JsonProperty("dwpOtherDoc") DwpResponseDocument dwpOtherDoc,
+                        @JsonProperty("dwpLT203") DwpLT203 dwpLT203,
+                        @JsonProperty("dwpLapseLetter") DwpLapseLetter dwpLapseLetter,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
                         @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
                         @JsonProperty("decisionType") String decisionType,
+                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -281,9 +287,12 @@ public class SscsCaseData implements CaseData {
         this.dwpResponseDocument = dwpResponseDocument;
         this.dwpSupplementaryResponseDoc = dwpSupplementaryResponseDoc;
         this.dwpOtherDoc = dwpOtherDoc;
+        this.dwpLT203 = dwpLT203;
+        this.dwpLapseLetter = dwpLapseLetter;
         this.dwpResponseDate = dwpResponseDate;
         this.linkedCasesBoolean = linkedCasesBoolean;
         this.decisionType = decisionType;
+        this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
     }
 
