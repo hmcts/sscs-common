@@ -110,6 +110,8 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpSupplementaryResponseDoc;
+    private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
     private DwpLapseLetter dwpLapseLetter;
     private String dwpResponseDate;
@@ -200,6 +202,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
+                        @JsonProperty("dwpSupplementaryResponseDoc") DwpResponseDocument dwpSupplementaryResponseDoc,
+                        @JsonProperty("dwpOtherDoc") DwpResponseDocument dwpOtherDoc,
                         @JsonProperty("dwpLT203") DwpLT203 dwpLT203,
                         @JsonProperty("dwpLapseLetter") DwpLapseLetter dwpLapseLetter,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
@@ -287,6 +291,8 @@ public class SscsCaseData implements CaseData {
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
         this.dwpResponseDocument = dwpResponseDocument;
+        this.dwpSupplementaryResponseDoc = dwpSupplementaryResponseDoc;
+        this.dwpOtherDoc = dwpOtherDoc;
         this.dwpLT203 = dwpLT203;
         this.dwpLapseLetter = dwpLapseLetter;
         this.dwpResponseDate = dwpResponseDate;
