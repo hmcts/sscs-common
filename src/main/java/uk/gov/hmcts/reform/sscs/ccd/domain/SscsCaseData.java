@@ -110,6 +110,8 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpSupplementaryResponseDoc;
+    private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
     private DwpLapseLetter dwpLapseLetter;
     private String dwpResponseDate;
@@ -118,6 +120,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList selectWhoReviewsCase;
     private DirectionType directionType;
     private DynamicList selectDirectionType;
+    private DwpResponseDocument tl1Form;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -200,6 +203,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
                         @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
+                        @JsonProperty("dwpSupplementaryResponseDoc") DwpResponseDocument dwpSupplementaryResponseDoc,
+                        @JsonProperty("dwpOtherDoc") DwpResponseDocument dwpOtherDoc,
                         @JsonProperty("dwpLT203") DwpLT203 dwpLT203,
                         @JsonProperty("dwpLapseLetter") DwpLapseLetter dwpLapseLetter,
                         @JsonProperty("dwpResponseDate") String dwpResponseDate,
@@ -207,7 +212,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
-                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType
+                        @JsonProperty("selectDirectionType") DynamicList selectDirectionType,
+                        @JsonProperty("tl1Form") DwpResponseDocument tl1Form
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -287,6 +293,8 @@ public class SscsCaseData implements CaseData {
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
         this.dwpResponseDocument = dwpResponseDocument;
+        this.dwpSupplementaryResponseDoc = dwpSupplementaryResponseDoc;
+        this.dwpOtherDoc = dwpOtherDoc;
         this.dwpLT203 = dwpLT203;
         this.dwpLapseLetter = dwpLapseLetter;
         this.dwpResponseDate = dwpResponseDate;
@@ -295,6 +303,7 @@ public class SscsCaseData implements CaseData {
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.selectDirectionType = selectDirectionType;
         this.directionType = directionType;
+        this.tl1Form = tl1Form;
     }
 
     @JsonIgnore
@@ -368,7 +377,8 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
-            Stream<SscsDocument> filteredDocs = getSscsDocument().stream().filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
+            Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
+                .filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
 
             List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
 
