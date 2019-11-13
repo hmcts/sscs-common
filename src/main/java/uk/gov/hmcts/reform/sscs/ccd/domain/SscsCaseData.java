@@ -121,6 +121,7 @@ public class SscsCaseData implements CaseData {
     private DirectionType directionType;
     private DynamicList selectDirectionType;
     private DwpResponseDocument tl1Form;
+    private String isInterlocRequired;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -213,7 +214,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
                         @JsonProperty("selectDirectionType") DynamicList selectDirectionType,
-                        @JsonProperty("tl1Form") DwpResponseDocument tl1Form
+                        @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
+                        @JsonProperty("isInterlocRequired") String isInterlocRequired
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -304,6 +306,7 @@ public class SscsCaseData implements CaseData {
         this.selectDirectionType = selectDirectionType;
         this.directionType = directionType;
         this.tl1Form = tl1Form;
+        this.isInterlocRequired = isInterlocRequired;
     }
 
     @JsonIgnore
