@@ -11,6 +11,7 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -86,7 +87,7 @@ public class IdamServiceTest {
                 " ")
         ).thenReturn(authToken);
 
-        UserDetails expectedUserDetails = new UserDetails("16");
+        UserDetails expectedUserDetails = new UserDetails("16", new ArrayList<>());
         given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
