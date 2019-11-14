@@ -53,6 +53,14 @@ public class IdamService {
         return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
+    public UserDetails getUserDetails(String oauth2Token)  {
+        return idamApiClient.getUserDetails(oauth2Token);
+    }
+
+    public UserDetails assignNewRole(String oauth2Token, String userId, String roleId) {
+        return idamApiClient.assignNewRole(oauth2Token, userId, roleId);
+    }
+
     public String getIdamOauth2Token() {
 
         try {

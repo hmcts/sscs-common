@@ -45,4 +45,13 @@ public interface IdamApiClient {
     )
     UserDetails getUserDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token);
 
+    @RequestMapping(method = RequestMethod.PATCH,
+            value = "/users/{userId}/roles/{roleId}",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    )
+    UserDetails assignNewRole(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token,
+            @RequestParam("userId") final String userId,
+            @RequestParam("roleId") final String roleId
+    );
+
 }
