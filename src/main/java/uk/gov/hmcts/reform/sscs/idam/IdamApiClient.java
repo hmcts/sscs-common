@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import java.util.List;
 import org.apache.http.HttpHeaders;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @FeignClient(name = "idam-api", url = "${idam.url}")
 public interface IdamApiClient {
@@ -45,13 +47,12 @@ public interface IdamApiClient {
     )
     UserDetails getUserDetails(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token);
 
-    @RequestMapping(method = RequestMethod.PATCH,
-            value = "/users/{userId}/roles/{roleId}",
+    @RequestMapping(method = RequestMethod.POST,
+            value = "/api/v1/users/{userId}/roles/",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
     UserDetails assignNewRole(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token,
             @RequestParam("userId") final String userId,
-            @RequestParam("roleId") final String roleId
-    );
+            @RequestBody final List<IdamRole> roles);
 
 }
