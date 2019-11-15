@@ -49,7 +49,7 @@ public interface IdamApiClient {
 
     @RequestMapping(method = RequestMethod.POST,
             value = "/api/v1/users/{userId}/roles/",
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+            consumes = MediaType.APPLICATION_JSON_VALUE
     )
     UserDetails assignNewRole(@RequestHeader(HttpHeaders.AUTHORIZATION) final String oauth2Token,
             @RequestParam("userId") final String userId,
