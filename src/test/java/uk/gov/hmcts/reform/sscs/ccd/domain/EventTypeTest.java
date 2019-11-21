@@ -124,6 +124,7 @@ public class EventTypeTest {
             "dwpChallengeValidity\n" +
             "validSendToInterloc\n" +
             "dwpRequestTimeExtension\n" +
+            "confirmLapsed\n" +
             "interlocVoidAppeal";
 
     @Test
