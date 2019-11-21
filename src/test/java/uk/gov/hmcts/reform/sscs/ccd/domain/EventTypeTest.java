@@ -2,12 +2,29 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ACTION_STRIKE_OUT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ADD_SC_NUMBER;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ADJOURNED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CLOSED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.COH_ONLINE_HEARING_RELISTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CREATE_APPEAL_PDF;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DORMANT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND_OVERDUE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.FINAL_DECISION;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.FIRST_HEARING_HOLDING_REMINDER;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LAPSED_REVISED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LINK_A_CASE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POSTPONED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_INFO_INCOMPLETE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.RESEND_CASE_TO_GAPS2;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SENT_TO_DWP_ERROR;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SYA_APPEAL_CREATED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.WITHDRAWN;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
@@ -124,6 +141,7 @@ public class EventTypeTest {
             "dwpChallengeValidity\n" +
             "validSendToInterloc\n" +
             "dwpRequestTimeExtension\n" +
+            "actionStrikeOut\n" +
             "interlocVoidAppeal";
 
     @Test
@@ -142,9 +160,10 @@ public class EventTypeTest {
     @Test
     public void eventNameIsCorrect() {
         List<EventType> exceptions = Arrays.asList(DWP_RESPOND, ADJOURNED,
-                LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
-                SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
-                SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER, LINK_A_CASE);
+            LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
+            SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
+            SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
+            LINK_A_CASE, ACTION_STRIKE_OUT);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
