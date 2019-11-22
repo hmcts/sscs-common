@@ -119,6 +119,7 @@ public class SscsCaseData implements CaseData {
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
     private DirectionType directionType;
+    private ExtensionNextEvent extensionNextEvent;
     private DwpResponseDocument tl1Form;
     private String isInterlocRequired;
 
@@ -212,6 +213,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
                         @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
                         @JsonProperty("isInterlocRequired") String isInterlocRequired
     ) {
@@ -302,6 +304,7 @@ public class SscsCaseData implements CaseData {
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
+        this.extensionNextEvent = extensionNextEvent;
         this.tl1Form = tl1Form;
         this.isInterlocRequired = isInterlocRequired;
     }
