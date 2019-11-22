@@ -12,6 +12,7 @@ public class PreSubmitCallbackResponse<T extends CaseData> {
 
     private T data;
     private Set<String> errors = new LinkedHashSet<>();
+    private Set<String> warnings = new LinkedHashSet<>();
 
     private PreSubmitCallbackResponse() {
         // noop -- for deserializer
@@ -36,8 +37,20 @@ public class PreSubmitCallbackResponse<T extends CaseData> {
         this.errors.addAll(errors);
     }
 
+    public void addWarning(String error) {
+        this.warnings.add(error);
+    }
+
+    public void addWarnings(Collection<String> errors) {
+        this.warnings.addAll(errors);
+    }
+
     public Set<String> getErrors() {
         return ImmutableSet.copyOf(errors);
+    }
+
+    public Set<String> getWarnings() {
+        return ImmutableSet.copyOf(warnings);
     }
 
     public void setData(T data) {
