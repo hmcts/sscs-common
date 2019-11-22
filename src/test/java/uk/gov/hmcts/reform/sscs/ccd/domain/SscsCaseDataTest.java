@@ -277,9 +277,22 @@ public class SscsCaseDataTest {
         assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
+    @Test
+    public void givenADocumentTypeIsNull_thenHandleCorrectly() {
+        List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("testUrl", null, now.minusDays(1).toString(), null));
+        documents.add(buildSscsDocument("testUrl2", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        assertEquals("testUrl2", result.getValue().getDocumentLink().getDocumentUrl());
+    }
+
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition) {
+        String docType = documentType == null ? null : documentType.getValue();
         return SscsDocument.builder().value(
-                SscsDocumentDetails.builder().documentType(documentType.getValue())
+                SscsDocumentDetails.builder().documentType(docType)
                         .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                         .documentDateAdded(date)
                         .bundleAddition(bundleAddition)
