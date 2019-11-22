@@ -378,7 +378,7 @@ public class SscsCaseData implements CaseData {
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
-                .filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
+                .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
             List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
 
