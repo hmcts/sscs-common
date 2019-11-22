@@ -129,6 +129,7 @@ public enum EventType {
     DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false),
     VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false),
     DWP_REQUEST_TIME_EXTENSION("dwpRequestTimeExtension", 0, false),
+    ACTION_STRIKE_OUT("actionStrikeOut", 0, false),
     APPEAL_TO_PROCEED("appealToProceed", 0, false);
 
     private String type;
