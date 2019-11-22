@@ -141,6 +141,7 @@ public class EventTypeTest {
             "dwpChallengeValidity\n" +
             "validSendToInterloc\n" +
             "dwpRequestTimeExtension\n" +
+            "confirmLapsed\n" +
             "actionStrikeOut\n" +
             "interlocVoidAppeal";
 
