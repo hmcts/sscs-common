@@ -122,6 +122,24 @@ public class SscsCaseData implements CaseData {
     private ExtensionNextEvent extensionNextEvent;
     private DwpResponseDocument tl1Form;
     private String isInterlocRequired;
+    private Panel panel;
+    @JsonProperty("evidenceReceivedCF")
+    private EvidenceReceived evidenceReceived;
+    private String urgentCase;
+    private String documentSentToDwp;
+    private String directionDueDate;
+    private String reservedToJudge;
+    private List<CaseLink> linkedCase;
+    private String isWaiverNeeded;
+    private List<String> waiverDeclaration;
+    private List<String> waiverReason;
+    private String waiverReasonOther;
+    private List<String> clerkDelegatedAuthority;
+    private List<String> clerkAppealSatisfactionText;
+    @JsonProperty("clerkConfirmationOfMRN")
+    private String clerkConfirmationOfMrn;
+    private String clerkOtherReason;
+    private String clerkConfirmationOther;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -215,7 +233,23 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("directionType") DirectionType directionType,
                         @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
                         @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
-                        @JsonProperty("isInterlocRequired") String isInterlocRequired
+                        @JsonProperty("isInterlocRequired") String isInterlocRequired,
+                        @JsonProperty("panel") Panel panel,
+                        @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
+                        @JsonProperty("urgentCase") String urgentCase,
+                        @JsonProperty("documentSentToDwp") String documentSentToDwp,
+                        @JsonProperty("directionDueDate") String directionDueDate,
+                        @JsonProperty("reservedToJudge") String reservedToJudge,
+                        @JsonProperty("linkedCase") List<CaseLink> linkedCase,
+                        @JsonProperty("isWaiverNeeded") String isWaiverNeeded,
+                        @JsonProperty("waiverDeclaration") List<String> waiverDeclaration,
+                        @JsonProperty("waiverReason") List<String> waiverReason,
+                        @JsonProperty("waiverReasonOther") String waiverReasonOther,
+                        @JsonProperty("clerkDelegatedAuthority") List<String> clerkDelegatedAuthority,
+                        @JsonProperty("clerkAppealSatisfactionText") List<String> clerkAppealSatisfactionText,
+                        @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
+                        @JsonProperty("clerkOtherReason") String clerkOtherReason,
+                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -307,7 +341,24 @@ public class SscsCaseData implements CaseData {
         this.extensionNextEvent = extensionNextEvent;
         this.tl1Form = tl1Form;
         this.isInterlocRequired = isInterlocRequired;
+        this.panel = panel;
+        this.evidenceReceived = evidenceReceived;
+        this.urgentCase = urgentCase;
+        this.documentSentToDwp = documentSentToDwp;
+        this.directionDueDate = directionDueDate;
+        this.reservedToJudge = reservedToJudge;
+        this.linkedCase = linkedCase;
+        this.isWaiverNeeded = isWaiverNeeded;
+        this.waiverDeclaration = waiverDeclaration;
+        this.waiverReason = waiverReason;
+        this.waiverReasonOther = waiverReasonOther;
+        this.clerkDelegatedAuthority = clerkDelegatedAuthority;
+        this.clerkAppealSatisfactionText = clerkAppealSatisfactionText;
+        this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
+        this.clerkOtherReason = clerkOtherReason;
+        this.clerkConfirmationOther = clerkConfirmationOther;
     }
+
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
