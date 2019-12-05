@@ -9,7 +9,7 @@ public enum DocumentType {
     OTHER_DOCUMENT("Other document"),
     DWP_RESPONSE("DWP response"),
     DECISION_NOTICE("Decision Notice"),
-    DIRECTION_NOTICE("Direction Notice"),
+    DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL6("dl6"),
     DL16("dl16"),
     APPELLANT_EVIDENCE("appellantEvidence"),
@@ -19,8 +19,14 @@ public enum DocumentType {
     SSCS1("sscs1");
 
     private String value;
+    private String label;
 
     DocumentType(String value) {
         this.value = value;
+    }
+
+    DocumentType(String value, String label) {
+        this.value = value;
+        this.label = label;
     }
 }
