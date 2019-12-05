@@ -106,6 +106,7 @@ public class SscsCaseData implements CaseData {
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
+    private String dateCaseSentToGaps;
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
@@ -218,6 +219,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
                         @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
                         @JsonProperty("createdInGapsFrom") String createdInGapsFrom,
+                        @JsonProperty("dateCaseSentToGaps") String dateCaseSentToGaps,
                         @JsonProperty("associatedCase") List<CaseLink> associatedCase,
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
@@ -325,6 +327,7 @@ public class SscsCaseData implements CaseData {
         this.appealNotePad = appealNotePad;
         this.dwpStateFeNoAction = dwpStateFeNoAction;
         this.createdInGapsFrom = createdInGapsFrom;
+        this.dateCaseSentToGaps = dateCaseSentToGaps;
         this.associatedCase = associatedCase;
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
