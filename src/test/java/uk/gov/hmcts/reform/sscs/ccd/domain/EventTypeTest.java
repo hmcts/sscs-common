@@ -144,6 +144,7 @@ public class EventTypeTest {
             "confirmLapsed\n" +
             "actionStrikeOut\n" +
             "sendFurtherEvidenceError\n" +
+            "furtherEvidenceHandledOffline\n" +
             "interlocVoidAppeal";
 
     @Test

@@ -133,6 +133,7 @@ public enum EventType {
     CONFIRM_LAPSED("confirmLapsed", 0, false),
     ACTION_STRIKE_OUT("actionStrikeOut", 0, false),
     SEND_FURTHER_EVIDENCE_ERROR("sendFurtherEvidenceError", 0, false),
+    FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
     APPEAL_TO_PROCEED("appealToProceed", 0, false);
 
 
