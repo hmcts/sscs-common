@@ -143,6 +143,8 @@ public class EventTypeTest {
             "dwpRequestTimeExtension\n" +
             "confirmLapsed\n" +
             "actionStrikeOut\n" +
+            "sendFurtherEvidenceError\n" +
+            "furtherEvidenceHandledOffline\n" +
             "interlocVoidAppeal";
 
     @Test
