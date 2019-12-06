@@ -145,7 +145,8 @@ public class EventTypeTest {
             "actionStrikeOut\n" +
             "sendFurtherEvidenceError\n" +
             "furtherEvidenceHandledOffline\n" +
-            "interlocVoidAppeal";
+            "interlocVoidAppeal\n" +
+            "resendToDwp";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
