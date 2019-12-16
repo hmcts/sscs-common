@@ -77,7 +77,8 @@ public class SscsCaseCallbackDeserializerTest {
 
     @Test
     @Parameters({
-        "reissueFurtherEvidenceCallbackWithEmptyDynamicList.json"
+        "reissueFurtherEvidenceCallbackWithEmptyDynamicList.json",
+        "reissueFurtherEvidenceCallbackWithDynamicListAsPerAboutToStartCallback.json"
     })
     public void givenMiddleOrAnyOtherEventCallback_shouldDeserializeDynamicListCorrectly(String callbackFilename)
         throws IOException {
