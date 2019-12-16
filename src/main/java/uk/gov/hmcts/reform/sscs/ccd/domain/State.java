@@ -21,7 +21,7 @@ public enum State {
     INCOMPLETE_APPLICATION_VOID_STATE("incompleteApplicationVoidState"),
 
     @JsonProperty("incompleteApplicationInformationReqsted")
-    INCOMPLATE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
+    INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
 
     @JsonProperty("voidState")
     VOID_STATE("voidState"),
