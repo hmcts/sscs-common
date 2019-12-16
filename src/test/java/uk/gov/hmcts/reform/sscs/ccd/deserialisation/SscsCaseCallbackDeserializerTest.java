@@ -21,15 +21,21 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.mockito.quality.Strictness;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DirectionResponse;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DynamicList;
 import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Evidence;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Hearing;
@@ -42,10 +48,13 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsInterlocDirectionDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsStrikeOutDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnitParamsRunner.class)
 public class SscsCaseCallbackDeserializerTest {
 
     private ObjectMapper mapper;
+
+    @Rule
+    public MockitoRule mockitoJUnitRunner = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Mock
     private ObjectMapper mockedMapper;
@@ -64,6 +73,23 @@ public class SscsCaseCallbackDeserializerTest {
 
         mapper = objectMapperBuilder.createXmlMapper(false).build();
         mapper.registerModule(new JavaTimeModule());
+    }
+
+    @Test
+    @Parameters({
+        "reissueFurtherEvidenceCallbackWithEmptyDynamicList.json"
+    })
+    public void givenMiddleOrAnyOtherEventCallback_shouldDeserializeDynamicListCorrectly(String callbackFilename)
+        throws IOException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+        String file = Objects.requireNonNull(getClass().getClassLoader().getResource(
+            callbackFilename)).getFile();
+        String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
+
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+        DynamicList reissueFurtherEvidenceDocument = actualSscsCaseCallback.getCaseDetails().getCaseData()
+            .getReissueFurtherEvidenceDocument();
+        System.out.println(reissueFurtherEvidenceDocument);
     }
 
     @Test
