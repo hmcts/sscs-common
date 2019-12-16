@@ -15,8 +15,6 @@ public class DynamicList {
     @JsonProperty("list_items")
     private List<DynamicListItem> listItems;
 
-    private String urlValue;
-
     public DynamicList(@JsonProperty("value") DynamicListItem value,
                        @JsonProperty("list_items") List<DynamicListItem> listItems) {
         this.value = value;
@@ -24,6 +22,6 @@ public class DynamicList {
     }
 
     public DynamicList(String urlValue) {
-        this.urlValue = urlValue;
+        this.value = new DynamicListItem(urlValue, urlValue);
     }
 }
