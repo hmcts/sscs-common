@@ -84,7 +84,7 @@ public class SscsCaseCallbackDeserializerTest {
         throws IOException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
         String file = Objects.requireNonNull(getClass().getClassLoader().getResource(
-            callbackFilename)).getFile();
+            "reissueFurtherEvidence/" + callbackFilename)).getFile();
         String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
 
         Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
