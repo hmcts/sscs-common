@@ -5,6 +5,7 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doThrow;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Objects;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Rule;
@@ -49,6 +51,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsStrikeOutDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
 @RunWith(JUnitParamsRunner.class)
+@Slf4j
 public class SscsCaseCallbackDeserializerTest {
 
     private ObjectMapper mapper;
@@ -88,10 +91,15 @@ public class SscsCaseCallbackDeserializerTest {
             "reissueFurtherEvidence/" + callbackFilename)).getFile();
         String json = FileUtils.readFileToString(new File(file), StandardCharsets.UTF_8.name());
 
-        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+        Callback<SscsCaseData> actualSscsCaseCallback = null;
+        try {
+            actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+        } catch (Exception e) {
+            fail("no expected exception here");
+        }
         DynamicList reissueFurtherEvidenceDocument = actualSscsCaseCallback.getCaseDetails().getCaseData()
             .getReissueFurtherEvidenceDocument();
-        System.out.println(reissueFurtherEvidenceDocument);
+        log.info(reissueFurtherEvidenceDocument.toString());
     }
 
     @Test
