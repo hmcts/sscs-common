@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.*;
@@ -21,6 +22,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
  */
 
 @Service
+@Slf4j
 public class AirLookupService {
     public String lookupRegionalCentre(String postcode) {
         //full post code
@@ -34,12 +36,6 @@ public class AirLookupService {
             return lookupRegionalCentreByPostCode.get(postcode.toLowerCase().trim());
         }
     }
-
-    private static final Logger LOG = getLogger(AirLookupService.class);
-    private static int POSTCODE_COLUMN = 0;
-    private static int REGIONAL_CENTRE_COLUMN = 7;
-    private static int ESA_UC_COLUMN = 3;
-    private static int PIP_COLUMN = 6;
 
     private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
 
@@ -56,7 +52,7 @@ public class AirLookupService {
         lookupAirVenueNameByPostCode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
 
-        String airlookupFilePath = "reference-data/AIRLookup9.xlsx";
+        String airlookupFilePath = "reference-data/AIRLookup10.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
 
@@ -66,15 +62,15 @@ public class AirLookupService {
             parseAirLookupData(wb2);
             parseVenueData(wb2);
 
-            LOG.debug("Successfully loaded lookup data for postcode endpoint");
+            log.debug("Successfully loaded lookup data for postcode endpoint");
         } catch (IOException e) {
             String message = "Unable to read in spreadsheet with post code data: " + airlookupFilePath;
             AirLookupServiceException ex = new AirLookupServiceException(e);
-            LOG.error(message, ex);
+            log.error(message, ex);
         } catch (InvalidFormatException e) {
             String message = "Format of airlookup file not valid in path: " + airlookupFilePath;
             AirLookupServiceException ex = new AirLookupServiceException(e);
-            LOG.error(message, ex);
+            log.error(message, ex);
         }
     }
 
@@ -90,9 +86,13 @@ public class AirLookupService {
                     if (row.getRowNum() == 0 || row.getRowNum() == 1) {
                         continue;
                     }
+                    int POSTCODE_COLUMN = 0;
                     Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
+                    int REGIONAL_CENTRE_COLUMN = 7;
                     Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
+                    int ESA_UC_COLUMN = 3;
                     Cell esaCell = row.getCell(ESA_UC_COLUMN);
+                    int PIP_COLUMN = 6;
                     Cell pipOrUcCell = row.getCell(PIP_COLUMN);
 
                     if (postcodeCell != null && adminGroupCell != null
