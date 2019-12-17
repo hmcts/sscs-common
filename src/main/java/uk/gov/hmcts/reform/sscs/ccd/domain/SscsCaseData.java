@@ -119,7 +119,9 @@ public class SscsCaseData implements CaseData {
     private String linkedCasesBoolean;
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
+    @Deprecated
     private DirectionType directionType;
+    private DynamicList directionTypeDl;
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
@@ -235,6 +237,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("directionTypeDl") DynamicList directionTypeDl,
                         @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
                         @JsonProperty("extensionNextEventDl") DynamicList extensionNextEventDl,
                         @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
@@ -344,6 +347,7 @@ public class SscsCaseData implements CaseData {
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
+        this.directionTypeDl = directionTypeDl;
         this.extensionNextEvent = extensionNextEvent;
         this.extensionNextEventDl = extensionNextEventDl;
         this.tl1Form = tl1Form;
