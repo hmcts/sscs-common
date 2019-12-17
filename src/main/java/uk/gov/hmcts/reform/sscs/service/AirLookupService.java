@@ -12,7 +12,8 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbookFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.exception.AirLookupServiceException;
@@ -59,7 +60,7 @@ public class AirLookupService {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
 
             OPCPackage pkg = OPCPackage.open(classPathResource.getInputStream());
-            Workbook wb2 = WorkbookFactory.create(pkg);
+            XSSFWorkbook wb2 = XSSFWorkbookFactory.create(pkg);
 
             parseAirLookupData(wb2);
             parseVenueData(wb2);
