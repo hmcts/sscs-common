@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.slf4j.LoggerFactory.getLogger;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +7,12 @@ import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
-import org.apache.poi.ss.usermodel.*;
-import org.slf4j.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.exception.AirLookupServiceException;
@@ -86,17 +88,17 @@ public class AirLookupService {
                     if (row.getRowNum() == 0 || row.getRowNum() == 1) {
                         continue;
                     }
-                    int POSTCODE_COLUMN = 0;
-                    Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
-                    int REGIONAL_CENTRE_COLUMN = 7;
-                    Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
-                    int ESA_UC_COLUMN = 3;
-                    Cell esaCell = row.getCell(ESA_UC_COLUMN);
-                    int PIP_COLUMN = 6;
-                    Cell pipOrUcCell = row.getCell(PIP_COLUMN);
+                    int postcodeColumn = 0;
+                    Cell postcodeCell = row.getCell(postcodeColumn);
+                    int regionalCentreColumn = 7;
+                    Cell adminGroupCell = row.getCell(regionalCentreColumn);
+                    int esaUcColumn = 3;
+                    Cell esaCell = row.getCell(esaUcColumn);
+                    int pipColumn = 6;
+                    Cell pipOrUcCell = row.getCell(pipColumn);
 
                     if (postcodeCell != null && adminGroupCell != null
-                            && postcodeCell.getCellTypeEnum() == CellType.STRING && adminGroupCell.getCellTypeEnum() == CellType.STRING) {
+                            && postcodeCell.getCellType() == CellType.STRING && adminGroupCell.getCellType() == CellType.STRING) {
                         lookupRegionalCentreByPostCode.put(postcodeCell.getRichStringCellValue().getString().toLowerCase().trim(), adminGroupCell.getRichStringCellValue().getString());
 
                         lookupAirVenueNameByPostCode.put(postcodeCell.getRichStringCellValue().getString().toLowerCase().trim(),

@@ -1,16 +1,13 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 import java.util.Map;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
@@ -21,22 +18,17 @@ public class RegionalProcessingCenterServiceTest {
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
-    @Mock
-    private AirLookupService airLookupService;
+    private static final RegionalProcessingCenterService regionalProcessingCenterService;
 
-    private RegionalProcessingCenterService regionalProcessingCenterService;
-
-    @Before
-    public void setUp() {
+    static {
+        AirLookupService airLookupService = new AirLookupService();
+        airLookupService.init();
         regionalProcessingCenterService = new RegionalProcessingCenterService(airLookupService);
+        regionalProcessingCenterService.init();
     }
 
     @Test
     public void givenVenuesCvsFile_shouldLoadSccodeToRpcMap() {
-        //When
-        regionalProcessingCenterService.init();
-
-        //Then
         Map<String, String> sccodeRegionalProcessingCentermap
                 = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
         assertEquals(246, sccodeRegionalProcessingCentermap.size());
@@ -48,14 +40,12 @@ public class RegionalProcessingCenterServiceTest {
     @Test
     @Parameters(method = "getDifferentRpcScenarios")
     public void givenRpcMetaData_shouldLoadRpcMetadataToMap(RegionalProcessingCenter expectedRpc, String rpcKey) {
-        //When
-        regionalProcessingCenterService.init();
-
         //Then
         Map<String, RegionalProcessingCenter> regionalProcessingCenterMap
             = regionalProcessingCenterService.getRegionalProcessingCenterMap();
 
-        assertEquals(7, regionalProcessingCenterMap.size());
+        int rpcCenters = 8;
+        assertEquals(rpcCenters, regionalProcessingCenterMap.size());
         RegionalProcessingCenter actualRpc = regionalProcessingCenterMap.get(rpcKey);
         assertEquals(expectedRpc.getName(), actualRpc.getName());
         assertEquals(expectedRpc.getAddress1(), actualRpc.getAddress1());
@@ -108,7 +98,6 @@ public class RegionalProcessingCenterServiceTest {
     public void shouldReturnRegionalProcessingCenterForGivenAppealReferenceNumber() {
         //Given
         String referenceNumber = "SC274/13/00010";
-        regionalProcessingCenterService.init();
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
@@ -132,7 +121,6 @@ public class RegionalProcessingCenterServiceTest {
 
         //Given
         String referenceNumber = "SC000/13/00010";
-        regionalProcessingCenterService.init();
 
         //When
         RegionalProcessingCenter regionalProcessingCenter =
@@ -145,9 +133,6 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void shouldReturnBirminghamRpcIfTheScNumberIsNull() {
-        //Given
-        regionalProcessingCenterService.init();
-
         //When
         RegionalProcessingCenter regionalProcessingCenter =
             regionalProcessingCenterService.getByScReferenceCode(null);
@@ -158,9 +143,6 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void shouldReturnBirminghamRpcIfTheScNumberIsEmpty() {
-        //Given
-        regionalProcessingCenterService.init();
-
         //When
         RegionalProcessingCenter regionalProcessingCenter =
             regionalProcessingCenterService.getByScReferenceCode("");
@@ -171,8 +153,6 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void getRegionalProcessingCentreFromVenueId() {
-        regionalProcessingCenterService.init();
-
         String leedsVenueId = "10";
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByVenueId(leedsVenueId);
 
@@ -181,13 +161,10 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void getRegionalProcessingCentreFromPostcode() {
-        regionalProcessingCenterService.init();
-
-        String somePostcode = "AB1 1AB";
-        when(airLookupService.lookupRegionalCentre(somePostcode)).thenReturn("Leeds");
+        String somePostcode = "AB10 1AB";
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode);
 
-        assertEquals("LEEDS", rpc.getName());
+        assertEquals("GLASGOW", rpc.getName());
     }
 
     @Test
