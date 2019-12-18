@@ -143,6 +143,7 @@ public class SscsCaseData implements CaseData {
     private String clerkConfirmationOfMrn;
     private String clerkOtherReason;
     private String clerkConfirmationOther;
+    private String responseRequired;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -254,7 +255,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("clerkAppealSatisfactionText") List<String> clerkAppealSatisfactionText,
                         @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
                         @JsonProperty("clerkOtherReason") String clerkOtherReason,
-                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther
+                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
+                        @JsonProperty("responseRequired") String responseRequired
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -364,6 +366,7 @@ public class SscsCaseData implements CaseData {
         this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
         this.clerkOtherReason = clerkOtherReason;
         this.clerkConfirmationOther = clerkConfirmationOther;
+        this.responseRequired = responseRequired;
     }
 
 
