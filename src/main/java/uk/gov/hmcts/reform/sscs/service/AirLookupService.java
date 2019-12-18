@@ -5,14 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbookFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -58,20 +55,13 @@ public class AirLookupService {
         String airlookupFilePath = "reference-data/AIRLookup10.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
-
-            OPCPackage pkg = OPCPackage.open(classPathResource.getInputStream());
-            XSSFWorkbook wb2 = XSSFWorkbookFactory.create(pkg);
-
+            Workbook wb2 = XSSFWorkbookFactory.create(classPathResource.getInputStream());
             parseAirLookupData(wb2);
             parseVenueData(wb2);
 
             log.debug("Successfully loaded lookup data for postcode endpoint");
         } catch (IOException e) {
             String message = "Unable to read in spreadsheet with post code data: " + airlookupFilePath;
-            AirLookupServiceException ex = new AirLookupServiceException(e);
-            log.error(message, ex);
-        } catch (InvalidFormatException e) {
-            String message = "Format of airlookup file not valid in path: " + airlookupFilePath;
             AirLookupServiceException ex = new AirLookupServiceException(e);
             log.error(message, ex);
         }
