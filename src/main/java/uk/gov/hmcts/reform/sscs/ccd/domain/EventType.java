@@ -135,8 +135,8 @@ public enum EventType {
     SEND_FURTHER_EVIDENCE_ERROR("sendFurtherEvidenceError", 0, false),
     FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
     APPEAL_TO_PROCEED("appealToProceed", 0, false),
-    RESEND_TO_DWP("resendToDwp", 0, false);
-
+    RESEND_TO_DWP("resendToDwp", 0, false),
+    ADMIN_SEND_TO_WITH_DWP("adminSendToWithDwp", 0, false);
 
     private String type;
     private String ccdType;
