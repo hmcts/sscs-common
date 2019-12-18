@@ -145,7 +145,7 @@ public class SscsCaseData implements CaseData {
     private String clerkConfirmationOfMrn;
     private String clerkOtherReason;
     private String clerkConfirmationOther;
-    private String dwpRequestTimeExtension;
+    private String timeExtensionRequested;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -259,7 +259,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
                         @JsonProperty("clerkOtherReason") String clerkOtherReason,
                         @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
-                        @JsonProperty("dwpRequestTimeExtension") String dwpRequestTimeExtension
+                        @JsonProperty("timeExtensionRequested") String timeExtensionRequested
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -370,7 +370,7 @@ public class SscsCaseData implements CaseData {
         this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
         this.clerkOtherReason = clerkOtherReason;
         this.clerkConfirmationOther = clerkConfirmationOther;
-        this.dwpRequestTimeExtension = dwpRequestTimeExtension;
+        this.timeExtensionRequested = timeExtensionRequested;
     }
 
 
