@@ -8,7 +8,10 @@ public enum ExtensionNextEvent {
     SEND_TO_LISTING("sendToListing"),
 
     @JsonProperty("sendToValidAppeal")
-    SEND_TO_VALID_APPEAL("sendToValidAppeal");
+    SEND_TO_VALID_APPEAL("sendToValidAppeal"),
+
+    @JsonProperty("noFurtherAction")
+    NO_FURTHER_ACTION("noFurtherAction");
 
     // needed only for the toString method
     private final String id;
