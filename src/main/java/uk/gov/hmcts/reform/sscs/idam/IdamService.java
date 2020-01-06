@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
 import java.util.Base64;
-import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
@@ -56,10 +55,6 @@ public class IdamService {
 
     public UserDetails getUserDetails(String oauth2Token)  {
         return idamApiClient.getUserDetails(oauth2Token);
-    }
-
-    public UserDetails assignNewRole(String oauth2Token, String userId, List<IdamRole> roles) {
-        return idamApiClient.assignNewRole(oauth2Token, userId, roles);
     }
 
     public String getIdamOauth2Token() {
