@@ -2,24 +2,21 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum DirectionType {
+public enum ExtensionNextEvent {
 
-    @JsonProperty("appealToProceed")
-    APPEAL_TO_PROCEED("appealToProceed"),
+    @JsonProperty("sendToListing")
+    SEND_TO_LISTING("sendToListing"),
 
-    @JsonProperty("provideInformation")
-    PROVIDE_INFORMATION("provideInformation"),
+    @JsonProperty("sendToValidAppeal")
+    SEND_TO_VALID_APPEAL("sendToValidAppeal"),
 
-    @JsonProperty("grantExtension")
-    GRANT_EXTENSION("grantExtension"),
-
-    @JsonProperty("refuseExtension")
-    REFUSE_EXTENSION("refuseExtension");
+    @JsonProperty("noFurtherAction")
+    NO_FURTHER_ACTION("noFurtherAction");
 
     // needed only for the toString method
     private final String id;
 
-    DirectionType(String id) {
+    ExtensionNextEvent(String id) {
         this.id = id;
     }
 

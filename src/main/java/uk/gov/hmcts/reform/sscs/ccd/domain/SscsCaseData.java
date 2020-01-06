@@ -106,6 +106,7 @@ public class SscsCaseData implements CaseData {
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
+    private String dateCaseSentToGaps;
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
@@ -118,9 +119,34 @@ public class SscsCaseData implements CaseData {
     private String linkedCasesBoolean;
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
+    @Deprecated
     private DirectionType directionType;
+    private DynamicList directionTypeDl;
+    @Deprecated
+    private ExtensionNextEvent extensionNextEvent;
+    private DynamicList extensionNextEventDl;
     private DwpResponseDocument tl1Form;
     private String isInterlocRequired;
+    private Panel panel;
+    @JsonProperty("evidenceReceivedCF")
+    private EvidenceReceived evidenceReceived;
+    private String urgentCase;
+    private String documentSentToDwp;
+    private String directionDueDate;
+    private String reservedToJudge;
+    private List<CaseLink> linkedCase;
+    private String isWaiverNeeded;
+    private List<String> waiverDeclaration;
+    private List<String> waiverReason;
+    private String waiverReasonOther;
+    private List<String> clerkDelegatedAuthority;
+    private List<String> clerkAppealSatisfactionText;
+    @JsonProperty("clerkConfirmationOfMRN")
+    private String clerkConfirmationOfMrn;
+    private String clerkOtherReason;
+    private String clerkConfirmationOther;
+    private String responseRequired;
+    private String timeExtensionRequested;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -199,6 +225,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
                         @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
                         @JsonProperty("createdInGapsFrom") String createdInGapsFrom,
+                        @JsonProperty("dateCaseSentToGaps") String dateCaseSentToGaps,
                         @JsonProperty("associatedCase") List<CaseLink> associatedCase,
                         @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
                         @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
@@ -212,8 +239,29 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("directionTypeDl") DynamicList directionTypeDl,
+                        @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
+                        @JsonProperty("extensionNextEventDl") DynamicList extensionNextEventDl,
                         @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
-                        @JsonProperty("isInterlocRequired") String isInterlocRequired
+                        @JsonProperty("isInterlocRequired") String isInterlocRequired,
+                        @JsonProperty("panel") Panel panel,
+                        @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
+                        @JsonProperty("urgentCase") String urgentCase,
+                        @JsonProperty("documentSentToDwp") String documentSentToDwp,
+                        @JsonProperty("directionDueDate") String directionDueDate,
+                        @JsonProperty("reservedToJudge") String reservedToJudge,
+                        @JsonProperty("linkedCase") List<CaseLink> linkedCase,
+                        @JsonProperty("isWaiverNeeded") String isWaiverNeeded,
+                        @JsonProperty("waiverDeclaration") List<String> waiverDeclaration,
+                        @JsonProperty("waiverReason") List<String> waiverReason,
+                        @JsonProperty("waiverReasonOther") String waiverReasonOther,
+                        @JsonProperty("clerkDelegatedAuthority") List<String> clerkDelegatedAuthority,
+                        @JsonProperty("clerkAppealSatisfactionText") List<String> clerkAppealSatisfactionText,
+                        @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
+                        @JsonProperty("clerkOtherReason") String clerkOtherReason,
+                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
+                        @JsonProperty("responseRequired") String responseRequired,
+                        @JsonProperty("timeExtensionRequested") String timeExtensionRequested
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -289,6 +337,7 @@ public class SscsCaseData implements CaseData {
         this.appealNotePad = appealNotePad;
         this.dwpStateFeNoAction = dwpStateFeNoAction;
         this.createdInGapsFrom = createdInGapsFrom;
+        this.dateCaseSentToGaps = dateCaseSentToGaps;
         this.associatedCase = associatedCase;
         this.dwpAT38Document = dwpAT38Document;
         this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
@@ -302,9 +351,31 @@ public class SscsCaseData implements CaseData {
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
+        this.directionTypeDl = directionTypeDl;
+        this.extensionNextEvent = extensionNextEvent;
+        this.extensionNextEventDl = extensionNextEventDl;
         this.tl1Form = tl1Form;
         this.isInterlocRequired = isInterlocRequired;
+        this.panel = panel;
+        this.evidenceReceived = evidenceReceived;
+        this.urgentCase = urgentCase;
+        this.documentSentToDwp = documentSentToDwp;
+        this.directionDueDate = directionDueDate;
+        this.reservedToJudge = reservedToJudge;
+        this.linkedCase = linkedCase;
+        this.isWaiverNeeded = isWaiverNeeded;
+        this.waiverDeclaration = waiverDeclaration;
+        this.waiverReason = waiverReason;
+        this.waiverReasonOther = waiverReasonOther;
+        this.clerkDelegatedAuthority = clerkDelegatedAuthority;
+        this.clerkAppealSatisfactionText = clerkAppealSatisfactionText;
+        this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
+        this.clerkOtherReason = clerkOtherReason;
+        this.clerkConfirmationOther = clerkConfirmationOther;
+        this.responseRequired = responseRequired;
+        this.timeExtensionRequested = timeExtensionRequested;
     }
+
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -378,7 +449,7 @@ public class SscsCaseData implements CaseData {
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
-                .filter(f -> f.getValue().getDocumentType().equals(documentType.getValue()));
+                .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
             List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
 

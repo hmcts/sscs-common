@@ -226,14 +226,14 @@
     {
       "code": "Norwich DRT",
       "mapping": {
-        "ccd": "Norwich DRT",
-        "gaps": "Norwich Benefit Centre"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Norwich Benefit Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1NN"
+        "postCode": "WV98 1FZ"
       }
     },
     {

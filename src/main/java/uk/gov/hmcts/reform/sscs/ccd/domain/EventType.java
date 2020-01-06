@@ -129,7 +129,14 @@ public enum EventType {
     DWP_DIRECTION_RESPONSE("dwpDirectionResponse", 0, false),
     VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false),
     DWP_REQUEST_TIME_EXTENSION("dwpRequestTimeExtension", 0, false),
-    APPEAL_TO_PROCEED("appealToProceed", 0, false);
+    ADMIN_SEND_TO_INTERLOCUTORY_REVIEW_STATE("adminSendToInterlocutoryReviewState", 0, false),
+    CONFIRM_LAPSED("confirmLapsed", 0, false),
+    ACTION_STRIKE_OUT("actionStrikeOut", 0, false),
+    SEND_FURTHER_EVIDENCE_ERROR("sendFurtherEvidenceError", 0, false),
+    FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
+    APPEAL_TO_PROCEED("appealToProceed", 0, false),
+    RESEND_TO_DWP("resendToDwp", 0, false),
+    ADMIN_SEND_TO_WITH_DWP("adminSendToWithDwp", 0, false);
 
     private String type;
     private String ccdType;
