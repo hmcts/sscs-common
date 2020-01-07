@@ -85,6 +85,7 @@ public enum EventType {
     INTERLOC_SEND_TO_TCW("interlocSendToTcw", 0, false),
     TCW_DIRECTION_ISSUED("tcwDirectionIssued", 0, false),
     INTERLOC_INFORMATION_RECEIVED("interlocInformationReceived", 0, false),
+    INTERLOC_INFORMATION_RECEIVED_ACTION_FURTHER_EVIDENCE("interlocInformationReceivedActionFurtherEvidence", 0, false),
     TCW_DECISION_STRIKE_OUT("tcwDecisionStrikeOut", 0, false),
     JUDGE_DECISION_ADMIT_APPEAL("judgeDecisionAdmitAppeal", 0, false),
     TCW_DECISION_ADMIT_APPEAL("tcwDecisionAdmitAppeal", 0, false),
