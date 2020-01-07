@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,4 +11,5 @@ public class IdamTokens {
     String idamOauth2Token;
     String serviceAuthorization;
     final String userId;
+    final List<String> roles;
 }
