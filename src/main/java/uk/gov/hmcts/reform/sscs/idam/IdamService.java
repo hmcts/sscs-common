@@ -133,7 +133,8 @@ public class IdamService {
 
     public boolean verifyTokenSignature(String token) {
         try {
-            SignedJWT signedJwt = SignedJWT.parse(token);
+            String tokenTocheck = StringUtils.replace(token, "Bearer ", "");
+            SignedJWT signedJwt = SignedJWT.parse(tokenTocheck);
 
             JWKSet jsonWebKeySet = loadJsonWebKeySet(idamJwkUrl);
 
