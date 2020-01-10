@@ -119,7 +119,9 @@ public class SscsCaseData implements CaseData {
     private String linkedCasesBoolean;
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
+    @Deprecated
     private DirectionType directionType;
+    private DynamicList directionTypeDl;
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
@@ -143,6 +145,8 @@ public class SscsCaseData implements CaseData {
     private String clerkConfirmationOfMrn;
     private String clerkOtherReason;
     private String clerkConfirmationOther;
+    private String responseRequired;
+    private String timeExtensionRequested;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -235,6 +239,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("decisionType") String decisionType,
                         @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
                         @JsonProperty("directionType") DirectionType directionType,
+                        @JsonProperty("directionTypeDl") DynamicList directionTypeDl,
                         @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
                         @JsonProperty("extensionNextEventDl") DynamicList extensionNextEventDl,
                         @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
@@ -254,7 +259,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("clerkAppealSatisfactionText") List<String> clerkAppealSatisfactionText,
                         @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
                         @JsonProperty("clerkOtherReason") String clerkOtherReason,
-                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther
+                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
+                        @JsonProperty("responseRequired") String responseRequired,
+                        @JsonProperty("timeExtensionRequested") String timeExtensionRequested
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -344,6 +351,7 @@ public class SscsCaseData implements CaseData {
         this.decisionType = decisionType;
         this.selectWhoReviewsCase = selectWhoReviewsCase;
         this.directionType = directionType;
+        this.directionTypeDl = directionTypeDl;
         this.extensionNextEvent = extensionNextEvent;
         this.extensionNextEventDl = extensionNextEventDl;
         this.tl1Form = tl1Form;
@@ -364,6 +372,8 @@ public class SscsCaseData implements CaseData {
         this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
         this.clerkOtherReason = clerkOtherReason;
         this.clerkConfirmationOther = clerkConfirmationOther;
+        this.responseRequired = responseRequired;
+        this.timeExtensionRequested = timeExtensionRequested;
     }
 
 

@@ -128,4 +128,45 @@ public class IdamServiceTest {
         assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
         assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
     }
+
+    @Test
+    public void shouldVerifyTokenSignature() {
+        String auth = "auth";
+        authToken = new Authorize("redirect/", "authCode", "eyJ0eXAiOiJKV1QiLCJ6aXAiOiJOT05FIiwia2lkIjoiYi9PNk92VnYxK3krV2dySDVVaTlXVGlvTHQwPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJzc2NzLWNpdGl6ZW40QGhtY3RzLm5ldCIsImF1dGhfbGV2ZWwiOjAsImF1ZGl0VHJhY2tpbmdJZCI6Ijc1YzEyMTk3LWFjYmYtNDg2Zi1iNDI5LTJlYWEwZjMyNWVkMCIsImlzcyI6Imh0dHA6Ly9mci1hbTo4MDgwL29wZW5hbS9vYXV0aDIvaG1jdHMiLCJ0b2tlbk5hbWUiOiJhY2Nlc3NfdG9rZW4iLCJ0b2tlbl90eXBlIjoiQmVhcmVyIiwiYXV0aEdyYW50SWQiOiIwMGZhYThiNy03OWY5LTRiZWQtODI1OS0zZDE0MDEzOGYzZjIiLCJhdWQiOiJzc2NzIiwibmJmIjoxNTc4NTAwNDU0LCJncmFudF90eXBlIjoiYXV0aG9yaXphdGlvbl9jb2RlIiwic2NvcGUiOlsib3BlbmlkIiwicHJvZmlsZSIsInJvbGVzIl0sImF1dGhfdGltZSI6MTU3ODUwMDQ1MTAwMCwicmVhbG0iOiIvaG1jdHMiLCJleHAiOjE1Nzg1MjkyNTQsImlhdCI6MTU3ODUwMDQ1NCwiZXhwaXJlc19pbiI6Mjg4MDAsImp0aSI6ImNkMTgxODM3LTdlMmUtNDY1Ny05ZTgwLTk4NWE3ZjVmZDMzYiJ9.SZOd981fC1bdMWehXKsUl0B9vEXRr7-NBKl6IaFIoS573rNjKgcIzChMaxcmc-anOxJqgF8Lan7RdMCIb4Y-zGG3TzfGAG7elpmXJVsogPKCWJlGFCJm_wU-h_cqAcL2llgqnNkkms43lgvyfIdiXv3J-00qBHzMy3jG5mLOE5YZet1LKf3IiRNZxI5Vx6L2Afdox1jiKGQGGt2bNx7-rcYS8VVVZI-ovo7lbbWU6Mi5lWI19q2AS9jGcK5U4hcIU06JzoWGsh-Ob1xkq7VtJKyrOSiUth-SjY5PqQzjvpuEO8MrLWTI0sCaWRHbmbF0bHICGO17bQ42_PfTHgza4A");
+        when(authTokenGenerator.generate()).thenReturn(auth);
+
+        String base64Authorisation = Base64.getEncoder().encodeToString("email:pass".getBytes());
+        when(idamApiClient.authorizeCodeType("Basic " + base64Authorisation,
+                "code",
+                "id",
+                "redirect/",
+                " ")
+        ).thenReturn(authToken);
+        when(idamApiClient.authorizeToken(authToken.getCode(),
+                "authorization_code",
+                "redirect/",
+                "id",
+                "secret",
+                " ")
+        ).thenReturn(authToken);
+
+        UserDetails expectedUserDetails = new UserDetails("16");
+        given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+
+        IdamTokens idamTokens = idamService.getIdamTokens();
+        try {
+            boolean verified = idamService.verifyTokenSignature(idamTokens.idamOauth2Token);
+        } catch (RuntimeException rte) {
+            // Ignore for the purposes of this test
+        }
+
+        verify(mockAppender, times(6)).doAppend(captorLoggingEvent.capture());
+        final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
+        assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
+        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
+        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Passing authorization code to IDAM to get a token"));
+        assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam token successful"));
+        assertThat(loggingEvent.get(4).getFormattedMessage(), is("JWKS key loading error"));
+        assertThat(loggingEvent.get(5).getFormattedMessage(), is("Token validation error {}"));
+    }
 }
