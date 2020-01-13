@@ -151,7 +151,7 @@ public class IdamServiceTest {
                 " ")
         ).thenReturn(authToken);
 
-        UserDetails expectedUserDetails = new UserDetails("16");
+        UserDetails expectedUserDetails = new UserDetails("16", new ArrayList<>());
         given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
