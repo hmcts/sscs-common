@@ -45,7 +45,7 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
-    private List<SscsDocument> draftSscsFurtherEvidenceDocument;
+    private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private List<CorDocument> corDocument;
     private List<CorDocument> draftCorDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
@@ -166,7 +166,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("caseBundles") List<Bundle> caseBundles,
                         @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
                         @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
-                        @JsonProperty("draftSscsFurtherEvidenceDocument") List<SscsDocument> draftSscsFurtherEvidenceDocument,
+                        @JsonProperty("draftSscsFurtherEvidenceDocument") List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument,
                         @JsonProperty("corDocument") List<CorDocument> corDocument,
                         @JsonProperty("draftCorDocument") List<CorDocument> draftCorDocument,
                         @JsonProperty("sscsInterlocDecisionDocument") SscsInterlocDecisionDocument sscsInterlocDecisionDocument,
