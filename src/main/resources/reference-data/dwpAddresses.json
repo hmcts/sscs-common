@@ -133,14 +133,14 @@
     {
       "code": "AE",
       "mapping": {
-        "ccd": "DWP PIP AE",
-        "gaps": "DWP PIP AE",
-        "dwpRegionCentre": "Newport"
+        "ccd": "DWP PIP (AE)",
+        "gaps": "DWP PIP (AE)",
+        "dwpRegionCentre": "AE"
       },
       "address": {
-        "line1": "Warbreck House",
-        "line2": "Blackpool",
-        "postCode": "FY2 0UZ"
+        "line1": "Mail Handling Site A",
+        "line2": "WOLVERHAMPTON",
+        "postCode": "WV98 2EU"
       }
     }
   ],
