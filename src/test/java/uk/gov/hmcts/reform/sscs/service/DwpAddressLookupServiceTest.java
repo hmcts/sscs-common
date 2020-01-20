@@ -138,7 +138,7 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertEquals(24, result.length);
+        assertEquals(25, result.length);
     }
 
     @Test
