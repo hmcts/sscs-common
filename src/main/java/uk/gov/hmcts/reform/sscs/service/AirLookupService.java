@@ -56,7 +56,7 @@ public class AirLookupService {
         lookupAirVenueNameByPostCode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
 
-        String airlookupFilePath = "reference-data/AIRLookup9.xlsx";
+        String airlookupFilePath = "reference-data/AIRLookup10.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
 
