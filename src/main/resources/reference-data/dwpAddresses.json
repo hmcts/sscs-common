@@ -1,7 +1,7 @@
 {
   "pip": [
     {
-      "code": 1,
+      "code": "1",
       "mapping": {
         "ccd": "DWP PIP (1)",
         "gaps": "DWP PIP (1)",
@@ -14,7 +14,7 @@
       }
     },
     {
-      "code": 2,
+      "code": "2",
       "mapping": {
         "ccd": "DWP PIP (2)",
         "gaps": "DWP PIP (2)",
@@ -27,7 +27,7 @@
       }
     },
     {
-      "code": 3,
+      "code": "3",
       "mapping": {
         "ccd": "DWP PIP (3)",
         "gaps": "DWP PIP (3)",
@@ -40,7 +40,7 @@
       }
     },
     {
-      "code": 4,
+      "code": "4",
       "mapping": {
         "ccd": "DWP PIP (4)",
         "gaps": "DWP PIP (4)",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "code": 5,
+      "code": "5",
       "mapping": {
         "ccd": "DWP PIP (5)",
         "gaps": "DWP PIP (5)",
@@ -66,7 +66,7 @@
       }
     },
     {
-      "code": 6,
+      "code": "6",
       "mapping": {
         "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (6)",
@@ -79,7 +79,7 @@
       }
     },
     {
-      "code": 7,
+      "code": "7",
       "mapping": {
         "ccd": "DWP PIP (7)",
         "gaps": "DWP PIP (7)",
@@ -92,7 +92,7 @@
       }
     },
     {
-      "code": 8,
+      "code": "8",
       "mapping": {
         "ccd": "DWP PIP (8)",
         "gaps": "DWP PIP (8)",
@@ -105,7 +105,7 @@
       }
     },
     {
-      "code": 9,
+      "code": "9",
       "mapping": {
         "ccd": "DWP PIP (9)",
         "gaps": "DWP PIP (9)",
@@ -118,7 +118,7 @@
       }
     },
     {
-      "code": 10,
+      "code": "10",
       "mapping": {
         "ccd": "DWP PIP (10)",
         "gaps": "DWP PIP (10)",
@@ -128,6 +128,19 @@
         "line1": "Warbreck House",
         "line2": "Blackpool",
         "postCode": "FY2 0UZ"
+      }
+    },
+    {
+      "code": "AE",
+      "mapping": {
+        "ccd": "DWP PIP (AE)",
+        "gaps": "DWP PIP (AE)",
+        "dwpRegionCentre": "AE"
+      },
+      "address": {
+        "line1": "Mail Handling Site A",
+        "line2": "WOLVERHAMPTON",
+        "postCode": "WV98 2EU"
       }
     }
   ],

@@ -69,6 +69,10 @@ public class IdamService {
         return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
+    public UserDetails getUserDetails(String oauth2Token)  {
+        return idamApiClient.getUserDetails(oauth2Token);
+    }
+
     public String getIdamOauth2Token() {
 
         try {

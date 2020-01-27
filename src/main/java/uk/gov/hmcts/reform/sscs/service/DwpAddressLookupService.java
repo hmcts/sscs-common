@@ -91,7 +91,9 @@ public class DwpAddressLookupService {
         }
         Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
-            String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
+            String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
+                    .substringBetween(dwpIssuingOffice,"(", ")"))
+                    .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
