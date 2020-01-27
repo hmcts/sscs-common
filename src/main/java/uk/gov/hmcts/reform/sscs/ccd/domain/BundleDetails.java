@@ -12,7 +12,7 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class BundleDetails {
 
-    private Long id;
+    private String id;
     private String title;
     private String description;
     private String eligibleForStitching;
@@ -32,7 +32,7 @@ public class BundleDetails {
 
 
     @JsonCreator
-    public BundleDetails(@JsonProperty("id") Long id,
+    public BundleDetails(@JsonProperty("id") String id,
                          @JsonProperty("title") String title,
                          @JsonProperty("description") String description,
                          @JsonProperty("eligibleForStitching") String eligibleForStitching,
