@@ -168,6 +168,6 @@ public class IdamServiceTest {
         assertThat(loggingEvent.get(2).getFormattedMessage(), is("Passing authorization code to IDAM to get a token"));
         assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam token successful"));
         assertThat(loggingEvent.get(4).getFormattedMessage(), is("JWKS key loading error"));
-        assertThat(loggingEvent.get(5).getFormattedMessage(), is("Token validation error {}"));
+        assertThat(loggingEvent.get(5).getFormattedMessage(), is("Token validation error:"));
     }
 }
