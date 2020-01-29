@@ -149,7 +149,7 @@ public class IdamService {
 
             return signedJwt.verify(jwsVerifier);
         } catch (Exception e) {
-            log.error("Token validation error {}", e);
+            log.error("Token validation error:", e);
             return false;
         }
     }

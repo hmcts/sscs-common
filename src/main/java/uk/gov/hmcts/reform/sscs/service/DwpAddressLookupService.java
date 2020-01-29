@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import com.google.gson.Gson;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,14 +27,13 @@ public class DwpAddressLookupService {
     private static final String UC = "UC";
     private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
 
-    private static String json;
     private static DwpMappings dwpMappings;
     private static OfficeMapping[] allDwpBenefitOffices;
 
     static {
         try {
-            json = IOUtils.resourceToString("reference-data/dwpAddresses.json",
-                    Charset.forName("UTF-8"), Thread.currentThread().getContextClassLoader());
+            String json = IOUtils.resourceToString("reference-data/dwpAddresses.json",
+                StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
 
@@ -92,7 +91,9 @@ public class DwpAddressLookupService {
         }
         Optional<OfficeMapping> officeMapping = Optional.empty();
         if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
-            String dwpIssuingOfficeStripped = dwpIssuingOffice.replaceAll("\\D+","");
+            String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
+                    .substringBetween(dwpIssuingOffice,"(", ")"))
+                    .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
