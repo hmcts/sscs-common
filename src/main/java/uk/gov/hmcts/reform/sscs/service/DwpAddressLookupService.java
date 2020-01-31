@@ -83,6 +83,15 @@ public class DwpAddressLookupService {
             .build();
     }
 
+    public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
+
+        Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
+
+        return "PIP".equalsIgnoreCase(benefitType)
+                ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
+                officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+    }
+
     public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
         log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
 
