@@ -175,4 +175,18 @@ public class DwpAddressLookupServiceTest {
 
         assertEquals("Universal Credit", result.get().getCode());
     }
+
+    @Test
+    public void givenAPipBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pip", "3");
+
+        assertEquals("Bellevale", result);
+    }
+
+    @Test
+    public void givenAEsaBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
+
+        assertEquals("Watford DRT", result);
+    }
 }
