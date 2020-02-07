@@ -45,6 +45,7 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
+    private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private List<CorDocument> corDocument;
     private List<CorDocument> draftCorDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
@@ -165,6 +166,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("caseBundles") List<Bundle> caseBundles,
                         @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
                         @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
+                        @JsonProperty("draftSscsFurtherEvidenceDocument") List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument,
                         @JsonProperty("corDocument") List<CorDocument> corDocument,
                         @JsonProperty("draftCorDocument") List<CorDocument> draftCorDocument,
                         @JsonProperty("sscsInterlocDecisionDocument") SscsInterlocDecisionDocument sscsInterlocDecisionDocument,
@@ -279,6 +281,7 @@ public class SscsCaseData implements CaseData {
         this.caseBundles = caseBundles;
         this.sscsDocument = sscsDocument;
         this.draftSscsDocument = draftSscsDocument;
+        this.draftSscsFurtherEvidenceDocument = draftSscsFurtherEvidenceDocument;
         this.corDocument = corDocument;
         this.draftCorDocument = draftCorDocument;
         this.generatedNino = generatedNino;
@@ -448,6 +451,7 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
+
             Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
                 .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
