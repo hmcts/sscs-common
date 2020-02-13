@@ -33,7 +33,7 @@ public class SscsDocument implements Comparable<SscsDocument> {
         }
 
         if (value.getBundleAddition() != null && nextDocumentDetails.getBundleAddition() != null) {
-            return -1 * value.getBundleAddition().compareTo(nextDocumentDetails.getBundleAddition());
+            return 1 * value.getBundleAddition().compareTo(nextDocumentDetails.getBundleAddition());
         }
 
         if (value.getDocumentDateAdded().equals(nextDocumentDetails.getDocumentDateAdded())) {
