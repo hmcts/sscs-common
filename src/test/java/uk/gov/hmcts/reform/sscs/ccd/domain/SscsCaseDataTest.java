@@ -250,18 +250,38 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenACaseHasMultipleDocumentsOfSameTypeWithTwoOnSameDayWithBundleAddition_thenSelectTheLatestBundle() {
+    public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSelectTheFirstBundle() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString(), null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "B"));
         documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString(), "C"));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "A"));
+        documents.add(buildSscsDocument("anotherTestUrl3", DocumentType.DECISION_NOTICE, now.toString(), "D"));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertEquals("anotherTestUrl2", result.getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
+
+    @Test
+    public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
+        List<SscsDocument> documents = new ArrayList<>();
+
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "B"));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString(), "C"));
+        documents.add(buildSscsDocument("firstTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "A"));
+        documents.add(buildSscsDocument("anotherTestUrl3", DocumentType.DECISION_NOTICE, now.toString(), "D"));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("firstTestUrl", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl3", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+    }
+
 
     @Test
     public void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
