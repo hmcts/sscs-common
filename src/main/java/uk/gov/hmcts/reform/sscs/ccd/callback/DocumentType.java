@@ -10,13 +10,13 @@ public enum DocumentType {
     DWP_RESPONSE("DWP response"),
     DECISION_NOTICE("Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
-    DL6("dl6"),
-    DL16("dl16"),
-    APPELLANT_EVIDENCE("appellantEvidence"),
-    REPRESENTATIVE_EVIDENCE("representativeEvidence"),
-    DWP_EVIDENCE("dwpEvidence"),
-    AT38("at38"),
-    SSCS1("sscs1");
+    DL6("dl6", "DL6"),
+    DL16("dl16", "DL16"),
+    APPELLANT_EVIDENCE("appellantEvidence", "Appellant evidence"),
+    REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
+    DWP_EVIDENCE("dwpEvidence", "DWP evidence"),
+    AT38("at38", "AT38"),
+    SSCS1("sscs1", "SSCS1");
 
     private String value;
     private String label;
