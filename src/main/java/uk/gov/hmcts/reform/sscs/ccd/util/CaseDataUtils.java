@@ -340,11 +340,6 @@ public final class CaseDataUtils {
         return SscsCaseData.builder()
                 .appeal(appeal)
                 .events(Collections.singletonList(events))
-                .generatedNino(identity.getNino())
-                .generatedSurname(name.getLastName())
-                .generatedEmail(contact.getEmail())
-                .generatedMobile(contact.getMobile())
-                .generatedDob(identity.getDob())
                 .build();
     }
 

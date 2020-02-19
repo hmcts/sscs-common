@@ -73,7 +73,7 @@ public class CcdService {
         if (caseData.getAppeal().getMrnDetails().getMrnDate() != null) {
             try {
                 List<SscsCaseDetails> caseDetails = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
-                        "case.generatedNino", caseData.getGeneratedNino(),
+                        "case.appeal.appellant.identity.nino", caseData.getAppeal().getAppellant().getIdentity().getNino(),
                         "case.appeal.benefitType.code", caseData.getAppeal().getBenefitType().getCode(),
                         "case.appeal.mrnDetails.mrnDate", caseData.getAppeal().getMrnDetails().getMrnDate()),
                         idamTokens);
