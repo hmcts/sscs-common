@@ -20,6 +20,7 @@ public class Subscription {
     String subscribeEmail;
     String subscribeSms;
     String reason;
+    String lastLoggedIntoMya;
 
     @JsonCreator
     public Subscription(@JsonProperty("wantSmsNotifications") String wantSmsNotifications,
@@ -28,7 +29,8 @@ public class Subscription {
                         @JsonProperty("mobile") String mobile,
                         @JsonProperty("subscribeEmail") String subscribeEmail,
                         @JsonProperty("subscribeSms") String subscribeSms,
-                        @JsonProperty("reason") String reason) {
+                        @JsonProperty("reason") String reason,
+                        @JsonProperty("lastLoggedIntoMya") String lastLoggedIntoMya) {
         this.wantSmsNotifications = wantSmsNotifications;
         this.tya = tya;
         this.email = email;
@@ -36,6 +38,7 @@ public class Subscription {
         this.subscribeEmail = subscribeEmail;
         this.subscribeSms = subscribeSms;
         this.reason = reason;
+        this.lastLoggedIntoMya = lastLoggedIntoMya;
     }
 
     @JsonIgnore
