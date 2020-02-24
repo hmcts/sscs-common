@@ -128,10 +128,13 @@ public class IdamService {
             idamOauth2Token =  cachedToken;
         }
 
+        UserDetails userDetails = getUserDetails(idamOauth2Token);
         return IdamTokens.builder()
                 .idamOauth2Token(idamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())
-                .userId(getUserId(idamOauth2Token))
+                .userId(userDetails.getId())
+                .email(userDetails.getEmail())
+                .roles(userDetails.getRoles())
                 .build();
     }
 
