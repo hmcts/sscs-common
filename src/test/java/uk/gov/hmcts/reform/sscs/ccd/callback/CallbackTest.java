@@ -27,7 +27,8 @@ public class CallbackTest {
         callback = new Callback<>(
             caseDetails,
             caseDetailsBefore,
-            event
+            event,
+            false
         );
     }
 
