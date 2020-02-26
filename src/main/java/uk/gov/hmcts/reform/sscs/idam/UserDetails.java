@@ -11,10 +11,14 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDetails {
     String id;
+    String email;
     List<String> roles;
 
-    public UserDetails(@JsonProperty("id") String id, @JsonProperty("roles") List<String> roles) {
+    public UserDetails(@JsonProperty("id") String id,
+                       @JsonProperty("email") String email,
+                       @JsonProperty("roles") List<String> roles) {
         this.id = id;
+        this.email = email;
         this.roles = roles;
     }
 }

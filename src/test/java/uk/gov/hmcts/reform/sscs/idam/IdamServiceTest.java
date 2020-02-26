@@ -87,12 +87,13 @@ public class IdamServiceTest {
                 " ")
         ).thenReturn(authToken);
 
-        UserDetails expectedUserDetails = new UserDetails("16", new ArrayList<>());
+        UserDetails expectedUserDetails = new UserDetails("16", "dummy@email.com", new ArrayList<>());
         given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
         assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
@@ -151,7 +152,7 @@ public class IdamServiceTest {
                 " ")
         ).thenReturn(authToken);
 
-        UserDetails expectedUserDetails = new UserDetails("16", new ArrayList<>());
+        UserDetails expectedUserDetails = new UserDetails("16", "dummy@email.com", new ArrayList<>());
         given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
