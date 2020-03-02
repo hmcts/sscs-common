@@ -478,18 +478,5 @@ public class SscsCaseData implements CaseData {
             }
         }
         return null;
-
-//        if (getSscsDocument() != null && getSscsDocument().size() > 0) {
-//
-//            Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
-//                .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
-//
-//            List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
-//
-//            if (docs.size() > 0) {
-//                return docs.get(0);
-//            }
-//        }
-//        return null;
     }
 }
