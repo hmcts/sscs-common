@@ -20,11 +20,14 @@ public class Callback<T extends CaseData> {
     private CaseDetails<T> caseDetails;
     private Optional<CaseDetails<T>> caseDetailsBefore = Optional.empty();
 
+    @JsonProperty("ignore_warning")
+    private boolean ignoreWarnings;
+
     private Callback() {
         // noop -- for deserializer
     }
 
-    public Callback(CaseDetails<T> caseDetails, Optional<CaseDetails<T>> caseDetailsBefore, EventType event) {
+    public Callback(CaseDetails<T> caseDetails, Optional<CaseDetails<T>> caseDetailsBefore, EventType event, boolean ignoreWarnings) {
         requireNonNull(caseDetails);
         requireNonNull(caseDetailsBefore);
         requireNonNull(event);
@@ -32,6 +35,7 @@ public class Callback<T extends CaseData> {
         this.caseDetails = caseDetails;
         this.caseDetailsBefore = caseDetailsBefore;
         this.event = event;
+        this.ignoreWarnings = ignoreWarnings;
     }
 
     public EventType getEvent() {
@@ -49,5 +53,9 @@ public class Callback<T extends CaseData> {
 
     public Optional<CaseDetails<T>> getCaseDetailsBefore() {
         return caseDetailsBefore;
+    }
+
+    public boolean isIgnoreWarnings() {
+        return ignoreWarnings;
     }
 }

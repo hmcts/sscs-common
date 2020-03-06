@@ -1,11 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
@@ -453,15 +448,27 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
-        if (getSscsDocument() != null && getSscsDocument().size() > 0) {
 
-            Stream<SscsDocument> filteredDocs = getSscsDocument().stream()
+        if (getSscsDocument() != null && getSscsDocument().size() > 0) {
+            Stream<SscsDocument> filteredStream = getSscsDocument().stream()
                 .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
-            List<SscsDocument> docs = filteredDocs.sorted().collect(Collectors.toList());
+            List<SscsDocument> filteredList = filteredStream.collect(Collectors.toList());
 
-            if (docs.size() > 0) {
-                return docs.get(0);
+            Collections.sort(filteredList, (one, two) -> {
+                if (two.getValue().getDocumentDateAdded() == null) {
+                    return -1;
+                }
+                if (one.getValue().getDocumentDateAdded() == null) {
+                    return 0;
+                }
+                if (one.getValue().getDocumentDateAdded().equals(two.getValue().getDocumentDateAdded())) {
+                    return -1;
+                }
+                return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
+            });
+            if (filteredList.size() > 0) {
+                return filteredList.get(0);
             }
         }
         return null;
