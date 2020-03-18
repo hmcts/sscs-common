@@ -17,6 +17,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+import uk.gov.hmcts.reform.sscs.utility.AppealNumberGenerator;
 
 @Slf4j
 @Service
@@ -54,6 +55,7 @@ public class SearchCcdCaseService {
         List<CaseDetails> caseDetailsList = ccdClient.searchForCaseworker(idamTokens, searchCriteria);
         return caseDetailsList.stream()
                 .map(sscsCcdConvertService::getCaseDetails)
+                .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
                 .collect(toList());
     }
 

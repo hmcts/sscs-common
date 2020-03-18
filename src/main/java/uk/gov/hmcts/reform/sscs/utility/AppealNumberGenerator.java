@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.utility;
 import java.security.SecureRandom;
 import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
 public class AppealNumberGenerator {
     private static final int LENGTH = 10;
@@ -20,5 +22,10 @@ public class AppealNumberGenerator {
                 .filteredBy(CharacterPredicates.DIGITS, CharacterPredicates.LETTERS).usingRandom(random::nextInt)
                 .build();
         return generator.generate(LENGTH);
+    }
+
+    public static boolean filterCaseNotDraftOrArchivedDraft(SscsCaseDetails sscsCaseDetails) {
+        return !(sscsCaseDetails != null && (State.DRAFT.getId().equals(sscsCaseDetails.getState())
+                || State.DRAFT_ARCHIVED.getId().equals(sscsCaseDetails.getState())));
     }
 }
