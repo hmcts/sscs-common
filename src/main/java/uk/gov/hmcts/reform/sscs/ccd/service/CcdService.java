@@ -187,25 +187,19 @@ public class CcdService {
         List<SscsCaseDetails> caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
             "case.subscriptions.appellantSubscription.tya", appealNumber), idamTokens);
 
-        caseDetailsList = caseDetailsList.stream()
-                .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
-                .collect(Collectors.toList());
-
         if (caseDetailsList.isEmpty()) {
             caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
                 "case.subscriptions.appointeeSubscription.tya", appealNumber), idamTokens);
-            caseDetailsList = caseDetailsList.stream()
-                    .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
-                    .collect(Collectors.toList());
         }
 
         if (caseDetailsList.isEmpty()) {
             caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
                 "case.subscriptions.representativeSubscription.tya", appealNumber), idamTokens);
-            caseDetailsList = caseDetailsList.stream()
-                    .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
-                    .collect(Collectors.toList());
         }
+
+        caseDetailsList = caseDetailsList.stream()
+                .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
+                .collect(Collectors.toList());
 
         return !caseDetailsList.isEmpty() ? caseDetailsList.get(0) : null;
     }
