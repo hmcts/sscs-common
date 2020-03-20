@@ -182,11 +182,4 @@ public class DwpAddressLookupServiceTest {
 
         assertEquals("Bellevale", result);
     }
-
-    @Test
-    public void givenAEsaBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
-
-        assertEquals("Watford DRT", result);
-    }
 }

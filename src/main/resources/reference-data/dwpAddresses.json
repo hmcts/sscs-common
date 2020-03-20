@@ -3,7 +3,7 @@
     {
       "code": "1",
       "mapping": {
-        "ccd": "DWP PIP (1)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (1)",
         "dwpRegionCentre": "Newcastle"
       },
@@ -16,7 +16,7 @@
     {
       "code": "2",
       "mapping": {
-        "ccd": "DWP PIP (2)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (2)",
         "dwpRegionCentre": "Glasgow"
       },
@@ -29,7 +29,7 @@
     {
       "code": "3",
       "mapping": {
-        "ccd": "DWP PIP (3)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (3)",
         "dwpRegionCentre": "Bellevale"
       },
@@ -42,7 +42,7 @@
     {
       "code": "4",
       "mapping": {
-        "ccd": "DWP PIP (4)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (4)",
         "dwpRegionCentre": "Glasgow"
       },
@@ -55,7 +55,7 @@
     {
       "code": "5",
       "mapping": {
-        "ccd": "DWP PIP (5)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (5)",
         "dwpRegionCentre": "Springburn"
       },
@@ -81,7 +81,7 @@
     {
       "code": "7",
       "mapping": {
-        "ccd": "DWP PIP (7)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (7)",
         "dwpRegionCentre": "Blackpool"
       },
@@ -94,7 +94,7 @@
     {
       "code": "8",
       "mapping": {
-        "ccd": "DWP PIP (8)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (8)",
         "dwpRegionCentre": "Blackpool"
       },
@@ -107,7 +107,7 @@
     {
       "code": "9",
       "mapping": {
-        "ccd": "DWP PIP (9)",
+        "ccd": "DWP PIP (6)",
         "gaps": "DWP PIP (9)",
         "dwpRegionCentre": "Blackpool"
       },
@@ -148,7 +148,7 @@
     {
       "code": "Balham DRT",
       "mapping": {
-        "ccd": "Watford DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Watford Service Centre"
       },
       "address": {
@@ -187,7 +187,7 @@
     {
       "code": "Coatbridge Benefit Centre",
       "mapping": {
-        "ccd": "Coatbridge Benefit Centre",
+        "ccd": "Chesterfield DRT",
         "gaps": "Coatbridge Benefit Centre"
       },
       "address": {
@@ -200,7 +200,7 @@
     {
       "code": "Inverness DRT",
       "mapping": {
-        "ccd": "Inverness DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Inverness Benefit Centre"
       },
       "address": {
@@ -252,7 +252,7 @@
     {
       "code": "Sheffield DRT",
       "mapping": {
-        "ccd": "Sheffield DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Sheffield Benefit Centre"
       },
       "address": {
@@ -265,7 +265,7 @@
     {
       "code": "Springburn DRT",
       "mapping": {
-        "ccd": "Springburn DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Watford Service Centre"
       },
       "address": {
@@ -278,7 +278,7 @@
     {
       "code": "Watford DRT",
       "mapping": {
-        "ccd": "Watford DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Watford Service Centre"
       },
       "address": {
@@ -303,7 +303,7 @@
     {
       "code": "Worthing DRT",
       "mapping": {
-        "ccd": "Worthing DRT",
+        "ccd": "Chesterfield DRT",
         "gaps": "Worthing DRT"
       },
       "address": {
