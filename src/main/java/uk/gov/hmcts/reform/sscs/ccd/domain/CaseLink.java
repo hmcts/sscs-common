@@ -20,4 +20,18 @@ public class CaseLink {
         this.value = value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        CaseLink c = (CaseLink) o;
+
+        return value.getCaseReference().equals(c.value.getCaseReference());
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }
