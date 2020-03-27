@@ -40,7 +40,7 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"})
+    @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "AE"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
@@ -60,7 +60,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void dwpOfficeStripsText() {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("DWP Issuing Office(10)").build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("DWP Issuing Office(9)").build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -138,7 +138,7 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertEquals(25, result.length);
+        assertEquals(24, result.length);
     }
 
     @Test
