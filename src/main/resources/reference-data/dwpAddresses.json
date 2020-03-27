@@ -134,7 +134,7 @@
       "code": "AE",
       "mapping": {
         "ccd": "DWP PIP (AE)",
-        "gaps": "DWP PIP (AE)",
+        "gaps": "PIP (AE)",
         "dwpRegionCentre": "AE"
       },
       "address": {

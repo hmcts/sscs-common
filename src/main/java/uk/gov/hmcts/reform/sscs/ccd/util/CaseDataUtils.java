@@ -78,7 +78,7 @@ public final class CaseDataUtils {
                 .address(appointeeAddress)
                 .contact(appointeeContact)
                 .identity(appointeeIdentity)
-                .build(); 
+                .build();
 
         Appellant appellant = Appellant.builder()
                 .name(name)
@@ -212,6 +212,7 @@ public final class CaseDataUtils {
                 .subscribeEmail(YES)
                 .subscribeSms(YES)
                 .reason("")
+                .lastLoggedIntoMya("2001-12-14T21:59:43.10-05:00")
                 .build();
         Subscription appointeeSubscription = Subscription.builder()
                 .tya("appointee-appeal-number")
@@ -220,6 +221,7 @@ public final class CaseDataUtils {
                 .subscribeEmail(YES)
                 .subscribeSms(YES)
                 .reason("")
+                .lastLoggedIntoMya("2001-12-14T21:59:43.10-05:00")
                 .build();
         Subscription supporterSubscription = Subscription.builder()
                 .tya("")
@@ -228,6 +230,7 @@ public final class CaseDataUtils {
                 .subscribeEmail("")
                 .subscribeSms("")
                 .reason("")
+                .lastLoggedIntoMya("2001-12-14T21:59:43.10-05:00")
                 .build();
         Subscription representativeSubscription = Subscription.builder()
                 .tya("rep-appeal-number")

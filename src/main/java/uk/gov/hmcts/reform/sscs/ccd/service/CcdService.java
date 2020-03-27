@@ -6,17 +6,16 @@ import com.google.common.collect.ImmutableMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Subscription;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Subscriptions;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.exception.AppealNotFoundException;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CcdException;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+import uk.gov.hmcts.reform.sscs.utility.AppealNumberGenerator;
 import uk.gov.hmcts.reform.sscs.utility.SurnameUtil;
 
 @Service
@@ -89,7 +88,7 @@ public class CcdService {
     public SscsCaseDetails updateSubscription(String appealNumber, String email, IdamTokens idamTokens) {
         try {
             SscsCaseDetails caseDetails = getCaseByAppealNumber(appealNumber, idamTokens);
-            
+
             if (caseDetails != null) {
                 SscsCaseData caseData = caseDetails.getData();
                 Subscriptions caseSubscriptions = caseData.getSubscriptions();
@@ -97,7 +96,7 @@ public class CcdService {
                 caseSubscriptions = updateAppellantSubscription(appealNumber, email, caseSubscriptions);
                 caseSubscriptions = updateAppointeeSubscription(appealNumber, email, caseSubscriptions);
                 caseSubscriptions = updateRepresentativeSubscription(appealNumber, email, caseSubscriptions);
-                
+
                 caseData.setSubscriptions(caseSubscriptions);
 
                 return updateCase(caseData, caseDetails.getId(), SUBSCRIPTION_UPDATED.getCcdType(),
@@ -128,7 +127,7 @@ public class CcdService {
 
     private Subscriptions updateAppointeeSubscription(String appealNumber, String email, Subscriptions caseSubscriptions) {
         Subscription appointeeSubscription = caseSubscriptions.getAppointeeSubscription();
-        
+
         return updateSubscription(appointeeSubscription, appealNumber, email)
             .map(updatedSubscription ->
                     caseSubscriptions.toBuilder().appointeeSubscription(updatedSubscription).build()
@@ -197,6 +196,10 @@ public class CcdService {
             caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
                 "case.subscriptions.representativeSubscription.tya", appealNumber), idamTokens);
         }
+
+        caseDetailsList = caseDetailsList.stream()
+                .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
+                .collect(Collectors.toList());
 
         return !caseDetailsList.isEmpty() ? caseDetailsList.get(0) : null;
     }
