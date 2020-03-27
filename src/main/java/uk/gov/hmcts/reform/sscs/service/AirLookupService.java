@@ -155,7 +155,7 @@ public class AirLookupService {
      * @param postcode The first half of a post code
      * @return venues
      */
-    protected AirlookupBenefitToVenue lookupAirVenueNameByPostCode(String postcode) {
+    public AirlookupBenefitToVenue lookupAirVenueNameByPostCode(String postcode) {
         AirlookupBenefitToVenue value = lookupAirVenueNameByPostCode.get(postcode.toLowerCase());
         if (value == null) {
             return DEFAULT_VENUE;
