@@ -40,7 +40,7 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "AE"})
+    @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
