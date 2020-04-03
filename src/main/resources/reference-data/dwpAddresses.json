@@ -118,19 +118,6 @@
       }
     },
     {
-      "code": "10",
-      "mapping": {
-        "ccd": "DWP PIP (10)",
-        "gaps": "DWP PIP (10)",
-        "dwpRegionCentre": "Newport"
-      },
-      "address": {
-        "line1": "Warbreck House",
-        "line2": "Blackpool",
-        "postCode": "FY2 0UZ"
-      }
-    },
-    {
       "code": "AE",
       "mapping": {
         "ccd": "DWP PIP (AE)",
