@@ -87,7 +87,7 @@ public class DwpAddressLookupService {
 
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
 
-        return "PIP".equalsIgnoreCase(benefitType)
+        return PIP.equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
@@ -103,6 +103,11 @@ public class DwpAddressLookupService {
             String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
                     .substringBetween(dwpIssuingOffice,"(", ")"))
                     .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+
+            if (StringUtils.isEmpty(dwpIssuingOfficeStripped)) {
+                dwpIssuingOfficeStripped = dwpIssuingOffice;
+            }
+
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
         } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());

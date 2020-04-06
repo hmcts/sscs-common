@@ -156,6 +156,14 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    @Parameters({"(AE)", "AE", "DWP PIP (AE)"})
+    public void givenAPipBenefitTypeAndAeOffice_thenFuzzyMatch(String pipAe) {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", pipAe);
+
+        assertEquals("AE", result.get().getCode());
+    }
+
+    @Test
     public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaEmpty() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", "Balham DRT");
 
