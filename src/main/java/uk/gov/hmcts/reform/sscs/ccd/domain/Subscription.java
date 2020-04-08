@@ -60,4 +60,17 @@ public class Subscription {
         return isSmsSubscribed() || isEmailSubscribed();
     }
 
+    @JsonIgnore
+    public boolean isEmpty() {
+        return (this.wantSmsNotifications == null &&
+                this.tya == null &&
+                this.email == null &&
+                this.mobile == null &&
+                this.subscribeEmail == null &&
+                this.subscribeSms == null &&
+                this.reason == null &&
+                this.lastLoggedIntoMya == null
+            );
+    }
+
 }
