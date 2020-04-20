@@ -22,7 +22,7 @@ public enum Benefit {
     public static Benefit getBenefitByCode(String code) {
         Benefit b = null;
         for (Benefit type : Benefit.values()) {
-            if (type.name().equals(code)) {
+            if (type.name().equalsIgnoreCase(code)) {
                 b = type;
             }
         }
