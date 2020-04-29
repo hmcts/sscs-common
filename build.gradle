@@ -139,7 +139,7 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: 4.12
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
-    testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.5.RELEASE'
+    testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.6.RELEASE'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.15.0'
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 
