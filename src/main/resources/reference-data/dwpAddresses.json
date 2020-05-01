@@ -213,14 +213,14 @@
     {
       "code": "Milton Keynes DRT",
       "mapping": {
-        "ccd": "Worthing DRT",
-        "gaps": "Worthing DRT"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Worthing Benefit Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1QJ"
+        "postCode": "WV98 1FZ"
       }
     },
     {
@@ -290,14 +290,14 @@
     {
       "code": "Worthing DRT",
       "mapping": {
-        "ccd": "Worthing DRT",
-        "gaps": "Worthing DRT"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Worthing Benefit Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1QJ"
+        "postCode": "WV98 1FZ"
       }
     }
   ],
