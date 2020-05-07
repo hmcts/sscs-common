@@ -131,7 +131,7 @@ public final class CaseDataUtils {
 
         MrnDetails mrnDetails = MrnDetails.builder()
                 .mrnDate("2018-06-29")
-                .dwpIssuingOffice("1")
+                .dwpIssuingOffice("DWP PIP (1)")
                 .mrnLateReason("Lost my paperwork")
                 .build();
 
