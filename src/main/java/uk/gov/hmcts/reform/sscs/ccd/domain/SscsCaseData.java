@@ -144,6 +144,8 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private String pipDecisionNoticeWashAndBatheQuestion;
+    private String pipDecisionNoticeManagingToiletNeedsQuestion;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -260,7 +262,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
                         @JsonProperty("responseRequired") String responseRequired,
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
-                        @JsonProperty("bundleConfiguration") String bundleConfiguration
+                        @JsonProperty("bundleConfiguration") String bundleConfiguration,
+                        @JsonProperty("pipDecisionNoticeWashAndBatheQuestion") String pipDecisionNoticeWashAndBatheQuestion,
+                        @JsonProperty("pipDecisionNoticeManagingToiletNeedsQuestion") String pipDecisionNoticeManagingToiletNeedsQuestion
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -375,6 +379,8 @@ public class SscsCaseData implements CaseData {
         this.responseRequired = responseRequired;
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
+        this.pipDecisionNoticeWashAndBatheQuestion = pipDecisionNoticeWashAndBatheQuestion;
+        this.pipDecisionNoticeManagingToiletNeedsQuestion = pipDecisionNoticeManagingToiletNeedsQuestion;
     }
 
 
