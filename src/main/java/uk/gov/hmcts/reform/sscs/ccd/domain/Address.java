@@ -52,4 +52,14 @@ public class Address {
                 .filter(StringUtils::isNotBlank)
                 .collect(Collectors.joining(", "));
     }
+
+    @JsonIgnore
+    public boolean isAddressEmpty() {
+        return Stream.of(
+                line1,
+                line2,
+                town,
+                county,
+                postcode).allMatch(StringUtils::isEmpty);
+    }
 }
