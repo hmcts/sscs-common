@@ -195,6 +195,6 @@ public class DwpAddressLookupServiceTest {
     public void givenAEsaBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
 
-        assertEquals("Watford DRT", result);
+        assertEquals("Sheffield DRT", result);
     }
 }

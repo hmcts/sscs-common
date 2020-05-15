@@ -135,14 +135,14 @@
     {
       "code": "Balham DRT",
       "mapping": {
-        "ccd": "Watford DRT",
-        "gaps": "Watford Service Centre"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Watford Service Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1RH"
+        "postCode": "WV98 1FZ"
       }
     },
     {
@@ -200,14 +200,14 @@
     {
       "code": "Lowestoft DRT",
       "mapping": {
-        "ccd": "Watford DRT",
-        "gaps": "Watford Service Centre"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Watford Service Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1RH"
+        "postCode": "WV98 1FZ"
       }
     },
     {
@@ -265,14 +265,14 @@
     {
       "code": "Watford DRT",
       "mapping": {
-        "ccd": "Watford DRT",
-        "gaps": "Watford Service Centre"
+        "ccd": "Sheffield DRT",
+        "gaps": "Sheffield Benefit Centre"
       },
       "address": {
-        "line1": "Watford Service Centre",
-        "line2": "Post Handling Site B",
+        "line1": "Sheffield Benefit Centre",
+        "line2": "Mail Handling Site A",
         "line3": "WOLVERHAMPTON",
-        "postCode": "WV99 1RH"
+        "postCode": "WV98 1FZ"
       }
     },
     {
