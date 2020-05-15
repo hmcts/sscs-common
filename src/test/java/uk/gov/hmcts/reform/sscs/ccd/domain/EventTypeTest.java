@@ -13,6 +13,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND_OVERDUE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.FINAL_DECISION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.FIRST_HEARING_HOLDING_REMINDER;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ISSUE_DECISION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LAPSED_REVISED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LINK_A_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POSTPONED;
@@ -148,7 +149,8 @@ public class EventTypeTest {
             "furtherEvidenceHandledOffline\n" +
             "interlocVoidAppeal\n" +
             "uploadDocumentFurtherEvidence\n" +
-            "resendToDwp";
+            "resendToDwp\n" + 
+            "issueDecision";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
@@ -169,7 +171,7 @@ public class EventTypeTest {
             LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
             SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
-            LINK_A_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE);
+            LINK_A_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE, ISSUE_DECISION);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {

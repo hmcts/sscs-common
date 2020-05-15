@@ -144,6 +144,10 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private String pipDecisionNoticeDailyLivingQuestion;
+    private String pipDecisionNoticeMobilityQuestion;
+    @JsonProperty("pipDecisionNoticeComparedToDWPQuestion")
+    private String pipDecisionNoticeComparedToDwpQuestion;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -260,7 +264,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
                         @JsonProperty("responseRequired") String responseRequired,
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
-                        @JsonProperty("bundleConfiguration") String bundleConfiguration
+                        @JsonProperty("bundleConfiguration") String bundleConfiguration,
+                        @JsonProperty("pipDecisionNoticeDailyLivingQuestion") String pipDecisionNoticeDailyLivingQuestion,
+                        @JsonProperty("String pipDecisionNoticeMobilityQuestion") String pipDecisionNoticeMobilityQuestion,
+                        @JsonProperty("String pipDecisionNoticeComparedToDWPQuestion") String pipDecisionNoticeComparedToDwpQuestion
+                        
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -375,6 +383,9 @@ public class SscsCaseData implements CaseData {
         this.responseRequired = responseRequired;
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
+        this.pipDecisionNoticeDailyLivingQuestion = pipDecisionNoticeDailyLivingQuestion;
+        this.pipDecisionNoticeMobilityQuestion = pipDecisionNoticeMobilityQuestion;
+        this.pipDecisionNoticeComparedToDwpQuestion = pipDecisionNoticeComparedToDwpQuestion;
     }
 
 
