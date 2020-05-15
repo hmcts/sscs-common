@@ -148,6 +148,9 @@ public class SscsCaseData implements CaseData {
     private String pipDecisionNoticeMobilityQuestion;
     @JsonProperty("pipDecisionNoticeComparedToDWPQuestion")
     private String pipDecisionNoticeComparedToDwpQuestion;
+    private String pipDecisionNoticeStartDate;
+    private String pipDecisionNoticeEndDateType;
+    private String pipDecisionNoticeEndDate;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -267,7 +270,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
                         @JsonProperty("pipDecisionNoticeDailyLivingQuestion") String pipDecisionNoticeDailyLivingQuestion,
                         @JsonProperty("String pipDecisionNoticeMobilityQuestion") String pipDecisionNoticeMobilityQuestion,
-                        @JsonProperty("String pipDecisionNoticeComparedToDWPQuestion") String pipDecisionNoticeComparedToDwpQuestion
+                        @JsonProperty("String pipDecisionNoticeComparedToDWPQuestion") String pipDecisionNoticeComparedToDwpQuestion,
+                        @JsonProperty("String pipDecisionNoticeStartDate") String pipDecisionNoticeStartDate,
+                        @JsonProperty("String pipDecisionNoticeEndDateType") String pipDecisionNoticeEndDateType,
+                        @JsonProperty("String pipDecisionNoticeEndDate") String pipDecisionNoticeEndDate
                         
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -386,6 +392,9 @@ public class SscsCaseData implements CaseData {
         this.pipDecisionNoticeDailyLivingQuestion = pipDecisionNoticeDailyLivingQuestion;
         this.pipDecisionNoticeMobilityQuestion = pipDecisionNoticeMobilityQuestion;
         this.pipDecisionNoticeComparedToDwpQuestion = pipDecisionNoticeComparedToDwpQuestion;
+        this.pipDecisionNoticeStartDate = pipDecisionNoticeStartDate;
+        this.pipDecisionNoticeEndDateType = pipDecisionNoticeEndDateType;
+        this.pipDecisionNoticeEndDate = pipDecisionNoticeEndDate;
     }
 
 
