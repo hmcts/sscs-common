@@ -52,7 +52,7 @@ public enum EventType {
     STRUCK_OUT("struckOut", 0, false),
     DIRECTION_ISSUED("directionIssued", 0, false),
     DECISION_ISSUED("decisionIssued", 0, false),
-    ISSUE_DECISION("issueDecision", 0, false),
+    WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
     SEND_TO_DWP("sendToDwp", 0, false),
     SENT_TO_DWP("sentToDwp", 0, false),
