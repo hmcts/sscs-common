@@ -290,6 +290,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionStartDate") String pipWriteFinalDecisionStartDate,
                         @JsonProperty("pipWriteFinalDecisionEndDateType") String pipWriteFinalDecisionEndDateType,
                         @JsonProperty("pipWriteFinalDecisionEndDate") String pipWriteFinalDecisionEndDate,
+                        @JsonProperty("pipWriteFinalDecisionDecisionDate") String pipWriteFinalDecisionDecisionDate,
+                        @JsonProperty("pipWriteFinalDecisionDecisionDate") String pipWriteFinalDecisionDecisionDate,
                         @JsonProperty("pipWriteFinalDecisionPreparingFoodQuestion") String pipWriteFinalDecisionPreparingFoodQuestion,
                         @JsonProperty("pipWriteFinalDecisionTakingNutritionQuestion") String pipWriteFinalDecisionTakingNutritionQuestion,
                         @JsonProperty("pipWriteFinalDecisionManagingTherapyQuestion") String pipWriteFinalDecisionManagingTherapyQuestion,
@@ -422,6 +424,7 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionStartDate = pipWriteFinalDecisionStartDate;
         this.pipWriteFinalDecisionEndDateType = pipWriteFinalDecisionEndDateType;
         this.pipWriteFinalDecisionEndDate = pipWriteFinalDecisionEndDate;
+        this.pipWriteFinalDecisionDecisionDate = pipWriteFinalDecisionDecisionDate;
         this.pipWriteFinalDecisionDailyLivingActivitiesQuestion = pipWriteFinalDecisionDailyLivingActivitiesQuestion;
         this.pipWriteFinalDecisionMobilityActivitiesQuestion = pipWriteFinalDecisionMobilityActivitiesQuestion;
         this.pipWriteFinalDecisionPreparingFoodQuestion = pipWriteFinalDecisionPreparingFoodQuestion;
