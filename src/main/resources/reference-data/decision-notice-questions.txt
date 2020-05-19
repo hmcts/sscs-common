@@ -325,115 +325,115 @@
 
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8e",
    "ListElement":"8e. Cannot read or understand signs, symbols or words at all. (8 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8d",
    "ListElement":"8d. Needs prompting to be able to read or understand basic written information. (4 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8c",
    "ListElement":"8c. Needs prompting to be able to read or understand complex written information. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8b",
    "ListElement":" 8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8a",
    "ListElement":"8a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9d",
    "ListElement":"9d. Cannot engage with other people due to such engagement causing either -  (i) overwhelming psychological distress to the claimant; or (ii) the claimant to exhibit behaviour which would result in a substantial risk of harm to the claimant or another person. (8 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9c",
    "ListElement":"8c. Needs prompting to be able to read or understand complex written information. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9b",
    "ListElement":" 8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9a",
    "ListElement":"8a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ID":"FL_pipWriteFinalDecisionBudgetingDecisionsQuestions",
    "ListElementCode":"makingBudgetingDecisions10d",
    "ListElement":"10d. Cannot make any budgeting decisions at all. (6 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ID":"FL_pipWriteFinalDecisionBudgetingDecisionsQuestions",
    "ListElementCode":"makingBudgetingDecisions10c",
    "ListElement":"10c. Needs prompting or assistance to be able to make simple budgeting decisions. (4 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ID":"FL_pipWriteFinalDecisionBudgetingDecisionsQuestions",
    "ListElementCode":"makingBudgetingDecisions10b",
    "ListElement":"10b. Needs prompting or assistance to be able to make complex budgeting decisions. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ID":"FL_pipWriteFinalDecisionBudgetingDecisionsQuestions",
    "ListElementCode":"makingBudgetingDecisions10a",
    "ListElement":"10a. Can manage complex budgeting decisions unaided. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11f",
    "ListElement":"11f. Cannot follow the route of a familiar journey without another person, an assistance dog or an orientation aid. (12 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11e",
    "ListElement":"11e. Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant. (10 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11d",
    "ListElement":"11d. Cannot follow the route of an unfamiliar journey without another person, assistance dog or orientation aid. (10 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11c",
    "ListElement":"11c. Cannot plan the route of a journey. (8 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11b",
    "ListElement":"11b. Needs prompting to be able to undertake any journey to avoid overwhelming psychological distress to the claimant. (4 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ID":"FL_pipWriteFinalDecisionPlanningFollowingQuestions",
    "ListElementCode":"planningAndFollowing11a",
    "ListElement":"11a. Can plan and follow the route of a journey unaided. (0 points)"
 },
