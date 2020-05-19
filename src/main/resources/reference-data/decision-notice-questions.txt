@@ -14,7 +14,7 @@
    "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
    "ListElementCode":"makingBudgetingDecisions",
-   "ListElement":"Making budgeting decisions
+   "ListElement":"Making budgeting decisions"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -377,7 +377,6 @@
    "ListElementCode":"engagingWithOtherPeople9a",
    "ListElement":"8a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
 },
-
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
