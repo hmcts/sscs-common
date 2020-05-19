@@ -1,5 +1,23 @@
 {
    "LiveFrom":"01/01/2018",
+   "ID":"FL_mobilityActivities",
+   "ListElementCode":"movingAround",
+   "ListElement":"Moving around"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mobilityActivities",
+   "ListElementCode":"planningAndFollowing",
+   "ListElement":"Planning and following journeys"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_dailyLivingActivities",
+   "ListElementCode":"makingBudgetingDecisions",
+   "ListElement":"Making budgeting decisions
+},
+{
+   "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
    "ListElementCode":"engagingWithOtherPeople",
    "ListElement":"Engaging with other people face to face"
@@ -13,7 +31,7 @@
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
-   "ListElementCode":"communicatingVerbally",
+   "ListElementCode":"communicating",
    "ListElement":"Communicating verbally"
 },
 {
@@ -201,4 +219,259 @@
    "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
    "ListElementCode":"washingAndBathing4a",
    "ListElement":"4a. Can wash and bathe unaided. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5f",
+   "ListElement":"5f. Needs assistance to be able to manage incontinence of both bladder and bowel. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5e",
+   "ListElement":"5e. Needs assistance to be able to manage incontinence of either bladder or bowel. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5d",
+   "ListElement":"5d. Needs assistance to be able to manage toilet needs. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5c",
+   "ListElement":"5c. Needs supervision or prompting to be able to manage toilet needs. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5b",
+   "ListElement":"5b. Needs to use an aid or appliance to be able to manage toilet needs or incontinence. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+   "ListElementCode":"managingToiletNeeds5a",
+   "ListElement":"5a. Can manage toilet needs or incontinence unaided. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6f",
+   "ListElement":"6f. Cannot dress or undress at all. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6e",
+   "ListElement":"6e. Needs assistance to be able to dress or undress their upper body. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6d",
+   "ListElement":"6d. Needs assistance to be able to dress or undress their lower body. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6c",
+   "ListElement":"6c. Needs either -  (i) prompting to be able to dress, undress or determine appropriate circumstances for remaining clothed; or (ii) prompting or assistance to be able to select appropriate clothing. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6b",
+   "ListElement":"6b. Needs to use an aid or appliance to be able to dress or undress. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+   "ListElementCode":"dressingAndUndressing6a",
+   "ListElement":"6a. Can dress and undress unaided. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionCommunicatingQuestions",
+   "ListElementCode":"communicating7e",
+   "ListElement":"7e. Cannot express or understand verbal information at all even with communication support. (12 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionCommunicatingQuestions",
+   "ListElementCode":"communicating7d",
+   "ListElement":"7d. Needs communication support to be able to express or understand basic verbal information. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionCommunicatingQuestions",
+   "ListElementCode":"communicating7c",
+   "ListElement":"7c. Needs communication support to be able to express or understand complex verbal information. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionCommunicatingQuestions",
+   "ListElementCode":"communicating7b",
+   "ListElement":"7b. Needs to use an aid or appliance to be able to speak or hear. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionCommunicatingQuestions",
+   "ListElementCode":"communicating7a",
+   "ListElement":"7a. Can express and understand verbal information unaided. (0 points)"
+},
+
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ListElementCode":"readingAndUnderstanding8e",
+   "ListElement":"8e. Cannot read or understand signs, symbols or words at all. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ListElementCode":"readingAndUnderstanding8d",
+   "ListElement":"8d. Needs prompting to be able to read or understand basic written information. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ListElementCode":"readingAndUnderstanding8c",
+   "ListElement":"8c. Needs prompting to be able to read or understand complex written information. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ListElementCode":"readingAndUnderstanding8b",
+   "ListElement":" 8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionReadingAndUnderstandingQuestions",
+   "ListElementCode":"readingAndUnderstanding8a",
+   "ListElement":"8a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ListElementCode":"engagingWithOtherPeople9d",
+   "ListElement":"9d. Cannot engage with other people due to such engagement causing either -  (i) overwhelming psychological distress to the claimant; or (ii) the claimant to exhibit behaviour which would result in a substantial risk of harm to the claimant or another person. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ListElementCode":"engagingWithOtherPeople9c",
+   "ListElement":"8c. Needs prompting to be able to read or understand complex written information. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ListElementCode":"engagingWithOtherPeople9b",
+   "ListElement":" 8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionEngagingWithOtherPeopleQuestions",
+   "ListElementCode":"engagingWithOtherPeople9a",
+   "ListElement":"8a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
+},
+
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ListElementCode":"makingBudgetingDecisions10d",
+   "ListElement":"10d. Cannot make any budgeting decisions at all. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ListElementCode":"makingBudgetingDecisions10c",
+   "ListElement":"10c. Needs prompting or assistance to be able to make simple budgeting decisions. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ListElementCode":"makingBudgetingDecisions10b",
+   "ListElement":"10b. Needs prompting or assistance to be able to make complex budgeting decisions. (2 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMakingBudgetingDecisionsQuestions",
+   "ListElementCode":"makingBudgetingDecisions10a",
+   "ListElement":"10a. Can manage complex budgeting decisions unaided. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11f",
+   "ListElement":"11f. Cannot follow the route of a familiar journey without another person, an assistance dog or an orientation aid. (12 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11e",
+   "ListElement":"11e. Cannot undertake any journey because it would cause overwhelming psychological distress to the claimant. (10 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11d",
+   "ListElement":"11d. Cannot follow the route of an unfamiliar journey without another person, assistance dog or orientation aid. (10 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11c",
+   "ListElement":"11c. Cannot plan the route of a journey. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11b",
+   "ListElement":"11b. Needs prompting to be able to undertake any journey to avoid overwhelming psychological distress to the claimant. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionPlanningAndFollowingQuestions",
+   "ListElementCode":"planningAndFollowing11a",
+   "ListElement":"11a. Can plan and follow the route of a journey unaided. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12f",
+   "ListElement":"12f. Cannot, either aided or unaided,  stand; or (ii) move more than 1 metre. (12 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12e",
+   "ListElement":"12e. Can stand and then move more than 1 metre but no more than 20 metres, either aided or unaided. (12 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12d",
+   "ListElement":"12d. Can stand and then move using an aid or appliance more than 20 metres but no more than 50 metres. (10 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12c",
+   "ListElement":"12c. Can stand and then move unaided more than 20 metres but no more than 50 metres. (8 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12b",
+   "ListElement":"12b. Can stand and then move more than 50 metres but no more than 200 metres, either aided or unaided. (4 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_pipWriteFinalDecisionMovingAroundQuestions",
+   "ListElementCode":"movingAround12a",
+   "ListElement":"12a. Can stand and then move more than 200 metres, either aided or unaided. (0 points)"
 }
+
