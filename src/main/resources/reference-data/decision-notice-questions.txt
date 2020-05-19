@@ -322,7 +322,6 @@
    "ListElementCode":"communicating7a",
    "ListElement":"7a. Can express and understand verbal information unaided. (0 points)"
 },
-
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
@@ -345,7 +344,7 @@
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
    "ListElementCode":"readingAndUnderstanding8b",
-   "ListElement":" 8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
+   "ListElement":"8b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -357,25 +356,25 @@
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9d",
-   "ListElement":"9d. Cannot engage with other people due to such engagement causing either -  (i) overwhelming psychological distress to the claimant; or (ii) the claimant to exhibit behaviour which would result in a substantial risk of harm to the claimant or another person. (8 points)"
+   "ListElement":"9d. Cannot engage with other people due to such engagement causing either - (i) overwhelming psychological distress to the claimant; or (ii) the claimant to exhibit behaviour which would result in a substantial risk of harm to the claimant or another person. (8 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9c",
-   "ListElement":"9c. Needs prompting to be able to read or understand complex written information. (2 points)"
+   "ListElement":"9c. Needs social support to be able to engage with other people. (4 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9b",
-   "ListElement":"9b. Needs to use an aid or appliance, other than spectacles or contact lenses, to be able to read or understand either basic or complex written information. (2 points)"
+   "ListElement":"9b. Needs prompting to be able to engage with other people. (2 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
    "ListElementCode":"engagingWithOtherPeople9a",
-   "ListElement":"9a. Can read and understand basic and complex written information either unaided or using spectacles or contact lenses. (0 points)"
+   "ListElement":"9a. Can engage with other people unaided. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
