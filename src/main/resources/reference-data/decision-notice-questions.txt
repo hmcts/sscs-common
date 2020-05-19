@@ -13,19 +13,19 @@
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
-   "ListElementCode":"makingBudgetingDecisions",
+   "ListElementCode":"budgetingDecisions",
    "ListElement":"Making budgeting decisions"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
-   "ListElementCode":"engagingWithOtherPeople",
+   "ListElementCode":"engagingWithOthers",
    "ListElement":"Engaging with other people face to face"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_dailyLivingActivities",
-   "ListElementCode":"readingAndUnderstanding",
+   "ListElementCode":"readingUnderstanding",
    "ListElement":"Reading and understanding signs, symbols and words"
 },
 {
