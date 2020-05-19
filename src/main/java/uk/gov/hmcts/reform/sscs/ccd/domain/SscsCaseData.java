@@ -151,6 +151,8 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionStartDate;
     private String pipWriteFinalDecisionEndDateType;
     private String pipWriteFinalDecisionEndDate;
+    private List<String> pipWriteFinalDecisionDailyLivingActivitiesQuestion;
+    private List<String> pipWriteFinalDecisionMobilityActivitiesQuestion;
     private String pipWriteFinalDecisionPreparingFoodQuestion;
     private String pipWriteFinalDecisionTakingNutritionQuestion;
     private String pipWriteFinalDecisionManagingTherapyQuestion;
@@ -287,6 +289,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionEndDateType") String pipWriteFinalDecisionEndDateType,
                         @JsonProperty("pipWriteFinalDecisionEndDate") String pipWriteFinalDecisionEndDate,
                         @JsonProperty("pipWriteFinalDecisionPreparingFoodQuestion") String pipWriteFinalDecisionPreparingFoodQuestion,
+                        @JsonProperty("pipWriteFinalDecisionDailyLivingActivitiesQuestion") List<String> pipWriteFinalDecisionDailyLivingActivitiesQuestion,
+                        @JsonProperty("pipWriteFinalDecisionMobilityActivitiesQuestion") List<String> pipWriteFinalDecisionMobilityActivitiesQuestion,
                         @JsonProperty("pipWriteFinalDecisionTakingNutritionQuestion") String pipWriteFinalDecisionTakingNutritionQuestion,
                         @JsonProperty("pipWriteFinalDecisionManagingTherapyQuestion") String pipWriteFinalDecisionManagingTherapyQuestion,
                         @JsonProperty("pipWriteFinalDecisionWashAndBatheQuestion") String pipWriteFinalDecisionWashAndBatheQuestion,
@@ -418,6 +422,8 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionStartDate = pipWriteFinalDecisionStartDate;
         this.pipWriteFinalDecisionEndDateType = pipWriteFinalDecisionEndDateType;
         this.pipWriteFinalDecisionEndDate = pipWriteFinalDecisionEndDate;    
+        this.pipWriteFinalDecisionDailyLivingActivitiesQuestion = pipWriteFinalDecisionDailyLivingActivitiesQuestion;
+        this.pipWriteFinalDecisionMobilityActivitiesQuestion = pipWriteFinalDecisionMobilityActivitiesQuestion;
         this.pipWriteFinalDecisionPreparingFoodQuestion = pipWriteFinalDecisionPreparingFoodQuestion;
         this.pipWriteFinalDecisionTakingNutritionQuestion = pipWriteFinalDecisionTakingNutritionQuestion;
         this.pipWriteFinalDecisionManagingTherapyQuestion = pipWriteFinalDecisionManagingTherapyQuestion;
