@@ -167,6 +167,7 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionPlanningAndFollowingQuestion;
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String pipWriteFinalDecisionReasonsForDecision;
+    
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty(value = "state") State state,
