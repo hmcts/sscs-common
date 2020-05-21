@@ -166,7 +166,7 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionBudgetingDecisionsQuestion;
     private String pipWriteFinalDecisionPlanningAndFollowingQuestion;
     private String pipWriteFinalDecisionMovingAroundQuestion;
-
+    private String pipWriteFinalDecisionReasonsForDecision;
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty(value = "state") State state,
@@ -303,7 +303,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionEngagingWithOthersQuestion") String pipWriteFinalDecisionEngagingWithOthersQuestion,
                         @JsonProperty("pipWriteFinalDecisionBudgetingDecisionsQuestion") String pipWriteFinalDecisionBudgetingDecisionsQuestion,
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion
+                        @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
+                        @JsonProperty("pipWriteFinalDecisionReasonsForDecision") String pipWriteFinalDecisionReasonsForDecision
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -439,6 +440,7 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionBudgetingDecisionsQuestion = pipWriteFinalDecisionBudgetingDecisionsQuestion;
         this.pipWriteFinalDecisionPlanningAndFollowingQuestion = pipWriteFinalDecisionPlanningAndFollowingQuestion;
         this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
+        this.pipWriteFinalDecisionReasonsForDecision = pipWriteFinalDecisionReasonsForDecision;
     }
 
 
