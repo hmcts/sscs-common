@@ -146,19 +146,20 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
-    private String pipWriteFinalDecisionTypeOfHearing;
-    private String pipWriteFinalDecisionPresentingOfficerAttendedQuestion;
-    private String pipWriteFinalDecisionPresentingAppellantAttendedQuestion;
+    //Final decision notice fields
+    private String writeFinalDecisionTypeOfHearing;
+    private String writeFinalDecisionPresentingOfficerAttendedQuestion;
+    private String writeFinalDecisionPresentingAppellantAttendedQuestion;
     private String pipWriteFinalDecisionDailyLivingQuestion;
     private String pipWriteFinalDecisionMobilityQuestion;
     @JsonProperty("pipWriteFinalDecisionComparedToDWPQuestion")
     private String pipWriteFinalDecisionComparedToDwpQuestion;
-    private String pipWriteFinalDecisionStartDate;
-    private String pipWriteFinalDecisionEndDateType;
-    private String pipWriteFinalDecisionEndDate;
-    private String pipDisabilityQualifiedPanelMemberName;
-    private String pipMedicallyQualifiedPanelMemberName;
-    private String pipWriteFinalDecisionDateOfDecision;
+    private String writeFinalDecisionStartDate;
+    private String writeFinalDecisionEndDateType;
+    private String writeFinalDecisionEndDate;
+    private String disabilityQualifiedPanelMemberName;
+    private String medicallyQualifiedPanelMemberName;
+    private String writeFinalDecisionDateOfDecision;
     private String pipWriteFinalDecisionPreparingFoodQuestion;
     private String pipWriteFinalDecisionTakingNutritionQuestion;
     private String pipWriteFinalDecisionManagingTherapyQuestion;
@@ -171,8 +172,8 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionBudgetingDecisionsQuestion;
     private String pipWriteFinalDecisionPlanningAndFollowingQuestion;
     private String pipWriteFinalDecisionMovingAroundQuestion;
-    private String pipWriteFinalDecisionReasonsForDecision;
-    private String pipWriteFinalDecisionPageSectionReference;
+    private String writeFinalDecisionReasonsForDecision;
+    private String writeFinalDecisionPageSectionReference;
     
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -292,18 +293,18 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("responseRequired") String responseRequired,
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
-                        @JsonProperty("pipWriteFinalDecisionTypeOfHearing") String pipWriteFinalDecisionTypeOfHearing,
-                        @JsonProperty("pipWriteFinalDecisionPresentingOfficerAttendedQuestion") String pipWriteFinalDecisionPresentingOfficerAttendedQuestion,
-                        @JsonProperty("pipWriteFinalDecisionPresentingAppellantAttendedQuestion") String pipWriteFinalDecisionPresentingAppellantAttendedQuestion,
+                        @JsonProperty("writeFinalDecisionTypeOfHearing") String writeFinalDecisionTypeOfHearing,
+                        @JsonProperty("writeFinalDecisionPresentingOfficerAttendedQuestion") String writeFinalDecisionPresentingOfficerAttendedQuestion,
+                        @JsonProperty("writeFinalDecisionPresentingAppellantAttendedQuestion") String writeFinalDecisionPresentingAppellantAttendedQuestion,
                         @JsonProperty("pipWriteFinalDecisionDailyLivingQuestion") String pipWriteFinalDecisionDailyLivingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMobilityQuestion") String pipWriteFinalDecisionMobilityQuestion,
                         @JsonProperty("pipWriteFinalDecisionComparedToDWPQuestion") String pipWriteFinalDecisionComparedToDwpQuestion,
-                        @JsonProperty("pipWriteFinalDecisionStartDate") String pipWriteFinalDecisionStartDate,
-                        @JsonProperty("pipWriteFinalDecisionEndDateType") String pipWriteFinalDecisionEndDateType,
-                        @JsonProperty("pipWriteFinalDecisionEndDate") String pipWriteFinalDecisionEndDate,
-                        @JsonProperty("pipDisabilityQualifiedPanelMemberName") String pipDisabilityQualifiedPanelMemberName,
-                        @JsonProperty("pipMedicallyQualifiedPanelMemberName") String pipMedicallyQualifiedPanelMemberName,
-                        @JsonProperty("pipWriteFinalDecisionDateOfDecision") String pipWriteFinalDecisionDecisionDate,
+                        @JsonProperty("writeFinalDecisionStartDate") String writeFinalDecisionStartDate,
+                        @JsonProperty("writeFinalDecisionEndDateType") String writeFinalDecisionEndDateType,
+                        @JsonProperty("writeFinalDecisionEndDate") String writeFinalDecisionEndDate,
+                        @JsonProperty("disabilityQualifiedPanelMemberName") String disabilityQualifiedPanelMemberName,
+                        @JsonProperty("medicallyQualifiedPanelMemberName") String medicallyQualifiedPanelMemberName,
+                        @JsonProperty("writeFinalDecisionDateOfDecision") String writeFinalDecisionDateOfDecision,
                         @JsonProperty("pipWriteFinalDecisionPreparingFoodQuestion") String pipWriteFinalDecisionPreparingFoodQuestion,
                         @JsonProperty("pipWriteFinalDecisionTakingNutritionQuestion") String pipWriteFinalDecisionTakingNutritionQuestion,
                         @JsonProperty("pipWriteFinalDecisionManagingTherapyQuestion") String pipWriteFinalDecisionManagingTherapyQuestion,
@@ -316,8 +317,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionBudgetingDecisionsQuestion") String pipWriteFinalDecisionBudgetingDecisionsQuestion,
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
-                        @JsonProperty("pipWriteFinalDecisionReasonsForDecision") String pipWriteFinalDecisionReasonsForDecision,
-                        @JsonProperty("pipWriteFinalDecisionPageSectionReference") String pipWriteFinalDecisionPageSectionReference
+                        @JsonProperty("writeFinalDecisionReasonsForDecision") String writeFinalDecisionReasonsForDecision,
+                        @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -432,18 +433,18 @@ public class SscsCaseData implements CaseData {
         this.responseRequired = responseRequired;
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
-        this.pipWriteFinalDecisionTypeOfHearing = pipWriteFinalDecisionTypeOfHearing;
-        this.pipWriteFinalDecisionPresentingOfficerAttendedQuestion = pipWriteFinalDecisionPresentingOfficerAttendedQuestion;
-        this.pipWriteFinalDecisionPresentingAppellantAttendedQuestion = pipWriteFinalDecisionPresentingAppellantAttendedQuestion;
+        this.writeFinalDecisionTypeOfHearing = writeFinalDecisionTypeOfHearing;
+        this.writeFinalDecisionPresentingOfficerAttendedQuestion = writeFinalDecisionPresentingOfficerAttendedQuestion;
+        this.writeFinalDecisionPresentingAppellantAttendedQuestion = writeFinalDecisionPresentingAppellantAttendedQuestion;
         this.pipWriteFinalDecisionDailyLivingQuestion = pipWriteFinalDecisionDailyLivingQuestion;
         this.pipWriteFinalDecisionMobilityQuestion = pipWriteFinalDecisionMobilityQuestion;
         this.pipWriteFinalDecisionComparedToDwpQuestion = pipWriteFinalDecisionComparedToDwpQuestion;
-        this.pipWriteFinalDecisionStartDate = pipWriteFinalDecisionStartDate;
-        this.pipWriteFinalDecisionEndDateType = pipWriteFinalDecisionEndDateType;
-        this.pipWriteFinalDecisionEndDate = pipWriteFinalDecisionEndDate;
-        this.pipDisabilityQualifiedPanelMemberName = pipDisabilityQualifiedPanelMemberName;
-        this.pipMedicallyQualifiedPanelMemberName = pipMedicallyQualifiedPanelMemberName;
-        this.pipWriteFinalDecisionDateOfDecision = pipWriteFinalDecisionDecisionDate;
+        this.writeFinalDecisionStartDate = writeFinalDecisionStartDate;
+        this.writeFinalDecisionEndDateType = writeFinalDecisionEndDateType;
+        this.writeFinalDecisionEndDate = writeFinalDecisionEndDate;
+        this.disabilityQualifiedPanelMemberName = disabilityQualifiedPanelMemberName;
+        this.medicallyQualifiedPanelMemberName = medicallyQualifiedPanelMemberName;
+        this.writeFinalDecisionDateOfDecision = writeFinalDecisionDateOfDecision;
         this.pipWriteFinalDecisionDailyLivingActivitiesQuestion = pipWriteFinalDecisionDailyLivingActivitiesQuestion;
         this.pipWriteFinalDecisionMobilityActivitiesQuestion = pipWriteFinalDecisionMobilityActivitiesQuestion;
         this.pipWriteFinalDecisionPreparingFoodQuestion = pipWriteFinalDecisionPreparingFoodQuestion;
@@ -458,8 +459,8 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionBudgetingDecisionsQuestion = pipWriteFinalDecisionBudgetingDecisionsQuestion;
         this.pipWriteFinalDecisionPlanningAndFollowingQuestion = pipWriteFinalDecisionPlanningAndFollowingQuestion;
         this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
-        this.pipWriteFinalDecisionReasonsForDecision = pipWriteFinalDecisionReasonsForDecision;
-        this.pipWriteFinalDecisionPageSectionReference = pipWriteFinalDecisionPageSectionReference;
+        this.writeFinalDecisionReasonsForDecision = writeFinalDecisionReasonsForDecision;
+        this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
     }
 
 
