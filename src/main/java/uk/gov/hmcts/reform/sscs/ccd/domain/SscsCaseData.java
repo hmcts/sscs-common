@@ -157,8 +157,8 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionStartDate;
     private String writeFinalDecisionEndDateType;
     private String writeFinalDecisionEndDate;
-    private String disabilityQualifiedPanelMemberName;
-    private String medicallyQualifiedPanelMemberName;
+    private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
+    private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
     private String writeFinalDecisionDateOfDecision;
     private String pipWriteFinalDecisionPreparingFoodQuestion;
     private String pipWriteFinalDecisionTakingNutritionQuestion;
@@ -302,8 +302,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionStartDate") String writeFinalDecisionStartDate,
                         @JsonProperty("writeFinalDecisionEndDateType") String writeFinalDecisionEndDateType,
                         @JsonProperty("writeFinalDecisionEndDate") String writeFinalDecisionEndDate,
-                        @JsonProperty("disabilityQualifiedPanelMemberName") String disabilityQualifiedPanelMemberName,
-                        @JsonProperty("medicallyQualifiedPanelMemberName") String medicallyQualifiedPanelMemberName,
+                        @JsonProperty("writeFinalDecisionDisabilityQualifiedPanelMemberName") String writeFinalDecisionDisabilityQualifiedPanelMemberName,
+                        @JsonProperty("writeFinalDecisionMedicallyQualifiedPanelMemberName") String writeFinalDecisionMedicallyQualifiedPanelMemberName,
                         @JsonProperty("writeFinalDecisionDateOfDecision") String writeFinalDecisionDateOfDecision,
                         @JsonProperty("pipWriteFinalDecisionPreparingFoodQuestion") String pipWriteFinalDecisionPreparingFoodQuestion,
                         @JsonProperty("pipWriteFinalDecisionTakingNutritionQuestion") String pipWriteFinalDecisionTakingNutritionQuestion,
@@ -442,8 +442,8 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionStartDate = writeFinalDecisionStartDate;
         this.writeFinalDecisionEndDateType = writeFinalDecisionEndDateType;
         this.writeFinalDecisionEndDate = writeFinalDecisionEndDate;
-        this.disabilityQualifiedPanelMemberName = disabilityQualifiedPanelMemberName;
-        this.medicallyQualifiedPanelMemberName = medicallyQualifiedPanelMemberName;
+        this.writeFinalDecisionDisabilityQualifiedPanelMemberName = writeFinalDecisionDisabilityQualifiedPanelMemberName;
+        this.writeFinalDecisionMedicallyQualifiedPanelMemberName = writeFinalDecisionMedicallyQualifiedPanelMemberName;
         this.writeFinalDecisionDateOfDecision = writeFinalDecisionDateOfDecision;
         this.pipWriteFinalDecisionDailyLivingActivitiesQuestion = pipWriteFinalDecisionDailyLivingActivitiesQuestion;
         this.pipWriteFinalDecisionMobilityActivitiesQuestion = pipWriteFinalDecisionMobilityActivitiesQuestion;
