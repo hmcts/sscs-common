@@ -61,16 +61,16 @@
     "email" : "Birmingham-SYA-Receipts@justice.gov.uk"
   },
   "SSCS Newcastle":{
-    "name" : "NEWCASTLE",
+    "name" : "LEEDS",
     "address1" : "HM Courts & Tribunals Service",
     "address2" : "Social Security & Child Support Appeals",
-    "address3" : "Manorview House",
-    "address4" : "Kings Manor",
-    "city" : "NEWCASTLE UPON TYNE",
-    "postcode" : "NE1 6PA",
+    "address3" : "York House",
+    "address4" : "31 York Place",
+    "city" : "LEEDS",
+    "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
-    "faxNumber" : "0870 739 5784",
-    "email" : "Newcastle_SYA_Resp@justice.gov.uk"
+    "faxNumber" : "0870 739 4331",
+    "email" : "Leeds_SYA_Response@justice.gov.uk"
   },
   "SSCS Glasgow": {
     "name" : "GLASGOW",
