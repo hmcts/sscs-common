@@ -12,7 +12,6 @@ import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.junit.After;
