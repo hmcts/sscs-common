@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.idam;
 
 import com.nimbusds.jose.crypto.factories.DefaultJWSVerifierFactory;
 import com.nimbusds.jose.proc.JWSVerifierFactory;
+import java.util.Base64;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,14 @@ import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
-import uk.gov.hmcts.reform.idam.client.IdamClient;
 
 @Service
 @Slf4j
 public class IdamService {
-
     public static final int ONE_HOUR = 1000 * 60 * 60;
 
     private final AuthTokenGenerator authTokenGenerator;
-
-    private final IdamClient idamClient;
-
+    private final IdamApiClient idamApiClient;
     private final JWSVerifierFactory jwsVerifierFactory;
 
     @Value("${idam.oauth2.user.email}")
@@ -44,9 +41,9 @@ public class IdamService {
     private String cachedToken;
 
     @Autowired
-    IdamService(AuthTokenGenerator authTokenGenerator, IdamClient idamClient) {
+    IdamService(AuthTokenGenerator authTokenGenerator, IdamApiClient idamApiClient) {
         this.authTokenGenerator = authTokenGenerator;
-        this.idamClient = idamClient;
+        this.idamApiClient = idamApiClient;
         this.jwsVerifierFactory = new DefaultJWSVerifierFactory();
     }
 
@@ -56,25 +53,44 @@ public class IdamService {
 
     @Retryable
     public String getUserId(String oauth2Token) {
-
-        return idamClient.getUserDetails(oauth2Token).getId();
+        return idamApiClient.getUserDetails(oauth2Token).getId();
     }
 
     public UserDetails getUserDetails(String oauth2Token)  {
-        uk.gov.hmcts.reform.idam.client.models.UserDetails userDetails = idamClient.getUserDetails(oauth2Token);
-        return new UserDetailsTransformer(userDetails).asLocalUserDetails();
+        return idamApiClient.getUserDetails(oauth2Token);
     }
 
     public String getIdamOauth2Token() {
-        return getOpenAccessToken();
-    }
 
-    public String getOpenAccessToken() {
         try {
-            log.info("Requesting idam access token from Open End Point");
-            String accessToken = idamClient.getAccessToken(idamOauth2UserEmail, idamOauth2UserPassword);
-            log.info("Requesting idam access token successful");
-            return accessToken;
+            log.info("Requesting idam token");
+            String authorisation = idamOauth2UserEmail + ":" + idamOauth2UserPassword;
+            String base64Authorisation = Base64.getEncoder().encodeToString(authorisation.getBytes());
+
+            Authorize authorize = idamApiClient.authorizeCodeType(
+                "Basic " + base64Authorisation,
+                "code",
+                idamOauth2ClientId,
+                idamOauth2RedirectUrl,
+                " "
+            );
+
+            log.info("Passing authorization code to IDAM to get a token");
+
+            Authorize authorizeToken = idamApiClient.authorizeToken(
+                authorize.getCode(),
+                "authorization_code",
+                idamOauth2RedirectUrl,
+                idamOauth2ClientId,
+                idamOauth2ClientSecret,
+                " "
+            );
+
+            cachedToken = "Bearer " + authorizeToken.getAccessToken();
+
+            log.info("Requesting idam token successful");
+
+            return cachedToken;
         } catch (Exception e) {
             log.error("Requesting idam token failed: " + e.getMessage());
             throw e;
@@ -100,7 +116,6 @@ public class IdamService {
         }
 
         UserDetails userDetails = getUserDetails(idamOauth2Token);
-
         return IdamTokens.builder()
                 .idamOauth2Token(idamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())
