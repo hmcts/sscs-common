@@ -20,7 +20,7 @@ public class IdamService {
 
     private final AuthTokenGenerator authTokenGenerator;
 
-    private final IdamClient sharedIdamClient;
+    private final IdamClient idamClient;
 
     private final JWSVerifierFactory jwsVerifierFactory;
 
@@ -44,9 +44,9 @@ public class IdamService {
     private String cachedToken;
 
     @Autowired
-    IdamService(AuthTokenGenerator authTokenGenerator, IdamClient sharedIdamClient) {
+    IdamService(AuthTokenGenerator authTokenGenerator, IdamClient idamClient) {
         this.authTokenGenerator = authTokenGenerator;
-        this.sharedIdamClient = sharedIdamClient;
+        this.idamClient = idamClient;
         this.jwsVerifierFactory = new DefaultJWSVerifierFactory();
     }
 
@@ -57,11 +57,11 @@ public class IdamService {
     @Retryable
     public String getUserId(String oauth2Token) {
 
-        return sharedIdamClient.getUserDetails(oauth2Token).getId();
+        return idamClient.getUserDetails(oauth2Token).getId();
     }
 
     public UserDetails getUserDetails(String oauth2Token)  {
-        uk.gov.hmcts.reform.idam.client.models.UserDetails userDetails = sharedIdamClient.getUserDetails(oauth2Token);
+        uk.gov.hmcts.reform.idam.client.models.UserDetails userDetails = idamClient.getUserDetails(oauth2Token);
         return new UserDetailsTransformer(userDetails).asLocalUserDetails();
     }
 
@@ -72,7 +72,7 @@ public class IdamService {
     public String getOpenAccessToken() {
         try {
             log.info("Requesting idam access token from Open End Point");
-            String accessToken = sharedIdamClient.getAccessToken(idamOauth2UserEmail, idamOauth2UserPassword);
+            String accessToken = idamClient.getAccessToken(idamOauth2UserEmail, idamOauth2UserPassword);
             log.info("Requesting idam access token successful");
             return accessToken;
         } catch (Exception e) {
