@@ -12,6 +12,7 @@ import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.junit.After;
@@ -25,7 +26,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
-import uk.gov.hmcts.reform.idam.client.IdamClient;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,9 +33,8 @@ public class IdamServiceTest {
 
     @Mock
     private AuthTokenGenerator authTokenGenerator;
-
     @Mock
-    private IdamClient idamClient;
+    private IdamApiClient idamApiClient;
 
     @Mock
     private Appender mockAppender;
@@ -49,7 +48,8 @@ public class IdamServiceTest {
     @Before
     public void setUp() {
         authToken = new Authorize("redirect/", "authCode", "access");
-        idamService = new IdamService(authTokenGenerator, idamClient);
+        idamService = new IdamService(authTokenGenerator, idamApiClient
+        );
 
         ReflectionTestUtils.setField(idamService, "idamOauth2UserEmail", "email");
         ReflectionTestUtils.setField(idamService, "idamOauth2UserPassword", "pass");
@@ -72,12 +72,23 @@ public class IdamServiceTest {
         String auth = "auth";
         when(authTokenGenerator.generate()).thenReturn(auth);
 
-        when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
+        String base64Authorisation = Base64.getEncoder().encodeToString("email:pass".getBytes());
+        when(idamApiClient.authorizeCodeType("Basic " + base64Authorisation,
+                "code",
+                "id",
+                "redirect/",
+                " ")
+        ).thenReturn(authToken);
+        when(idamApiClient.authorizeToken(authToken.getCode(),
+                "authorization_code",
+                "redirect/",
+                "id",
+                "secret",
+                " ")
+        ).thenReturn(authToken);
 
-        uk.gov.hmcts.reform.idam.client.models.UserDetails expectedUserDetails =
-                new uk.gov.hmcts.reform.idam.client.models.UserDetails("16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
-
-        given(idamClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+        UserDetails expectedUserDetails = new UserDetails("16", "dummy@email.com", new ArrayList<>());
+        given(idamApiClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
@@ -85,19 +96,24 @@ public class IdamServiceTest {
         assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
-        verify(mockAppender, times(3)).doAppend(captorLoggingEvent.capture());
+        verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
         final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
 
         //Check the message being logged is correct
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token successful"));
+        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
+        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Passing authorization code to IDAM to get a token"));
+        assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam token successful"));
     }
 
     @Test
     public void shouldExceptionGivenErrorWithAppropriateLogMessages() {
-
-        when(idamClient.getAccessToken("email", "pass")
+        String base64Authorisation = Base64.getEncoder().encodeToString("email:pass".getBytes());
+        when(idamApiClient.authorizeCodeType("Basic " + base64Authorisation,
+            "code",
+            "id",
+            "redirect/",
+            " ")
         ).thenThrow(new RuntimeException());
 
         try {
@@ -111,7 +127,7 @@ public class IdamServiceTest {
 
         //Check the message being logged is correct
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
+        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam token"));
         assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
     }
 }
