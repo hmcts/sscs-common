@@ -151,9 +151,11 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
     private String writeFinalDecisionPresentingAppellantAttendedQuestion;
     private String pipWriteFinalDecisionDailyLivingQuestion;
+    @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion")
+    private String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
     private String pipWriteFinalDecisionMobilityQuestion;
-    @JsonProperty("pipWriteFinalDecisionComparedToDWPQuestion")
-    private String pipWriteFinalDecisionComparedToDwpQuestion;
+    @JsonProperty("pipWriteFinalDecisionComparedToDWPMobilityQuestion")
+    private String pipWriteFinalDecisionComparedToDwpMobilityQuestion;
     private String writeFinalDecisionStartDate;
     private String writeFinalDecisionEndDateType;
     private String writeFinalDecisionEndDate;
@@ -297,8 +299,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionPresentingOfficerAttendedQuestion") String writeFinalDecisionPresentingOfficerAttendedQuestion,
                         @JsonProperty("writeFinalDecisionPresentingAppellantAttendedQuestion") String writeFinalDecisionPresentingAppellantAttendedQuestion,
                         @JsonProperty("pipWriteFinalDecisionDailyLivingQuestion") String pipWriteFinalDecisionDailyLivingQuestion,
+                        @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion") String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMobilityQuestion") String pipWriteFinalDecisionMobilityQuestion,
-                        @JsonProperty("pipWriteFinalDecisionComparedToDWPQuestion") String pipWriteFinalDecisionComparedToDwpQuestion,
+                        @JsonProperty("pipWriteFinalDecisionComparedToDWPMobilityQuestion") String pipWriteFinalDecisionComparedToDwpMobilityQuestion,
                         @JsonProperty("writeFinalDecisionStartDate") String writeFinalDecisionStartDate,
                         @JsonProperty("writeFinalDecisionEndDateType") String writeFinalDecisionEndDateType,
                         @JsonProperty("writeFinalDecisionEndDate") String writeFinalDecisionEndDate,
@@ -437,8 +440,9 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionPresentingOfficerAttendedQuestion = writeFinalDecisionPresentingOfficerAttendedQuestion;
         this.writeFinalDecisionPresentingAppellantAttendedQuestion = writeFinalDecisionPresentingAppellantAttendedQuestion;
         this.pipWriteFinalDecisionDailyLivingQuestion = pipWriteFinalDecisionDailyLivingQuestion;
+        this.pipWriteFinalDecisionComparedToDwpDailyLivingQuestion = pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
         this.pipWriteFinalDecisionMobilityQuestion = pipWriteFinalDecisionMobilityQuestion;
-        this.pipWriteFinalDecisionComparedToDwpQuestion = pipWriteFinalDecisionComparedToDwpQuestion;
+        this.pipWriteFinalDecisionComparedToDwpMobilityQuestion = pipWriteFinalDecisionComparedToDwpMobilityQuestion;
         this.writeFinalDecisionStartDate = writeFinalDecisionStartDate;
         this.writeFinalDecisionEndDateType = writeFinalDecisionEndDateType;
         this.writeFinalDecisionEndDate = writeFinalDecisionEndDate;
