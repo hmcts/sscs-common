@@ -52,7 +52,7 @@ public class AirLookupService {
         lookupAirVenueNameByPostCode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
 
-        String airlookupFilePath = "reference-data/AIRLookup12.xlsx";
+        String airlookupFilePath = "reference-data/AIRLookup13.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
             Workbook wb2 = XSSFWorkbookFactory.create(classPathResource.getInputStream());
