@@ -176,7 +176,10 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionReasonsForDecision;
     private String writeFinalDecisionPageSectionReference;
-    
+    private String writeFinalDecisionGenerateNotice;
+    private DocumentLink writeFinalDecisionPreviewDocument;
+
+
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty(value = "state") State state,
@@ -321,7 +324,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
                         @JsonProperty("writeFinalDecisionReasonsForDecision") String writeFinalDecisionReasonsForDecision,
-                        @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference
+                        @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
+                        @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
+                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument
+
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -465,6 +471,8 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
         this.writeFinalDecisionReasonsForDecision = writeFinalDecisionReasonsForDecision;
         this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
+        this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
+        this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
     }
 
 
@@ -496,6 +504,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isWriteFinalDecisionGenerateNotice() {
+        return stringToBoolean(writeFinalDecisionGenerateNotice);
     }
 
     @JsonIgnore
