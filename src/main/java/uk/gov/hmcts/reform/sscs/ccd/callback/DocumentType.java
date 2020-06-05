@@ -16,7 +16,8 @@ public enum DocumentType {
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     DWP_EVIDENCE("dwpEvidence", "DWP evidence"),
     AT38("at38", "AT38"),
-    SSCS1("sscs1", "SSCS1");
+    SSCS1("sscs1", "SSCS1"),
+    DRAFT_DECISION_NOTICE("Draft Decision Notice");
 
     private String value;
     private String label;
