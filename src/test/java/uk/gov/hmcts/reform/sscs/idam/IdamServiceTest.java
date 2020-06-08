@@ -53,9 +53,6 @@ public class IdamServiceTest {
 
         ReflectionTestUtils.setField(idamService, "idamOauth2UserEmail", "email");
         ReflectionTestUtils.setField(idamService, "idamOauth2UserPassword", "pass");
-        ReflectionTestUtils.setField(idamService, "idamOauth2ClientId", "id");
-        ReflectionTestUtils.setField(idamService, "idamOauth2ClientSecret", "secret");
-        ReflectionTestUtils.setField(idamService, "idamOauth2RedirectUrl", "redirect/");
 
         final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
         logger.addAppender(mockAppender);

@@ -30,15 +30,6 @@ public class IdamService {
     @Value("${idam.oauth2.user.password}")
     private String idamOauth2UserPassword;
 
-    @Value("${idam.oauth2.client.id}")
-    private String idamOauth2ClientId;
-
-    @Value("${idam.oauth2.client.secret}")
-    private String idamOauth2ClientSecret;
-
-    @Value("${idam.oauth2.redirectUrl}")
-    private String idamOauth2RedirectUrl;
-
     // Tactical idam token caching solution implemented
     // SSCS-5895 - will deliver the strategic caching solution
     private String cachedToken;
