@@ -1,6 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
@@ -178,6 +183,7 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionPageSectionReference;
     private String writeFinalDecisionGenerateNotice;
     private DocumentLink writeFinalDecisionPreviewDocument;
+    private String languagePreferenceWelsh;
 
 
     @JsonCreator
@@ -251,8 +257,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("signedBy") String signedBy,
                         @JsonProperty("signedRole") String signedRole,
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                            @JsonSerialize(using = LocalDateSerializer.class)
-                            @JsonProperty("dateAdded") LocalDate dateAdded,
+                        @JsonSerialize(using = LocalDateSerializer.class)
+                        @JsonProperty("dateAdded") LocalDate dateAdded,
                         @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
@@ -326,7 +332,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionReasonsForDecision") String writeFinalDecisionReasonsForDecision,
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
                         @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
-                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument
+                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -473,6 +480,7 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
         this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
+        this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 
 
@@ -518,6 +526,16 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public boolean isLanguagePreferenceWelsh() {
+        return stringToBoolean(languagePreferenceWelsh);
+    }
+
+    @JsonIgnore
+    public LanguagePreference getLanguagePreference() {
+        return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+    }
+
+    @JsonIgnore
     public void sortCollections() {
 
         if (getCorrespondence() != null) {
@@ -554,7 +572,7 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredStream = getSscsDocument().stream()
-                .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
+                    .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
             List<SscsDocument> filteredList = filteredStream.collect(Collectors.toList());
 
