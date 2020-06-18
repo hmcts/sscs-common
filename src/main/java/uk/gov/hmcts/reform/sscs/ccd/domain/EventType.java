@@ -106,7 +106,7 @@ public enum EventType {
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false),
     ASSOCIATE_CASE("associateCase", 0, false),
     LINK_A_CASE("linkACase", 0, false),
-    REMOVE_A_CASE("removeACase", 0, false),
+    REMOVE_LINK_FOR_CASE("removeLinkForCase", 0, false),
     LOG_DOCS_TO_DWP("logDocsToDwp", 0, false),
     MAKE_CASE_URGENT("makeCaseUrgent", 0, false),
     DWP_APPEAL_REGISTERED("dwpAppealRegistered", 0, false),
