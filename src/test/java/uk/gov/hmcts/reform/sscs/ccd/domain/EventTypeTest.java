@@ -16,6 +16,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.FIRST_HEARING_HOLDIN
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LAPSED_REVISED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LINK_A_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POSTPONED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REMOVE_A_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_INFO_INCOMPLETE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.RESEND_CASE_TO_GAPS2;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SENT_TO_DWP_ERROR;
@@ -93,6 +94,7 @@ public class EventTypeTest {
             "dwpLapseCase\n" +
             "hmctsLapseCase\n" +
             "linkACase\n" +
+            "removeACase\n" +
             "sentToJudge\n" +
             "makeCaseUrgent\n" +
             "moveToAppealCreated\n" +
@@ -171,7 +173,7 @@ public class EventTypeTest {
             LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
             SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
-            LINK_A_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE, WRITE_FINAL_DECISION);
+            LINK_A_CASE, REMOVE_A_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE, WRITE_FINAL_DECISION);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
