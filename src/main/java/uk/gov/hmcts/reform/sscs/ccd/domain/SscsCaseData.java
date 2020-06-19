@@ -180,6 +180,7 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionPageSectionReference;
     private DocumentLink writeFinalDecisionPreviewDocument;
+    private String writeFinalDecisionGeneratedDate;
 
 
     @JsonCreator
@@ -330,7 +331,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
-                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument
+                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
+                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -479,6 +481,7 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
         this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
+        this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
     }
 
 
