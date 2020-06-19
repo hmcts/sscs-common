@@ -154,7 +154,7 @@ public class SscsCaseData implements CaseData {
     //Final decision notice fields
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
-    private String writeFinalDecisionPresentingAppellantAttendedQuestion;
+    private String writeFinalDecisionAppellantAttendedQuestion;
     private String pipWriteFinalDecisionDailyLivingQuestion;
     @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion")
     private String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
@@ -181,7 +181,6 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionReasonsForDecision;
     private String writeFinalDecisionPageSectionReference;
-    private String writeFinalDecisionGenerateNotice;
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String languagePreferenceWelsh;
 
@@ -306,7 +305,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
                         @JsonProperty("writeFinalDecisionTypeOfHearing") String writeFinalDecisionTypeOfHearing,
                         @JsonProperty("writeFinalDecisionPresentingOfficerAttendedQuestion") String writeFinalDecisionPresentingOfficerAttendedQuestion,
-                        @JsonProperty("writeFinalDecisionPresentingAppellantAttendedQuestion") String writeFinalDecisionPresentingAppellantAttendedQuestion,
+                        @JsonProperty("writeFinalDecisionAppellantAttendedQuestion") String writeFinalDecisionAppellantAttendedQuestion,
                         @JsonProperty("pipWriteFinalDecisionDailyLivingQuestion") String pipWriteFinalDecisionDailyLivingQuestion,
                         @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion") String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMobilityQuestion") String pipWriteFinalDecisionMobilityQuestion,
@@ -331,7 +330,6 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
                         @JsonProperty("writeFinalDecisionReasonsForDecision") String writeFinalDecisionReasonsForDecision,
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
-                        @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
                         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh
 
@@ -451,7 +449,7 @@ public class SscsCaseData implements CaseData {
         this.bundleConfiguration = bundleConfiguration;
         this.writeFinalDecisionTypeOfHearing = writeFinalDecisionTypeOfHearing;
         this.writeFinalDecisionPresentingOfficerAttendedQuestion = writeFinalDecisionPresentingOfficerAttendedQuestion;
-        this.writeFinalDecisionPresentingAppellantAttendedQuestion = writeFinalDecisionPresentingAppellantAttendedQuestion;
+        this.writeFinalDecisionAppellantAttendedQuestion = writeFinalDecisionAppellantAttendedQuestion;
         this.pipWriteFinalDecisionDailyLivingQuestion = pipWriteFinalDecisionDailyLivingQuestion;
         this.pipWriteFinalDecisionComparedToDwpDailyLivingQuestion = pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
         this.pipWriteFinalDecisionMobilityQuestion = pipWriteFinalDecisionMobilityQuestion;
@@ -478,7 +476,6 @@ public class SscsCaseData implements CaseData {
         this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
         this.writeFinalDecisionReasonsForDecision = writeFinalDecisionReasonsForDecision;
         this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
-        this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
@@ -512,11 +509,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
-    }
-
-    @JsonIgnore
-    public boolean isWriteFinalDecisionGenerateNotice() {
-        return stringToBoolean(writeFinalDecisionGenerateNotice);
     }
 
     @JsonIgnore
