@@ -332,7 +332,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
-        @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionAnythingElse,
+        @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
                         @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate
 
