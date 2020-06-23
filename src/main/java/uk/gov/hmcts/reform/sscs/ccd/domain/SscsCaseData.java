@@ -182,6 +182,8 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionAnythingElse;
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String writeFinalDecisionDocumentDateAdded;
+    private String writeFinalDecisionDocumentFileName;
 
 
     @JsonCreator
@@ -332,9 +334,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
                         @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
-        @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
-        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
-                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate
+                        @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
+                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
+                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
+                        @JsonProperty("writeFinalDecisionDocumentDateAdded") String writeFinalDecisionDocumentDateAdded,
+                        @JsonProperty("writeFinalDecisionDocumentFileName") String writeFinalDecisionDocumentFileName
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -485,6 +489,8 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionAnythingElse = writeFinalDecisionAnythingElse;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
         this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
+        this.writeFinalDecisionDocumentDateAdded = writeFinalDecisionDocumentDateAdded;
+        this.writeFinalDecisionDocumentFileName = writeFinalDecisionDocumentFileName;
     }
 
 
