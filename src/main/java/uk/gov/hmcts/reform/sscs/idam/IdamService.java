@@ -57,7 +57,8 @@ public class IdamService {
     }
 
     public String getIdamOauth2Token() {
-        return getOpenAccessToken();
+        cachedToken = getOpenAccessToken();
+        return cachedToken;
     }
 
     public String getOpenAccessToken() {
