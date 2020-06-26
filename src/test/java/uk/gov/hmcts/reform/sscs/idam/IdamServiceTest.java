@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.LoggingEvent;
@@ -110,5 +111,37 @@ public class IdamServiceTest {
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
         assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
         assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
+    }
+
+    @Test
+    public void shouldReturnCacheToken() {
+        String auth = "auth";
+        when(authTokenGenerator.generate()).thenReturn(auth);
+
+        when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
+
+        uk.gov.hmcts.reform.idam.client.models.UserDetails expectedUserDetails =
+                new uk.gov.hmcts.reform.idam.client.models.UserDetails("16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
+
+        given(idamClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+
+        // first time
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        assertThat(idamTokens.getServiceAuthorization(), is(auth));
+        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
+        assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
+
+        // second time
+        idamTokens = idamService.getIdamTokens();
+
+        assertThat(idamTokens.getServiceAuthorization(), is(auth));
+        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
+        assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
+
+        verify(idamClient, atMostOnce()).getAccessToken("email", "pass");
+
     }
 }
