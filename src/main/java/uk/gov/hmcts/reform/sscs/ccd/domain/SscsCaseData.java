@@ -183,9 +183,6 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionAnythingElse;
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
-    private String writeFinalDecisionDocumentDateAdded;
-    private String writeFinalDecisionDocumentFileName;
-
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
