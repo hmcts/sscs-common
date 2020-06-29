@@ -338,9 +338,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
                         @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
                         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
-                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
-                        @JsonProperty("writeFinalDecisionDocumentDateAdded") String writeFinalDecisionDocumentDateAdded,
-                        @JsonProperty("writeFinalDecisionDocumentFileName") String writeFinalDecisionDocumentFileName
+                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -492,8 +490,6 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionAnythingElse = writeFinalDecisionAnythingElse;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
         this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
-        this.writeFinalDecisionDocumentDateAdded = writeFinalDecisionDocumentDateAdded;
-        this.writeFinalDecisionDocumentFileName = writeFinalDecisionDocumentFileName;
     }
 
 
