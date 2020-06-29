@@ -148,6 +148,7 @@ public class SscsCaseData implements CaseData {
     private String bundleConfiguration;
     //Final decision notice fields
     private String writeFinalDecisionIsDescriptorFlow;
+    private String writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
@@ -306,6 +307,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
                         @JsonProperty("writeFinalDecisionIsDescriptorFlow") String writeFinalDecisionIsDescriptorFlow,
+                        @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
                         @JsonProperty("writeFinalDecisionAllowedOrRefused") String writeFinalDecisionAllowedOrRefused,
                         @JsonProperty("writeFinalDecisionTypeOfHearing") String writeFinalDecisionTypeOfHearing,
                         @JsonProperty("writeFinalDecisionPresentingOfficerAttendedQuestion") String writeFinalDecisionPresentingOfficerAttendedQuestion,
@@ -457,6 +459,7 @@ public class SscsCaseData implements CaseData {
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
         this.writeFinalDecisionIsDescriptorFlow = writeFinalDecisionIsDescriptorFlow;
+        this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
         this.writeFinalDecisionAllowedOrRefused = writeFinalDecisionAllowedOrRefused;
         this.writeFinalDecisionTypeOfHearing = writeFinalDecisionTypeOfHearing;
         this.writeFinalDecisionPresentingOfficerAttendedQuestion = writeFinalDecisionPresentingOfficerAttendedQuestion;
