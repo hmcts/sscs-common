@@ -143,7 +143,8 @@ public enum EventType {
     UPLOAD_DOCUMENT_FURTHER_EVIDENCE("uploadDocumentFurtherEvidence", 0, false),
     ADMIN_SEND_TO_DORMANT_APPEAL_STATE("adminSendToDormantAppealState", 0, false),
     ADMIN_SEND_TO_VOID_STATE("adminSendToVoidState", 0, false),
-    NOTIFICATION_SENT("notificationSent", 0, false);
+    NOTIFICATION_SENT("notificationSent", 0, false),
+    REISSUE_DOCUMENT("reissueDocument", 0, false);
 
     private String type;
     private String ccdType;
