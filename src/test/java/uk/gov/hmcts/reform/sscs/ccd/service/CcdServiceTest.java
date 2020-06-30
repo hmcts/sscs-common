@@ -245,13 +245,14 @@ public class CcdServiceTest {
     @Test
     public void givenABenefitTypeAndNinoAndMrnDate_thenReturnCaseDetailsIfTheyExistInCcd() {
 
-        SscsCaseData caseData = SscsCaseData.builder().generatedNino("JT123456B")
+        SscsCaseData caseData = SscsCaseData.builder()
                 .appeal(Appeal.builder()
+                        .appellant(Appellant.builder().identity(Identity.builder().nino("JT123456B").build()).build())
                         .benefitType(BenefitType.builder().code("JSA").build())
                         .mrnDetails(MrnDetails.builder().mrnDate("2018-01-01").build()).build()).build();
 
         final Map<String, String> searchCriteria = new HashMap<String, String>() {{
-                put("case.generatedNino", "JT123456B");
+                put("case.appeal.appellant.identity.nino", "JT123456B");
                 put("case.appeal.benefitType.code", "JSA");
                 put("case.appeal.mrnDetails.mrnDate", "2018-01-01");
             }
@@ -268,13 +269,14 @@ public class CcdServiceTest {
     @Test
     public void givenABenefitTypeAndNinoAndMrnDate_thenReturnNullIfTheyDoNotExistInCcd() {
 
-        SscsCaseData caseData = SscsCaseData.builder().generatedNino("JT123456B")
+        SscsCaseData caseData = SscsCaseData.builder()
                 .appeal(Appeal.builder()
+                        .appellant(Appellant.builder().identity(Identity.builder().nino("JT123456B").build()).build())
                         .benefitType(BenefitType.builder().code("JSA").build())
                         .mrnDetails(MrnDetails.builder().mrnDate("2018-01-01").build()).build()).build();
 
         final Map<String, String> searchCriteria = new HashMap<String, String>() {{
-                put("case.generatedNino", "JT123456B");
+                put("case.appeal.appellant.identity.nino", "JT123456B");
                 put("case.appeal.benefitType.code", "JSA");
                 put("case.appeal.mrnDetails.mrnDate", "2018-01-01");
             }
@@ -291,8 +293,9 @@ public class CcdServiceTest {
     @Test
     public void givenABenefitTypeAndNinoAndNoMrnDate_thenReturnNull() {
 
-        SscsCaseData caseData = SscsCaseData.builder().generatedNino("JT123456B")
+        SscsCaseData caseData = SscsCaseData.builder()
                 .appeal(Appeal.builder()
+                        .appellant(Appellant.builder().identity(Identity.builder().nino("JT123456B").build()).build())
                         .benefitType(BenefitType.builder().code("JSA").build())
                         .mrnDetails(MrnDetails.builder().mrnDate(null).build()).build()).build();
 
