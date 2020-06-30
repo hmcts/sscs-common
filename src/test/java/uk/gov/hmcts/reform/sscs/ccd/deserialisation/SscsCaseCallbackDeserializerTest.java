@@ -26,6 +26,7 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,6 +35,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.quality.Strictness;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DirectionResponse;
@@ -241,5 +244,19 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("AdditionalEvidence.pdf", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentFilename());
         assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390/binary", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentBinaryUrl());
+    }
+
+    @Test
+    @Parameters({"adminAppealWithdrawnCallback.json", "updateFurtherEvidence.json"})
+    public void should_deserialise_and_serialise(final String jsonFileName) throws IOException, JSONException {
+        sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
+
+        String path = getClass().getClassLoader().getResource(jsonFileName).getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+        Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
+
+        String valueAsString = mapper.writeValueAsString(actualSscsCaseCallback);
+
+        JSONAssert.assertEquals(valueAsString, json,  JSONCompareMode.LENIENT);
     }
 }
