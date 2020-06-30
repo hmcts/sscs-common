@@ -1111,5 +1111,5 @@
     }
   },
   "event_id": "directionIssued",
-  "ignore_warning": null
+  "ignore_warning": false
 }

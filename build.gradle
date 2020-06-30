@@ -143,6 +143,7 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.7.RELEASE'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.16.1'
+    testCompile group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 
     testCompileOnly 'org.projectlombok:lombok:1.18.10'
