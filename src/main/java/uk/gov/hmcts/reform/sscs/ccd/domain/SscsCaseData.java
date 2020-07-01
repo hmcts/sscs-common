@@ -146,6 +146,7 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private String pcqId;
     //Final decision notice fields
     private String writeFinalDecisionIsDescriptorFlow;
     private String writeFinalDecisionGenerateNotice;
@@ -305,6 +306,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("responseRequired") String responseRequired,
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
+                        @JsonProperty("pcqId") String pcqId,
                         @JsonProperty("writeFinalDecisionIsDescriptorFlow") String writeFinalDecisionIsDescriptorFlow,
                         @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
                         @JsonProperty("writeFinalDecisionAllowedOrRefused") String writeFinalDecisionAllowedOrRefused,
@@ -456,6 +458,7 @@ public class SscsCaseData implements CaseData {
         this.responseRequired = responseRequired;
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
+        this.pcqId = pcqId;
         this.writeFinalDecisionIsDescriptorFlow = writeFinalDecisionIsDescriptorFlow;
         this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
         this.writeFinalDecisionAllowedOrRefused = writeFinalDecisionAllowedOrRefused;
