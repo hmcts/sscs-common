@@ -186,6 +186,11 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionGeneratedDate;
     private String adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
+    private String adjournCaseCanCaseBeListedRightAway;
+    private String adjournCaseAreDirectionsBeingMadeToParties;
+    private Integer adjournCaseDirectionsDueDateDaysOffset;
+    private String adjournCaseDirectionsDueDate;
+    private String adjournCaseTypeOfNextHearing;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -341,7 +346,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
                         @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
                         @JsonProperty("adjournCaseGenerateNotice") String adjournCaseGenerateNotice,
-                        @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing
+                        @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing,
+                        @JsonProperty("adjournCaseCanCaseBeListedRightAway") String adjournCaseCanCaseBeListedRightAway,
+                        @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties") String adjournCaseAreDirectionsBeingMadeToParties,
+                        @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") Integer adjournCaseDirectionsDueDateDaysOffset,
+                        @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
+                        @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -496,8 +506,12 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
         this.adjournCaseGenerateNotice = adjournCaseGenerateNotice;
         this.adjournCaseTypeOfHearing = adjournCaseTypeOfHearing;
+        this.adjournCaseCanCaseBeListedRightAway = adjournCaseCanCaseBeListedRightAway;
+        this.adjournCaseAreDirectionsBeingMadeToParties = adjournCaseAreDirectionsBeingMadeToParties;
+        this.adjournCaseDirectionsDueDateDaysOffset = adjournCaseDirectionsDueDateDaysOffset;
+        this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
+        this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
     }
-
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -532,6 +546,16 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isAdjournCaseGenerateNotice() {
         return stringToBoolean(adjournCaseGenerateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseAbleToBeListedRightAway() {
+        return stringToBoolean(adjournCaseCanCaseBeListedRightAway);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseDirectionsMadeToParties() {
+        return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
     }
 
     @JsonIgnore
