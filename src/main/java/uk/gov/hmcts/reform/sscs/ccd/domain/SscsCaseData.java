@@ -188,7 +188,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseTypeOfHearing;
     private String adjournCaseCanCaseBeListedRightAway;
     private String adjournCaseAreDirectionsBeingMadeToParties;
-    private Integer adjournCaseDirectionsDueDateDaysOffset;
+    private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
 
@@ -349,7 +349,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing,
                         @JsonProperty("adjournCaseCanCaseBeListedRightAway") String adjournCaseCanCaseBeListedRightAway,
                         @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties") String adjournCaseAreDirectionsBeingMadeToParties,
-                        @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") Integer adjournCaseDirectionsDueDateDaysOffset,
+                        @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
                         @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing
 
