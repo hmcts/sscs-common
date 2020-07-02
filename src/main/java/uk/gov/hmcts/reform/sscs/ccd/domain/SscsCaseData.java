@@ -184,6 +184,8 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionAnythingElse;
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String adjournCaseGenerateNotice;
+    private String adjournCaseTypeOfHearing;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -337,7 +339,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
                         @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
                         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
-                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate
+                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
+                        @JsonProperty("adjournCaseGenerateNotice") String adjournCaseGenerateNotice,
+                        @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -490,6 +494,8 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionAnythingElse = writeFinalDecisionAnythingElse;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
         this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
+        this.adjournCaseGenerateNotice = adjournCaseGenerateNotice;
+        this.adjournCaseTypeOfHearing = adjournCaseTypeOfHearing;
     }
 
 
@@ -521,6 +527,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isResendToDwp() {
         return stringToBoolean(resendToDwp);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseGenerateNotice() {
+        return stringToBoolean(adjournCaseGenerateNotice);
     }
 
     @JsonIgnore
