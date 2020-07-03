@@ -359,7 +359,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
-                        @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseOtherPanelMemberName) {
+                        @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
