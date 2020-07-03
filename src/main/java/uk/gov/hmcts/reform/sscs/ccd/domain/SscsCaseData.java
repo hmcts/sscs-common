@@ -192,7 +192,9 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCasePanelMembersExcluded;
-
+    private String adjournCaseDisabilityQualifiedPanelMemberName;
+    private String adjournCaseMedicallyQualifiedPanelMemberName;
+    private String adjournCaseOtherPanelMemberName;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -354,10 +356,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
                         @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
-                        @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded
-
-
-    ) {
+                        @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
+                        @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
+                        @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
+                        @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseOtherPanelMemberName
+        ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -516,6 +519,9 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
         this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
         this.adjournCasePanelMembersExcluded = adjournCasePanelMembersExcluded;
+        this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
+        this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
+        this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
     }
 
     @JsonIgnore
