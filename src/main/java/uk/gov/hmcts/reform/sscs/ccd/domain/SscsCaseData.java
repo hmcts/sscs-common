@@ -191,6 +191,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
+    private String adjournCasePanelMembersExcluded;
+
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -351,7 +353,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties") String adjournCaseAreDirectionsBeingMadeToParties,
                         @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
-                        @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing
+                        @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
+                        @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded
+
 
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -511,6 +515,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDirectionsDueDateDaysOffset = adjournCaseDirectionsDueDateDaysOffset;
         this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
         this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
+        this.adjournCasePanelMembersExcluded = adjournCasePanelMembersExcluded;
     }
 
     @JsonIgnore
