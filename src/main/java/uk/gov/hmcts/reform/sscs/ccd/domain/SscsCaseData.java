@@ -195,6 +195,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
     private String adjournCaseOtherPanelMemberName;
+    private String languagePreferenceWelsh;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -359,7 +360,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
-                        @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName) {
+                        @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -521,7 +524,9 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
         this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
         this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
+        this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
+
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -577,6 +582,16 @@ public class SscsCaseData implements CaseData {
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
+    }
+
+    @JsonIgnore
+    public boolean isLanguagePreferenceWelsh() {
+        return stringToBoolean(languagePreferenceWelsh);
+    }
+
+    @JsonIgnore
+    public LanguagePreference getLanguagePreference() {
+        return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
     @JsonIgnore
