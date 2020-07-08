@@ -191,6 +191,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
+    private String adjournCaseNextHearingVenue;
+    private String adjournCaseNextHearingVenueSelected;
     private String adjournCasePanelMembersExcluded;
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
@@ -363,6 +365,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
                         @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
+                        @JsonProperty("adjournCaseNextHearingVenue") String adjournCaseNextHearingVenue,
+                        @JsonProperty("adjournCaseNextHearingVenueSelected") String adjournCaseNextHearingVenueSelected,
                         @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
@@ -531,6 +535,8 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDirectionsDueDateDaysOffset = adjournCaseDirectionsDueDateDaysOffset;
         this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
         this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
+        this.adjournCaseNextHearingVenue = adjournCaseNextHearingVenue;
+        this.adjournCaseNextHearingVenueSelected = adjournCaseNextHearingVenueSelected;
         this.adjournCasePanelMembersExcluded = adjournCasePanelMembersExcluded;
         this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
         this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
