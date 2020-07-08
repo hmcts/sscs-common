@@ -204,6 +204,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
+    private String adjournCaseInterpreterRequired;
+    private String adjournCaseInterpreterLanguage;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -377,7 +379,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate")  String adjournCaseNextHearingFirstAvailableDateAfterDate,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
-                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime) {
+                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
+                        @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
+                        @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -548,6 +552,8 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
+        this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
+        this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
     }
 
     @JsonIgnore
