@@ -197,6 +197,9 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
     private String adjournCaseOtherPanelMemberName;
+    private String adjournCaseNextHearingListingDurationType;
+    private String adjournCaseNextHearingListingDuration;
+    private String adjournCaseNextHearingListingDurationUnits;
     private String adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
@@ -373,6 +376,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName,
+                        @JsonProperty("adjournCaseNextHearingListingDurationType") String adjournCaseNextHearingListingDurationType,
+                        @JsonProperty("adjournCaseNextHearingListingDuration") String adjournCaseNextHearingListingDuration,
+                        @JsonProperty("adjournCaseNextHearingListingDurationUnits") String adjournCaseNextHearingListingDurationUnits,
                         @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
                         @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage,
                         @JsonProperty("adjournCaseNextHearingDateType") String adjournCaseNextHearingDateType,
@@ -545,6 +551,9 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
         this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
         this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
+        this.adjournCaseNextHearingListingDurationType = adjournCaseNextHearingListingDurationType;
+        this.adjournCaseNextHearingListingDuration = adjournCaseNextHearingListingDuration;
+        this.adjournCaseNextHearingListingDurationUnits = adjournCaseNextHearingListingDurationUnits;
         this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
         this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
         this.adjournCaseNextHearingDateType = adjournCaseNextHearingDateType;
