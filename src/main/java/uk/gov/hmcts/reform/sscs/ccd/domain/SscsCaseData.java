@@ -197,6 +197,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
     private String adjournCaseOtherPanelMemberName;
+    private String adjournCaseInterpreterRequired;
+    private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
     private String adjournCaseNextHearingDateOrPeriod;
     private String adjournCaseNextHearingDateOrTime;
@@ -204,8 +206,6 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
-    private String adjournCaseInterpreterRequired;
-    private String adjournCaseInterpreterLanguage;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -373,15 +373,15 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName,
+                        @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
+                        @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage,
                         @JsonProperty("adjournCaseNextHearingDateType") String adjournCaseNextHearingDateType,
                         @JsonProperty("adjournCaseNextHearingDateOrPeriod") String adjournCaseNextHearingDateOrPeriod,
                         @JsonProperty("adjournCaseNextHearingDateOrTime") String adjournCaseNextHearingDateOrTime,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate")  String adjournCaseNextHearingFirstAvailableDateAfterDate,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
-                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
-                        @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
-                        @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage) {
+                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -545,6 +545,8 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
         this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
         this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
+        this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
+        this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
         this.adjournCaseNextHearingDateType = adjournCaseNextHearingDateType;
         this.adjournCaseNextHearingDateOrPeriod = adjournCaseNextHearingDateOrPeriod;
         this.adjournCaseNextHearingDateOrTime = adjournCaseNextHearingDateOrTime;
@@ -552,8 +554,6 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
-        this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
-        this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
     }
 
     @JsonIgnore
