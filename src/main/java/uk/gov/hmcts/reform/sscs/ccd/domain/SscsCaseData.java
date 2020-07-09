@@ -209,6 +209,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
+    private List<CollectionItem<String>> adjournCaseReasons;
+    private String adjournCaseAnythingElse;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -387,7 +389,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate")  String adjournCaseNextHearingFirstAvailableDateAfterDate,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
-                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime) {
+                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
+                        @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
+                        @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -563,6 +567,8 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
+        this.adjournCaseReasons = adjournCaseReasons;
+        this.adjournCaseAnythingElse = adjournCaseAnythingElse;
     }
 
     @JsonIgnore
