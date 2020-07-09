@@ -219,6 +219,7 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String languagePreferenceWelsh;
+    private String isScottishCase;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -407,7 +408,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
                         @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
                         @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
+                        @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -593,6 +595,7 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableInterlocReview = updateNotListableInterlocReview;
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
+        this.isScottishCase = isScottishCase;
     }
 
     @JsonIgnore
