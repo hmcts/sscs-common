@@ -397,7 +397,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
-                        @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument) {
+                        @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
                         @JsonProperty("writeFinalDecisionDocumentDateAdded") String writeFinalDecisionDocumentDateAdded,
                         @JsonProperty("writeFinalDecisionDocumentFileName") String writeFinalDecisionDocumentFileName,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh
