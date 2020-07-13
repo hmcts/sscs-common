@@ -19,7 +19,10 @@ public enum DocumentType {
     DWP_EVIDENCE("dwpEvidence", "DWP evidence"),
     AT38("at38", "AT38"),
     SSCS1("sscs1", "SSCS1"),
-    DRAFT_DECISION_NOTICE("draftDecisionNotice", "Draft Decision Notice");
+    DRAFT_DECISION_NOTICE("draftDecisionNotice", "Draft Decision Notice"),
+    FINAL_DECISION_NOTICE("finalDecisionNotice", "Final Decision Notice"),
+    DRAFT_ADJOURNMENT_NOTICE("draftAdjournmentNotice", "Draft Adjournment Notice"),
+    ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice");
 
     private String value;
     private String label;

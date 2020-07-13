@@ -146,6 +146,7 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private String pcqId;
     //Final decision notice fields
     private String writeFinalDecisionIsDescriptorFlow;
     private String writeFinalDecisionGenerateNotice;
@@ -183,6 +184,34 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionAnythingElse;
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String adjournCaseGenerateNotice;
+    private String adjournCaseTypeOfHearing;
+    private String adjournCaseCanCaseBeListedRightAway;
+    private String adjournCaseAreDirectionsBeingMadeToParties;
+    private String adjournCaseDirectionsDueDateDaysOffset;
+    private String adjournCaseDirectionsDueDate;
+    private String adjournCaseTypeOfNextHearing;
+    private String adjournCaseNextHearingVenue;
+    private String adjournCaseNextHearingVenueSelected;
+    private String adjournCasePanelMembersExcluded;
+    private String adjournCaseDisabilityQualifiedPanelMemberName;
+    private String adjournCaseMedicallyQualifiedPanelMemberName;
+    private String adjournCaseOtherPanelMemberName;
+    private String adjournCaseNextHearingListingDurationType;
+    private String adjournCaseNextHearingListingDuration;
+    private String adjournCaseNextHearingListingDurationUnits;
+    private String adjournCaseInterpreterRequired;
+    private String adjournCaseInterpreterLanguage;
+    private String adjournCaseNextHearingDateType;
+    private String adjournCaseNextHearingDateOrPeriod;
+    private String adjournCaseNextHearingDateOrTime;
+    private String adjournCaseNextHearingFirstAvailableDateAfterDate;
+    private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
+    private String adjournCaseNextHearingSpecificDate;
+    private String adjournCaseNextHearingSpecificTime;
+    private List<CollectionItem<String>> adjournCaseReasons;
+    private String adjournCaseAnythingElse;
+    private DocumentLink adjournCasePreviewDocument;
     private String writeFinalDecisionDocumentDateAdded;
     private String writeFinalDecisionDocumentFileName;
     private String languagePreferenceWelsh;
@@ -306,6 +335,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("responseRequired") String responseRequired,
                         @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
                         @JsonProperty("bundleConfiguration") String bundleConfiguration,
+                        @JsonProperty("pcqId") String pcqId,
                         @JsonProperty("writeFinalDecisionIsDescriptorFlow") String writeFinalDecisionIsDescriptorFlow,
                         @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
                         @JsonProperty("writeFinalDecisionAllowedOrRefused") String writeFinalDecisionAllowedOrRefused,
@@ -340,6 +370,34 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
                         @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
                         @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
+                        @JsonProperty("adjournCaseGenerateNotice") String adjournCaseGenerateNotice,
+                        @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing,
+                        @JsonProperty("adjournCaseCanCaseBeListedRightAway") String adjournCaseCanCaseBeListedRightAway,
+                        @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties") String adjournCaseAreDirectionsBeingMadeToParties,
+                        @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
+                        @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
+                        @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
+                        @JsonProperty("adjournCaseNextHearingVenue") String adjournCaseNextHearingVenue,
+                        @JsonProperty("adjournCaseNextHearingVenueSelected") String adjournCaseNextHearingVenueSelected,
+                        @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
+                        @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
+                        @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
+                        @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName,
+                        @JsonProperty("adjournCaseNextHearingListingDurationType") String adjournCaseNextHearingListingDurationType,
+                        @JsonProperty("adjournCaseNextHearingListingDuration") String adjournCaseNextHearingListingDuration,
+                        @JsonProperty("adjournCaseNextHearingListingDurationUnits") String adjournCaseNextHearingListingDurationUnits,
+                        @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
+                        @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage,
+                        @JsonProperty("adjournCaseNextHearingDateType") String adjournCaseNextHearingDateType,
+                        @JsonProperty("adjournCaseNextHearingDateOrPeriod") String adjournCaseNextHearingDateOrPeriod,
+                        @JsonProperty("adjournCaseNextHearingDateOrTime") String adjournCaseNextHearingDateOrTime,
+                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate")  String adjournCaseNextHearingFirstAvailableDateAfterDate,
+                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
+                        @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
+                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
+                        @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
+                        @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
+                        @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument) {
                         @JsonProperty("writeFinalDecisionDocumentDateAdded") String writeFinalDecisionDocumentDateAdded,
                         @JsonProperty("writeFinalDecisionDocumentFileName") String writeFinalDecisionDocumentFileName,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh
@@ -458,6 +516,7 @@ public class SscsCaseData implements CaseData {
         this.responseRequired = responseRequired;
         this.timeExtensionRequested = timeExtensionRequested;
         this.bundleConfiguration = bundleConfiguration;
+        this.pcqId = pcqId;
         this.writeFinalDecisionIsDescriptorFlow = writeFinalDecisionIsDescriptorFlow;
         this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
         this.writeFinalDecisionAllowedOrRefused = writeFinalDecisionAllowedOrRefused;
@@ -494,11 +553,38 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionAnythingElse = writeFinalDecisionAnythingElse;
         this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
         this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
+        this.adjournCaseGenerateNotice = adjournCaseGenerateNotice;
+        this.adjournCaseTypeOfHearing = adjournCaseTypeOfHearing;
+        this.adjournCaseCanCaseBeListedRightAway = adjournCaseCanCaseBeListedRightAway;
+        this.adjournCaseAreDirectionsBeingMadeToParties = adjournCaseAreDirectionsBeingMadeToParties;
+        this.adjournCaseDirectionsDueDateDaysOffset = adjournCaseDirectionsDueDateDaysOffset;
+        this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
+        this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
+        this.adjournCaseNextHearingVenue = adjournCaseNextHearingVenue;
+        this.adjournCaseNextHearingVenueSelected = adjournCaseNextHearingVenueSelected;
+        this.adjournCasePanelMembersExcluded = adjournCasePanelMembersExcluded;
+        this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
+        this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
+        this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
+        this.adjournCaseNextHearingListingDurationType = adjournCaseNextHearingListingDurationType;
+        this.adjournCaseNextHearingListingDuration = adjournCaseNextHearingListingDuration;
+        this.adjournCaseNextHearingListingDurationUnits = adjournCaseNextHearingListingDurationUnits;
+        this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
+        this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
+        this.adjournCaseNextHearingDateType = adjournCaseNextHearingDateType;
+        this.adjournCaseNextHearingDateOrPeriod = adjournCaseNextHearingDateOrPeriod;
+        this.adjournCaseNextHearingDateOrTime = adjournCaseNextHearingDateOrTime;
+        this.adjournCaseNextHearingFirstAvailableDateAfterDate = adjournCaseNextHearingFirstAvailableDateAfterDate;
+        this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
+        this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
+        this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
+        this.adjournCaseReasons = adjournCaseReasons;
+        this.adjournCaseAnythingElse = adjournCaseAnythingElse;
+        this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.writeFinalDecisionDocumentDateAdded = writeFinalDecisionDocumentDateAdded;
         this.writeFinalDecisionDocumentFileName = writeFinalDecisionDocumentFileName;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
-
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -528,6 +614,21 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isResendToDwp() {
         return stringToBoolean(resendToDwp);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseGenerateNotice() {
+        return stringToBoolean(adjournCaseGenerateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseAbleToBeListedRightAway() {
+        return stringToBoolean(adjournCaseCanCaseBeListedRightAway);
+    }
+
+    @JsonIgnore
+    public boolean isAdjournCaseDirectionsMadeToParties() {
+        return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
     }
 
     @JsonIgnore
