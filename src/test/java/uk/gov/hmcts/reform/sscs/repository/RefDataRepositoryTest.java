@@ -7,7 +7,7 @@ import static uk.gov.hmcts.reform.sscs.model.RefKeyField.CASE_CODE_ID;
 import static uk.gov.hmcts.reform.sscs.model.RefKeyField.CCD_KEY;
 
 import org.junit.Before;
-import org.junit.Test;import uk.gov.hmcts.reform.sscs.repository.RefDataRepository;
+import org.junit.Test;
 
 
 public class RefDataRepositoryTest {
