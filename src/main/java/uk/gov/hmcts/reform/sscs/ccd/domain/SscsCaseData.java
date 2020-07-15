@@ -211,6 +211,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingSpecificTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private String adjournCaseAnythingElse;
+    private DocumentLink adjournCasePreviewDocument;
+
     private String languagePreferenceWelsh;
 
     @JsonCreator
@@ -393,7 +395,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
+                        @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh)) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -571,6 +574,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
         this.adjournCaseReasons = adjournCaseReasons;
         this.adjournCaseAnythingElse = adjournCaseAnythingElse;
+        this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 
