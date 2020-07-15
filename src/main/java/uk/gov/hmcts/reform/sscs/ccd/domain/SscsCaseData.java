@@ -396,7 +396,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh)) {
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
