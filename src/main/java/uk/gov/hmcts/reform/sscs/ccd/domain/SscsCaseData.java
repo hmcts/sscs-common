@@ -213,6 +213,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseAnythingElse;
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
+    private String notListableProvideReasons;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -395,7 +396,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
-                        @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate) {
+                        @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
+                        @JsonProperty("notListableProvideReasons") String notListableProvideReasons) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -575,6 +577,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseAnythingElse = adjournCaseAnythingElse;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
+        this.notListableProvideReasons = notListableProvideReasons;
     }
 
     @JsonIgnore
