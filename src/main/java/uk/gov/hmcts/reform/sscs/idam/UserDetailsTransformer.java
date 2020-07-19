@@ -1,21 +1,23 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import uk.gov.hmcts.reform.idam.client.models.UserInfo;
+
 public class UserDetailsTransformer {
 
-    private uk.gov.hmcts.reform.idam.client.models.UserDetails reformUserDetails;
+    private UserInfo reformUserInfo;
 
-    public UserDetailsTransformer(uk.gov.hmcts.reform.idam.client.models.UserDetails reformUserDetails) {
+    public UserDetailsTransformer(UserInfo reformUserInfo) {
 
-        this.reformUserDetails = reformUserDetails;
+        this.reformUserInfo = reformUserInfo;
     }
 
-    public uk.gov.hmcts.reform.sscs.idam.UserDetails asLocalUserDetails() {
-        return new uk.gov.hmcts.reform.sscs.idam.UserDetails(
-                this.reformUserDetails.getId(),
-                this.reformUserDetails.getEmail(),
-                this.reformUserDetails.getForename(),
-                this.reformUserDetails.getSurname().orElseGet(null),
-                this.reformUserDetails.getRoles()
+    public UserDetails asLocalUserDetails() {
+        return new UserDetails(
+                this.reformUserInfo.getUid(),
+                this.reformUserInfo.getName(),
+                this.reformUserInfo.getGivenName(),
+                this.reformUserInfo.getFamilyName(),
+                this.reformUserInfo.getRoles()
                 );
     }
 }

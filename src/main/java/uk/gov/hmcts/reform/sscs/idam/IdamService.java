@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
-import com.nimbusds.jose.crypto.factories.DefaultJWSVerifierFactory;
-import com.nimbusds.jose.proc.JWSVerifierFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.idam.client.IdamClient;
+import uk.gov.hmcts.reform.idam.client.models.UserInfo;
 
 @Service
 @Slf4j
@@ -21,8 +20,6 @@ public class IdamService {
     private final AuthTokenGenerator authTokenGenerator;
 
     private final IdamClient idamClient;
-
-    private final JWSVerifierFactory jwsVerifierFactory;
 
     @Value("${idam.oauth2.user.email}")
     private String idamOauth2UserEmail;
@@ -38,7 +35,6 @@ public class IdamService {
     IdamService(AuthTokenGenerator authTokenGenerator, IdamClient idamClient) {
         this.authTokenGenerator = authTokenGenerator;
         this.idamClient = idamClient;
-        this.jwsVerifierFactory = new DefaultJWSVerifierFactory();
     }
 
     public String generateServiceAuthorization() {
@@ -52,8 +48,8 @@ public class IdamService {
     }
 
     public UserDetails getUserDetails(String oauth2Token)  {
-        uk.gov.hmcts.reform.idam.client.models.UserDetails userDetails = idamClient.getUserDetails(oauth2Token);
-        return new UserDetailsTransformer(userDetails).asLocalUserDetails();
+        UserInfo userInfo = idamClient.getUserInfo(oauth2Token);
+        return new UserDetailsTransformer(userInfo).asLocalUserDetails();
     }
 
     public String getIdamOauth2Token() {
