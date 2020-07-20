@@ -146,7 +146,9 @@ public enum EventType {
     ADMIN_SEND_TO_VOID_STATE("adminSendToVoidState", 0, false),
     NOTIFICATION_SENT("notificationSent", 0, false),
     REISSUE_DOCUMENT("reissueDocument", 0, false),
-    ADJOURN_CASE("adjournCase", 0, false);
+    ADJOURN_CASE("adjournCase", 0, false),
+    NOT_LISTABLE("notListable", 0, false),
+    UPDATE_NOT_LISTABLE("updateNotListable", 0, false);
 
     private String type;
     private String ccdType;

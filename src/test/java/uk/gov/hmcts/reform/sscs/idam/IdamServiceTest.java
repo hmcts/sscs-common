@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.idam.client.IdamClient;
+import uk.gov.hmcts.reform.idam.client.models.UserInfo;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -72,15 +73,15 @@ public class IdamServiceTest {
 
         when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
 
-        uk.gov.hmcts.reform.idam.client.models.UserDetails expectedUserDetails =
-                new uk.gov.hmcts.reform.idam.client.models.UserDetails("16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
+        UserInfo expectedUserDetails =
+                new UserInfo("16", "16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
 
-        given(idamClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+        given(idamClient.getUserInfo(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         IdamTokens idamTokens = idamService.getIdamTokens();
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
+        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         verify(mockAppender, times(3)).doAppend(captorLoggingEvent.capture());
@@ -120,25 +121,25 @@ public class IdamServiceTest {
 
         when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
 
-        uk.gov.hmcts.reform.idam.client.models.UserDetails expectedUserDetails =
-                new uk.gov.hmcts.reform.idam.client.models.UserDetails("16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
+        UserInfo expectedUserDetails =
+                new UserInfo("16", "16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
 
-        given(idamClient.getUserDetails(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+        given(idamClient.getUserInfo(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
 
         // first time
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
+        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         // second time
         idamTokens = idamService.getIdamTokens();
 
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getId()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getEmail()));
+        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         verify(idamClient, atMostOnce()).getAccessToken("email", "pass");

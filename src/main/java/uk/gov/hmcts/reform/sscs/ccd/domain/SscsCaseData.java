@@ -212,7 +212,9 @@ public class SscsCaseData implements CaseData {
     private List<CollectionItem<String>> adjournCaseReasons;
     private String adjournCaseAnythingElse;
     private DocumentLink adjournCasePreviewDocument;
-
+    private String adjournCaseGeneratedDate;
+    private String notListableProvideReasons;
+    private String notListableDueDate;
     private String languagePreferenceWelsh;
 
     @JsonCreator
@@ -396,6 +398,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
+                        @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
+                        @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
+                        @JsonProperty("notListableDueDate") String notListableDueDate,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -575,6 +580,9 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseReasons = adjournCaseReasons;
         this.adjournCaseAnythingElse = adjournCaseAnythingElse;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
+        this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
+        this.notListableProvideReasons = notListableProvideReasons;
+        this.notListableDueDate = notListableDueDate;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 
