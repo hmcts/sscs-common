@@ -62,6 +62,9 @@ public enum State {
     @JsonProperty("pendingAppeal")
     PENDING_APPEAL("pendingAppeal"),
 
+    @JsonProperty("notListable")
+    NOT_LISTABLE("notListable"),
+
     @JsonProperty("unknown")
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
