@@ -12,8 +12,6 @@ public enum DocumentType {
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL6("dl6", "DL6"),
     DL16("dl16", "DL16"),
-    D609_97("609-97"),
-    D609_98("609-98"),
     APPELLANT_EVIDENCE("appellantEvidence", "Appellant evidence"),
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     DWP_EVIDENCE("dwpEvidence", "DWP evidence"),
