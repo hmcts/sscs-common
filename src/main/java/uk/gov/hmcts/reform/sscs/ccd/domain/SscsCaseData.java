@@ -218,6 +218,7 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
+    private String languagePreferenceWelsh;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -405,7 +406,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("notListableDueDate") String notListableDueDate,
                         @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
                         @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
-                        @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase) {
+                        @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -590,6 +592,7 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDirectionsFulfilled = updateNotListableDirectionsFulfilled;
         this.updateNotListableInterlocReview = updateNotListableInterlocReview;
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
+        this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 
     @JsonIgnore
@@ -646,6 +649,16 @@ public class SscsCaseData implements CaseData {
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
+    }
+
+    @JsonIgnore
+    public boolean isLanguagePreferenceWelsh() {
+        return stringToBoolean(languagePreferenceWelsh);
+    }
+
+    @JsonIgnore
+    public LanguagePreference getLanguagePreference() {
+        return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
     @JsonIgnore
