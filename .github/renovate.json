@@ -2,5 +2,5 @@
   "extends": [
     "config:base"
   ],
-  "enabledManagers": ["gradle-wrapper"],
+  "enabledManagers": ["gradle-wrapper"]
 }
