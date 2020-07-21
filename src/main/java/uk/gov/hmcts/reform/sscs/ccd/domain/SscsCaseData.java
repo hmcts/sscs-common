@@ -216,6 +216,8 @@ public class SscsCaseData implements CaseData {
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
+    private String updateNotListableInterlocReview;
+    private String updateNotListableWhoReviewsCase;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -401,7 +403,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
                         @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
                         @JsonProperty("notListableDueDate") String notListableDueDate,
-                        @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled) {
+                        @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
+                        @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
+                        @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -584,6 +588,8 @@ public class SscsCaseData implements CaseData {
         this.notListableProvideReasons = notListableProvideReasons;
         this.notListableDueDate = notListableDueDate;
         this.updateNotListableDirectionsFulfilled = updateNotListableDirectionsFulfilled;
+        this.updateNotListableInterlocReview = updateNotListableInterlocReview;
+        this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
     }
 
     @JsonIgnore
