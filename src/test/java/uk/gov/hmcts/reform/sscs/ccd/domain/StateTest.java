@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_DWP;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -17,6 +19,7 @@ public class StateTest {
             "incompleteApplication\n" +
             "incompleteApplicationInformationReqsted\n" +
             "interlocutoryReviewState\n" +
+            "notListable\n" +
             "outcome\n" +
             "pendingAppeal\n" +
             "readyToList\n" +
@@ -36,6 +39,11 @@ public class StateTest {
             final Optional<State> found = Arrays.stream(allStatesActual).filter(s -> s.getId().contains(stateId)).findFirst();
             assertTrue(String.format("missing %s", stateId), found.isPresent());
         }
+    }
+
+    @Test
+    public void getStateById() {
+        assertEquals(WITH_DWP, State.getById("withDwp"));
     }
 
 }

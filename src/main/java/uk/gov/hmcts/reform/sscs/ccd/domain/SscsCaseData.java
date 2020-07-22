@@ -225,6 +225,7 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableSetNewDueDate;
     @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
+    private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
 
     @JsonCreator
@@ -416,6 +417,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
                         @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
+                        @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -603,6 +605,7 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
         this.updateNotListableSetNewDueDate = updateNotListableSetNewDueDate;
         this.updateNotListableDueDate = updateNotListableDueDate;
+        this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 
