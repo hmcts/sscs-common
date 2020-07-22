@@ -14,6 +14,8 @@ import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -165,6 +167,7 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionEndDate;
     private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
     private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
+    @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
     private String writeFinalDecisionDateOfDecision;
     private String writeFinalDecisionDetailsOfDecision;
     private List<CollectionItem<String>> writeFinalDecisionReasons;
@@ -214,11 +217,13 @@ public class SscsCaseData implements CaseData {
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String updateNotListableSetNewDueDate;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
     private String languagePreferenceWelsh;
 
