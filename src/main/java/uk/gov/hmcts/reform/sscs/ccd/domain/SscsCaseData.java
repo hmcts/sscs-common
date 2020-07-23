@@ -14,6 +14,8 @@ import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -165,6 +167,7 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionEndDate;
     private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
     private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
+    @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
     private String writeFinalDecisionDateOfDecision;
     private String writeFinalDecisionDetailsOfDecision;
     private List<CollectionItem<String>> writeFinalDecisionReasons;
@@ -214,10 +217,15 @@ public class SscsCaseData implements CaseData {
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
+    private String updateNotListableSetNewDueDate;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
+    private String updateNotListableDueDate;
+    private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
 
     @JsonCreator
@@ -407,6 +415,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
                         @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
                         @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
+                        @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
+                        @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
+                        @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -592,6 +603,9 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDirectionsFulfilled = updateNotListableDirectionsFulfilled;
         this.updateNotListableInterlocReview = updateNotListableInterlocReview;
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
+        this.updateNotListableSetNewDueDate = updateNotListableSetNewDueDate;
+        this.updateNotListableDueDate = updateNotListableDueDate;
+        this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
     }
 

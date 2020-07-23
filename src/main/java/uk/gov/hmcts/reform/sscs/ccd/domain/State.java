@@ -83,4 +83,13 @@ public enum State {
     public String toString() {
         return id;
     }
+
+    public static State getById(String id) {
+        for (State e : values()) {
+            if (e.id.equals(id)) {
+                return e;
+            }
+        }
+        return UNKNOWN;
+    }
 }
