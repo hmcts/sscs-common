@@ -24,7 +24,6 @@ public class StateTest {
             "pendingAppeal\n" +
             "readyToList\n" +
             "responseReceived\n" +
-            "testCreate\n" +
             "validAppeal\n" +
             "incompleteApplicationVoidState\n" +
             "voidState\n" +
