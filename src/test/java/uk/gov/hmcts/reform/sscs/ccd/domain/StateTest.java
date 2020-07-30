@@ -26,7 +26,6 @@ public class StateTest {
             "responseReceived\n" +
             "testCreate\n" +
             "validAppeal\n" +
-            "incompleteApplicationVoidState\n" +
             "voidState\n" +
             "withDwp";
 
