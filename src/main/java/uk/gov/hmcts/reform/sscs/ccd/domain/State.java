@@ -56,9 +56,6 @@ public enum State {
     @JsonProperty("hearing")
     HEARING("hearing"),
 
-    @JsonProperty("outcome")
-    OUTCOME("outcome"),
-
     @JsonProperty("pendingAppeal")
     PENDING_APPEAL("pendingAppeal"),
 
