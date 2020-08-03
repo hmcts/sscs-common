@@ -8,9 +8,6 @@ public enum State {
     @JsonProperty("appealCreated")
     APPEAL_CREATED("appealCreated"),
 
-    @JsonProperty("testCreate")
-    TEST_CREATE("testCreate"),
-
     @JsonProperty("incompleteApplication")
     INCOMPLETE_APPLICATION("incompleteApplication"),
 
