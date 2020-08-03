@@ -24,7 +24,6 @@ public class StateTest {
             "readyToList\n" +
             "responseReceived\n" +
             "validAppeal\n" +
-            "incompleteApplicationVoidState\n" +
             "voidState\n" +
             "withDwp";
 

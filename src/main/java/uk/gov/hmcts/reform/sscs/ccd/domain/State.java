@@ -14,9 +14,6 @@ public enum State {
     @JsonProperty("interlocutoryReviewState")
     INTERLOCUTORY_REVIEW_STATE("interlocutoryReviewState"),
 
-    @JsonProperty("incompleteApplicationVoidState")
-    INCOMPLETE_APPLICATION_VOID_STATE("incompleteApplicationVoidState"),
-
     @JsonProperty("incompleteApplicationInformationReqsted")
     INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
 
