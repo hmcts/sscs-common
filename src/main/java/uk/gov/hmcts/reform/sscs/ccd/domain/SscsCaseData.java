@@ -216,7 +216,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
     private List<CollectionItem<String>> adjournCaseReasons;
-    private String adjournCaseAnythingElse;
+    private String adjournCaseAdditionalDirections;
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
@@ -599,7 +599,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
         this.adjournCaseReasons = adjournCaseReasons;
-        this.adjournCaseAnythingElse = adjournCaseAnythingElse;
+        this.adjournCaseAdditionalDirections = adjournCaseAnythingElse;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
         this.notListableProvideReasons = notListableProvideReasons;
