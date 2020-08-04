@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
+import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
@@ -185,6 +186,7 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionPageSectionReference;
     private String writeFinalDecisionAnythingElse;
+    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
     private String adjournCaseGenerateNotice;
@@ -192,6 +194,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseCanCaseBeListedRightAway;
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
@@ -214,6 +217,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingSpecificTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private String adjournCaseAnythingElse;
+    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
