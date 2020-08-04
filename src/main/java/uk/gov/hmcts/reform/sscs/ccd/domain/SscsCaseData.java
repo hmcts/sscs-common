@@ -411,7 +411,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
-                        @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
+                        @JsonProperty("adjournCaseAdditionalDirections") String adjournCaseAdditionalDirections,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
                         @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
                         @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
@@ -599,7 +599,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
         this.adjournCaseReasons = adjournCaseReasons;
-        this.adjournCaseAdditionalDirections = adjournCaseAnythingElse;
+        this.adjournCaseAdditionalDirections = adjournCaseAdditionalDirections;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
         this.notListableProvideReasons = notListableProvideReasons;
