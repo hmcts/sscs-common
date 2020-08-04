@@ -219,7 +219,7 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String languagePreferenceWelsh;
-    private String translationRequired;
+    private String translationWorkOutstanding;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -409,7 +409,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
                         @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
-                        @JsonProperty("translationRequired") String translationRequired) {
+                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -595,7 +595,7 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableInterlocReview = updateNotListableInterlocReview;
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
-        this.translationRequired = translationRequired;
+        this.translationWorkOutstanding = translationWorkOutstanding;
     }
 
     @JsonIgnore
@@ -662,6 +662,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public LanguagePreference getLanguagePreference() {
         return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+    }
+
+    @JsonIgnore
+    public boolean isTranslationWorkOutstanding() {
+        return stringToBoolean(translationWorkOutstanding);
     }
 
     @JsonIgnore

@@ -18,12 +18,10 @@ public class SscsDocumentDetails {
     private String documentEmailContent;
     private String documentDateAdded;
     private DocumentLink documentLink;
-    private String originalDocumentFileName;
     private String documentComment;
     private String controlNumber;
     private String evidenceIssued;
     private String bundleAddition;
-    private String documentLanguage;
     private SscsDocumentTranslationStatus documentTranslationStatus;
 
     @JsonCreator
@@ -32,24 +30,20 @@ public class SscsDocumentDetails {
                                @JsonProperty("documentEmailContent") String documentEmailContent,
                                @JsonProperty("documentDateAdded") String documentDateAdded,
                                @JsonProperty("documentLink") DocumentLink documentLink,
-                               @JsonProperty("originalDocumentFileName") String originalDocumentFileName,
                                @JsonProperty("documentComment") String documentComment,
                                @JsonProperty("controlNumber") String controlNumber,
                                @JsonProperty("evidenceIssued") String evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
-                               @JsonProperty("documentLanguage") String documentLanguage,
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentEmailContent = documentEmailContent;
         this.documentDateAdded = documentDateAdded;
         this.documentLink = documentLink;
-        this.originalDocumentFileName = originalDocumentFileName;
         this.documentComment = documentComment;
         this.controlNumber = controlNumber;
         this.evidenceIssued = evidenceIssued;
         this.bundleAddition = bundleAddition;
-        this.documentLanguage = documentLanguage;
         this.documentTranslationStatus = documentTranslationStatus;
     }
 }
