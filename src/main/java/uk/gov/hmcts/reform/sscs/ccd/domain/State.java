@@ -8,17 +8,11 @@ public enum State {
     @JsonProperty("appealCreated")
     APPEAL_CREATED("appealCreated"),
 
-    @JsonProperty("testCreate")
-    TEST_CREATE("testCreate"),
-
     @JsonProperty("incompleteApplication")
     INCOMPLETE_APPLICATION("incompleteApplication"),
 
     @JsonProperty("interlocutoryReviewState")
     INTERLOCUTORY_REVIEW_STATE("interlocutoryReviewState"),
-
-    @JsonProperty("incompleteApplicationVoidState")
-    INCOMPLETE_APPLICATION_VOID_STATE("incompleteApplicationVoidState"),
 
     @JsonProperty("incompleteApplicationInformationReqsted")
     INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
@@ -56,9 +50,6 @@ public enum State {
     @JsonProperty("hearing")
     HEARING("hearing"),
 
-    @JsonProperty("outcome")
-    OUTCOME("outcome"),
-
     @JsonProperty("pendingAppeal")
     PENDING_APPEAL("pendingAppeal"),
 
@@ -82,5 +73,14 @@ public enum State {
     @Override
     public String toString() {
         return id;
+    }
+
+    public static State getById(String id) {
+        for (State e : values()) {
+            if (e.id.equals(id)) {
+                return e;
+            }
+        }
+        return UNKNOWN;
     }
 }

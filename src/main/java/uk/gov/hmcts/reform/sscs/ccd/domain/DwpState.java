@@ -22,7 +22,8 @@ public enum DwpState {
     DIRECTION_ACTION_REQUIRED("directionActionRequired", "Direction - action req'd"),
     UNREGISTERED("UnRegistered", "Appeal to-be registered"),
     REGISTERED("Registered", "Appeal registered (DWP)"),
-    FINAL_DECISION_ISSUED("finalDecisionIssued", "Final decision issued");
+    FINAL_DECISION_ISSUED("finalDecisionIssued", "Final decision issued"),
+    ADJOURNMENT_NOTICE_ISSUED("adjournmentNoticeIssued", "Adjournment notice issued");
 
     private String id;
     private String label;

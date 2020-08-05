@@ -12,8 +12,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
+import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -165,6 +168,7 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionEndDate;
     private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
     private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
+    @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
     private String writeFinalDecisionDateOfDecision;
     private String writeFinalDecisionDetailsOfDecision;
     private List<CollectionItem<String>> writeFinalDecisionReasons;
@@ -182,6 +186,7 @@ public class SscsCaseData implements CaseData {
     private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionPageSectionReference;
     private String writeFinalDecisionAnythingElse;
+    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
     private String adjournCaseGenerateNotice;
@@ -189,6 +194,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseCanCaseBeListedRightAway;
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
@@ -210,14 +216,20 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
     private List<CollectionItem<String>> adjournCaseReasons;
-    private String adjournCaseAnythingElse;
+    private String adjournCaseAdditionalDirections;
+    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
+    private String updateNotListableSetNewDueDate;
+    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
+    private String updateNotListableDueDate;
+    private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
     private String translationWorkOutstanding;
 
@@ -400,7 +412,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
-                        @JsonProperty("adjournCaseAnythingElse") String adjournCaseAnythingElse,
+                        @JsonProperty("adjournCaseAdditionalDirections") String adjournCaseAdditionalDirections,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
                         @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
                         @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
@@ -408,7 +420,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
                         @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
                         @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
+                        @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
+                        @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
+                        @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh),
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -586,7 +601,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
         this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
         this.adjournCaseReasons = adjournCaseReasons;
-        this.adjournCaseAnythingElse = adjournCaseAnythingElse;
+        this.adjournCaseAdditionalDirections = adjournCaseAdditionalDirections;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
         this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
         this.notListableProvideReasons = notListableProvideReasons;
@@ -594,6 +609,9 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDirectionsFulfilled = updateNotListableDirectionsFulfilled;
         this.updateNotListableInterlocReview = updateNotListableInterlocReview;
         this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
+        this.updateNotListableSetNewDueDate = updateNotListableSetNewDueDate;
+        this.updateNotListableDueDate = updateNotListableDueDate;
+        this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
         this.translationWorkOutstanding = translationWorkOutstanding;
     }

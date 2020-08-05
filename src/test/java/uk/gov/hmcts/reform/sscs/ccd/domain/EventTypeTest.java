@@ -28,7 +28,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.WRITE_FINAL_DECISION
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 public class EventTypeTest {
