@@ -198,7 +198,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
-    private String adjournCaseNextHearingVenueSelected;
+    private DynamicList adjournCaseNextHearingVenueSelected;
     private String adjournCasePanelMembersExcluded;
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
@@ -393,7 +393,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
                         @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
                         @JsonProperty("adjournCaseNextHearingVenue") String adjournCaseNextHearingVenue,
-                        @JsonProperty("adjournCaseNextHearingVenueSelected") String adjournCaseNextHearingVenueSelected,
+                        @JsonProperty("adjournCaseNextHearingVenueSelected") DynamicList adjournCaseNextHearingVenueSelected,
                         @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
