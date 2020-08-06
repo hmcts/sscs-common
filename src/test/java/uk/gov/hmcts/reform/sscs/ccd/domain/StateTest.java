@@ -20,7 +20,6 @@ public class StateTest {
             "incompleteApplicationInformationReqsted\n" +
             "interlocutoryReviewState\n" +
             "notListable\n" +
-            "pendingAppeal\n" +
             "readyToList\n" +
             "responseReceived\n" +
             "validAppeal\n" +
