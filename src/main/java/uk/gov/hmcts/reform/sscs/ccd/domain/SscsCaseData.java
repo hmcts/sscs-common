@@ -423,7 +423,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh),
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
