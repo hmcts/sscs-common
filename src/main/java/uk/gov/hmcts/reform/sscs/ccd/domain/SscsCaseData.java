@@ -231,6 +231,15 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
+    private List<String> elementsDisputedList;
+    private List<ElementDisputed> elementsDisputedGeneral;
+    private List<ElementDisputed> elementsDisputedSanctions;
+    private List<ElementDisputed> elementsDisputedOverpayment;
+    private List<ElementDisputed> elementsDisputedHousing;
+    private List<ElementDisputed> elementsDisputedChildCare;
+    private List<ElementDisputed> elementsDisputedCare;
+    private List<ElementDisputed> elementsDisputedChildElement;
+    private List<ElementDisputed> elementsDisputedChildDisabled;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -422,7 +431,16 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
+                        @JsonProperty("elementsDisputedList")  List<String> elementsDisputedList,
+                        @JsonProperty("elementsDisputedGeneral") List<ElementDisputed> elementsDisputedGeneral,
+                        @JsonProperty("elementsDisputedSanctions") List<ElementDisputed> elementsDisputedSanctions,
+                        @JsonProperty("elementsDisputedOverpayment") List<ElementDisputed> elementsDisputedOverpayment,
+                        @JsonProperty("elementsDisputedHousing") List<ElementDisputed> elementsDisputedHousing,
+                        @JsonProperty("elementsDisputedChildCare") List<ElementDisputed> elementsDisputedChildCare,
+                        @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
+                        @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
+                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -611,6 +629,15 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDueDate = updateNotListableDueDate;
         this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
+        this.elementsDisputedList = elementsDisputedList;
+        this.elementsDisputedGeneral = elementsDisputedGeneral;
+        this.elementsDisputedSanctions = elementsDisputedSanctions;
+        this.elementsDisputedOverpayment = elementsDisputedOverpayment;
+        this.elementsDisputedHousing = elementsDisputedHousing;
+        this.elementsDisputedChildCare = elementsDisputedChildCare;
+        this.elementsDisputedCare = elementsDisputedCare;
+        this.elementsDisputedChildElement = elementsDisputedChildElement;
+        this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
     }
 
     @JsonIgnore
