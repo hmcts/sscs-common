@@ -232,6 +232,9 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
     private String translationWorkOutstanding;
+    private List<SscsWelshDocuments> sscsWelshDocuments;
+    private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
+    private DynamicList originalDocuments;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -424,7 +427,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
-                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding) {
+                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
+                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
+                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
+                        @JsonProperty("originalDocuments") DynamicList originalDocuments) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -614,6 +620,9 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
         this.translationWorkOutstanding = translationWorkOutstanding;
+        this.sscsWelshDocuments = sscsWelshDocuments;
+        this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
+        this.originalDocuments = originalDocuments;
     }
 
     @JsonIgnore
