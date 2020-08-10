@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.Map;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.everit.json.schema.ValidationException;
@@ -8,9 +10,6 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.io.IOException;
-import java.util.Map;
 
 @RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonValidatorTest {
