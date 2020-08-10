@@ -240,6 +240,7 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedCare;
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
+    private String jointParty;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -440,7 +441,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedChildCare") List<ElementDisputed> elementsDisputedChildCare,
                         @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
                         @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
-                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled) {
+                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
+                        @JsonProperty("jointParty") String jointParty) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -638,6 +640,7 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedCare = elementsDisputedCare;
         this.elementsDisputedChildElement = elementsDisputedChildElement;
         this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
+        this.jointParty = jointParty;
     }
 
     @JsonIgnore
@@ -688,6 +691,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isThereAJointParty() {
+        return stringToBoolean(jointParty);
     }
 
     @JsonIgnore
