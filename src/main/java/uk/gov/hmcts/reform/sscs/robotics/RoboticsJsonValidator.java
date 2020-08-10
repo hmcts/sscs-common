@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
+import java.io.InputStream;
 import lombok.extern.slf4j.Slf4j;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.ValidationException;
@@ -9,8 +10,6 @@ import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.io.InputStream;
 
 @Component
 @Slf4j
