@@ -11,9 +11,9 @@ public class LocalDateMustNotBeInFutureValidator implements ConstraintValidator<
     @Override
     public boolean isValid(String strDate, ConstraintValidatorContext context) {
         if (!isBlank(strDate)) {
-            LocalDate decisionNoticeDecisionDate = LocalDate.parse(strDate);
+            LocalDate testDate = LocalDate.parse(strDate);
             LocalDate today = LocalDate.now();
-            return !decisionNoticeDecisionDate.isAfter(today);
+            return !testDate.isAfter(today);
         }
         return true;
     }
