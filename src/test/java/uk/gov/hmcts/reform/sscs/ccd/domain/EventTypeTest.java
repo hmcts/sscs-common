@@ -18,6 +18,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LINK_A_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POSTPONED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REMOVE_LINK_FOR_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_INFO_INCOMPLETE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_TRANSLATION_FROM_WLU;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.RESEND_CASE_TO_GAPS2;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SENT_TO_DWP_ERROR;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SYA_APPEAL_CREATED;
@@ -154,7 +155,8 @@ public class EventTypeTest {
             "uploadDocumentFurtherEvidence\n" +
             "resendToDwp\n" +
             "writeFinalDecision\n" +
-            "uploadWelshDocument";
+            "uploadWelshDocument\n" +
+            "requestTranslationFromWLU";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
@@ -176,7 +178,7 @@ public class EventTypeTest {
             SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
             LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE,
-                WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT);
+                WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
