@@ -18,6 +18,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePd
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
+import uk.gov.hmcts.reform.sscs.ccd.validation.nino.NationalInsuranceNumber;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -247,6 +248,8 @@ public class SscsCaseData implements CaseData {
     private String jointPartyLastName;
     @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
     private String jointPartyDob;
+    @NationalInsuranceNumber
+    private String jointPartyNino;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -452,7 +455,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyTitle") String jointPartyTitle,
                         @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
-                        @JsonProperty("jointPartyDob") String jointPartyDob) {
+                        @JsonProperty("jointPartyDob") String jointPartyDob,
+                        @JsonProperty("jointPartyNino") String jointPartyNino) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -655,6 +659,7 @@ public class SscsCaseData implements CaseData {
         this.jointPartyFirstName = jointPartyFirstName;
         this.jointPartyLastName = jointPartyLastName;
         this.jointPartyDob = jointPartyDob;
+        this.jointPartyNino = jointPartyNino;
     }
 
     @JsonIgnore
