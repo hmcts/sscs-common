@@ -241,6 +241,9 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
     private String jointParty;
+    private String jointPartyTitle;
+    private String jointPartyFirstName;
+    private String jointPartyLastName;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -442,7 +445,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
                         @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
                         @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
-                        @JsonProperty("jointParty") String jointParty) {
+                        @JsonProperty("jointParty") String jointParty,
+                        @JsonProperty("jointPartyTitle") String jointPartyTitle,
+                        @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
+                        @JsonProperty("jointPartyLastName") String jointPartyLastName) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -641,6 +647,9 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedChildElement = elementsDisputedChildElement;
         this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
         this.jointParty = jointParty;
+        this.jointPartyTitle = jointPartyTitle;
+        this.jointPartyFirstName = jointPartyFirstName;
+        this.jointPartyLastName = jointPartyLastName;
     }
 
     @JsonIgnore
