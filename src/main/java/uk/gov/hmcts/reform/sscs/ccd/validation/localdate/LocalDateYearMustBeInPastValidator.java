@@ -6,14 +6,14 @@ import java.time.LocalDate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class LocalDateMustBeInFutureValidator implements ConstraintValidator<LocalDateMustBeInFuture, String> {
+public class LocalDateYearMustBeInPastValidator implements ConstraintValidator<LocalDateYearMustBeInPast, String> {
 
     @Override
     public boolean isValid(String strDate, ConstraintValidatorContext context) {
         if (!isBlank(strDate)) {
-            LocalDate testDate = LocalDate.parse(strDate);
-            LocalDate today = LocalDate.now();
-            return testDate.isAfter(today);
+            int testYear = LocalDate.parse(strDate).getYear();
+            int thisYear = LocalDate.now().getYear();
+            return testYear < thisYear;
         }
         return true;
     }

@@ -17,6 +17,7 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -231,6 +232,21 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
+    private List<String> elementsDisputedList;
+    private List<ElementDisputed> elementsDisputedGeneral;
+    private List<ElementDisputed> elementsDisputedSanctions;
+    private List<ElementDisputed> elementsDisputedOverpayment;
+    private List<ElementDisputed> elementsDisputedHousing;
+    private List<ElementDisputed> elementsDisputedChildCare;
+    private List<ElementDisputed> elementsDisputedCare;
+    private List<ElementDisputed> elementsDisputedChildElement;
+    private List<ElementDisputed> elementsDisputedChildDisabled;
+    private String jointParty;
+    private String jointPartyTitle;
+    private String jointPartyFirstName;
+    private String jointPartyLastName;
+    @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
+    private String jointPartyDob;
     private String translationWorkOutstanding;
     private List<SscsWelshDocuments> sscsWelshDocuments;
     private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
@@ -427,6 +443,21 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
+                        @JsonProperty("elementsDisputedList")  List<String> elementsDisputedList,
+                        @JsonProperty("elementsDisputedGeneral") List<ElementDisputed> elementsDisputedGeneral,
+                        @JsonProperty("elementsDisputedSanctions") List<ElementDisputed> elementsDisputedSanctions,
+                        @JsonProperty("elementsDisputedOverpayment") List<ElementDisputed> elementsDisputedOverpayment,
+                        @JsonProperty("elementsDisputedHousing") List<ElementDisputed> elementsDisputedHousing,
+                        @JsonProperty("elementsDisputedChildCare") List<ElementDisputed> elementsDisputedChildCare,
+                        @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
+                        @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
+                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
+                        @JsonProperty("jointParty") String jointParty,
+                        @JsonProperty("jointPartyTitle") String jointPartyTitle,
+                        @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
+                        @JsonProperty("jointPartyLastName") String jointPartyLastName,
+                        @JsonProperty("jointPartyDob") String jointPartyDob,
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
@@ -619,6 +650,20 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDueDate = updateNotListableDueDate;
         this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
+        this.elementsDisputedList = elementsDisputedList;
+        this.elementsDisputedGeneral = elementsDisputedGeneral;
+        this.elementsDisputedSanctions = elementsDisputedSanctions;
+        this.elementsDisputedOverpayment = elementsDisputedOverpayment;
+        this.elementsDisputedHousing = elementsDisputedHousing;
+        this.elementsDisputedChildCare = elementsDisputedChildCare;
+        this.elementsDisputedCare = elementsDisputedCare;
+        this.elementsDisputedChildElement = elementsDisputedChildElement;
+        this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
+        this.jointParty = jointParty;
+        this.jointPartyTitle = jointPartyTitle;
+        this.jointPartyFirstName = jointPartyFirstName;
+        this.jointPartyLastName = jointPartyLastName;
+        this.jointPartyDob = jointPartyDob;
         this.translationWorkOutstanding = translationWorkOutstanding;
         this.sscsWelshDocuments = sscsWelshDocuments;
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
@@ -673,6 +718,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isThereAJointParty() {
+        return stringToBoolean(jointParty);
     }
 
     @JsonIgnore
