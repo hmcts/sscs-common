@@ -251,7 +251,10 @@ public class SscsCaseData implements CaseData {
     @NationalInsuranceNumber
     private String jointPartyNino;
     private String jointPartyAddressSameAsAppellant;
-
+    private String translationWorkOutstanding;
+    private List<SscsWelshDocuments> sscsWelshDocuments;
+    private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
+    private DynamicList originalDocuments;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -459,7 +462,11 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
                         @JsonProperty("jointPartyNino") String jointPartyNino,
-                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant) {
+                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
+                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
+                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
+                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
+                        @JsonProperty("originalDocuments") DynamicList originalDocuments) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -664,6 +671,10 @@ public class SscsCaseData implements CaseData {
         this.jointPartyDob = jointPartyDob;
         this.jointPartyNino = jointPartyNino;
         this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
+        this.translationWorkOutstanding = translationWorkOutstanding;
+        this.sscsWelshDocuments = sscsWelshDocuments;
+        this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
+        this.originalDocuments = originalDocuments;
     }
 
     @JsonIgnore
@@ -740,6 +751,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public LanguagePreference getLanguagePreference() {
         return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+    }
+
+    @JsonIgnore
+    public boolean isTranslationWorkOutstanding() {
+        return stringToBoolean(translationWorkOutstanding);
     }
 
     @JsonIgnore
