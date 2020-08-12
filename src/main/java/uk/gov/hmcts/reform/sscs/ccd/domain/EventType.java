@@ -151,7 +151,8 @@ public enum EventType {
     NOT_LISTABLE("notListable", 0, false),
     UPDATE_NOT_LISTABLE("updateNotListable", 0, false),
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),
-    REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false);
+    REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false),
+    UPDATE_WELSH_PREFERENCE("updateWelshPreference", 0, false);
 
     private String type;
     private String ccdType;
