@@ -250,6 +250,8 @@ public class SscsCaseData implements CaseData {
     private String jointPartyDob;
     @NationalInsuranceNumber
     private String jointPartyNino;
+    private String jointPartyAddressSameAsAppellant;
+
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -456,7 +458,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
-                        @JsonProperty("jointPartyNino") String jointPartyNino) {
+                        @JsonProperty("jointPartyNino") String jointPartyNino,
+                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -660,6 +663,7 @@ public class SscsCaseData implements CaseData {
         this.jointPartyLastName = jointPartyLastName;
         this.jointPartyDob = jointPartyDob;
         this.jointPartyNino = jointPartyNino;
+        this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
     }
 
     @JsonIgnore
@@ -717,6 +721,11 @@ public class SscsCaseData implements CaseData {
         return stringToBoolean(jointParty);
     }
 
+    @JsonIgnore
+    public boolean isJointPartyAddressSameAsAppeallant() {
+        return stringToBoolean(jointPartyAddressSameAsAppellant);
+    }
+    
     @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
