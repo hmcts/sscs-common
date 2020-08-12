@@ -457,7 +457,6 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
