@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AccessLevel;
@@ -248,8 +249,8 @@ public class SscsCaseData implements CaseData {
     @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
     private String jointPartyDob;
     private String translationWorkOutstanding;
-    private List<SscsWelshDocuments> sscsWelshDocuments;
-    private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
+    private List<SscsWelshDocument> sscsWelshDocuments;
+    private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private DynamicList originalDocuments;
 
     @JsonCreator
@@ -458,8 +459,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
-                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
-                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
+                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocument> sscsWelshDocuments,
+                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -803,5 +804,12 @@ public class SscsCaseData implements CaseData {
             }
         }
         return null;
+    }
+
+    public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
+        return getSscsWelshDocuments().stream()
+                .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
+                .sorted()
+                .findFirst();
     }
 }

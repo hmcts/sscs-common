@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +8,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
@@ -308,6 +309,66 @@ public class SscsCaseDataTest {
         assertEquals("testUrl2", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
+
+    @Test
+    public void givenACaseHasOneWelshDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
+        List<SscsWelshDocument> documents = new ArrayList<>();
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
+        Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        Assert.assertTrue("Result has a value", result.isPresent());
+        assertEquals("testUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleWelshDocumentsOfSameType_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+        List<SscsWelshDocument> documents = new ArrayList<>();
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null));
+        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString(), null));
+        documents.add(buildWelshSscsDocument("oldTestUrl", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
+        Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        Assert.assertTrue("Result has a value", result.isPresent());
+        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleWelshDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+        List<SscsWelshDocument> documents = new ArrayList<>();
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString(), null));
+        documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), null));
+        documents.add(buildWelshSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString(), null));
+        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString(), null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        Assert.assertTrue("Result has a value", result.isPresent());
+        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+    }
+
+    @Test
+    public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
+        List<SscsWelshDocument> documents = new ArrayList<>();
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null));
+        documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null));
+        documents.add(buildWelshSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null));
+        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null));
+        documents.add(buildWelshSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null));
+        documents.add(buildWelshSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null));
+        documents.add(buildWelshSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
+
+        Assert.assertTrue("Result has a value", result.isPresent());
+        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+    }
+
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition) {
         String docType = documentType == null ? null : documentType.getValue();
         return SscsDocument.builder().value(
@@ -315,6 +376,15 @@ public class SscsCaseDataTest {
                         .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                         .documentDateAdded(date)
                         .bundleAddition(bundleAddition)
+                        .build()).build();
+    }
+
+    private SscsWelshDocument buildWelshSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition) {
+        String docType = documentType == null ? null : documentType.getValue();
+        return SscsWelshDocument.builder().value(
+                SscsWelshDocumentDetails.builder().documentType(docType)
+                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                        .documentDateAdded(date)
                         .build()).build();
     }
 

@@ -52,6 +52,8 @@ public enum EventType {
     STRUCK_OUT("struckOut", 0, false),
     DIRECTION_ISSUED("directionIssued", 0, false),
     DECISION_ISSUED("decisionIssued", 0, false),
+    DIRECTION_ISSUED_WELSH("directionIssuedWelsh", 0, false),
+    DECISION_ISSUED_WELSH("decisionIssuedWelsh", 0, false),
     ISSUE_FINAL_DECISION("issueFinalDecision", 0, false),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
