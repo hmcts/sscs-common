@@ -19,6 +19,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePd
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
+import uk.gov.hmcts.reform.sscs.ccd.validation.nino.NationalInsuranceNumber;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -248,6 +249,8 @@ public class SscsCaseData implements CaseData {
     private String jointPartyLastName;
     @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
     private String jointPartyDob;
+    @NationalInsuranceNumber
+    private String jointPartyNino;
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
@@ -458,6 +461,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
+                        @JsonProperty("jointPartyNino") String jointPartyNino,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocument> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
@@ -664,6 +668,7 @@ public class SscsCaseData implements CaseData {
         this.jointPartyFirstName = jointPartyFirstName;
         this.jointPartyLastName = jointPartyLastName;
         this.jointPartyDob = jointPartyDob;
+        this.jointPartyNino = jointPartyNino;
         this.translationWorkOutstanding = translationWorkOutstanding;
         this.sscsWelshDocuments = sscsWelshDocuments;
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
