@@ -8,6 +8,15 @@ import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
+/**
+ * This test is to ensure that we do not use the special character validation on non-UC
+ * use-cases of Address, for example the address of the appellant.
+ * We are introducing new validation for UC that at this time we do not
+ * wish to apply to other scenarios.  This validation is the previous SYA
+ * front end validation ported to Java,  and while the validation rules should
+ * in theory be the same across usages of Address, this would be a separate task to standardise
+ * in future.  For now we want to ensure that we not affect existing use-cases
+ */
 public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends ValidatorTestBase {
 
     private class TestBean {
