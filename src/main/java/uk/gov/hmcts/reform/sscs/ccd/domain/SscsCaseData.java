@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.validation.Valid;
+import javax.validation.groups.ConvertGroup;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +17,7 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
+import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
@@ -250,6 +253,10 @@ public class SscsCaseData implements CaseData {
     private String jointPartyDob;
     @NationalInsuranceNumber
     private String jointPartyNino;
+    private String jointPartyAddressSameAsAppellant;
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private Address jointPartyAddress;
     private String translationWorkOutstanding;
     private List<SscsWelshDocuments> sscsWelshDocuments;
     private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
@@ -461,6 +468,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("jointPartyLastName") String jointPartyLastName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
                         @JsonProperty("jointPartyNino") String jointPartyNino,
+                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
+                        @JsonProperty("jointPartyAddress") Address jointPartyAddress,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
@@ -668,6 +677,8 @@ public class SscsCaseData implements CaseData {
         this.jointPartyLastName = jointPartyLastName;
         this.jointPartyDob = jointPartyDob;
         this.jointPartyNino = jointPartyNino;
+        this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
+        this.jointPartyAddress = jointPartyAddress;
         this.translationWorkOutstanding = translationWorkOutstanding;
         this.sscsWelshDocuments = sscsWelshDocuments;
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
@@ -729,6 +740,11 @@ public class SscsCaseData implements CaseData {
         return stringToBoolean(jointParty);
     }
 
+    @JsonIgnore
+    public boolean isJointPartyAddressSameAsAppeallant() {
+        return stringToBoolean(jointPartyAddressSameAsAppellant);
+    }
+    
     @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
