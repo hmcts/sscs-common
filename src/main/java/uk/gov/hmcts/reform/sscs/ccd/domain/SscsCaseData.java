@@ -261,6 +261,7 @@ public class SscsCaseData implements CaseData {
     private List<SscsWelshDocuments> sscsWelshDocuments;
     private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
     private DynamicList originalDocuments;
+    private String isScottishCase;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -473,7 +474,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
-                        @JsonProperty("originalDocuments") DynamicList originalDocuments) {
+                        @JsonProperty("originalDocuments") DynamicList originalDocuments,
+                        @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -683,6 +685,7 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshDocuments = sscsWelshDocuments;
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
         this.originalDocuments = originalDocuments;
+        this.isScottishCase = isScottishCase;
     }
 
     @JsonIgnore
@@ -744,7 +747,7 @@ public class SscsCaseData implements CaseData {
     public boolean isJointPartyAddressSameAsAppeallant() {
         return stringToBoolean(jointPartyAddressSameAsAppellant);
     }
-    
+
     @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
