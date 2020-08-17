@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ACTION_STRIKE_OUT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ADD_SC_NUMBER;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.ADJOURNED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CANCEL_TRANSLATIONS;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CLOSED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.COH_ONLINE_HEARING_RELISTED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CREATE_APPEAL_PDF;
@@ -18,10 +19,13 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LINK_A_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POSTPONED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REMOVE_LINK_FOR_CASE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_INFO_INCOMPLETE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.REQUEST_TRANSLATION_FROM_WLU;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.RESEND_CASE_TO_GAPS2;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SENT_TO_DWP_ERROR;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SYA_APPEAL_CREATED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.UPDATE_WELSH_PREFERENCE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.UPLOAD_DOCUMENT_FURTHER_EVIDENCE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.UPLOAD_WELSH_DOCUMENT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.WITHDRAWN;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.WRITE_FINAL_DECISION;
 
@@ -151,8 +155,12 @@ public class EventTypeTest {
             "furtherEvidenceHandledOffline\n" +
             "interlocVoidAppeal\n" +
             "uploadDocumentFurtherEvidence\n" +
-            "resendToDwp\n" + 
-            "writeFinalDecision";
+            "resendToDwp\n" +
+            "writeFinalDecision\n" +
+            "uploadWelshDocument\n" +
+            "requestTranslationFromWLU\n" +
+            "updateWelshPreference\n" +
+            "cancelTranslations";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
@@ -173,7 +181,9 @@ public class EventTypeTest {
             LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
             SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
-            LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE, WRITE_FINAL_DECISION);
+            LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE,
+                WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
+                CANCEL_TRANSLATIONS);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {

@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javax.validation.Valid;
+import javax.validation.groups.ConvertGroup;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +17,11 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
+import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
+import uk.gov.hmcts.reform.sscs.ccd.validation.nino.NationalInsuranceNumber;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -231,6 +236,32 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     private String languagePreferenceWelsh;
+    private List<String> elementsDisputedList;
+    private List<ElementDisputed> elementsDisputedGeneral;
+    private List<ElementDisputed> elementsDisputedSanctions;
+    private List<ElementDisputed> elementsDisputedOverpayment;
+    private List<ElementDisputed> elementsDisputedHousing;
+    private List<ElementDisputed> elementsDisputedChildCare;
+    private List<ElementDisputed> elementsDisputedCare;
+    private List<ElementDisputed> elementsDisputedChildElement;
+    private List<ElementDisputed> elementsDisputedChildDisabled;
+    private String jointParty;
+    private String jointPartyTitle;
+    private String jointPartyFirstName;
+    private String jointPartyLastName;
+    @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
+    private String jointPartyDob;
+    @NationalInsuranceNumber
+    private String jointPartyNino;
+    private String jointPartyAddressSameAsAppellant;
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private Address jointPartyAddress;
+    private String translationWorkOutstanding;
+    private List<SscsWelshDocuments> sscsWelshDocuments;
+    private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
+    private DynamicList originalDocuments;
+    private String isScottishCase;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -422,7 +453,29 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh) {
+                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
+                        @JsonProperty("elementsDisputedList")  List<String> elementsDisputedList,
+                        @JsonProperty("elementsDisputedGeneral") List<ElementDisputed> elementsDisputedGeneral,
+                        @JsonProperty("elementsDisputedSanctions") List<ElementDisputed> elementsDisputedSanctions,
+                        @JsonProperty("elementsDisputedOverpayment") List<ElementDisputed> elementsDisputedOverpayment,
+                        @JsonProperty("elementsDisputedHousing") List<ElementDisputed> elementsDisputedHousing,
+                        @JsonProperty("elementsDisputedChildCare") List<ElementDisputed> elementsDisputedChildCare,
+                        @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
+                        @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
+                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
+                        @JsonProperty("jointParty") String jointParty,
+                        @JsonProperty("jointPartyTitle") String jointPartyTitle,
+                        @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
+                        @JsonProperty("jointPartyLastName") String jointPartyLastName,
+                        @JsonProperty("jointPartyDob") String jointPartyDob,
+                        @JsonProperty("jointPartyNino") String jointPartyNino,
+                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
+                        @JsonProperty("jointPartyAddress") Address jointPartyAddress,
+                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
+                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
+                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
+                        @JsonProperty("originalDocuments") DynamicList originalDocuments,
+                        @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.caseReference = caseReference;
@@ -611,6 +664,28 @@ public class SscsCaseData implements CaseData {
         this.updateNotListableDueDate = updateNotListableDueDate;
         this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
         this.languagePreferenceWelsh = languagePreferenceWelsh;
+        this.elementsDisputedList = elementsDisputedList;
+        this.elementsDisputedGeneral = elementsDisputedGeneral;
+        this.elementsDisputedSanctions = elementsDisputedSanctions;
+        this.elementsDisputedOverpayment = elementsDisputedOverpayment;
+        this.elementsDisputedHousing = elementsDisputedHousing;
+        this.elementsDisputedChildCare = elementsDisputedChildCare;
+        this.elementsDisputedCare = elementsDisputedCare;
+        this.elementsDisputedChildElement = elementsDisputedChildElement;
+        this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
+        this.jointParty = jointParty;
+        this.jointPartyTitle = jointPartyTitle;
+        this.jointPartyFirstName = jointPartyFirstName;
+        this.jointPartyLastName = jointPartyLastName;
+        this.jointPartyDob = jointPartyDob;
+        this.jointPartyNino = jointPartyNino;
+        this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
+        this.jointPartyAddress = jointPartyAddress;
+        this.translationWorkOutstanding = translationWorkOutstanding;
+        this.sscsWelshDocuments = sscsWelshDocuments;
+        this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
+        this.originalDocuments = originalDocuments;
+        this.isScottishCase = isScottishCase;
     }
 
     @JsonIgnore
@@ -664,6 +739,16 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public boolean isThereAJointParty() {
+        return stringToBoolean(jointParty);
+    }
+
+    @JsonIgnore
+    public boolean isJointPartyAddressSameAsAppeallant() {
+        return stringToBoolean(jointPartyAddressSameAsAppellant);
+    }
+
+    @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
@@ -677,6 +762,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public LanguagePreference getLanguagePreference() {
         return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+    }
+
+    @JsonIgnore
+    public boolean isTranslationWorkOutstanding() {
+        return stringToBoolean(translationWorkOutstanding);
     }
 
     @JsonIgnore
