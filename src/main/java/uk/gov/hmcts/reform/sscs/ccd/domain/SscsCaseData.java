@@ -261,6 +261,7 @@ public class SscsCaseData implements CaseData {
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
+    private String sscsWelshPreviewNextEvent;
     private DynamicList originalDocuments;
     private String isScottishCase;
 
@@ -475,6 +476,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocument> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
+                        @JsonProperty("sscsWelshPreviewNextEvent") String sscsWelshPreviewNextEvent,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
@@ -685,6 +687,7 @@ public class SscsCaseData implements CaseData {
         this.translationWorkOutstanding = translationWorkOutstanding;
         this.sscsWelshDocuments = sscsWelshDocuments;
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
+        this.sscsWelshPreviewNextEvent = sscsWelshPreviewNextEvent;
         this.originalDocuments = originalDocuments;
         this.isScottishCase = isScottishCase;
     }
