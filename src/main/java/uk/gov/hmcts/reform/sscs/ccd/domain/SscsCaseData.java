@@ -248,9 +248,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
-    private String jointPartyTitle;
-    private String jointPartyFirstName;
-    private String jointPartyLastName;
+    private Name jointPartyName;
     @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
     private String jointPartyDob;
     @NationalInsuranceNumber
@@ -468,9 +466,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedIsDecisionDisputedByOthers") String elementsDisputedIsDecisionDisputedByOthers,
                         @JsonProperty("elementsDisputedLinkedAppealRef") String elementsDisputedLinkedAppealRef,
                         @JsonProperty("jointParty") String jointParty,
-                        @JsonProperty("jointPartyTitle") String jointPartyTitle,
-                        @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
-                        @JsonProperty("jointPartyLastName") String jointPartyLastName,
+                        @JsonProperty("jointPartyName") Name jointPartyName,
                         @JsonProperty("jointPartyDob") String jointPartyDob,
                         @JsonProperty("jointPartyNino") String jointPartyNino,
                         @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
@@ -680,9 +676,7 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedIsDecisionDisputedByOthers = elementsDisputedIsDecisionDisputedByOthers;
         this.elementsDisputedLinkedAppealRef = elementsDisputedLinkedAppealRef;
         this.jointParty = jointParty;
-        this.jointPartyTitle = jointPartyTitle;
-        this.jointPartyFirstName = jointPartyFirstName;
-        this.jointPartyLastName = jointPartyLastName;
+        this.jointPartyName = jointPartyName;
         this.jointPartyDob = jointPartyDob;
         this.jointPartyNino = jointPartyNino;
         this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
