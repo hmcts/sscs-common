@@ -245,6 +245,8 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedCare;
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
+    private String elementsDisputedIsDecisionDisputedByOthers;
+    private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private String jointPartyTitle;
     private String jointPartyFirstName;
@@ -463,6 +465,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
                         @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
                         @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
+                        @JsonProperty("elementsDisputedIsDecisionDisputedByOthers") String elementsDisputedIsDecisionDisputedByOthers,
+                        @JsonProperty("elementsDisputedLinkedAppealRef") String elementsDisputedLinkedAppealRef,
                         @JsonProperty("jointParty") String jointParty,
                         @JsonProperty("jointPartyTitle") String jointPartyTitle,
                         @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
@@ -673,6 +677,8 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedCare = elementsDisputedCare;
         this.elementsDisputedChildElement = elementsDisputedChildElement;
         this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
+        this.elementsDisputedIsDecisionDisputedByOthers = elementsDisputedIsDecisionDisputedByOthers;
+        this.elementsDisputedLinkedAppealRef = elementsDisputedLinkedAppealRef;
         this.jointParty = jointParty;
         this.jointPartyTitle = jointPartyTitle;
         this.jointPartyFirstName = jointPartyFirstName;
