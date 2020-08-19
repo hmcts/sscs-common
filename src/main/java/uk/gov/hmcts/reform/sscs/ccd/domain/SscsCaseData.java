@@ -22,8 +22,6 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePd
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
-import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPast;
-import uk.gov.hmcts.reform.sscs.ccd.validation.nino.NationalInsuranceNumber;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -251,12 +249,10 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private String jointPartyTitle;
-    private String jointPartyFirstName;
-    private String jointPartyLastName;
-    @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth")
-    private String jointPartyDob;
-    @NationalInsuranceNumber
-    private String jointPartyNino;
+    private NameNoTitle jointPartyNameNoTitle;
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private Identity jointPartyIdentity;
     private String jointPartyAddressSameAsAppellant;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
@@ -476,10 +472,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedLinkedAppealRef") String elementsDisputedLinkedAppealRef,
                         @JsonProperty("jointParty") String jointParty,
                         @JsonProperty("jointPartyTitle") String jointPartyTitle,
-                        @JsonProperty("jointPartyFirstName") String jointPartyFirstName,
-                        @JsonProperty("jointPartyLastName") String jointPartyLastName,
-                        @JsonProperty("jointPartyDob") String jointPartyDob,
-                        @JsonProperty("jointPartyNino") String jointPartyNino,
+                        @JsonProperty("jointPartyNameNoTitle") NameNoTitle jointPartyNameNoTitle,
+                        @JsonProperty("jointPartyIdentity") Identity jointPartyIdentity,
                         @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
                         @JsonProperty("jointPartyAddress") Address jointPartyAddress,
                         @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
@@ -691,12 +685,9 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
         this.elementsDisputedIsDecisionDisputedByOthers = elementsDisputedIsDecisionDisputedByOthers;
         this.elementsDisputedLinkedAppealRef = elementsDisputedLinkedAppealRef;
-        this.jointParty = jointParty;
         this.jointPartyTitle = jointPartyTitle;
-        this.jointPartyFirstName = jointPartyFirstName;
-        this.jointPartyLastName = jointPartyLastName;
-        this.jointPartyDob = jointPartyDob;
-        this.jointPartyNino = jointPartyNino;
+        this.jointPartyNameNoTitle = jointPartyNameNoTitle;
+        this.jointPartyIdentity = jointPartyIdentity;
         this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
         this.jointPartyAddress = jointPartyAddress;
         this.translationWorkOutstanding = translationWorkOutstanding;
@@ -709,6 +700,17 @@ public class SscsCaseData implements CaseData {
         this.welshBodyContent = welshBodyContent;
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
+    }
+
+    @JsonIgnore
+    public Name getJointPartyName() {
+        if (this.jointPartyTitle == null && this.jointPartyNameNoTitle == null) {
+            return null;
+        } else {
+            return new Name(this.jointPartyTitle,
+                this.jointPartyNameNoTitle == null ? null : jointPartyNameNoTitle.getFirstName(),
+                this.jointPartyNameNoTitle == null ? null : jointPartyNameNoTitle.getLastName());
+        }
     }
 
     @JsonIgnore
