@@ -863,9 +863,9 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public void updateTranslationWorkOutstandingFlag() {
         if (getSscsDocument().stream().noneMatch(sd -> Arrays.asList(SscsDocumentTranslationStatus.TRANSLATION_REQUESTED, SscsDocumentTranslationStatus.TRANSLATION_REQUIRED).contains(sd.getValue().getDocumentTranslationStatus()))) {
-            this.translationWorkOutstanding = "no";
+            this.translationWorkOutstanding = "No";
         } else {
-            this.translationWorkOutstanding = "yes";
+            this.translationWorkOutstanding = "Yes";
         }
     }
 }
