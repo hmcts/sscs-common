@@ -383,7 +383,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("yes", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
@@ -399,7 +399,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("no", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals("No", sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
@@ -415,7 +415,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("yes", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
     }
     
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
