@@ -9,6 +9,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CANCEL_TRANSLATIONS;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CLOSED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.COH_ONLINE_HEARING_RELISTED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CREATE_APPEAL_PDF;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CREATE_WELSH_NOTICE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DORMANT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.DWP_RESPOND_OVERDUE;
@@ -160,7 +161,8 @@ public class EventTypeTest {
             "uploadWelshDocument\n" +
             "requestTranslationFromWLU\n" +
             "updateWelshPreference\n" +
-            "cancelTranslations";
+            "cancelTranslations\n" +
+            "createWelshNotice";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
@@ -183,7 +185,7 @@ public class EventTypeTest {
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
             LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE,
                 WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
-                CANCEL_TRANSLATIONS);
+                CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {

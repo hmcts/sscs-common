@@ -265,6 +265,10 @@ public class SscsCaseData implements CaseData {
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private String sscsWelshPreviewNextEvent;
     private DynamicList originalDocuments;
+    private DynamicList originalNoticeDocuments;
+    private DynamicList documentTypes;
+    private String welshBodyContent;
+    private String englishBodyContent;
     private String isScottishCase;
 
     @JsonCreator
@@ -482,6 +486,10 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
                         @JsonProperty("sscsWelshPreviewNextEvent") String sscsWelshPreviewNextEvent,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
+                        @JsonProperty("originalNoticeDocuments") DynamicList originalNoticeDocuments,
+                        @JsonProperty("documentTypes") DynamicList documentTypes,
+                        @JsonProperty("welshBodyContent") String welshBodyContent,
+                        @JsonProperty("englishBodyContent") String englishBodyContent,
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -695,6 +703,10 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
         this.sscsWelshPreviewNextEvent = sscsWelshPreviewNextEvent;
         this.originalDocuments = originalDocuments;
+        this.originalNoticeDocuments = originalNoticeDocuments;
+        this.documentTypes = documentTypes;
+        this.welshBodyContent = welshBodyContent;
+        this.englishBodyContent =  englishBodyContent;
         this.isScottishCase = isScottishCase;
     }
 
