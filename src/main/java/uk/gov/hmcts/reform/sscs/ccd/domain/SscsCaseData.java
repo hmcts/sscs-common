@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -342,8 +343,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("signedBy") String signedBy,
                         @JsonProperty("signedRole") String signedRole,
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                            @JsonSerialize(using = LocalDateSerializer.class)
-                            @JsonProperty("dateAdded") LocalDate dateAdded,
+                        @JsonSerialize(using = LocalDateSerializer.class)
+                        @JsonProperty("dateAdded") LocalDate dateAdded,
                         @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
                         @JsonProperty("dwpState") String dwpState,
                         @JsonProperty("appealNotePad") NotePad appealNotePad,
@@ -445,7 +446,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingDateType") String adjournCaseNextHearingDateType,
                         @JsonProperty("adjournCaseNextHearingDateOrPeriod") String adjournCaseNextHearingDateOrPeriod,
                         @JsonProperty("adjournCaseNextHearingDateOrTime") String adjournCaseNextHearingDateOrTime,
-                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate")  String adjournCaseNextHearingFirstAvailableDateAfterDate,
+                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate") String adjournCaseNextHearingFirstAvailableDateAfterDate,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
@@ -462,7 +463,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
                         @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
                         @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
-                        @JsonProperty("elementsDisputedList")  List<String> elementsDisputedList,
+                        @JsonProperty("elementsDisputedList") List<String> elementsDisputedList,
                         @JsonProperty("elementsDisputedGeneral") List<ElementDisputed> elementsDisputedGeneral,
                         @JsonProperty("elementsDisputedSanctions") List<ElementDisputed> elementsDisputedSanctions,
                         @JsonProperty("elementsDisputedOverpayment") List<ElementDisputed> elementsDisputedOverpayment,
@@ -706,7 +707,7 @@ public class SscsCaseData implements CaseData {
         this.originalNoticeDocuments = originalNoticeDocuments;
         this.documentTypes = documentTypes;
         this.welshBodyContent = welshBodyContent;
-        this.englishBodyContent =  englishBodyContent;
+        this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
     }
 
@@ -828,7 +829,7 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null && getSscsDocument().size() > 0) {
             Stream<SscsDocument> filteredStream = getSscsDocument().stream()
-                .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
+                    .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
             List<SscsDocument> filteredList = filteredStream.collect(Collectors.toList());
 
@@ -851,10 +852,20 @@ public class SscsCaseData implements CaseData {
         return null;
     }
 
+    @JsonIgnore
     public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
         return getSscsWelshDocuments().stream()
                 .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
                 .sorted()
                 .findFirst();
+    }
+
+    @JsonIgnore
+    public void updateTranslationWorkOutstandingFlag() {
+        if (getSscsDocument().stream().noneMatch(sd -> Arrays.asList(SscsDocumentTranslationStatus.TRANSLATION_REQUESTED, SscsDocumentTranslationStatus.TRANSLATION_REQUIRED).contains(sd.getValue().getDocumentTranslationStatus()))) {
+            this.translationWorkOutstanding = "no";
+        } else {
+            this.translationWorkOutstanding = "yes";
+        }
     }
 }
