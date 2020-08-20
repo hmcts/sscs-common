@@ -246,8 +246,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
-    private String jointPartyTitle;
-    private NameNoTitle jointPartyNameNoTitle;
+    private JointPartyName jointPartyName;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -464,8 +463,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("elementsDisputedIsDecisionDisputedByOthers") String elementsDisputedIsDecisionDisputedByOthers,
                         @JsonProperty("elementsDisputedLinkedAppealRef") String elementsDisputedLinkedAppealRef,
                         @JsonProperty("jointParty") String jointParty,
-                        @JsonProperty("jointPartyTitle") String jointPartyTitle,
-                        @JsonProperty("jointPartyNameNoTitle") NameNoTitle jointPartyNameNoTitle,
+                        @JsonProperty("jointPartyName") JointPartyName jointPartyName,
                         @JsonProperty("jointPartyIdentity") Identity jointPartyIdentity,
                         @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
                         @JsonProperty("jointPartyAddress") Address jointPartyAddress,
@@ -673,8 +671,8 @@ public class SscsCaseData implements CaseData {
         this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
         this.elementsDisputedIsDecisionDisputedByOthers = elementsDisputedIsDecisionDisputedByOthers;
         this.elementsDisputedLinkedAppealRef = elementsDisputedLinkedAppealRef;
-        this.jointPartyTitle = jointPartyTitle;
-        this.jointPartyNameNoTitle = jointPartyNameNoTitle;
+        this.jointParty = jointParty;
+        this.jointPartyName = jointPartyName;
         this.jointPartyIdentity = jointPartyIdentity;
         this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
         this.jointPartyAddress = jointPartyAddress;
@@ -683,17 +681,6 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
         this.originalDocuments = originalDocuments;
         this.isScottishCase = isScottishCase;
-    }
-
-    @JsonIgnore
-    public Name getJointPartyName() {
-        if (this.jointPartyTitle == null && this.jointPartyNameNoTitle == null) {
-            return null;
-        } else {
-            return new Name(this.jointPartyTitle,
-                this.jointPartyNameNoTitle == null ? null : jointPartyNameNoTitle.getFirstName(),
-                this.jointPartyNameNoTitle == null ? null : jointPartyNameNoTitle.getLastName());
-        }
     }
 
     @JsonIgnore
