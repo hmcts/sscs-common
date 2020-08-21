@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -474,31 +473,6 @@ public class SscsCaseDataTest {
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
         assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.WELSH);
-    }
-
-    @Test
-    public void givenNoJointPartyNameNoTitleAndNoJointPartyTitle_thenGetJointPartyNameShouldReturnNull() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-        assertNull(sscsCaseData.getJointPartyName());
-    }
-
-    @Test
-    public void givenJointPartyNameNoTitleAndJointPartyTitle_thenGetJointPartyNameShouldReturnValidJointPartyName() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().jointPartyTitle("my title").jointPartyNameNoTitle(NameNoTitle.builder()
-            .firstName("my first name").lastName("my last name").build()).build();
-        assertNotNull(sscsCaseData.getJointPartyName());
-        assertEquals("my title", sscsCaseData.getJointPartyName().getTitle());
-        assertEquals("my first name", sscsCaseData.getJointPartyName().getFirstName());
-        assertEquals("my last name", sscsCaseData.getJointPartyName().getLastName());
-    }
-
-    @Test
-    public void givenNoJointPartyNameNoTitleButJointPartyTitle_thenGetJointPartyNameShouldReturnIncompleteJointPartyName() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().jointPartyTitle("my title").build();
-        assertNotNull(sscsCaseData.getJointPartyName());
-        assertEquals("my title", sscsCaseData.getJointPartyName().getTitle());
-        assertNull(sscsCaseData.getJointPartyName().getFirstName());
-        assertNull(sscsCaseData.getJointPartyName().getLastName());
     }
 
 }
