@@ -77,6 +77,13 @@ public class RoboticsJsonMapper {
         }
         obj.put("isReadyToList", isReadyToList);
 
+        String isDigital = "No";
+        if (StringUtils.equals(roboticsWrapper.getSscsCaseData().getCreatedInGapsFrom(), ("readyToList"))) {
+            isDigital = "Yes";
+        }
+
+        obj.put("isDigital", isDigital);
+
         obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
 
         Optional<OfficeMapping> officeMapping = buildOffice(obj, sscsCaseData.getAppeal());
