@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
@@ -393,6 +395,17 @@ public class RoboticsJsonMapperTest {
         assertTrue(roboticsJson.has("appointee"));
         assertEquals("Yes", roboticsJson.getJSONObject("appointee").getString("sameAddressAsAppellant"));
         assertEquals("Pip venue", roboticsJson.get("appellantPostCode"));
+    }
+
+    @Test public void findVenueHandleMissingFields() {
+        roboticsWrapper.getSscsCaseData().getAppeal().setBenefitType(null);
+        Optional<String> venue = roboticsJsonMapper.findVenueName(roboticsWrapper.getSscsCaseData());
+        assertTrue(venue.isEmpty());
+    }
+
+    @Test public void findVenueHandleValidFields() {
+        Optional<String> venue = roboticsJsonMapper.findVenueName(roboticsWrapper.getSscsCaseData());
+        assertTrue(venue.isPresent());
     }
 
     @Test
