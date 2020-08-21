@@ -18,9 +18,12 @@ import junitparams.Parameters;
 import junitparams.converters.Nullable;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
@@ -29,6 +32,9 @@ import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
 @RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonMapperTest {
+
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
 
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
@@ -72,7 +78,7 @@ public class RoboticsJsonMapperTest {
         roboticsJsonValidator.validate(roboticsJson);
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 23,
+            "If this fails, add an assertion below, do not just increment the number :)", 24,
             roboticsJson.length()
         );
 
@@ -512,6 +518,16 @@ public class RoboticsJsonMapperTest {
         assertEquals("DWP PIP (1)", roboticsJson.get("dwpPresentingOffice"));
         assertEquals("No", roboticsJson.get("dwpIsOfficerAttending"));
         assertEquals("No", roboticsJson.get("dwpUcb"));
+    }
+
+    @Test
+    @Parameters({"validAppeal, No", "readyToList, Yes", "null, No"})
+    public void givenCreatedInGapsFrom_shouldSetRetrieveIsDigitalAccordingly(@Nullable String createdInGapsFrom, String expectedIsDigital) {
+        roboticsWrapper.getSscsCaseData().setCreatedInGapsFrom(createdInGapsFrom);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertThat(roboticsJson.get("isDigital"), is(expectedIsDigital));
     }
 
 }
