@@ -33,6 +33,7 @@ public class SscsCaseData implements CaseData {
     private String ccdCaseId;
 
     private State state;
+    private State previousState;
     private String caseReference;
     private String caseCreated;
     private InfoRequests infoRequests;
@@ -270,6 +271,7 @@ public class SscsCaseData implements CaseData {
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty(value = "state") State state,
+                        @JsonProperty(value = "previousState") State previousState,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("infoRequests") InfoRequests infoRequests,
@@ -486,6 +488,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
+        this.previousState = previousState;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.infoRequests = infoRequests;
