@@ -31,6 +31,7 @@ public class SscsCaseData implements CaseData {
     private String ccdCaseId;
 
     private State state;
+    private State previousState;
     private String caseReference;
     private String caseCreated;
     private InfoRequests infoRequests;
@@ -201,7 +202,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
-    private String adjournCaseNextHearingVenueSelected;
+    private DynamicList adjournCaseNextHearingVenueSelected;
     private String adjournCasePanelMembersExcluded;
     private String adjournCaseDisabilityQualifiedPanelMemberName;
     private String adjournCaseMedicallyQualifiedPanelMemberName;
@@ -263,6 +264,7 @@ public class SscsCaseData implements CaseData {
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
                         @JsonProperty(value = "state") State state,
+                        @JsonProperty(value = "previousState") State previousState,
                         @JsonProperty("caseReference") String caseReference,
                         @JsonProperty("caseCreated") String caseCreated,
                         @JsonProperty("infoRequests") InfoRequests infoRequests,
@@ -421,7 +423,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
                         @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
                         @JsonProperty("adjournCaseNextHearingVenue") String adjournCaseNextHearingVenue,
-                        @JsonProperty("adjournCaseNextHearingVenueSelected") String adjournCaseNextHearingVenueSelected,
+                        @JsonProperty("adjournCaseNextHearingVenueSelected") DynamicList adjournCaseNextHearingVenueSelected,
                         @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
                         @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
                         @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
@@ -474,6 +476,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
+        this.previousState = previousState;
         this.caseReference = caseReference;
         this.caseCreated = caseCreated;
         this.infoRequests = infoRequests;
