@@ -12,17 +12,12 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SscsDocumentDetails {
+@EqualsAndHashCode(callSuper = false)
+public class SscsDocumentDetails extends AbstractDocumentDetails {
 
-    private String documentType;
-    private String documentFileName;
     private String documentEmailContent;
-    private String documentDateAdded;
-    private DocumentLink documentLink;
-    private String documentComment;
     private String controlNumber;
     private String evidenceIssued;
-    private String bundleAddition;
     private SscsDocumentTranslationStatus documentTranslationStatus;
 
     @JsonCreator
@@ -36,15 +31,10 @@ public class SscsDocumentDetails {
                                @JsonProperty("evidenceIssued") String evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus) {
-        this.documentType = documentType;
-        this.documentFileName = documentFileName;
+        super(documentType, documentFileName, documentDateAdded, documentLink, documentComment,  bundleAddition);
         this.documentEmailContent = documentEmailContent;
-        this.documentDateAdded = documentDateAdded;
-        this.documentLink = documentLink;
-        this.documentComment = documentComment;
         this.controlNumber = controlNumber;
         this.evidenceIssued = evidenceIssued;
-        this.bundleAddition = bundleAddition;
         this.documentTranslationStatus = documentTranslationStatus;
     }
 }
