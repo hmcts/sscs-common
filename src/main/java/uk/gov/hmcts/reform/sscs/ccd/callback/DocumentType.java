@@ -25,6 +25,16 @@ public enum DocumentType {
     private String value;
     private String label;
 
+    public static DocumentType fromValue(String text) {
+
+        for (DocumentType documentType : DocumentType.values()) {
+            if (text != null && documentType.getValue() != null && documentType.getValue().equalsIgnoreCase(text)) {
+                return documentType;
+            }
+        }
+        return null;
+    }
+
     DocumentType(String value) {
         this.value = value;
     }
@@ -33,4 +43,5 @@ public enum DocumentType {
         this.value = value;
         this.label = label;
     }
+
 }
