@@ -14,15 +14,18 @@ public class Subscriptions {
     Subscription supporterSubscription;
     Subscription representativeSubscription;
     Subscription appointeeSubscription;
+    Subscription jointPartySubscription;
 
     @JsonCreator
     public Subscriptions(@JsonProperty("appellantSubscription") Subscription appellantSubscription,
                          @JsonProperty("supporterSubscription") Subscription supporterSubscription,
                          @JsonProperty("representativeSubscription") Subscription representativeSubscription,
-                         @JsonProperty("appointeeSubscription") Subscription appointeeSubscription) {
+                         @JsonProperty("appointeeSubscription") Subscription appointeeSubscription,
+                         @JsonProperty("jointPartySubscription") Subscription jointPartySubscription) {
         this.appellantSubscription = appellantSubscription;
         this.supporterSubscription = supporterSubscription;
         this.representativeSubscription = representativeSubscription;
         this.appointeeSubscription = appointeeSubscription;
+        this.jointPartySubscription = jointPartySubscription;
     }
 }
