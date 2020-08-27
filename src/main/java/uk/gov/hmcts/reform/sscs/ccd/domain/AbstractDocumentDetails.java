@@ -15,6 +15,7 @@ public class AbstractDocumentDetails {
     private String documentDateAdded;
     private String documentComment;
     private DocumentLink documentLink;
+    private String evidenceIssued;
     private String bundleAddition;
 
     @JsonCreator
@@ -23,12 +24,14 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("documentDateAdded") String documentDateAdded,
                                    @JsonProperty("documentLink") DocumentLink documentLink,
                                    @JsonProperty("documentComment") String documentComment,
+                                   @JsonProperty("evidenceIssued") String evidenceIssued,
                                    @JsonProperty("bundleAddition") String bundleAddition) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentDateAdded = documentDateAdded;
         this.documentLink = documentLink;
         this.documentComment = documentComment;
+        this.evidenceIssued = evidenceIssued;
         this.bundleAddition = bundleAddition;
     }
 

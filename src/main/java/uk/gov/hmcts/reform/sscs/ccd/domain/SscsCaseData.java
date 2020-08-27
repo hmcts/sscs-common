@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -846,7 +847,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
-        return getSscsWelshDocuments().stream()
+        return Optional.ofNullable(getSscsWelshDocuments()).map(Collection::stream).orElseGet(Stream::empty)
                 .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
                 .sorted()
                 .findFirst();

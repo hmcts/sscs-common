@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;

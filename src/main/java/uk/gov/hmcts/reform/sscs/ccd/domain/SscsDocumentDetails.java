@@ -17,7 +17,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
 
     private String documentEmailContent;
     private String controlNumber;
-    private String evidenceIssued;
     private SscsDocumentTranslationStatus documentTranslationStatus;
 
     @JsonCreator
@@ -31,10 +30,9 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("evidenceIssued") String evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, documentComment,  bundleAddition);
+        super(documentType, documentFileName, documentDateAdded, documentLink, documentComment,  evidenceIssued, bundleAddition);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
-        this.evidenceIssued = evidenceIssued;
         this.documentTranslationStatus = documentTranslationStatus;
     }
 }

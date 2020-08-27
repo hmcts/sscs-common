@@ -353,6 +353,15 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void givenACaseHasNoWelshDocuments_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(null).build();
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+
+        Assert.assertTrue("Result is empty", result.isEmpty());
+    }
+
+    @Test
     public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null));
