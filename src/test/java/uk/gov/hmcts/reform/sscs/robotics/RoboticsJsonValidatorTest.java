@@ -95,6 +95,12 @@ public class RoboticsJsonValidatorTest {
     }
 
     @Test(expected = RoboticsValidationException.class)
+    public void givenInvalidInputForEmptyCaseCode_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "caseCode");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
     public void givenInvalidInputForPostCode_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
         jsonData = updateEmbeddedProperty(jsonData.toString(), "B231ABXXX", "appellant", "postCode");
         roboticsJsonValidator.validate(jsonData);
@@ -119,8 +125,20 @@ public class RoboticsJsonValidatorTest {
     }
 
     @Test(expected = RoboticsValidationException.class)
+    public void givenEmptyInputForAppealDate_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appealDate");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
     public void givenInvalidInputForHearingType_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
         jsonData = updateEmbeddedProperty(jsonData.toString(), "Computer", "hearingType");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenEmptyInputForHearingType_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "hearingType");
         roboticsJsonValidator.validate(jsonData);
     }
 
@@ -141,6 +159,18 @@ public class RoboticsJsonValidatorTest {
     @Test(expected = RoboticsValidationException.class)
     public void givenInvalidInputForWantsToAttendHearing_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
         jsonData = updateEmbeddedProperty(jsonData.toString(), "Bla", "wantsToAttendHearing");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenInvalidInputForEvidencePresent_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "Bla", "evidencePresent");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenEmptyInputForEvidencePresent_throwExceptionWhenValidatingAgainstSchema() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "evidencePresent");
         roboticsJsonValidator.validate(jsonData);
     }
 
