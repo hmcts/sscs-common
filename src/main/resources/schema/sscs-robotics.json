@@ -8,7 +8,7 @@
       "pattern": "^\\d{3}[A-Z]{2}$"
     },
     "caseId" : {"type" : "integer"},
-    "appellantNino":  {"type": "string"},
+    "appellantNino":  {"$ref": "#/definitions/nonEmptyString"},
     "appellantPostCode": {"type": "string"},
     "evidencePresent": {"$ref": "#/definitions/yesOrNo"},
     "appealDate": {"$ref": "#/definitions/dateType"},
@@ -92,13 +92,13 @@
       "type": "object",
       "properties": {
         "title" : { "type" : "string"},
-        "firstName": { "type": "string" },
-        "lastName": { "type": "string"},
+        "firstName": { "$ref": "#/definitions/nonEmptyString" },
+        "lastName": { "$ref": "#/definitions/nonEmptyString"},
         "organisation": { "type": "string"},
-        "addressLine1": { "type": "string"},
+        "addressLine1": { "$ref": "#/definitions/nonEmptyString"},
         "addressLine2": { "type": "string"},
-        "townOrCity": { "type": "string"},
-        "county": { "type": "string" },
+        "townOrCity": { "$ref": "#/definitions/nonEmptyString"},
+        "county": { "$ref": "#/definitions/nonEmptyString" },
         "postCode": {
           "type": "string",
           "pattern": "^((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])|([Gg][Ii][Rr]))))\\s?([0-9][A-Za-z]{2})|(0[Aa]{2}))$"},
@@ -124,6 +124,10 @@
     "dateType": {
       "type": "string",
       "format": "date"
+    },
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
     }
   }
 }

@@ -39,6 +39,42 @@ public class RoboticsJsonValidatorTest {
         roboticsJsonValidator.validate(jsonData);
     }
 
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantNino_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellantNino");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantFirstName_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "firstName");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantLastName_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "lastName");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantAddressLine1_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "addressLine1");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantTownOrCity_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "townOrCity");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
+    @Test(expected = RoboticsValidationException.class)
+    public void givenRoboticJsonWithEmptyStringForAppellantCounty_shouldValidateSuccessfully() throws ValidationException, IOException {
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "county");
+        roboticsJsonValidator.validate(jsonData);
+    }
+
     @Test
     @Parameters({"Yes", "No"})
     public void givenJsonWithTheSameAddressAsAppellantProperty_shouldValidateSuccessfully(String value) {
