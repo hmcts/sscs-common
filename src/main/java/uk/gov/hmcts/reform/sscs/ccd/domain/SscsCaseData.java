@@ -474,7 +474,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
-                        @JsonProperty("dwpUploadResponseDynamicBenefitType") DynamicList dynamicBenefitType,
+                        @JsonProperty("dwpUploadResponseDynamicBenefitType") DynamicList dwpUploadResponseDynamicBenefitType,
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
