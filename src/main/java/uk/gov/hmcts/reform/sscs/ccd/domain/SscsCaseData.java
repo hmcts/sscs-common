@@ -259,7 +259,7 @@ public class SscsCaseData implements CaseData {
     private List<SscsWelshDocuments> sscsWelshDocuments;
     private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
     private DynamicList originalDocuments;
-    private DynamicList dwpUploadResponseDynamicBenefitType;
+    private DynamicList dynamicBenefitType;
     private String isScottishCase;
 
     @JsonCreator
@@ -474,7 +474,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("sscsWelshDocuments") List<SscsWelshDocuments> sscsWelshDocuments,
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocuments> sscsWelshPreviewDocuments,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
-                        @JsonProperty("dwpUploadResponseDynamicBenefitType") DynamicList dwpUploadResponseDynamicBenefitType,
+                        @JsonProperty("dynamicBenefitType") DynamicList dynamicBenefitType,
                         @JsonProperty("isScottishCase") String isScottishCase) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -686,7 +686,7 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
         this.originalDocuments = originalDocuments;
         this.isScottishCase = isScottishCase;
-        this.dwpUploadResponseDynamicBenefitType = dwpUploadResponseDynamicBenefitType;
+        this.dynamicBenefitType = dynamicBenefitType;
     }
 
     @JsonIgnore
