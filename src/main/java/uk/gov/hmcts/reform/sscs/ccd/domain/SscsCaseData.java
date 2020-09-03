@@ -263,6 +263,7 @@ public class SscsCaseData implements CaseData {
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private String sscsWelshPreviewNextEvent;
     private DynamicList originalDocuments;
+    private DynamicList dynamicBenefitType;
     private DynamicList originalNoticeDocuments;
     private DynamicList documentTypes;
     private String welshBodyContent;
@@ -482,6 +483,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
                         @JsonProperty("sscsWelshPreviewNextEvent") String sscsWelshPreviewNextEvent,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
+                        @JsonProperty("dynamicBenefitType") DynamicList dynamicBenefitType,
                         @JsonProperty("originalNoticeDocuments") DynamicList originalNoticeDocuments,
                         @JsonProperty("documentTypes") DynamicList documentTypes,
                         @JsonProperty("welshBodyContent") String welshBodyContent,
@@ -702,6 +704,7 @@ public class SscsCaseData implements CaseData {
         this.welshBodyContent = welshBodyContent;
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
+        this.dynamicBenefitType = dynamicBenefitType;
     }
 
     @JsonIgnore
