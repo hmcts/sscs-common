@@ -131,7 +131,7 @@ dependencies {
 
     compile group: 'io.rest-assured', name: 'rest-assured', version: '4.2.0'
     compile group: 'io.rest-assured', name: 'json-path', version: '4.3.1'
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
     compile group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.12.1'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
 
