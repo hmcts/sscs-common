@@ -17,8 +17,7 @@ public class RoboticsJsonValidatorTest {
     private JSONObject jsonData = new JSONObject(
             new JSONTokener(getClass().getResourceAsStream("/schema/valid_robotics_agreed.json")));
 
-    private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
-            "/schema/sscs-robotics.json");
+    private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator();
 
     @Test
     public void givenValidInputAgreedWithAutomationTeam_thenValidateAgainstSchema() throws ValidationException {

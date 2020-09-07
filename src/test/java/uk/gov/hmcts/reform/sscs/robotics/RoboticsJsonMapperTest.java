@@ -38,8 +38,7 @@ public class RoboticsJsonMapperTest {
 
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
-    private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
-        "/schema/sscs-robotics.json");
+    private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator();
     private JSONObject roboticsJson;
 
     private DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
