@@ -52,6 +52,8 @@ public enum EventType {
     STRUCK_OUT("struckOut", 0, false),
     DIRECTION_ISSUED("directionIssued", 0, false),
     DECISION_ISSUED("decisionIssued", 0, false),
+    DIRECTION_ISSUED_WELSH("directionIssuedWelsh", 0, false),
+    DECISION_ISSUED_WELSH("decisionIssuedWelsh", 0, false),
     ISSUE_FINAL_DECISION("issueFinalDecision", 0, false),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
@@ -153,7 +155,8 @@ public enum EventType {
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),
     REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false),
     UPDATE_WELSH_PREFERENCE("updateWelshPreference", 0, false),
-    CANCEL_TRANSLATIONS("cancelTranslations", 0, false);
+    CANCEL_TRANSLATIONS("cancelTranslations", 0, false),
+    CREATE_WELSH_NOTICE("createWelshNotice", 0, false);
 
     private String type;
     private String ccdType;

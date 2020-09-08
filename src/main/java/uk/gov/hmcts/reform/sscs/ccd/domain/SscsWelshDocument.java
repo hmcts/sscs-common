@@ -10,10 +10,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
-public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
+public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails> {
 
     @JsonCreator
-    public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
+    public SscsWelshDocument(@JsonProperty("value") SscsWelshDocumentDetails value) {
         super(value);
     }
 }
