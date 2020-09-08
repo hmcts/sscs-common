@@ -269,6 +269,8 @@ public class SscsCaseData implements CaseData {
     private String welshBodyContent;
     private String englishBodyContent;
     private String isScottishCase;
+    private LocalDate reinstatementRegistered;
+    private ReinstatementOutcome reinstatementOutcome;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -488,7 +490,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("documentTypes") DynamicList documentTypes,
                         @JsonProperty("welshBodyContent") String welshBodyContent,
                         @JsonProperty("englishBodyContent") String englishBodyContent,
-                        @JsonProperty("isScottishCase") String isScottishCase) {
+                        @JsonProperty("isScottishCase") String isScottishCase,
+                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+                            @JsonSerialize(using = LocalDateSerializer.class)
+                            @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
+                        @JsonProperty("reinstatementOutcome") ReinstatementOutcome reinstatementOutcome
+                        ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -705,6 +712,8 @@ public class SscsCaseData implements CaseData {
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
         this.dynamicBenefitType = dynamicBenefitType;
+        this.reinstatementRegistered = reinstatementRegistered;
+        this.reinstatementOutcome = reinstatementOutcome;
     }
 
     @JsonIgnore
