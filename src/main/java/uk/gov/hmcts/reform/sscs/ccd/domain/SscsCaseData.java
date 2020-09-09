@@ -269,6 +269,7 @@ public class SscsCaseData implements CaseData {
     private String welshBodyContent;
     private String englishBodyContent;
     private String isScottishCase;
+    private String welshInterlocNextReviewState;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -488,7 +489,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("documentTypes") DynamicList documentTypes,
                         @JsonProperty("welshBodyContent") String welshBodyContent,
                         @JsonProperty("englishBodyContent") String englishBodyContent,
-                        @JsonProperty("isScottishCase") String isScottishCase) {
+                        @JsonProperty("isScottishCase") String isScottishCase,
+                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -705,6 +707,7 @@ public class SscsCaseData implements CaseData {
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
         this.dynamicBenefitType = dynamicBenefitType;
+        this.welshInterlocNextReviewState = welshInterlocNextReviewState;
     }
 
     @JsonIgnore
