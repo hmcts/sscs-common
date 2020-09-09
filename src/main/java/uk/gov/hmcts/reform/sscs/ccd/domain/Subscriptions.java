@@ -26,5 +26,6 @@ public class Subscriptions {
         this.supporterSubscription = supporterSubscription;
         this.representativeSubscription = representativeSubscription;
         this.appointeeSubscription = appointeeSubscription;
+        this.jointPartySubscription = jointPartySubscription;
     }
 }
