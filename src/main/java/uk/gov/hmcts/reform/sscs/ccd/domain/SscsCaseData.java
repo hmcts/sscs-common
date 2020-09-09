@@ -269,6 +269,8 @@ public class SscsCaseData implements CaseData {
     private String welshBodyContent;
     private String englishBodyContent;
     private String isScottishCase;
+    private LocalDate reinstatementRegistered;
+    private ReinstatementOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
 
     @JsonCreator
@@ -490,7 +492,12 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("welshBodyContent") String welshBodyContent,
                         @JsonProperty("englishBodyContent") String englishBodyContent,
                         @JsonProperty("isScottishCase") String isScottishCase,
-                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState) {
+                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+                            @JsonSerialize(using = LocalDateSerializer.class)
+                            @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
+                        @JsonProperty("reinstatementOutcome") ReinstatementOutcome reinstatementOutcome,
+                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState
+                        ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -707,6 +714,8 @@ public class SscsCaseData implements CaseData {
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
         this.dynamicBenefitType = dynamicBenefitType;
+        this.reinstatementRegistered = reinstatementRegistered;
+        this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
     }
 

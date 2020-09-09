@@ -202,6 +202,7 @@ public class SscsCcdConvertServiceTest {
         String caseReference = "caseRef";
         HashMap<String, Object> data = new HashMap<>();
         data.put("caseReference", caseReference);
+        data.put("reinstatementRegistered",  "2019-07-04");
         HashMap<String, Object> appealMap = new HashMap<>();
         String signer = "signerName";
         appealMap.put("signer", signer);
@@ -223,7 +224,9 @@ public class SscsCcdConvertServiceTest {
 
         assertTrue(hasAppellantIdentify(caseDetails.getData()));
 
-        assertEquals(LocalDate.of(2019, 07, 04), caseDetails.getData().getSscsInterlocDirectionDocument().getDocumentDateAdded());
+        LocalDate expectedDate = LocalDate.of(2019, 7, 4);
+        assertEquals(expectedDate, caseDetails.getData().getSscsInterlocDirectionDocument().getDocumentDateAdded());
+        assertEquals(expectedDate, caseDetails.getData().getReinstatementRegistered());
     }
 
     @Test
@@ -241,5 +244,22 @@ public class SscsCcdConvertServiceTest {
         SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
         assertEquals(DirectionType.APPEAL_TO_PROCEED, caseDetails.getData().getDirectionType());
+    }
+
+    @Test
+    public void canTranslateAnReinstatementOutcomeEnum() {
+        String caseReference = "caseRef";
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("caseReference", caseReference);
+        data.put("reinstatementOutcome", ReinstatementOutcome.IN_PROGRESS);
+
+        long id = 123L;
+        CaseDetails build = CaseDetails.builder()
+                .id(id)
+                .data(data)
+                .build();
+        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+
+        assertEquals(ReinstatementOutcome.IN_PROGRESS, caseDetails.getData().getReinstatementOutcome());
     }
 }
