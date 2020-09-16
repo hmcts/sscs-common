@@ -223,7 +223,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingSpecificDate;
     private String adjournCaseNextHearingSpecificTime;
     private List<CollectionItem<String>> adjournCaseReasons;
-    private String adjournCaseAdditionalDirections;
+    private List<CollectionItem<String>> adjournCaseAdditionalDirections;
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
@@ -453,7 +453,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
                         @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
-                        @JsonProperty("adjournCaseAdditionalDirections") String adjournCaseAdditionalDirections,
+                        @JsonProperty("adjournCaseAdditionalDirections") List<CollectionItem<String>> adjournCaseAdditionalDirections,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
                         @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
                         @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
