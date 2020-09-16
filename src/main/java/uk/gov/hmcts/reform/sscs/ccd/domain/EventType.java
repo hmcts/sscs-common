@@ -157,7 +157,8 @@ public enum EventType {
     UPDATE_WELSH_PREFERENCE("updateWelshPreference", 0, false),
     CANCEL_TRANSLATIONS("cancelTranslations", 0, false),
     CREATE_WELSH_NOTICE("createWelshNotice", 0, false),
-    MARK_DOCS_FOR_TRANSATION("markDocumentsForTranslation", 0, false);
+    MARK_DOCS_FOR_TRANSATION("markDocumentsForTranslation", 0, false),
+    ADMIN_RESTORE_CASES("adminRestoreCases", 0, false);
 
     private String type;
     private String ccdType;
