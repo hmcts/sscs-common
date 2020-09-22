@@ -14,7 +14,13 @@ public enum DirectionType {
     GRANT_EXTENSION("grantExtension"),
 
     @JsonProperty("refuseExtension")
-    REFUSE_EXTENSION("refuseExtension");
+    REFUSE_EXTENSION("refuseExtension"),
+
+    @JsonProperty("grantReinstatement")
+    GRANT_REINSTATEMENT("grantReinstatement"),
+
+    @JsonProperty("refuseReinstatement")
+    REFUSE_REINSTATEMENT("refuseReinstatement");
 
     // needed only for the toString method
     private final String id;
