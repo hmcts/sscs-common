@@ -272,6 +272,7 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private ReinstatementOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
+    private String confidentialityRequestGrantedOrRefused;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -496,7 +497,8 @@ public class SscsCaseData implements CaseData {
                             @JsonSerialize(using = LocalDateSerializer.class)
                             @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
                         @JsonProperty("reinstatementOutcome") ReinstatementOutcome reinstatementOutcome,
-                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState
+                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
+                        @JsonProperty("confidentialityRequestGrantedOrRefused") String confidentialityRequestGrantedOrRefused
                         ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -717,6 +719,7 @@ public class SscsCaseData implements CaseData {
         this.reinstatementRegistered = reinstatementRegistered;
         this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
+        this.confidentialityRequestGrantedOrRefused = confidentialityRequestGrantedOrRefused;
     }
 
     @JsonIgnore
@@ -798,6 +801,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isTranslationWorkOutstanding() {
         return stringToBoolean(translationWorkOutstanding);
+    }
+
+    @JsonIgnore
+    public boolean isConfidentialityRequestGranted() {
+        return "grantConfidentialityRequest".equals(confidentialityRequestGrantedOrRefused);
     }
 
     @JsonIgnore
