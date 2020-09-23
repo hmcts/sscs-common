@@ -273,6 +273,7 @@ public class SscsCaseData implements CaseData {
     private ReinstatementOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private String confidentialityRequestGrantedOrRefused;
+    private String confidentialityOutcome;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -498,8 +499,9 @@ public class SscsCaseData implements CaseData {
                             @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
                         @JsonProperty("reinstatementOutcome") ReinstatementOutcome reinstatementOutcome,
                         @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
-                        @JsonProperty("confidentialityRequestGrantedOrRefused") String confidentialityRequestGrantedOrRefused
-                        ) {
+                        @JsonProperty("confidentialityRequestGrantedOrRefused") String confidentialityRequestGrantedOrRefused,
+                        @JsonProperty("confidentialityOutcome") String confidentialityOutcome
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -720,6 +722,7 @@ public class SscsCaseData implements CaseData {
         this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
         this.confidentialityRequestGrantedOrRefused = confidentialityRequestGrantedOrRefused;
+        this.confidentialityOutcome = confidentialityOutcome;
     }
 
     @JsonIgnore
@@ -804,8 +807,8 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isConfidentialityRequestGranted() {
-        return "grantConfidentialityRequest".equals(confidentialityRequestGrantedOrRefused);
+    public boolean isConfidential() {
+        return "granted".equals(confidentialityOutcome);
     }
 
     @JsonIgnore
