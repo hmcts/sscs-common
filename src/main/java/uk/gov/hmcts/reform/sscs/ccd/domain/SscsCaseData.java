@@ -276,6 +276,8 @@ public class SscsCaseData implements CaseData {
     private LocalDate confidentialityRequestDate;
     private RequestOutcome confidentialityRequestOutcomeAppellant;
     private RequestOutcome confidentialityRequestOutcomeJointParty;
+    private String confidentialityRequestAppellantGrantedOrRefused;
+    private String confidentialityRequestJointPartyGrantedOrRefused;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -506,8 +508,10 @@ public class SscsCaseData implements CaseData {
                             @JsonSerialize(using = LocalDateSerializer.class)
                         @JsonProperty("confidentialityRequestDate") LocalDate confidentialityRequestDate,
                         @JsonProperty("confidentialityRequestOutcomeAppellant") RequestOutcome confidentialityRequestOutcomeAppellant,
-                        @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty
-                        ) {
+                        @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty,
+                        @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
+                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -731,6 +735,8 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestDate = confidentialityRequestDate;
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
+        this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
+        this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
     }
 
     @JsonIgnore
