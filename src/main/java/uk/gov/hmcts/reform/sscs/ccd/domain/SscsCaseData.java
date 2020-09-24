@@ -274,8 +274,10 @@ public class SscsCaseData implements CaseData {
     private String welshInterlocNextReviewState;
     private String isConfidentialCase;
     private LocalDate confidentialityRequestDate;
-    private String confidentialityRequestGrantedOrRefused;
-    private RequestOutcome confidentialityRequestOutcome;
+    private RequestOutcome confidentialityRequestOutcomeAppellant;
+    private RequestOutcome confidentialityRequestOutcomeJointParty;
+    private String confidentialityRequestAppellantGrantedOrRefused;
+    private String confidentialityRequestJointPartyGrantedOrRefused;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -505,9 +507,11 @@ public class SscsCaseData implements CaseData {
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                             @JsonSerialize(using = LocalDateSerializer.class)
                         @JsonProperty("confidentialityRequestDate") LocalDate confidentialityRequestDate,
-                        @JsonProperty("confidentialityRequestGrantedOrRefused") String confidentialityRequestGrantedOrRefused,
-                        @JsonProperty("confidentialityRequestOutcome") RequestOutcome confidentialityRequestOutcome
-                        ) {
+                        @JsonProperty("confidentialityRequestOutcomeAppellant") RequestOutcome confidentialityRequestOutcomeAppellant,
+                        @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty,
+                        @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
+                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused
+    ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -729,8 +733,10 @@ public class SscsCaseData implements CaseData {
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
         this.isConfidentialCase = isConfidentialCase;
         this.confidentialityRequestDate = confidentialityRequestDate;
-        this.confidentialityRequestGrantedOrRefused = confidentialityRequestGrantedOrRefused;
-        this.confidentialityRequestOutcome = confidentialityRequestOutcome;
+        this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
+        this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
+        this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
+        this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
     }
 
     @JsonIgnore
