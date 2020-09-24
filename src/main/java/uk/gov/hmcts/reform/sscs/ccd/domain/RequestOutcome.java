@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ReinstatementOutcome {
+public enum RequestOutcome {
 
     @JsonProperty("inProgress")
     IN_PROGRESS("inProgress"),
@@ -14,7 +14,7 @@ public enum ReinstatementOutcome {
 
     private final String value;
 
-    ReinstatementOutcome(String value) {
+    RequestOutcome(String value) {
         this.value = value;
     }
 

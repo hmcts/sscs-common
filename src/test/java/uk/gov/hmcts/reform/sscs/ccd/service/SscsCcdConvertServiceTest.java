@@ -13,7 +13,6 @@ import java.util.Map;
 import org.junit.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
-import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public class SscsCcdConvertServiceTest {
 
@@ -247,11 +246,11 @@ public class SscsCcdConvertServiceTest {
     }
 
     @Test
-    public void canTranslateAnReinstatementOutcomeEnum() {
+    public void canTranslateARequestOutcomeEnum() {
         String caseReference = "caseRef";
         HashMap<String, Object> data = new HashMap<>();
         data.put("caseReference", caseReference);
-        data.put("reinstatementOutcome", ReinstatementOutcome.IN_PROGRESS);
+        data.put("reinstatementOutcome", RequestOutcome.IN_PROGRESS);
 
         long id = 123L;
         CaseDetails build = CaseDetails.builder()
@@ -260,6 +259,6 @@ public class SscsCcdConvertServiceTest {
                 .build();
         SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
-        assertEquals(ReinstatementOutcome.IN_PROGRESS, caseDetails.getData().getReinstatementOutcome());
+        assertEquals(RequestOutcome.IN_PROGRESS, caseDetails.getData().getReinstatementOutcome());
     }
 }

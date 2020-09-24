@@ -21,7 +21,8 @@ public enum DocumentType {
     FINAL_DECISION_NOTICE("finalDecisionNotice", "Final Decision Notice"),
     DRAFT_ADJOURNMENT_NOTICE("draftAdjournmentNotice", "Draft Adjournment Notice"),
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
-    REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request");
+    REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
+    CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request");
 
     private String value;
     private String label;
