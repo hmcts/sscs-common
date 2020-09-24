@@ -272,7 +272,6 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
-    private String isConfidentialCase;
     private LocalDate confidentialityRequestDate;
     private RequestOutcome confidentialityRequestOutcomeAppellant;
     private RequestOutcome confidentialityRequestOutcomeJointParty;
@@ -503,7 +502,6 @@ public class SscsCaseData implements CaseData {
                             @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
                         @JsonProperty("reinstatementOutcome") RequestOutcome reinstatementOutcome,
                         @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
-                        @JsonProperty("isConfidentialCase") String isConfidentialCase,
                         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                             @JsonSerialize(using = LocalDateSerializer.class)
                         @JsonProperty("confidentialityRequestDate") LocalDate confidentialityRequestDate,
@@ -731,7 +729,6 @@ public class SscsCaseData implements CaseData {
         this.reinstatementRegistered = reinstatementRegistered;
         this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
-        this.isConfidentialCase = isConfidentialCase;
         this.confidentialityRequestDate = confidentialityRequestDate;
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
