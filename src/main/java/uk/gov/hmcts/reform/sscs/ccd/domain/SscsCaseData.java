@@ -220,8 +220,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingDateOrTime;
     private String adjournCaseNextHearingFirstAvailableDateAfterDate;
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
-    private String adjournCaseNextHearingSpecificDate;
-    private String adjournCaseNextHearingSpecificTime;
+    private AdjournCaseTime adjournCaseTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private List<CollectionItem<String>> adjournCaseAdditionalDirections;
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
@@ -455,8 +454,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("adjournCaseNextHearingDateOrTime") String adjournCaseNextHearingDateOrTime,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate") String adjournCaseNextHearingFirstAvailableDateAfterDate,
                         @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
-                        @JsonProperty("adjournCaseNextHearingSpecificDate") String adjournCaseNextHearingSpecificDate,
-                        @JsonProperty("adjournCaseNextHearingSpecificTime") String adjournCaseNextHearingSpecificTime,
+                        @JsonProperty("adjournCaseTime") AdjournCaseTime adjournCaseTime,
                         @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
                         @JsonProperty("adjournCaseAdditionalDirections") List<CollectionItem<String>> adjournCaseAdditionalDirections,
                         @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
@@ -684,8 +682,7 @@ public class SscsCaseData implements CaseData {
         this.adjournCaseNextHearingDateOrTime = adjournCaseNextHearingDateOrTime;
         this.adjournCaseNextHearingFirstAvailableDateAfterDate = adjournCaseNextHearingFirstAvailableDateAfterDate;
         this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
-        this.adjournCaseNextHearingSpecificDate = adjournCaseNextHearingSpecificDate;
-        this.adjournCaseNextHearingSpecificTime = adjournCaseNextHearingSpecificTime;
+        this.adjournCaseTime = adjournCaseTime;
         this.adjournCaseReasons = adjournCaseReasons;
         this.adjournCaseAdditionalDirections = adjournCaseAdditionalDirections;
         this.adjournCasePreviewDocument = adjournCasePreviewDocument;
