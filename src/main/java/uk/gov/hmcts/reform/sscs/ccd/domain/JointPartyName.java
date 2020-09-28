@@ -29,4 +29,9 @@ public class JointPartyName {
         return title + " " + firstName + " " + lastName;
     }
 
+    @JsonIgnore
+    public String getFullNameNoTitle() {
+        return firstName + " " + lastName;
+    }
+
 }
