@@ -145,10 +145,13 @@ public class RoboticsJsonMapper {
             }
             if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
                 if (sscsCaseData.getAppeal().getHearingSubtype().getHearingTelephoneNumber() != null) {
-                    obj.put("hearingTelephoneNumber", sscsCaseData.getAppeal().getHearingSubtype().getHearingTelephoneNumber());
+                    obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
                 }
                 if (sscsCaseData.getAppeal().getHearingSubtype().getHearingVideoEmail() != null) {
-                    obj.put("hearingVideoEmail", sscsCaseData.getAppeal().getHearingSubtype().getHearingVideoEmail());
+                    obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
+                }
+                if (sscsCaseData.getAppeal().getHearingSubtype().getHearingVideoEmail() != null) {
+                    obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
                 }
             }
         }
