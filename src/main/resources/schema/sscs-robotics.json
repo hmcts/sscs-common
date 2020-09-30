@@ -56,6 +56,8 @@
     },
     "ucDecisionDisputedByOthers": {"$ref": "#/definitions/yesOrNo"},
     "linkedAppealRef": {"type": "string"},
+    "hearingTelephoneNumber": {"type": "string"},
+    "hearingVideoEmail": {"type": "string"},
     "elementsDisputed": {
       "type": "object",
       "properties": {
