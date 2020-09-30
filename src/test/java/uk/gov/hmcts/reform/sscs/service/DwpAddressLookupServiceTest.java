@@ -198,4 +198,46 @@ public class DwpAddressLookupServiceTest {
 
         assertEquals("Sheffield DRT", result);
     }
+
+    @Test
+    public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("pip");
+
+        assertEquals("1", result.get().getCode());
+    }
+
+    @Test
+    public void givenAEsaBenefitType_thenReturnTheDefaultEsaOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("esa");
+
+        assertEquals("Sheffield DRT", result.get().getCode());
+    }
+
+    @Test
+    public void givenAUcBenefitType_thenReturnTheDefaultUcOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("uc");
+
+        assertEquals("Universal Credit", result.get().getCode());
+    }
+
+    @Test
+    public void givenAPipBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("pip");
+
+        assertEquals("Newcastle", result);
+    }
+
+    @Test
+    public void givenAEsaBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("esa");
+
+        assertEquals("Sheffield DRT", result);
+    }
+
+    @Test
+    public void givenAUcBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("uc");
+
+        assertEquals("Universal Credit", result);
+    }
 }
