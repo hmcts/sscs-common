@@ -144,11 +144,14 @@ public class RoboticsJsonMapper {
                 obj.put("linkedAppealRef", sscsCaseData.getElementsDisputedLinkedAppealRef());
             }
             if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
-                if (sscsCaseData.getAppeal().getHearingSubtype().getHearingTelephoneNumber() != null) {
-                    obj.put("hearingTelephoneNumber", sscsCaseData.getAppeal().getHearingSubtype().getHearingTelephoneNumber());
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone() != null) {
+                    obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
                 }
-                if (sscsCaseData.getAppeal().getHearingSubtype().getHearingVideoEmail() != null) {
-                    obj.put("hearingVideoEmail", sscsCaseData.getAppeal().getHearingSubtype().getHearingVideoEmail());
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo() != null) {
+                    obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
+                }
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace() != null) {
+                    obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
                 }
             }
         }

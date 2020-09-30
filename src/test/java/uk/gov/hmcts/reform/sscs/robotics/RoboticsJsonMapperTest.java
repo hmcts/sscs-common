@@ -552,8 +552,9 @@ public class RoboticsJsonMapperTest {
         assertFalse(roboticsJson.has("jointParty"));
         assertFalse(roboticsJson.has("ucDecisionDisputedByOthers"));
         assertFalse(roboticsJson.has("linkedAppealRef"));
-        assertFalse(roboticsJson.has("hearingTelephoneNumber"));
-        assertFalse(roboticsJson.has("hearingVideoEmail"));
+        assertFalse(roboticsJson.has("wantsHearingTypeTelephone"));
+        assertFalse(roboticsJson.has("wantsHearingTypeVideo"));
+        assertFalse(roboticsJson.has("wantsHearingTypeFaceToFace"));
     }
 
     @Test
@@ -568,7 +569,7 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
         roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
-                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").build());
+                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
 
         ReflectionTestUtils.setField(roboticsJsonMapper, "ucEnabled", true);
 
@@ -597,9 +598,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("firstIssueElementsDisputedChildDisabled", roboticsJson.getJSONObject("elementsDisputed").getJSONArray("childDisabled").get(0));
 
         assertEquals("Yes", roboticsJson.get("ucDecisionDisputedByOthers"));
-        assertEquals("12345678", roboticsJson.get("linkedAppealRef"));
-        assertEquals("07999888000", roboticsJson.get("hearingTelephoneNumber"));
-        assertEquals("m@test.com", roboticsJson.get("hearingVideoEmail"));
+        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
+        assertEquals("Yes", roboticsJson.get("wantsHearingTypeVideo"));
+        assertEquals("No", roboticsJson.get("wantsHearingTypeFaceToFace"));
     }
 
     @Test
@@ -614,7 +615,7 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
         roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
-                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").build());
+                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
 
         ReflectionTestUtils.setField(roboticsJsonMapper, "ucEnabled", true);
 
@@ -644,8 +645,9 @@ public class RoboticsJsonMapperTest {
 
         assertEquals("Yes", roboticsJson.get("ucDecisionDisputedByOthers"));
         assertEquals("12345678", roboticsJson.get("linkedAppealRef"));
-        assertEquals("07999888000", roboticsJson.get("hearingTelephoneNumber"));
-        assertEquals("m@test.com", roboticsJson.get("hearingVideoEmail"));
+        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
+        assertEquals("Yes", roboticsJson.get("wantsHearingTypeVideo"));
+        assertEquals("No", roboticsJson.get("wantsHearingTypeFaceToFace"));
     }
 
     @Test

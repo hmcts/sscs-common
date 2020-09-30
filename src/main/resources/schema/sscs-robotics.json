@@ -56,8 +56,9 @@
     },
     "ucDecisionDisputedByOthers": {"$ref": "#/definitions/yesOrNo"},
     "linkedAppealRef": {"type": "string"},
-    "hearingTelephoneNumber": {"type": "string"},
-    "hearingVideoEmail": {"type": "string"},
+    "wantsHearingTypeTelephone": {"$ref": "#/definitions/yesOrNo"},
+    "wantsHearingTypeVideo": {"$ref": "#/definitions/yesOrNo"},
+    "wantsHearingTypeFaceToFace": {"$ref": "#/definitions/yesOrNo"},
     "elementsDisputed": {
       "type": "object",
       "properties": {
