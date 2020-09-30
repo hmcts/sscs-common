@@ -276,6 +276,7 @@ public class SscsCaseData implements CaseData {
     private RequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private FormType formType;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -506,7 +507,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeAppellant") RequestOutcome confidentialityRequestOutcomeAppellant,
                         @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
-                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused
+                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty(value = "formType") FormType formType
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -731,6 +733,7 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.formType = formType;
     }
 
     @JsonIgnore

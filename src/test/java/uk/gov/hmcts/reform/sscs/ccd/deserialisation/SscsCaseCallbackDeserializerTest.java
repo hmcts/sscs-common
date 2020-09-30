@@ -39,19 +39,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DirectionResponse;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DynamicList;
-import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Evidence;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Hearing;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Note;
-import uk.gov.hmcts.reform.sscs.ccd.domain.NoteDetails;
-import uk.gov.hmcts.reform.sscs.ccd.domain.NotePad;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsInterlocDecisionDocument;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsInterlocDirectionDocument;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsStrikeOutDocument;
-import uk.gov.hmcts.reform.sscs.ccd.domain.State;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 
 @RunWith(JUnitParamsRunner.class)
 @Slf4j
@@ -192,6 +180,7 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("DecisionNotice.pdf", sscsInterlocDecisionDocument.getDocumentFileName());
         assertEquals("Decision Notice", sscsInterlocDecisionDocument.getDocumentType());
         assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDateAdded().toString());
+        assertEquals(FormType.SSCS1PE, actualSscsCaseCallback.getCaseDetails().getCaseData().getFormType());
     }
 
     @Test
