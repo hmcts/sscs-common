@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.util.Optional;
@@ -138,6 +137,8 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
+        assertTrue(result[0].isDefault());
+        assertFalse(result[1].isDefault());
         assertEquals(24, result.length);
     }
 
