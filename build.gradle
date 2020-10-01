@@ -160,7 +160,7 @@ dependencies {
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
 
     testRuntime 'org.glassfish:jakarta.el:3.0.3'
-    testRuntime 'org.hibernate.validator:hibernate-validator:6.1.5.Final'
+    testRuntime 'org.hibernate.validator:hibernate-validator:6.1.6.Final'
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor "org.projectlombok:lombok:1.18.12"
 }
