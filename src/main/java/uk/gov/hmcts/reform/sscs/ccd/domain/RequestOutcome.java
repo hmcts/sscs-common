@@ -10,9 +10,7 @@ public enum RequestOutcome {
     @JsonProperty("granted")
     GRANTED("granted"),
     @JsonProperty("refused")
-    REFUSED("refused"),
-    @JsonProperty("refused")
-    NOT_SET("notSet");
+    REFUSED("refused");
 
     private final String value;
 
