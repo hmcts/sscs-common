@@ -192,10 +192,18 @@ public class CcdService {
                 "case.subscriptions.appointeeSubscription.tya", appealNumber), idamTokens);
         }
 
+
         if (caseDetailsList.isEmpty()) {
             caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
                 "case.subscriptions.representativeSubscription.tya", appealNumber), idamTokens);
         }
+
+
+        if (caseDetailsList.isEmpty()) {
+            caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
+                    "case.subscriptions.jointPartySubscription.tya", appealNumber), idamTokens);
+        }
+        
 
         caseDetailsList = caseDetailsList.stream()
                 .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
