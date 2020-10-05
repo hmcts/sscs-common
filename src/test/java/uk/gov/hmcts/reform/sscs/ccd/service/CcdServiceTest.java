@@ -109,7 +109,7 @@ public class CcdServiceTest {
         searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
         updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         createCcdCaseService = new CreateCcdCaseService(sscsCcdConvertService, ccdClient);
-        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
+        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService, true);
     }
 
     @Test
