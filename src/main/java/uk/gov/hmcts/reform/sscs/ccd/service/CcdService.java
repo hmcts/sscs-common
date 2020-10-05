@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.exception.AppealNotFoundException;
@@ -28,16 +29,19 @@ public class CcdService {
     private final ReadCcdCaseService readCcdCaseService;
     private static final String YES = "yes";
     private static final String NO = "no";
+    private final boolean ucEnabled;
 
     @Autowired
     public CcdService(CreateCcdCaseService createCcdCaseService,
                       SearchCcdCaseService searchCcdCaseService,
                       UpdateCcdCaseService updateCcdCaseService,
-                      ReadCcdCaseService readCcdCaseService) {
+                      ReadCcdCaseService readCcdCaseService,
+                      @Value("${feature.universal-credit.enabled}") boolean ucEnabled) {
         this.createCcdCaseService = createCcdCaseService;
         this.searchCcdCaseService = searchCcdCaseService;
         this.updateCcdCaseService = updateCcdCaseService;
         this.readCcdCaseService = readCcdCaseService;
+        this.ucEnabled = ucEnabled;
     }
 
     public List<SscsCaseDetails> findCaseBy(Map<String, String> searchCriteria, IdamTokens idamTokens) {
@@ -199,9 +203,11 @@ public class CcdService {
         }
 
 
-        if (caseDetailsList.isEmpty()) {
-            caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
-                    "case.subscriptions.jointPartySubscription.tya", appealNumber), idamTokens);
+        if (ucEnabled) {
+            if (caseDetailsList.isEmpty()) {
+                caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(ImmutableMap.of(
+                        "case.subscriptions.jointPartySubscription.tya", appealNumber), idamTokens);
+            }
         }
         
 
