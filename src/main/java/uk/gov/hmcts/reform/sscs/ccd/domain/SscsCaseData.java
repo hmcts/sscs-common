@@ -728,6 +728,16 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
     }
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    public RequestOutcome getConfidentialityRequestStatusAppellant() {
+        return confidentialityRequestOutcomeAppellant == null ? null :  confidentialityRequestOutcomeAppellant.getRequestOutcome();
+    }
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    public RequestOutcome getConfidentialityRequestStatusJointParty() {
+        return confidentialityRequestOutcomeJointParty == null ? null : confidentialityRequestOutcomeJointParty.getRequestOutcome();
+    }
+    
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
