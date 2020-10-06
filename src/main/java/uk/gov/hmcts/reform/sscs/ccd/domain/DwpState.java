@@ -25,7 +25,8 @@ public enum DwpState {
     FINAL_DECISION_ISSUED("finalDecisionIssued", "Final decision issued"),
     ADJOURNMENT_NOTICE_ISSUED("adjournmentNoticeIssued", "Adjournment notice issued"),
     REINSTATEMENT_GRANTED("reinstatementGranted", "Reinstatement Granted"),
-    REINSTATEMENT_REFUSED("reinstatementRefused", "Reinstatement Refused");
+    REINSTATEMENT_REFUSED("reinstatementRefused", "Reinstatement Refused"),
+    CONFIDENTIALITY_ACTION_REQUIRED("confidentialityActionRequired", "Confidentiality - Action Required");
 
     private String id;
     private String label;

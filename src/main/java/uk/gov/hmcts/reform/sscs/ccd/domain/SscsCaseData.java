@@ -271,9 +271,8 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
-    private LocalDate confidentialityRequestDate;
-    private RequestOutcome confidentialityRequestOutcomeAppellant;
-    private RequestOutcome confidentialityRequestOutcomeJointParty;
+    private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
+    private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
 
@@ -500,11 +499,8 @@ public class SscsCaseData implements CaseData {
                             @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
                         @JsonProperty("reinstatementOutcome") RequestOutcome reinstatementOutcome,
                         @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
-                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                            @JsonSerialize(using = LocalDateSerializer.class)
-                        @JsonProperty("confidentialityRequestDate") LocalDate confidentialityRequestDate,
-                        @JsonProperty("confidentialityRequestOutcomeAppellant") RequestOutcome confidentialityRequestOutcomeAppellant,
-                        @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty,
+                        @JsonProperty("confidentialityRequestOutcomeAppellant") DatedRequestOutcome confidentialityRequestOutcomeAppellant,
+                        @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused
     ) {
@@ -726,7 +722,6 @@ public class SscsCaseData implements CaseData {
         this.reinstatementRegistered = reinstatementRegistered;
         this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
-        this.confidentialityRequestDate = confidentialityRequestDate;
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;

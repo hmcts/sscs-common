@@ -129,6 +129,11 @@ public final class CaseDataUtils {
                 .excludeDates(excludeDates)
                 .build();
 
+        HearingSubtype hearingSubtype = HearingSubtype.builder()
+                .wantsHearingTypeTelephone("Yes")
+                .hearingTelephoneNumber("07988999000")
+                .build();
+
         MrnDetails mrnDetails = MrnDetails.builder()
                 .mrnDate("2018-06-29")
                 .dwpIssuingOffice("DWP PIP (1)")
@@ -147,6 +152,7 @@ public final class CaseDataUtils {
                 .appellant(appellant)
                 .benefitType(benefitType)
                 .hearingOptions(hearingOptions)
+                .hearingSubtype(hearingSubtype)
                 .mrnDetails(mrnDetails)
                 .rep(representative)
                 .signer("Signer")
