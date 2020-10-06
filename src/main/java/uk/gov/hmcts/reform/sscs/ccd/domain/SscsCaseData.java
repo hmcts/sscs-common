@@ -728,11 +728,13 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
     }
 
+    // FIXME - remove once a solution is in place from CCD for conditions on complex hidden fields
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public RequestOutcome getConfidentialityRequestStatusAppellant() {
         return confidentialityRequestOutcomeAppellant == null ? null :  confidentialityRequestOutcomeAppellant.getRequestOutcome();
     }
 
+    // FIXME - remove once a solution is in place from CCD for conditions on complex hidden fields
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     public RequestOutcome getConfidentialityRequestStatusJointParty() {
         return confidentialityRequestOutcomeJointParty == null ? null : confidentialityRequestOutcomeJointParty.getRequestOutcome();
