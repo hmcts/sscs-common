@@ -285,9 +285,9 @@ public class RoboticsJsonMapper {
     private static JSONObject buildRepresentativeDetails(Representative rep) {
         JSONObject json = new JSONObject();
 
-        String title = rep.getName().getTitle() != null ? rep.getName().getTitle() : "s/m";
-        String firstName = rep.getName().getFirstName() != null ? rep.getName().getFirstName() : ".";
-        String lastName = rep.getName().getLastName() != null ? rep.getName().getLastName() : ".";
+        String title = StringUtils.isNotEmpty(rep.getName().getTitle()) ? rep.getName().getTitle() : "s/m";
+        String firstName = StringUtils.isNotEmpty(rep.getName().getFirstName()) ? rep.getName().getFirstName() : ".";
+        String lastName = StringUtils.isNotEmpty(rep.getName().getLastName()) ? rep.getName().getLastName() : ".";
         buildName(json, title, firstName, lastName);
 
         if (rep.getOrganisation() != null) {
