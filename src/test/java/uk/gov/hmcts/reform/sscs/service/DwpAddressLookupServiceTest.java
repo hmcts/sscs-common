@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.util.Optional;
@@ -138,6 +137,8 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
+        assertTrue(result[0].isDefault());
+        assertFalse(result[1].isDefault());
         assertEquals(24, result.length);
     }
 
@@ -196,5 +197,47 @@ public class DwpAddressLookupServiceTest {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
 
         assertEquals("Sheffield DRT", result);
+    }
+
+    @Test
+    public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("pip");
+
+        assertEquals("1", result.get().getCode());
+    }
+
+    @Test
+    public void givenAEsaBenefitType_thenReturnTheDefaultEsaOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("esa");
+
+        assertEquals("Sheffield DRT", result.get().getCode());
+    }
+
+    @Test
+    public void givenAUcBenefitType_thenReturnTheDefaultUcOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("uc");
+
+        assertEquals("Universal Credit", result.get().getCode());
+    }
+
+    @Test
+    public void givenAPipBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("pip");
+
+        assertEquals("Newcastle", result);
+    }
+
+    @Test
+    public void givenAEsaBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("esa");
+
+        assertEquals("Sheffield DRT", result);
+    }
+
+    @Test
+    public void givenAUcBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("uc");
+
+        assertEquals("Universal Credit", result);
     }
 }
