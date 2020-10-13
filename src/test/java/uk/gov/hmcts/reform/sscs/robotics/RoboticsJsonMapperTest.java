@@ -202,6 +202,15 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
+    public void mapRepTitleToDefaultValuesWhenSetToBlank() {
+        roboticsWrapper.getSscsCaseData().getAppeal().getRep().getName().setTitle(null);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("s/m", roboticsJson.getJSONObject("representative").get("title"));
+    }
+
+    @Test
     @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD"})
     public void givenBenefitType_shouldMapCaseCodeAccordingly(String benefitCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(benefitCode);
@@ -231,8 +240,26 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
+    public void mapRepFirstNameToDefaultValuesWhenSetToBlank() {
+        roboticsWrapper.getSscsCaseData().getAppeal().getRep().getName().setFirstName("");
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals(".", roboticsJson.getJSONObject("representative").get("firstName"));
+    }
+
+    @Test
     public void mapRepLastNameToDefaultValuesWhenSetToNull() {
         roboticsWrapper.getSscsCaseData().getAppeal().getRep().getName().setLastName(null);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals(".", roboticsJson.getJSONObject("representative").get("lastName"));
+    }
+
+    @Test
+    public void mapRepLastNameToDefaultValuesWhenSetToBlank() {
+        roboticsWrapper.getSscsCaseData().getAppeal().getRep().getName().setLastName("");
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 

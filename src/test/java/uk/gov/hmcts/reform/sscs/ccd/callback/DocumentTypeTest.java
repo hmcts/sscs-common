@@ -15,7 +15,8 @@ public class DocumentTypeTest {
     @Parameters({
             "DIRECTION_NOTICE, Direction Notice",
             "DECISION_NOTICE, Decision Notice",
-            "APPELLANT_EVIDENCE, appellantEvidence"
+            "APPELLANT_EVIDENCE, appellantEvidence",
+            "JOINT_PARTY_EVIDENCE, jointPartyEvidence"
     })
     public void shouldGetDocumentTypeFromLabel(DocumentType documentType, String label) {
         assertThat(DocumentType.fromValue(label), is(documentType));
