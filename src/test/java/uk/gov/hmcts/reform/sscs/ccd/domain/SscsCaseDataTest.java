@@ -484,4 +484,14 @@ public class SscsCaseDataTest {
         assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.WELSH);
     }
 
+    @Test
+    public void givenUrgentHearingInfo_thenShouldReturnUrgentHearingInfo() {
+        LocalDate todaysDate = LocalDate.now();
+        String expectedUrgentHearingOutcome = "In progress";
+        SscsCaseData sscsCaseData = SscsCaseData.builder().urgentCase("Yes").urgentHearingRegistered(todaysDate).urgentHearingOutcome("In progress").build();
+        assertEquals("Yes", sscsCaseData.getUrgentCase());
+        assertEquals(todaysDate, sscsCaseData.getUrgentHearingRegistered());
+        assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
+    }
+
 }
