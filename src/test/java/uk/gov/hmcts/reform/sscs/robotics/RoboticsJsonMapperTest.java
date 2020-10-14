@@ -37,7 +37,7 @@ public class RoboticsJsonMapperTest {
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
     private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
-        "/schema/sscs-robotics.json");
+            "/schema/sscs-robotics.json");
     private JSONObject roboticsJson;
 
     private DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
@@ -65,11 +65,11 @@ public class RoboticsJsonMapperTest {
         SscsCaseData sscsCaseData = buildCaseData();
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
         roboticsWrapper = RoboticsWrapper
-            .builder()
-            .sscsCaseData(sscsCaseData)
-            .ccdCaseId(123L).evidencePresent("Yes")
-            .state(State.APPEAL_CREATED)
-            .build();
+                .builder()
+                .sscsCaseData(sscsCaseData)
+                .ccdCaseId(123L).evidencePresent("Yes")
+                .state(State.APPEAL_CREATED)
+                .build();
 
         given(airLookupService.lookupAirVenueNameByPostCode(any())).willReturn(AirlookupBenefitToVenue.builder().pipVenue("Bromley").esaOrUcVenue("Bath").build());
         given(regionalProcessingCenterService.getFirstHalfOfPostcode("CM120HN")).willReturn("CM12");
@@ -85,8 +85,8 @@ public class RoboticsJsonMapperTest {
         roboticsJsonValidator.validate(roboticsJson);
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 24,
-            roboticsJson.length()
+                "If this fails, add an assertion below, do not just increment the number :)", 24,
+                roboticsJson.length()
         );
 
         assertEquals("002DD", roboticsJson.get("caseCode"));
@@ -110,8 +110,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("No", roboticsJson.get("dwpUcb"));
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 11,
-            roboticsJson.getJSONObject("appointee").length()
+                "If this fails, add an assertion below, do not just increment the number :)", 11,
+                roboticsJson.getJSONObject("appointee").length()
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));
@@ -127,8 +127,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("appointee@hmcts.net", roboticsJson.getJSONObject("appointee").get("email"));
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 10,
-            roboticsJson.getJSONObject("appellant").length()
+                "If this fails, add an assertion below, do not just increment the number :)", 10,
+                roboticsJson.getJSONObject("appellant").length()
         );
 
         assertEquals("Mr", roboticsJson.getJSONObject("appellant").get("title"));
@@ -143,8 +143,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("mail@email.com", roboticsJson.getJSONObject("appellant").get("email"));
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 11,
-            roboticsJson.getJSONObject("appointee").length()
+                "If this fails, add an assertion below, do not just increment the number :)", 11,
+                roboticsJson.getJSONObject("appointee").length()
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));
@@ -160,8 +160,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("appointee@hmcts.net", roboticsJson.getJSONObject("appointee").get("email"));
 
         assertEquals(
-            "If this fails, add an assertion, do not just increment the number :)", 11,
-            roboticsJson.getJSONObject("representative").length()
+                "If this fails, add an assertion, do not just increment the number :)", 11,
+                roboticsJson.getJSONObject("representative").length()
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("representative").get("title"));
@@ -177,8 +177,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("mail@email.com", roboticsJson.getJSONObject("representative").get("email"));
 
         assertEquals(
-            "If this fails, add an assertion below, do not just increment the number :)", 6,
-            roboticsJson.getJSONObject("hearingArrangements").length()
+                "If this fails, add an assertion below, do not just increment the number :)", 6,
+                roboticsJson.getJSONObject("hearingArrangements").length()
         );
 
         assertEquals("Spanish", roboticsJson.getJSONObject("hearingArrangements").get("languageInterpreter"));
@@ -190,6 +190,7 @@ public class RoboticsJsonMapperTest {
         assertEquals("2018-06-30", roboticsJson.getJSONObject("hearingArrangements").getJSONArray("datesCantAttend").get(0));
         assertEquals("2018-07-30", roboticsJson.getJSONObject("hearingArrangements").getJSONArray("datesCantAttend").get(1));
         assertEquals("2018-08-30", roboticsJson.getJSONObject("hearingArrangements").getJSONArray("datesCantAttend").get(2));
+        assertFalse(roboticsJson.has("isConfidential"));
     }
 
     @Test
@@ -288,13 +289,13 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenHearingArrangementIsNull_thenSetToExcludeDatesHearingLoopAndAccHearingRoom() {
         DateRange dateRange1 = DateRange.builder()
-            .start("2018-06-30")
-            .end("2018-06-30")
-            .build();
+                .start("2018-06-30")
+                .end("2018-06-30")
+                .build();
         List<ExcludeDate> excludeDates = new ArrayList<>();
         excludeDates.add(ExcludeDate.builder()
-            .value(dateRange1)
-            .build());
+                .value(dateRange1)
+                .build());
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setArrangements(null);
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setExcludeDates(excludeDates);
 
@@ -308,20 +309,20 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenHearingArrangementIsNull_whenEmptyExcludedDate() {
         DateRange dateRange1 = DateRange.builder()
-            .start("2018-06-30")
-            .end("2018-06-30")
-            .build();
+                .start("2018-06-30")
+                .end("2018-06-30")
+                .build();
         DateRange dateRange2 = DateRange.builder()
-            .start("")
-            .end("")
-            .build();
+                .start("")
+                .end("")
+                .build();
         List<ExcludeDate> excludeDates = new ArrayList<>();
         excludeDates.add(ExcludeDate.builder()
-            .value(dateRange1)
-            .build());
+                .value(dateRange1)
+                .build());
         excludeDates.add(ExcludeDate.builder()
-            .value(dateRange2)
-            .build());
+                .value(dateRange2)
+                .build());
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setArrangements(null);
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setExcludeDates(excludeDates);
 
@@ -421,10 +422,10 @@ public class RoboticsJsonMapperTest {
         address.setPostcode("TS1ABC");
 
         Appointee appointee = Appointee.builder()
-            .name(appointeeName)
-            .address(address)
-            .contact(roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().getContact())
-            .build();
+                .name(appointeeName)
+                .address(address)
+                .contact(roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().getContact())
+                .build();
 
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setIsAddressSameAsAppointee("Yes");
 
@@ -437,13 +438,15 @@ public class RoboticsJsonMapperTest {
         assertEquals("Pip venue", roboticsJson.get("appellantPostCode"));
     }
 
-    @Test public void findVenueHandleMissingFields() {
+    @Test
+    public void findVenueHandleMissingFields() {
         roboticsWrapper.getSscsCaseData().getAppeal().setBenefitType(null);
         Optional<String> venue = roboticsJsonMapper.findVenueName(roboticsWrapper.getSscsCaseData());
         assertTrue(venue.isEmpty());
     }
 
-    @Test public void findVenueHandleValidFields() {
+    @Test
+    public void findVenueHandleValidFields() {
         Optional<String> venue = roboticsJsonMapper.findVenueName(roboticsWrapper.getSscsCaseData());
         assertTrue(venue.isPresent());
     }
@@ -453,11 +456,11 @@ public class RoboticsJsonMapperTest {
         Name appointeeName = Name.builder().title(null).firstName(null).lastName(null).build();
 
         Appointee appointee = Appointee.builder()
-            .name(appointeeName)
-            .address(Address.builder().line1(null).line2(null).town(null).county(null).postcode(null).build())
-            .contact(Contact.builder().email(null).phone(null).mobile(null).build())
-            .identity(Identity.builder().dob(null).nino(null).build())
-            .build();
+                .name(appointeeName)
+                .address(Address.builder().line1(null).line2(null).town(null).county(null).postcode(null).build())
+                .contact(Contact.builder().email(null).phone(null).mobile(null).build())
+                .identity(Identity.builder().dob(null).nino(null).build())
+                .build();
 
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setAppointee(appointee);
 
@@ -714,4 +717,51 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setElementsDisputedChildDisabled(elementsDisputedChildDisabledList);
     }
 
+    @Test
+    public void givenConfidentialityRequestOutcomeGrantedForAppellant_thenSetIsConfidentialFlag() {
+
+        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(null);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("Yes", roboticsJson.get("isConfidential"));
+    }
+
+    @Test
+    public void givenConfidentialityRequestOutcomeGrantedForJointParty_thenSetIsConfidentialFlag() {
+
+        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(null);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("Yes", roboticsJson.get("isConfidential"));
+    }
+
+    @Test
+    public void givenConfidentialityRequestOutcomeGrantedButStateNotResponseReceived_thenDoNotSetIsConfidentialFlag() {
+
+        roboticsWrapper.getSscsCaseData().setState(State.WITH_DWP);
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertFalse(roboticsJson.has("isConfidential"));
+    }
+
+    @Test
+    public void givenCaseInResponseReceivedStateButConfidentialityRequestOutcomeNotGranted_thenDoNotSetIsConfidentialFlag() {
+
+        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.REFUSED).build());
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.REFUSED).build());
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertFalse(roboticsJson.has("isConfidential"));
+    }
 }
