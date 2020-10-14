@@ -89,6 +89,8 @@ public class RoboticsJsonMapper {
 
         obj.put("isDigital", isDigital);
 
+        setConfidentialFlag(roboticsWrapper.getSscsCaseData(), obj);
+
         obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
 
         Optional<OfficeMapping> officeMapping = buildOffice(obj, sscsCaseData.getAppeal());
@@ -157,6 +159,14 @@ public class RoboticsJsonMapper {
         }
 
         return obj;
+    }
+
+    private void setConfidentialFlag(SscsCaseData sscsCaseData, JSONObject obj) {
+        if (State.RESPONSE_RECEIVED.equals(sscsCaseData.getState())
+            && ((sscsCaseData.getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(sscsCaseData.getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
+            || (sscsCaseData.getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(sscsCaseData.getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
+            obj.put("isConfidential", "Yes");
+        }
     }
 
     private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {
