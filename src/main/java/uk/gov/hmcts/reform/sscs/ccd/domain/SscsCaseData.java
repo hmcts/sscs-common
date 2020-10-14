@@ -137,7 +137,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
     private String urgentCase;
-    private LocalDate urgentHearingRegistered;
+    private String urgentHearingRegistered;
     private String urgentHearingOutcome;
     private String documentSentToDwp;
     private String directionDueDate;
@@ -378,7 +378,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("panel") Panel panel,
                         @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
                         @JsonProperty("urgentCase") String urgentCase,
-                        @JsonProperty("urgentHearingRegistered") LocalDate urgentHearingRegistered,
+                        @JsonProperty("urgentHearingRegistered") String urgentHearingRegistered,
                         @JsonProperty("urgentHearingOutcome") String urgentHearingOutcome,
                         @JsonProperty("documentSentToDwp") String documentSentToDwp,
                         @JsonProperty("directionDueDate") String directionDueDate,
