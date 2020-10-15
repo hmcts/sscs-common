@@ -10,8 +10,7 @@ public enum ScannedDocumentType {
     FORM("form", "Form"),
     COVERSHEET("coversheet", "Coversheet"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
-    CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
-    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request");
+    CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request");
 
     private String value;
     private String label;

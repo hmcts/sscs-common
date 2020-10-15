@@ -23,8 +23,7 @@ public enum DocumentType {
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
-    JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence"),
-    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request");
+    JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence");
 
     private String value;
     private String label;
