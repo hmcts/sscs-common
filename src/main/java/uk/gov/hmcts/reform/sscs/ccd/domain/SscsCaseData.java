@@ -274,6 +274,8 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private String wcaAppeal;
+    private String supportGroupOnlyAppeal;
     private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
     private List<String> esaWriteFinalDecisionMentalAssessmentQuestion;
     private String esaWriteFinalDecisionMobilisingUnaidedQuestion;
@@ -520,6 +522,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty("wcaAppeal") String wcaAppeal,
+                        @JsonProperty("supportGroupOnlyAppeal") String supportGroupOnlyAppeal,
                         @JsonProperty("esaWriteFinalDecisionPhysicalDisabilitiesQuestion") List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion,
                         @JsonProperty("esaWriteFinalDecisionMentalAssessmentQuestion") List<String> esaWriteFinalDecisionMentalAssessmentQuestion,
                         @JsonProperty("esaWriteFinalDecisionMobilisingUnaidedQuestion") String esaWriteFinalDecisionMobilisingUnaidedQuestion,
@@ -760,6 +764,8 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.wcaAppeal = wcaAppeal;
+        this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
         this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
         this.esaWriteFinalDecisionMentalAssessmentQuestion = esaWriteFinalDecisionMentalAssessmentQuestion;
         this.esaWriteFinalDecisionMobilisingUnaidedQuestion = esaWriteFinalDecisionMobilisingUnaidedQuestion;
@@ -829,6 +835,16 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isWcaAppeal() {
+        return stringToBoolean(wcaAppeal);
+    }
+
+    @JsonIgnore
+    public boolean isSupportGroupOnlyAppeal() {
+        return stringToBoolean(supportGroupOnlyAppeal);
     }
 
     @JsonIgnore
