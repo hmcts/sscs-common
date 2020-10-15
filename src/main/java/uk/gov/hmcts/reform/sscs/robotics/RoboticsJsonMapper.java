@@ -89,7 +89,7 @@ public class RoboticsJsonMapper {
 
         obj.put("isDigital", isDigital);
 
-        setConfidentialFlag(roboticsWrapper.getSscsCaseData(), obj);
+        setConfidentialFlag(roboticsWrapper, obj);
 
         obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
 
@@ -161,10 +161,10 @@ public class RoboticsJsonMapper {
         return obj;
     }
 
-    private void setConfidentialFlag(SscsCaseData sscsCaseData, JSONObject obj) {
-        if (State.RESPONSE_RECEIVED.equals(sscsCaseData.getState())
-            && ((sscsCaseData.getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(sscsCaseData.getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
-            || (sscsCaseData.getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(sscsCaseData.getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
+    private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
+        if (State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState())
+            && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
+            || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
             obj.put("isConfidential", "Yes");
         }
     }
