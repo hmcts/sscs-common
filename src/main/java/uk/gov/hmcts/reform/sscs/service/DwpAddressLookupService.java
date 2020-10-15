@@ -92,6 +92,15 @@ public class DwpAddressLookupService {
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
 
+    public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
+
+        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByOffice(benefitType);
+
+        return PIP.equalsIgnoreCase(benefitType)
+                ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
+                officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+    }
+
     public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
         log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
 
@@ -115,6 +124,18 @@ public class DwpAddressLookupService {
             return Optional.of(dwpMappings.getUc());
         }
 
+        return officeMapping;
+    }
+
+    public Optional<OfficeMapping> getDefaultDwpMappingByOffice(String benefitType) {
+        Optional<OfficeMapping> officeMapping = Optional.empty();
+        if (StringUtils.equalsIgnoreCase(PIP, benefitType)) {
+            officeMapping = Stream.of(dwpMappings.getPip()).filter(dwpm -> dwpm.isDefault()).findFirst();
+        } else if (StringUtils.equalsIgnoreCase(ESA, benefitType)) {
+            officeMapping = Stream.of(dwpMappings.getEsa()).filter(dwpm -> dwpm.isDefault()).findFirst();
+        } else if (StringUtils.equalsIgnoreCase(UC, benefitType)) {
+            officeMapping = Stream.of(dwpMappings.getUc()).filter(dwpm -> dwpm.isDefault()).findFirst();
+        }
         return officeMapping;
     }
 

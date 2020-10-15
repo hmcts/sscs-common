@@ -719,8 +719,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialityRequestOutcomeGrantedForAppellant_thenSetIsConfidentialFlag() {
-
-        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.setState(State.RESPONSE_RECEIVED);
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(null);
 
@@ -731,8 +730,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialityRequestOutcomeGrantedForJointParty_thenSetIsConfidentialFlag() {
-
-        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.setState(State.RESPONSE_RECEIVED);
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(null);
 
@@ -743,8 +741,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialityRequestOutcomeGrantedButStateNotResponseReceived_thenDoNotSetIsConfidentialFlag() {
-
-        roboticsWrapper.getSscsCaseData().setState(State.WITH_DWP);
+        roboticsWrapper.setState(State.WITH_DWP);
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
 
@@ -755,8 +752,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenCaseInResponseReceivedStateButConfidentialityRequestOutcomeNotGranted_thenDoNotSetIsConfidentialFlag() {
-
-        roboticsWrapper.getSscsCaseData().setState(State.RESPONSE_RECEIVED);
+        roboticsWrapper.setState(State.RESPONSE_RECEIVED);
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.REFUSED).build());
         roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.REFUSED).build());
 
