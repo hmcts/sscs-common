@@ -1,0 +1,102 @@
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"consciousness",
+   "ListElement":"10. Consciousness during waking moments."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"lossOfControl",
+   "ListElement":"9. Absence or loss of control whilst conscious leading to extensive evacuation of the bowel and/or bladder, other than enuresis (bed- wetting), despite the wearing or use of any aids or adaptations which are normally or could reasonably be worn or used."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"navigation",
+   "ListElement":"8. Navigation and maintaining safety using a guide dog or other aid if either or both are normally used or could reasonably be used."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"communication",
+   "ListElement":"7. Understanding communication by: (i) verbal means (such as hearing or lip reading) alone; (ii) non-verbal means (such as reading 16 point print or Braille) alone;(iii) or a combination of sub-paragraphs (i) and (ii), using any aid that is normally or could reasonably be used, unaided by another person."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"makingSelfUnderstood",
+   "ListElement":"6, Making self understood through speaking, writing, typing, or other means which are normally or could reasonably be used, unaided by another person."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"manualDexterity",
+   "ListElement":"5. Manual dexterity."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"pickingUp",
+   "ListElement":"4. Picking up and moving or transferring by the use of the upper body and arms."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"reaching",
+   "ListElement":"3. Reaching."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"standingAndSitting",
+   "ListElement":"2. Standing and sitting."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_physicalDisabilities",
+   "ListElementCode":"mobilisingUnaided",
+   "ListElement":"1. Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"appropriatenessOfBehaviour",
+   "ListElement":"17. Appropriateness of behaviour with other people, due to cognitive impairment or mental disorder."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"socialEngagement",
+   "ListElement":"16. Coping with social engagement due to cognitive impairment or mental disorder."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"gettingAbout",
+   "ListElement":"15. Getting about."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"copingWithChange",
+   "ListElement":"14. Coping with change."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"personalAction",
+   "ListElement":"13. Initiating and completing personal action (which means planning, organisation, problem solving, prioritising or switching tasks)."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"awarenessOfHazards",
+   "ListElement":"12. Awareness of everyday hazards (such as boiling water or sharp objects)."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID":"FL_mentalAssessment",
+   "ListElementCode":"learningTasks",
+   "ListElement":"11. Learning tasks."
+}

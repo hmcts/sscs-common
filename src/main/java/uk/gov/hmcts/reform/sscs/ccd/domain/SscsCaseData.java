@@ -274,6 +274,25 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
+    private List<String> esaWriteFinalDecisionMentalAssessmentQuestion;
+    private String esaWriteFinalDecisionMobilisingUnaidedQuestion;
+    private String esaWriteFinalDecisionStandingAndSittingQuestion;
+    private String esaWriteFinalDecisionReachingQuestion;
+    private String esaWriteFinalDecisionPickingUpQuestion;
+    private String esaWriteFinalDecisionManualDexterityQuestion;
+    private String esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
+    private String esaWriteFinalDecisionCommunicationQuestion;
+    private String esaWriteFinalDecisionNavigationQuestion;
+    private String esaWriteFinalDecisionLossOfControlQuestion;
+    private String esaWriteFinalDecisionConsciousnessQuestion;
+    private String esaWriteFinalDecisionLearningTasksQuestion;
+    private String esaWriteFinalDecisionAwarenessOfHazardsQuestion;
+    private String esaWriteFinalDecisionPersonalActionQuestion;
+    private String esaWriteFinalDecisionCopingWithChangeQuestion;
+    private String esaWriteFinalDecisionGettingAboutQuestion;
+    private String esaWriteFinalDecisionSocialEngagementQuestion;
+    private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -500,8 +519,26 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeAppellant") DatedRequestOutcome confidentialityRequestOutcomeAppellant,
                         @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
-                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused
-    ) {
+                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty("esaWriteFinalDecisionPhysicalDisabilitiesQuestion") List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMentalAssessmentQuestion") List<String> esaWriteFinalDecisionMentalAssessmentQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMobilisingUnaidedQuestion") String esaWriteFinalDecisionMobilisingUnaidedQuestion,
+                        @JsonProperty("esaWriteFinalDecisionStandingAndSittingQuestion") String esaWriteFinalDecisionStandingAndSittingQuestion,
+                        @JsonProperty("esaWriteFinalDecisionReachingQuestion") String esaWriteFinalDecisionReachingQuestion,
+                        @JsonProperty("esaWriteFinalDecisionPickingUpQuestion") String esaWriteFinalDecisionPickingUpQuestion,
+                        @JsonProperty("esaWriteFinalDecisionManualDexterityQuestion") String esaWriteFinalDecisionManualDexterityQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMakingSelfUnderstoodQuestion") String esaWriteFinalDecisionMakingSelfUnderstoodQuestion,
+                        @JsonProperty("esaWriteFinalDecisionCommunicationQuestion") String esaWriteFinalDecisionCommunicationQuestion,
+                        @JsonProperty("esaWriteFinalDecisionNavigationQuestion") String esaWriteFinalDecisionNavigationQuestion,
+                        @JsonProperty("esaWriteFinalDecisionLossOfControlQuestion") String esaWriteFinalDecisionLossOfControlQuestion,
+                        @JsonProperty("esaWriteFinalDecisionConsciousnessQuestion") String esaWriteFinalDecisionConsciousnessQuestion,
+                        @JsonProperty("esaWriteFinalDecisionLearningTasksQuestion") String esaWriteFinalDecisionLearningTasksQuestion,
+                        @JsonProperty("esaWriteFinalDecisionAwarenessOfHazardsQuestion") String esaWriteFinalDecisionAwarenessOfHazardsQuestion,
+                        @JsonProperty("esaWriteFinalDecisionPersonalActionQuestion") String esaWriteFinalDecisionPersonalActionQuestion,
+                        @JsonProperty("esaWriteFinalDecisionCopingWithChangeQuestion") String esaWriteFinalDecisionCopingWithChangeQuestion,
+                        @JsonProperty("esaWriteFinalDecisionGettingAboutQuestion") String esaWriteFinalDecisionGettingAboutQuestion,
+                        @JsonProperty("esaWriteFinalDecisionSocialEngagementQuestion") String esaWriteFinalDecisionSocialEngagementQuestion,
+                        @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -723,6 +760,25 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
+        this.esaWriteFinalDecisionMentalAssessmentQuestion = esaWriteFinalDecisionMentalAssessmentQuestion;
+        this.esaWriteFinalDecisionMobilisingUnaidedQuestion = esaWriteFinalDecisionMobilisingUnaidedQuestion;
+        this.esaWriteFinalDecisionStandingAndSittingQuestion = esaWriteFinalDecisionStandingAndSittingQuestion;
+        this.esaWriteFinalDecisionReachingQuestion = esaWriteFinalDecisionReachingQuestion;
+        this.esaWriteFinalDecisionPickingUpQuestion = esaWriteFinalDecisionPickingUpQuestion;
+        this.esaWriteFinalDecisionManualDexterityQuestion = esaWriteFinalDecisionManualDexterityQuestion;
+        this.esaWriteFinalDecisionMakingSelfUnderstoodQuestion = esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
+        this.esaWriteFinalDecisionCommunicationQuestion = esaWriteFinalDecisionCommunicationQuestion;
+        this.esaWriteFinalDecisionNavigationQuestion = esaWriteFinalDecisionNavigationQuestion;
+        this.esaWriteFinalDecisionLossOfControlQuestion = esaWriteFinalDecisionLossOfControlQuestion;
+        this.esaWriteFinalDecisionConsciousnessQuestion = esaWriteFinalDecisionConsciousnessQuestion;
+        this.esaWriteFinalDecisionLearningTasksQuestion = esaWriteFinalDecisionLearningTasksQuestion;
+        this.esaWriteFinalDecisionAwarenessOfHazardsQuestion = esaWriteFinalDecisionAwarenessOfHazardsQuestion;
+        this.esaWriteFinalDecisionPersonalActionQuestion = esaWriteFinalDecisionPersonalActionQuestion;
+        this.esaWriteFinalDecisionCopingWithChangeQuestion = esaWriteFinalDecisionCopingWithChangeQuestion;
+        this.esaWriteFinalDecisionGettingAboutQuestion = esaWriteFinalDecisionGettingAboutQuestion;
+        this.esaWriteFinalDecisionSocialEngagementQuestion = esaWriteFinalDecisionSocialEngagementQuestion;
+        this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     }
 
     @JsonIgnore
