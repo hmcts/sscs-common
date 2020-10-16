@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -482,6 +484,16 @@ public class SscsCaseDataTest {
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
         assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.WELSH);
+    }
+
+    @Test
+    public void givenUrgentHearingInfo_thenShouldReturnUrgentHearingInfo() {
+        String todaysDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
+        String expectedUrgentHearingOutcome = "In progress";
+        SscsCaseData sscsCaseData = SscsCaseData.builder().urgentCase("Yes").urgentHearingRegistered(todaysDate).urgentHearingOutcome("In progress").build();
+        assertEquals("Yes", sscsCaseData.getUrgentCase());
+        assertEquals(todaysDate, sscsCaseData.getUrgentHearingRegistered());
+        assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
     }
 
 }
