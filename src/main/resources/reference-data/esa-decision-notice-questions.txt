@@ -480,25 +480,25 @@
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID": "FL_esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
    "ListElementCode": "appropriatenessOfBehaviour17d",
    "ListElement": "17d. None of the above applies. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID": "FL_esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
    "ListElementCode": "appropriatenessOfBehaviour17c",
    "ListElement": "17c. Occasionally has uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (9 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID": "FL_esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
    "ListElementCode": "appropriatenessOfBehaviour17b",
    "ListElement": "17b. Frequently has uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (15 points)"
 },
 {
    "LiveFrom":"01/01/2018",
-   "ID": "FL_esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
    "ListElementCode": "appropriatenessOfBehaviour17a",
    "ListElement": "17a. Has, on a daily basis, uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (15 points)"
 }
