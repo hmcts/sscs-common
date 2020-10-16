@@ -129,7 +129,7 @@
    "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
    "ListElementCode": "mobilisingUnaided1a",
    "ListElement": "1a. Cannot, unaided by another person, either: (i) mobilise more than 50 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 50 metres within a reasonable timescale because of significant discomfort or exhaustion. (15 points)"
-}
+},
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
@@ -500,5 +500,5 @@
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
    "ListElementCode": "appropriatenessOfBehaviour17a",
-   "ListElement": "17a. Has, on a daily basis, uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace.	(15 points)"
+   "ListElement": "17a. Has, on a daily basis, uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (15 points)"
 }
