@@ -99,4 +99,34 @@
    "ID":"FL_mentalAssessment",
    "ListElementCode":"learningTasks",
    "ListElement":"11. Learning tasks."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided_A",
+   "ListElement": "Cannot, unaided by another person, either: (i) mobilise more than 50 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 50 metres within a reasonable timescale because of significant discomfort or exhaustion. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided_B",
+   "ListElement": "Cannot, unaided by another person, mount or descend two steps even with the support of a handrail. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided_C",
+   "ListElement": "Cannot, unaided by another person, either: (i) mobilise more than 100 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 100 metres within a reasonable timescale because of significant discomfort or exhaustion. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided_D",
+   "ListElement": "(d) Cannot, unaided by another person, either: mobilise more than 200 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 200 metres within a reasonable timescale because of significant discomfort or exhaustion. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided_E",
+   "ListElement": "None of the above applies. (0 points)"
 }
