@@ -28,6 +28,7 @@
     "rpcEmail": {"type": "string"},
     "isReadyToList": {"$ref": "#/definitions/yesOrNo"},
     "isDigital": {"$ref": "#/definitions/yesOrNo"},
+    "isConfidential": {"$ref": "#/definitions/yesOrNo"},
     "dwpResponseDate": {"$ref": "#/definitions/dateType"},
     "dwpIssuingOffice": {"type": "string"},
     "dwpPresentingOffice": {"type": "string"},
