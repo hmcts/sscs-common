@@ -298,6 +298,8 @@ public class SscsCaseData implements CaseData {
     private String esaWriteFinalDecisionGettingAboutQuestion;
     private String esaWriteFinalDecisionSocialEngagementQuestion;
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
+    private YesNo doesRegulation29Apply;
+    private YesNo showRegulation29Page;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -548,7 +550,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("esaWriteFinalDecisionCopingWithChangeQuestion") String esaWriteFinalDecisionCopingWithChangeQuestion,
                         @JsonProperty("esaWriteFinalDecisionGettingAboutQuestion") String esaWriteFinalDecisionGettingAboutQuestion,
                         @JsonProperty("esaWriteFinalDecisionSocialEngagementQuestion") String esaWriteFinalDecisionSocialEngagementQuestion,
-                        @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion) {
+                        @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
+                        @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
+                        @JsonProperty("showRegulation29Page") YesNo showRegulation29Page) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -771,8 +775,8 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
-        this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
-        this.isProgressingViaGaps =  isProgressingViaGaps;
+        this.confidentialityRequestJointPartyGrantedOrRefused = confidentialityRequestJointPartyGrantedOrRefused;
+        this.isProgressingViaGaps = isProgressingViaGaps;
         this.wcaAppeal = wcaAppeal;
         this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
         this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
@@ -794,6 +798,8 @@ public class SscsCaseData implements CaseData {
         this.esaWriteFinalDecisionGettingAboutQuestion = esaWriteFinalDecisionGettingAboutQuestion;
         this.esaWriteFinalDecisionSocialEngagementQuestion = esaWriteFinalDecisionSocialEngagementQuestion;
         this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
+        this.doesRegulation29Apply = doesRegulation29Apply;
+        this.showRegulation29Page = showRegulation29Page;
     }
 
     @JsonIgnore
