@@ -99,4 +99,406 @@
    "ID":"FL_mentalAssessment",
    "ListElementCode":"learningTasks",
    "ListElement":"11. Learning tasks."
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided1e",
+   "ListElement": "1e. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided1d",
+   "ListElement": "1d. Cannot, unaided by another person, either: mobilise more than 200 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 200 metres within a reasonable timescale because of significant discomfort or exhaustion. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided1c",
+   "ListElement": "1c. Cannot, unaided by another person, either: (i) mobilise more than 100 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 100 metres within a reasonable timescale because of significant discomfort or exhaustion. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided1b",
+   "ListElement": "1b. Cannot, unaided by another person, mount or descend two steps even with the support of a handrail. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+   "ListElementCode": "mobilisingUnaided1a",
+   "ListElement": "1a. Cannot, unaided by another person, either: (i) mobilise more than 50 metres on level ground without stopping in order to avoid significant discomfort or exhaustion; or (ii) repeatedly mobilise 50 metres within a reasonable timescale because of significant discomfort or exhaustion. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
+   "ListElementCode": "standingAndSitting2c",
+   "ListElement": "2c. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than an hour before needing to move away in order to avoid significant discomfort or exhaustion. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
+   "ListElementCode": "standingAndSitting2b",
+   "ListElement": "2b. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than 30 minutes, before needing to move away in order to avoid significant discomfort or exhaustion. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
+   "ListElementCode": "standingAndSitting2a",
+   "ListElement": "2a. Cannot move between one seated position and another seated position which are located next to one another without receiving physical assistance from another person. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionReachingQuestion",
+   "ListElementCode": "reaching3d",
+   "ListElement": "3d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionReachingQuestion",
+   "ListElementCode": "reaching3c",
+   "ListElement": "3c. Cannot raise either arm above head height as if to reach for something. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionReachingQuestion",
+   "ListElementCode": "reaching3b",
+   "ListElement": "3b. Cannot raise either arm to top of head as if to put on a hat. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionReachingQuestion",
+   "ListElementCode": "reaching3a",
+   "ListElement": "3a. Cannot raise either arm as if to put something in the top pocket of a coat or jacket. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPickingUpQuestion",
+   "ListElementCode": "pickingUp4d",
+   "ListElement": "4d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPickingUpQuestion",
+   "ListElementCode": "pickingUp4c",
+   "ListElement": "4c. Cannot transfer a light but bulky object such as an empty cardboard box. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPickingUpQuestion",
+   "ListElementCode": "pickingUp4b",
+   "ListElement": "4b. Cannot pick up and move a one litre carton full of liquid. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPickingUpQuestion",
+   "ListElementCode": "pickingUp4a",
+   "ListElement": "4a. Cannot pick up and move a 0.5 litre carton full of liquid. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
+   "ListElementCode": "manualDexterity5e",
+   "ListElement": "5e. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
+   "ListElementCode": "manualDexterity5d",
+   "ListElement": "5d. Cannot single-handedly use a suitable keyboard or mouse. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
+   "ListElementCode": "manualDexterity5c",
+   "ListElement": "5c. Cannot use a pen or pencil to make a meaningful mark with either hand. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
+   "ListElementCode": "manualDexterity5b",
+   "ListElement": "5b. Cannot pick up a £1 coin or equivalent with either hand. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
+   "ListElementCode": "manualDexterity5a",
+   "ListElement": "5a. Cannot press a button (such as a telephone keypad) with either hand or cannot turn the pages of a book with either hand. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+   "ListElementCode": "manualDexterity6d",
+   "ListElement": "6d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+   "ListElementCode": "manualDexterity6c",
+   "ListElement": "6c. Has some difficulty conveying a simple message to strangers. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+   "ListElementCode": "manualDexterity6b",
+   "ListElement": "6b. Has significant difficulty conveying a simple message to strangers. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+   "ListElementCode": "manualDexterity6a",
+   "ListElement": "6a. Cannot convey a simple message, such as the presence of a hazard. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCommunicationQuestion",
+   "ListElementCode": "decisionCommunication7d",
+   "ListElement": "7d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCommunicationQuestion",
+   "ListElementCode": "decisionCommunication7c",
+   "ListElement": "7c. Has some difficulty understanding a simple message from a stranger due to sensory impairment. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCommunicationQuestion",
+   "ListElementCode": "decisionCommunication7b",
+   "ListElement": "7b. Has significant difficulty understanding a simple message from a stranger due to sensory impairment. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCommunicationQuestion",
+   "ListElementCode": "decisionCommunication7a",
+   "ListElement": "7a. Cannot understand a simple message, such as the location of a fire escape, due to sensory impairment. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionNavigationQuestion",
+   "ListElementCode": "decisionNavigation8d",
+   "ListElement": "8d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionNavigationQuestion",
+   "ListElementCode": "decisionNavigation8c",
+   "ListElement": "8c. Unable to navigate around unfamiliar surroundings, without being accompanied by another person, due to sensory impairment. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionNavigationQuestion",
+   "ListElementCode": "decisionNavigation8b",
+   "ListElement": "8b. Cannot safely complete a potentially hazardous task such as crossing the road, without being accompanied by another person, due to sensory impairment. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionNavigationQuestion",
+   "ListElementCode": "decisionNavigation8a",
+   "ListElement": "8a. Unable to navigate around familiar surroundings, without being accompanied by another person, due to sensory impairment. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLossOfControlQuestion",
+   "ListElementCode": "lossOfControl9c",
+   "ListElement": "9c. Neither of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLossOfControlQuestion",
+   "ListElementCode": "lossOfControl9b",
+   "ListElement": "9b. The majority of the time is at risk of loss of control leading to extensive evacuation of the bowel and/or voiding of the bladder, sufficient to require cleaning and a change in clothing, if not able to reach a toilet quickly. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLossOfControlQuestion",
+   "ListElementCode": "lossOfControl9a",
+   "ListElement": "9a. At least once a month experiences: (i) loss of control leading to extensive evacuation of the bowel and/or voiding of the bladder; or (ii) substantial leakage of the contents of a collecting device, sufficient to require cleaning and a change in clothing. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionConsciousnessQuestion",
+   "ListElementCode": "consciousness10c",
+   "ListElement": "10c. Neither of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionConsciousnessQuestion",
+   "ListElementCode": "consciousness10b",
+   "ListElement": "10b. At least once a month, has an involuntary episode of lost or altered consciousness resulting in significantly disrupted awareness or concentration. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionConsciousnessQuestion",
+   "ListElementCode": "consciousness10a",
+   "ListElement": "10a. At least once a week, has an involuntary episode of lost or altered consciousness resulting in significantly disrupted awareness or concentration. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLearningTasksQuestion",
+   "ListElementCode": "learningTasks11d",
+   "ListElement": "11d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLearningTasksQuestion",
+   "ListElementCode": "learningTasks11c",
+   "ListElement": "11c. Cannot learn anything beyond a moderately complex task, such as the steps involved in operating a washing machine to clean clothes. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLearningTasksQuestion",
+   "ListElementCode": "learningTasks11b",
+   "ListElement": "11b. Cannot learn anything beyond a simple task, such as setting an alarm clock. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionLearningTasksQuestion",
+   "ListElementCode": "learningTasks11a",
+   "ListElement": "11a. Cannot learn how to complete a simple task, such as setting an alarm clock. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+   "ListElementCode": "awarenessOfHazards12d",
+   "ListElement": "12d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+   "ListElementCode": "awarenessOfHazards12c",
+   "ListElement": "12c. Reduced awareness of everyday hazards leads to a significant risk of: (i) injury to self or others; or (ii) damage to property or possessions, such that the claimant occasionally requires supervision to maintain safety. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+   "ListElementCode": "awarenessOfHazards12b",
+   "ListElement": "12b. Reduced awareness of everyday hazards leads to a significant risk of: (i) injury to self or others; or (ii) damage to property or possessions, such that the claimant frequently requires supervision to maintain safety. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+   "ListElementCode": "awarenessOfHazards12a",
+   "ListElement": "12a. Reduced awareness of everyday hazards leads to a significant risk of: (i) injury to self or others; or (ii) damage to property or possessions, such that the claimant requires supervision for the majority of the time to maintain safety. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
+   "ListElementCode": "personalAction13d",
+   "ListElement": "13d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
+   "ListElementCode": "personalAction13c",
+   "ListElement": "13c. Frequently cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
+   "ListElementCode": "personalAction13b",
+   "ListElement": "13b. Cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions for the majority of the time. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
+   "ListElementCode": "personalAction13a",
+   "ListElement": "13a. Frequently cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
+   "ListElementCode": "copingWithChange14d",
+   "ListElement": "14d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
+   "ListElementCode": "copingWithChange14c",
+   "ListElement": "14c. Cannot cope with minor unplanned change (such as the timing of an appointment on the day it is due to occur), to the extent that, overall, day to day life is made significantly more difficult. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
+   "ListElementCode": "copingWithChange14b",
+   "ListElement": "14b. Cannot cope with minor planned change (such as a pre- arranged change to the routine time scheduled for a lunch break), to the extent that, overall, day to day life is made significantly more difficult. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
+   "ListElementCode": "copingWithChange14a",
+   "ListElement": "14a. Cannot cope with any change to the extent that day to day life cannot be managed. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionGettingAboutQuestion",
+   "ListElementCode": "gettingAbout15d",
+   "ListElement": "15d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionGettingAboutQuestion",
+   "ListElementCode": "gettingAbout15c",
+   "ListElement": "15c. Is unable to get to a specified place with which the claimant is unfamiliar without being accompanied by another person. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionGettingAboutQuestion",
+   "ListElementCode": "gettingAbout15b",
+   "ListElement": "15b. Is unable to get to a specified place with which the claimant is familiar, without being accompanied by another person. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionGettingAboutQuestion",
+   "ListElementCode": "gettingAbout15a",
+   "ListElement": "15a. Cannot get to any place outside the claimant’s home with which the claimant is familiar. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionSocialEngagementQuestion",
+   "ListElementCode": "socialEngagement16d",
+   "ListElement": "16d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionSocialEngagementQuestion",
+   "ListElementCode": "socialEngagement16c",
+   "ListElement": "16c. Engagement in social contact with someone unfamiliar to the claimant is not possible for the majority of the time due to difficulty relating to others or significant distress experienced by the claimant. (6 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionSocialEngagementQuestion",
+   "ListElementCode": "socialEngagement16b",
+   "ListElement": "16b. Engagement in social contact with someone unfamiliar to the claimant is always precluded due to difficulty relating to others or significant distress experienced by the claimant. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionSocialEngagementQuestion",
+   "ListElementCode": "socialEngagement16a",
+   "ListElement": "16a. Engagement in social contact is always precluded due to difficulty relating to others or significant distress experienced by the claimant. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
+   "ListElementCode": "appropriatenessOfBehaviour17d",
+   "ListElement": "17d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
+   "ListElementCode": "appropriatenessOfBehaviour17c",
+   "ListElement": "17c. Occasionally has uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (9 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
+   "ListElementCode": "appropriatenessOfBehaviour17b",
+   "ListElement": "17b. Frequently has uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (15 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
+   "ListElementCode": "appropriatenessOfBehaviour17a",
+   "ListElement": "17a. Has, on a daily basis, uncontrollable episodes of aggressive or disinhibited behaviour that would be unreasonable in any workplace. (15 points)"
 }
