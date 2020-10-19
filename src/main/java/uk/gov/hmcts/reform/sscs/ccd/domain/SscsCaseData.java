@@ -137,6 +137,8 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
     private String urgentCase;
+    private String urgentHearingRegistered;
+    private String urgentHearingOutcome;
     private String documentSentToDwp;
     private String directionDueDate;
     private String reservedToJudge;
@@ -274,6 +276,7 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private String isProgressingViaGaps;
     private String wcaAppeal;
     private String supportGroupOnlyAppeal;
     private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
@@ -397,6 +400,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("panel") Panel panel,
                         @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
                         @JsonProperty("urgentCase") String urgentCase,
+                        @JsonProperty("urgentHearingRegistered") String urgentHearingRegistered,
+                        @JsonProperty("urgentHearingOutcome") String urgentHearingOutcome,
                         @JsonProperty("documentSentToDwp") String documentSentToDwp,
                         @JsonProperty("directionDueDate") String directionDueDate,
                         @JsonProperty("reservedToJudge") String reservedToJudge,
@@ -522,6 +527,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps,
                         @JsonProperty("wcaAppeal") String wcaAppeal,
                         @JsonProperty("supportGroupOnlyAppeal") String supportGroupOnlyAppeal,
                         @JsonProperty("esaWriteFinalDecisionPhysicalDisabilitiesQuestion") List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion,
@@ -641,6 +647,8 @@ public class SscsCaseData implements CaseData {
         this.panel = panel;
         this.evidenceReceived = evidenceReceived;
         this.urgentCase = urgentCase;
+        this.urgentHearingRegistered = urgentHearingRegistered;
+        this.urgentHearingOutcome = urgentHearingOutcome;
         this.documentSentToDwp = documentSentToDwp;
         this.directionDueDate = directionDueDate;
         this.reservedToJudge = reservedToJudge;
@@ -764,6 +772,7 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.isProgressingViaGaps =  isProgressingViaGaps;
         this.wcaAppeal = wcaAppeal;
         this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
         this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
