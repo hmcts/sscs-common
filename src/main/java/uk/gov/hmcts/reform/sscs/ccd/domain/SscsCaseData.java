@@ -300,6 +300,8 @@ public class SscsCaseData implements CaseData {
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
+    private YesNo doesRegulation35Apply;
+    private YesNo showRegulation35Page;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -552,7 +554,9 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("esaWriteFinalDecisionSocialEngagementQuestion") String esaWriteFinalDecisionSocialEngagementQuestion,
                         @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
                         @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
-                        @JsonProperty("showRegulation29Page") YesNo showRegulation29Page) {
+                        @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
+                        @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
+                        @JsonProperty("showRegulation35Page") YesNo showRegulation35Page) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -800,6 +804,8 @@ public class SscsCaseData implements CaseData {
         this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
         this.doesRegulation29Apply = doesRegulation29Apply;
         this.showRegulation29Page = showRegulation29Page;
+        this.doesRegulation35Apply = doesRegulation35Apply;
+        this.showRegulation35Page = showRegulation35Page;
     }
 
     @JsonIgnore
