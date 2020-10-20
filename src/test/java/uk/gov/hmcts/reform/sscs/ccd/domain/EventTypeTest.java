@@ -164,7 +164,8 @@ public class EventTypeTest {
             "updateWelshPreference\n" +
             "cancelTranslations\n" +
             "createWelshNotice\n" +
-            "markDocumentsForTranslation";
+            "markDocumentsForTranslation\n" +
+            "dwpRaiseExceptionNotListable";
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
