@@ -261,4 +261,25 @@ public class SscsCcdConvertServiceTest {
 
         assertEquals(RequestOutcome.IN_PROGRESS, caseDetails.getData().getReinstatementOutcome());
     }
+
+    @Test
+    public void canTranslateAYesNoEnum() {
+        String caseReference = "caseRef";
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("caseReference", caseReference);
+        data.put("showRegulation29Page", YesNo.YES);
+        data.put("doesRegulation29Apply", YesNo.NO);
+
+        long id = 123L;
+        CaseDetails build = CaseDetails.builder()
+                .id(id)
+                .data(data)
+                .build();
+        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+
+        assertEquals(YesNo.YES, caseDetails.getData().getShowRegulation29Page());
+        assertEquals(YesNo.NO, caseDetails.getData().getDoesRegulation29Apply());
+        assertTrue(YesNo.YES.toBoolean());
+        assertFalse(YesNo.NO.toBoolean());
+    }
 }
