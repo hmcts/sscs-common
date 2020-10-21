@@ -36,6 +36,7 @@ public class CcdServiceTest {
 
     private static final String APPELLANT_APPEAL_NUMBER = "app-appeal-number";
     private static final String REPRESENTATIVE_APPEAL_NUMBER = "rep-appeal-number";
+    private static final String JOINT_PARTY_APPEAL_NUMBER = "joint-party-appeal-number";
     private static final String APPOINTEE_APPEAL_NUMBER = "appointee-appeal-number";
     private static final String UPDATED_TEST_COM = "updated@test.com";
     private static final String YES = "yes";
@@ -64,6 +65,11 @@ public class CcdServiceTest {
             put("case.subscriptions.representativeSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
         }
     };
+    private final Map<String, String> jointPartySearchCriteria = new HashMap<String, String>() {
+        {
+            put("case.subscriptions.jointPartySubscription.tya", JOINT_PARTY_APPEAL_NUMBER);
+        }
+    };
     private final Map<String, String> appointeeSearchCriteria = new HashMap<String, String>() {
         {
             put("case.subscriptions.appointeeSubscription.tya", APPOINTEE_APPEAL_NUMBER);
@@ -78,6 +84,12 @@ public class CcdServiceTest {
     private final Map<String, String> appellantSearchCriteriaForRep = new HashMap<String, String>() {
         {
             put("case.subscriptions.appellantSubscription.tya", REPRESENTATIVE_APPEAL_NUMBER);
+        }
+    };
+
+    private final Map<String, String> appellantSearchCriteriaForJointParty = new HashMap<String, String>() {
+        {
+            put("case.subscriptions.appellantSubscription.tya", JOINT_PARTY_APPEAL_NUMBER);
         }
     };
 
@@ -97,7 +109,7 @@ public class CcdServiceTest {
         searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
         updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         createCcdCaseService = new CreateCcdCaseService(sscsCcdConvertService, ccdClient);
-        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
+        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService, true);
     }
 
     @Test
@@ -318,12 +330,25 @@ public class CcdServiceTest {
     }
 
     @Test
+    public void shouldRetrieveAppealByJointPartyAppealNumber() {
+        when(ccdClient.searchForCaseworker(idamTokens, appellantSearchCriteriaForJointParty)).thenReturn(emptyList());
+        when(ccdClient.searchForCaseworker(idamTokens, jointPartySearchCriteria))
+                .thenReturn(singletonList(caseDetails));
+
+        SscsCaseDetails caseByAppealNumber = ccdService.findCaseByAppealNumber(JOINT_PARTY_APPEAL_NUMBER, idamTokens);
+
+        verify(ccdClient).searchForCaseworker(idamTokens, appellantSearchCriteriaForJointParty);
+        verify(ccdClient).searchForCaseworker(idamTokens,jointPartySearchCriteria);
+        assertNotNull(caseByAppealNumber);
+    }
+
+    @Test
     public void shouldReturnNullIfNoAppealFoundForGivenAppealNumber() {
         when(ccdClient.searchForCaseworker(any(), any())).thenReturn(emptyList());
 
         SscsCaseDetails caseByAppealNumber = ccdService.findCaseByAppealNumber(REPRESENTATIVE_APPEAL_NUMBER, idamTokens);
 
-        verify(ccdClient, times(3)).searchForCaseworker(any(), any());
+        verify(ccdClient, times(4)).searchForCaseworker(any(), any());
         assertNull(caseByAppealNumber);
     }
 

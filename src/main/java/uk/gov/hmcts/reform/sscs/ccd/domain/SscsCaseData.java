@@ -137,6 +137,8 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
     private String urgentCase;
+    private String urgentHearingRegistered;
+    private String urgentHearingOutcome;
     private String documentSentToDwp;
     private String directionDueDate;
     private String reservedToJudge;
@@ -262,7 +264,6 @@ public class SscsCaseData implements CaseData {
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private String sscsWelshPreviewNextEvent;
     private DynamicList originalDocuments;
-    private DynamicList dynamicBenefitType;
     private DynamicList originalNoticeDocuments;
     private DynamicList documentTypes;
     private String welshBodyContent;
@@ -271,12 +272,12 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
-    private LocalDate confidentialityRequestDate;
-    private RequestOutcome confidentialityRequestOutcomeAppellant;
-    private RequestOutcome confidentialityRequestOutcomeJointParty;
+    private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
+    private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
     private FormType formType;
+    private String isProgressingViaGaps;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -379,6 +380,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("panel") Panel panel,
                         @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
                         @JsonProperty("urgentCase") String urgentCase,
+                        @JsonProperty("urgentHearingRegistered") String urgentHearingRegistered,
+                        @JsonProperty("urgentHearingOutcome") String urgentHearingOutcome,
                         @JsonProperty("documentSentToDwp") String documentSentToDwp,
                         @JsonProperty("directionDueDate") String directionDueDate,
                         @JsonProperty("reservedToJudge") String reservedToJudge,
@@ -490,7 +493,6 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
                         @JsonProperty("sscsWelshPreviewNextEvent") String sscsWelshPreviewNextEvent,
                         @JsonProperty("originalDocuments") DynamicList originalDocuments,
-                        @JsonProperty("dynamicBenefitType") DynamicList dynamicBenefitType,
                         @JsonProperty("originalNoticeDocuments") DynamicList originalNoticeDocuments,
                         @JsonProperty("documentTypes") DynamicList documentTypes,
                         @JsonProperty("welshBodyContent") String welshBodyContent,
@@ -501,14 +503,12 @@ public class SscsCaseData implements CaseData {
                             @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
                         @JsonProperty("reinstatementOutcome") RequestOutcome reinstatementOutcome,
                         @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
-                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                            @JsonSerialize(using = LocalDateSerializer.class)
-                        @JsonProperty("confidentialityRequestDate") LocalDate confidentialityRequestDate,
-                        @JsonProperty("confidentialityRequestOutcomeAppellant") RequestOutcome confidentialityRequestOutcomeAppellant,
-                        @JsonProperty("confidentialityRequestOutcomeJointParty") RequestOutcome confidentialityRequestOutcomeJointParty,
+                        @JsonProperty("confidentialityRequestOutcomeAppellant") DatedRequestOutcome confidentialityRequestOutcomeAppellant,
+                        @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
-                        @JsonProperty(value = "formType") FormType formType
+                        @JsonProperty(value = "formType") FormType formType,
+                        @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps
     ) {
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -608,6 +608,8 @@ public class SscsCaseData implements CaseData {
         this.panel = panel;
         this.evidenceReceived = evidenceReceived;
         this.urgentCase = urgentCase;
+        this.urgentHearingRegistered = urgentHearingRegistered;
+        this.urgentHearingOutcome = urgentHearingOutcome;
         this.documentSentToDwp = documentSentToDwp;
         this.directionDueDate = directionDueDate;
         this.reservedToJudge = reservedToJudge;
@@ -724,16 +726,15 @@ public class SscsCaseData implements CaseData {
         this.welshBodyContent = welshBodyContent;
         this.englishBodyContent = englishBodyContent;
         this.isScottishCase = isScottishCase;
-        this.dynamicBenefitType = dynamicBenefitType;
         this.reinstatementRegistered = reinstatementRegistered;
         this.reinstatementOutcome = reinstatementOutcome;
         this.welshInterlocNextReviewState = welshInterlocNextReviewState;
-        this.confidentialityRequestDate = confidentialityRequestDate;
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
         this.formType = formType;
+        this.isProgressingViaGaps =  isProgressingViaGaps;
     }
 
     @JsonIgnore

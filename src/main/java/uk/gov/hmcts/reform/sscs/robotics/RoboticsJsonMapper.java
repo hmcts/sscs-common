@@ -89,6 +89,8 @@ public class RoboticsJsonMapper {
 
         obj.put("isDigital", isDigital);
 
+        setConfidentialFlag(roboticsWrapper, obj);
+
         obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
 
         Optional<OfficeMapping> officeMapping = buildOffice(obj, sscsCaseData.getAppeal());
@@ -143,9 +145,28 @@ public class RoboticsJsonMapper {
             if (sscsCaseData.getElementsDisputedLinkedAppealRef() != null) {
                 obj.put("linkedAppealRef", sscsCaseData.getElementsDisputedLinkedAppealRef());
             }
+            if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone() != null) {
+                    obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
+                }
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo() != null) {
+                    obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
+                }
+                if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace() != null) {
+                    obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
+                }
+            }
         }
 
         return obj;
+    }
+
+    private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
+        if (State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState())
+            && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
+            || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
+            obj.put("isConfidential", "Yes");
+        }
     }
 
     private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {
@@ -274,9 +295,9 @@ public class RoboticsJsonMapper {
     private static JSONObject buildRepresentativeDetails(Representative rep) {
         JSONObject json = new JSONObject();
 
-        String title = rep.getName().getTitle() != null ? rep.getName().getTitle() : "s/m";
-        String firstName = rep.getName().getFirstName() != null ? rep.getName().getFirstName() : ".";
-        String lastName = rep.getName().getLastName() != null ? rep.getName().getLastName() : ".";
+        String title = StringUtils.isNotEmpty(rep.getName().getTitle()) ? rep.getName().getTitle() : "s/m";
+        String firstName = StringUtils.isNotEmpty(rep.getName().getFirstName()) ? rep.getName().getFirstName() : ".";
+        String lastName = StringUtils.isNotEmpty(rep.getName().getLastName()) ? rep.getName().getLastName() : ".";
         buildName(json, title, firstName, lastName);
 
         if (rep.getOrganisation() != null) {

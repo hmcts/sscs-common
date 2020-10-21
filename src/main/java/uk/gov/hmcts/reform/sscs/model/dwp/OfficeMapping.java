@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class OfficeMapping {
     private String code;
+    private boolean isDefault;
     private Mapping mapping;
     private OfficeAddress address;
 
