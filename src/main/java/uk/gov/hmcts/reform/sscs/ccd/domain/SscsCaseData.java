@@ -276,6 +276,7 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private FormType formType;
     private String isProgressingViaGaps;
     private String wcaAppeal;
     private String supportGroupOnlyAppeal;
@@ -531,6 +532,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty(value = "formType") FormType formType,
                         @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps,
                         @JsonProperty("wcaAppeal") String wcaAppeal,
                         @JsonProperty("supportGroupOnlyAppeal") String supportGroupOnlyAppeal,
@@ -557,6 +559,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
                         @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
                         @JsonProperty("showRegulation35Page") YesNo showRegulation35Page) {
+
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -779,7 +782,9 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
-        this.confidentialityRequestJointPartyGrantedOrRefused = confidentialityRequestJointPartyGrantedOrRefused;
+        this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.formType = formType;
+        this.isProgressingViaGaps =  isProgressingViaGaps;
         this.isProgressingViaGaps = isProgressingViaGaps;
         this.wcaAppeal = wcaAppeal;
         this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
