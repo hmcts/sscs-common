@@ -1,14 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.client;
 
-import com.google.common.collect.ImmutableMap;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.config.CcdRequestDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -75,16 +73,12 @@ public class CcdClient {
                 caseDataContent);
     }
 
-    public List<CaseDetails> searchForCaseworker(IdamTokens idamTokens, Map<String, String> searchCriteria) {
-        return coreCaseDataApi.searchForCaseworker(
+    public SearchResult searchCases(IdamTokens idamTokens, String query) {
+        return coreCaseDataApi.searchCases(
                 idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(),
-                idamTokens.getUserId(),
-                ccdRequestDetails.getJurisdictionId(),
                 ccdRequestDetails.getCaseTypeId(),
-                new ImmutableMap.Builder<String, String>()
-                        .putAll(searchCriteria)
-                        .build());
+                query);
     }
 
     public CaseDetails readForCaseworker(IdamTokens idamTokens, Long caseId) {

@@ -1,17 +1,17 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static java.util.stream.Collectors.toList;
+import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
-import com.google.common.collect.ImmutableMap;
 import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
@@ -41,33 +41,38 @@ public class SearchCcdCaseService {
 
     public SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
         log.info("searching cases by SC number {}", caseRef);
-        ImmutableMap<String, String> searchCriteria = ImmutableMap.of("case.caseReference", caseRef);
-        List<SscsCaseDetails> sscsCaseDetailsList = findCaseBySearchCriteria(searchCriteria, idamTokens);
-        return !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;
+
+        SearchSourceBuilder searchBuilder = findCaseBySingleField("case.caseReference", caseRef);
+        List<SscsCaseDetails> sscsCaseDetailsList = findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
+        return null != sscsCaseDetailsList && !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;
     }
 
     @Retryable
-    public List<SscsCaseDetails> findCaseBySearchCriteria(Map<String, String> searchCriteria, IdamTokens idamTokens) {
-        return findCaseBySearchCriteriaRetryLogic(searchCriteria, idamTokens);
+    public List<SscsCaseDetails>  findCaseBySearchCriteria(String query, IdamTokens idamTokens) {
+        return findCaseBySearchCriteriaRetryLogic(query, idamTokens);
     }
 
-    private List<SscsCaseDetails> findCaseBySearchCriteriaRetryLogic(Map<String, String> searchCriteria, IdamTokens idamTokens) {
-        List<CaseDetails> caseDetailsList = ccdClient.searchForCaseworker(idamTokens, searchCriteria);
-        return caseDetailsList.stream()
-                .map(sscsCcdConvertService::getCaseDetails)
-                .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
-                .collect(toList());
+    private List<SscsCaseDetails> findCaseBySearchCriteriaRetryLogic(String query, IdamTokens idamTokens) {
+        SearchResult caseDetailsList = ccdClient.searchCases(idamTokens, query);
+
+        if (null != caseDetailsList && null != caseDetailsList.getCases()) {
+            return caseDetailsList.getCases().stream()
+                    .map(sscsCcdConvertService::getCaseDetails)
+                    .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
+                    .collect(toList());
+        }
+        return null;
     }
 
     @Recover
-    public List<SscsCaseDetails> findCaseBySearchCriteriaRecoverLogic(Map<String, String> searchCriteria,
+    public List<SscsCaseDetails> findCaseBySearchCriteriaRecoverLogic(String query,
                                                                       IdamTokens idamTokens) {
 
         log.info("Requesting IDAM tokens for search");
         idamTokens = idamService.getIdamTokens();
         log.info("Received IDAM tokens for search");
 
-        return findCaseBySearchCriteriaRetryLogic(searchCriteria, idamTokens);
+        return findCaseBySearchCriteriaRetryLogic(query, idamTokens);
     }
 
     @Retryable
