@@ -179,7 +179,8 @@
       "interlocReviewState": "reviewByJudge",
       "region": "NEWCASTLE",
       "generatedDOB": "1981-11-11",
-      "generatedMobile": "07398785050"
+      "generatedMobile": "07398785050",
+      "formType": "sscs1pe"
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

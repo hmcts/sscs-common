@@ -276,6 +276,7 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    private FormType formType;
     private String isProgressingViaGaps;
 
     @JsonCreator
@@ -506,6 +507,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
+                        @JsonProperty(value = "formType") FormType formType,
                         @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps
     ) {
         this.ccdCaseId = ccdCaseId;
@@ -731,6 +733,7 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
         this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
+        this.formType = formType;
         this.isProgressingViaGaps =  isProgressingViaGaps;
     }
 
