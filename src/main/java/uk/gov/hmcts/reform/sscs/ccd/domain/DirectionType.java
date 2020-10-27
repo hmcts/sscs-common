@@ -20,7 +20,13 @@ public enum DirectionType {
     GRANT_REINSTATEMENT("grantReinstatement"),
 
     @JsonProperty("refuseReinstatement")
-    REFUSE_REINSTATEMENT("refuseReinstatement");
+    REFUSE_REINSTATEMENT("refuseReinstatement"),
+
+    @JsonProperty("grantUrgentHearing")
+    GRANT_URGENT_HEARING("grantUrgentHearing"),
+
+    @JsonProperty("refuseUrgentHearing")
+    REFUSE_URGENT_HEARING("refuseUrgentHearing");
 
     // needed only for the toString method
     private final String id;
