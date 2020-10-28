@@ -68,7 +68,7 @@ public class SearchCcdCaseServiceTest {
     @Test
     public void shouldReturnCaseForGivenCaseReferenceNumber() {
 
-        SearchSourceBuilder query = findCaseBySingleField("case.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
 
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRef(CASE_REF, idamTokens);
@@ -79,7 +79,7 @@ public class SearchCcdCaseServiceTest {
 
     @Test
     public void shouldReturnNullIfNoCaseExistsForGiveCaseRef() {
-        SearchSourceBuilder query = findCaseBySingleField("case.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
@@ -93,7 +93,7 @@ public class SearchCcdCaseServiceTest {
     public void shouldReturnCaseForGivenCaseReferenceNumberAndCcdIdByCaseRef() {
 
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
-        SearchSourceBuilder query = findCaseBySingleField("case.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
 
@@ -111,7 +111,7 @@ public class SearchCcdCaseServiceTest {
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
         sscsCaseData.setCcdCaseId("1");
 
-        SearchSourceBuilder query = findCaseBySingleField("case.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
@@ -131,7 +131,7 @@ public class SearchCcdCaseServiceTest {
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
         sscsCaseData.setCcdCaseId("1");
 
-        SearchSourceBuilder query = findCaseBySingleField("case.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
