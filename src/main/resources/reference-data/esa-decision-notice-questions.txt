@@ -20,13 +20,13 @@
    "LiveFrom":"01/01/2018",
    "ID":"FL_physicalDisabilities",
    "ListElementCode":"communication",
-   "ListElement":"7. Understanding communication by: (i) verbal means (such as hearing or lip reading) alone; (ii) non-verbal means (such as reading 16 point print or Braille) alone;(iii) or a combination of sub-paragraphs (i) and (ii), using any aid that is normally or could reasonably be used, unaided by another person."
+   "ListElement":"7. Understanding communication by: (i) verbal means (such as hearing or lip reading) alone; (ii) non-verbal means (such as reading 16 point print or Braille) alone; or (iii) a combination of sub-paragraphs (i) and (ii), using any aid that is normally or could reasonably be used, unaided by another person."
 },
 {
    "LiveFrom":"01/01/2018",
    "ID":"FL_physicalDisabilities",
    "ListElementCode":"makingSelfUnderstood",
-   "ListElement":"6, Making self understood through speaking, writing, typing, or other means which are normally or could reasonably be used, unaided by another person."
+   "ListElement":"6. Making self understood through speaking, writing, typing, or other means which are normally or could reasonably be used, unaided by another person."
 },
 {
    "LiveFrom":"01/01/2018",
@@ -404,7 +404,7 @@
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
    "ListElementCode": "personalAction13a",
-   "ListElement": "13a. Frequently cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (15 points)"
+   "ListElement": "13a. Cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (15 points)"
 },
 {
    "LiveFrom":"01/01/2018",
