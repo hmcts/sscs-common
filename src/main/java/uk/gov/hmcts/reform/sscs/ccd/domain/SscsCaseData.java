@@ -278,6 +278,31 @@ public class SscsCaseData implements CaseData {
     private String confidentialityRequestJointPartyGrantedOrRefused;
     private FormType formType;
     private String isProgressingViaGaps;
+    private String wcaAppeal;
+    private String supportGroupOnlyAppeal;
+    private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
+    private List<String> esaWriteFinalDecisionMentalAssessmentQuestion;
+    private String esaWriteFinalDecisionMobilisingUnaidedQuestion;
+    private String esaWriteFinalDecisionStandingAndSittingQuestion;
+    private String esaWriteFinalDecisionReachingQuestion;
+    private String esaWriteFinalDecisionPickingUpQuestion;
+    private String esaWriteFinalDecisionManualDexterityQuestion;
+    private String esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
+    private String esaWriteFinalDecisionCommunicationQuestion;
+    private String esaWriteFinalDecisionNavigationQuestion;
+    private String esaWriteFinalDecisionLossOfControlQuestion;
+    private String esaWriteFinalDecisionConsciousnessQuestion;
+    private String esaWriteFinalDecisionLearningTasksQuestion;
+    private String esaWriteFinalDecisionAwarenessOfHazardsQuestion;
+    private String esaWriteFinalDecisionPersonalActionQuestion;
+    private String esaWriteFinalDecisionCopingWithChangeQuestion;
+    private String esaWriteFinalDecisionGettingAboutQuestion;
+    private String esaWriteFinalDecisionSocialEngagementQuestion;
+    private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
+    private YesNo doesRegulation29Apply;
+    private YesNo showRegulation29Page;
+    private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
+    private YesNo doesRegulation35Apply;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -508,8 +533,33 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
                         @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
                         @JsonProperty(value = "formType") FormType formType,
-                        @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps
-    ) {
+                        @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps,
+                        @JsonProperty("wcaAppeal") String wcaAppeal,
+                        @JsonProperty("supportGroupOnlyAppeal") String supportGroupOnlyAppeal,
+                        @JsonProperty("esaWriteFinalDecisionPhysicalDisabilitiesQuestion") List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMentalAssessmentQuestion") List<String> esaWriteFinalDecisionMentalAssessmentQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMobilisingUnaidedQuestion") String esaWriteFinalDecisionMobilisingUnaidedQuestion,
+                        @JsonProperty("esaWriteFinalDecisionStandingAndSittingQuestion") String esaWriteFinalDecisionStandingAndSittingQuestion,
+                        @JsonProperty("esaWriteFinalDecisionReachingQuestion") String esaWriteFinalDecisionReachingQuestion,
+                        @JsonProperty("esaWriteFinalDecisionPickingUpQuestion") String esaWriteFinalDecisionPickingUpQuestion,
+                        @JsonProperty("esaWriteFinalDecisionManualDexterityQuestion") String esaWriteFinalDecisionManualDexterityQuestion,
+                        @JsonProperty("esaWriteFinalDecisionMakingSelfUnderstoodQuestion") String esaWriteFinalDecisionMakingSelfUnderstoodQuestion,
+                        @JsonProperty("esaWriteFinalDecisionCommunicationQuestion") String esaWriteFinalDecisionCommunicationQuestion,
+                        @JsonProperty("esaWriteFinalDecisionNavigationQuestion") String esaWriteFinalDecisionNavigationQuestion,
+                        @JsonProperty("esaWriteFinalDecisionLossOfControlQuestion") String esaWriteFinalDecisionLossOfControlQuestion,
+                        @JsonProperty("esaWriteFinalDecisionConsciousnessQuestion") String esaWriteFinalDecisionConsciousnessQuestion,
+                        @JsonProperty("esaWriteFinalDecisionLearningTasksQuestion") String esaWriteFinalDecisionLearningTasksQuestion,
+                        @JsonProperty("esaWriteFinalDecisionAwarenessOfHazardsQuestion") String esaWriteFinalDecisionAwarenessOfHazardsQuestion,
+                        @JsonProperty("esaWriteFinalDecisionPersonalActionQuestion") String esaWriteFinalDecisionPersonalActionQuestion,
+                        @JsonProperty("esaWriteFinalDecisionCopingWithChangeQuestion") String esaWriteFinalDecisionCopingWithChangeQuestion,
+                        @JsonProperty("esaWriteFinalDecisionGettingAboutQuestion") String esaWriteFinalDecisionGettingAboutQuestion,
+                        @JsonProperty("esaWriteFinalDecisionSocialEngagementQuestion") String esaWriteFinalDecisionSocialEngagementQuestion,
+                        @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
+                        @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
+                        @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
+                        @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
+                        @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply) {
+
         this.ccdCaseId = ccdCaseId;
         this.state = state;
         this.previousState = previousState;
@@ -735,6 +785,32 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
         this.formType = formType;
         this.isProgressingViaGaps =  isProgressingViaGaps;
+        this.isProgressingViaGaps = isProgressingViaGaps;
+        this.wcaAppeal = wcaAppeal;
+        this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
+        this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
+        this.esaWriteFinalDecisionMentalAssessmentQuestion = esaWriteFinalDecisionMentalAssessmentQuestion;
+        this.esaWriteFinalDecisionMobilisingUnaidedQuestion = esaWriteFinalDecisionMobilisingUnaidedQuestion;
+        this.esaWriteFinalDecisionStandingAndSittingQuestion = esaWriteFinalDecisionStandingAndSittingQuestion;
+        this.esaWriteFinalDecisionReachingQuestion = esaWriteFinalDecisionReachingQuestion;
+        this.esaWriteFinalDecisionPickingUpQuestion = esaWriteFinalDecisionPickingUpQuestion;
+        this.esaWriteFinalDecisionManualDexterityQuestion = esaWriteFinalDecisionManualDexterityQuestion;
+        this.esaWriteFinalDecisionMakingSelfUnderstoodQuestion = esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
+        this.esaWriteFinalDecisionCommunicationQuestion = esaWriteFinalDecisionCommunicationQuestion;
+        this.esaWriteFinalDecisionNavigationQuestion = esaWriteFinalDecisionNavigationQuestion;
+        this.esaWriteFinalDecisionLossOfControlQuestion = esaWriteFinalDecisionLossOfControlQuestion;
+        this.esaWriteFinalDecisionConsciousnessQuestion = esaWriteFinalDecisionConsciousnessQuestion;
+        this.esaWriteFinalDecisionLearningTasksQuestion = esaWriteFinalDecisionLearningTasksQuestion;
+        this.esaWriteFinalDecisionAwarenessOfHazardsQuestion = esaWriteFinalDecisionAwarenessOfHazardsQuestion;
+        this.esaWriteFinalDecisionPersonalActionQuestion = esaWriteFinalDecisionPersonalActionQuestion;
+        this.esaWriteFinalDecisionCopingWithChangeQuestion = esaWriteFinalDecisionCopingWithChangeQuestion;
+        this.esaWriteFinalDecisionGettingAboutQuestion = esaWriteFinalDecisionGettingAboutQuestion;
+        this.esaWriteFinalDecisionSocialEngagementQuestion = esaWriteFinalDecisionSocialEngagementQuestion;
+        this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
+        this.doesRegulation29Apply = doesRegulation29Apply;
+        this.showRegulation29Page = showRegulation29Page;
+        this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
+        this.doesRegulation35Apply = doesRegulation35Apply;
     }
 
     @JsonIgnore
@@ -785,6 +861,16 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
+    }
+
+    @JsonIgnore
+    public boolean isWcaAppeal() {
+        return stringToBoolean(wcaAppeal);
+    }
+
+    @JsonIgnore
+    public boolean isSupportGroupOnlyAppeal() {
+        return stringToBoolean(supportGroupOnlyAppeal);
     }
 
     @JsonIgnore
