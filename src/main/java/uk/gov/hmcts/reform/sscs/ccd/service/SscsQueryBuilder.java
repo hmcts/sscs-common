@@ -24,10 +24,10 @@ public class SscsQueryBuilder {
 
         searchBuilder.query(QueryBuilders
                 .boolQuery()
-                .should(matchQuery("case.subscriptions.appellantSubscription.tya", value))
-                .should(matchQuery("case.subscriptions.appointeeSubscription.tya", value))
-                .should(matchQuery("case.subscriptions.representativeSubscription.tya", value))
-                .should(matchQuery("case.subscriptions.jointPartySubscription.tya", value)));
+                .should(matchQuery("data.subscriptions.appellantSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.appointeeSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.representativeSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.jointPartySubscription.tya", value)));
 
         return searchBuilder;
     }
@@ -53,7 +53,7 @@ public class SscsQueryBuilder {
                 .must(QueryBuilders.matchQuery(
                         "state", State.RESPONSE_RECEIVED.getId()))
                 .must(QueryBuilders.matchQuery(
-                        "case.dwpFurtherInfo", "No"))
+                        "data.dwpFurtherInfo", "No"))
                 .must(QueryBuilders.matchQuery(
                         "last_state_modified_date", date)));
 
