@@ -23,13 +23,13 @@ public class SscsQueryBuilderTest {
     public void givenValue_thenBuildQueryForTyaNumber() {
         SearchSourceBuilder result = findCaseByTyaNumberQuery("tya123abc");
 
-        assertEquals("case.subscriptions.appellantSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(0)).fieldName());
+        assertEquals("data.subscriptions.appellantSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(0)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(0)).value());
-        assertEquals("case.subscriptions.appointeeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(1)).fieldName());
+        assertEquals("data.subscriptions.appointeeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(1)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(1)).value());
-        assertEquals("case.subscriptions.representativeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).fieldName());
+        assertEquals("data.subscriptions.representativeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).value());
-        assertEquals("case.subscriptions.jointPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).fieldName());
+        assertEquals("data.subscriptions.jointPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).value());
     }
 
@@ -51,7 +51,7 @@ public class SscsQueryBuilderTest {
 
         assertEquals("state", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).fieldName());
         assertEquals(State.RESPONSE_RECEIVED.getId(), ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).value());
-        assertEquals("case.dwpFurtherInfo", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(1)).fieldName());
+        assertEquals("data.dwpFurtherInfo", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(1)).fieldName());
         assertEquals("No", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(1)).value());
         assertEquals("last_state_modified_date", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(2)).fieldName());
         assertEquals("2020-10-10", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(2)).value());
