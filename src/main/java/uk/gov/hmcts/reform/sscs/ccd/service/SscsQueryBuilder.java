@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static org.elasticsearch.index.query.QueryBuilders.termQuery;
+import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -14,7 +14,7 @@ public class SscsQueryBuilder {
     public static SearchSourceBuilder findCaseBySingleField(String fieldName, String value) {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
 
-        searchBuilder.query(QueryBuilders.matchQuery(fieldName, value));
+        searchBuilder.query(matchQuery(fieldName, value));
 
         return searchBuilder;
     }
@@ -24,10 +24,10 @@ public class SscsQueryBuilder {
 
         searchBuilder.query(QueryBuilders
                 .boolQuery()
-                .should(termQuery("case.subscriptions.appellantSubscription.tya", value))
-                .should(termQuery("case.subscriptions.appointeeSubscription.tya", value))
-                .should(termQuery("case.subscriptions.representativeSubscription.tya", value))
-                .should(termQuery("case.subscriptions.jointPartySubscription.tya", value)));
+                .should(matchQuery("case.subscriptions.appellantSubscription.tya", value))
+                .should(matchQuery("case.subscriptions.appointeeSubscription.tya", value))
+                .should(matchQuery("case.subscriptions.representativeSubscription.tya", value))
+                .should(matchQuery("case.subscriptions.jointPartySubscription.tya", value)));
 
         return searchBuilder;
     }
@@ -36,12 +36,12 @@ public class SscsQueryBuilder {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
 
         searchBuilder.query(QueryBuilders.boolQuery()
-                .must(QueryBuilders.termQuery(
-                        "case.appeal.appellant.identity.nino", nino))
-                .must(QueryBuilders.termQuery(
-                        "case.appeal.benefitType.code", benefitType))
-                .must(QueryBuilders.termQuery(
-                        "case.appeal.mrnDetails.mrnDate", mrnDate)));
+                .must(matchQuery(
+                        "data.appeal.appellant.identity.nino", nino))
+                .must(matchQuery(
+                        "data.appeal.benefitType.code", benefitType))
+                .must(matchQuery(
+                        "data.appeal.mrnDetails.mrnDate", mrnDate)));
 
         return searchBuilder;
     }
@@ -50,11 +50,11 @@ public class SscsQueryBuilder {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
 
         searchBuilder.query(QueryBuilders.boolQuery()
-                .must(QueryBuilders.termQuery(
+                .must(QueryBuilders.matchQuery(
                         "state", State.RESPONSE_RECEIVED.getId()))
-                .must(QueryBuilders.termQuery(
+                .must(QueryBuilders.matchQuery(
                         "case.dwpFurtherInfo", "No"))
-                .must(QueryBuilders.termQuery(
+                .must(QueryBuilders.matchQuery(
                         "last_state_modified_date", date)));
 
         return searchBuilder;
