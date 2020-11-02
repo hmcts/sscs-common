@@ -40,6 +40,7 @@ public class AirLookupServiceTest {
         "bl78, Liverpool",
         "s31, Leeds",
         "s30, Leeds",
+        "br2, Sutton"
     })
     public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(postcode));
