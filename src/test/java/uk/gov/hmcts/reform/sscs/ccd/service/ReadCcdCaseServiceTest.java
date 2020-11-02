@@ -1,10 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.Mockito.*;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +26,7 @@ public class ReadCcdCaseServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        initMocks(this);
+        openMocks(this);
         readCcdCaseService = new ReadCcdCaseService(idamService, ccdClient, sscsCcdConvertService);
     }
 

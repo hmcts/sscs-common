@@ -1,22 +1,23 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static java.util.Collections.singletonList;
-import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normaliseNino;
+import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
 import java.util.Collections;
-import java.util.HashMap;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
@@ -31,7 +32,6 @@ public class SearchCcdCaseServiceTest {
     public static final String USER_ID = "userId";
 
     private IdamTokens idamTokens;
-    private HashMap<String, String> searchCriteria;
     private CaseDetails caseDetails;
     private SscsCaseDetails sscsCaseDetails;
 
@@ -50,7 +50,7 @@ public class SearchCcdCaseServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        initMocks(this);
+        openMocks(this);
 
         idamTokens = IdamTokens.builder()
                 .idamOauth2Token("oauthToken")
@@ -68,12 +68,8 @@ public class SearchCcdCaseServiceTest {
     @Test
     public void shouldReturnCaseForGivenCaseReferenceNumber() {
 
-        searchCriteria = new HashMap<String, String>() {
-            {
-                put("case.caseReference", CASE_REF);
-            }
-        };
-        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
 
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRef(CASE_REF, idamTokens);
 
@@ -83,13 +79,9 @@ public class SearchCcdCaseServiceTest {
 
     @Test
     public void shouldReturnNullIfNoCaseExistsForGiveCaseRef() {
-        searchCriteria = new HashMap<String, String>() {
-            {
-                put("case.caseReference", CASE_REF);
-            }
-        };
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
-        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.EMPTY_LIST);
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRef(CASE_REF, idamTokens);
 
@@ -101,13 +93,9 @@ public class SearchCcdCaseServiceTest {
     public void shouldReturnCaseForGivenCaseReferenceNumberAndCcdIdByCaseRef() {
 
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
-        searchCriteria = new HashMap<String, String>() {
-            {
-                put("case.caseReference", CASE_REF);
-            }
-        };
-        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(singletonList(caseDetails));
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
 
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRefOrCaseId(sscsCaseData, idamTokens);
 
@@ -123,12 +111,9 @@ public class SearchCcdCaseServiceTest {
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
         sscsCaseData.setCcdCaseId("1");
 
-        searchCriteria = new HashMap<String, String>() {
-            {
-                put("case.caseReference", CASE_REF);
-            }
-        };
-        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.EMPTY_LIST);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
         when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(sscsCaseDetails);
 
@@ -146,12 +131,9 @@ public class SearchCcdCaseServiceTest {
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
         sscsCaseData.setCcdCaseId("1");
 
-        searchCriteria = new HashMap<String, String>() {
-            {
-                put("case.caseReference", CASE_REF);
-            }
-        };
-        when(ccdClient.searchForCaseworker(idamTokens, searchCriteria)).thenReturn(Collections.EMPTY_LIST);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
 
         when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(null);
 
