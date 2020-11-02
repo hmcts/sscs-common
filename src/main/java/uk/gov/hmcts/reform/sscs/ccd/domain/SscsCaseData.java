@@ -303,6 +303,7 @@ public class SscsCaseData implements CaseData {
     private YesNo showRegulation29Page;
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation35Apply;
+    private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -558,7 +559,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
                         @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
-                        @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply) {
+                        @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
+                        @JsonProperty("showFinalDecisionNoticeSummaryOfOutcomePage") YesNo showFinalDecisionNoticeSummaryOfOutcomePage) {
 
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -811,6 +813,7 @@ public class SscsCaseData implements CaseData {
         this.showRegulation29Page = showRegulation29Page;
         this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
         this.doesRegulation35Apply = doesRegulation35Apply;
+        this.showFinalDecisionNoticeSummaryOfOutcomePage = showFinalDecisionNoticeSummaryOfOutcomePage;
     }
 
     @JsonIgnore
