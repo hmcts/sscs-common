@@ -301,6 +301,7 @@ public class SscsCaseData implements CaseData {
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
+    private String esaWriteFinalDecisionSchedule3ActivitiesApply;
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation35Apply;
 
@@ -557,6 +558,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
                         @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
                         @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
+                        @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesApply") String esaWriteFinalDecisionSchedule3ActivitiesApply,
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
                         @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply) {
 
@@ -785,7 +787,6 @@ public class SscsCaseData implements CaseData {
         this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
         this.formType = formType;
         this.isProgressingViaGaps =  isProgressingViaGaps;
-        this.isProgressingViaGaps = isProgressingViaGaps;
         this.wcaAppeal = wcaAppeal;
         this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
         this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
@@ -809,6 +810,7 @@ public class SscsCaseData implements CaseData {
         this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
         this.doesRegulation29Apply = doesRegulation29Apply;
         this.showRegulation29Page = showRegulation29Page;
+        this.esaWriteFinalDecisionSchedule3ActivitiesApply = esaWriteFinalDecisionSchedule3ActivitiesApply;
         this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
         this.doesRegulation35Apply = doesRegulation35Apply;
     }
