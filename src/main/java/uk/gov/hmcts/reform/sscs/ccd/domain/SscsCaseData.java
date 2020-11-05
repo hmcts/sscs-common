@@ -301,6 +301,7 @@ public class SscsCaseData implements CaseData {
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
+    private YesNo showSchedule3ActivitiesPage;
     private String esaWriteFinalDecisionSchedule3ActivitiesApply;
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation35Apply;
@@ -559,6 +560,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
                         @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
                         @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
+                        @JsonProperty("showSchedule3ActivitiesPage") YesNo showSchedule3ActivitiesPage,
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesApply") String esaWriteFinalDecisionSchedule3ActivitiesApply,
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
                         @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
@@ -812,6 +814,7 @@ public class SscsCaseData implements CaseData {
         this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
         this.doesRegulation29Apply = doesRegulation29Apply;
         this.showRegulation29Page = showRegulation29Page;
+        this.showSchedule3ActivitiesPage = showSchedule3ActivitiesPage;
         this.esaWriteFinalDecisionSchedule3ActivitiesApply = esaWriteFinalDecisionSchedule3ActivitiesApply;
         this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
         this.doesRegulation35Apply = doesRegulation35Apply;
