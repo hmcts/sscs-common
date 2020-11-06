@@ -177,6 +177,7 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionEndDate;
     private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
     private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
+    private String writeFinalDecisionOtherPanelMemberName;
     @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
     private String writeFinalDecisionDateOfDecision;
     private String writeFinalDecisionDetailsOfDecision;
@@ -443,6 +444,7 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("writeFinalDecisionEndDate") String writeFinalDecisionEndDate,
                         @JsonProperty("writeFinalDecisionDisabilityQualifiedPanelMemberName") String writeFinalDecisionDisabilityQualifiedPanelMemberName,
                         @JsonProperty("writeFinalDecisionMedicallyQualifiedPanelMemberName") String writeFinalDecisionMedicallyQualifiedPanelMemberName,
+                        @JsonProperty("writeFinalDecisionOtherPanelMemberName") String writeFinalDecisionOtherPanelMemberName,
                         @JsonProperty("writeFinalDecisionDateOfDecision") String writeFinalDecisionDateOfDecision,
                         @JsonProperty("writeFinalDecisionDetailsOfDecision") String writeFinalDecisionDetailsOfDecision,
                         @JsonProperty("writeFinalDecisionReasons") List<CollectionItem<String>> writeFinalDecisionReasons,
@@ -696,6 +698,7 @@ public class SscsCaseData implements CaseData {
         this.writeFinalDecisionEndDate = writeFinalDecisionEndDate;
         this.writeFinalDecisionDisabilityQualifiedPanelMemberName = writeFinalDecisionDisabilityQualifiedPanelMemberName;
         this.writeFinalDecisionMedicallyQualifiedPanelMemberName = writeFinalDecisionMedicallyQualifiedPanelMemberName;
+        this.writeFinalDecisionOtherPanelMemberName = writeFinalDecisionOtherPanelMemberName;
         this.writeFinalDecisionDateOfDecision = writeFinalDecisionDateOfDecision;
         this.writeFinalDecisionDetailsOfDecision = writeFinalDecisionDetailsOfDecision;
         this.writeFinalDecisionReasons = writeFinalDecisionReasons;
