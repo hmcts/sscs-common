@@ -308,6 +308,7 @@ public class SscsCaseData implements CaseData {
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation35Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
+    private String dwpReassessTheAward;
 
     @JsonCreator
     public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
@@ -567,7 +568,8 @@ public class SscsCaseData implements CaseData {
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesApply") String esaWriteFinalDecisionSchedule3ActivitiesApply,
                         @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
                         @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
-                        @JsonProperty("showFinalDecisionNoticeSummaryOfOutcomePage") YesNo showFinalDecisionNoticeSummaryOfOutcomePage) {
+                        @JsonProperty("showFinalDecisionNoticeSummaryOfOutcomePage") YesNo showFinalDecisionNoticeSummaryOfOutcomePage,
+                        @JsonProperty("dwpReassessTheAward") String dwpReassessTheAward) {
 
         this.ccdCaseId = ccdCaseId;
         this.state = state;
@@ -823,6 +825,7 @@ public class SscsCaseData implements CaseData {
         this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
         this.doesRegulation35Apply = doesRegulation35Apply;
         this.showFinalDecisionNoticeSummaryOfOutcomePage = showFinalDecisionNoticeSummaryOfOutcomePage;
+        this.dwpReassessTheAward = dwpReassessTheAward;
     }
 
     @JsonIgnore
