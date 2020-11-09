@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.termQuery;
 
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -14,7 +15,7 @@ public class SscsQueryBuilder {
     public static SearchSourceBuilder findCaseBySingleField(String fieldName, String value) {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
 
-        searchBuilder.query(matchQuery(fieldName, value));
+        searchBuilder.query(termQuery(fieldName, value));
 
         return searchBuilder;
     }
