@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -988,4 +989,25 @@ public class SscsCaseData implements CaseData {
             this.translationWorkOutstanding = "Yes";
         }
     }
+
+    @JsonIgnore
+    public YesNo getRegulation35Selection() {
+        if ("No".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return doesRegulation35Apply;
+        } else {
+            return null;
+        }
+    }
+
+    @JsonIgnore
+    public List<String> getSchedule3Selections() {
+        if ("Yes".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return esaWriteFinalDecisionSchedule3ActivitiesQuestion;
+        } else if ("No".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return new ArrayList<>();
+        } else {
+            return null;
+        }
+    }
+
 }
