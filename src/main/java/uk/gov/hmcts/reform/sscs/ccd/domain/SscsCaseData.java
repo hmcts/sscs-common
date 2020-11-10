@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +37,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 @NoArgsConstructor
 public class SscsCaseData implements CaseData {
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = WRITE_ONLY)
     private String ccdCaseId;
 
     private State state;
@@ -109,6 +113,8 @@ public class SscsCaseData implements CaseData {
     private String bodyContent;
     private String signedBy;
     private String signedRole;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
@@ -273,6 +279,8 @@ public class SscsCaseData implements CaseData {
     private String welshBodyContent;
     private String englishBodyContent;
     private String isScottishCase;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
@@ -280,6 +288,7 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    @JsonProperty(value = "formType")
     private FormType formType;
     private String isProgressingViaGaps;
     private String wcaAppeal;
@@ -371,17 +380,17 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isLanguagePreferenceWelsh() {
+    public boolean isLanguagePreferenceWelshAsBoolean() {
         return stringToBoolean(languagePreferenceWelsh);
     }
 
     @JsonIgnore
     public LanguagePreference getLanguagePreference() {
-        return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+        return isLanguagePreferenceWelshAsBoolean() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
     @JsonIgnore
-    public boolean isTranslationWorkOutstanding() {
+    public boolean isTranslationWorkOutstandingAsBoolean() {
         return stringToBoolean(translationWorkOutstanding);
     }
 
