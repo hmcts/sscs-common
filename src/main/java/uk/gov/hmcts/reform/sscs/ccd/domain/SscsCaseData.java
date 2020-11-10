@@ -300,8 +300,6 @@ public class SscsCaseData implements CaseData {
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-    private String test1;
-    private String test2;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
