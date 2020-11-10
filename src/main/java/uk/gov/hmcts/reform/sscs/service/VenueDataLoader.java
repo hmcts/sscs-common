@@ -21,7 +21,7 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
 
     @PostConstruct
-    private void init() {
+    protected void init() {
         InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
         try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
 
