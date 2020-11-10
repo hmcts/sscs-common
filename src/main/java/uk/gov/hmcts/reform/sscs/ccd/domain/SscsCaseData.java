@@ -490,4 +490,12 @@ public class SscsCaseData implements CaseData {
         }
     }
 
+    @JsonIgnore
+    public SscsEsaCaseData getSscsEsaCaseData() {
+        if (esaSscsCaseData == null) {
+            this.esaSscsCaseData = new SscsEsaCaseData();
+        }
+        return esaSscsCaseData;
+    }
+
 }
