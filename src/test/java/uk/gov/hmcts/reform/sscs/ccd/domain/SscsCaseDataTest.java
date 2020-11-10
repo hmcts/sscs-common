@@ -453,19 +453,19 @@ public class SscsCaseDataTest {
     @Test
     public void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(null).build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelshAsBoolean(), Boolean.FALSE);
+        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.FALSE);
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelshAsBoolean(), Boolean.TRUE);
+        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.TRUE);
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelshAsBoolean(), Boolean.FALSE);
+        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.FALSE);
     }
 
     @Test

@@ -52,6 +52,7 @@ public class SscsCaseData implements CaseData {
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
     @Getter(AccessLevel.NONE)
+    @JsonProperty("subscriptions")
     private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<Bundle> caseBundles;
@@ -73,6 +74,7 @@ public class SscsCaseData implements CaseData {
     private String evidencePresent;
     private String bulkScanCaseReference;
     private String decisionNotes;
+    @JsonProperty("isCorDecision")
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
@@ -89,8 +91,11 @@ public class SscsCaseData implements CaseData {
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
+    @JsonProperty("resendToAppellant")
     private String resendToAppellant;
+    @JsonProperty("resendToRepresentative")
     private String resendToRepresentative;
+    @JsonProperty("resendToDwp")
     private String resendToDwp;
     private String caseCode;
     private String benefitCode;
@@ -108,6 +113,7 @@ public class SscsCaseData implements CaseData {
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
+    @JsonProperty("generateNotice")
     private String generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
@@ -208,9 +214,12 @@ public class SscsCaseData implements CaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    @JsonProperty("adjournCaseGenerateNotice")
     private String adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
+    @JsonProperty("adjournCaseCanCaseBeListedRightAway")
     private String adjournCaseCanCaseBeListedRightAway;
+    @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
@@ -248,6 +257,7 @@ public class SscsCaseData implements CaseData {
     @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
+    @JsonProperty("languagePreferenceWelsh")
     private String languagePreferenceWelsh;
     private List<String> elementsDisputedList;
     private List<ElementDisputed> elementsDisputedGeneral;
@@ -265,10 +275,12 @@ public class SscsCaseData implements CaseData {
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
+    @JsonProperty("jointPartyAddressSameAsAppellant")
     private String jointPartyAddressSameAsAppellant;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Address jointPartyAddress;
+    @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
@@ -291,7 +303,9 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "formType")
     private FormType formType;
     private String isProgressingViaGaps;
+    @JsonProperty("wcaAppeal")
     private String wcaAppeal;
+    @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
     private SscsEsaCaseData esaSscsCaseData;
@@ -378,17 +392,17 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isLanguagePreferenceWelshAsBoolean() {
+    public boolean isLanguagePreferenceWelsh() {
         return stringToBoolean(languagePreferenceWelsh);
     }
 
     @JsonIgnore
     public LanguagePreference getLanguagePreference() {
-        return isLanguagePreferenceWelshAsBoolean() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
+        return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
     @JsonIgnore
-    public boolean isTranslationWorkOutstandingAsBoolean() {
+    public boolean isTranslationWorkOutstanding() {
         return stringToBoolean(translationWorkOutstanding);
     }
 
