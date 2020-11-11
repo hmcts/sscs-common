@@ -5,7 +5,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.*;
 
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
@@ -14,10 +13,10 @@ public class SscsQueryBuilderTest {
 
     @Test
     public void givenFieldNameAndValue_thenBuildQueryForSingleField() {
-        SearchSourceBuilder result = findCaseBySingleField("test1", "test2");
+        SearchSourceBuilder result = findCaseBySingleField("data.caseReference", "SC001/19/00365");
 
-        assertEquals("test1", ((TermQueryBuilder) result.query()).fieldName());
-        assertEquals("test2", ((TermQueryBuilder) result.query()).value());
+        assertEquals("data.caseReference", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).fieldName());
+        assertEquals("SC001\\\\/19\\\\/00365", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).value());
     }
 
     @Test
