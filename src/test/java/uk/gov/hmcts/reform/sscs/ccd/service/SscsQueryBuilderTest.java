@@ -22,7 +22,7 @@ public class SscsQueryBuilderTest {
     }
 
     @Test
-    public void givenFieldNameAndValue_thenBuildQueryForSingleFieldWithSPValue() {
+    public void givenFieldNameAndValue_thenBuildQueryForSingleFieldWithSpecialCharValue() {
         SearchSourceBuilder result = findCaseBySingleField("data.caseReference", "SC001/19/00365");
 
         assertEquals("data.caseReference", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).fieldName());
