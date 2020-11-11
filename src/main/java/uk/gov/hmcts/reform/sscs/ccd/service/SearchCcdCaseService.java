@@ -47,6 +47,13 @@ public class SearchCcdCaseService {
         return null != sscsCaseDetailsList && !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;
     }
 
+    public List<SscsCaseDetails> findListOfCasesByCaseRef(String caseRef, IdamTokens idamTokens) {
+        log.info("searching list of cases by SC number {}", caseRef);
+
+        SearchSourceBuilder searchBuilder = findCaseBySingleField("data.caseReference", caseRef);
+        return findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
+    }
+
     @Retryable
     public List<SscsCaseDetails>  findCaseBySearchCriteria(String query, IdamTokens idamTokens) {
         return findCaseBySearchCriteriaRetryLogic(query, idamTokens);

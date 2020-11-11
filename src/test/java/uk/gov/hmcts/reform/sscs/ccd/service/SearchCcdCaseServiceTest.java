@@ -8,6 +8,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normali
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
 import java.util.Collections;
+import java.util.List;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -74,6 +75,19 @@ public class SearchCcdCaseServiceTest {
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRef(CASE_REF, idamTokens);
 
         assertNotNull(caseByCaseRef);
+
+    }
+
+    @Test
+    public void shouldReturnListOfCasesForGivenCaseReferenceNumber() {
+
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
+
+        List<SscsCaseDetails> casesByCaseRef = searchCcdCaseService.findListOfCasesByCaseRef(CASE_REF, idamTokens);
+
+        assertNotNull(casesByCaseRef);
+        assertEquals(1, casesByCaseRef.size());
 
     }
 
