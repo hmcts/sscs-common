@@ -37,4 +37,5 @@ public class SscsEsaCaseData {
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     private String esaWriteFinalDecisionSchedule3ActivitiesApply;
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
+    private String dwpReassessTheAward;
 }
