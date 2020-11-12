@@ -1,7 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
@@ -321,7 +322,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        Assert.assertTrue("Result has a value", result.isPresent());
+        assertTrue("Result has a value", result.isPresent());
         assertEquals("testUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -335,7 +336,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        Assert.assertTrue("Result has a value", result.isPresent());
+        assertTrue("Result has a value", result.isPresent());
         assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -350,7 +351,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        Assert.assertTrue("Result has a value", result.isPresent());
+        assertTrue("Result has a value", result.isPresent());
         assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -360,7 +361,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(null).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        Assert.assertTrue("Result is empty", result.isEmpty());
+        assertTrue("Result is empty", result.isEmpty());
     }
 
     @Test
@@ -377,7 +378,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
 
-        Assert.assertTrue("Result has a value", result.isPresent());
+        assertTrue("Result has a value", result.isPresent());
         assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -494,6 +495,87 @@ public class SscsCaseDataTest {
         assertEquals("Yes", sscsCaseData.getUrgentCase());
         assertEquals(todaysDate, sscsCaseData.getUrgentHearingRegistered());
         assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
+    }
+
+    @Test
+    public void givenBenefitTypeEsaUpperCase_thenShouldReturnBenefitTypeEsa() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.ESA), sscsCaseData.getBenefitType());
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenBenefitTypeEsaLowerCase_thenShouldReturnBenefitTypeEsa() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("esa").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.ESA), sscsCaseData.getBenefitType());
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenBenefitTypePipUpperCase_thenShouldReturnBenefitTypePip() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.PIP), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenBenefitTypePipLowerCase_thenShouldReturnBenefitTypePip() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("pip").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.PIP), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenBenefitTypeUcUpperCase_thenShouldReturnBenefitTypeUc() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("UC").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.UC), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenBenefitTypeUcLowerCase_thenShouldReturnBenefitTypeUc() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("uc").build()).build()).build();
+        assertEquals(Optional.of(BenefitTypeEnum.UC), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertTrue(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenNoBenefitTypeCode_thenShouldReturnEmptyOptional() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().build()).build()).build();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenNoBenefitType_thenShouldReturnEmptyOptional() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().build()).build();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    @Test
+    public void givenNoAppeal_thenShouldReturnEmptyOptional() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
     }
 
 }
