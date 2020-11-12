@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static java.util.stream.Collectors.toList;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -87,6 +89,11 @@ public class SearchCcdCaseService {
         return findCaseByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
     }
 
+    @Retryable
+    public List<SscsCaseDetails> findListOfCasesByCaseRefOrCaseId(SscsCaseData caseData, IdamTokens idamTokens) {
+        return findListOfCasesByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
+    }
+
     private SscsCaseDetails findCaseByCaseRefOrCaseIdRetryLogic(SscsCaseData caseData, IdamTokens idamTokens) {
         SscsCaseDetails sscsCaseDetails = null;
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
@@ -96,6 +103,17 @@ public class SearchCcdCaseService {
             sscsCaseDetails = readCcdCaseService.getByCaseId(Long.parseLong(caseData.getCcdCaseId()), idamTokens);
         }
         return sscsCaseDetails;
+    }
+
+    private List<SscsCaseDetails> findListOfCasesByCaseRefOrCaseIdRetryLogic(SscsCaseData caseData, IdamTokens idamTokens) {
+        List<SscsCaseDetails> sscsCaseDetailsList = new ArrayList<>();
+        if (StringUtils.isNotBlank(caseData.getCaseReference())) {
+            sscsCaseDetailsList = this.findListOfCasesByCaseRef(caseData.getCaseReference(), idamTokens);
+        }
+        if (CollectionUtils.isEmpty(sscsCaseDetailsList) && StringUtils.isNotBlank(caseData.getCcdCaseId())) {
+            sscsCaseDetailsList.add(readCcdCaseService.getByCaseId(Long.parseLong(caseData.getCcdCaseId()), idamTokens));
+        }
+        return sscsCaseDetailsList;
     }
 
     @Recover
