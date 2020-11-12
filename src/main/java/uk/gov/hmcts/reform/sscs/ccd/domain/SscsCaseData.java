@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
@@ -15,9 +17,11 @@ import java.util.stream.Stream;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
@@ -29,9 +33,11 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
+@NoArgsConstructor
 public class SscsCaseData implements CaseData {
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = WRITE_ONLY)
     private String ccdCaseId;
 
     private State state;
@@ -46,6 +52,7 @@ public class SscsCaseData implements CaseData {
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
     @Getter(AccessLevel.NONE)
+    @JsonProperty("subscriptions")
     private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<Bundle> caseBundles;
@@ -67,6 +74,7 @@ public class SscsCaseData implements CaseData {
     private String evidencePresent;
     private String bulkScanCaseReference;
     private String decisionNotes;
+    @JsonProperty("isCorDecision")
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
@@ -83,8 +91,11 @@ public class SscsCaseData implements CaseData {
     private String assignedToDisabilityMember;
     private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
+    @JsonProperty("resendToAppellant")
     private String resendToAppellant;
+    @JsonProperty("resendToRepresentative")
     private String resendToRepresentative;
+    @JsonProperty("resendToDwp")
     private String resendToDwp;
     private String caseCode;
     private String benefitCode;
@@ -102,11 +113,14 @@ public class SscsCaseData implements CaseData {
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
+    @JsonProperty("generateNotice")
     private String generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
     private String signedBy;
     private String signedRole;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
@@ -200,9 +214,12 @@ public class SscsCaseData implements CaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    @JsonProperty("adjournCaseGenerateNotice")
     private String adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
+    @JsonProperty("adjournCaseCanCaseBeListedRightAway")
     private String adjournCaseCanCaseBeListedRightAway;
+    @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
@@ -240,6 +257,7 @@ public class SscsCaseData implements CaseData {
     @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
+    @JsonProperty("languagePreferenceWelsh")
     private String languagePreferenceWelsh;
     private List<String> elementsDisputedList;
     private List<ElementDisputed> elementsDisputedGeneral;
@@ -257,10 +275,12 @@ public class SscsCaseData implements CaseData {
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
+    @JsonProperty("jointPartyAddressSameAsAppellant")
     private String jointPartyAddressSameAsAppellant;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Address jointPartyAddress;
+    @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
@@ -271,6 +291,8 @@ public class SscsCaseData implements CaseData {
     private String welshBodyContent;
     private String englishBodyContent;
     private String isScottishCase;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
@@ -278,552 +300,20 @@ public class SscsCaseData implements CaseData {
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
     private String confidentialityRequestJointPartyGrantedOrRefused;
+    @JsonProperty(value = "formType")
     private FormType formType;
     private String isProgressingViaGaps;
+    @JsonProperty("wcaAppeal")
     private String wcaAppeal;
+    @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
-    private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
-    private List<String> esaWriteFinalDecisionMentalAssessmentQuestion;
-    private String esaWriteFinalDecisionMobilisingUnaidedQuestion;
-    private String esaWriteFinalDecisionStandingAndSittingQuestion;
-    private String esaWriteFinalDecisionReachingQuestion;
-    private String esaWriteFinalDecisionPickingUpQuestion;
-    private String esaWriteFinalDecisionManualDexterityQuestion;
-    private String esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
-    private String esaWriteFinalDecisionCommunicationQuestion;
-    private String esaWriteFinalDecisionNavigationQuestion;
-    private String esaWriteFinalDecisionLossOfControlQuestion;
-    private String esaWriteFinalDecisionConsciousnessQuestion;
-    private String esaWriteFinalDecisionLearningTasksQuestion;
-    private String esaWriteFinalDecisionAwarenessOfHazardsQuestion;
-    private String esaWriteFinalDecisionPersonalActionQuestion;
-    private String esaWriteFinalDecisionCopingWithChangeQuestion;
-    private String esaWriteFinalDecisionGettingAboutQuestion;
-    private String esaWriteFinalDecisionSocialEngagementQuestion;
-    private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
+    @JsonUnwrapped
+    private SscsEsaCaseData esaSscsCaseData;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
-    private String esaWriteFinalDecisionSchedule3ActivitiesApply;
-    private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation35Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-
-    @JsonCreator
-    public SscsCaseData(@JsonProperty(value = "ccdCaseId", access = JsonProperty.Access.WRITE_ONLY) String ccdCaseId,
-                        @JsonProperty(value = "state") State state,
-                        @JsonProperty(value = "previousState") State previousState,
-                        @JsonProperty("caseReference") String caseReference,
-                        @JsonProperty("caseCreated") String caseCreated,
-                        @JsonProperty("infoRequests") InfoRequests infoRequests,
-                        @JsonProperty("region") String region,
-                        @JsonProperty("appeal") Appeal appeal,
-                        @JsonProperty("hearings") List<Hearing> hearings,
-                        @JsonProperty("evidence") Evidence evidence,
-                        @JsonProperty("dwpTimeExtension") List<DwpTimeExtension> dwpTimeExtension,
-                        @JsonProperty("events") List<Event> events,
-                        @JsonProperty("subscriptions") Subscriptions subscriptions,
-                        @JsonProperty("regionalProcessingCenter") RegionalProcessingCenter regionalProcessingCenter,
-                        @JsonProperty("caseBundles") List<Bundle> caseBundles,
-                        @JsonProperty("sscsDocument") List<SscsDocument> sscsDocument,
-                        @JsonProperty("draftSscsDocument") List<SscsDocument> draftSscsDocument,
-                        @JsonProperty("draftSscsFurtherEvidenceDocument") List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument,
-                        @JsonProperty("corDocument") List<CorDocument> corDocument,
-                        @JsonProperty("draftCorDocument") List<CorDocument> draftCorDocument,
-                        @JsonProperty("sscsInterlocDecisionDocument") SscsInterlocDecisionDocument sscsInterlocDecisionDocument,
-                        @JsonProperty("sscsInterlocDirectionDocument") SscsInterlocDirectionDocument sscsInterlocDirectionDocument,
-                        @JsonProperty("sscsStrikeOutDocument") SscsStrikeOutDocument sscsStrikeOutDocument,
-                        @JsonProperty("generatedNino") String generatedNino,
-                        @JsonProperty("generatedSurname") String generatedSurname,
-                        @JsonProperty("generatedEmail") String generatedEmail,
-                        @JsonProperty("generatedMobile") String generatedMobile,
-                        @JsonProperty("generatedDOB") String generatedDob,
-                        @JsonProperty("directionResponse") DirectionResponse directionResponse,
-                        @JsonProperty("evidencePresent") String evidencePresent,
-                        @JsonProperty("bulkScanCaseReference") String bulkScanCaseReference,
-                        @JsonProperty("decisionNotes") String decisionNotes,
-                        @JsonProperty("isCorDecision") String isCorDecision,
-                        @JsonProperty("relistingReason") String relistingReason,
-                        @JsonProperty("dateSentToDwp") String dateSentToDwp,
-                        @JsonProperty("interlocReviewState") String interlocReviewState,
-                        @JsonProperty("hmctsDwpState") String hmctsDwpState,
-                        @JsonProperty("dwpFurtherEvidenceStates") String dwpFurtherEvidenceStates,
-                        @JsonProperty("originalSender") DynamicList originalSender,
-                        @JsonProperty("furtherEvidenceAction") DynamicList furtherEvidenceAction,
-                        @JsonProperty("scannedDocuments") List<ScannedDocument> scannedDocuments,
-                        @JsonProperty("informationFromAppellant") String informationFromAppellant,
-                        @JsonProperty("outcome") String outcome,
-                        @JsonProperty("evidenceHandled") String evidenceHandled,
-                        @JsonProperty("assignedToJudge") String assignedToJudge,
-                        @JsonProperty("assignedToDisabilityMember") String assignedToDisabilityMember,
-                        @JsonProperty("assignedToMedicalMember") String assignedToMedicalMember,
-                        @JsonProperty("reissueFurtherEvidenceDocument") DynamicList reissueFurtherEvidenceDocument,
-                        @JsonProperty("resendToAppellant") String resendToAppellant,
-                        @JsonProperty("resendToRepresentative") String resendToRepresentative,
-                        @JsonProperty("resendToDwp") String resendToDwp,
-                        @JsonProperty("caseCode") String caseCode,
-                        @JsonProperty("benefitCode") String benefitCode,
-                        @JsonProperty("issueCode") String issueCode,
-                        @JsonProperty("dwpOriginatingOffice") DynamicList dwpOriginatingOffice,
-                        @JsonProperty("dwpPresentingOffice") DynamicList dwpPresentingOffice,
-                        @JsonProperty("dwpIsOfficerAttending") String dwpIsOfficerAttending,
-                        @JsonProperty("dwpUCB") String dwpUcb,
-                        @JsonProperty("dwpPHME") String dwpPhme,
-                        @JsonProperty("dwpComplexAppeal") String dwpComplexAppeal,
-                        @JsonProperty("dwpFurtherInfo") String dwpFurtherInfo,
-                        @JsonProperty("correspondence") List<Correspondence> correspondence,
-                        @JsonProperty("interlocReferralDate") String interlocReferralDate,
-                        @JsonProperty("interlocReferralReason") String interlocReferralReason,
-                        @JsonProperty("dwpRegionalCentre") String dwpRegionalCentre,
-                        @JsonProperty("generateNotice") String generateNotice,
-                        @JsonProperty("previewDocument") DocumentLink previewDocument,
-                        @JsonProperty("bodyContent") String bodyContent,
-                        @JsonProperty("signedBy") String signedBy,
-                        @JsonProperty("signedRole") String signedRole,
-                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                        @JsonSerialize(using = LocalDateSerializer.class)
-                        @JsonProperty("dateAdded") LocalDate dateAdded,
-                        @JsonProperty("historicSscsInterlocDirectionDocs") List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs,
-                        @JsonProperty("dwpState") String dwpState,
-                        @JsonProperty("appealNotePad") NotePad appealNotePad,
-                        @JsonProperty("dwpStateFeNoAction") DynamicList dwpStateFeNoAction,
-                        @JsonProperty("createdInGapsFrom") String createdInGapsFrom,
-                        @JsonProperty("dateCaseSentToGaps") String dateCaseSentToGaps,
-                        @JsonProperty("associatedCase") List<CaseLink> associatedCase,
-                        @JsonProperty("dwpAT38Document") DwpResponseDocument dwpAT38Document,
-                        @JsonProperty("dwpEvidenceBundleDocument") DwpResponseDocument dwpEvidenceBundleDocument,
-                        @JsonProperty("dwpResponseDocument") DwpResponseDocument dwpResponseDocument,
-                        @JsonProperty("dwpSupplementaryResponseDoc") DwpResponseDocument dwpSupplementaryResponseDoc,
-                        @JsonProperty("dwpOtherDoc") DwpResponseDocument dwpOtherDoc,
-                        @JsonProperty("dwpLT203") DwpLT203 dwpLT203,
-                        @JsonProperty("dwpLapseLetter") DwpLapseLetter dwpLapseLetter,
-                        @JsonProperty("dwpResponseDate") String dwpResponseDate,
-                        @JsonProperty("linkedCasesBoolean") String linkedCasesBoolean,
-                        @JsonProperty("decisionType") String decisionType,
-                        @JsonProperty("selectWhoReviewsCase") DynamicList selectWhoReviewsCase,
-                        @JsonProperty("directionType") DirectionType directionType,
-                        @JsonProperty("directionTypeDl") DynamicList directionTypeDl,
-                        @JsonProperty("extensionNextEvent") ExtensionNextEvent extensionNextEvent,
-                        @JsonProperty("extensionNextEventDl") DynamicList extensionNextEventDl,
-                        @JsonProperty("tl1Form") DwpResponseDocument tl1Form,
-                        @JsonProperty("isInterlocRequired") String isInterlocRequired,
-                        @JsonProperty("panel") Panel panel,
-                        @JsonProperty("evidenceReceivedCF") EvidenceReceived evidenceReceived,
-                        @JsonProperty("urgentCase") String urgentCase,
-                        @JsonProperty("urgentHearingRegistered") String urgentHearingRegistered,
-                        @JsonProperty("urgentHearingOutcome") String urgentHearingOutcome,
-                        @JsonProperty("documentSentToDwp") String documentSentToDwp,
-                        @JsonProperty("directionDueDate") String directionDueDate,
-                        @JsonProperty("reservedToJudge") String reservedToJudge,
-                        @JsonProperty("linkedCase") List<CaseLink> linkedCase,
-                        @JsonProperty("isWaiverNeeded") String isWaiverNeeded,
-                        @JsonProperty("waiverDeclaration") List<String> waiverDeclaration,
-                        @JsonProperty("waiverReason") List<String> waiverReason,
-                        @JsonProperty("waiverReasonOther") String waiverReasonOther,
-                        @JsonProperty("clerkDelegatedAuthority") List<String> clerkDelegatedAuthority,
-                        @JsonProperty("clerkAppealSatisfactionText") List<String> clerkAppealSatisfactionText,
-                        @JsonProperty("pipWriteFinalDecisionDailyLivingActivitiesQuestion") List<String> pipWriteFinalDecisionDailyLivingActivitiesQuestion,
-                        @JsonProperty("pipWriteFinalDecisionMobilityActivitiesQuestion") List<String> pipWriteFinalDecisionMobilityActivitiesQuestion,
-                        @JsonProperty("clerkConfirmationOfMRN") String clerkConfirmationOfMrn,
-                        @JsonProperty("clerkOtherReason") String clerkOtherReason,
-                        @JsonProperty("clerkConfirmationOther") String clerkConfirmationOther,
-                        @JsonProperty("responseRequired") String responseRequired,
-                        @JsonProperty("timeExtensionRequested") String timeExtensionRequested,
-                        @JsonProperty("bundleConfiguration") String bundleConfiguration,
-                        @JsonProperty("pcqId") String pcqId,
-                        @JsonProperty("writeFinalDecisionIsDescriptorFlow") String writeFinalDecisionIsDescriptorFlow,
-                        @JsonProperty("writeFinalDecisionGenerateNotice") String writeFinalDecisionGenerateNotice,
-                        @JsonProperty("writeFinalDecisionAllowedOrRefused") String writeFinalDecisionAllowedOrRefused,
-                        @JsonProperty("writeFinalDecisionTypeOfHearing") String writeFinalDecisionTypeOfHearing,
-                        @JsonProperty("writeFinalDecisionPresentingOfficerAttendedQuestion") String writeFinalDecisionPresentingOfficerAttendedQuestion,
-                        @JsonProperty("writeFinalDecisionAppellantAttendedQuestion") String writeFinalDecisionAppellantAttendedQuestion,
-                        @JsonProperty("pipWriteFinalDecisionDailyLivingQuestion") String pipWriteFinalDecisionDailyLivingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion") String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionMobilityQuestion") String pipWriteFinalDecisionMobilityQuestion,
-                        @JsonProperty("pipWriteFinalDecisionComparedToDWPMobilityQuestion") String pipWriteFinalDecisionComparedToDwpMobilityQuestion,
-                        @JsonProperty("writeFinalDecisionStartDate") String writeFinalDecisionStartDate,
-                        @JsonProperty("writeFinalDecisionEndDateType") String writeFinalDecisionEndDateType,
-                        @JsonProperty("writeFinalDecisionEndDate") String writeFinalDecisionEndDate,
-                        @JsonProperty("writeFinalDecisionDisabilityQualifiedPanelMemberName") String writeFinalDecisionDisabilityQualifiedPanelMemberName,
-                        @JsonProperty("writeFinalDecisionMedicallyQualifiedPanelMemberName") String writeFinalDecisionMedicallyQualifiedPanelMemberName,
-                        @JsonProperty("writeFinalDecisionOtherPanelMemberName") String writeFinalDecisionOtherPanelMemberName,
-                        @JsonProperty("writeFinalDecisionDateOfDecision") String writeFinalDecisionDateOfDecision,
-                        @JsonProperty("writeFinalDecisionDetailsOfDecision") String writeFinalDecisionDetailsOfDecision,
-                        @JsonProperty("writeFinalDecisionReasons") List<CollectionItem<String>> writeFinalDecisionReasons,
-                        @JsonProperty("pipWriteFinalDecisionPreparingFoodQuestion") String pipWriteFinalDecisionPreparingFoodQuestion,
-                        @JsonProperty("pipWriteFinalDecisionTakingNutritionQuestion") String pipWriteFinalDecisionTakingNutritionQuestion,
-                        @JsonProperty("pipWriteFinalDecisionManagingTherapyQuestion") String pipWriteFinalDecisionManagingTherapyQuestion,
-                        @JsonProperty("pipWriteFinalDecisionWashAndBatheQuestion") String pipWriteFinalDecisionWashAndBatheQuestion,
-                        @JsonProperty("pipWriteFinalDecisionManagingToiletNeedsQuestion") String pipWriteFinalDecisionManagingToiletNeedsQuestion,
-                        @JsonProperty("pipWriteFinalDecisionDressingAndUndressingQuestion") String pipWriteFinalDecisionDressingAndUndressingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionCommunicatingQuestion") String pipWriteFinalDecisionCommunicatingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionReadingUnderstandingQuestion") String pipWriteFinalDecisionReadingUnderstandingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionEngagingWithOthersQuestion") String pipWriteFinalDecisionEngagingWithOthersQuestion,
-                        @JsonProperty("pipWriteFinalDecisionBudgetingDecisionsQuestion") String pipWriteFinalDecisionBudgetingDecisionsQuestion,
-                        @JsonProperty("pipWriteFinalDecisionPlanningAndFollowingQuestion") String pipWriteFinalDecisionPlanningAndFollowingQuestion,
-                        @JsonProperty("pipWriteFinalDecisionMovingAroundQuestion") String pipWriteFinalDecisionMovingAroundQuestion,
-                        @JsonProperty("writeFinalDecisionPageSectionReference") String writeFinalDecisionPageSectionReference,
-                        @JsonProperty("writeFinalDecisionAnythingElse") String writeFinalDecisionAnythingElse,
-                        @JsonProperty("writeFinalDecisionPreviewDocument") DocumentLink writeFinalDecisionPreviewDocument,
-                        @JsonProperty("writeFinalDecisionGeneratedDate") String writeFinalDecisionGeneratedDate,
-                        @JsonProperty("adjournCaseGenerateNotice") String adjournCaseGenerateNotice,
-                        @JsonProperty("adjournCaseTypeOfHearing") String adjournCaseTypeOfHearing,
-                        @JsonProperty("adjournCaseCanCaseBeListedRightAway") String adjournCaseCanCaseBeListedRightAway,
-                        @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties") String adjournCaseAreDirectionsBeingMadeToParties,
-                        @JsonProperty("adjournCaseDirectionsDueDateDaysOffset") String adjournCaseDirectionsDueDateDaysOffset,
-                        @JsonProperty("adjournCaseDirectionsDueDate") String adjournCaseDirectionsDueDate,
-                        @JsonProperty("adjournCaseTypeOfNextHearing") String adjournCaseTypeOfNextHearing,
-                        @JsonProperty("adjournCaseNextHearingVenue") String adjournCaseNextHearingVenue,
-                        @JsonProperty("adjournCaseNextHearingVenueSelected") DynamicList adjournCaseNextHearingVenueSelected,
-                        @JsonProperty("adjournCasePanelMembersExcluded") String adjournCasePanelMembersExcluded,
-                        @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName") String adjournCaseDisabilityQualifiedPanelMemberName,
-                        @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName") String adjournCaseMedicallyQualifiedPanelMemberName,
-                        @JsonProperty("adjournCaseOtherPanelMemberName") String adjournCaseOtherPanelMemberName,
-                        @JsonProperty("adjournCaseNextHearingListingDurationType") String adjournCaseNextHearingListingDurationType,
-                        @JsonProperty("adjournCaseNextHearingListingDuration") String adjournCaseNextHearingListingDuration,
-                        @JsonProperty("adjournCaseNextHearingListingDurationUnits") String adjournCaseNextHearingListingDurationUnits,
-                        @JsonProperty("adjournCaseInterpreterRequired") String adjournCaseInterpreterRequired,
-                        @JsonProperty("adjournCaseInterpreterLanguage") String adjournCaseInterpreterLanguage,
-                        @JsonProperty("adjournCaseNextHearingDateType") String adjournCaseNextHearingDateType,
-                        @JsonProperty("adjournCaseNextHearingDateOrPeriod") String adjournCaseNextHearingDateOrPeriod,
-                        @JsonProperty("adjournCaseNextHearingDateOrTime") String adjournCaseNextHearingDateOrTime,
-                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterDate") String adjournCaseNextHearingFirstAvailableDateAfterDate,
-                        @JsonProperty("adjournCaseNextHearingFirstAvailableDateAfterPeriod") String adjournCaseNextHearingFirstAvailableDateAfterPeriod,
-                        @JsonProperty("adjournCaseTime") AdjournCaseTime adjournCaseTime,
-                        @JsonProperty("adjournCaseReasons") List<CollectionItem<String>> adjournCaseReasons,
-                        @JsonProperty("adjournCaseAdditionalDirections") List<CollectionItem<String>> adjournCaseAdditionalDirections,
-                        @JsonProperty("adjournCasePreviewDocument") DocumentLink adjournCasePreviewDocument,
-                        @JsonProperty("adjournCaseGeneratedDate") String adjournCaseGeneratedDate,
-                        @JsonProperty("notListableProvideReasons") String notListableProvideReasons,
-                        @JsonProperty("notListableDueDate") String notListableDueDate,
-                        @JsonProperty("updateNotListableDirectionsFulfilled") String updateNotListableDirectionsFulfilled,
-                        @JsonProperty("updateNotListableInterlocReview") String updateNotListableInterlocReview,
-                        @JsonProperty("updateNotListableWhoReviewsCase") String updateNotListableWhoReviewsCase,
-                        @JsonProperty("updateNotListableSetNewDueDate") String updateNotListableSetNewDueDate,
-                        @JsonProperty("updateNotListableDueDate") String updateNotListableDueDate,
-                        @JsonProperty("updateNotListableWhereShouldCaseMoveTo") String updateNotListableWhereShouldCaseMoveTo,
-                        @JsonProperty("languagePreferenceWelsh") String languagePreferenceWelsh,
-                        @JsonProperty("elementsDisputedList") List<String> elementsDisputedList,
-                        @JsonProperty("elementsDisputedGeneral") List<ElementDisputed> elementsDisputedGeneral,
-                        @JsonProperty("elementsDisputedSanctions") List<ElementDisputed> elementsDisputedSanctions,
-                        @JsonProperty("elementsDisputedOverpayment") List<ElementDisputed> elementsDisputedOverpayment,
-                        @JsonProperty("elementsDisputedHousing") List<ElementDisputed> elementsDisputedHousing,
-                        @JsonProperty("elementsDisputedChildCare") List<ElementDisputed> elementsDisputedChildCare,
-                        @JsonProperty("elementsDisputedCare") List<ElementDisputed> elementsDisputedCare,
-                        @JsonProperty("elementsDisputedChildElement") List<ElementDisputed> elementsDisputedChildElement,
-                        @JsonProperty("elementsDisputedChildDisabled") List<ElementDisputed> elementsDisputedChildDisabled,
-                        @JsonProperty("elementsDisputedIsDecisionDisputedByOthers") String elementsDisputedIsDecisionDisputedByOthers,
-                        @JsonProperty("elementsDisputedLinkedAppealRef") String elementsDisputedLinkedAppealRef,
-                        @JsonProperty("jointParty") String jointParty,
-                        @JsonProperty("jointPartyName") JointPartyName jointPartyName,
-                        @JsonProperty("jointPartyIdentity") Identity jointPartyIdentity,
-                        @JsonProperty("jointPartyAddressSameAsAppellant") String jointPartyAddressSameAsAppellant,
-                        @JsonProperty("jointPartyAddress") Address jointPartyAddress,
-                        @JsonProperty("translationWorkOutstanding") String translationWorkOutstanding,
-                        @JsonProperty("sscsWelshDocuments") List<SscsWelshDocument> sscsWelshDocuments,
-                        @JsonProperty("sscsWelshPreviewDocuments") List<SscsWelshDocument> sscsWelshPreviewDocuments,
-                        @JsonProperty("sscsWelshPreviewNextEvent") String sscsWelshPreviewNextEvent,
-                        @JsonProperty("originalDocuments") DynamicList originalDocuments,
-                        @JsonProperty("originalNoticeDocuments") DynamicList originalNoticeDocuments,
-                        @JsonProperty("documentTypes") DynamicList documentTypes,
-                        @JsonProperty("welshBodyContent") String welshBodyContent,
-                        @JsonProperty("englishBodyContent") String englishBodyContent,
-                        @JsonProperty("isScottishCase") String isScottishCase,
-                        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-                            @JsonSerialize(using = LocalDateSerializer.class)
-                            @JsonProperty("reinstatementRegistered") LocalDate reinstatementRegistered,
-                        @JsonProperty("reinstatementOutcome") RequestOutcome reinstatementOutcome,
-                        @JsonProperty("welshInterlocNextReviewState") String welshInterlocNextReviewState,
-                        @JsonProperty("confidentialityRequestOutcomeAppellant") DatedRequestOutcome confidentialityRequestOutcomeAppellant,
-                        @JsonProperty("confidentialityRequestOutcomeJointParty") DatedRequestOutcome confidentialityRequestOutcomeJointParty,
-                        @JsonProperty("confidentialityRequestAppellantGrantedOrRefused") String confidentialityRequestAppellantGrantedOrRefused,
-                        @JsonProperty("confidentialityRequestJointPartyGrantedOrRefused") String confidentialityRequestJointPartyGrantedOrRefused,
-                        @JsonProperty(value = "formType") FormType formType,
-                        @JsonProperty("isProgressingViaGaps") String isProgressingViaGaps,
-                        @JsonProperty("wcaAppeal") String wcaAppeal,
-                        @JsonProperty("supportGroupOnlyAppeal") String supportGroupOnlyAppeal,
-                        @JsonProperty("esaWriteFinalDecisionPhysicalDisabilitiesQuestion") List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion,
-                        @JsonProperty("esaWriteFinalDecisionMentalAssessmentQuestion") List<String> esaWriteFinalDecisionMentalAssessmentQuestion,
-                        @JsonProperty("esaWriteFinalDecisionMobilisingUnaidedQuestion") String esaWriteFinalDecisionMobilisingUnaidedQuestion,
-                        @JsonProperty("esaWriteFinalDecisionStandingAndSittingQuestion") String esaWriteFinalDecisionStandingAndSittingQuestion,
-                        @JsonProperty("esaWriteFinalDecisionReachingQuestion") String esaWriteFinalDecisionReachingQuestion,
-                        @JsonProperty("esaWriteFinalDecisionPickingUpQuestion") String esaWriteFinalDecisionPickingUpQuestion,
-                        @JsonProperty("esaWriteFinalDecisionManualDexterityQuestion") String esaWriteFinalDecisionManualDexterityQuestion,
-                        @JsonProperty("esaWriteFinalDecisionMakingSelfUnderstoodQuestion") String esaWriteFinalDecisionMakingSelfUnderstoodQuestion,
-                        @JsonProperty("esaWriteFinalDecisionCommunicationQuestion") String esaWriteFinalDecisionCommunicationQuestion,
-                        @JsonProperty("esaWriteFinalDecisionNavigationQuestion") String esaWriteFinalDecisionNavigationQuestion,
-                        @JsonProperty("esaWriteFinalDecisionLossOfControlQuestion") String esaWriteFinalDecisionLossOfControlQuestion,
-                        @JsonProperty("esaWriteFinalDecisionConsciousnessQuestion") String esaWriteFinalDecisionConsciousnessQuestion,
-                        @JsonProperty("esaWriteFinalDecisionLearningTasksQuestion") String esaWriteFinalDecisionLearningTasksQuestion,
-                        @JsonProperty("esaWriteFinalDecisionAwarenessOfHazardsQuestion") String esaWriteFinalDecisionAwarenessOfHazardsQuestion,
-                        @JsonProperty("esaWriteFinalDecisionPersonalActionQuestion") String esaWriteFinalDecisionPersonalActionQuestion,
-                        @JsonProperty("esaWriteFinalDecisionCopingWithChangeQuestion") String esaWriteFinalDecisionCopingWithChangeQuestion,
-                        @JsonProperty("esaWriteFinalDecisionGettingAboutQuestion") String esaWriteFinalDecisionGettingAboutQuestion,
-                        @JsonProperty("esaWriteFinalDecisionSocialEngagementQuestion") String esaWriteFinalDecisionSocialEngagementQuestion,
-                        @JsonProperty("esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion") String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion,
-                        @JsonProperty("doesRegulation29Apply") YesNo doesRegulation29Apply,
-                        @JsonProperty("showRegulation29Page") YesNo showRegulation29Page,
-                        @JsonProperty("showSchedule3ActivitiesPage") YesNo showSchedule3ActivitiesPage,
-                        @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesApply") String esaWriteFinalDecisionSchedule3ActivitiesApply,
-                        @JsonProperty("esaWriteFinalDecisionSchedule3ActivitiesQuestion") List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion,
-                        @JsonProperty("doesRegulation35Apply") YesNo doesRegulation35Apply,
-                        @JsonProperty("showFinalDecisionNoticeSummaryOfOutcomePage") YesNo showFinalDecisionNoticeSummaryOfOutcomePage) {
-
-        this.ccdCaseId = ccdCaseId;
-        this.state = state;
-        this.previousState = previousState;
-        this.caseReference = caseReference;
-        this.caseCreated = caseCreated;
-        this.infoRequests = infoRequests;
-        this.region = region;
-        this.appeal = appeal;
-        this.hearings = hearings;
-        this.evidence = evidence;
-        this.dwpTimeExtension = dwpTimeExtension;
-        this.events = events;
-        this.subscriptions = subscriptions;
-        this.regionalProcessingCenter = regionalProcessingCenter;
-        this.caseBundles = caseBundles;
-        this.sscsDocument = sscsDocument;
-        this.draftSscsDocument = draftSscsDocument;
-        this.draftSscsFurtherEvidenceDocument = draftSscsFurtherEvidenceDocument;
-        this.corDocument = corDocument;
-        this.draftCorDocument = draftCorDocument;
-        this.generatedNino = generatedNino;
-        this.generatedSurname = generatedSurname;
-        this.generatedEmail = generatedEmail;
-        this.generatedMobile = generatedMobile;
-        this.generatedDob = generatedDob;
-        this.directionResponse = directionResponse;
-        this.evidencePresent = evidencePresent;
-        this.bulkScanCaseReference = bulkScanCaseReference;
-        this.decisionNotes = decisionNotes;
-        this.isCorDecision = isCorDecision;
-        this.relistingReason = relistingReason;
-        this.dateSentToDwp = dateSentToDwp;
-        this.interlocReviewState = interlocReviewState;
-        this.hmctsDwpState = hmctsDwpState;
-        this.dwpFurtherEvidenceStates = dwpFurtherEvidenceStates;
-        this.originalSender = originalSender;
-        this.furtherEvidenceAction = furtherEvidenceAction;
-        this.scannedDocuments = scannedDocuments;
-        this.outcome = outcome;
-        this.sscsInterlocDirectionDocument = sscsInterlocDirectionDocument;
-        this.sscsInterlocDecisionDocument = sscsInterlocDecisionDocument;
-        this.sscsStrikeOutDocument = sscsStrikeOutDocument;
-        this.informationFromAppellant = informationFromAppellant;
-        this.evidenceHandled = evidenceHandled;
-        this.assignedToJudge = assignedToJudge;
-        this.assignedToDisabilityMember = assignedToDisabilityMember;
-        this.assignedToMedicalMember = assignedToMedicalMember;
-        this.reissueFurtherEvidenceDocument = reissueFurtherEvidenceDocument;
-        this.resendToAppellant = resendToAppellant;
-        this.resendToRepresentative = resendToRepresentative;
-        this.resendToDwp = resendToDwp;
-        this.caseCode = caseCode;
-        this.benefitCode = benefitCode;
-        this.issueCode = issueCode;
-        this.dwpOriginatingOffice = dwpOriginatingOffice;
-        this.dwpPresentingOffice = dwpPresentingOffice;
-        this.dwpIsOfficerAttending = dwpIsOfficerAttending;
-        this.dwpUcb = dwpUcb;
-        this.dwpPhme = dwpPhme;
-        this.dwpComplexAppeal = dwpComplexAppeal;
-        this.dwpFurtherInfo = dwpFurtherInfo;
-        this.correspondence = correspondence;
-        this.interlocReferralDate = interlocReferralDate;
-        this.interlocReferralReason = interlocReferralReason;
-        this.dwpRegionalCentre = dwpRegionalCentre;
-        this.generateNotice = generateNotice;
-        this.previewDocument = previewDocument;
-        this.bodyContent = bodyContent;
-        this.signedBy = signedBy;
-        this.signedRole = signedRole;
-        this.dateAdded = dateAdded;
-        this.historicSscsInterlocDirectionDocs = historicSscsInterlocDirectionDocs;
-        this.dwpState = dwpState;
-        this.appealNotePad = appealNotePad;
-        this.dwpStateFeNoAction = dwpStateFeNoAction;
-        this.createdInGapsFrom = createdInGapsFrom;
-        this.dateCaseSentToGaps = dateCaseSentToGaps;
-        this.associatedCase = associatedCase;
-        this.dwpAT38Document = dwpAT38Document;
-        this.dwpEvidenceBundleDocument = dwpEvidenceBundleDocument;
-        this.dwpResponseDocument = dwpResponseDocument;
-        this.dwpSupplementaryResponseDoc = dwpSupplementaryResponseDoc;
-        this.dwpOtherDoc = dwpOtherDoc;
-        this.dwpLT203 = dwpLT203;
-        this.dwpLapseLetter = dwpLapseLetter;
-        this.dwpResponseDate = dwpResponseDate;
-        this.linkedCasesBoolean = linkedCasesBoolean;
-        this.decisionType = decisionType;
-        this.selectWhoReviewsCase = selectWhoReviewsCase;
-        this.directionType = directionType;
-        this.directionTypeDl = directionTypeDl;
-        this.extensionNextEvent = extensionNextEvent;
-        this.extensionNextEventDl = extensionNextEventDl;
-        this.tl1Form = tl1Form;
-        this.isInterlocRequired = isInterlocRequired;
-        this.panel = panel;
-        this.evidenceReceived = evidenceReceived;
-        this.urgentCase = urgentCase;
-        this.urgentHearingRegistered = urgentHearingRegistered;
-        this.urgentHearingOutcome = urgentHearingOutcome;
-        this.documentSentToDwp = documentSentToDwp;
-        this.directionDueDate = directionDueDate;
-        this.reservedToJudge = reservedToJudge;
-        this.linkedCase = linkedCase;
-        this.isWaiverNeeded = isWaiverNeeded;
-        this.waiverDeclaration = waiverDeclaration;
-        this.waiverReason = waiverReason;
-        this.waiverReasonOther = waiverReasonOther;
-        this.clerkDelegatedAuthority = clerkDelegatedAuthority;
-        this.clerkAppealSatisfactionText = clerkAppealSatisfactionText;
-        this.clerkConfirmationOfMrn = clerkConfirmationOfMrn;
-        this.clerkOtherReason = clerkOtherReason;
-        this.clerkConfirmationOther = clerkConfirmationOther;
-        this.responseRequired = responseRequired;
-        this.timeExtensionRequested = timeExtensionRequested;
-        this.bundleConfiguration = bundleConfiguration;
-        this.pcqId = pcqId;
-        this.writeFinalDecisionIsDescriptorFlow = writeFinalDecisionIsDescriptorFlow;
-        this.writeFinalDecisionGenerateNotice = writeFinalDecisionGenerateNotice;
-        this.writeFinalDecisionAllowedOrRefused = writeFinalDecisionAllowedOrRefused;
-        this.writeFinalDecisionTypeOfHearing = writeFinalDecisionTypeOfHearing;
-        this.writeFinalDecisionPresentingOfficerAttendedQuestion = writeFinalDecisionPresentingOfficerAttendedQuestion;
-        this.writeFinalDecisionAppellantAttendedQuestion = writeFinalDecisionAppellantAttendedQuestion;
-        this.pipWriteFinalDecisionDailyLivingQuestion = pipWriteFinalDecisionDailyLivingQuestion;
-        this.pipWriteFinalDecisionComparedToDwpDailyLivingQuestion = pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
-        this.pipWriteFinalDecisionMobilityQuestion = pipWriteFinalDecisionMobilityQuestion;
-        this.pipWriteFinalDecisionComparedToDwpMobilityQuestion = pipWriteFinalDecisionComparedToDwpMobilityQuestion;
-        this.writeFinalDecisionStartDate = writeFinalDecisionStartDate;
-        this.writeFinalDecisionEndDateType = writeFinalDecisionEndDateType;
-        this.writeFinalDecisionEndDate = writeFinalDecisionEndDate;
-        this.writeFinalDecisionDisabilityQualifiedPanelMemberName = writeFinalDecisionDisabilityQualifiedPanelMemberName;
-        this.writeFinalDecisionMedicallyQualifiedPanelMemberName = writeFinalDecisionMedicallyQualifiedPanelMemberName;
-        this.writeFinalDecisionOtherPanelMemberName = writeFinalDecisionOtherPanelMemberName;
-        this.writeFinalDecisionDateOfDecision = writeFinalDecisionDateOfDecision;
-        this.writeFinalDecisionDetailsOfDecision = writeFinalDecisionDetailsOfDecision;
-        this.writeFinalDecisionReasons = writeFinalDecisionReasons;
-        this.pipWriteFinalDecisionDailyLivingActivitiesQuestion = pipWriteFinalDecisionDailyLivingActivitiesQuestion;
-        this.pipWriteFinalDecisionMobilityActivitiesQuestion = pipWriteFinalDecisionMobilityActivitiesQuestion;
-        this.pipWriteFinalDecisionPreparingFoodQuestion = pipWriteFinalDecisionPreparingFoodQuestion;
-        this.pipWriteFinalDecisionTakingNutritionQuestion = pipWriteFinalDecisionTakingNutritionQuestion;
-        this.pipWriteFinalDecisionManagingTherapyQuestion = pipWriteFinalDecisionManagingTherapyQuestion;
-        this.pipWriteFinalDecisionWashAndBatheQuestion = pipWriteFinalDecisionWashAndBatheQuestion;
-        this.pipWriteFinalDecisionManagingToiletNeedsQuestion = pipWriteFinalDecisionManagingToiletNeedsQuestion;
-        this.pipWriteFinalDecisionDressingAndUndressingQuestion = pipWriteFinalDecisionDressingAndUndressingQuestion;
-        this.pipWriteFinalDecisionCommunicatingQuestion = pipWriteFinalDecisionCommunicatingQuestion;
-        this.pipWriteFinalDecisionReadingUnderstandingQuestion = pipWriteFinalDecisionReadingUnderstandingQuestion;
-        this.pipWriteFinalDecisionEngagingWithOthersQuestion = pipWriteFinalDecisionEngagingWithOthersQuestion;
-        this.pipWriteFinalDecisionBudgetingDecisionsQuestion = pipWriteFinalDecisionBudgetingDecisionsQuestion;
-        this.pipWriteFinalDecisionPlanningAndFollowingQuestion = pipWriteFinalDecisionPlanningAndFollowingQuestion;
-        this.pipWriteFinalDecisionMovingAroundQuestion = pipWriteFinalDecisionMovingAroundQuestion;
-        this.writeFinalDecisionPageSectionReference = writeFinalDecisionPageSectionReference;
-        this.writeFinalDecisionAnythingElse = writeFinalDecisionAnythingElse;
-        this.writeFinalDecisionPreviewDocument = writeFinalDecisionPreviewDocument;
-        this.writeFinalDecisionGeneratedDate = writeFinalDecisionGeneratedDate;
-        this.adjournCaseGenerateNotice = adjournCaseGenerateNotice;
-        this.adjournCaseTypeOfHearing = adjournCaseTypeOfHearing;
-        this.adjournCaseCanCaseBeListedRightAway = adjournCaseCanCaseBeListedRightAway;
-        this.adjournCaseAreDirectionsBeingMadeToParties = adjournCaseAreDirectionsBeingMadeToParties;
-        this.adjournCaseDirectionsDueDateDaysOffset = adjournCaseDirectionsDueDateDaysOffset;
-        this.adjournCaseDirectionsDueDate = adjournCaseDirectionsDueDate;
-        this.adjournCaseTypeOfNextHearing = adjournCaseTypeOfNextHearing;
-        this.adjournCaseNextHearingVenue = adjournCaseNextHearingVenue;
-        this.adjournCaseNextHearingVenueSelected = adjournCaseNextHearingVenueSelected;
-        this.adjournCasePanelMembersExcluded = adjournCasePanelMembersExcluded;
-        this.adjournCaseDisabilityQualifiedPanelMemberName = adjournCaseDisabilityQualifiedPanelMemberName;
-        this.adjournCaseMedicallyQualifiedPanelMemberName = adjournCaseMedicallyQualifiedPanelMemberName;
-        this.adjournCaseOtherPanelMemberName = adjournCaseOtherPanelMemberName;
-        this.adjournCaseNextHearingListingDurationType = adjournCaseNextHearingListingDurationType;
-        this.adjournCaseNextHearingListingDuration = adjournCaseNextHearingListingDuration;
-        this.adjournCaseNextHearingListingDurationUnits = adjournCaseNextHearingListingDurationUnits;
-        this.adjournCaseInterpreterRequired = adjournCaseInterpreterRequired;
-        this.adjournCaseInterpreterLanguage = adjournCaseInterpreterLanguage;
-        this.adjournCaseNextHearingDateType = adjournCaseNextHearingDateType;
-        this.adjournCaseNextHearingDateOrPeriod = adjournCaseNextHearingDateOrPeriod;
-        this.adjournCaseNextHearingDateOrTime = adjournCaseNextHearingDateOrTime;
-        this.adjournCaseNextHearingFirstAvailableDateAfterDate = adjournCaseNextHearingFirstAvailableDateAfterDate;
-        this.adjournCaseNextHearingFirstAvailableDateAfterPeriod = adjournCaseNextHearingFirstAvailableDateAfterPeriod;
-        this.adjournCaseTime = adjournCaseTime;
-        this.adjournCaseReasons = adjournCaseReasons;
-        this.adjournCaseAdditionalDirections = adjournCaseAdditionalDirections;
-        this.adjournCasePreviewDocument = adjournCasePreviewDocument;
-        this.adjournCaseGeneratedDate = adjournCaseGeneratedDate;
-        this.notListableProvideReasons = notListableProvideReasons;
-        this.notListableDueDate = notListableDueDate;
-        this.updateNotListableDirectionsFulfilled = updateNotListableDirectionsFulfilled;
-        this.updateNotListableInterlocReview = updateNotListableInterlocReview;
-        this.updateNotListableWhoReviewsCase = updateNotListableWhoReviewsCase;
-        this.updateNotListableSetNewDueDate = updateNotListableSetNewDueDate;
-        this.updateNotListableDueDate = updateNotListableDueDate;
-        this.updateNotListableWhereShouldCaseMoveTo = updateNotListableWhereShouldCaseMoveTo;
-        this.languagePreferenceWelsh = languagePreferenceWelsh;
-        this.elementsDisputedList = elementsDisputedList;
-        this.elementsDisputedGeneral = elementsDisputedGeneral;
-        this.elementsDisputedSanctions = elementsDisputedSanctions;
-        this.elementsDisputedOverpayment = elementsDisputedOverpayment;
-        this.elementsDisputedHousing = elementsDisputedHousing;
-        this.elementsDisputedChildCare = elementsDisputedChildCare;
-        this.elementsDisputedCare = elementsDisputedCare;
-        this.elementsDisputedChildElement = elementsDisputedChildElement;
-        this.elementsDisputedChildDisabled = elementsDisputedChildDisabled;
-        this.elementsDisputedIsDecisionDisputedByOthers = elementsDisputedIsDecisionDisputedByOthers;
-        this.elementsDisputedLinkedAppealRef = elementsDisputedLinkedAppealRef;
-        this.jointParty = jointParty;
-        this.jointPartyName = jointPartyName;
-        this.jointPartyIdentity = jointPartyIdentity;
-        this.jointPartyAddressSameAsAppellant = jointPartyAddressSameAsAppellant;
-        this.jointPartyAddress = jointPartyAddress;
-        this.translationWorkOutstanding = translationWorkOutstanding;
-        this.sscsWelshDocuments = sscsWelshDocuments;
-        this.sscsWelshPreviewDocuments = sscsWelshPreviewDocuments;
-        this.sscsWelshPreviewNextEvent = sscsWelshPreviewNextEvent;
-        this.originalDocuments = originalDocuments;
-        this.originalNoticeDocuments = originalNoticeDocuments;
-        this.documentTypes = documentTypes;
-        this.welshBodyContent = welshBodyContent;
-        this.englishBodyContent = englishBodyContent;
-        this.isScottishCase = isScottishCase;
-        this.reinstatementRegistered = reinstatementRegistered;
-        this.reinstatementOutcome = reinstatementOutcome;
-        this.welshInterlocNextReviewState = welshInterlocNextReviewState;
-        this.confidentialityRequestOutcomeAppellant = confidentialityRequestOutcomeAppellant;
-        this.confidentialityRequestOutcomeJointParty = confidentialityRequestOutcomeJointParty;
-        this.confidentialityRequestAppellantGrantedOrRefused = confidentialityRequestAppellantGrantedOrRefused;
-        this.confidentialityRequestJointPartyGrantedOrRefused =  confidentialityRequestJointPartyGrantedOrRefused;
-        this.formType = formType;
-        this.isProgressingViaGaps =  isProgressingViaGaps;
-        this.wcaAppeal = wcaAppeal;
-        this.supportGroupOnlyAppeal = supportGroupOnlyAppeal;
-        this.esaWriteFinalDecisionPhysicalDisabilitiesQuestion = esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
-        this.esaWriteFinalDecisionMentalAssessmentQuestion = esaWriteFinalDecisionMentalAssessmentQuestion;
-        this.esaWriteFinalDecisionMobilisingUnaidedQuestion = esaWriteFinalDecisionMobilisingUnaidedQuestion;
-        this.esaWriteFinalDecisionStandingAndSittingQuestion = esaWriteFinalDecisionStandingAndSittingQuestion;
-        this.esaWriteFinalDecisionReachingQuestion = esaWriteFinalDecisionReachingQuestion;
-        this.esaWriteFinalDecisionPickingUpQuestion = esaWriteFinalDecisionPickingUpQuestion;
-        this.esaWriteFinalDecisionManualDexterityQuestion = esaWriteFinalDecisionManualDexterityQuestion;
-        this.esaWriteFinalDecisionMakingSelfUnderstoodQuestion = esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
-        this.esaWriteFinalDecisionCommunicationQuestion = esaWriteFinalDecisionCommunicationQuestion;
-        this.esaWriteFinalDecisionNavigationQuestion = esaWriteFinalDecisionNavigationQuestion;
-        this.esaWriteFinalDecisionLossOfControlQuestion = esaWriteFinalDecisionLossOfControlQuestion;
-        this.esaWriteFinalDecisionConsciousnessQuestion = esaWriteFinalDecisionConsciousnessQuestion;
-        this.esaWriteFinalDecisionLearningTasksQuestion = esaWriteFinalDecisionLearningTasksQuestion;
-        this.esaWriteFinalDecisionAwarenessOfHazardsQuestion = esaWriteFinalDecisionAwarenessOfHazardsQuestion;
-        this.esaWriteFinalDecisionPersonalActionQuestion = esaWriteFinalDecisionPersonalActionQuestion;
-        this.esaWriteFinalDecisionCopingWithChangeQuestion = esaWriteFinalDecisionCopingWithChangeQuestion;
-        this.esaWriteFinalDecisionGettingAboutQuestion = esaWriteFinalDecisionGettingAboutQuestion;
-        this.esaWriteFinalDecisionSocialEngagementQuestion = esaWriteFinalDecisionSocialEngagementQuestion;
-        this.esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion = esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
-        this.doesRegulation29Apply = doesRegulation29Apply;
-        this.showRegulation29Page = showRegulation29Page;
-        this.showSchedule3ActivitiesPage = showSchedule3ActivitiesPage;
-        this.esaWriteFinalDecisionSchedule3ActivitiesApply = esaWriteFinalDecisionSchedule3ActivitiesApply;
-        this.esaWriteFinalDecisionSchedule3ActivitiesQuestion = esaWriteFinalDecisionSchedule3ActivitiesQuestion;
-        this.doesRegulation35Apply = doesRegulation35Apply;
-        this.showFinalDecisionNoticeSummaryOfOutcomePage = showFinalDecisionNoticeSummaryOfOutcomePage;
-    }
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -995,8 +485,12 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
-        if ("No".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return doesRegulation35Apply;
+        if (esaSscsCaseData != null) {
+            if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+                return doesRegulation35Apply;
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
@@ -1004,13 +498,25 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public List<String> getSchedule3Selections() {
-        if ("Yes".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return esaWriteFinalDecisionSchedule3ActivitiesQuestion;
-        } else if ("No".equalsIgnoreCase(getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return new ArrayList<>();
+        if (esaSscsCaseData != null) {
+            if ("Yes".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+                return esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
+            } else if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+                return new ArrayList<>();
+            } else {
+                return null;
+            }
         } else {
             return null;
         }
+    }
+
+    @JsonIgnore
+    public SscsEsaCaseData getSscsEsaCaseData() {
+        if (esaSscsCaseData == null) {
+            this.esaSscsCaseData = new SscsEsaCaseData();
+        }
+        return esaSscsCaseData;
     }
 
 }
