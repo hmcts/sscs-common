@@ -8,9 +8,11 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normali
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
 import java.util.Collections;
+import java.util.List;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.assertj.core.util.Lists;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -78,6 +80,19 @@ public class SearchCcdCaseServiceTest {
     }
 
     @Test
+    public void shouldReturnListOfCasesForGivenCaseReferenceNumber() {
+
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
+
+        List<SscsCaseDetails> casesByCaseRef = searchCcdCaseService.findListOfCasesByCaseRef(CASE_REF, idamTokens);
+
+        assertNotNull(casesByCaseRef);
+        assertEquals(1, casesByCaseRef.size());
+
+    }
+
+    @Test
     public void shouldReturnNullIfNoCaseExistsForGiveCaseRef() {
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
@@ -104,6 +119,21 @@ public class SearchCcdCaseServiceTest {
 
     }
 
+    @Test
+    public void shouldReturnListOfCasesForGivenCaseReferenceNumberAndCcdIdByCaseRef() {
+
+        SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Lists.list(caseDetails, caseDetails)).build());
+
+        List<SscsCaseDetails> casesByCaseRef = searchCcdCaseService.findListOfCasesByCaseRefOrCaseId(sscsCaseData, idamTokens);
+
+        assertNotNull(casesByCaseRef);
+        assertEquals(2, casesByCaseRef.size());
+        assertEquals(CASE_REF, casesByCaseRef.get(0).getData().getCaseReference());
+
+    }
 
     @Test
     public void shouldReturnCaseForGivenCaseReferenceNumberAndCcdIdByCaseId() {
@@ -124,6 +154,25 @@ public class SearchCcdCaseServiceTest {
 
     }
 
+    @Test
+    public void shouldReturnListOfCasesForGivenCaseReferenceNumberAndCcdIdByCaseId() {
+
+        SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
+        sscsCaseData.setCcdCaseId("1");
+
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
+
+        when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(sscsCaseDetails);
+
+        List<SscsCaseDetails> casesByCaseId = searchCcdCaseService.findListOfCasesByCaseRefOrCaseId(sscsCaseData, idamTokens);
+
+        assertNotNull(casesByCaseId);
+        assertEquals(1, casesByCaseId.size());
+        assertEquals(1L, casesByCaseId.get(0).getId().longValue());
+
+    }
 
     @Test
     public void shouldReturnNullIfCaseNotFoundForGivenCaseIdAndCaseRef() {

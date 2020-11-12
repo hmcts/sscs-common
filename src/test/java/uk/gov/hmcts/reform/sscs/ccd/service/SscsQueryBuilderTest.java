@@ -11,12 +11,22 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
 public class SscsQueryBuilderTest {
 
+
+
     @Test
     public void givenFieldNameAndValue_thenBuildQueryForSingleField() {
         SearchSourceBuilder result = findCaseBySingleField("test1", "test2");
 
-        assertEquals("test1", ((MatchQueryBuilder) result.query()).fieldName());
-        assertEquals("test2", ((MatchQueryBuilder) result.query()).value());
+        assertEquals("test1", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).fieldName());
+        assertEquals("test2", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).value());
+    }
+
+    @Test
+    public void givenFieldNameAndValue_thenBuildQueryForSingleFieldWithSpecialCharValue() {
+        SearchSourceBuilder result = findCaseBySingleField("data.caseReference", "SC001/19/00365");
+
+        assertEquals("data.caseReference", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).fieldName());
+        assertEquals("SC001\\\\/19\\\\/00365", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).must().get(0)).value());
     }
 
     @Test
