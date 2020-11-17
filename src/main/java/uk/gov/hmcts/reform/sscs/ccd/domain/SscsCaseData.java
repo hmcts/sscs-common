@@ -310,9 +310,12 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     private SscsEsaCaseData sscsEsaCaseData;
     private YesNo doesRegulation29Apply;
+    private YesNo doesSchedule8Paragraph4Apply;
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
+    private YesNo showSchedule7ActivitiesPage;
     private YesNo doesRegulation35Apply;
+    private YesNo doesSchedule9Paragraph4Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     @JsonUnwrapped
     private SscsUcCaseData sscsUcCaseData;
