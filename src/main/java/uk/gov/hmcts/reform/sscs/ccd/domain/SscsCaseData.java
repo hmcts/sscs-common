@@ -308,7 +308,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
-    private SscsEsaCaseData esaSscsCaseData;
+    private SscsEsaCaseData sscsEsaCaseData;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
@@ -485,8 +485,8 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
-        if (esaSscsCaseData != null) {
-            if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+        if (sscsEsaCaseData != null) {
+            if ("No".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
                 return doesRegulation35Apply;
             } else {
                 return null;
@@ -498,10 +498,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public List<String> getSchedule3Selections() {
-        if (esaSscsCaseData != null) {
-            if ("Yes".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
-            } else if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+        if (sscsEsaCaseData != null) {
+            if ("Yes".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+                return sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
+            } else if ("No".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
                 return new ArrayList<>();
             } else {
                 return null;
@@ -513,10 +513,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public SscsEsaCaseData getSscsEsaCaseData() {
-        if (esaSscsCaseData == null) {
-            this.esaSscsCaseData = new SscsEsaCaseData();
+        if (sscsEsaCaseData == null) {
+            this.sscsEsaCaseData = new SscsEsaCaseData();
         }
-        return esaSscsCaseData;
+        return sscsEsaCaseData;
     }
 
 }
