@@ -502,11 +502,39 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public YesNo getSchedule9Paragraph4Selection() {
+        if (sscsUcCaseData != null) {
+            if ("No".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
+                return doesSchedule9Paragraph4Apply;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    @JsonIgnore
     public List<String> getSchedule3Selections() {
         if (sscsEsaCaseData != null) {
             if ("Yes".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
                 return sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
             } else if ("No".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+                return new ArrayList<>();
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    @JsonIgnore
+    public List<String> getSchedule7Selections() {
+        if (sscsUcCaseData != null) {
+            if ("Yes".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
+                return sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesQuestion();
+            } else if ("No".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
                 return new ArrayList<>();
             } else {
                 return null;

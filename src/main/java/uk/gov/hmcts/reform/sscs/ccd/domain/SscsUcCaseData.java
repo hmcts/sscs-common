@@ -35,7 +35,7 @@ public class SscsUcCaseData {
     private String ucWriteFinalDecisionGettingAboutQuestion;
     private String ucWriteFinalDecisionSocialEngagementQuestion;
     private String ucWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
-    private String ucWriteFinalDecisionSchedule3ActivitiesApply;
-    private List<String> ucWriteFinalDecisionSchedule3ActivitiesQuestion;
+    private String ucWriteFinalDecisionSchedule7ActivitiesApply;
+    private List<String> ucWriteFinalDecisionSchedule7ActivitiesQuestion;
     private String dwpReassessTheAward;
 }
