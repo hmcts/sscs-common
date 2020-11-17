@@ -5,6 +5,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySi
 
 import java.util.ArrayList;
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -109,6 +110,10 @@ public class SearchCcdCaseService {
         List<SscsCaseDetails> sscsCaseDetailsList = new ArrayList<>();
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
             sscsCaseDetailsList = this.findListOfCasesByCaseRef(caseData.getCaseReference(), idamTokens);
+        }
+        // if found multiple cases against SC number then search for ccd case id
+        if (!CollectionUtils.isEmpty(sscsCaseDetailsList) && sscsCaseDetailsList.size() > 1 && StringUtils.isNotBlank(caseData.getCcdCaseId())) {
+            sscsCaseDetailsList = new ArrayList<>();
         }
         if (CollectionUtils.isEmpty(sscsCaseDetailsList) && StringUtils.isNotBlank(caseData.getCcdCaseId())) {
             sscsCaseDetailsList.add(readCcdCaseService.getByCaseId(Long.parseLong(caseData.getCcdCaseId()), idamTokens));
