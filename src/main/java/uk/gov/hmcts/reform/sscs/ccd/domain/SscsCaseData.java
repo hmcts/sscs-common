@@ -311,14 +311,13 @@ public class SscsCaseData implements CaseData {
     private SscsEsaCaseData sscsEsaCaseData;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
+    private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-    private YesNo showSchedule3ActivitiesPage;
-    private YesNo showSchedule7ActivitiesPage;
-    private YesNo doesSchedule9Paragraph4Apply;
     private YesNo doesSchedule8Paragraph4Apply;
     private YesNo showSchedule8Paragraph4Page;
-    private YesNo showSchedule9Paragraph4Page;
+    private YesNo showSchedule7ActivitiesPage;
+    private YesNo doesSchedule9Paragraph4Apply;
 
     @JsonUnwrapped
     private SscsUcCaseData sscsUcCaseData;
