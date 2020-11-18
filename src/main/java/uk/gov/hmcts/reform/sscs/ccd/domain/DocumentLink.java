@@ -11,7 +11,7 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DocumentLink {
+public class    DocumentLink {
 
     @JsonProperty("document_url")
     private String documentUrl;
