@@ -120,7 +120,7 @@ public class SearchCcdCaseServiceTest {
     }
 
     @Test
-    public void shouldReturnListOfCasesForGivenCaseReferenceNumberAndCcdIdByCaseRef() {
+    public void shouldReturnListOfCasesForGivenCaseReferenceNumberAndCcdIdIsNullByCaseRef() {
 
         SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
@@ -132,6 +132,25 @@ public class SearchCcdCaseServiceTest {
         assertNotNull(casesByCaseRef);
         assertEquals(2, casesByCaseRef.size());
         assertEquals(CASE_REF, casesByCaseRef.get(0).getData().getCaseReference());
+
+    }
+
+    @Test
+    public void shouldReturnListOfCaseOnlyOneForGivenCaseReferenceNumberAndCcdIdIsNotNullByCaseRef() {
+        String caseId = "1";
+        SscsCaseData sscsCaseData = CaseDataUtils.buildCaseData();
+        sscsCaseData.setCcdCaseId(caseId);
+        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+
+        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Lists.list(caseDetails, caseDetails)).build());
+        when(readCcdCaseService.getByCaseId(Long.parseLong(caseId), idamTokens)).thenReturn(sscsCaseDetails);
+
+        List<SscsCaseDetails> casesByCaseRef = searchCcdCaseService.findListOfCasesByCaseRefOrCaseId(sscsCaseData, idamTokens);
+
+        assertNotNull(casesByCaseRef);
+        assertEquals(1, casesByCaseRef.size());
+        assertEquals(CASE_REF, casesByCaseRef.get(0).getData().getCaseReference());
+        assertEquals(caseId, casesByCaseRef.get(0).getData().getCcdCaseId());
 
     }
 
