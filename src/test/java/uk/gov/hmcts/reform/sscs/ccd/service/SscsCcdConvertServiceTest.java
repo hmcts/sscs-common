@@ -277,8 +277,8 @@ public class SscsCcdConvertServiceTest {
                 .build();
         SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
-        //assertEquals(YesNo.YES, caseDetails.getData().getShowRegulation29Page());
-        //assertEquals(YesNo.NO, caseDetails.getData().getDoesRegulation29Apply());
+        assertEquals(YesNo.YES, caseDetails.getData().getShowRegulation29Page());
+        assertEquals(YesNo.NO, caseDetails.getData().getDoesRegulation29Apply());
         assertTrue(YesNo.YES.toBoolean());
         assertFalse(YesNo.NO.toBoolean());
     }
