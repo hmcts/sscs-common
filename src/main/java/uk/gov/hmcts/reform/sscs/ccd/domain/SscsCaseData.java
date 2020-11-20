@@ -309,7 +309,7 @@ public class SscsCaseData implements CaseData {
     private SscsEsaCaseData sscsEsaCaseData;
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-    private List<SscsDocument> dwpDocuments;
+    private List<DwpDocument> dwpDocuments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
