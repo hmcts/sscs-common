@@ -1,7 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,5 +39,26 @@ public class SscsUcCaseData {
     private String ucWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
     private String ucWriteFinalDecisionSchedule7ActivitiesApply;
     private List<String> ucWriteFinalDecisionSchedule7ActivitiesQuestion;
-    private String dwpReassessTheAward;
+    private YesNo doesSchedule8Paragraph4Apply;
+    private YesNo showSchedule8Paragraph4Page;
+    private YesNo showSchedule7ActivitiesPage;
+    private YesNo doesSchedule9Paragraph4Apply;
+
+    @JsonIgnore
+    public YesNo getSchedule9Paragraph4Selection() {
+        if ("No".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+            return doesSchedule9Paragraph4Apply;
+        }
+        return null;
+    }
+
+    @JsonIgnore
+    public List<String> getSchedule7Selections() {
+        if ("Yes".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+            return ucWriteFinalDecisionSchedule7ActivitiesQuestion;
+        } else if ("No".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+            return new ArrayList<>();
+        }
+        return null;
+    }
 }

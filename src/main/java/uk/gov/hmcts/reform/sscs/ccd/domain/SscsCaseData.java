@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -310,15 +309,8 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsEsaCaseData sscsEsaCaseData;
-    private YesNo doesRegulation29Apply;
-    private YesNo showRegulation29Page;
-    private YesNo showSchedule3ActivitiesPage;
-    private YesNo doesRegulation35Apply;
+    private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-    private YesNo doesSchedule8Paragraph4Apply;
-    private YesNo showSchedule8Paragraph4Page;
-    private YesNo showSchedule7ActivitiesPage;
-    private YesNo doesSchedule9Paragraph4Apply;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -493,44 +485,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public YesNo getRegulation35Selection() {
-        if ("No".equalsIgnoreCase(getSscsEsaCaseData().getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return doesRegulation35Apply;
-        }
-        return null;
-    }
-
-    @JsonIgnore
-    public YesNo getSchedule9Paragraph4Selection() {
-        if ("No".equalsIgnoreCase(getSscsUcCaseData().getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-            return doesSchedule9Paragraph4Apply;
-        }
-        return null;
-    }
-
-    @JsonIgnore
-    public List<String> getSchedule3Selections() {
-        SscsEsaCaseData esaCaseData = getSscsEsaCaseData();
-        if ("Yes".equalsIgnoreCase(esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
-        } else if ("No".equalsIgnoreCase(esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-            return new ArrayList<>();
-        }
-        return null;
-    }
-
-    @JsonIgnore
-    public List<String> getSchedule7Selections() {
-        SscsUcCaseData ucCaseData = getSscsUcCaseData();
-        if ("Yes".equalsIgnoreCase(ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-            return ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesQuestion();
-        } else if ("No".equalsIgnoreCase(ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-            return new ArrayList<>();
-        }
-        return null;
-    }
-
-    @JsonIgnore
     public SscsEsaCaseData getSscsEsaCaseData() {
         if (sscsEsaCaseData == null) {
             this.sscsEsaCaseData = new SscsEsaCaseData();
@@ -545,5 +499,4 @@ public class SscsCaseData implements CaseData {
         }
         return sscsUcCaseData;
     }
-
 }
