@@ -314,7 +314,7 @@ public class SscsCaseData implements CaseData {
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
-    private List<DwpDocument> dwpDocuments;
+    private List<SscsDocument> dwpDocuments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {

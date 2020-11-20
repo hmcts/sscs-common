@@ -5,25 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DwpDocument {
-
-    private DocumentLink documentLink;
-    private String documentType;
-    private String documentDateAdded;
-
+@EqualsAndHashCode(callSuper = false)
+public class DwpDocument extends AbstractDocument<DwpDocumentDetails> {
 
     @JsonCreator
-    public DwpDocument(@JsonProperty("documentLink") DocumentLink documentLink,
-                       @JsonProperty("documentType") String documentType,
-                       @JsonProperty("documentDateAdded") String documentDateAdded) {
-        this.documentLink = documentLink;
-        this.documentType = documentType;
-        this.documentDateAdded = documentDateAdded;
+    public DwpDocument(@JsonProperty("value") DwpDocumentDetails value) {
+        super(value);
     }
+
 }
