@@ -308,6 +308,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private SscsEsaCaseData sscsEsaCaseData;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
@@ -320,6 +321,7 @@ public class SscsCaseData implements CaseData {
     private YesNo doesSchedule9Paragraph4Apply;
 
     @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
 
     @JsonIgnore
@@ -492,58 +494,40 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
-        if (sscsEsaCaseData != null) {
-            if ("No".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return doesRegulation35Apply;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
+        if ("No".equalsIgnoreCase(getSscsEsaCaseData().getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return doesRegulation35Apply;
         }
+        return null;
     }
 
     @JsonIgnore
     public YesNo getSchedule9Paragraph4Selection() {
-        if (sscsUcCaseData != null) {
-            if ("No".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-                return doesSchedule9Paragraph4Apply;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
+        if ("No".equalsIgnoreCase(getSscsUcCaseData().getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
+            return doesSchedule9Paragraph4Apply;
         }
+        return null;
     }
 
     @JsonIgnore
     public List<String> getSchedule3Selections() {
-        if (sscsEsaCaseData != null) {
-            if ("Yes".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
-            } else if ("No".equalsIgnoreCase(sscsEsaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return new ArrayList<>();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
+        SscsEsaCaseData esaCaseData = getSscsEsaCaseData();
+        if ("Yes".equalsIgnoreCase(esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
+        } else if ("No".equalsIgnoreCase(esaCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
+            return new ArrayList<>();
         }
+        return null;
     }
 
     @JsonIgnore
     public List<String> getSchedule7Selections() {
-        if (sscsUcCaseData != null) {
-            if ("Yes".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-                return sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesQuestion();
-            } else if ("No".equalsIgnoreCase(sscsUcCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
-                return new ArrayList<>();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
+        SscsUcCaseData ucCaseData = getSscsUcCaseData();
+        if ("Yes".equalsIgnoreCase(ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
+            return ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesQuestion();
+        } else if ("No".equalsIgnoreCase(ucCaseData.getUcWriteFinalDecisionSchedule7ActivitiesApply())) {
+            return new ArrayList<>();
         }
+        return null;
     }
 
     @JsonIgnore
