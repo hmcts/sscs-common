@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -308,11 +307,9 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
-    private SscsEsaCaseData esaSscsCaseData;
-    private YesNo doesRegulation29Apply;
-    private YesNo showRegulation29Page;
-    private YesNo showSchedule3ActivitiesPage;
-    private YesNo doesRegulation35Apply;
+    @Getter(AccessLevel.NONE)
+    private SscsEsaCaseData sscsEsaCaseData;
+    private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
 
     @JsonIgnore
@@ -484,39 +481,11 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public YesNo getRegulation35Selection() {
-        if (esaSscsCaseData != null) {
-            if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return doesRegulation35Apply;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    @JsonIgnore
-    public List<String> getSchedule3Selections() {
-        if (esaSscsCaseData != null) {
-            if ("Yes".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
-            } else if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return new ArrayList<>();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    @JsonIgnore
     public SscsEsaCaseData getSscsEsaCaseData() {
-        if (esaSscsCaseData == null) {
-            this.esaSscsCaseData = new SscsEsaCaseData();
+        if (sscsEsaCaseData == null) {
+            this.sscsEsaCaseData = new SscsEsaCaseData();
         }
-        return esaSscsCaseData;
+        return sscsEsaCaseData;
     }
 
 }
