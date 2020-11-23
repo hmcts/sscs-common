@@ -302,8 +302,6 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "formType")
     private FormType formType;
     private String isProgressingViaGaps;
-    @JsonProperty("wcaAppeal")
-    private String wcaAppeal;
     @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
@@ -360,11 +358,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
-    }
-
-    @JsonIgnore
-    public boolean isWcaAppeal() {
-        return stringToBoolean(wcaAppeal);
     }
 
     @JsonIgnore
