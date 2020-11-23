@@ -3,12 +3,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -43,6 +45,8 @@ public class SscsUcCaseData {
     private YesNo showSchedule8Paragraph4Page;
     private YesNo showSchedule7ActivitiesPage;
     private YesNo doesSchedule9Paragraph4Apply;
+    @JsonProperty("lcwaAppeal")
+    private String lcwaAppeal;
 
     @JsonIgnore
     public YesNo getSchedule9Paragraph4Selection() {
@@ -50,6 +54,16 @@ public class SscsUcCaseData {
             return doesSchedule9Paragraph4Apply;
         }
         return null;
+    }
+
+    @JsonIgnore
+    public boolean isLcwaAppeal() {
+        return stringToBoolean(lcwaAppeal);
+    }
+
+    @JsonIgnore
+    private boolean stringToBoolean(String value) {
+        return StringUtils.equalsIgnoreCase("yes", value);
     }
 
     @JsonIgnore
