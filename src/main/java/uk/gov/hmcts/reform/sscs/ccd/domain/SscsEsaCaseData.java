@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -46,7 +48,7 @@ public class SscsEsaCaseData {
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
     @JsonProperty("wcaAppeal")
-    private String wcaAppeal;
+    private YesNo wcaAppeal;
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
@@ -58,12 +60,7 @@ public class SscsEsaCaseData {
 
     @JsonIgnore
     public boolean isWcaAppeal() {
-        return stringToBoolean(wcaAppeal);
-    }
-
-    @JsonIgnore
-    private boolean stringToBoolean(String value) {
-        return StringUtils.equalsIgnoreCase("yes", value);
+        return isYes(wcaAppeal);
     }
 
     @JsonIgnore
