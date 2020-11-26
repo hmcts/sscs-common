@@ -309,6 +309,11 @@ public class SscsCaseData implements CaseData {
     private SscsEsaCaseData sscsEsaCaseData;
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
+    private YesNo showDwpReassessAwardPage;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
 
     @JsonIgnore
@@ -482,4 +487,11 @@ public class SscsCaseData implements CaseData {
         return sscsEsaCaseData;
     }
 
+    @JsonIgnore
+    public SscsUcCaseData getSscsUcCaseData() {
+        if (sscsUcCaseData == null) {
+            this.sscsUcCaseData = new SscsUcCaseData();
+        }
+        return sscsUcCaseData;
+    }
 }

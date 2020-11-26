@@ -25,6 +25,10 @@ public enum YesNo {
         return YES.value.equals(value);
     }
 
+    public static boolean isYes(YesNo yesNo) {
+        return YES.equals(yesNo);
+    }
+
     @Override
     public String toString() {
         return value;
