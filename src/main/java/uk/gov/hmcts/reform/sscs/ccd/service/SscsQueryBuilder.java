@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
 
+import org.apache.commons.text.StringEscapeUtils;
+import org.elasticsearch.index.query.Operator;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
@@ -13,8 +15,8 @@ public class SscsQueryBuilder {
 
     public static SearchSourceBuilder findCaseBySingleField(String fieldName, String value) {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
-
-        searchBuilder.query(matchQuery(fieldName, value));
+        String escapeValue = StringEscapeUtils.escapeJava(StringEscapeUtils.escapeJson(value));
+        searchBuilder.query(QueryBuilders.boolQuery().must(matchQuery(fieldName, escapeValue).operator(Operator.AND)));
 
         return searchBuilder;
     }

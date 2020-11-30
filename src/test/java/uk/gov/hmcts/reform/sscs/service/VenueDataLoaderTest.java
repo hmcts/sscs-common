@@ -20,7 +20,9 @@ public class VenueDataLoaderTest {
     }
 
     @Test
-    @Parameters({"1158", "1144", "1145", "1027", "1028", "1012"})
+    @Parameters({"1158", "1144", "1145", "1027", "1028", "1012", "1", "3", "8", "11", "51", "75", "105", "178", "186",
+            "228", "268", "1035", "1037", "1045", "1046", "1048", "1052", "1133", "1134", "1142",
+            "1160", "1183", "1196", "1203", "1239"})
     public void venuesShouldNotBeActive(String id) {
         assertThat(venueDataLoader.getVenueDetailsMap().get(id).getActive(), is("No"));
     }
@@ -53,8 +55,8 @@ public class VenueDataLoaderTest {
         long maxSize = venueDataLoader.getVenueDetailsMap().values().stream().filter(v -> v.getActive().equals("Yes")).count();
         long distinctSize = venueDataLoader.getVenueDetailsMap().values().stream().filter(v -> v.getActive().equals("Yes")).map(v -> v.getThreeDigitReference()).distinct().count();
 
-        long adjustForDuplicateSc228AndSc238 = 2;
+        long adjustForDuplicateSc238 = 1;
 
-        assertThat(maxSize, is(distinctSize + adjustForDuplicateSc228AndSc238));
+        assertThat(maxSize, is(distinctSize + adjustForDuplicateSc238));
     }
 }

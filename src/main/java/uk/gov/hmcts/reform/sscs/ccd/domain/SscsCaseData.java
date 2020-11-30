@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -284,17 +283,19 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "formType")
     private FormType formType;
     private String isProgressingViaGaps;
-    @JsonProperty("wcaAppeal")
-    private String wcaAppeal;
     @JsonProperty("supportGroupOnlyAppeal")
     private String supportGroupOnlyAppeal;
     @JsonUnwrapped
-    private SscsEsaCaseData esaSscsCaseData;
-    private YesNo doesRegulation29Apply;
-    private YesNo showRegulation29Page;
-    private YesNo showSchedule3ActivitiesPage;
-    private YesNo doesRegulation35Apply;
+    @Getter(AccessLevel.NONE)
+    private SscsEsaCaseData sscsEsaCaseData;
+    private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
+    private YesNo showDwpReassessAwardPage;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsUcCaseData sscsUcCaseData;
+    private List<DwpDocument> dwpDocuments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -344,11 +345,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isGenerateNotice() {
         return stringToBoolean(generateNotice);
-    }
-
-    @JsonIgnore
-    public boolean isWcaAppeal() {
-        return stringToBoolean(wcaAppeal);
     }
 
     @JsonIgnore
@@ -466,39 +462,19 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public YesNo getRegulation35Selection() {
-        if (esaSscsCaseData != null) {
-            if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return doesRegulation35Apply;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    @JsonIgnore
-    public List<String> getSchedule3Selections() {
-        if (esaSscsCaseData != null) {
-            if ("Yes".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesQuestion();
-            } else if ("No".equalsIgnoreCase(esaSscsCaseData.getEsaWriteFinalDecisionSchedule3ActivitiesApply())) {
-                return new ArrayList<>();
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    @JsonIgnore
     public SscsEsaCaseData getSscsEsaCaseData() {
-        if (esaSscsCaseData == null) {
-            this.esaSscsCaseData = new SscsEsaCaseData();
+        if (sscsEsaCaseData == null) {
+            this.sscsEsaCaseData = new SscsEsaCaseData();
         }
-        return esaSscsCaseData;
+        return sscsEsaCaseData;
+    }
+
+    @JsonIgnore
+    public SscsUcCaseData getSscsUcCaseData() {
+        if (sscsUcCaseData == null) {
+            this.sscsUcCaseData = new SscsUcCaseData();
+        }
+        return sscsUcCaseData;
     }
 
     @JsonIgnore
