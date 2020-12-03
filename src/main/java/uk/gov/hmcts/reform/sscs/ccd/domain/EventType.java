@@ -162,7 +162,8 @@ public enum EventType {
     REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", 0, false),
     JOINT_PARTY_ADDED("jointPartyAdded", 0, false),
     AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false),
-    ABATE_CASE("abateCase", 0, false);
+    ABATE_CASE("abateCase", 0, false),
+    PROVIDE_APPOINTEE_DETAILS("provideAppointeeDetails", 0, false);
 
     private String type;
     private String ccdType;
