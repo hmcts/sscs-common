@@ -139,7 +139,8 @@ public class EventTypeTest {
             "createWelshNotice\n" +
             "markDocumentsForTranslation\n" +
             "jointPartyAdded\n" +
-            "abateCase";
+            "abateCase\n" +
+            "provideAppointeeDetails";
 
 
     @Test
