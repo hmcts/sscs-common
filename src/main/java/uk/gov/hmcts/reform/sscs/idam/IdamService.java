@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class IdamService {
     private final AuthTokenGenerator authTokenGenerator;
 
     private final IdamClient idamClient;
+
+    private final AtomicInteger atomicInteger = new AtomicInteger(1);
 
     @Value("${idam.oauth2.user.email}")
     private String idamOauth2UserEmail;
@@ -75,14 +78,17 @@ public class IdamService {
         cachedToken = null;
     }
 
+    @Retryable
     public IdamTokens getIdamTokens() {
 
         String idamOauth2Token;
 
         if (StringUtils.isEmpty(cachedToken)) {
             log.info("No cached IDAM token found, requesting from IDAM service.");
+            log.info("Attempting to obtain token, retry attempt {}", atomicInteger.getAndIncrement());
             idamOauth2Token =  getIdamOauth2Token();
         } else {
+            atomicInteger.set(1);
             log.info("Using cached IDAM token.");
             idamOauth2Token =  cachedToken;
         }
