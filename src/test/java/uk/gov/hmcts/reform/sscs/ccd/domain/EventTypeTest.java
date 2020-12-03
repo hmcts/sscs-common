@@ -140,7 +140,8 @@ public class EventTypeTest {
             "markDocumentsForTranslation\n" +
             "jointPartyAdded\n" +
             "abateCase\n" +
-            "provideAppointeeDetails";
+            "provideAppointeeDetails\n" +
+            "deathOfAppellant";
 
 
     @Test
