@@ -150,6 +150,7 @@ public enum EventType {
     REISSUE_DOCUMENT("reissueDocument", 0, false),
     ADJOURN_CASE("adjournCase", 0, false),
     ISSUE_ADJOURNMENT_NOTICE("issueAdjournmentNotice", 0, false),
+    ISSUE_ADJOURNMENT_NOTICE_WELSH("issueAdjournmentNoticeWelsh", 0, false),
     NOT_LISTABLE("notListable", 0, false),
     UPDATE_NOT_LISTABLE("updateNotListable", 0, false),
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),

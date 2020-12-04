@@ -139,6 +139,7 @@ public class EventTypeTest {
             "createWelshNotice\n" +
             "markDocumentsForTranslation\n" +
             "jointPartyAdded\n" +
+            "issueAdjournmentNoticeWelsh\n" +
             "abateCase\n" +
             "provideAppointeeDetails\n" +
             "deathOfAppellant";
