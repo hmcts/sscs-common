@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -78,7 +79,7 @@ public class IdamService {
         cachedToken = null;
     }
 
-    @Retryable
+    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
     public IdamTokens getIdamTokens() {
 
         String idamOauth2Token;
