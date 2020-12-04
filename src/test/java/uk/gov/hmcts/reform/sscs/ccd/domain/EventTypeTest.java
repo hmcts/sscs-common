@@ -138,7 +138,11 @@ public class EventTypeTest {
             "cancelTranslations\n" +
             "createWelshNotice\n" +
             "markDocumentsForTranslation\n" +
-            "jointPartyAdded";
+            "jointPartyAdded\n" +
+            "abateCase\n" +
+            "provideAppointeeDetails\n" +
+            "deathOfAppellant";
+
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
