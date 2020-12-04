@@ -130,6 +130,8 @@ public class SscsCaseData implements CaseData {
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
+    private DwpResponseDocument dwpEditedEvidenceBundleDocument;
+    private String dwpEditedEvidenceReason;
     private DwpResponseDocument dwpResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
