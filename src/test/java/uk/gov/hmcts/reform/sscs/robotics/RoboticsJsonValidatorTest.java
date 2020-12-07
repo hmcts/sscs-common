@@ -1,8 +1,14 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.ValidationMessage;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.everit.json.schema.ValidationException;
@@ -197,6 +203,51 @@ public class RoboticsJsonValidatorTest {
         jsonData = new JSONObject(jsonData.toString().replace("2018-08-12", "2018/08/12"));
         roboticsJsonValidator.validate(jsonData);
     }
+
+    @Test()
+    public void givenSingleInvlidInputThenContainsSingleErrorMessage() throws IOException {
+
+        Boolean hasExceptions = false;
+
+        try {
+            jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellantNino");
+            roboticsJsonValidator.validate(jsonData);
+        } catch (RoboticsValidationException validationException) {
+            hasExceptions = true;
+            assertEquals(1, validationException.getValidationErrors().size());
+            assertEquals("$.appellantNino: must be at least 1 characters long",
+                    validationException.getValidationErrors().iterator().next().getMessage());
+        }
+        assertTrue(hasExceptions);
+    }
+
+    @Test()
+    public void givenMultipleInvlidInputThenContainsMultipleErrorMessage() throws IOException {
+
+        Boolean hasExceptions = false;
+
+        try {
+            jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellantNino");
+            jsonData = updateEmbeddedProperty(jsonData.toString(), "", "caseCode");
+            jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "firstName");
+            roboticsJsonValidator.validate(jsonData);
+
+        } catch (RoboticsValidationException validationException) {
+            hasExceptions = true;
+
+            Set<ValidationMessage> validationErrors = validationException.getValidationErrors();
+
+            assertEquals(3, validationErrors.size());
+
+            Iterator<ValidationMessage> validationErrorsI = validationErrors.iterator();
+
+            assertEquals("$.caseCode: does not match the regex pattern ^\\d{3}[A-Z]{2}$", validationErrorsI.next().getMessage());
+            assertEquals("$.appellantNino: must be at least 1 characters long", validationErrorsI.next().getMessage());
+            assertEquals("$.appellant.firstName: must be at least 1 characters long", validationErrorsI.next().getMessage());
+        }
+        assertTrue(hasExceptions);
+    }
+
 
     private static JSONObject updateEmbeddedProperty(String json, String value, String... keys) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
