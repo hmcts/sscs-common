@@ -79,7 +79,7 @@ public class IdamService {
         cachedToken = null;
     }
 
-    @Retryable(backoff = @Backoff(delay = 40000L, multiplier = 1.0, random = true))
+    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
     public IdamTokens getIdamTokens() {
 
         String idamOauth2Token;
