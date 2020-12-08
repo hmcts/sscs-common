@@ -310,6 +310,7 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    private String dateOfAppellantDeath;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
