@@ -130,6 +130,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpEditedEvidenceBundleDocument;
     private String dwpEditedEvidenceReason;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
