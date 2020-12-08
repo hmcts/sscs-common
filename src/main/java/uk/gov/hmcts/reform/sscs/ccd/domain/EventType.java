@@ -164,7 +164,8 @@ public enum EventType {
     AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false),
     ABATE_CASE("abateCase", 0, false),
     PROVIDE_APPOINTEE_DETAILS("provideAppointeeDetails", 0, false),
-    DEATH_OF_APPELLANT("deathOfAppellant", 0, false);
+    DEATH_OF_APPELLANT("deathOfAppellant", 0, false),
+    UPDATE_UCB("updateUCB", 0, false);
 
 
     private String type;
