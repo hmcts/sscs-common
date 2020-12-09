@@ -20,6 +20,23 @@ public class YesNoTest {
 
     @Test
     public void isYes_shouldBeFalseForNull() {
-        assertFalse(isYes(null));
+        YesNo yesNo = null;
+        assertFalse(isYes(yesNo));
+    }
+
+    @Test
+    public void isYes_shouldBeTrueForYesString() {
+        assertTrue(isYes(YES.getValue()));
+    }
+
+    @Test
+    public void isYes_shouldBeFalseForNoString() {
+        assertFalse(isYes(NO.getValue()));
+    }
+
+    @Test
+    public void isYes_shouldBeFalseForNullString() {
+        String yesNo = null;
+        assertFalse(isYes(yesNo));
     }
 }

@@ -104,6 +104,7 @@ public class SscsCaseData implements CaseData {
     private String dwpIsOfficerAttending;
     @JsonProperty("dwpUCB")
     private String dwpUcb;
+    private DocumentLink dwpUcbEvidenceDocument;
     @JsonProperty("dwpPHME")
     private String dwpPhme;
     private String dwpComplexAppeal;
