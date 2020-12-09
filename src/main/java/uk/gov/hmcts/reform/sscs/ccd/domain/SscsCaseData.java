@@ -133,6 +133,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpEditedEvidenceBundleDocument;
     private String dwpEditedEvidenceReason;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
@@ -312,6 +313,7 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    private String dateOfAppellantDeath;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
