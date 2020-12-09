@@ -27,7 +27,8 @@ public enum DwpState {
     REINSTATEMENT_GRANTED("reinstatementGranted", "Reinstatement Granted"),
     REINSTATEMENT_REFUSED("reinstatementRefused", "Reinstatement Refused"),
     CONFIDENTIALITY_ACTION_REQUIRED("confidentialityActionRequired", "Confidentiality - Action Required"),
-    APPEAL_ABATED("appealAbated", "Appeal abated");
+    APPEAL_ABATED("appealAbated", "Appeal abated"),
+    APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed");
 
     private String id;
     private String label;

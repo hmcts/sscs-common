@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
+import com.networknt.schema.ValidationMessage;
+import java.util.Set;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -7,8 +9,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
         reason = "Invalid robotics validation")
 public class RoboticsValidationException extends RuntimeException {
 
-    public RoboticsValidationException(Throwable cause) {
-        super(cause);
+    private Set<ValidationMessage> validationErrors;
+
+    public RoboticsValidationException(String message, Set<ValidationMessage> validationErrors) {
+        super(message);
+        this.validationErrors = validationErrors;
     }
 
+    public Set<ValidationMessage> getValidationErrors() {
+        return this.validationErrors;
+    }
 }
