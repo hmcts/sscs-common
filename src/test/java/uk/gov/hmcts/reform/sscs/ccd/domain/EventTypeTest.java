@@ -141,7 +141,8 @@ public class EventTypeTest {
             "jointPartyAdded\n" +
             "abateCase\n" +
             "provideAppointeeDetails\n" +
-            "deathOfAppellant";
+            "deathOfAppellant\n" +
+            "reviewPhmeRequest";
 
 
     @Test

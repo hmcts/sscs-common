@@ -312,6 +312,8 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    @JsonProperty("phmeGranted")
+    private YesNo phmeGranted;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
