@@ -247,13 +247,13 @@ public class SscsCaseData implements CaseData {
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
+    @LocalDateMustBeInFuture(message = "Due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String updateNotListableSetNewDueDate;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
+    @LocalDateMustBeInFuture(message = "Due date must be in the future")
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     @JsonProperty("languagePreferenceWelsh")
@@ -310,6 +310,7 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
 
     @JsonUnwrapped
