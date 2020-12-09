@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -13,6 +16,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbookFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.exception.AirLookupServiceException;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
@@ -161,5 +165,13 @@ public class AirLookupService {
             return DEFAULT_VENUE;
         }
         return value;
+    }
+
+    public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
+        AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
+        if ("pip".equalsIgnoreCase(benefitType.getCode())) {
+            return venue.getPipVenue();
+        }
+        return venue.getEsaOrUcVenue();
     }
 }

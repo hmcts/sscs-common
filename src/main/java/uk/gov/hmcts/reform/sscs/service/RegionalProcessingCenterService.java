@@ -113,7 +113,7 @@ public class RegionalProcessingCenterService {
         return regionalProcessingCenterMap.get("SSCS " + regionalProcessingCentreName);
     }
 
-    public String getFirstHalfOfPostcode(String postcode) {
+    public static String getFirstHalfOfPostcode(String postcode) {
         if (postcode != null && postcode.length() > 3) {
             return postcode.substring(0, postcode.length() - 3).trim();
         }
