@@ -428,6 +428,13 @@ public class SscsCaseData implements CaseData {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
     }
 
+    public List<DwpDocument> getDwpDocuments() {
+        if (dwpDocuments == null) {
+            this.dwpDocuments = new ArrayList<>();
+        }
+        return this.dwpDocuments;
+    }
+
     @JsonIgnore
     private boolean stringToBoolean(String value) {
         return StringUtils.equalsIgnoreCase("yes", value);
@@ -494,11 +501,4 @@ public class SscsCaseData implements CaseData {
         return sscsUcCaseData;
     }
     
-    @JsonIgnore
-    public List<DwpDocument> getDwpDocuments() {
-        if (dwpDocuments == null) {
-            this.dwpDocuments = new ArrayList<>();
-        }
-        return this.dwpDocuments;
-    }
 }
