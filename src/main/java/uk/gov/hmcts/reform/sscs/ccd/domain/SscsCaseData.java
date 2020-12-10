@@ -6,11 +6,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
@@ -316,6 +312,7 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
+    @Getter(AccessLevel.NONE)
     private List<DwpDocument> dwpDocuments;
 
     @JsonIgnore
@@ -495,5 +492,13 @@ public class SscsCaseData implements CaseData {
             this.sscsUcCaseData = new SscsUcCaseData();
         }
         return sscsUcCaseData;
+    }
+    
+    @JsonIgnore
+    public List<DwpDocument> getDwpDocuments() {
+        if (dwpDocuments == null) {
+            this.dwpDocuments = new ArrayList<>();
+        }
+        return this.dwpDocuments;
     }
 }
