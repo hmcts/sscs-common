@@ -313,7 +313,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
-    @Getter(AccessLevel.NONE)
     private List<DwpDocument> dwpDocuments;
 
     @JsonIgnore
@@ -427,13 +426,6 @@ public class SscsCaseData implements CaseData {
 
     public Subscriptions getSubscriptions() {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
-    }
-
-    public List<DwpDocument> getDwpDocuments() {
-        if (dwpDocuments == null) {
-            this.dwpDocuments = new ArrayList<>();
-        }
-        return this.dwpDocuments;
     }
 
     @JsonIgnore
