@@ -127,7 +127,10 @@ public class SscsCaseData implements CaseData {
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
+    private DwpResponseDocument dwpEditedEvidenceBundleDocument;
+    private String dwpEditedEvidenceReason;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
@@ -309,6 +312,8 @@ public class SscsCaseData implements CaseData {
     private YesNo showDwpReassessAwardPage;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
+    @JsonProperty("phmeGranted")
+    private YesNo phmeGranted;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
