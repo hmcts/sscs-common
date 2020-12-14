@@ -29,6 +29,10 @@ public enum YesNo {
         return YES.equals(yesNo);
     }
 
+    public static boolean isYes(String yesNo) {
+        return YES.getValue().equals(yesNo);
+    }
+
     @Override
     public String toString() {
         return value;

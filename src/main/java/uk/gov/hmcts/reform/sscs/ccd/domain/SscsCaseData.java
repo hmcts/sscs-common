@@ -6,11 +6,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
@@ -104,6 +100,7 @@ public class SscsCaseData implements CaseData {
     private String dwpIsOfficerAttending;
     @JsonProperty("dwpUCB")
     private String dwpUcb;
+    private DocumentLink dwpUcbEvidenceDocument;
     @JsonProperty("dwpPHME")
     private String dwpPhme;
     private String dwpComplexAppeal;
@@ -496,4 +493,5 @@ public class SscsCaseData implements CaseData {
         }
         return sscsUcCaseData;
     }
+    
 }
