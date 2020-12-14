@@ -143,6 +143,7 @@ public class EventTypeTest {
             "provideAppointeeDetails\n" +
             "deathOfAppellant\n" +
             "updateUCB\n" +
+            "reviewPhmeRequest\n" +
             "createTestCase";
 
 

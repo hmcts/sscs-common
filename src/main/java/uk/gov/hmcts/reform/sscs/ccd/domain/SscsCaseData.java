@@ -312,6 +312,8 @@ public class SscsCaseData implements CaseData {
     private YesNo showDwpReassessAwardPage;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
+    @JsonProperty("phmeGranted")
+    private YesNo phmeGranted;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
