@@ -5,7 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
@@ -24,10 +24,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
-import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
-import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
 @RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonMapperTest {
@@ -44,9 +42,6 @@ public class RoboticsJsonMapperTest {
     private DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
 
     @Mock
-    private RegionalProcessingCenterService regionalProcessingCenterService;
-
-    @Mock
     private AirLookupService airLookupService;
 
     private List<ElementDisputed> elementsDisputedGeneralList = new ArrayList<>();
@@ -61,7 +56,7 @@ public class RoboticsJsonMapperTest {
     @Before
     public void setup() {
         openMocks(this);
-        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, regionalProcessingCenterService, airLookupService);
+        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
 
         SscsCaseData sscsCaseData = buildCaseData();
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
@@ -72,8 +67,7 @@ public class RoboticsJsonMapperTest {
                 .state(State.APPEAL_CREATED)
                 .build();
 
-        given(airLookupService.lookupAirVenueNameByPostCode(any())).willReturn(AirlookupBenefitToVenue.builder().pipVenue("Bromley").esaOrUcVenue("Bath").build());
-        given(regionalProcessingCenterService.getFirstHalfOfPostcode("CM120HN")).willReturn("CM12");
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
     }
 
     @Test
@@ -416,8 +410,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenAnAppointee_thenProcessRoboticsWithAppellantPostCodeSetToVenueForAppointeePostcode() {
-        given(regionalProcessingCenterService.getFirstHalfOfPostcode("TS1ABC")).willReturn("TS1");
-        given(airLookupService.lookupAirVenueNameByPostCode("TS1")).willReturn(AirlookupBenefitToVenue.builder().pipVenue("Pip venue").build());
+        given(airLookupService.lookupAirVenueNameByPostCode("TS1ABC", BenefitType.builder().code("PIP").build())).willReturn("Pip venue");
 
         Name appointeeName = Name.builder().title("Mrs").firstName("Ap").lastName("Pointee").build();
         Address address = roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().getAddress();
