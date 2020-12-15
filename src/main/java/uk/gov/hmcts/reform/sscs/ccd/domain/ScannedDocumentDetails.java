@@ -19,6 +19,7 @@ public class ScannedDocumentDetails {
     private String scannedDate;
     private String exceptionRecordReference;
     private String subtype;
+    private String includeInBundle;
 
     @JsonCreator
     public ScannedDocumentDetails(@JsonProperty("type") String type,
@@ -27,7 +28,8 @@ public class ScannedDocumentDetails {
                                   @JsonProperty("fileName") String fileName,
                                   @JsonProperty("scannedDate") String scannedDate,
                                   @JsonProperty("exceptionRecordReference") String exceptionRecordReference,
-                                  @JsonProperty("subtype") String subtype) {
+                                  @JsonProperty("subtype") String subtype,
+                                  @JsonProperty("includeInBundle") String includeInBundle) {
         this.type = type;
         this.url = url;
         this.controlNumber = controlNumber;
@@ -35,6 +37,7 @@ public class ScannedDocumentDetails {
         this.scannedDate = scannedDate;
         this.exceptionRecordReference = exceptionRecordReference;
         this.subtype = subtype;
+        this.includeInBundle = includeInBundle;
     }
 
 }
