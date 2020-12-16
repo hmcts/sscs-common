@@ -16,11 +16,9 @@ import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
-import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
-import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
 @Component
 @Slf4j
@@ -32,15 +30,12 @@ public class RoboticsJsonMapper {
     private static final String PIP_CASE_CODE = "002DD";
 
     private final DwpAddressLookupService dwpAddressLookupService;
-    private final RegionalProcessingCenterService regionalProcessingCenterService;
     private final AirLookupService airLookupService;
 
     @Autowired
     public RoboticsJsonMapper(DwpAddressLookupService dwpAddressLookupService,
-                              RegionalProcessingCenterService regionalProcessingCenterService,
                               AirLookupService airLookupService) {
         this.dwpAddressLookupService = dwpAddressLookupService;
-        this.regionalProcessingCenterService = regionalProcessingCenterService;
         this.airLookupService = airLookupService;
     }
 
@@ -225,11 +220,7 @@ public class RoboticsJsonMapper {
                     ? sscsCaseData.getAppeal().getAppellant().getAppointee().getAddress().getPostcode()
                     : sscsCaseData.getAppeal().getAppellant().getAddress().getPostcode();
 
-            String firstHalfOfPostcode = regionalProcessingCenterService.getFirstHalfOfPostcode(postcodeToUse);
-
-            AirlookupBenefitToVenue venue = airLookupService.lookupAirVenueNameByPostCode(firstHalfOfPostcode);
-
-            String venueString = sscsCaseData.getAppeal().getBenefitType().getCode().equalsIgnoreCase("pip") ? venue.getPipVenue() : venue.getEsaOrUcVenue();
+            String venueString  = airLookupService.lookupAirVenueNameByPostCode(postcodeToUse, sscsCaseData.getAppeal().getBenefitType());
 
             return Optional.of(venueString);
         } catch (Exception e) {

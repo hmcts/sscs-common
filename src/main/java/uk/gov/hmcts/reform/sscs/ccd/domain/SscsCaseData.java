@@ -319,6 +319,7 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
+    private String processingVenue;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {

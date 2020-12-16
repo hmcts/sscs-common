@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
 import junitparams.JUnitParamsRunner;
@@ -169,18 +170,18 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void givenAPostcode_thenRemoveLastThreeCharacters() {
-        assertEquals("AB12", regionalProcessingCenterService.getFirstHalfOfPostcode("AB12 3TH"));
+        assertEquals("AB12", getFirstHalfOfPostcode("AB12 3TH"));
     }
 
     @Test
     public void givenAPostcodeWithLessThanThreeCharacters_thenReturnEmpty() {
-        assertEquals("", regionalProcessingCenterService.getFirstHalfOfPostcode("AB"));
+        assertEquals("", getFirstHalfOfPostcode("AB"));
 
     }
 
     @Test
     public void givenANullPostcode_thenReturnEmpty() {
-        assertEquals("", regionalProcessingCenterService.getFirstHalfOfPostcode(null));
+        assertEquals("", getFirstHalfOfPostcode(null));
     }
 
     private void assertBirminghamRpc(RegionalProcessingCenter regionalProcessingCenter) {
