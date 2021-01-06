@@ -62,6 +62,7 @@ public class SscsCaseData implements CaseData {
     private String generatedNino;
     private String generatedSurname;
     private String generatedEmail;
+    private String isSaveAndReturn;
     private String generatedMobile;
     @JsonProperty("generatedDOB")
     private String generatedDob;
