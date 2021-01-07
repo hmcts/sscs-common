@@ -166,6 +166,7 @@ public enum EventType {
     ABATE_CASE("abateCase", 0, false),
     PROVIDE_APPOINTEE_DETAILS("provideAppointeeDetails", 0, false),
     DEATH_OF_APPELLANT("deathOfAppellant", 0, false),
+    DEATH_OF_APPELLANT_ACTIONED("deathOfAppellantActioned", 0, false),
     UPDATE_UCB("updateUCB", 0, false),
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
     CREATE_TEST_CASE("createTestCase", 0, false);
