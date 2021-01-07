@@ -49,7 +49,7 @@ public class RoboticsJsonValidator {
                 errorSet.addAll(getErrors(validationErrors, caseId));
             }
         } catch (JsonProcessingException jsonTransformException) {
-            throw new RoboticsValidationException("Robotics service failed to transform json", null);
+            errorSet.add("Robotics service failed to transform json");
         }
 
         return errorSet;
@@ -72,8 +72,7 @@ public class RoboticsJsonValidator {
         return errors;
     }
 
-    private Set<String> getErrors(Set<ValidationMessage> validationErrors,
-                         String caseId) {
+    private Set<String> getErrors(Set<ValidationMessage> validationErrors, String caseId) {
         Set<String> errorSet = new HashSet<>();
         for (ValidationMessage validationError : validationErrors) {
 
