@@ -30,6 +30,8 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonMapperTest {
 
+    private static final String caseId = "12345678";
+
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
@@ -77,7 +79,7 @@ public class RoboticsJsonMapperTest {
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
-        roboticsJsonValidator.validate(roboticsJson);
+        roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertEquals(
                 "If this fails, add an assertion below, do not just increment the number :)", 25,
@@ -391,7 +393,7 @@ public class RoboticsJsonMapperTest {
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
-        roboticsJsonValidator.validate(roboticsJson);
+        roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertFalse(roboticsJson.has("caseId"));
     }
