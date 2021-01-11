@@ -92,6 +92,7 @@ public class EventTypeTest {
             "interlocSendToTcw\n" +
             "sendToDwp\n" +
             "sendToDwpError\n" +
+            "sendToRoboticsError\n" +
             "sendToDwpOffline\n" +
             "nonCompliantSendToInterloc\n" +
             "tcwReferToJudge\n" +
