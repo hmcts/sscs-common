@@ -272,6 +272,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private String updateReasonableAdjustment;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -280,6 +281,8 @@ public class SscsCaseData implements CaseData {
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Address jointPartyAddress;
+    private YesNo jointPartyWantsReasonableAdjustment;
+    private String jointPartyReasonableAdjustmentRequirements;
     @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;

@@ -18,6 +18,8 @@ public class Appellant {
     private String isAppointee;
     private Appointee appointee;
     private String isAddressSameAsAppointee;
+    private YesNo wantsReasonableAdjustment;
+    private String reasonableAdjustmentRequirements;
 
     @JsonCreator
     public Appellant(@JsonProperty("name") Name name,
@@ -26,7 +28,10 @@ public class Appellant {
                      @JsonProperty("identity") Identity identity,
                      @JsonProperty("isAppointee") String isAppointee,
                      @JsonProperty("appointee") Appointee appointee,
-                     @JsonProperty("isAddressSameAsAppointee") String isAddressSameAsAppointee) {
+                     @JsonProperty("isAddressSameAsAppointee") String isAddressSameAsAppointee,
+                     @JsonProperty("wantsReasonableAdjustment") YesNo wantsReasonableAdjustment,
+                     @JsonProperty("reasonableAdjustmentRequirements") String reasonableAdjustmentRequirements
+                     ) {
         this.name = name;
         this.address = address;
         this.contact = contact;
@@ -34,5 +39,7 @@ public class Appellant {
         this.isAppointee = isAppointee;
         this.appointee = appointee;
         this.isAddressSameAsAppointee = isAddressSameAsAppointee;
+        this.wantsReasonableAdjustment = wantsReasonableAdjustment;
+        this.reasonableAdjustmentRequirements = reasonableAdjustmentRequirements;
     }
 }

@@ -33,6 +33,14 @@ public enum YesNo {
         return YES.getValue().equals(yesNo);
     }
 
+    public static boolean isNo(YesNo yesNo) {
+        return NO.equals(yesNo);
+    }
+
+    public static boolean isNo(String yesNo) {
+        return NO.getValue().equals(yesNo);
+    }
+
     @Override
     public String toString() {
         return value;
