@@ -1,11 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.isNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-
-import java.util.Objects;
-
-import static java.util.Objects.isNull;
 
 public enum YesNo {
 
