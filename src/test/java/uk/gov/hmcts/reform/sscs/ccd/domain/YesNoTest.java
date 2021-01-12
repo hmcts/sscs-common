@@ -42,33 +42,33 @@ public class YesNoTest {
 
     @Test
     public void isNo_shouldBeTrueForNo() {
-        assertTrue(isNo(NO));
+        assertTrue(isNoOrNull(NO));
     }
 
     @Test
-    public void isNo_shouldBeFalseForYes() {
-        assertFalse(isNo(YES));
+    public void isNoOrNull_shouldBeFalseForYes() {
+        assertFalse(isNoOrNull(YES));
     }
 
     @Test
-    public void isNo_shouldBeFalseForNull() {
+    public void isNoOrNull_shouldBeTrueForNull() {
         YesNo yesNo = null;
-        assertFalse(isNo(yesNo));
+        assertTrue(isNoOrNull(yesNo));
     }
 
     @Test
     public void isNo_shouldBeTrueForNoString() {
-        assertTrue(isNo(NO.getValue()));
+        assertTrue(isNoOrNull(NO.getValue()));
     }
 
     @Test
     public void isNo_shouldBeFalseForYesString() {
-        assertFalse(isNo(YES.getValue()));
+        assertFalse(isNoOrNull(YES.getValue()));
     }
 
     @Test
-    public void isNo_shouldBeFalseForNullString() {
+    public void isNo_shouldBeTrueForNullString() {
         String yesNo = null;
-        assertFalse(isNo(yesNo));
+        assertTrue(isNoOrNull(yesNo));
     }
 }
