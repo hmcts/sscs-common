@@ -296,6 +296,7 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
+    private YesNo isConfidentialCase;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
