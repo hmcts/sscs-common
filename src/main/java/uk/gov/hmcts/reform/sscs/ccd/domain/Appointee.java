@@ -15,21 +15,15 @@ public class Appointee {
     private Address address;
     private Contact contact;
     private Identity identity;
-    private YesNo wantsReasonableAdjustment;
-    private String reasonableAdjustmentRequirements;
 
     @JsonCreator
     public Appointee(@JsonProperty("name") Name name,
                      @JsonProperty("address") Address address,
                      @JsonProperty("contact") Contact contact,
-                     @JsonProperty("identity") Identity identity,
-                     @JsonProperty("wantsReasonableAdjustment") YesNo wantsReasonableAdjustment,
-                     @JsonProperty("reasonableAdjustmentRequirements") String reasonableAdjustmentRequirements) {
+                     @JsonProperty("identity") Identity identity) {
         this.name = name;
         this.address = address;
         this.contact = contact;
         this.identity = identity;
-        this.wantsReasonableAdjustment = wantsReasonableAdjustment;
-        this.reasonableAdjustmentRequirements = reasonableAdjustmentRequirements;
     }
 }

@@ -281,8 +281,6 @@ public class SscsCaseData implements CaseData {
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Address jointPartyAddress;
-    private YesNo jointPartyWantsReasonableAdjustment;
-    private String jointPartyReasonableAdjustmentRequirements;
     @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
@@ -324,6 +322,7 @@ public class SscsCaseData implements CaseData {
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
+    private ReasonableAdjustment reasonableAdjustment;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
