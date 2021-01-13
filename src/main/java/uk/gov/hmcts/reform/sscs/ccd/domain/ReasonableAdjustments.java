@@ -17,8 +17,7 @@ public class ReasonableAdjustments {
     public ReasonableAdjustments(@JsonProperty("appellant") ReasonableAdjustmentDetails appellant,
                                  @JsonProperty("appointee") ReasonableAdjustmentDetails appointee,
                                  @JsonProperty("representative") ReasonableAdjustmentDetails representative,
-                                 @JsonProperty("jointParty") ReasonableAdjustmentDetails jointParty
-                                ) {
+                                 @JsonProperty("jointParty") ReasonableAdjustmentDetails jointParty) {
         this.appellant = appellant;
         this.appointee = appointee;
         this.representative = representative;
