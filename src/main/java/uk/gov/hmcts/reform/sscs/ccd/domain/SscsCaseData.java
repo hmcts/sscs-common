@@ -322,7 +322,7 @@ public class SscsCaseData implements CaseData {
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
-    private ReasonableAdjustment reasonableAdjustment;
+    private ReasonableAdjustments reasonableAdjustments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
