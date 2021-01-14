@@ -107,7 +107,7 @@ public class SscsCaseData implements CaseData {
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
-    private List<Correspondence> reasonableAdjustmentDocuments;
+    private List<ReasAdjCorrespondence> reasonableAdjustmentDocuments;
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
