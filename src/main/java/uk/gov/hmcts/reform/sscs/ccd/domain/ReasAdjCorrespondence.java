@@ -12,10 +12,10 @@ import lombok.Value;
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ReasAdjCorrespondence implements Comparable<ReasAdjCorrespondence> {
-    private CorrespondenceDetails value;
+    private ReasAdjCorrespondenceDetails value;
 
     @JsonCreator
-    public ReasAdjCorrespondence(@JsonProperty("value") CorrespondenceDetails value) {
+    public ReasAdjCorrespondence(@JsonProperty("value") ReasAdjCorrespondenceDetails value) {
         this.value = value;
     }
 

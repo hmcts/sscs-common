@@ -17,18 +17,21 @@ public class ReasAdjCorrespondenceDetails {
     private final DocumentLink documentLink;
     private final CorrespondenceType correspondenceType;
     private final String eventType;
+    private final String reasonableAdjustmentStatus;
 
     @JsonCreator
     public ReasAdjCorrespondenceDetails(@JsonProperty("sentOn") String sentOn,
                                         @JsonProperty("to") String to,
                                         @JsonProperty("documentLink") DocumentLink documentLink,
                                         @JsonProperty("correspondenceType") CorrespondenceType correspondenceType,
-                                        @JsonProperty("eventType") String eventType) {
+                                        @JsonProperty("eventType") String eventType,
+                                        @JsonProperty("eventType") String reasonableAdjustmentStatus) {
         this.sentOn = sentOn;
         this.to = to;
         this.documentLink = documentLink;
         this.correspondenceType = correspondenceType;
         this.eventType = eventType;
+        this.reasonableAdjustmentStatus = reasonableAdjustmentStatus;
     }
 
     @JsonIgnore
