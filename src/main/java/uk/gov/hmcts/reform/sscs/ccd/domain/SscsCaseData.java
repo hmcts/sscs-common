@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
-
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;

@@ -1,11 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
