@@ -315,6 +315,7 @@ public class SscsCaseData implements CaseData {
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
     private YesNo phmeGranted;
+    private DwpResponseDocument appendix12Doc;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
