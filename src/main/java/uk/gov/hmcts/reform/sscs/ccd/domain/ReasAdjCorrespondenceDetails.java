@@ -25,7 +25,7 @@ public class ReasAdjCorrespondenceDetails {
                                         @JsonProperty("documentLink") DocumentLink documentLink,
                                         @JsonProperty("correspondenceType") CorrespondenceType correspondenceType,
                                         @JsonProperty("eventType") String eventType,
-                                        @JsonProperty("eventType") String reasonableAdjustmentStatus) {
+                                        @JsonProperty("reasonableAdjustmentStatus") String reasonableAdjustmentStatus) {
         this.sentOn = sentOn;
         this.to = to;
         this.documentLink = documentLink;
