@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -311,6 +313,8 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    @JsonProperty("wcaAppeal")
+    private YesNo wcaAppeal;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
@@ -325,6 +329,11 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
+    public boolean isWcaAppeal() {
+        return isYes(wcaAppeal);
     }
 
     @JsonIgnore

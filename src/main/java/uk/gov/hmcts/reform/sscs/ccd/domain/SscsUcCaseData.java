@@ -46,8 +46,6 @@ public class SscsUcCaseData {
     private YesNo showSchedule8Paragraph4Page;
     private YesNo showSchedule7ActivitiesPage;
     private YesNo doesSchedule9Paragraph4Apply;
-    @JsonProperty("lcwaAppeal")
-    private YesNo lcwaAppeal;
 
     @JsonIgnore
     public YesNo getSchedule9Paragraph4Selection() {
@@ -55,11 +53,6 @@ public class SscsUcCaseData {
             return doesSchedule9Paragraph4Apply;
         }
         return null;
-    }
-
-    @JsonIgnore
-    public boolean isLcwaAppeal() {
-        return isYes(lcwaAppeal);
     }
 
     @JsonIgnore

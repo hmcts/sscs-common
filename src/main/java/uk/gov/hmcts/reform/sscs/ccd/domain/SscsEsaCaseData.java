@@ -46,8 +46,6 @@ public class SscsEsaCaseData {
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
-    @JsonProperty("wcaAppeal")
-    private YesNo wcaAppeal;
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
@@ -55,11 +53,6 @@ public class SscsEsaCaseData {
             return doesRegulation35Apply;
         }
         return null;
-    }
-
-    @JsonIgnore
-    public boolean isWcaAppeal() {
-        return isYes(wcaAppeal);
     }
 
     @JsonIgnore
