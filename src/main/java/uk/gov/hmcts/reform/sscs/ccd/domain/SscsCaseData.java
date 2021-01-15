@@ -273,6 +273,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private String updateReasonableAdjustment;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -322,6 +323,8 @@ public class SscsCaseData implements CaseData {
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
+    private ReasonableAdjustments reasonableAdjustments;
+    private YesNo reasonableAdjustmentsOutstanding;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -484,6 +487,11 @@ public class SscsCaseData implements CaseData {
         } else {
             this.translationWorkOutstanding = "Yes";
         }
+    }
+
+    @JsonIgnore
+    public void updateReasonableAdjustmentsOutstanding() {
+        this.reasonableAdjustmentsOutstanding = YesNo.NO;
     }
 
     @JsonIgnore
