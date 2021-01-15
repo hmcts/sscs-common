@@ -20,6 +20,7 @@ public class CorrespondenceDetails {
     private final DocumentLink documentLink;
     private final CorrespondenceType correspondenceType;
     private final String eventType;
+    private final String reasonableAdjustmentStatus;
 
     @JsonCreator
     public CorrespondenceDetails(@JsonProperty("sentOn") String sentOn,
@@ -29,7 +30,8 @@ public class CorrespondenceDetails {
                                  @JsonProperty("body") String body,
                                  @JsonProperty("documentLink") DocumentLink documentLink,
                                  @JsonProperty("correspondenceType") CorrespondenceType correspondenceType,
-                                 @JsonProperty("eventType") String eventType) {
+                                 @JsonProperty("eventType") String eventType,
+                                 @JsonProperty("reasonableAdjustmentStatus") String reasonableAdjustmentStatus) {
         this.sentOn = sentOn;
         this.from = from;
         this.to = to;
@@ -38,10 +40,12 @@ public class CorrespondenceDetails {
         this.documentLink = documentLink;
         this.correspondenceType = correspondenceType;
         this.eventType = eventType;
+        this.reasonableAdjustmentStatus = reasonableAdjustmentStatus;
     }
 
     @JsonIgnore
     public LocalDateTime getSentOnDateTime() {
         return LocalDateTime.parse(sentOn, DATE_TIME_FORMATTER);
     }
+
 }
