@@ -273,6 +273,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private String updateReasonableAdjustment;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -297,6 +298,7 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
+    private YesNo isConfidentialCase;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
@@ -318,12 +320,14 @@ public class SscsCaseData implements CaseData {
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
     private YesNo phmeGranted;
+    private DwpResponseDocument appendix12Doc;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
+    private ReasonableAdjustments reasonableAdjustments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
