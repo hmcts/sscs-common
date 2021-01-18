@@ -149,7 +149,7 @@ dependencies {
 
     compile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: 'v1.5.5'
 
-    compile group: "com.networknt", name: "json-schema-validator", version: "1.0.46"
+    compile group: "com.networknt", name: "json-schema-validator", version: "1.0.47"
 
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
