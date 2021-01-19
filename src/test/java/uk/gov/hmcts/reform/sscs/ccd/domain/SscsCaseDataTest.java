@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.junit.Assert;
@@ -496,4 +499,24 @@ public class SscsCaseDataTest {
         assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
     }
 
+    @Test
+    public void givenACaseDoesNotHaveReasonableAdjustmentLetters_ThenFlagIsNo() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(null).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED.getId()).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.DONE.getId()).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
 }
