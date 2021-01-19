@@ -36,7 +36,7 @@ public class RegionalProcessingCenterService {
 
     private final AirLookupService airLookupService;
 
-    @Value("${rpc.testScotlandPostcode}")
+    @Value("${rpc.testScotlandPostcode:}")
     private String testScotlandPostcode;
 
     @Autowired
