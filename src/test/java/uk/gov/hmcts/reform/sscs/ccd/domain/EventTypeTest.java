@@ -146,6 +146,7 @@ public class EventTypeTest {
             "deathOfAppellant\n" +
             "updateUCB\n" +
             "reviewPhmeRequest\n" +
+            "processReasonableAdjustment\n" +
             "updateReasonableAdjustment\n" +
             "createTestCase";
 

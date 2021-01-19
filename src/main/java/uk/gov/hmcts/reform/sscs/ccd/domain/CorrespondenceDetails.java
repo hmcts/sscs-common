@@ -20,7 +20,7 @@ public class CorrespondenceDetails {
     private final DocumentLink documentLink;
     private final CorrespondenceType correspondenceType;
     private final String eventType;
-    private final String reasonableAdjustmentStatus;
+    private final ReasonableAdjustmentStatus reasonableAdjustmentStatus;
 
     @JsonCreator
     public CorrespondenceDetails(@JsonProperty("sentOn") String sentOn,
@@ -31,7 +31,7 @@ public class CorrespondenceDetails {
                                  @JsonProperty("documentLink") DocumentLink documentLink,
                                  @JsonProperty("correspondenceType") CorrespondenceType correspondenceType,
                                  @JsonProperty("eventType") String eventType,
-                                 @JsonProperty("reasonableAdjustmentStatus") String reasonableAdjustmentStatus) {
+                                 @JsonProperty("reasonableAdjustmentStatus") ReasonableAdjustmentStatus reasonableAdjustmentStatus) {
         this.sentOn = sentOn;
         this.from = from;
         this.to = to;
