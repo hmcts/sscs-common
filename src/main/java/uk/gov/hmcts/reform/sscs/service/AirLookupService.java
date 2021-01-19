@@ -8,12 +8,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbookFactory;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
@@ -59,7 +54,7 @@ public class AirLookupService {
         String airlookupFilePath = "reference-data/AIRLookup14.xlsx";
         try {
             ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
-            Workbook wb2 = XSSFWorkbookFactory.create(classPathResource.getInputStream());
+            Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
             parseAirLookupData(wb2);
             parseVenueData(wb2);
 
