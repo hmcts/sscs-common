@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
@@ -34,6 +35,9 @@ public class RegionalProcessingCenterService {
     private final Map<String, String> venueIdToRegionalProcessingCentre = newHashMap();
 
     private final AirLookupService airLookupService;
+
+    @Value("${rpc.testScotlandPostcode}")
+    private String testScotlandPostcode;
 
     @Autowired
     RegionalProcessingCenterService(AirLookupService airLookupService) {
@@ -109,6 +113,9 @@ public class RegionalProcessingCenterService {
     }
 
     public RegionalProcessingCenter getByPostcode(String postcode) {
+        if (testScotlandPostcode != null && testScotlandPostcode.contains(postcode)) {
+            return regionalProcessingCenterMap.get("SSCS Glasgow");
+        }
         String regionalProcessingCentreName = airLookupService.lookupRegionalCentre(postcode);
         return regionalProcessingCenterMap.get("SSCS " + regionalProcessingCentreName);
     }
