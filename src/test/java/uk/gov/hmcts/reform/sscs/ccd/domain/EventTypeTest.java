@@ -92,6 +92,7 @@ public class EventTypeTest {
             "interlocSendToTcw\n" +
             "sendToDwp\n" +
             "sendToDwpError\n" +
+            "sendToRoboticsError\n" +
             "sendToDwpOffline\n" +
             "nonCompliantSendToInterloc\n" +
             "tcwReferToJudge\n" +
@@ -138,7 +139,16 @@ public class EventTypeTest {
             "cancelTranslations\n" +
             "createWelshNotice\n" +
             "markDocumentsForTranslation\n" +
-            "jointPartyAdded";
+            "jointPartyAdded\n" +
+            "issueAdjournmentNoticeWelsh\n" +
+            "abateCase\n" +
+            "provideAppointeeDetails\n" +
+            "deathOfAppellant\n" +
+            "updateUCB\n" +
+            "reviewPhmeRequest\n" +
+            "updateReasonableAdjustment\n" +
+            "createTestCase";
+
 
     @Test
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
@@ -161,7 +171,7 @@ public class EventTypeTest {
             SENT_TO_DWP_ERROR, REQUEST_INFO_INCOMPLETE, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
             LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE,
                 WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
-                CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED);
+                CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED, UPDATE_UCB);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {

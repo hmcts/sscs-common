@@ -155,16 +155,23 @@
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_ucWriteFinalDecisionStandingAndSittingQuestion",
+   "DisplayOrder" : "4",
+   "ListElementCode": "standingAndSitting2d",
+   "ListElement": "2d. None of the above applies. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_ucWriteFinalDecisionStandingAndSittingQuestion",
    "DisplayOrder" : "3",
    "ListElementCode": "standingAndSitting2c",
-   "ListElement": "2c. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than an hour before needing to move away in order to avoid significant discomfort or exhaustion. (6 points)"
+   "ListElement": "2c. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs (i) and (ii), for more than an hour before needing to move away in order to avoid significant discomfort or exhaustion. (6 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_ucWriteFinalDecisionStandingAndSittingQuestion",
    "DisplayOrder" : "2",
    "ListElementCode": "standingAndSitting2b",
-   "ListElement": "2b. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than 30 minutes, before needing to move away in order to avoid significant discomfort or exhaustion. (9 points)"
+   "ListElement": "2b. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs (i) and (ii), for more than 30 minutes, before needing to move away in order to avoid significant discomfort or exhaustion. (9 points)"
 },
 {
    "LiveFrom":"01/01/2018",

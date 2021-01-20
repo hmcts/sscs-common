@@ -84,13 +84,14 @@ public class IdamServiceTest {
         assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
-        verify(mockAppender, times(3)).doAppend(captorLoggingEvent.capture());
+        verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
         final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
 
         //Check the message being logged is correct
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token successful"));
+        assertThat(loggingEvent.get(1).getFormattedMessage(), containsString("Attempting to obtain token, retry attempt"));
+        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
+        assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam access token successful"));
     }
 
     @Test
@@ -105,13 +106,14 @@ public class IdamServiceTest {
             // Ignore for the purposes of this test
         }
 
-        verify(mockAppender, times(3)).doAppend(captorLoggingEvent.capture());
+        verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
         final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
 
         //Check the message being logged is correct
         assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), containsString("Requesting idam token failed:"));
+        assertThat(loggingEvent.get(1).getFormattedMessage(), containsString("Attempting to obtain token, retry attempt"));
+        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
+        assertThat(loggingEvent.get(3).getFormattedMessage(), containsString("Requesting idam token failed:"));
     }
 
     @Test

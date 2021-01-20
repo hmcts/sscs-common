@@ -155,16 +155,23 @@
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
+   "DisplayOrder" : "4",
+   "ListElementCode": "standingAndSitting2d",
+   "ListElement": "2d. None of the above apply. (0 points)"
+},
+{
+   "LiveFrom":"01/01/2018",
+   "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
    "DisplayOrder" : "3",
    "ListElementCode": "standingAndSitting2c",
-   "ListElement": "2c. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than an hour before needing to move away in order to avoid significant discomfort or exhaustion. (6 points)"
+   "ListElement": "2c. Cannot, for the majority of the time, remain at a work station, either: (i) standing unassisted by another person (even if free to move around); or (ii) sitting (even in an adjustable chair); or (iii) a combination of (i) and (ii), for more than an hour before needing to move away in order to avoid significant discomfort or exhaustion. (6 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
    "DisplayOrder" : "2",
    "ListElementCode": "standingAndSitting2b",
-   "ListElement": "2b. Cannot, for the majority of the time, remain at a work station: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of paragraphs  and (ii), for more than 30 minutes, before needing to move away in order to avoid significant discomfort or exhaustion. (9 points)"
+   "ListElement": "2b. Cannot, for the majority of the time, remain at a work station either:: (i) standing unassisted by another person (even if free to move around); (ii) sitting (even in an adjustable chair); or (iii) a combination of (i) and (ii), for more than 30 minutes, before needing to move away in order to avoid significant discomfort or exhaustion. (9 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -178,7 +185,7 @@
    "ID": "FL_esaWriteFinalDecisionReachingQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "reaching3d",
-   "ListElement": "3d. None of the above applies. (0 points)"
+   "ListElement": "3d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -206,7 +213,7 @@
    "ID": "FL_esaWriteFinalDecisionPickingUpQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "pickingUp4d",
-   "ListElement": "4d. None of the above applies. (0 points)"
+   "ListElement": "4d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -234,7 +241,7 @@
    "ID": "FL_esaWriteFinalDecisionManualDexterityQuestion",
    "DisplayOrder" : "5",
    "ListElementCode": "manualDexterity5e",
-   "ListElement": "5e. None of the above applies. (0 points)"
+   "ListElement": "5e. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -269,7 +276,7 @@
    "ID": "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "manualDexterity6d",
-   "ListElement": "6d. None of the above applies. (0 points)"
+   "ListElement": "6d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -325,7 +332,7 @@
    "ID": "FL_esaWriteFinalDecisionNavigationQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "decisionNavigation8d",
-   "ListElement": "8d. None of the above applies. (0 points)"
+   "ListElement": "8d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -374,7 +381,7 @@
    "ID": "FL_esaWriteFinalDecisionConsciousnessQuestion",
    "DisplayOrder" : "3",
    "ListElementCode": "consciousness10c",
-   "ListElement": "10c. Neither of the above applies. (0 points)"
+   "ListElement": "10c. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -395,7 +402,7 @@
    "ID": "FL_esaWriteFinalDecisionLearningTasksQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "learningTasks11d",
-   "ListElement": "11d. None of the above applies. (0 points)"
+   "ListElement": "11d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -423,7 +430,7 @@
    "ID": "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "awarenessOfHazards12d",
-   "ListElement": "12d. None of the above applies. (0 points)"
+   "ListElement": "12d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -458,28 +465,28 @@
    "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
    "DisplayOrder" : "3",
    "ListElementCode": "personalAction13c",
-   "ListElement": "13c. Frequently cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (6 points)"
+   "ListElement": "13c. Frequently cannot, due to impaired mental function, reliably initiate or complete at least 2 sequential personal actions. (6 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
    "DisplayOrder" : "2",
    "ListElementCode": "personalAction13b",
-   "ListElement": "13b. Cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions for the majority of the time. (9 points)"
+   "ListElement": "13b. Cannot, due to impaired mental function, reliably initiate or complete at least 2 sequential personal actions for the majority of the time. (9 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionPersonalActionQuestion",
    "DisplayOrder" : "1",
    "ListElementCode": "personalAction13a",
-   "ListElement": "13a. Cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions. (15 points)"
+   "ListElement": "13a. Cannot, due to impaired mental function, reliably initiate or complete at least 2 sequential personal actions. (15 points)"
 },
 {
    "LiveFrom":"01/01/2018",
    "ID": "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "copingWithChange14d",
-   "ListElement": "14d. None of the above applies. (0 points)"
+   "ListElement": "14d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -507,7 +514,7 @@
    "ID": "FL_esaWriteFinalDecisionGettingAboutQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "gettingAbout15d",
-   "ListElement": "15d. None of the above applies. (0 points)"
+   "ListElement": "15d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -563,7 +570,7 @@
    "ID": "FL_esaWriteFinalDecisionBehaviourQuestion",
    "DisplayOrder" : "4",
    "ListElementCode": "appropriatenessOfBehaviour17d",
-   "ListElement": "17d. None of the above applies. (0 points)"
+   "ListElement": "17d. None of the above apply. (0 points)"
 },
 {
    "LiveFrom":"01/01/2018",
@@ -626,7 +633,7 @@
   "ID": "FL_schedule3Activities",
   "DisplayOrder" : "11",
   "ListElementCode": "schedule3PersonalAction",
-  "ListElement": "11. Initiating and completing personal action (which means planning, organisation, problem solving, prioritising or switching tasks). Cannot, due to impaired mental function, reliably initiate or complete at least two sequential personal actions."
+  "ListElement": "11. Initiating and completing personal action (which means planning, organisation, problem solving, prioritising or switching tasks). Cannot, due to impaired mental function, reliably initiate or complete at least 2 sequential personal actions."
 },
 {
   "LiveFrom": "01/01/2018",

@@ -36,6 +36,7 @@
           "document_filename": "DirectionNotice.pdf"
         }
       },
+      "dwpDocuments": [],
       "subscriptions": {
         "appellantSubscription": {
           "wantSmsNotifications": "Yes",
@@ -602,6 +603,7 @@
     "case_data": {
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
+      "dwpDocuments": [],
       "subscriptions": {
         "appellantSubscription": {
           "tya": "5SmUWkN8cc",

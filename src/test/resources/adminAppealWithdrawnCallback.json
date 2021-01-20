@@ -12,6 +12,7 @@
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
       "hmctsDwpState": "sentToDwp",
+      "dwpDocuments": [],
       "subscriptions": {
         "appellantSubscription": {
           "tya": "NpmhpYaFLa",
@@ -787,6 +788,7 @@
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
       "hmctsDwpState": "sentToDwp",
+      "dwpDocuments": [],
       "subscriptions": {
         "appellantSubscription": {
           "tya": "NpmhpYaFLa",

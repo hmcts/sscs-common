@@ -7,6 +7,7 @@ import junitparams.Parameters;
 import junitparams.converters.Nullable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
 @RunWith(JUnitParamsRunner.class)
@@ -53,6 +54,11 @@ public class AirLookupServiceTest {
     }
 
     @Test
+    public void checkAirPostcodeWithNoPipReturnsBirminghamWithBenefitType() {
+        assertEquals(DEFAULT_VENUE.getEsaOrUcVenue(), airLookupService.lookupAirVenueNameByPostCode("n1w1 wal", BenefitType.builder().code("Esa").build()));
+    }
+
+    @Test
     @Parameters({
         "b4, 1234",
         "NN85, 1223",
@@ -61,6 +67,16 @@ public class AirLookupServiceTest {
         AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode(postcode);
 
         assertEquals(expectedPipVenue, lookupVenueId(venues.getPipVenue()));
+    }
+
+    @Test
+    @Parameters({
+            "b4 1lal, Birmingham",
+            "NN85 1ss, Northampton",
+    })
+    public void checkVenueForPostCodeWithNoPipWithBenefitType(String postcode, String expectedPipVenue) {
+        String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("PIP").build());
+        assertEquals(expectedPipVenue, pipVenue);
     }
 
     private int lookupVenueId(String venue) {

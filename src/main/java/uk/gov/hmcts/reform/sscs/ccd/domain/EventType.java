@@ -60,6 +60,7 @@ public enum EventType {
     SEND_TO_DWP("sendToDwp", 0, false),
     SENT_TO_DWP("sentToDwp", 0, false),
     SENT_TO_DWP_ERROR("sendToDwpError", 0, false),
+    SEND_TO_ROBOTICS_ERROR("sendToRoboticsError", 0, false),
     REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false),
     CREATE_APPEAL_PDF("createAppealPDF", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
@@ -150,6 +151,7 @@ public enum EventType {
     REISSUE_DOCUMENT("reissueDocument", 0, false),
     ADJOURN_CASE("adjournCase", 0, false),
     ISSUE_ADJOURNMENT_NOTICE("issueAdjournmentNotice", 0, false),
+    ISSUE_ADJOURNMENT_NOTICE_WELSH("issueAdjournmentNoticeWelsh", 0, false),
     NOT_LISTABLE("notListable", 0, false),
     UPDATE_NOT_LISTABLE("updateNotListable", 0, false),
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),
@@ -161,7 +163,16 @@ public enum EventType {
     ADMIN_RESTORE_CASES("adminRestoreCases", 0, false),
     REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", 0, false),
     JOINT_PARTY_ADDED("jointPartyAdded", 0, false),
-    AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false);
+    AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false),
+    ABATE_CASE("abateCase", 0, false),
+    PROVIDE_APPOINTEE_DETAILS("provideAppointeeDetails", 0, false),
+    DEATH_OF_APPELLANT("deathOfAppellant", 0, false),
+    DEATH_OF_APPELLANT_ACTIONED("deathOfAppellantActioned", 0, false),
+    UPDATE_UCB("updateUCB", 0, false),
+    REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
+    UPDATE_REASONABLE_ADJUSTMENT("updateReasonableAdjustment", 0, false),
+    CREATE_TEST_CASE("createTestCase", 0, false);
+
 
     private String type;
     private String ccdType;

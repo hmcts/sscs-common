@@ -1,15 +1,17 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
 import java.util.*;
-
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
@@ -21,15 +23,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
-import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
-import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
 @RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonMapperTest {
+
+    private static final String caseId = "12345678";
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -41,9 +42,6 @@ public class RoboticsJsonMapperTest {
     private JSONObject roboticsJson;
 
     private DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
-
-    @Mock
-    private RegionalProcessingCenterService regionalProcessingCenterService;
 
     @Mock
     private AirLookupService airLookupService;
@@ -59,8 +57,8 @@ public class RoboticsJsonMapperTest {
 
     @Before
     public void setup() {
-        initMocks(this);
-        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, regionalProcessingCenterService, airLookupService, false);
+        openMocks(this);
+        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
 
         SscsCaseData sscsCaseData = buildCaseData();
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
@@ -71,8 +69,7 @@ public class RoboticsJsonMapperTest {
                 .state(State.APPEAL_CREATED)
                 .build();
 
-        given(airLookupService.lookupAirVenueNameByPostCode(any())).willReturn(AirlookupBenefitToVenue.builder().pipVenue("Bromley").esaOrUcVenue("Bath").build());
-        given(regionalProcessingCenterService.getFirstHalfOfPostcode("CM120HN")).willReturn("CM12");
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
     }
 
     @Test
@@ -82,10 +79,10 @@ public class RoboticsJsonMapperTest {
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
-        roboticsJsonValidator.validate(roboticsJson);
+        roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 24,
+                "If this fails, add an assertion below, do not just increment the number :)", 25,
                 roboticsJson.length()
         );
 
@@ -108,6 +105,7 @@ public class RoboticsJsonMapperTest {
         assertEquals("DWP PIP (1)", roboticsJson.get("dwpPresentingOffice"));
         assertEquals("No", roboticsJson.get("dwpIsOfficerAttending"));
         assertEquals("No", roboticsJson.get("dwpUcb"));
+        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
 
         assertEquals(
                 "If this fails, add an assertion below, do not just increment the number :)", 11,
@@ -395,7 +393,7 @@ public class RoboticsJsonMapperTest {
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
-        roboticsJsonValidator.validate(roboticsJson);
+        roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertFalse(roboticsJson.has("caseId"));
     }
@@ -414,8 +412,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenAnAppointee_thenProcessRoboticsWithAppellantPostCodeSetToVenueForAppointeePostcode() {
-        given(regionalProcessingCenterService.getFirstHalfOfPostcode("TS1ABC")).willReturn("TS1");
-        given(airLookupService.lookupAirVenueNameByPostCode("TS1")).willReturn(AirlookupBenefitToVenue.builder().pipVenue("Pip venue").build());
+        given(airLookupService.lookupAirVenueNameByPostCode("TS1ABC", BenefitType.builder().code("PIP").build())).willReturn("Pip venue");
 
         Name appointeeName = Name.builder().title("Mrs").firstName("Ap").lastName("Pointee").build();
         Address address = roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().getAddress();
@@ -568,27 +565,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    public void givenUcFeatureFlagOff_thenDoNotPopulateRoboticsWithUcFields() {
-        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
-
-        assertFalse(roboticsJson.has("elementsDisputedGeneral"));
-        assertFalse(roboticsJson.has("elementsDisputedSanctions"));
-        assertFalse(roboticsJson.has("elementsDisputedOverpayment"));
-        assertFalse(roboticsJson.has("elementsDisputedHousing"));
-        assertFalse(roboticsJson.has("elementsDisputedChildCare"));
-        assertFalse(roboticsJson.has("elementsDisputedCare"));
-        assertFalse(roboticsJson.has("elementsDisputedChildElement"));
-        assertFalse(roboticsJson.has("elementsDisputedChildDisabled"));
-        assertFalse(roboticsJson.has("jointParty"));
-        assertFalse(roboticsJson.has("ucDecisionDisputedByOthers"));
-        assertFalse(roboticsJson.has("linkedAppealRef"));
-        assertFalse(roboticsJson.has("wantsHearingTypeTelephone"));
-        assertFalse(roboticsJson.has("wantsHearingTypeVideo"));
-        assertFalse(roboticsJson.has("wantsHearingTypeFaceToFace"));
-    }
-
-    @Test
-    public void givenUcFeatureFlagOn_thenPopulateRoboticsWithUcFields() {
+    public void shouldPopulateRoboticsWithUcFields() {
         initialiseElementDisputedLists();
 
         roboticsWrapper.getSscsCaseData().setJointParty("Yes");
@@ -600,8 +577,6 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
                 .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
-
-        ReflectionTestUtils.setField(roboticsJsonMapper, "ucEnabled", true);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -634,7 +609,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    public void givenUcFeatureFlagOn_thenPopulateRoboticsWithUcFieldsSameAddress() {
+    public void shouldPopulateRoboticsWithUcFieldsSameAddress() {
         initialiseElementDisputedLists();
 
         roboticsWrapper.getSscsCaseData().setJointParty("Yes");
@@ -646,8 +621,6 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
                 .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
-
-        ReflectionTestUtils.setField(roboticsJsonMapper, "ucEnabled", true);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -681,14 +654,12 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    public void givenUcFeatureFlagOnAndElementContainsMultipleIssues_thenCheckMultipleIssuesTransformedToArray() {
+    public void givenElementContainsMultipleIssues_thenCheckMultipleIssuesTransformedToArray() {
         elementsDisputedGeneralList.addAll(Arrays.asList(
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedGeneral").build()).build(),
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("secondIssueElementsDisputedGeneral").build()).build(),
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("thirdIssueElementsDisputedGeneral").build()).build()));
         roboticsWrapper.getSscsCaseData().setElementsDisputedGeneral(elementsDisputedGeneralList);
-
-        ReflectionTestUtils.setField(roboticsJsonMapper, "ucEnabled", true);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 

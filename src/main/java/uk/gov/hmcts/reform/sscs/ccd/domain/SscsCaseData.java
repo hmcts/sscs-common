@@ -6,11 +6,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
@@ -66,6 +62,7 @@ public class SscsCaseData implements CaseData {
     private String generatedNino;
     private String generatedSurname;
     private String generatedEmail;
+    private String isSaveAndReturn;
     private String generatedMobile;
     @JsonProperty("generatedDOB")
     private String generatedDob;
@@ -104,6 +101,7 @@ public class SscsCaseData implements CaseData {
     private String dwpIsOfficerAttending;
     @JsonProperty("dwpUCB")
     private String dwpUcb;
+    private DocumentLink dwpUcbEvidenceDocument;
     @JsonProperty("dwpPHME")
     private String dwpPhme;
     private String dwpComplexAppeal;
@@ -130,7 +128,10 @@ public class SscsCaseData implements CaseData {
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
+    private DwpResponseDocument dwpEditedEvidenceBundleDocument;
+    private String dwpEditedEvidenceReason;
     private DwpResponseDocument dwpResponseDocument;
+    private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
     private DwpResponseDocument dwpOtherDoc;
     private DwpLT203 dwpLT203;
@@ -252,6 +253,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private String reasonableAdjustmentChoice;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -276,6 +278,7 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
+    private YesNo isConfidentialCase;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
@@ -291,11 +294,18 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
+    private String dateOfAppellantDeath;
+    @JsonProperty("phmeGranted")
+    private YesNo phmeGranted;
+    private DwpResponseDocument appendix12Doc;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
+    private String processingVenue;
+    private ReasonableAdjustments reasonableAdjustments;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
