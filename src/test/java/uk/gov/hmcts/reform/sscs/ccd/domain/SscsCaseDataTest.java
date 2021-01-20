@@ -514,6 +514,13 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void givenACaseHasReasonableAdjustmentsLettersStatusIsNull_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
     public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build())).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();

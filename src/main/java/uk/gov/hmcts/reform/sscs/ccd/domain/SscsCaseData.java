@@ -496,7 +496,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void updateReasonableAdjustmentsOutstanding() {
-        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> ReasonableAdjustmentStatus.REQUIRED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
             this.reasonableAdjustmentsOutstanding = NO;
         } else {
             this.reasonableAdjustmentsOutstanding = YES;
