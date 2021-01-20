@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.emptyList;
+import static java.util.Optional.ofNullable;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -298,6 +301,7 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
+    private YesNo isConfidentialCase;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
@@ -317,6 +321,7 @@ public class SscsCaseData implements CaseData {
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
     private YesNo phmeGranted;
+    private DwpResponseDocument appendix12Doc;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -474,7 +479,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
-        return Optional.ofNullable(getSscsWelshDocuments()).map(Collection::stream).orElseGet(Stream::empty)
+        return ofNullable(getSscsWelshDocuments()).map(Collection::stream).orElseGet(Stream::empty)
                 .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
                 .sorted()
                 .findFirst();
@@ -491,7 +496,11 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void updateReasonableAdjustmentsOutstanding() {
-        this.reasonableAdjustmentsOutstanding = YesNo.NO;
+        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> ReasonableAdjustmentStatus.REQUIRED.getId().equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+            this.reasonableAdjustmentsOutstanding = NO;
+        } else {
+            this.reasonableAdjustmentsOutstanding = YES;
+        }
     }
 
     @JsonIgnore
