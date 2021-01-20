@@ -508,14 +508,14 @@ public class SscsCaseDataTest {
 
     @Test
     public void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED.getId()).build()).build())).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build())).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
     public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.DONE.getId()).build()).build())).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build())).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
