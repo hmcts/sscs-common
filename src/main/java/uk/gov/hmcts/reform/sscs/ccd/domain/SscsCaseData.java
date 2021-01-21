@@ -107,6 +107,7 @@ public class SscsCaseData implements CaseData {
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
+    private List<Correspondence> reasonableAdjustmentsLetters;
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
@@ -325,6 +326,7 @@ public class SscsCaseData implements CaseData {
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
     private ReasonableAdjustments reasonableAdjustments;
+    private YesNo reasonableAdjustmentsOutstanding;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -487,6 +489,11 @@ public class SscsCaseData implements CaseData {
         } else {
             this.translationWorkOutstanding = "Yes";
         }
+    }
+
+    @JsonIgnore
+    public void updateReasonableAdjustmentsOutstanding() {
+        this.reasonableAdjustmentsOutstanding = YesNo.NO;
     }
 
     @JsonIgnore

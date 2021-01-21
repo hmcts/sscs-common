@@ -170,6 +170,7 @@ public enum EventType {
     DEATH_OF_APPELLANT_ACTIONED("deathOfAppellantActioned", 0, false),
     UPDATE_UCB("updateUCB", 0, false),
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
+    PROCESS_REASONABLE_ADJUSTMENT("processReasonableAdjustment", 0, false),
     UPDATE_REASONABLE_ADJUSTMENT("updateReasonableAdjustment", 0, false),
     CREATE_TEST_CASE("createTestCase", 0, false);
 
