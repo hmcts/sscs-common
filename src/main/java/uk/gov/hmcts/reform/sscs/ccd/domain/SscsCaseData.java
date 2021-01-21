@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.emptyList;
+import static java.util.Optional.ofNullable;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -493,7 +496,11 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void updateReasonableAdjustmentsOutstanding() {
-        this.reasonableAdjustmentsOutstanding = YesNo.NO;
+        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+            this.reasonableAdjustmentsOutstanding = NO;
+        } else {
+            this.reasonableAdjustmentsOutstanding = YES;
+        }
     }
 
     @JsonIgnore
