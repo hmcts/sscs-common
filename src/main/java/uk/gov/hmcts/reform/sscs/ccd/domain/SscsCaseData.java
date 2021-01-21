@@ -173,6 +173,8 @@ public class SscsCaseData implements CaseData {
     private String bundleConfiguration;
     private String pcqId;
     //Final decision notice fields
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private SscsPipCaseData pipSscsCaseData;
     private String writeFinalDecisionIsDescriptorFlow;
     private String writeFinalDecisionGenerateNotice;
