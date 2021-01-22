@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -526,4 +526,5 @@ public class SscsCaseDataTest {
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
+
 }
