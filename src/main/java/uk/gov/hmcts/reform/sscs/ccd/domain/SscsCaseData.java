@@ -110,7 +110,7 @@ public class SscsCaseData implements CaseData {
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
-    private List<Correspondence> reasonableAdjustmentsLetters;
+    private ReasonableAdjustmentsLetters reasonableAdjustmentsLetters;
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
@@ -496,11 +496,28 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void updateReasonableAdjustmentsOutstanding() {
-        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+        List<Correspondence> combinedLetters = new ArrayList<>();
+
+        if (getReasonableAdjustmentsLetters() != null) {
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppellantReasonableAdjustmentsLetters());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppointeeReasonableAdjustmentsLetters());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getRepresentativeReasonableAdjustmentsLetters());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointPartyReasonableAdjustmentsLetters());
+        }
+
+        if (ofNullable(combinedLetters).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
             this.reasonableAdjustmentsOutstanding = NO;
         } else {
             this.reasonableAdjustmentsOutstanding = YES;
         }
+    }
+
+    @JsonIgnore
+    public List<Correspondence> buildLetterList(List<Correspondence> combinedLetters, List<Correspondence> correspondence) {
+        if (correspondence != null) {
+            combinedLetters.addAll(correspondence);
+        }
+        return combinedLetters;
     }
 
     @JsonIgnore
