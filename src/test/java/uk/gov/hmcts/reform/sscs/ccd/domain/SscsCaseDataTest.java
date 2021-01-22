@@ -112,10 +112,14 @@ public class SscsCaseDataTest {
         Document document1 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-01-01").build()).build();
         Document document2 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-03-01").build()).build();
         Document document3 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-02-01").build()).build();
+        Document document4 = Document.builder().value(DocumentDetails.builder().dateReceived(null).build()).build();
+        Document document5 = Document.builder().value(DocumentDetails.builder().dateReceived("NaN").build()).build();
 
         documents.add(document1);
         documents.add(document2);
         documents.add(document3);
+        documents.add(document4);
+        documents.add(document5);
         Evidence evidence = Evidence.builder().documents(documents).build();
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().evidence(evidence).build();
@@ -124,6 +128,8 @@ public class SscsCaseDataTest {
         assertEquals("2019-03-01", sscsCaseData.getEvidence().getDocuments().get(0).getValue().getDateReceived());
         assertEquals("2019-02-01", sscsCaseData.getEvidence().getDocuments().get(1).getValue().getDateReceived());
         assertEquals("2019-01-01", sscsCaseData.getEvidence().getDocuments().get(2).getValue().getDateReceived());
+        assertNull(sscsCaseData.getEvidence().getDocuments().get(3).getValue().getDateReceived());
+        assertEquals("NaN", sscsCaseData.getEvidence().getDocuments().get(4).getValue().getDateReceived());
     }
 
 
@@ -144,6 +150,24 @@ public class SscsCaseDataTest {
         assertEquals("1 Feb 2019 11:22", sscsCaseData.getCorrespondence().get(0).getValue().getSentOn());
         assertEquals("1 Jan 2019 11:23", sscsCaseData.getCorrespondence().get(1).getValue().getSentOn());
         assertEquals("1 Jan 2019 11:22", sscsCaseData.getCorrespondence().get(2).getValue().getSentOn());
+    }
+
+    @Test
+    public void sortSscsDocumentsByDateAdded() {
+        List<SscsDocument> sscsDocuments = new ArrayList<>();
+        SscsDocument sscsDocument1 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build()).build();
+        SscsDocument sscsDocument2 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-03-01").build()).build();
+        SscsDocument sscsDocument3 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build()).build();
+        sscsDocuments.add(sscsDocument1);
+        sscsDocuments.add(sscsDocument2);
+        sscsDocuments.add(sscsDocument3);
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(sscsDocuments).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded());
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded());
     }
 
     @Test
