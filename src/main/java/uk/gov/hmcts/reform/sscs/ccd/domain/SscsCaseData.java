@@ -328,6 +328,7 @@ public class SscsCaseData implements CaseData {
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
+    private List<DraftSscsDocument> draftFurtherEvidenceDocuments;
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
 
