@@ -18,6 +18,7 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private String documentEmailContent;
     private String controlNumber;
     private SscsDocumentTranslationStatus documentTranslationStatus;
+    private DocumentLink editedDocumentLink;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -25,6 +26,7 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("documentEmailContent") String documentEmailContent,
                                @JsonProperty("documentDateAdded") String documentDateAdded,
                                @JsonProperty("documentLink") DocumentLink documentLink,
+                               @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                                @JsonProperty("documentComment") String documentComment,
                                @JsonProperty("controlNumber") String controlNumber,
                                @JsonProperty("evidenceIssued") String evidenceIssued,
@@ -34,5 +36,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
         this.documentTranslationStatus = documentTranslationStatus;
+        this.editedDocumentLink = editedDocumentLink;
     }
 }

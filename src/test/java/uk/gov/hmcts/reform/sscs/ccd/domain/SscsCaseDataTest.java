@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.junit.Test;
@@ -576,6 +579,33 @@ public class SscsCaseDataTest {
         assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.ESA));
         assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.PIP));
         assertFalse(sscsCaseData.isBenefitType(BenefitTypeEnum.UC));
+    }
+
+    public void givenACaseDoesNotHaveReasonableAdjustmentLetters_ThenFlagIsNo() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(null).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseHasReasonableAdjustmentsLettersStatusIsNull_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build())).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
 }
