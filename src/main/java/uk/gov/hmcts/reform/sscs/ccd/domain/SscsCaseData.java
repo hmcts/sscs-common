@@ -499,10 +499,10 @@ public class SscsCaseData implements CaseData {
         List<Correspondence> combinedLetters = new ArrayList<>();
 
         if (getReasonableAdjustmentsLetters() != null) {
-            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppellantReasonableAdjustmentsLetters());
-            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppointeeReasonableAdjustmentsLetters());
-            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getRepresentativeReasonableAdjustmentsLetters());
-            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointPartyReasonableAdjustmentsLetters());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppellant());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppointee());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getRepresentative());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointParty());
         }
 
         if (ofNullable(combinedLetters).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {

@@ -510,7 +510,7 @@ public class SscsCaseDataTest {
         List<Correspondence> letters = new ArrayList<>();
         letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellantReasonableAdjustmentsLetters(letters).build()).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
@@ -520,7 +520,7 @@ public class SscsCaseDataTest {
         List<Correspondence> letters = new ArrayList<>();
         letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellantReasonableAdjustmentsLetters(letters).build()).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
@@ -530,7 +530,7 @@ public class SscsCaseDataTest {
         List<Correspondence> letters = new ArrayList<>();
         letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellantReasonableAdjustmentsLetters(letters).build()).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
@@ -543,7 +543,7 @@ public class SscsCaseDataTest {
         List<Correspondence> letters2 = new ArrayList<>();
         letters2.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellantReasonableAdjustmentsLetters(letters1).jointPartyReasonableAdjustmentsLetters(letters2).build()).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters1).jointParty(letters2).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }

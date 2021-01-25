@@ -11,18 +11,18 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class ReasonableAdjustmentsLetters {
 
-    private List<Correspondence> appellantReasonableAdjustmentsLetters;
-    private List<Correspondence> appointeeReasonableAdjustmentsLetters;
-    private List<Correspondence> representativeReasonableAdjustmentsLetters;
-    private List<Correspondence> jointPartyReasonableAdjustmentsLetters;
+    private List<Correspondence> appellant;
+    private List<Correspondence> appointee;
+    private List<Correspondence> representative;
+    private List<Correspondence> jointParty;
 
-    public ReasonableAdjustmentsLetters(@JsonProperty("appellantReasonableAdjustmentsLetters") List<Correspondence> appellantReasonableAdjustmentsLetters,
-                                 @JsonProperty("appointeeReasonableAdjustmentsLetters") List<Correspondence> appointeeReasonableAdjustmentsLetters,
-                                 @JsonProperty("representativeReasonableAdjustmentsLetters") List<Correspondence> representativeReasonableAdjustmentsLetters,
-                                 @JsonProperty("jointPartyReasonableAdjustmentsLetters") List<Correspondence> jointPartyReasonableAdjustmentsLetters) {
-        this.appellantReasonableAdjustmentsLetters = appellantReasonableAdjustmentsLetters;
-        this.appointeeReasonableAdjustmentsLetters = appointeeReasonableAdjustmentsLetters;
-        this.representativeReasonableAdjustmentsLetters = representativeReasonableAdjustmentsLetters;
-        this.jointPartyReasonableAdjustmentsLetters = jointPartyReasonableAdjustmentsLetters;
+    public ReasonableAdjustmentsLetters(@JsonProperty("appellant") List<Correspondence> appellant,
+                                 @JsonProperty("appointee") List<Correspondence> appointee,
+                                 @JsonProperty("representative") List<Correspondence> representative,
+                                 @JsonProperty("jointParty") List<Correspondence> jointParty) {
+        this.appellant = appellant;
+        this.appointee = appointee;
+        this.representative = representative;
+        this.jointParty = jointParty;
     }
 }
