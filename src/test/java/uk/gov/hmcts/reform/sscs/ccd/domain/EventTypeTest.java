@@ -48,6 +48,7 @@ public class EventTypeTest {
             "cohQuestionDeadlineExtended\n" +
             "cohQuestionRoundIssued\n" +
             "createBundle\n" +
+            "createEditedBundle\n" +
             "createDraft\n" +
             "panelUpdate\n" +
             "logDocsToDwp\n" +
@@ -146,6 +147,7 @@ public class EventTypeTest {
             "deathOfAppellant\n" +
             "updateUCB\n" +
             "reviewPhmeRequest\n" +
+            "processReasonableAdjustment\n" +
             "updateReasonableAdjustment\n" +
             "createTestCase";
 
