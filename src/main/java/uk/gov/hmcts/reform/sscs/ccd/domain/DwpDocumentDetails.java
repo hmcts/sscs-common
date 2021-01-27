@@ -15,10 +15,6 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class DwpDocumentDetails extends AbstractDocumentDetails {
 
-    private String originalDocumentFileName;
-    private String documentComment;
-    private String documentLanguage;
-
     @JsonCreator
     public DwpDocumentDetails(@JsonProperty("documentType") String documentType,
                               @JsonProperty("documentFileName") String documentFileName,
