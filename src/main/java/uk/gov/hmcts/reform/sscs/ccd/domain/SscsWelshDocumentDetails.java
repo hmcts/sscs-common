@@ -29,7 +29,7 @@ public class SscsWelshDocumentDetails extends AbstractDocumentDetails {
                                     @JsonProperty("documentLanguage") String documentLanguage,
                                     @JsonProperty("evidenceIssued") String evidenceIssued,
                                     @JsonProperty("bundleAddition") String bundleAddition) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, documentComment, evidenceIssued, bundleAddition);
+        super(documentType, documentFileName, documentDateAdded, documentLink, null, documentComment, evidenceIssued, bundleAddition);
         this.originalDocumentFileName = originalDocumentFileName;
         this.documentComment = documentComment;
         this.documentLanguage = documentLanguage;

@@ -57,6 +57,7 @@ public enum EventType {
     ISSUE_FINAL_DECISION("issueFinalDecision", 0, false),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
+    CREATE_EDITED_BUNDLE("createEditedBundle", 0, false),
     SEND_TO_DWP("sendToDwp", 0, false),
     SENT_TO_DWP("sentToDwp", 0, false),
     SENT_TO_DWP_ERROR("sendToDwpError", 0, false),
@@ -170,6 +171,7 @@ public enum EventType {
     DEATH_OF_APPELLANT_ACTIONED("deathOfAppellantActioned", 0, false),
     UPDATE_UCB("updateUCB", 0, false),
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
+    PROCESS_REASONABLE_ADJUSTMENT("processReasonableAdjustment", 0, false),
     UPDATE_REASONABLE_ADJUSTMENT("updateReasonableAdjustment", 0, false),
     CREATE_TEST_CASE("createTestCase", 0, false);
 

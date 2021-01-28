@@ -1,7 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+import static java.util.Collections.emptyList;
+import static java.util.Optional.ofNullable;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -108,6 +110,7 @@ public class SscsCaseData implements CaseData {
     private String dwpComplexAppeal;
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
+    private List<Correspondence> reasonableAdjustmentsLetters;
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
@@ -273,7 +276,7 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
-    private String updateReasonableAdjustment;
+    private String reasonableAdjustmentChoice;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -316,6 +319,7 @@ public class SscsCaseData implements CaseData {
     private YesNo showDwpReassessAwardPage;
     @JsonProperty("wcaAppeal")
     private YesNo wcaAppeal;
+    private YesNo isAppellantDeceased;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
@@ -327,16 +331,13 @@ public class SscsCaseData implements CaseData {
     private SscsUcCaseData sscsUcCaseData;
     private List<DwpDocument> dwpDocuments;
     private String processingVenue;
+    private List<DraftSscsDocument> draftFurtherEvidenceDocuments;
     private ReasonableAdjustments reasonableAdjustments;
+    private YesNo reasonableAdjustmentsOutstanding;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
-    }
-
-    @JsonIgnore
-    public boolean isWcaAppeal() {
-        return isYes(wcaAppeal);
     }
 
     @JsonIgnore
@@ -403,6 +404,11 @@ public class SscsCaseData implements CaseData {
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
+    }
+
+    @JsonIgnore
+    public boolean isWcaAppeal() {
+        return isYes(wcaAppeal);
     }
 
     @JsonIgnore
@@ -494,6 +500,15 @@ public class SscsCaseData implements CaseData {
             this.translationWorkOutstanding = "No";
         } else {
             this.translationWorkOutstanding = "Yes";
+        }
+    }
+
+    @JsonIgnore
+    public void updateReasonableAdjustmentsOutstanding() {
+        if (ofNullable(getReasonableAdjustmentsLetters()).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+            this.reasonableAdjustmentsOutstanding = NO;
+        } else {
+            this.reasonableAdjustmentsOutstanding = YES;
         }
     }
 

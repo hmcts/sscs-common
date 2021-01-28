@@ -28,6 +28,6 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("evidenceIssued") String evidenceIssued,
                               @JsonProperty("bundleAddition") String bundleAddition) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, documentComment, evidenceIssued, bundleAddition);
+        super(documentType, documentFileName, documentDateAdded, documentLink, null, documentComment, evidenceIssued, bundleAddition);
     }
 }
