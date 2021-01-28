@@ -137,6 +137,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpResponseDocument;
     private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
+    private DwpResponseDocument dwpChallengeValidityDocument;
     private DwpResponseDocument dwpOtherDoc;
     private DwpResponseDocument dwpLT203;
     private DwpResponseDocument dwpLapseLetter;
