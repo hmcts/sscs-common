@@ -15,6 +15,7 @@ public class AbstractDocumentDetails {
     private String documentDateAdded;
     private String documentComment;
     private DocumentLink documentLink;
+    private DocumentLink editedDocumentLink;
     private String evidenceIssued;
     private String bundleAddition;
 
@@ -23,6 +24,7 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("documentFileName") String documentFileName,
                                    @JsonProperty("documentDateAdded") String documentDateAdded,
                                    @JsonProperty("documentLink") DocumentLink documentLink,
+                                   @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                                    @JsonProperty("documentComment") String documentComment,
                                    @JsonProperty("evidenceIssued") String evidenceIssued,
                                    @JsonProperty("bundleAddition") String bundleAddition) {
@@ -30,6 +32,7 @@ public class AbstractDocumentDetails {
         this.documentFileName = documentFileName;
         this.documentDateAdded = documentDateAdded;
         this.documentLink = documentLink;
+        this.editedDocumentLink = editedDocumentLink;
         this.documentComment = documentComment;
         this.evidenceIssued = evidenceIssued;
         this.bundleAddition = bundleAddition;

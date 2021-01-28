@@ -300,6 +300,9 @@ public class SscsCaseData implements CaseData {
     private String dwpReassessTheAward;
     private YesNo showFinalDecisionNoticeSummaryOfOutcomePage;
     private YesNo showDwpReassessAwardPage;
+    @JsonProperty("wcaAppeal")
+    private YesNo wcaAppeal;
+    private YesNo isAppellantDeceased;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
@@ -386,6 +389,11 @@ public class SscsCaseData implements CaseData {
         return latestEvent != null ? latestEvent.getType() : null;
     }
     
+
+    @JsonIgnore
+    public boolean isWcaAppeal() {
+        return isYes(wcaAppeal);
+    }
 
     @JsonIgnore
     public boolean isLanguagePreferenceWelsh() {
