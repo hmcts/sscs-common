@@ -14,6 +14,7 @@ import lombok.Data;
 public class ScannedDocumentDetails {
     private String type;
     private DocumentLink url;
+    private DocumentLink editedUrl;
     private String controlNumber;
     private String fileName;
     private String scannedDate;
@@ -23,6 +24,7 @@ public class ScannedDocumentDetails {
     @JsonCreator
     public ScannedDocumentDetails(@JsonProperty("type") String type,
                                   @JsonProperty("url") DocumentLink url,
+                                  @JsonProperty("editedUrl") DocumentLink editedUrl,
                                   @JsonProperty("controlNumber") String controlNumber,
                                   @JsonProperty("fileName") String fileName,
                                   @JsonProperty("scannedDate") String scannedDate,
@@ -30,6 +32,7 @@ public class ScannedDocumentDetails {
                                   @JsonProperty("subtype") String subtype) {
         this.type = type;
         this.url = url;
+        this.editedUrl = editedUrl;
         this.controlNumber = controlNumber;
         this.fileName = fileName;
         this.scannedDate = scannedDate;
