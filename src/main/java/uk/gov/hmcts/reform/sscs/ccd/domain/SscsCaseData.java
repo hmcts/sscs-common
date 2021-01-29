@@ -168,8 +168,6 @@ public class SscsCaseData implements CaseData {
     private String waiverReasonOther;
     private List<String> clerkDelegatedAuthority;
     private List<String> clerkAppealSatisfactionText;
-    private List<String> pipWriteFinalDecisionDailyLivingActivitiesQuestion;
-    private List<String> pipWriteFinalDecisionMobilityActivitiesQuestion;
     @JsonProperty("clerkConfirmationOfMRN")
     private String clerkConfirmationOfMrn;
     private String clerkOtherReason;
@@ -179,18 +177,15 @@ public class SscsCaseData implements CaseData {
     private String bundleConfiguration;
     private String pcqId;
     //Final decision notice fields
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsPipCaseData pipSscsCaseData;
     private String writeFinalDecisionIsDescriptorFlow;
     private String writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
     private String writeFinalDecisionAppellantAttendedQuestion;
-    private String pipWriteFinalDecisionDailyLivingQuestion;
-    @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion")
-    private String pipWriteFinalDecisionComparedToDwpDailyLivingQuestion;
-    private String pipWriteFinalDecisionMobilityQuestion;
-    @JsonProperty("pipWriteFinalDecisionComparedToDWPMobilityQuestion")
-    private String pipWriteFinalDecisionComparedToDwpMobilityQuestion;
     private String writeFinalDecisionStartDate;
     private String writeFinalDecisionEndDateType;
     private String writeFinalDecisionEndDate;
@@ -201,18 +196,6 @@ public class SscsCaseData implements CaseData {
     private String writeFinalDecisionDateOfDecision;
     private String writeFinalDecisionDetailsOfDecision;
     private List<CollectionItem<String>> writeFinalDecisionReasons;
-    private String pipWriteFinalDecisionPreparingFoodQuestion;
-    private String pipWriteFinalDecisionTakingNutritionQuestion;
-    private String pipWriteFinalDecisionManagingTherapyQuestion;
-    private String pipWriteFinalDecisionWashAndBatheQuestion;
-    private String pipWriteFinalDecisionManagingToiletNeedsQuestion;
-    private String pipWriteFinalDecisionDressingAndUndressingQuestion;
-    private String pipWriteFinalDecisionCommunicatingQuestion;
-    private String pipWriteFinalDecisionReadingUnderstandingQuestion;
-    private String pipWriteFinalDecisionEngagingWithOthersQuestion;
-    private String pipWriteFinalDecisionBudgetingDecisionsQuestion;
-    private String pipWriteFinalDecisionPlanningAndFollowingQuestion;
-    private String pipWriteFinalDecisionMovingAroundQuestion;
     private String writeFinalDecisionPageSectionReference;
     private String writeFinalDecisionAnythingElse;
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
@@ -405,6 +388,7 @@ public class SscsCaseData implements CaseData {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
     }
+    
 
     @JsonIgnore
     public boolean isWcaAppeal() {
@@ -544,5 +528,34 @@ public class SscsCaseData implements CaseData {
         }
         return sscsUcCaseData;
     }
-    
+
+    @JsonIgnore
+    public SscsPipCaseData getSscsPipCaseData() {
+        if (pipSscsCaseData == null) {
+            this.pipSscsCaseData = new SscsPipCaseData();
+        }
+        return pipSscsCaseData;
+    }
+
+    @JsonIgnore
+    public Optional<BenefitTypeEnum> getBenefitType() {
+        if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
+            try {
+                return Optional.of(BenefitTypeEnum.valueOf(appeal.getBenefitType().getCode().toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                return Optional.empty();
+            }
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public boolean isBenefitType(BenefitTypeEnum benefitTypeEnum) {
+        Optional<BenefitTypeEnum> benefitType = getBenefitType();
+        if (benefitType.isPresent()) {
+            return benefitTypeEnum.equals(benefitType.get());
+        } else {
+            return false;
+        }
+    }
 }

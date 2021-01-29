@@ -5,6 +5,8 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
@@ -22,6 +24,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import lombok.extern.slf4j.Slf4j;
@@ -126,6 +129,10 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals(State.APPEAL_CREATED, actualSscsCaseCallback.getCaseDetails().getState());
         assertEquals(EventType.DWP_RESPOND, actualSscsCaseCallback.getCaseDetails().getCaseData().getEvents().get(0).getValue().getEventType());
         assertEquals("12345656789", actualSscsCaseCallback.getCaseDetails().getCaseData().getCcdCaseId());
+        assertEquals(Optional.of(BenefitTypeEnum.ESA), actualSscsCaseCallback.getCaseDetails().getCaseData().getBenefitType());
+        assertTrue(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(BenefitTypeEnum.ESA));
+        assertFalse(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(BenefitTypeEnum.PIP));
+
     }
 
     @Test
@@ -233,6 +240,10 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("AdditionalEvidence.pdf", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentFilename());
         assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390/binary", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentBinaryUrl());
+        assertEquals(Optional.of(BenefitTypeEnum.PIP), actualSscsCaseCallback.getCaseDetails().getCaseData().getBenefitType());
+        assertTrue(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(BenefitTypeEnum.PIP));
+        assertFalse(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(BenefitTypeEnum.ESA));
+
     }
 
     @Test
