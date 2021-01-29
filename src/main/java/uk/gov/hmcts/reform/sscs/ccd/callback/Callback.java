@@ -19,6 +19,7 @@ public class Callback<T extends CaseData> {
 
     private CaseDetails<T> caseDetails;
     private Optional<CaseDetails<T>> caseDetailsBefore = Optional.empty();
+    private String pageId;
 
     @JsonProperty("ignore_warning")
     private boolean ignoreWarnings;
@@ -36,6 +37,7 @@ public class Callback<T extends CaseData> {
         this.caseDetailsBefore = caseDetailsBefore;
         this.event = event;
         this.ignoreWarnings = ignoreWarnings;
+        this.pageId = null;
     }
 
     public EventType getEvent() {
@@ -57,5 +59,13 @@ public class Callback<T extends CaseData> {
 
     public boolean isIgnoreWarnings() {
         return ignoreWarnings;
+    }
+
+    public String getPageId() {
+        return pageId;
+    }
+
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
     }
 }
