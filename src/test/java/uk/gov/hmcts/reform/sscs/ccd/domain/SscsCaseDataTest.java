@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import org.junit.Assert;
@@ -508,23 +507,44 @@ public class SscsCaseDataTest {
 
     @Test
     public void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build())).build();
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
     public void givenACaseHasReasonableAdjustmentsLettersStatusIsNull_ThenFlagIsYes() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build())).build();
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(Collections.singletonList(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build())).build();
+    public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsNo() {
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
+    @Test
+    public void givenACaseHasWithReasonableAdjustmentsLettersForMultipleParties_ThenFlagIsYes() {
+        List<Correspondence> letters1 = new ArrayList<>();
+        letters1.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+
+        List<Correspondence> letters2 = new ArrayList<>();
+        letters2.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters1).jointParty(letters2).build()).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
 }

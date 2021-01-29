@@ -173,7 +173,8 @@ public enum EventType {
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
     PROCESS_REASONABLE_ADJUSTMENT("processReasonableAdjustment", 0, false),
     UPDATE_REASONABLE_ADJUSTMENT("updateReasonableAdjustment", 0, false),
-    CREATE_TEST_CASE("createTestCase", 0, false);
+    CREATE_TEST_CASE("createTestCase", 0, false),
+    STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT("stopBulkPrintForReasonableAdjustment", 0, false);
 
 
     private String type;
