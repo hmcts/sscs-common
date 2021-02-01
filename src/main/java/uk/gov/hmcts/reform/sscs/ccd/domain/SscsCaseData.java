@@ -137,9 +137,10 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpResponseDocument;
     private DwpResponseDocument dwpEditedResponseDocument;
     private DwpResponseDocument dwpSupplementaryResponseDoc;
+    private DwpResponseDocument dwpChallengeValidityDocument;
     private DwpResponseDocument dwpOtherDoc;
-    private DwpLT203 dwpLT203;
-    private DwpLapseLetter dwpLapseLetter;
+    private DwpResponseDocument dwpLT203;
+    private DwpResponseDocument dwpLapseLetter;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
@@ -430,6 +431,10 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null) {
             Collections.sort(getSscsDocument());
+        }
+
+        if (getDwpDocuments() != null) {
+            Collections.sort(getDwpDocuments());
         }
     }
 
