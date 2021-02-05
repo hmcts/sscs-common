@@ -83,6 +83,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
+    private List<UnprocessedAudioVideoEvidence> unprocessedAudioVideoEvidence;
     private String informationFromAppellant;
     private String outcome;
     private String evidenceHandled;
