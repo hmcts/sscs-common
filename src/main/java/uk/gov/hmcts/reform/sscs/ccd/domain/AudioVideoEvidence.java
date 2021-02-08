@@ -12,17 +12,17 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UnprocessedAudioVideoEvidence implements Comparable<UnprocessedAudioVideoEvidence> {
+public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
 
-    private UnprocessedAudioVideoEvidenceDetails value;
+    private AudioVideoEvidenceDetails value;
 
     @JsonCreator
-    public UnprocessedAudioVideoEvidence(@JsonProperty("value") UnprocessedAudioVideoEvidenceDetails value) {
+    public AudioVideoEvidence(@JsonProperty("value") AudioVideoEvidenceDetails value) {
         this.value = value;
     }
 
     @Override
-    public int compareTo(UnprocessedAudioVideoEvidence o) {
+    public int compareTo(AudioVideoEvidence o) {
         return new CompareToBuilder()
                 .append(this.value.getDateAdded(), o.getValue().getDateAdded())
                 .toComparison();

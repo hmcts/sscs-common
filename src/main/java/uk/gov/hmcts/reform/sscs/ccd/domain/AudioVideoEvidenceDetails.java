@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UnprocessedAudioVideoEvidenceDetails {
+public class AudioVideoEvidenceDetails {
     private String documentType;
     private DocumentLink documentLink;
     private DocumentLink surveillanceDocument;
@@ -23,11 +23,11 @@ public class UnprocessedAudioVideoEvidenceDetails {
     private LocalDate dateAdded;
 
     @JsonCreator
-    public UnprocessedAudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
-                                                @JsonProperty("documentLink") DocumentLink documentLink,
-                                                @JsonProperty("surveillanceDocument") DocumentLink surveillanceDocument,
-                                                @JsonProperty("fileName") String fileName,
-                                                @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    public AudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
+                                     @JsonProperty("documentLink") DocumentLink documentLink,
+                                     @JsonProperty("surveillanceDocument") DocumentLink surveillanceDocument,
+                                     @JsonProperty("fileName") String fileName,
+                                     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                                                 @JsonSerialize(using = LocalDateSerializer.class)
                                                 @JsonProperty("dateAdded") LocalDate dateAdded) {
         this.documentType = documentType;
