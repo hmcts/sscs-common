@@ -18,21 +18,21 @@ import lombok.Data;
 public class AudioVideoEvidenceDetails {
     private String documentType;
     private DocumentLink documentLink;
-    private DocumentLink surveillanceDocument;
+    private DocumentLink rip1Document;
     private String fileName;
     private LocalDate dateAdded;
 
     @JsonCreator
     public AudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
                                      @JsonProperty("documentLink") DocumentLink documentLink,
-                                     @JsonProperty("surveillanceDocument") DocumentLink surveillanceDocument,
+                                     @JsonProperty("rip1Document") DocumentLink rip1Document,
                                      @JsonProperty("fileName") String fileName,
                                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                                                 @JsonSerialize(using = LocalDateSerializer.class)
                                                 @JsonProperty("dateAdded") LocalDate dateAdded) {
         this.documentType = documentType;
         this.documentLink = documentLink;
-        this.surveillanceDocument = surveillanceDocument;
+        this.rip1Document = rip1Document;
         this.fileName = fileName;
         this.dateAdded = dateAdded;
     }
