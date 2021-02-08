@@ -142,8 +142,8 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpOtherDoc;
     private DwpResponseDocument dwpLT203;
     private DwpResponseDocument dwpLapseLetter;
-    private DwpResponseDocument dwpAuthoritySurveillanceDoc;
-    private String isAuthoritySurveillanceDoc;
+    private DocumentLink rip1Doc;
+    private String isRip1Doc;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
