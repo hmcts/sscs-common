@@ -142,6 +142,8 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpOtherDoc;
     private DwpResponseDocument dwpLT203;
     private DwpResponseDocument dwpLapseLetter;
+    private DwpResponseDocument dwpAuthoritySurveillanceDoc;
+    private String isAuthoritySurveillanceDoc;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
@@ -390,7 +392,7 @@ public class SscsCaseData implements CaseData {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
     }
-    
+
 
     @JsonIgnore
     public boolean isWcaAppeal() {
