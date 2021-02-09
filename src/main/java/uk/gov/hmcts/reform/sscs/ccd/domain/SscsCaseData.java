@@ -142,6 +142,9 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpOtherDoc;
     private DwpResponseDocument dwpLT203;
     private DwpResponseDocument dwpLapseLetter;
+    private DocumentLink rip1Doc;
+    private String isRip1Doc;
+    private YesNo showRip1DocPage;
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
@@ -390,7 +393,7 @@ public class SscsCaseData implements CaseData {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
     }
-    
+
 
     @JsonIgnore
     public boolean isWcaAppeal() {
