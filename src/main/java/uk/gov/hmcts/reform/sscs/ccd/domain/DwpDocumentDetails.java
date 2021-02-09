@@ -15,16 +15,20 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class DwpDocumentDetails extends AbstractDocumentDetails {
 
+    private String dwpEditedEvidenceReason;
+
     @JsonCreator
     public DwpDocumentDetails(@JsonProperty("documentType") String documentType,
                               @JsonProperty("documentFileName") String documentFileName,
                               @JsonProperty("documentDateAdded") String documentDateAdded,
                               @JsonProperty("documentLink") DocumentLink documentLink,
                               @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
+                              @JsonProperty("dwpEditedEvidenceReason") String dwpEditedEvidenceReason,
                               @JsonProperty("documentComment") String documentComment,
                               @JsonProperty("evidenceIssued") String evidenceIssued,
                               @JsonProperty("bundleAddition") String bundleAddition) {
 
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition);
+        this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
     }
 }
