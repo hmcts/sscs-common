@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -19,6 +20,8 @@ public class Document implements Comparable<Document> {
 
     @Override
     public int compareTo(Document o) {
-        return value.getDateReceived().compareTo(o.getValue().getDateReceived());
+        return new CompareToBuilder()
+                .append(this.value.getEvidenceDateTimeFormatted(), o.getValue().getEvidenceDateTimeFormatted())
+                .toComparison();
     }
 }
