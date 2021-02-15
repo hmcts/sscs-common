@@ -32,7 +32,6 @@ public class CreateCcdCaseService {
                 ? caseData.getAppeal().getAppellant().getIdentity().getNino() : null;
         try {
             SscsCaseDetails sscsCaseDetails = createCaseInCcd(caseData, eventType, summary, description, idamTokens, nino);
-            log.info("Case created with case id {} for nino {}", caseData.getCcdCaseId(), nino);
             return sscsCaseDetails;
         } catch (Exception e) {
 
@@ -53,6 +52,8 @@ public class CreateCcdCaseService {
 
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
         CaseDetails caseDetails = ccdClient.submitForCaseworker(idamTokens, caseDataContent);
+
+        log.info("Case created with case id {} for nino {}", caseDetails.getId(), nino);
 
         return sscsCcdConvertService.getCaseDetails(caseDetails);
     }
