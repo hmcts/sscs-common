@@ -28,12 +28,12 @@ public class CreateCcdCaseService {
     }
 
     public SscsCaseDetails createCase(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
-        log.info("Starting create case process with SC number {} and ccdID {} and eventType {} ...",
-                caseData.getCaseReference(), caseData.getCcdCaseId(), eventType);
         String nino = caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null && caseData.getAppeal().getAppellant().getIdentity() != null
                 ? caseData.getAppeal().getAppellant().getIdentity().getNino() : null;
         try {
-            return createCaseInCcd(caseData, eventType, summary, description, idamTokens, nino);
+            SscsCaseDetails sscsCaseDetails = createCaseInCcd(caseData, eventType, summary, description, idamTokens, nino);
+            log.info("Case created with case id {} for nino {}", caseData.getCcdCaseId(), nino);
+            return sscsCaseDetails;
         } catch (Exception e) {
 
             throw new CreateCcdCaseException(String.format(
