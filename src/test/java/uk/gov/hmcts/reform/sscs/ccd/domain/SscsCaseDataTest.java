@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_USING_TO_STRING;
+import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
+import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -7,22 +10,58 @@ import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.commons.io.FileUtils;
+import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
 public class SscsCaseDataTest {
 
     private LocalDate now = LocalDate.now();
+    private ObjectMapper mapper;
+
+    @Before
+    public void setUp() {
+
+        Jackson2ObjectMapperBuilder objectMapperBuilder =
+                new Jackson2ObjectMapperBuilder()
+                        .featuresToEnable(READ_ENUMS_USING_TO_STRING)
+                        .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
+                        .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
+                        .serializationInclusion(JsonInclude.Include.NON_ABSENT);
+
+        mapper = objectMapperBuilder.createXmlMapper(false).build();
+        mapper.registerModule(new JavaTimeModule());
+    }
+
+    @Test
+    public void sortSscsDocuments() throws IOException {
+
+        String path = getClass().getClassLoader().getResource("sscsDocumentSorting.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+        List<SscsDocument> newSscsDocument  = mapper.readValue(json, new TypeReference<List<SscsDocument>>(){});
+        SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(newSscsDocument).build();
+        sscsCaseData.sortCollections();
+
+        assertTrue("No sorting error", true);
+    }
 
     @Test
     public void sortHearingsByDateWhenIdsAreBlank() {
@@ -271,8 +310,8 @@ public class SscsCaseDataTest {
         sscsCaseData.sortCollections();
 
         assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -289,10 +328,11 @@ public class SscsCaseDataTest {
         sscsCaseData.sortCollections();
 
         assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("emptyDateAddedDoc", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
+
     }
 
     @Test
@@ -340,8 +380,8 @@ public class SscsCaseDataTest {
         sscsCaseData.sortCollections();
 
         assertEquals("otherDoc", sscsCaseData.getDwpDocuments().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("anotherTestUrl", sscsCaseData.getDwpDocuments().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -387,10 +427,10 @@ public class SscsCaseDataTest {
     @Test
     public void givenACaseHasMultipleWelshDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
-        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString()));
-        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
@@ -411,10 +451,10 @@ public class SscsCaseDataTest {
     @Test
     public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
-        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
-        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildWelshSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
         documents.add(buildWelshSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString()));
         documents.add(buildWelshSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));

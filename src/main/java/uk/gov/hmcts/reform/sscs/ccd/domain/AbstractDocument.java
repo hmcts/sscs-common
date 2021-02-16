@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 
 @SuperBuilder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,23 +26,10 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
 
     @Override
     public int compareTo(AbstractDocument doc2) {
-        AbstractDocumentDetails nextDocumentDetails = doc2.getValue();
+        return new CompareToBuilder()
+                .append(this.value.getBundleAddition(), doc2.getValue().getBundleAddition())
+                .append(doc2.getValue().getDateTimeFormatted(), this.value.getDateTimeFormatted())
+                .toComparison();
 
-        if (doc2.getValue().getDocumentDateAdded() == null) {
-            return -1;
-        }
-
-        if (value.getDocumentDateAdded() == null) {
-            return 0;
-        }
-
-        if (value.getBundleAddition() != null && nextDocumentDetails.getBundleAddition() != null) {
-            return 1 * value.getBundleAddition().compareTo(nextDocumentDetails.getBundleAddition());
-        }
-
-        if (value.getDocumentDateAdded().equals(nextDocumentDetails.getDocumentDateAdded())) {
-            return -1;
-        }
-        return -1 * value.getDocumentDateAdded().compareTo(nextDocumentDetails.getDocumentDateAdded());
     }
 }
