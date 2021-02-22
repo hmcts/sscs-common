@@ -1,8 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -38,4 +41,15 @@ public class AbstractDocumentDetails {
         this.bundleAddition = bundleAddition;
     }
 
+    @JsonIgnore
+    public LocalDate getDateTimeFormatted() {
+        try {
+            if (StringUtils.isEmpty(documentDateAdded)) {
+                return null;
+            }
+            return LocalDate.parse(documentDateAdded);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
 }
