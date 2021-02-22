@@ -13,12 +13,15 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class NoteDetails {
     String noteDate;
+    String userName;
     String noteDetail;
 
     @JsonCreator
     public NoteDetails(@JsonProperty("noteDate") String noteDate,
+                       @JsonProperty("userName") String userName,
                        @JsonProperty("noteDetail") String noteDetail) {
         this.noteDate = noteDate;
+        this.userName = userName;
         this.noteDetail = noteDetail;
     }
 }
