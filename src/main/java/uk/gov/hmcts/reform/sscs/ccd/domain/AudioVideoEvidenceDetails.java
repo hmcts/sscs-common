@@ -21,6 +21,9 @@ public class AudioVideoEvidenceDetails {
     private DocumentLink rip1Document;
     private String fileName;
     private LocalDate dateAdded;
+    private LocalDate dateApproved;
+    private String status;
+    private String partyUploaded;
 
     @JsonCreator
     public AudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
@@ -29,12 +32,20 @@ public class AudioVideoEvidenceDetails {
                                      @JsonProperty("fileName") String fileName,
                                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
                                                 @JsonSerialize(using = LocalDateSerializer.class)
-                                                @JsonProperty("dateAdded") LocalDate dateAdded) {
+                                                @JsonProperty("dateAdded") LocalDate dateAdded,
+                                     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+                                         @JsonSerialize(using = LocalDateSerializer.class)
+                                         @JsonProperty("dateApproved") LocalDate dateApproved,
+                                     @JsonProperty("status") String status,
+                                     @JsonProperty("partyUploaded") String partyUploaded) {
         this.documentType = documentType;
         this.documentLink = documentLink;
         this.rip1Document = rip1Document;
         this.fileName = fileName;
         this.dateAdded = dateAdded;
+        this.dateApproved = dateApproved;
+        this.status = status;
+        this.partyUploaded = partyUploaded;
     }
 
 }
