@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-@Getter
 public enum AudioVideoStatus {
 
     @JsonProperty("awaitingAction")
@@ -19,6 +18,11 @@ public enum AudioVideoStatus {
         this.value = value;
     }
 
+    @JsonValue
+    public String getValue() {
+        return value;
+    }
+
     public static AudioVideoStatus fromValue(String text) {
 
         for (AudioVideoStatus status : AudioVideoStatus.values()) {
@@ -27,5 +31,10 @@ public enum AudioVideoStatus {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }
