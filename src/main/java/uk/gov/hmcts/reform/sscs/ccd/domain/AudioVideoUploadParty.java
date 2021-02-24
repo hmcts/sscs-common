@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum AudioVideoUploadParty {
 
     @JsonProperty("ctsc")
-    CTSC("ctsc", "CTSC clerk"),
+    CTSC("caseworker-sscs-clerk", "CTSC clerk"),
     @JsonProperty("appellant")
     APPELLANT("appellant", "Appellant"),
     @JsonProperty("rep")
@@ -14,7 +14,7 @@ public enum AudioVideoUploadParty {
     @JsonProperty("jointParty")
     JOINT_PARTY("jointParty", "Joint party"),
     @JsonProperty("dwp")
-    DWP("dwp", "DWP");
+    DWP("caseworker-sscs-dwpresponsewriter", "DWP");
 
     private final String value;
     private final String label;
