@@ -1,12 +1,18 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import org.apache.commons.lang3.StringUtils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -15,12 +21,16 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class DwpDocumentDetails extends AbstractDocumentDetails {
 
+    private final LocalDateTime documentDateTimeAdded;
     private String dwpEditedEvidenceReason;
 
     @JsonCreator
     public DwpDocumentDetails(@JsonProperty("documentType") String documentType,
                               @JsonProperty("documentFileName") String documentFileName,
-                              @JsonProperty("documentDateAdded") String documentDateAdded,
+                              @Deprecated(since = "02/2021 - use documentDateTimeAdded") @JsonProperty("documentDateAdded") String documentDateAdded,
+                              @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+                                  @JsonSerialize(using = LocalDateTimeSerializer.class)
+                              @JsonProperty("documentDateTimeAdded") LocalDateTime documentDateTimeAdded,
                               @JsonProperty("documentLink") DocumentLink documentLink,
                               @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                               @JsonProperty("dwpEditedEvidenceReason") String dwpEditedEvidenceReason,
@@ -30,5 +40,15 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
 
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition);
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
+        this.documentDateTimeAdded = documentDateTimeAdded;
+    }
+
+    @JsonIgnore
+    @Override
+    public LocalDateTime getDateTimeFormatted() {
+        if (documentDateTimeAdded != null) {
+            return documentDateTimeAdded;
+        }
+        return super.getDateTimeFormatted();
     }
 }

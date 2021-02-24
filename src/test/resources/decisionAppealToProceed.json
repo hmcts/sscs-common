@@ -63,6 +63,56 @@
           "document_filename": "DecisionNotice.pdf"
         }
       },
+      "dwpDocuments": [
+        {
+          "value": {
+            "documentDateAdded": "2021-02-08",
+            "documentFileName": "AT38-4",
+            "documentLink": {
+              "document_binary_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb/binary",
+              "document_filename": "AT38 received  on 08-02-2021.png",
+              "document_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb"
+            },
+            "documentType": "at38"
+          }
+        },
+        {
+          "value": {
+            "documentDateTimeAdded": "2021-02-08T13:00:00.000",
+            "documentFileName": "AT38-2",
+            "documentLink": {
+              "document_binary_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb/binary",
+              "document_filename": "AT38 received  on 08-02-2021.png",
+              "document_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb"
+            },
+            "documentType": "at38"
+          }
+        },
+        {
+          "value": {
+            "documentDateTimeAdded": "2021-02-08T12:00:00.000",
+            "documentFileName": "AT38-3",
+            "documentLink": {
+              "document_binary_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb/binary",
+              "document_filename": "AT38 received  on 08-02-2021.png",
+              "document_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb"
+            },
+            "documentType": "at38"
+          }
+        },
+        {
+          "value": {
+            "documentDateTimeAdded": "2021-02-08T13:30:29.123",
+            "documentFileName": "AT38-1",
+            "documentLink": {
+              "document_binary_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb/binary",
+              "document_filename": "AT38 received  on 08-02-2021.png",
+              "document_url": "http://dm-store:5005/documents/e1d5c661-eca9-4625-b46f-5370257848eb"
+            },
+            "documentType": "at38"
+          }
+        }
+      ],
       "subscriptions": {
         "appellantSubscription": {
           "wantSmsNotifications": "Yes",
