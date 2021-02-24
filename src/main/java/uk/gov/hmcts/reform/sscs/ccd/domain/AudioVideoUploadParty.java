@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-@Getter
 public enum AudioVideoUploadParty {
 
     @JsonProperty("ctsc")
@@ -25,6 +24,15 @@ public enum AudioVideoUploadParty {
         this.label = label;
     }
 
+    @JsonValue
+    public String getValue() {
+        return value;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
     public static AudioVideoUploadParty fromValue(String text) {
 
         for (AudioVideoUploadParty party : AudioVideoUploadParty.values()) {
@@ -33,5 +41,10 @@ public enum AudioVideoUploadParty {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 }
