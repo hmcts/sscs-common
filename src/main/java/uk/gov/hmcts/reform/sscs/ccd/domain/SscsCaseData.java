@@ -323,7 +323,7 @@ public class SscsCaseData implements CaseData {
     private List<DraftSscsDocument> draftFurtherEvidenceDocuments;
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
-    private DocumentLink audioVideoEvidenceBundleDocument;
+    private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
