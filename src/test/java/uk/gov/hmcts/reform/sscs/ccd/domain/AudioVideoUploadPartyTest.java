@@ -12,11 +12,11 @@ public class AudioVideoUploadPartyTest {
 
     @Test
     @Parameters({
-            "CTSC, caseworker-sscs-clerk",
+            "CTSC, ctsc",
             "APPELLANT, appellant",
             "REP, rep",
             "JOINT_PARTY, jointParty",
-            "DWP, caseworker-sscs-dwpresponsewriter"
+            "DWP, dwp"
     })
     public void shouldGetAudioVideoPartyFromText(AudioVideoUploadParty party, String text) {
         assertEquals(party, AudioVideoUploadParty.fromValue(text));
