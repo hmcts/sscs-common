@@ -15,11 +15,14 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class AudioVideoEvidenceBundleDocument {
 
-    private final DocumentLink documentLink;
+    private DocumentLink documentLink;
+    private String documentFileName;
 
     @JsonCreator
-    public AudioVideoEvidenceBundleDocument(@JsonProperty("documentLink") DocumentLink documentLink) {
+    public AudioVideoEvidenceBundleDocument(@JsonProperty("documentLink") DocumentLink documentLink,
+                                            @JsonProperty("documentFileName") String documentFileName) {
         this.documentLink = documentLink;
+        this.documentFileName = documentFileName;
     }
 
 }
