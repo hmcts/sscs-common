@@ -31,7 +31,7 @@ public class UserDetailsTest {
             "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
             "caseworker-sscs,caseworker-sscs-registrar"
     })
-    public void userWithNoJudgeRoles_shouldReturnTrue(String... roles) {
+    public void userWithNoJudgeRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
         assertThat(userDetails.hasJudgeRole(), is(false));
     }
