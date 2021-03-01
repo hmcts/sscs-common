@@ -8,13 +8,13 @@ public enum UserRole {
     SUPER_USER("caseworker-sscs-superuser"),
     CITIZEN("citizen");
 
-    private String value;
+    private final String value;
 
     UserRole(String value) {
         this.value = value;
     }
 
-    String getValue() {
+    public String getValue() {
         return value;
     }
 }
