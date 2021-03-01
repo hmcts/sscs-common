@@ -40,18 +40,8 @@ public class UserDetails {
     }
 
     @JsonIgnore
-    public boolean hasJudgeRole() {
-        return hasRole("caseworker-sscs-judge");
-    }
-
-    @JsonIgnore
-    public boolean hasSuperUserRole() {
-        return hasRole("caseworker-sscs-superuser");
-    }
-
-    @JsonIgnore
-    private boolean hasRole(String role) {
-        return roles != null && roles.contains(role);
+    public boolean hasRole(UserRole role) {
+        return roles != null && roles.contains(role.getValue());
     }
 
 }

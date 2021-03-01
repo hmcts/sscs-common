@@ -22,7 +22,7 @@ public class UserDetailsTest {
     })
     public void userWithJudgeRoles_shouldReturnTrue(String... roleWithJudge) {
         userDetails.getRoles().addAll(asList(roleWithJudge));
-        assertThat(userDetails.hasJudgeRole(), is(true));
+        assertThat(userDetails.hasRole(UserRole.JUDGE), is(true));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class UserDetailsTest {
     })
     public void userWithNoJudgeRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
-        assertThat(userDetails.hasJudgeRole(), is(false));
+        assertThat(userDetails.hasRole(UserRole.JUDGE), is(false));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class UserDetailsTest {
     })
     public void userWithNoSuperUserRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
-        assertThat(userDetails.hasSuperUserRole(), is(false));
+        assertThat(userDetails.hasRole(UserRole.SUPER_USER), is(false));
     }
 
     @Test
@@ -56,13 +56,34 @@ public class UserDetailsTest {
     })
     public void userWithSuperUserRoles_shouldReturnTrue(String... userWithSuperUserRole) {
         userDetails.getRoles().addAll(asList(userWithSuperUserRole));
-        assertThat(userDetails.hasSuperUserRole(), is(true));
+        assertThat(userDetails.hasRole(UserRole.SUPER_USER), is(true));
+    }
+
+    @Test
+    @Parameters({
+            "caseworker-sscs,caseworker-sscs-panelmember",
+            "caseworker-sscs,caseworker-sscs-registrar",
+            "caseworker-sscs,caseworker-sscs-judge"
+    })
+    public void userWithNoDwpRoles_shouldReturnFalse(String... roles) {
+        userDetails.getRoles().addAll(asList(roles));
+        assertThat(userDetails.hasRole(UserRole.DWP), is(false));
+    }
+
+    @Test
+    @Parameters({
+            "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
+            "caseworker-sscs-dwpresponsewriter",
+    })
+    public void userWithDwpRoles_shouldReturnTrue(String... userWithSuperUserRole) {
+        userDetails.getRoles().addAll(asList(userWithSuperUserRole));
+        assertThat(userDetails.hasRole(UserRole.DWP), is(true));
     }
 
     @Test
     public void userWithRoles_shouldHandleNullRoles() {
         UserDetails userDetails = new UserDetails("id", "email", null);
-        assertThat(userDetails.hasJudgeRole(), is(false));
-        assertThat(userDetails.hasSuperUserRole(), is(false));
+        assertThat(userDetails.hasRole(UserRole.TCW), is(false));
+        assertThat(userDetails.hasRole(UserRole.DWP), is(false));
     }
 }
