@@ -40,8 +40,8 @@ public class UserDetails {
     }
 
     @JsonIgnore
-    public boolean hasJudgeRole() {
-        return roles != null && roles.contains("caseworker-sscs-judge");
+    public boolean hasRole(UserRole role) {
+        return roles != null && roles.contains(role.getValue());
     }
 
 }
