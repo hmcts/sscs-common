@@ -14,6 +14,7 @@ public class AudioVideoUploadPartyTest {
     @Parameters({
             "CTSC, ctsc",
             "APPELLANT, appellant",
+            "APPOINTEE, appointee",
             "REP, rep",
             "JOINT_PARTY, jointParty",
             "DWP, dwp"
