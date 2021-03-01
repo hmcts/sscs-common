@@ -9,6 +9,8 @@ public enum AudioVideoUploadParty {
     CTSC("ctsc", "CTSC clerk"),
     @JsonProperty("appellant")
     APPELLANT("appellant", "Appellant"),
+    @JsonProperty("appellant")
+    APPOINTEE("appointee", "Appointee"),
     @JsonProperty("rep")
     REP("rep", "Representative"),
     @JsonProperty("jointParty")
