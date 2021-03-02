@@ -25,7 +25,8 @@ public enum DocumentType {
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
-    TL1_FORM("tl1Form", "TL1 Form");
+    TL1_FORM("tl1Form", "TL1 Form"),
+    RIP1("rip1", "RIP 1 document");
 
     private String value;
     private String label;
