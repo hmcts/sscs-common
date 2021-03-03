@@ -23,6 +23,7 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
 
     private final LocalDateTime documentDateTimeAdded;
     private String dwpEditedEvidenceReason;
+    private DocumentLink rip1DocumentLink;
 
     @JsonCreator
     public DwpDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -36,11 +37,15 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("dwpEditedEvidenceReason") String dwpEditedEvidenceReason,
                               @JsonProperty("documentComment") String documentComment,
                               @JsonProperty("evidenceIssued") String evidenceIssued,
-                              @JsonProperty("bundleAddition") String bundleAddition) {
+                              @JsonProperty("bundleAddition") String bundleAddition,
+                              @JsonProperty("partyUploaded") UploadParty partyUploaded,
+                              @JsonProperty("dateApproved") String dateApproved,
+                              @JsonProperty("rip1DocumentLink") DocumentLink rip1DocumentLink) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, partyUploaded, dateApproved);
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
+        this.rip1DocumentLink = rip1DocumentLink;
     }
 
     @JsonIgnore

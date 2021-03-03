@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public class AudioVideoUploadPartyTest {
+public class UploadPartyTest {
 
     @Test
     @Parameters({
@@ -19,8 +19,8 @@ public class AudioVideoUploadPartyTest {
             "JOINT_PARTY, jointParty",
             "DWP, dwp"
     })
-    public void shouldGetAudioVideoPartyFromText(AudioVideoUploadParty party, String text) {
-        assertEquals(party, AudioVideoUploadParty.fromValue(text));
+    public void shouldGetAudioVideoPartyFromText(UploadParty party, String text) {
+        assertEquals(party, UploadParty.fromValue(text));
     }
 
 }
