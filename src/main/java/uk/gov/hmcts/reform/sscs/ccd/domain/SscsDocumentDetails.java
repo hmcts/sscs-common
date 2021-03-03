@@ -19,6 +19,8 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private String controlNumber;
     private SscsDocumentTranslationStatus documentTranslationStatus;
     private DocumentLink editedDocumentLink;
+    private UploadParty partyUploaded;
+    private String dateApproved;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -31,11 +33,15 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("controlNumber") String controlNumber,
                                @JsonProperty("evidenceIssued") String evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
-                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment,  evidenceIssued, bundleAddition);
+                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
+                               @JsonProperty("partyUploaded") UploadParty partyUploaded,
+                               @JsonProperty("dateApproved") String dateApproved) {
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, partyUploaded, dateApproved);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
         this.documentTranslationStatus = documentTranslationStatus;
         this.editedDocumentLink = editedDocumentLink;
+        this.partyUploaded = partyUploaded;
+        this.dateApproved = dateApproved;
     }
 }

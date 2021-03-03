@@ -14,7 +14,9 @@ public enum DwpDocumentType {
     DWP_EDITED_RESPONSE("dwpEditedResponse", "DWP edited response"),
     AT_38("at38", "AT38"),
     DWP_EVIDENCE_BUNDLE("dwpEvidenceBundle", "DWP evidence bundle"),
-    DWP_EDITED_EVIDENCE_BUNDLE("dwpEditedEvidenceBundle", "DWP edited evidence bundle");
+    DWP_EDITED_EVIDENCE_BUNDLE("dwpEditedEvidenceBundle", "DWP edited evidence bundle"),
+    AUDIO_DOCUMENT("audioDocument", "Audio document"),
+    VIDEO_DOCUMENT("videoDocument", "Video document");
 
 
     private String value;
