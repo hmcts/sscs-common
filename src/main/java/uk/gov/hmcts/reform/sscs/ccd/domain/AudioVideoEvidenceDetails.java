@@ -16,6 +16,7 @@ import lombok.Data;
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidenceDetails {
+    private String documentType;
     private DocumentLink documentLink;
     private DocumentLink rip1Document;
     private String fileName;
@@ -25,7 +26,8 @@ public class AudioVideoEvidenceDetails {
     private ProcessedAction processedAction;
 
     @JsonCreator
-    public AudioVideoEvidenceDetails(@JsonProperty("documentLink") DocumentLink documentLink,
+    public AudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
+                                     @JsonProperty("documentLink") DocumentLink documentLink,
                                      @JsonProperty("rip1Document") DocumentLink rip1Document,
                                      @JsonProperty("fileName") String fileName,
                                      @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -36,6 +38,7 @@ public class AudioVideoEvidenceDetails {
                                          @JsonProperty("dateApproved") LocalDate dateApproved,
                                      @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                      @JsonProperty("processedAction") ProcessedAction processedAction) {
+        this.documentType = documentType;
         this.documentLink = documentLink;
         this.rip1Document = rip1Document;
         this.fileName = fileName;
