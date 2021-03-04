@@ -129,6 +129,7 @@ public class SscsCaseData implements CaseData {
     private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
+    private String appealNote;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
     private String dateCaseSentToGaps;
