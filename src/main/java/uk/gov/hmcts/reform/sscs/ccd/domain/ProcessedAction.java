@@ -24,9 +24,9 @@ public enum ProcessedAction {
         return label;
     }
 
-    public static AudioVideoUploadParty fromValue(String text) {
+    public static ProcessedAction fromValue(String text) {
 
-        for (AudioVideoUploadParty party : AudioVideoUploadParty.values()) {
+        for (ProcessedAction party : ProcessedAction.values()) {
             if (text != null && party.getValue() != null && party.getValue().equalsIgnoreCase(text)) {
                 return party;
             }
