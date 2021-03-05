@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ProcessedAction {
     SENT_TO_ADMIN("sentToAdmin", "Sent To Admin"),
-    SENT_TO_JUDGE("sentToJudge", "Sent To Judge");
+    SENT_TO_JUDGE("sentToJudge", "Sent To Judge"),
+    DIRECTION_ISSUED("directionIssued", "Direction Notice Issued");
 
 
     private final String value;
