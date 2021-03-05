@@ -9,6 +9,7 @@ public enum Benefit {
     ESA("Employment and Support Allowance"),
     JSA("Job Seekers Allowance"),
     PIP("Personal Independence Payment"),
+    DLA("Personal Independence Payment"),
     UC("Universal Credit");
 
     private String description;
