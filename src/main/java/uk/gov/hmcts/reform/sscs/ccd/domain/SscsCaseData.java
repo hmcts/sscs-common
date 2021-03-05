@@ -327,6 +327,8 @@ public class SscsCaseData implements CaseData {
     private YesNo reasonableAdjustmentsOutstanding;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
 
+    private String tempNoteDetail;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
