@@ -330,7 +330,6 @@ public class SscsCaseData implements CaseData {
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
 
     private String tempNoteDetail;
-    private List<Note> tempNotePad;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
