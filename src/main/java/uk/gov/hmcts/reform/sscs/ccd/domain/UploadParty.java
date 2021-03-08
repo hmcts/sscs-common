@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AudioVideoUploadParty {
+public enum UploadParty {
 
     @JsonProperty("ctsc")
     CTSC("ctsc", "CTSC clerk"),
@@ -21,7 +21,7 @@ public enum AudioVideoUploadParty {
     private final String value;
     private final String label;
 
-    AudioVideoUploadParty(String value, String label) {
+    UploadParty(String value, String label) {
         this.value = value;
         this.label = label;
     }
@@ -35,9 +35,9 @@ public enum AudioVideoUploadParty {
         return label;
     }
 
-    public static AudioVideoUploadParty fromValue(String text) {
+    public static UploadParty fromValue(String text) {
 
-        for (AudioVideoUploadParty party : AudioVideoUploadParty.values()) {
+        for (UploadParty party : UploadParty.values()) {
             if (text != null && party.getValue() != null && party.getValue().equalsIgnoreCase(text)) {
                 return party;
             }
