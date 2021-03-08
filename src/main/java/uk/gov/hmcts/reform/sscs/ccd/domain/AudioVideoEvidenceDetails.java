@@ -10,14 +10,13 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Data;
-import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidenceDetails {
-    private DocumentType documentType;
+    private String documentType;
     private DocumentLink documentLink;
     private DocumentLink rip1Document;
     private String fileName;
@@ -27,7 +26,7 @@ public class AudioVideoEvidenceDetails {
     private ProcessedAction processedAction;
 
     @JsonCreator
-    public AudioVideoEvidenceDetails(@JsonProperty("documentType") DocumentType documentType,
+    public AudioVideoEvidenceDetails(@JsonProperty("documentType") String documentType,
                                      @JsonProperty("documentLink") DocumentLink documentLink,
                                      @JsonProperty("rip1Document") DocumentLink rip1Document,
                                      @JsonProperty("fileName") String fileName,
