@@ -27,15 +27,16 @@ public enum DocumentType {
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     TL1_FORM("tl1Form", "TL1 Form"),
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
-    VIDEO_DOCUMENT("videoDocument", "Video document");
+    VIDEO_DOCUMENT("videoDocument", "Video document"),
+    AUDIO_VIDEO_NOTICE("audioVideoNotice", "Audio/Video notice");
 
-    private String value;
+    private final String value;
     private String label;
 
     public static DocumentType fromValue(String text) {
 
         for (DocumentType documentType : DocumentType.values()) {
-            if (text != null && documentType.getValue() != null && documentType.getValue().equalsIgnoreCase(text)) {
+            if (documentType.getValue() != null && documentType.getValue().equalsIgnoreCase(text)) {
                 return documentType;
             }
         }
