@@ -177,7 +177,10 @@ public enum EventType {
     CREATE_RESPONSE_RECEIVED_TEST_CASE("createResponseReceivedTestCase", 0, false),
     CREATE_TEST_CASE("createTestCase", 0, false),
     STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT("stopBulkPrintForReasonableAdjustment", 0, false),
-    PROCESS_AUDIO_VIDEO("processAudioVideo", 0, false);
+    PROCESS_AUDIO_VIDEO("processAudioVideo", 0, false),
+    DRAFT_TO_INCOMPLETE_APPLICATION("draftToIncompleteApplication", 0, false),
+    DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
+    DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false);
 
 
     private String type;

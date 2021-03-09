@@ -149,6 +149,9 @@ public class EventTypeTest {
             "reviewPhmeRequest\n" +
             "processReasonableAdjustment\n" +
             "updateReasonableAdjustment\n" +
+            "draftToIncompleteApplication\n" +
+            "draftToNonCompliant\n" +
+            "draftToValidAppealCreated\n" +
             "createTestCase";
 
 
