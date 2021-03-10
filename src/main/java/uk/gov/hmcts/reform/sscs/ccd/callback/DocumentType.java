@@ -28,7 +28,7 @@ public enum DocumentType {
     TL1_FORM("tl1Form", "TL1 Form"),
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
-    AUDIO_VIDEO_NOTICE("audioVideoNotice", "Audio/Video notice");
+    AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("Audio/Video Evidence Direction Notice", "Audio/Video evidence direction notice");
 
     private final String value;
     private String label;
