@@ -55,6 +55,7 @@ public enum EventType {
     DIRECTION_ISSUED_WELSH("directionIssuedWelsh", 0, false),
     DECISION_ISSUED_WELSH("decisionIssuedWelsh", 0, false),
     ISSUE_FINAL_DECISION("issueFinalDecision", 0, false),
+    ISSUE_FINAL_DECISION_WELSH("issueFinalDecisionWelsh", 0, false),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
     CREATE_EDITED_BUNDLE("createEditedBundle", 0, false),
