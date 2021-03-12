@@ -25,6 +25,7 @@ public class AbstractDocumentDetails {
     private String bundleAddition;
     private UploadParty partyUploaded;
     private String dateApproved;
+    private DocumentLink resizedDocumentLink;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -36,7 +37,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("evidenceIssued") String evidenceIssued,
                                    @JsonProperty("bundleAddition") String bundleAddition,
                                    @JsonProperty("partyUploaded") UploadParty partyUploaded,
-                                   @JsonProperty("dateApproved") String dateApproved) {
+                                   @JsonProperty("dateApproved") String dateApproved,
+                                   @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentDateAdded = documentDateAdded;
@@ -47,6 +49,7 @@ public class AbstractDocumentDetails {
         this.bundleAddition = bundleAddition;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
+        this.resizedDocumentLink = resizedDocumentLink;
     }
 
     @JsonIgnore

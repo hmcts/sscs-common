@@ -44,7 +44,7 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("rip1DocumentLink") DocumentLink rip1DocumentLink,
                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, partyUploaded, dateApproved);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, partyUploaded, dateApproved, null);
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
         this.rip1DocumentLink = rip1DocumentLink;
