@@ -185,6 +185,7 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private String multiBundleConfiguration;
     private String pcqId;
     //Final decision notice fields
     @JsonUnwrapped
