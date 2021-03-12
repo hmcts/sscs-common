@@ -43,7 +43,8 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("dateApproved") String dateApproved,
                               @JsonProperty("rip1DocumentLink") DocumentLink rip1DocumentLink) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null);
+
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
         this.rip1DocumentLink = rip1DocumentLink;
