@@ -1,9 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
@@ -29,7 +26,7 @@ public class SscsWelshDocumentDetails extends AbstractDocumentDetails {
                                     @JsonProperty("documentLanguage") String documentLanguage,
                                     @JsonProperty("evidenceIssued") String evidenceIssued,
                                     @JsonProperty("bundleAddition") String bundleAddition) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, null, documentComment, evidenceIssued, bundleAddition, null, null);
+        super(documentType, documentFileName, documentDateAdded, documentLink, null, documentComment, evidenceIssued, bundleAddition, null, null, null);
         this.originalDocumentFileName = originalDocumentFileName;
         this.documentComment = documentComment;
         this.documentLanguage = documentLanguage;
