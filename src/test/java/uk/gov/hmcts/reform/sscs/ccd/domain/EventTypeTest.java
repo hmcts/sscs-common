@@ -149,7 +149,9 @@ public class EventTypeTest {
             "reviewPhmeRequest\n" +
             "processReasonableAdjustment\n" +
             "updateReasonableAdjustment\n" +
-            "createTestCase";
+            "createTestCase\n" +
+            "processAudioVideo\n" +
+            "processAudioVideoWelsh";
 
 
     @Test
