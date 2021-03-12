@@ -328,6 +328,8 @@ public class SscsCaseData implements CaseData {
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
+    @JsonProperty("processAudioVideoReviewState")
+    private ProcessAudioVideoReviewState processAudioVideoReviewState;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
