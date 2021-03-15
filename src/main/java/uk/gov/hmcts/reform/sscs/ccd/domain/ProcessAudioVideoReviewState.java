@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ProcessAudioVideoReviewState {
-    @JsonProperty("awaiting-info")
-    AWAITING_INFORMATION("awaiting-info"),
-    @JsonProperty("awaiting-admin-response")
-    AWAITING_ADMIN_RESPONSE("awaiting-admin-response"),
-    @JsonProperty("review-by-judg")
-    REVIEW_BY_JUDGE("review-by-judg"),
+    @JsonProperty("awaitingInfo")
+    AWAITING_INFORMATION("awaitingInfo"),
+    @JsonProperty("awaitingAdminResponse")
+    AWAITING_ADMIN_RESPONSE("awaitingAdminResponse"),
+    @JsonProperty("reviewByJudge")
+    REVIEW_BY_JUDGE("reviewByJudge"),
     @JsonProperty("clear")
     CLEAR_INTERLOC_REVIEW_STATE("clear");
 
