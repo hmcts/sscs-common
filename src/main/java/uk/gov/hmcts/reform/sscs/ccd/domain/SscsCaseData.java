@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Collections.emptyList;
 import static java.util.Optional.ofNullable;
+import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import com.fasterxml.jackson.annotation.*;
@@ -20,6 +21,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
@@ -498,7 +500,11 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public void updateTranslationWorkOutstandingFlag() {
-        if (getSscsDocument().stream().noneMatch(sd -> Arrays.asList(SscsDocumentTranslationStatus.TRANSLATION_REQUESTED, SscsDocumentTranslationStatus.TRANSLATION_REQUIRED).contains(sd.getValue().getDocumentTranslationStatus()))) {
+        List<SscsDocumentTranslationStatus> translationStatuses = Arrays.asList(SscsDocumentTranslationStatus.TRANSLATION_REQUESTED, SscsDocumentTranslationStatus.TRANSLATION_REQUIRED);
+        boolean noSscsDocumentsWithTranslation = emptyIfNull(getSscsDocument()).stream().noneMatch(sd -> translationStatuses.contains(sd.getValue().getDocumentTranslationStatus()));
+        boolean noDwpDocumentsWithTranslation = emptyIfNull(getDwpDocuments()).stream().noneMatch(dd -> translationStatuses.contains(dd.getValue().getDocumentTranslationStatus()));
+
+        if (noSscsDocumentsWithTranslation && noDwpDocumentsWithTranslation) {
             this.translationWorkOutstanding = "No";
         } else {
             this.translationWorkOutstanding = "Yes";
