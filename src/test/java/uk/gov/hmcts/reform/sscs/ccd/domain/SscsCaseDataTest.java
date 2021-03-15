@@ -25,13 +25,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import junitparams.converters.Nullable;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
+@RunWith(JUnitParamsRunner.class)
 public class SscsCaseDataTest {
 
     private LocalDate now = LocalDate.now();
@@ -513,6 +519,35 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
         assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
+    }
+
+    @Test
+    @Parameters({"TRANSLATION_REQUESTED", "TRANSLATION_REQUIRED", "null"})
+    public void givenACaseHasMultipleDwpDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3(@Nullable SscsDocumentTranslationStatus translationStatus) {
+        List<DwpDocument> documents = new ArrayList<>();
+        documents.add(buildDwpDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
+        documents.add(buildDwpDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildDwpDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildDwpDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null, translationStatus));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
+        sscsCaseData.updateTranslationWorkOutstandingFlag();
+        if (translationStatus == null) {
+            assertEquals(NO.getValue(), sscsCaseData.getTranslationWorkOutstanding());
+        } else {
+            assertEquals(YES.getValue(), sscsCaseData.getTranslationWorkOutstanding());
+        }
+    }
+
+    private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
+        String docType = documentType == null ? null : documentType.getValue();
+        return DwpDocument.builder().value(
+                DwpDocumentDetails.builder().documentType(docType)
+                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                        .documentDateAdded(date)
+                        .bundleAddition(bundleAddition)
+                        .documentTranslationStatus(translationStatus)
+                        .build()).build();
     }
 
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
