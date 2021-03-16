@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.DLA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.ESA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.PIP;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.util.Optional;
@@ -16,9 +19,6 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 
 @RunWith(JUnitParamsRunner.class)
 public class DwpAddressLookupServiceTest {
-
-    private static final String PIP = "PIP";
-    private static final String ESA = "ESA";
 
     private SscsCaseData caseData;
 
@@ -41,7 +41,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -78,7 +78,17 @@ public class DwpAddressLookupServiceTest {
         "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        Address address = dwpAddressLookup.lookupDwpAddress(caseData);
+        assertNotNull(address);
+    }
+
+    @Test
+    @Parameters({
+            "Disability Benefit Centre 4", "The Pension Service 11", "Recovery from Estates"
+    })
+    public void dlaAddressesExist(final String dwpIssuingOffice) {
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(DLA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -93,14 +103,14 @@ public class DwpAddressLookupServiceTest {
     @Test(expected = DwpAddressLookupException.class)
     @Parameters({"11", "12", "13", "14", "JOB"})
     public void unknownPipDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
     @Test(expected = DwpAddressLookupException.class)
     @Parameters({"JOB", "UNK", "PLOP", "BIG", "11"})
     public void unknownEsaDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
@@ -139,7 +149,7 @@ public class DwpAddressLookupServiceTest {
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
         assertTrue(result[0].isDefault());
         assertFalse(result[1].isDefault());
-        assertEquals(24, result.length);
+        assertEquals(27, result.length);
     }
 
     @Test

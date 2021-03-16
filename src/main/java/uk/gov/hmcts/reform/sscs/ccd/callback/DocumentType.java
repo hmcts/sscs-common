@@ -8,7 +8,7 @@ public enum DocumentType {
     OTHER_EVIDENCE("Other evidence"),
     OTHER_DOCUMENT("Other document"),
     DWP_RESPONSE("DWP response"),
-    DECISION_NOTICE("Decision Notice"),
+    DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL6("dl6", "DL6"),
     DL16("dl16", "DL16"),
@@ -27,15 +27,16 @@ public enum DocumentType {
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     TL1_FORM("tl1Form", "TL1 Form"),
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
-    VIDEO_DOCUMENT("videoDocument", "Video document");
+    VIDEO_DOCUMENT("videoDocument", "Video document"),
+    AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice");
 
-    private String value;
+    private final String value;
     private String label;
 
     public static DocumentType fromValue(String text) {
 
         for (DocumentType documentType : DocumentType.values()) {
-            if (text != null && documentType.getValue() != null && documentType.getValue().equalsIgnoreCase(text)) {
+            if (documentType.getValue() != null && documentType.getValue().equalsIgnoreCase(text)) {
                 return documentType;
             }
         }

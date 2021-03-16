@@ -149,10 +149,12 @@ public class EventTypeTest {
             "reviewPhmeRequest\n" +
             "processReasonableAdjustment\n" +
             "updateReasonableAdjustment\n" +
+            "createTestCase\n" +
+            "processAudioVideo\n" +
+            "processAudioVideoWelsh\n" +
             "draftToIncompleteApplication\n" +
             "draftToNonCompliant\n" +
-            "draftToValidAppealCreated\n" +
-            "createTestCase";
+            "draftToValidAppealCreated;
 
 
     @Test

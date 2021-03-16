@@ -324,6 +324,53 @@
       }
     }
   ],
+  "dla": [
+    {
+      "code": "Disability Benefit Centre 4",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Birmingham DRT",
+        "gaps": "Birmingham DRT"
+      },
+      "address": {
+        "line1": "Disability Benefit Centre 4",
+        "line2": "Post Handling Site B",
+        "line3": "Wolverhampton",
+        "postCode": "WV99 1BY"
+      }
+    },
+    {
+      "code": "The Pension Service 11",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Tyneview Park DRT",
+        "gaps": "Tyneview Park DRT"
+      },
+      "address": {
+        "line1": "Department for Work and Pensions",
+        "line2": "The Pension Service 11",
+        "line3": "Attendance Allowance & DLA65 DRT",
+        "line4": "Mail Handling Site A",
+        "line5": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Bradford DRT",
+        "gaps": "Bradford DRT"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
   "uc": {
     "code": "Universal Credit",
     "isDefault": true,

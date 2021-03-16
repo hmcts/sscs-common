@@ -178,17 +178,18 @@ public enum EventType {
     CREATE_TEST_CASE("createTestCase", 0, false),
     STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT("stopBulkPrintForReasonableAdjustment", 0, false),
     PROCESS_AUDIO_VIDEO("processAudioVideo", 0, false),
+    PROCESS_AUDIO_VIDEO_WELSH("processAudioVideoWelsh", 0, false),
     DRAFT_TO_INCOMPLETE_APPLICATION("draftToIncompleteApplication", 0, false),
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
     DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false);
 
-
-    private String type;
-    private String ccdType;
+    private final String type;
+    private final String ccdType;
     private final int order;
-    private boolean notifiable;
+    private final boolean notifiable;
 
     EventType(String ccdType, int order, boolean notifiable) {
+        this.type = ccdType;
         this.ccdType = ccdType;
         this.order = order;
         this.notifiable = notifiable;
