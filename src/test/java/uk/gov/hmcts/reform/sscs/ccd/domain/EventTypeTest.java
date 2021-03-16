@@ -154,7 +154,7 @@ public class EventTypeTest {
             "processAudioVideoWelsh\n" +
             "draftToIncompleteApplication\n" +
             "draftToNonCompliant\n" +
-            "draftToValidAppealCreated;
+            "draftToValidAppealCreated";
 
 
     @Test
