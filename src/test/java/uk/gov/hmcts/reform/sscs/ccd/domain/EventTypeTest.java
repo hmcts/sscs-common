@@ -151,7 +151,10 @@ public class EventTypeTest {
             "updateReasonableAdjustment\n" +
             "createTestCase\n" +
             "processAudioVideo\n" +
-            "processAudioVideoWelsh";
+            "processAudioVideoWelsh\n" +
+            "draftToIncompleteApplication\n" +
+            "draftToNonCompliant\n" +
+            "draftToValidAppealCreated";
 
 
     @Test
