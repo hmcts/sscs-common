@@ -26,6 +26,7 @@ public class RoboticsJsonMapper {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+    private static final String DLA_CASE_CODE = "037DD";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
 
@@ -242,7 +243,10 @@ public class RoboticsJsonMapper {
             // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         } else if (equalsIgnoreCase("esa", sscsCaseData.getAppeal().getBenefitType().getCode())) {
             return ESA_CASE_CODE;
-        } else {
+        } else if (equalsIgnoreCase("dla", sscsCaseData.getAppeal().getBenefitType().getCode())) {
+            return DLA_CASE_CODE;
+        }
+        else {
             return PIP_CASE_CODE;
         }
     }
