@@ -185,6 +185,7 @@ public class SscsCaseData implements CaseData {
     private String responseRequired;
     private String timeExtensionRequested;
     private String bundleConfiguration;
+    private List<MultiBundleConfig> multiBundleConfiguration;
     private String pcqId;
     //Final decision notice fields
     @JsonUnwrapped
@@ -328,6 +329,8 @@ public class SscsCaseData implements CaseData {
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
+    @JsonProperty("processAudioVideoReviewState")
+    private ProcessAudioVideoReviewState processAudioVideoReviewState;
 
     private String tempNoteDetail;
 

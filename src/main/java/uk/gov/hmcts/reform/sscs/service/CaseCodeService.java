@@ -15,6 +15,8 @@ public final class CaseCodeService {
             return "002";
         } else if (StringUtils.equalsIgnoreCase("uc", benefit)) {
             return "001";
+        } else if (StringUtils.equalsIgnoreCase("dla", benefit)) {
+            return "037";
         } else {
             return "";
         }
