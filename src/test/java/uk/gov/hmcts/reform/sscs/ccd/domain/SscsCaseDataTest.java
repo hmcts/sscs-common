@@ -539,17 +539,6 @@ public class SscsCaseDataTest {
         }
     }
 
-    private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
-        String docType = documentType == null ? null : documentType.getValue();
-        return DwpDocument.builder().value(
-                DwpDocumentDetails.builder().documentType(docType)
-                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .documentDateAdded(date)
-                        .bundleAddition(bundleAddition)
-                        .documentTranslationStatus(translationStatus)
-                        .build()).build();
-    }
-
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
         String docType = documentType == null ? null : documentType.getValue();
         return SscsDocument.builder().value(
@@ -567,6 +556,17 @@ public class SscsCaseDataTest {
                 SscsWelshDocumentDetails.builder().documentType(docType)
                         .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                         .documentDateAdded(date)
+                        .build()).build();
+    }
+
+    private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
+        String docType = documentType == null ? null : documentType.getValue();
+        return DwpDocument.builder().value(
+                DwpDocumentDetails.builder().documentType(docType)
+                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                        .documentDateAdded(date)
+                        .bundleAddition(bundleAddition)
+                        .documentTranslationStatus(translationStatus)
                         .build()).build();
     }
 
