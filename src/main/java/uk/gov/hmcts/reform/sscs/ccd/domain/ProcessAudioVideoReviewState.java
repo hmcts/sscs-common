@@ -7,7 +7,7 @@ public enum ProcessAudioVideoReviewState {
     @JsonProperty("awaitingInfo")
     AWAITING_INFORMATION("awaitingInfo"),
     @JsonProperty("awaitingAdminResponse")
-    AWAITING_ADMIN_RESPONSE("awaitingAdminResponse"),
+    AWAITING_ADMIN_ACTION("awaitingAdminAction"),
     @JsonProperty("reviewByJudge")
     REVIEW_BY_JUDGE("reviewByJudge"),
     @JsonProperty("clear")
