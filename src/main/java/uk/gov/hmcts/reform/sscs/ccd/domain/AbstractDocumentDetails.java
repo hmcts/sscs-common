@@ -25,6 +25,7 @@ public class AbstractDocumentDetails {
     private String bundleAddition;
     private UploadParty partyUploaded;
     private String dateApproved;
+    private SscsDocumentTranslationStatus documentTranslationStatus;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -35,8 +36,10 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("documentComment") String documentComment,
                                    @JsonProperty("evidenceIssued") String evidenceIssued,
                                    @JsonProperty("bundleAddition") String bundleAddition,
+                                   @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                    @JsonProperty("partyUploaded") UploadParty partyUploaded,
-                                   @JsonProperty("dateApproved") String dateApproved) {
+                                   @JsonProperty("dateApproved") String dateApproved
+                                   ) {
         this.documentType = documentType;
         this.documentFileName = documentFileName;
         this.documentDateAdded = documentDateAdded;
@@ -45,6 +48,7 @@ public class AbstractDocumentDetails {
         this.documentComment = documentComment;
         this.evidenceIssued = evidenceIssued;
         this.bundleAddition = bundleAddition;
+        this.documentTranslationStatus = documentTranslationStatus;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
     }

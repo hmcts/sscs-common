@@ -17,7 +17,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
 
     private String documentEmailContent;
     private String controlNumber;
-    private SscsDocumentTranslationStatus documentTranslationStatus;
     private DocumentLink editedDocumentLink;
     private UploadParty partyUploaded;
     private String dateApproved;
@@ -36,10 +35,9 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                @JsonProperty("dateApproved") String dateApproved) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, partyUploaded, dateApproved);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
-        this.documentTranslationStatus = documentTranslationStatus;
         this.editedDocumentLink = editedDocumentLink;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
