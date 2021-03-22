@@ -28,7 +28,6 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
     public int compareTo(AbstractDocument doc2) {
         return new CompareToBuilder()
                 .append(this.value.getBundleAddition(), doc2.getValue().getBundleAddition())
-                .append(doc2.getValue().getDateTimeFormatted(), this.value.getDateTimeFormatted())
                 .toComparison();
 
     }

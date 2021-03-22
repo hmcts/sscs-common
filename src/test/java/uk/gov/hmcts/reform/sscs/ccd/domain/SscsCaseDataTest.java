@@ -193,7 +193,7 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void sortSscsDocumentsByDateAdded() {
+    public void doNotSortSscsDocumentsByDateAdded() {
         List<SscsDocument> sscsDocuments = new ArrayList<>();
         SscsDocument sscsDocument1 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build()).build();
         SscsDocument sscsDocument2 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-03-01").build()).build();
@@ -205,8 +205,8 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(sscsDocuments).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
-        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded());
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
+        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded());
         assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded());
     }
 
@@ -309,14 +309,14 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    public void givenACaseWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenSortByDateAddedAndPutEmptyDocumentLast() {
+    public void givenACaseWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenDoNotSortByDateAddedAndPutEmptyDocumentLast() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
@@ -327,10 +327,10 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("emptyDateAddedDoc", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
 
     }
@@ -369,7 +369,7 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenACaseWithMultipleDwpDocuments_thenSortByDateAdded() {
+    public void givenACaseWithMultipleDwpDocuments_thenDoNotSortByDateAdded() {
         List<DwpDocument> documents = new ArrayList<>();
         documents.add(buildDwpDocument("testUrl", DwpDocumentType.UCB, now.minusDays(1).toString()));
         documents.add(buildDwpDocument("anotherTestUrl", DwpDocumentType.UCB, now.minusDays(2).toString()));
@@ -379,10 +379,10 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("otherDoc", sscsCaseData.getDwpDocuments().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("testUrl", sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("otherDoc2", sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl", sscsCaseData.getDwpDocuments().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getDwpDocuments().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc", sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getDwpDocuments().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
@@ -421,7 +421,7 @@ public class SscsCaseDataTest {
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
         assertTrue("Result has a value", result.isPresent());
-        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
