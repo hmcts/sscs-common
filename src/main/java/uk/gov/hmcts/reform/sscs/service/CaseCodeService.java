@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import org.apache.commons.lang3.StringUtils;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 
 public final class CaseCodeService {
 
@@ -9,17 +9,7 @@ public final class CaseCodeService {
     }
 
     public static String generateBenefitCode(String benefit) {
-        if (StringUtils.equalsIgnoreCase("esa", benefit)) {
-            return "051";
-        } else if (StringUtils.equalsIgnoreCase("pip", benefit)) {
-            return "002";
-        } else if (StringUtils.equalsIgnoreCase("uc", benefit)) {
-            return "001";
-        } else if (StringUtils.equalsIgnoreCase("dla", benefit)) {
-            return "037";
-        } else {
-            return "";
-        }
+        return Benefit.getBenefitByCode(benefit).getBenefitCode();
     }
 
     public static String generateIssueCode() {
