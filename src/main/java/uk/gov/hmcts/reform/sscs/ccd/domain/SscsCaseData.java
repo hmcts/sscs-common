@@ -332,8 +332,6 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("processAudioVideoReviewState")
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
 
-    private String tempNoteDetail;
-
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
