@@ -385,6 +385,22 @@
       "postCode": "WV99 1AJ"
     }
   },
+  "carersAllowance": {
+    "code": "Carer’s Allowance",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Tyneview Park DRT",
+      "gaps": "Tyneview Park DRT"
+    },
+    "address": {
+      "line1": "Carer’s Allowance Dispute Resolution Team",
+      "line2": "Mail Handling Site A",
+      "line3": "Pension Service 11",
+      "line4": "Retirement Provision Directorate",
+      "line5": "Wolverhampton",
+      "postCode": "WV98 1LW"
+    }
+  },
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
