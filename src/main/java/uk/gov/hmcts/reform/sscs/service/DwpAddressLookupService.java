@@ -95,7 +95,7 @@ public class DwpAddressLookupService {
 
     public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
 
-        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByOffice(benefitType);
+        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
 
         return PIP.name().equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
@@ -134,7 +134,7 @@ public class DwpAddressLookupService {
         return officeMapping;
     }
 
-    public Optional<OfficeMapping> getDefaultDwpMappingByOffice(String benefitType) {
+    public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
         Optional<OfficeMapping> officeMapping = Optional.empty();
         Benefit benefit = Benefit.findBenefitByShortName(benefitType);
 

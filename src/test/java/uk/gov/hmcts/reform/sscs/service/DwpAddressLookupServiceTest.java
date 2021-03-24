@@ -215,21 +215,21 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("pip");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
 
         assertEquals("1", result.get().getCode());
     }
 
     @Test
     public void givenAEsaBenefitType_thenReturnTheDefaultEsaOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("esa");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("esa");
 
         assertEquals("Sheffield DRT", result.get().getCode());
     }
 
     @Test
     public void givenAUcBenefitType_thenReturnTheDefaultUcOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("uc");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("uc");
 
         assertEquals("Universal Credit", result.get().getCode());
     }
