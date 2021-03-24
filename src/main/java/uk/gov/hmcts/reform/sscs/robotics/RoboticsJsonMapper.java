@@ -88,7 +88,7 @@ public class RoboticsJsonMapper {
 
         obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
 
-        Optional<OfficeMapping> officeMapping = buildOffice(obj, sscsCaseData.getAppeal());
+        Optional<OfficeMapping> officeMapping = buildOffice(sscsCaseData.getAppeal());
 
         String dwpIssuingOffice = EMPTY;
         String dwpPresentingOffice = EMPTY;
@@ -99,14 +99,16 @@ public class RoboticsJsonMapper {
         }
 
         if (sscsCaseData.getDwpOriginatingOffice() != null && sscsCaseData.getDwpOriginatingOffice().getValue().getLabel() != null) {
-            dwpIssuingOffice = sscsCaseData.getDwpOriginatingOffice().getValue().getLabel();
-        } else if (officeMapping.isPresent()) {
+            dwpIssuingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpOriginatingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
+        }
+        if (dwpIssuingOffice.isEmpty() && officeMapping.isPresent()) {
             dwpIssuingOffice = officeMapping.get().getMapping().getGaps();
         }
 
         if (sscsCaseData.getDwpPresentingOffice() != null && sscsCaseData.getDwpPresentingOffice().getValue().getLabel() != null) {
-            dwpPresentingOffice = sscsCaseData.getDwpPresentingOffice().getValue().getLabel();
-        } else if (officeMapping.isPresent()) {
+            dwpPresentingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpPresentingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
+        }
+        if (dwpPresentingOffice.isEmpty() && officeMapping.isPresent()) {
             dwpPresentingOffice = officeMapping.get().getMapping().getGaps();
         }
 
@@ -196,7 +198,7 @@ public class RoboticsJsonMapper {
             }
         }
 
-        Optional<OfficeMapping> officeMapping = buildOffice(obj, appeal);
+        Optional<OfficeMapping> officeMapping = buildOffice(appeal);
 
         if (officeMapping.isPresent()) {
             obj.put("pipNumber", officeMapping.get().getMapping().getGaps());
@@ -229,9 +231,12 @@ public class RoboticsJsonMapper {
         }
     }
 
-    private Optional<OfficeMapping> buildOffice(JSONObject obj, Appeal appeal) {
-        return dwpAddressLookupService.getDwpMappingByOffice(appeal.getBenefitType().getCode(),
-            appeal.getMrnDetails().getDwpIssuingOffice());
+    private Optional<OfficeMapping> buildOffice(Appeal appeal) {
+        return buildOffice(appeal.getBenefitType().getCode(), appeal.getMrnDetails().getDwpIssuingOffice());
+    }
+
+    private Optional<OfficeMapping> buildOffice(String benefitCode, String dwpIssuingOffice) {
+        return dwpAddressLookupService.getDwpMappingByOffice(benefitCode,dwpIssuingOffice);
     }
 
     private static String getCaseCode(SscsCaseData sscsCaseData) {

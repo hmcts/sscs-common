@@ -37,23 +37,23 @@ public class RoboticsJsonMapperTest {
 
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
-    private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
+    private final RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
             "/schema/sscs-robotics.json");
     private JSONObject roboticsJson;
 
-    private DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
+    private final DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
 
     @Mock
     private AirLookupService airLookupService;
 
-    private List<ElementDisputed> elementsDisputedGeneralList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedSanctionsList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedOverpaymentList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedHousingList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildCareList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedCareList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildElementList = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildDisabledList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedGeneralList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedSanctionsList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedOverpaymentList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedHousingList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedChildCareList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedCareList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedChildElementList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedChildDisabledList = new ArrayList<>();
 
     @Before
     public void setup() {
@@ -514,7 +514,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenStateIsReadyToList_thenSetReadyToListFields() {
-        DynamicListItem value = new DynamicListItem("ABC", "DEF");
+        DynamicListItem value = new DynamicListItem("DWP PIP (AE)", "DWP PIP (AE)");
 
         roboticsWrapper.setState(State.READY_TO_LIST);
         roboticsWrapper.getSscsCaseData().setDwpOriginatingOffice(new DynamicList(value, Collections.singletonList(value)));
@@ -529,18 +529,14 @@ public class RoboticsJsonMapperTest {
 
         assertTrue(roboticsJson.has("isReadyToList"));
         assertEquals(date, roboticsJson.get("dwpResponseDate"));
-        assertEquals("DEF", roboticsJson.get("dwpIssuingOffice"));
-        assertEquals("DEF", roboticsJson.get("dwpPresentingOffice"));
+        assertEquals("PIP (AE)", roboticsJson.get("dwpIssuingOffice"));
+        assertEquals("PIP (AE)", roboticsJson.get("dwpPresentingOffice"));
         assertEquals("Yes", roboticsJson.get("dwpIsOfficerAttending"));
         assertEquals("Yes", roboticsJson.get("dwpUcb"));
     }
 
     @Test
     public void givenStateIsReadyToListAndDwpOfficesAreNotSet_thenSetDefaultReadyToListFields() {
-        DynamicListItem value = new DynamicListItem("ABC", "DEF");
-
-        roboticsWrapper.setState(State.READY_TO_LIST);
-
         String date = LocalDate.now().toString();
         roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
 
