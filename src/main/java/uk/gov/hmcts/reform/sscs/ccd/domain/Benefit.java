@@ -57,7 +57,7 @@ public enum Benefit {
         return null;
     }
 
-    private String getShortName() {
+    public String getShortName() {
         return shortName;
     }
 
