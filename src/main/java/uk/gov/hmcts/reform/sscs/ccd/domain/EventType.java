@@ -182,7 +182,8 @@ public enum EventType {
     PROCESS_AUDIO_VIDEO_WELSH("processAudioVideoWelsh", 0, false),
     DRAFT_TO_INCOMPLETE_APPLICATION("draftToIncompleteApplication", 0, false),
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
-    DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false);
+    DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false),
+    GENERATE_COVERSHEET("generateCoversheet", 0, false);
 
     private final String type;
     private final String ccdType;
