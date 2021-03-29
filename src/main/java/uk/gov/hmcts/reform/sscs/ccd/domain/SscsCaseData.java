@@ -334,7 +334,7 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
 
     private String tempNoteDetail;
-    private String thisIsTestField;
+    private String thisIsTestField2;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
