@@ -3,8 +3,7 @@ package uk.gov.hmcts.reform.sscs.robotics;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CARERS_ALLOWANCE;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.ESA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +26,7 @@ public class RoboticsJsonMapper {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+    private static final String DLA_CASE_CODE = "037DD";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
     private static final String CARERS_ALLOWANCE_CASE_CODE = "070DD";
@@ -253,6 +253,8 @@ public class RoboticsJsonMapper {
 
         if (ESA == benefit) {
             return ESA_CASE_CODE;
+        } else if (DLA ==  benefit) {
+            return DLA_CASE_CODE;
         } else if (CARERS_ALLOWANCE ==  benefit) {
             return CARERS_ALLOWANCE_CASE_CODE;
         } else {
