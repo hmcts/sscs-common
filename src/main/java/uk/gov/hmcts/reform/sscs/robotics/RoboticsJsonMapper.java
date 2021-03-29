@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,7 @@ public class RoboticsJsonMapper {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+    private static final String DLA_CASE_CODE = "037DD";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
 
@@ -247,6 +249,10 @@ public class RoboticsJsonMapper {
             // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         } else if (equalsIgnoreCase("esa", sscsCaseData.getAppeal().getBenefitType().getCode())) {
             return ESA_CASE_CODE;
+        } else if (DLA ==  benefit) {
+            return DLA_CASE_CODE;
+        } else if (CARERS_ALLOWANCE ==  benefit) {
+            return CARERS_ALLOWANCE_CASE_CODE;
         } else {
             return PIP_CASE_CODE;
         }
