@@ -1,0 +1,26 @@
+name: Trigger JitPack Build
+
+on:
+  push:
+    tags: 
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Trigger Build in JitPack
+      run: |
+        PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
+        echo "Triggering JitPack build"
+        
+        echo "::group::Files Available"
+        curl -w "\n" -sS --max-time 900 ${PACKAGES_URL}
+        echo "::endgroup::"
+        
+        if [[ ! $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]]; then 
+          exit 1 
+        fi 
