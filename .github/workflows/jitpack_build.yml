@@ -14,13 +14,22 @@ jobs:
     - uses: actions/checkout@v2
     - name: Trigger Build in JitPack
       run: |
-        PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
         echo "Triggering JitPack build"
         
+        PACKAGES_URL="https://jitpack.io/com/github/${GITHUB_REPOSITORY}/${GITHUB_REF#refs/tags/}/"
+        
+        # Try the URL 3 times before failing
+        count=1
+        until [[ $count -gt 3 ]] || [[ ${FILE_COUNT:-0} -gt 1 ]]; do
+          echo "Attempt ${count}/3"
+          FILES=$(curl -sS --max-time 900 ${PACKAGES_URL})
+          FILE_COUNT=$(echo ${FILES} | wc -w | xargs)
+          let count+=1
+          sleep 5
+        done
+        
         echo "::group::Files Available"
-        curl -w "\n" -sS --max-time 900 ${PACKAGES_URL}
+        echo ${FILES}
         echo "::endgroup::"
         
-        if [[ ! $( curl -sS ${PACKAGES_URL} | wc -l | xargs) -gt 1 ]]; then 
-          exit 1 
-        fi 
+        if [[ $count -gt 3 ]]; then exit 1; fi
