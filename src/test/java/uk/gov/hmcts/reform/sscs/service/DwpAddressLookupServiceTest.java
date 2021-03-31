@@ -250,4 +250,11 @@ public class DwpAddressLookupServiceTest {
 
         assertEquals("Universal Credit", result);
     }
+
+    @Test
+    public void givenADlaBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("dla");
+
+        assertEquals("Bradford DRT", result);
+    }
 }
