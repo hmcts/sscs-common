@@ -126,7 +126,7 @@ public class DwpAddressLookupService {
         }  else if (UC == benefit) {
             return Optional.of(dwpMappings.getUc());
         } else if (DLA == benefit) {
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
+            officeMapping = getOfficeMappingByDwpIssuingOfficeDla(dwpIssuingOffice, dwpMappings.getDla());
         } else if (CARERS_ALLOWANCE == benefit) {
             return Optional.of(dwpMappings.getCarersAllowance());
         }
@@ -155,6 +155,17 @@ public class DwpAddressLookupService {
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
         for (OfficeMapping office : mappings) {
             if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
+                return Optional.of(office);
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOfficeDla(String dwpIssuingOffice, OfficeMapping[] mappings) {
+        for (OfficeMapping office : mappings) {
+            if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getMapping().getCcd())) {
+                return Optional.of(office);
+            } else if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
                 return Optional.of(office);
             }
         }
