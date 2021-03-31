@@ -176,6 +176,17 @@ public class DwpAddressLookupService {
         return Optional.empty();
     }
 
+    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOfficeDla(String dwpIssuingOffice, OfficeMapping[] mappings) {
+        for (OfficeMapping office : mappings) {
+            if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getMapping().getCcd())) {
+                return Optional.of(office);
+            } else if (StringUtils.stripToEmpty(dwpIssuingOffice).equalsIgnoreCase(office.getCode())) {
+                return Optional.of(office);
+            }
+        }
+        return Optional.empty();
+    }
+
     public OfficeMapping[] allDwpBenefitOffices() {
         return allDwpBenefitOffices;
     }

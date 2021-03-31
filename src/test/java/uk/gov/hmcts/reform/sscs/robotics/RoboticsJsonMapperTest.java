@@ -727,4 +727,30 @@ public class RoboticsJsonMapperTest {
 
         assertFalse(roboticsJson.has("isConfidential"));
     }
+
+    @Test
+    public void givenDlaCase_thenGetsDwpIssueOffice() {
+
+        SscsCaseData sscsCaseData = buildCaseData("Test", "DLA", "Bradford DRT");
+        sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
+        roboticsWrapper = RoboticsWrapper
+                .builder()
+                .sscsCaseData(sscsCaseData)
+                .ccdCaseId(123L).evidencePresent("Yes")
+                .state(State.APPEAL_CREATED)
+                .build();
+
+        String date = LocalDate.now().toString();
+        roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        roboticsJsonValidator.validate(roboticsJson, caseId);
+
+        assertEquals("037DD", roboticsJson.get("caseCode"));
+        assertEquals("Bradford DRT", roboticsJson.get("dwpIssuingOffice"));
+        assertEquals("Bradford DRT", roboticsJson.get("dwpPresentingOffice"));
+
+
+    }
 }
