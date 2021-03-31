@@ -6,21 +6,23 @@ import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "051"),
-    JSA("Job Seekers Allowance", ""),
-    PIP("Personal Independence Payment", "002"),
-    DLA("Disability Living Allowance", "037"),
-    UC("Universal Credit", "001"),
-    CARERS_ALLOWANCE("Carer's Allowance", "070");
+    ESA("Employment and Support Allowance", "051", "ESA"),
+    JSA("Job Seekers Allowance", "", "JSA"),
+    PIP("Personal Independence Payment", "002", "PIP"),
+    DLA("Disability Living Allowance", "037", "DLA"),
+    UC("Universal Credit", "001", "UC"),
+    CARERS_ALLOWANCE("Carer's Allowance", "070", "carersAllowance");
 
     private String description;
     private String benefitCode;
+    private String shortName;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
 
-    Benefit(String description, String benefitCode) {
+    Benefit(String description, String benefitCode, String shortName) {
         this.description = description;
         this.benefitCode = benefitCode;
+        this.shortName = shortName;
     }
 
     public static Benefit getBenefitByCode(String code) {
@@ -37,22 +39,26 @@ public enum Benefit {
         return benefit;
     }
 
-    private static Benefit findBenefitByShortName(String code) {
+    public static Benefit findBenefitByShortName(String code) {
         for (Benefit type : Benefit.values()) {
-            if (type.name().equalsIgnoreCase(code)) {
+            if (type.getShortName().equalsIgnoreCase(code)) {
                 return type;
             }
         }
         return null;
     }
 
-    private static Benefit findBenefitByDescription(String code) {
+    public static Benefit findBenefitByDescription(String code) {
         for (Benefit type : Benefit.values()) {
             if (type.getDescription().equalsIgnoreCase(code)) {
                 return type;
             }
         }
         return null;
+    }
+
+    public String getShortName() {
+        return shortName;
     }
 
     public String getDescription() {
