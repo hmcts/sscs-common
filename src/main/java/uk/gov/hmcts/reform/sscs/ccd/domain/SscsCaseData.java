@@ -562,11 +562,11 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public Optional<Benefit> getBenefitType() {
+    public Optional<BenefitTypeEnum> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             try {
-                return Optional.of(Benefit.findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase()));
-            } catch (NullPointerException e) {
+                return Optional.of(BenefitTypeEnum.valueOf(appeal.getBenefitType().getCode().toUpperCase()));
+            } catch (IllegalArgumentException e) {
                 return Optional.empty();
             }
         } else {
@@ -574,10 +574,10 @@ public class SscsCaseData implements CaseData {
         }
     }
 
-    public boolean isBenefitType(Benefit benefitType) {
-        Optional<Benefit> benefit = getBenefitType();
-        if (benefit.isPresent()) {
-            return benefitType.equals(benefit.get());
+    public boolean isBenefitType(BenefitTypeEnum benefitTypeEnum) {
+        Optional<BenefitTypeEnum> benefitType = getBenefitType();
+        if (benefitType.isPresent()) {
+            return benefitTypeEnum.equals(benefitType.get());
         } else {
             return false;
         }

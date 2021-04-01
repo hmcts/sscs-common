@@ -71,13 +71,11 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "b4 1lal, Birmingham, PIP",
-            "NN85 1ss, Northampton, PIP",
-            "NN85 1ss, Northampton, DLA",
-            "NN85 1ss, Northampton, carersAllowance",
+            "b4 1lal, Birmingham",
+            "NN85 1ss, Northampton",
     })
-    public void checkVenueForPostCodeWithNoPipWithBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
-        String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
+    public void checkVenueForPostCodeWithNoPipWithBenefitType(String postcode, String expectedPipVenue) {
+        String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("PIP").build());
         assertEquals(expectedPipVenue, pipVenue);
     }
 
