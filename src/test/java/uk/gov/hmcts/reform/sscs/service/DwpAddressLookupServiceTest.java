@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.DLA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.ESA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.PIP;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.util.Optional;
@@ -38,7 +41,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -75,7 +78,7 @@ public class DwpAddressLookupServiceTest {
         "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -85,7 +88,7 @@ public class DwpAddressLookupServiceTest {
             "Disability Benefit Centre 4", "The Pension Service 11", "Recovery from Estates"
     })
     public void dlaAddressesExist(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("DLA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(DLA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
@@ -100,14 +103,14 @@ public class DwpAddressLookupServiceTest {
     @Test(expected = DwpAddressLookupException.class)
     @Parameters({"11", "12", "13", "14", "JOB"})
     public void unknownPipDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
     @Test(expected = DwpAddressLookupException.class)
     @Parameters({"JOB", "UNK", "PLOP", "BIG", "11"})
     public void unknownEsaDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
-        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(ESA.name()).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
@@ -207,29 +210,22 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenACarresAllowanceBenefitType_thenReturnTheUcOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
-
-        assertEquals("Carer’s Allowance", result.get().getCode());
-    }
-
-    @Test
     public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("pip");
 
         assertEquals("1", result.get().getCode());
     }
 
     @Test
     public void givenAEsaBenefitType_thenReturnTheDefaultEsaOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("esa");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("esa");
 
         assertEquals("Sheffield DRT", result.get().getCode());
     }
 
     @Test
     public void givenAUcBenefitType_thenReturnTheDefaultUcOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("uc");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByOffice("uc");
 
         assertEquals("Universal Credit", result.get().getCode());
     }
@@ -253,12 +249,5 @@ public class DwpAddressLookupServiceTest {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("uc");
 
         assertEquals("Universal Credit", result);
-    }
-
-    @Test
-    public void givenACarersAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
-
-        assertEquals("Tyneview Park DRT", result);
     }
 }

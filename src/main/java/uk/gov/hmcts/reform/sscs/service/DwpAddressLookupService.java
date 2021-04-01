@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitTypeEnum.*;
 
 import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
@@ -14,7 +14,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
@@ -95,7 +94,7 @@ public class DwpAddressLookupService {
 
     public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
 
-        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
+        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByOffice(benefitType);
 
         return PIP.name().equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
@@ -109,9 +108,7 @@ public class DwpAddressLookupService {
             return Optional.of(dwpMappings.getTestHmctsAddress());
         }
         Optional<OfficeMapping> officeMapping = Optional.empty();
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType);
-
-        if (PIP == benefit) {
+        if (equalsIgnoreCase(PIP.name(), benefitType)) {
             String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
                     .substringBetween(dwpIssuingOffice,"(", ")"))
                     .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
@@ -121,33 +118,27 @@ public class DwpAddressLookupService {
             }
 
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
-        } else if (ESA == benefit) {
+        } else if (equalsIgnoreCase(ESA.name(), benefitType)) {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
-        }  else if (UC == benefit) {
+        }  else if (equalsIgnoreCase(UC.name(), benefitType)) {
             return Optional.of(dwpMappings.getUc());
-        } else if (DLA == benefit) {
+        } else if (equalsIgnoreCase(DLA.name(), benefitType)) {
             officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
-        } else if (CARERS_ALLOWANCE == benefit) {
-            return Optional.of(dwpMappings.getCarersAllowance());
         }
 
         return officeMapping;
     }
 
-    public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
+    public Optional<OfficeMapping> getDefaultDwpMappingByOffice(String benefitType) {
         Optional<OfficeMapping> officeMapping = Optional.empty();
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType);
-
-        if (PIP == benefit) {
+        if (equalsIgnoreCase(PIP.name(), benefitType)) {
             officeMapping = Stream.of(dwpMappings.getPip()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (ESA == benefit) {
+        } else if (equalsIgnoreCase(ESA.name(), benefitType)) {
             officeMapping = Stream.of(dwpMappings.getEsa()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (DLA == benefit) {
+        } else if (equalsIgnoreCase(DLA.name(), benefitType)) {
             officeMapping = Stream.of(dwpMappings.getDla()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (UC == benefit) {
+        } else if (equalsIgnoreCase(UC.name(), benefitType)) {
             officeMapping = Stream.of(dwpMappings.getUc()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (CARERS_ALLOWANCE == benefit) {
-            officeMapping = Stream.of(dwpMappings.getCarersAllowance()).filter(dwpm -> dwpm.isDefault()).findFirst();
         }
         return officeMapping;
     }

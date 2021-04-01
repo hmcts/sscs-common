@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.io.IOException;
@@ -12,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.exception.AirLookupServiceException;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
@@ -39,7 +37,6 @@ public class AirLookupService {
     }
 
     private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
-    private static final Map<Benefit, String> BENEFIT_CODE_VENUE = Map.of(PIP, "pip", DLA, "pip", CARERS_ALLOWANCE,"pip");
 
     private Map<String, String> lookupRegionalCentreByPostCode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
@@ -167,9 +164,7 @@ public class AirLookupService {
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType.getCode());
-
-        if ("pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefit))) {
+        if ("pip".equalsIgnoreCase(benefitType.getCode())) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();
