@@ -5,6 +5,7 @@ import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.NonNull;
@@ -39,7 +40,7 @@ public class AirLookupService {
     }
 
     private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
-    private static final Map<Benefit, String> BENEFIT_CODE_VENUE = Map.of(PIP, "pip", DLA, "pip", CARERS_ALLOWANCE,"pip");
+    private static final List<Benefit> PIP_BENEFIT_CODE_VENUE = List.of(PIP, DLA, CARERS_ALLOWANCE);
 
     private Map<String, String> lookupRegionalCentreByPostCode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
@@ -169,7 +170,7 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Benefit benefit = Benefit.findBenefitByShortName(benefitType.getCode());
 
-        if ("pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefit))) {
+        if (benefit != null && PIP_BENEFIT_CODE_VENUE.contains(benefit)) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();
