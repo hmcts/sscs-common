@@ -152,8 +152,8 @@ dependencies {
 
     compile group: "com.networknt", name: "json-schema-validator", version: "1.0.51"
 
-    compileOnly 'org.projectlombok:lombok:1.18.18'
-    annotationProcessor 'org.projectlombok:lombok:1.18.16'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     testCompile group: 'junit', name: 'junit', version: 4.12
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.8.0'
@@ -165,6 +165,6 @@ dependencies {
     testRuntime 'org.glassfish:jakarta.el:3.0.3'
     testRuntime 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
     testCompileOnly 'org.projectlombok:lombok:1.18.18'
-    testAnnotationProcessor "org.projectlombok:lombok:1.18.12"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.20"
 }
 
