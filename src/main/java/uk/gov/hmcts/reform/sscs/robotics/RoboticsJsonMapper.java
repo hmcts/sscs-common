@@ -28,7 +28,6 @@ public class RoboticsJsonMapper {
     private static final String NO = "No";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
-    private static final String CARERS_ALLOWANCE_CASE_CODE = "070DD";
 
     private final DwpAddressLookupService dwpAddressLookupService;
     private final AirLookupService airLookupService;
