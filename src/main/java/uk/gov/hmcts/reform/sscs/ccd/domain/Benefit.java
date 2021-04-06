@@ -46,7 +46,7 @@ public enum Benefit {
         return null;
     }
 
-    private static Benefit findBenefitByDescription(String code) {
+    public static Benefit findBenefitByDescription(String code) {
         for (Benefit type : Benefit.values()) {
             if (type.getDescription().equalsIgnoreCase(code)) {
                 return type;
