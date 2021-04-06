@@ -214,6 +214,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenABenefitTypeNotMapped_thenReturnEmptyOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("hb", null);
+
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
     public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
 
@@ -260,5 +267,12 @@ public class DwpAddressLookupServiceTest {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
 
         assertEquals("Tyneview Park DRT", result);
+    }
+
+    @Test
+    public void givenABenefitTypeNotMapped_thenEmptyDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("hb");
+
+        assertNull(result);
     }
 }
