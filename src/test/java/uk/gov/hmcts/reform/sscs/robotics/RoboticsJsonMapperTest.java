@@ -210,7 +210,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD", "DLA, 037DD"})
+    @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD"})
     public void givenBenefitType_shouldMapCaseCodeAccordingly(String benefitCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(benefitCode);
 
@@ -747,7 +747,6 @@ public class RoboticsJsonMapperTest {
 
         roboticsJsonValidator.validate(roboticsJson, caseId);
 
-        assertEquals("037DD", roboticsJson.get("caseCode"));
         assertEquals("Bradford DRT", roboticsJson.get("dwpIssuingOffice"));
         assertEquals("Bradford DRT", roboticsJson.get("dwpPresentingOffice"));
 

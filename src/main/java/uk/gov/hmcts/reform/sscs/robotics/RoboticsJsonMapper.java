@@ -249,8 +249,6 @@ public class RoboticsJsonMapper {
             // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         } else if (equalsIgnoreCase("esa", sscsCaseData.getAppeal().getBenefitType().getCode())) {
             return ESA_CASE_CODE;
-        } else if (CARERS_ALLOWANCE ==  benefit) {
-            return CARERS_ALLOWANCE_CASE_CODE;
         } else {
             return PIP_CASE_CODE;
         }
