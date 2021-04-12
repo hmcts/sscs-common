@@ -35,6 +35,7 @@ public class SscsCcdConvertService {
                         .description(description)
                         .build())
                 .data(caseData)
+                .securityClassification(null)
                 .build();
     }
 
