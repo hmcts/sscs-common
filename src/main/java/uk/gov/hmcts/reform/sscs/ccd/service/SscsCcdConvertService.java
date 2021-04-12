@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
@@ -51,7 +50,7 @@ public class SscsCcdConvertService {
                 .jurisdiction(caseDetails.getJurisdiction())
                 .caseTypeId(caseDetails.getCaseTypeId())
                 .createdDate(caseDetails.getCreatedDate())
-                .lastModified(caseDetails.getLastModified().minusMinutes(10))
+                .lastModified((caseDetails.getLastModified() != null) ? caseDetails.getLastModified().minusMinutes(10) : caseDetails.getLastModified())
                 .state(caseDetails.getState())
                 .lockedBy(caseDetails.getLockedBy())
                 .securityLevel(caseDetails.getSecurityLevel())
