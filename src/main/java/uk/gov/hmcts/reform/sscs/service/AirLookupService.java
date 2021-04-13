@@ -39,6 +39,7 @@ public class AirLookupService {
     }
 
     private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
+    //Map is used here to map future benefit types to same venue column in air lookup file
     private static final Map<Benefit, String> BENEFIT_CODE_VENUE = Map.of(PIP, "pip", DLA, "pip", CARERS_ALLOWANCE,"pip");
 
     private Map<String, String> lookupRegionalCentreByPostCode;
@@ -169,7 +170,7 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Benefit benefit = Benefit.findBenefitByShortName(benefitType.getCode());
 
-        if ("pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefit))) {
+        if (benefit != null && "pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefit))) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();

@@ -210,7 +210,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD", "carersAllowance, 070DD"})
+    @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD"})
     public void givenBenefitType_shouldMapCaseCodeAccordingly(String benefitCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(benefitCode);
 
