@@ -169,7 +169,6 @@ public class SscsCaseData implements CaseData {
     private String urgentHearingRegistered;
     private String urgentHearingOutcome;
     private String documentSentToDwp;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String directionDueDate;
     private String reservedToJudge;
     private List<CaseLink> linkedCase;
