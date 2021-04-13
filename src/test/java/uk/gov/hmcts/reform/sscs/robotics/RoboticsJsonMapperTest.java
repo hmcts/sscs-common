@@ -220,7 +220,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE"})
+    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD"})
     public void givenCaseCodeOnCase_shouldSetRetrieveCaseCodeAccordingly(@Nullable String caseCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().setCaseCode(caseCode);
 
