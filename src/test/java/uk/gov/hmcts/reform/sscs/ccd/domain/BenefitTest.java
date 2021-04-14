@@ -49,8 +49,8 @@ public class BenefitTest {
             new Object[]{"PIP", "Taliad Annibyniaeth Personol (PIP)"},
             new Object[]{"ESA", "Lwfans Cyflogaeth a Chymorth (ESA)"},
             new Object[]{"UC", "Credyd Cynhwysol (UC)"},
-            new Object[]{"JSA", " (JSA)"},
-            new Object[]{"DLA", " (DLA)"}
+            new Object[]{"JSA", "Job Seekers Allowance (JSA)"},
+            new Object[]{"DLA", "Lwfans Byw i’r Anabl (DLA)"}
         };
     }
 
