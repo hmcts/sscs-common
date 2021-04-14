@@ -743,6 +743,8 @@ public class RoboticsJsonMapperTest {
         String date = LocalDate.now().toString();
         roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
 
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
+
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
         roboticsJsonValidator.validate(roboticsJson, caseId);
