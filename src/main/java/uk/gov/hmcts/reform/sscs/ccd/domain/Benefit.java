@@ -6,23 +6,27 @@ import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "051", "ESA"),
-    JSA("Job Seekers Allowance", "", "JSA"),
-    PIP("Personal Independence Payment", "002", "PIP"),
-    DLA("Disability Living Allowance", "037", "DLA"),
-    UC("Universal Credit", "001", "UC"),
-    CARERS_ALLOWANCE("Carer's Allowance", "070", "carersAllowance");
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", true),
+    JSA("Job Seekers Allowance", "", "", "JSA", true),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", true),
+    DLA("Disability Living Allowance", "","037", "DLA", true),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", true),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", false);
 
     private String description;
+    private String welshDescription;
     private String benefitCode;
     private String shortName;
+    private boolean hasAcronym;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
 
-    Benefit(String description, String benefitCode, String shortName) {
+    Benefit(String description, String welshDescription, String benefitCode, String shortName, boolean hasAcronym) {
         this.description = description;
+        this.welshDescription = welshDescription;
         this.benefitCode = benefitCode;
         this.shortName = shortName;
+        this.hasAcronym = hasAcronym;
     }
 
     public static Benefit getBenefitByCode(String code) {
@@ -65,8 +69,16 @@ public enum Benefit {
         return description;
     }
 
+    public String getWelshDescription() {
+        return welshDescription;
+    }
+
     public String getBenefitCode() {
         return benefitCode;
+    }
+
+    public boolean isHasAcronym() {
+        return hasAcronym;
     }
 
     public static Boolean isBenefitTypeValid(String field) {
@@ -77,4 +89,14 @@ public enum Benefit {
         }
         return false;
     }
+
+    public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
+        Benefit benefit = getBenefitByCode(code);
+
+        String description = isEnglish ? benefit.getDescription() : benefit.getWelshDescription();
+        String shortName = benefit.isHasAcronym() ? " (" + benefit.getShortName() + ")" : "";
+
+        return description + shortName;
+    }
+
 }
