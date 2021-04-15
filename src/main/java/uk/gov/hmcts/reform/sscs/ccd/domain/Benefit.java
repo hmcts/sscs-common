@@ -10,10 +10,12 @@ import static org.slf4j.LoggerFactory.getLogger;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import lombok.Getter;
 import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
+@Getter
 public enum Benefit {
 
     ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping),
@@ -70,26 +72,6 @@ public enum Benefit {
                 .findFirst();
     }
 
-    public String getShortName() {
-        return shortName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getWelshDescription() {
-        return welshDescription;
-    }
-
-    public String getBenefitCode() {
-        return benefitCode;
-    }
-
-    public boolean isHasAcronym() {
-        return hasAcronym;
-    }
-
     public static Boolean isBenefitTypeValid(String field) {
         return stream(values()).anyMatch(benefit -> benefit.toString().equalsIgnoreCase(field));
     }
@@ -107,11 +89,4 @@ public enum Benefit {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
 
-    public BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> getOfficeMappings() {
-        return officeMappings;
-    }
-
-    public Function<DwpAddressLookupService, Optional<OfficeMapping>> getDefaultOfficeMapping() {
-        return defaultOfficeMapping;
-    }
 }
