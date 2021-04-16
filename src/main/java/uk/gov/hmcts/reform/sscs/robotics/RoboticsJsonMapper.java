@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
-import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.ESA;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -245,7 +245,11 @@ public class RoboticsJsonMapper {
             return sscsCaseData.getCaseCode();
             // Leave this in for now, whilst we have legacy cases where the case code is not set.
             // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
-        } else if (equalsIgnoreCase("esa", sscsCaseData.getAppeal().getBenefitType().getCode())) {
+        }
+
+        Benefit benefit = Benefit.findBenefitByShortName(sscsCaseData.getAppeal().getBenefitType().getCode());
+
+        if (ESA == benefit) {
             return ESA_CASE_CODE;
         } else {
             return PIP_CASE_CODE;

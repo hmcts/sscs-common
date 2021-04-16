@@ -169,7 +169,6 @@ public class SscsCaseData implements CaseData {
     private String urgentHearingRegistered;
     private String urgentHearingOutcome;
     private String documentSentToDwp;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String directionDueDate;
     private String reservedToJudge;
     private List<CaseLink> linkedCase;
@@ -563,11 +562,12 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public Optional<BenefitTypeEnum> getBenefitType() {
+    public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
-            try {
-                return Optional.of(BenefitTypeEnum.valueOf(appeal.getBenefitType().getCode().toUpperCase()));
-            } catch (IllegalArgumentException e) {
+            Benefit benefit = Benefit.findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
+            if (benefit != null) {
+                return Optional.of(benefit);
+            } else {
                 return Optional.empty();
             }
         } else {
@@ -575,10 +575,10 @@ public class SscsCaseData implements CaseData {
         }
     }
 
-    public boolean isBenefitType(BenefitTypeEnum benefitTypeEnum) {
-        Optional<BenefitTypeEnum> benefitType = getBenefitType();
-        if (benefitType.isPresent()) {
-            return benefitTypeEnum.equals(benefitType.get());
+    public boolean isBenefitType(Benefit benefitType) {
+        Optional<Benefit> benefit = getBenefitType();
+        if (benefit.isPresent()) {
+            return benefitType.equals(benefit.get());
         } else {
             return false;
         }
