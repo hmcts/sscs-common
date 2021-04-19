@@ -108,48 +108,63 @@ public class DwpAddressLookupService {
         if (equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
             return Optional.of(dwpMappings.getTestHmctsAddress());
         }
-        Optional<OfficeMapping> officeMapping = Optional.empty();
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType);
+        return  findBenefitByShortName(benefitType)
+                .flatMap(b -> b.getOfficeMappings().apply(this, dwpIssuingOffice));
+    }
 
-        if (PIP == benefit) {
-            String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
-                    .substringBetween(dwpIssuingOffice,"(", ")"))
-                    .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+    public Optional<OfficeMapping> carersAllowanceOfficeMapping(String dwpIssuingOffice) {
+        return Optional.of(dwpMappings.getCarersAllowance());
+    }
 
-            if (StringUtils.isEmpty(dwpIssuingOfficeStripped)) {
-                dwpIssuingOfficeStripped = dwpIssuingOffice;
-            }
+    public Optional<OfficeMapping> dlaOfficeMapping(String dwpIssuingOffice) {
+        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
+    }
 
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
-        } else if (ESA == benefit) {
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
-        }  else if (UC == benefit) {
-            return Optional.of(dwpMappings.getUc());
-        } else if (DLA == benefit) {
-            officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
-        } else if (CARERS_ALLOWANCE == benefit) {
-            return Optional.of(dwpMappings.getCarersAllowance());
+    public Optional<OfficeMapping> ucOfficeMapping(String dwpIssuingOffice) {
+        return Optional.of(dwpMappings.getUc());
+    }
+
+    public Optional<OfficeMapping> esaOfficeMapping(String dwpIssuingOffice) {
+        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
+    }
+
+    public Optional<OfficeMapping> pipOfficeMapping(String dwpIssuingOffice) {
+        Optional<OfficeMapping> officeMapping;
+        String dwpIssuingOfficeStripped = Optional.ofNullable(StringUtils
+                .substringBetween(dwpIssuingOffice,"(", ")"))
+                .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+
+        if (StringUtils.isEmpty(dwpIssuingOfficeStripped)) {
+            dwpIssuingOfficeStripped = dwpIssuingOffice;
         }
 
+        officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
         return officeMapping;
     }
 
     public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
-        Optional<OfficeMapping> officeMapping = Optional.empty();
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType);
+        return Benefit.findBenefitByShortName(benefitType)
+                .flatMap(benefit -> benefit.getDefaultOfficeMapping().apply(this));
+    }
 
-        if (PIP == benefit) {
-            officeMapping = Stream.of(dwpMappings.getPip()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (ESA == benefit) {
-            officeMapping = Stream.of(dwpMappings.getEsa()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (DLA == benefit) {
-            officeMapping = Stream.of(dwpMappings.getDla()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (UC == benefit) {
-            officeMapping = Stream.of(dwpMappings.getUc()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        } else if (CARERS_ALLOWANCE == benefit) {
-            officeMapping = Stream.of(dwpMappings.getCarersAllowance()).filter(dwpm -> dwpm.isDefault()).findFirst();
-        }
-        return officeMapping;
+    public Optional<OfficeMapping> esaDefaultMapping() {
+        return Stream.of(dwpMappings.getEsa()).filter(OfficeMapping::isDefault).findFirst();
+    }
+
+    public Optional<OfficeMapping> ucDefaultMapping() {
+        return Stream.of(dwpMappings.getUc()).filter(OfficeMapping::isDefault).findFirst();
+    }
+
+    public Optional<OfficeMapping> carersAllowanceDefaultMapping() {
+        return Stream.of(dwpMappings.getCarersAllowance()).filter(OfficeMapping::isDefault).findFirst();
+    }
+
+    public Optional<OfficeMapping> dlaDefaultMapping() {
+        return Stream.of(dwpMappings.getDla()).filter(OfficeMapping::isDefault).findFirst();
+    }
+
+    public Optional<OfficeMapping> pipDefaultMapping() {
+        return Stream.of(dwpMappings.getPip()).filter(OfficeMapping::isDefault).findFirst();
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {

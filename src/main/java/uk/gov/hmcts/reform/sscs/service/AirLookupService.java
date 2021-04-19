@@ -6,6 +6,7 @@ import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.PostConstruct;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -168,9 +169,9 @@ public class AirLookupService {
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
-        Benefit benefit = Benefit.findBenefitByShortName(benefitType.getCode());
+        Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        if (benefit != null && "pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefit))) {
+        if (benefitOptional.isPresent() && "pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefitOptional.get()))) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();
