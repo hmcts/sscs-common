@@ -33,8 +33,12 @@ public class BenefitTest {
     }
 
     @Test
-    public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym() {
-        assertEquals("Carer's Allowance", Benefit.getLongBenefitNameDescriptionWithOptionalAcronym("carersAllowance", true));
+    @Parameters({
+            "carersAllowance, Carer's Allowance",
+            "attendanceAllowance, Attendance Allowance"
+    })
+    public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
+        assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
     }
 
     @Test
@@ -55,7 +59,11 @@ public class BenefitTest {
     }
 
     @Test
-    public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym() {
-        assertEquals("Lwfans Gofalwr", Benefit.getLongBenefitNameDescriptionWithOptionalAcronym("carersAllowance", false));
+    @Parameters({
+            "carersAllowance, Lwfans Gofalwr",
+            "attendanceAllowance, Lwfans Gweini"
+    })
+    public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
+        assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
 }
