@@ -17,6 +17,7 @@ import junitparams.Parameters;
 import junitparams.converters.Nullable;
 import org.json.JSONObject;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -728,6 +729,7 @@ public class RoboticsJsonMapperTest {
         assertFalse(roboticsJson.has("isConfidential"));
     }
 
+    @Ignore
     @Test
     public void givenDlaCase_thenGetsDwpIssueOffice() {
 
