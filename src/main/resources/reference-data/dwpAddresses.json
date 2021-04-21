@@ -401,6 +401,39 @@
       "postCode": "WV98 1LW"
     }
   },
+  "attendanceAllowance": [
+    {
+      "code": "The Pension Service 11",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Tyneview Park DRT",
+        "gaps": "Tyneview Park DRT"
+      },
+      "address": {
+        "line1": "Department for Work and Pensions",
+        "line2": "The Pension Service 11",
+        "line3": "Attendance Allowance & DLA65 DRT",
+        "line4": "Mail Handling Site A",
+        "line5": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Bradford DRT",
+        "gaps": "Bradford DRT"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
