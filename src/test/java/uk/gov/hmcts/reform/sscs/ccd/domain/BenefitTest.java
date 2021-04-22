@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Arrays.asList;
+import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -81,6 +81,6 @@ public class BenefitTest {
             "CARERS_ALLOWANCE, 070",
             "ESA, 051"})
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
-        assertThat(benefit.getCaseLoaderKeyId(), is(asList(caseloaderKeyIds)));
+        assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
 }

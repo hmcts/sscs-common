@@ -1,9 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static java.lang.String.format;
-import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
-import static java.util.Collections.singletonList;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -21,13 +19,13 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @Getter
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", singletonList("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping),
-    JSA("Job Seekers Allowance", "", "", "JSA", singletonList("073"), true, null, null),
-    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", asList("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipDefaultMapping),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", singletonList("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaDefaultMapping),
-    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", singletonList("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping),
-    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", singletonList("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping),
-    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", singletonList("013"), false, null, null);
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping),
+    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, null),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipDefaultMapping),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaDefaultMapping),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping),
+    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, null, null);
 
     private final String description;
     private final String welshDescription;
