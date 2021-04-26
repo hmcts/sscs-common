@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Optional.ofNullable;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,14 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Service
 @Slf4j
 public class AirLookupService {
+    private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
+    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
+    private static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
+
+    private Map<String, String> lookupRegionalCentreByPostCode;
+    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
+    private Map<String, Integer> lookupVenueIdByAirVenueName;
+
     public String lookupRegionalCentre(String postcode) {
         //full post code
         if (postcode.length() >= 5) {
@@ -39,36 +49,37 @@ public class AirLookupService {
         }
     }
 
-    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
-    //Map is used here to map future benefit types to same venue column in air lookup file
-    private static final Map<Benefit, String> BENEFIT_CODE_VENUE = Map.of(PIP, "pip", DLA, "pip", CARERS_ALLOWANCE,"pip");
-
-    private Map<String, String> lookupRegionalCentreByPostCode;
-    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
-    Map<String, Integer> lookupVenueIdByAirVenueName;
-
     /**
      * Read in the AIRLookup RC spreadsheet and the venue id csv file.
      */
     @PostConstruct
     public void init() {
+        initialiseLookupMaps();
+        try {
+            loadAndParseAirLookupFile();
+        } catch (IOException e) {
+            logErrorWithAirLookup(e);
+        }
+    }
+
+    private void initialiseLookupMaps() {
         lookupRegionalCentreByPostCode = new HashMap<>();
         lookupAirVenueNameByPostCode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
+    }
 
-        String airlookupFilePath = "reference-data/AIRLookup14.xlsx";
-        try {
-            ClassPathResource classPathResource = new ClassPathResource(airlookupFilePath);
-            Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
-            parseAirLookupData(wb2);
-            parseVenueData(wb2);
+    private void logErrorWithAirLookup(IOException e) {
+        String message = "Unable to read in spreadsheet with post code data: " + AIR_LOOKUP_FILE;
+        AirLookupServiceException ex = new AirLookupServiceException(e);
+        log.error(message, ex);
+    }
 
-            log.debug("Successfully loaded lookup data for postcode endpoint");
-        } catch (IOException e) {
-            String message = "Unable to read in spreadsheet with post code data: " + airlookupFilePath;
-            AirLookupServiceException ex = new AirLookupServiceException(e);
-            log.error(message, ex);
-        }
+    private void loadAndParseAirLookupFile() throws IOException {
+        ClassPathResource classPathResource = new ClassPathResource(AIR_LOOKUP_FILE);
+        Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
+        parseAirLookupData(wb2);
+        parseVenueData(wb2);
+        log.debug("Successfully loaded lookup data for postcode endpoint");
     }
 
     /**
@@ -160,20 +171,20 @@ public class AirLookupService {
      * @return venues
      */
     public AirlookupBenefitToVenue lookupAirVenueNameByPostCode(String postcode) {
-        AirlookupBenefitToVenue value = lookupAirVenueNameByPostCode.get(postcode.toLowerCase());
-        if (value == null) {
-            return DEFAULT_VENUE;
-        }
-        return value;
+        return ofNullable(lookupAirVenueNameByPostCode.get(postcode.toLowerCase())).orElse(DEFAULT_VENUE);
     }
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        if (benefitOptional.isPresent() && "pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefitOptional.get()))) {
+        if (isAirLookupColumnForBenefitTheSameAsPip(benefitOptional)) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();
+    }
+
+    private boolean isAirLookupColumnForBenefitTheSameAsPip(Optional<Benefit> benefitOptional) {
+        return benefitOptional.isPresent() && AIR_LOOKUP_COLUMN_SAME_AS_PIP.contains(benefitOptional.get());
     }
 }
