@@ -280,6 +280,6 @@ public class DwpAddressLookupServiceTest {
     public void givenADlaBenefitType_thenDefaultDwpRegionalCenter() {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("dla");
 
-        assertEquals("Bradford DRT", result);
+        assertEquals("RfE", result);
     }
 }

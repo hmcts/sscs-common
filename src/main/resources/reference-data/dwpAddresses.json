@@ -329,8 +329,9 @@
       "code": "Disability Benefit Centre 4",
       "isDefault": false,
       "mapping": {
-        "ccd": "Birmingham DRT",
-        "gaps": "Birmingham DRT"
+        "ccd": "Disability Benefit Centre 4",
+        "gaps": "Disability Benefit Centre 4",
+        "dwpRegionCentre": "DLA Child/Adult"
       },
       "address": {
         "line1": "Disability Benefit Centre 4",
@@ -343,8 +344,9 @@
       "code": "The Pension Service 11",
       "isDefault": false,
       "mapping": {
-        "ccd": "Tyneview Park DRT",
-        "gaps": "Tyneview Park DRT"
+        "ccd": "The Pension Service 11",
+        "gaps": "Attendance Allowance & DLA65 DRT",
+        "dwpRegionCentre": "DLA 65"
       },
       "address": {
         "line1": "Department for Work and Pensions",
@@ -359,8 +361,9 @@
       "code": "Recovery from Estates",
       "isDefault": true,
       "mapping": {
-        "ccd": "Bradford DRT",
-        "gaps": "Bradford DRT"
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
       },
       "address": {
         "line1": "Recovery from Estates",
