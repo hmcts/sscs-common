@@ -1,6 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.*;
+import static java.util.List.of;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -70,5 +75,17 @@ public class BenefitTest {
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
+    }
+
+    @Test
+    @Parameters({"PIP, 002, 003", "ESA, 051",
+            "ATTENDANCE_ALLOWANCE, 013",
+            "UC, 001",
+            "JSA, 073",
+            "DLA, 037",
+            "CARERS_ALLOWANCE, 070",
+            "ESA, 051"})
+    public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
+        assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
 }
