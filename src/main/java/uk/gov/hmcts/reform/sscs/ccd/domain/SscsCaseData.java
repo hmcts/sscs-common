@@ -128,6 +128,7 @@ public class SscsCaseData implements CaseData {
     private String bodyContent;
     private String signedBy;
     private String signedRole;
+    private String tempMediaUrl;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
