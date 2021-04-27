@@ -214,6 +214,16 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    @Parameters({
+            "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
+    })
+    public void givenADlaBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("dla", office);
+
+        assertEquals(dwpRegionalCentre, result);
+    }
+
+    @Test
     public void givenABenefitTypeNotMapped_thenReturnEmptyOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("hb", null);
 
