@@ -230,6 +230,6 @@ public class AirLookupService {
     }
 
     private boolean isAirLookupColumnForBenefitTheSameAsPip(Optional<Benefit> benefitOptional) {
-        return benefitOptional.isPresent() && AIR_LOOKUP_COLUMN_SAME_AS_PIP.contains(benefitOptional.get());
+        return benefitOptional.map(AIR_LOOKUP_COLUMN_SAME_AS_PIP::contains).orElse(false);
     }
 }
