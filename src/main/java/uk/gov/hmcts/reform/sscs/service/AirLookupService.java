@@ -31,22 +31,34 @@ public class AirLookupService {
     private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
     private static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").esaOrUcVenue("Birmingham").build();
-
-    private Map<String, String> lookupRegionalCentreByPostCode;
-    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostCode;
+    private static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
+    private Map<String, String> lookupRegionalCentreByPostcode;
+    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
+    private static final int POSTCODE_COLUMN = 0;
+    private static final int REGIONAL_CENTRE_COLUMN = 7;
+    private static final int ESA_UC_COLUMN = 3;
+    private static final int PIP_COLUMN = 6;
 
     public String lookupRegionalCentre(String postcode) {
-        //full post code
-        if (postcode.length() >= 5) {
-            int index = postcode.length() - 3;
-            //trim last 3 chars to leave the outcode
-            String outcode = postcode.toLowerCase().substring(0, index).trim();
-            return lookupRegionalCentreByPostCode.get(outcode);
-        } else {
-            //try it as the outcode
-            return lookupRegionalCentreByPostCode.get(postcode.toLowerCase().trim());
+        if (isFullPostCodeGiven(postcode)) {
+            String outcode = trimLastThreeCharsForOutcode(postcode);
+            return lookupRegionalCentreByOutcode(outcode);
         }
+        return lookupRegionalCentreByOutcode(postcode.toLowerCase().trim());
+    }
+
+    private String trimLastThreeCharsForOutcode(String postcode) {
+        int index = postcode.length() - 3;
+        return postcode.toLowerCase().substring(0, index).trim();
+    }
+
+    private String lookupRegionalCentreByOutcode(String outcode) {
+        return lookupRegionalCentreByPostcode.get(outcode);
+    }
+
+    private boolean isFullPostCodeGiven(String postcode) {
+        return postcode.length() >= 5;
     }
 
     /**
@@ -63,8 +75,8 @@ public class AirLookupService {
     }
 
     private void initialiseLookupMaps() {
-        lookupRegionalCentreByPostCode = new HashMap<>();
-        lookupAirVenueNameByPostCode = new HashMap<>();
+        lookupRegionalCentreByPostcode = new HashMap<>();
+        lookupAirVenueNameByPostcode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
     }
 
@@ -87,35 +99,52 @@ public class AirLookupService {
      * @param wb the file on classpath
      */
     private void parseAirLookupData(Workbook wb)  {
-
         for (Sheet sheet: wb) {
             if (sheet.getSheetName().equalsIgnoreCase("All")) {
-                for (Row row : sheet) {
-                    if (row.getRowNum() == 0 || row.getRowNum() == 1) {
-                        continue;
-                    }
-                    int postcodeColumn = 0;
-                    Cell postcodeCell = row.getCell(postcodeColumn);
-                    int regionalCentreColumn = 7;
-                    Cell adminGroupCell = row.getCell(regionalCentreColumn);
-                    int esaUcColumn = 3;
-                    Cell esaCell = row.getCell(esaUcColumn);
-                    int pipColumn = 6;
-                    Cell pipOrUcCell = row.getCell(pipColumn);
-
-                    if (postcodeCell != null && adminGroupCell != null
-                            && postcodeCell.getCellType() == CellType.STRING && adminGroupCell.getCellType() == CellType.STRING) {
-                        lookupRegionalCentreByPostCode.put(postcodeCell.getRichStringCellValue().getString().toLowerCase().trim(), adminGroupCell.getRichStringCellValue().getString());
-
-                        lookupAirVenueNameByPostCode.put(postcodeCell.getRichStringCellValue().getString().toLowerCase().trim(),
-                            AirlookupBenefitToVenue.builder()
-                                    .esaOrUcVenue(esaCell.getRichStringCellValue().getString())
-                                    .pipVenue(pipOrUcCell.getRichStringCellValue().getString())
-                                    .build());
-                    }
-                }
+                parseLookupDataRows(sheet);
             }
         }
+    }
+
+    private void parseLookupDataRows(Sheet sheet) {
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0 || row.getRowNum() == 1) {
+                continue;
+            }
+            populateLookupData(row);
+        }
+    }
+
+    private void populateLookupData(Row row) {
+        Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
+        Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
+
+        if (postcodeCell != null && adminGroupCell != null
+                && postcodeCell.getCellType() == CellType.STRING
+                && adminGroupCell.getCellType() == CellType.STRING) {
+            populateLookupByPostcodeMaps(row);
+        }
+    }
+
+    private void populateLookupByPostcodeMaps(Row row) {
+        String postcode = getStringValue(row.getCell(POSTCODE_COLUMN)).toLowerCase().trim();
+        populateLookupRegionalCentreByPostcodeMap(row, postcode);
+        populateLookupAirVenueNameByPostcodeMap(postcode, row);
+    }
+
+    private void populateLookupRegionalCentreByPostcodeMap(Row row, String postcode) {
+        Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
+        lookupRegionalCentreByPostcode.put(postcode, getStringValue(adminGroupCell));
+    }
+
+    private void populateLookupAirVenueNameByPostcodeMap(String postcode, Row row) {
+        Cell esaCell = row.getCell(ESA_UC_COLUMN);
+        Cell pipOrUcCell = row.getCell(PIP_COLUMN);
+        AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
+                .esaOrUcVenue(getStringValue(esaCell))
+                .pipVenue(getStringValue(pipOrUcCell))
+                .build();
+        lookupAirVenueNameByPostcode.put(postcode, airlookupBenefitToVenue);
     }
 
     /**
@@ -125,17 +154,33 @@ public class AirLookupService {
     public void parseVenueData(Workbook wb) {
 
         for (Sheet sheet: wb) {
-            if (sheet.getSheetName().equalsIgnoreCase("airLookupVenueIds.csv")) {
-                for (Row row : sheet) {
-                    if (row.getRowNum() == 0) {
-                        continue;
-                    }
-                    Cell lookupName = row.getCell(0);
-                    Cell venueId = row.getCell(1);
-                    lookupVenueIdByAirVenueName.put(lookupName.getRichStringCellValue().getString(), Double.valueOf(venueId.getNumericCellValue()).intValue());
-                }
+            if (sheet.getSheetName().equalsIgnoreCase(AIR_LOOKUP_VENUE_IDS_CSV)) {
+                populateVenueDataRow(sheet);
             }
         }
+    }
+
+    private void populateVenueDataRow(Sheet sheet) {
+        for (Row row : sheet) {
+            if (row.getRowNum() == 0) {
+                continue;
+            }
+            populateLookupVenueIdByAirVenueNameMap(row);
+        }
+    }
+
+    private void populateLookupVenueIdByAirVenueNameMap(Row row) {
+        Cell lookupName = row.getCell(0);
+        Cell venueId = row.getCell(1);
+        lookupVenueIdByAirVenueName.put(getStringValue(lookupName), getIntValue(venueId));
+    }
+
+    private int getIntValue(Cell venueId) {
+        return Double.valueOf(venueId.getNumericCellValue()).intValue();
+    }
+
+    private String getStringValue(Cell lookupName) {
+        return lookupName.getRichStringCellValue().getString();
     }
 
     /**
@@ -143,8 +188,8 @@ public class AirLookupService {
      * the Regional Centre as the value.
      * @return map with the first half of post code as the key and the Regional Centre as the value
      */
-    protected Map<String, String> getLookupRegionalCentreByPostCode() {
-        return lookupRegionalCentreByPostCode;
+    protected Map<String, String> getLookupRegionalCentreByPostcode() {
+        return lookupRegionalCentreByPostcode;
     }
 
     /**
@@ -152,8 +197,8 @@ public class AirLookupService {
      * and the venue name as the value.
      * @return map with the first half of the post code as the key and the venue names as the values
      */
-    protected Map<String, AirlookupBenefitToVenue> getLookupAirVenueNameByPostCode() {
-        return lookupAirVenueNameByPostCode;
+    protected Map<String, AirlookupBenefitToVenue> getLookupAirVenueNameByPostcode() {
+        return lookupAirVenueNameByPostcode;
     }
 
     /**
@@ -171,7 +216,7 @@ public class AirLookupService {
      * @return venues
      */
     public AirlookupBenefitToVenue lookupAirVenueNameByPostCode(String postcode) {
-        return ofNullable(lookupAirVenueNameByPostCode.get(postcode.toLowerCase())).orElse(DEFAULT_VENUE);
+        return ofNullable(lookupAirVenueNameByPostcode.get(postcode.toLowerCase())).orElse(DEFAULT_VENUE);
     }
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {

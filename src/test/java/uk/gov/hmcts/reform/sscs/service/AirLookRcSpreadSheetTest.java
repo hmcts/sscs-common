@@ -28,8 +28,8 @@ public class AirLookRcSpreadSheetTest {
         airLookupService = new AirLookupService();
         airLookupService.init();
 
-        lookupData = airLookupService.getLookupRegionalCentreByPostCode();
-        venueData = airLookupService.getLookupAirVenueNameByPostCode();
+        lookupData = airLookupService.getLookupRegionalCentreByPostcode();
+        venueData = airLookupService.getLookupAirVenueNameByPostcode();
         lookupVenueIdByAirLookupName = airLookupService.getLookupVenueIdByAirVenueName();
     }
 
