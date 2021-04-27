@@ -95,7 +95,7 @@ public class DwpAddressLookupService {
 
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
 
-        return PIP.name().equalsIgnoreCase(benefitType)
+        return PIP.name().equalsIgnoreCase(benefitType) || "attendanceAllowance".equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
