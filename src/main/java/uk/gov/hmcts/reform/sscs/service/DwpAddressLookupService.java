@@ -105,7 +105,7 @@ public class DwpAddressLookupService {
 
         Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
 
-        return PIP.name().equalsIgnoreCase(benefitType)
+        return PIP.name().equalsIgnoreCase(benefitType) || ATTENDANCE_ALLOWANCE.getShortName().equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }

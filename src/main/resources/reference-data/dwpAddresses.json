@@ -421,7 +421,7 @@
     },
     {
       "code": "Recovery from Estates",
-      "isDefault": true,
+      "isDefault": false,
       "mapping": {
         "ccd": "Recovery from Estates",
         "gaps": "Recovery from Estates",

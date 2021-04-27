@@ -215,10 +215,17 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenAAttendanceAllowanceBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+    public void givenAAttendanceAllowanceBenefitTypeAndRfeDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance", "Recovery from Estates");
 
         assertEquals("RfE", result);
+    }
+
+    @Test
+    public void givenAAttendanceAllowanceBenefitTypeAndAaDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance", "The Pension Service 11");
+
+        assertEquals("Attendance Allowance", result);
     }
 
     @Test
@@ -295,7 +302,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAnAttendanceAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance");
 
-        assertEquals("The Pension Service 11", result);
+        assertEquals("Attendance Allowance", result);
     }
 
     @Test
