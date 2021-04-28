@@ -88,4 +88,19 @@ public class BenefitTest {
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
+
+    @Test
+    @Parameters({
+            "PIP, true",
+            "ATTENDANCE_ALLOWANCE, true",
+            "UC, false",
+            "JSA, false",
+            "DLA, true",
+            "CARERS_ALLOWANCE, true",
+            "ESA, false"
+    })
+    public void isAirLookupSameAsPip(Benefit benefit, boolean expected) {
+        assertThat(benefit.isAirLookupSameAsPip(), is(expected));
+
+    }
 }
