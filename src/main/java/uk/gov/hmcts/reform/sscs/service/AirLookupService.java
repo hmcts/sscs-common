@@ -171,9 +171,13 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        if (benefitOptional.isPresent() && "pip".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefitOptional)) || "dla".equalsIgnoreCase(BENEFIT_CODE_VENUE.get(benefitOptional))) {
+        if (isAirLookupColumnForBenefitTheSameAsPip(benefitOptional)) {
             return venue.getPipVenue();
         }
         return venue.getEsaOrUcVenue();
+    }
+
+    private boolean isAirLookupColumnForBenefitTheSameAsPip(Optional<Benefit> benefitOptional) {
+        return benefitOptional.map(Benefit::isAirLookupSameAsPip).orElse(false);
     }
 }
