@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.ESA;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -247,9 +248,9 @@ public class RoboticsJsonMapper {
             // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         }
 
-        Benefit benefit = Benefit.findBenefitByShortName(sscsCaseData.getAppeal().getBenefitType().getCode());
+        Optional<Benefit> benefitOptional = findBenefitByShortName(sscsCaseData.getAppeal().getBenefitType().getCode());
 
-        if (ESA == benefit) {
+        if (benefitOptional.filter(b -> ESA == b).isPresent()) {
             return ESA_CASE_CODE;
         } else {
             return PIP_CASE_CODE;

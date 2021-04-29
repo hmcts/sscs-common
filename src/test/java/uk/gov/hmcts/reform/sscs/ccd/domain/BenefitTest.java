@@ -1,6 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.*;
+import static java.util.List.of;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -33,8 +38,12 @@ public class BenefitTest {
     }
 
     @Test
-    public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym() {
-        assertEquals("Carer's Allowance", Benefit.getLongBenefitNameDescriptionWithOptionalAcronym("carersAllowance", true));
+    @Parameters({
+            "carersAllowance, Carer's Allowance",
+            "attendanceAllowance, Attendance Allowance"
+    })
+    public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
+        assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
     }
 
     @Test
@@ -49,13 +58,29 @@ public class BenefitTest {
             new Object[]{"PIP", "Taliad Annibyniaeth Personol (PIP)"},
             new Object[]{"ESA", "Lwfans Cyflogaeth a Chymorth (ESA)"},
             new Object[]{"UC", "Credyd Cynhwysol (UC)"},
-            new Object[]{"JSA", " (JSA)"},
-            new Object[]{"DLA", " (DLA)"}
+            new Object[]{"JSA", "Job Seekers Allowance (JSA)"},
+            new Object[]{"DLA", "Lwfans Byw i’r Anabl (DLA)"}
         };
     }
 
     @Test
-    public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym() {
-        assertEquals("Lwfans Gofalwr", Benefit.getLongBenefitNameDescriptionWithOptionalAcronym("carersAllowance", false));
+    @Parameters({
+            "carersAllowance, Lwfans Gofalwr",
+            "attendanceAllowance, Lwfans Gweini"
+    })
+    public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
+        assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
+    }
+
+    @Test
+    @Parameters({"PIP, 002, 003", "ESA, 051",
+            "ATTENDANCE_ALLOWANCE, 013",
+            "UC, 001",
+            "JSA, 073",
+            "DLA, 037",
+            "CARERS_ALLOWANCE, 070",
+            "ESA, 051"})
+    public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
+        assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
 }

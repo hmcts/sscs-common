@@ -4,6 +4,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Collections.emptyList;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import com.fasterxml.jackson.annotation.*;
@@ -126,6 +127,7 @@ public class SscsCaseData implements CaseData {
     private String bodyContent;
     private String signedBy;
     private String signedRole;
+    private String tempMediaUrl;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
@@ -564,23 +566,13 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
-            Benefit benefit = Benefit.findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
-            if (benefit != null) {
-                return Optional.of(benefit);
-            } else {
-                return Optional.empty();
-            }
+            return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
         } else {
             return Optional.empty();
         }
     }
 
     public boolean isBenefitType(Benefit benefitType) {
-        Optional<Benefit> benefit = getBenefitType();
-        if (benefit.isPresent()) {
-            return benefitType.equals(benefit.get());
-        } else {
-            return false;
-        }
+        return getBenefitType().filter(benefitType::equals).isPresent();
     }
 }
