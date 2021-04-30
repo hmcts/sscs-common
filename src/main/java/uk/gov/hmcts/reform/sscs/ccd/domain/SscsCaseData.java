@@ -79,8 +79,7 @@ public class SscsCaseData implements CaseData {
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
-    @JsonProperty("dwpDueDate")
-    private LocalDate dwpDueDate;
+    private String dwpDueDate;
     private String interlocReviewState;
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
