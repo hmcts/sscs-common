@@ -90,6 +90,7 @@ public class SscsCaseData implements CaseData {
     private AudioVideoEvidenceDetails selectedAudioVideoEvidenceDetails;
     private List<AudioVideoEvidence> audioVideoEvidence;
     private List<AudioVideoEvidence> dwpUploadAudioVideoEvidence;
+    private YesNo hasUnprocessedAudioVideoEvidence;
     private String informationFromAppellant;
     private String outcome;
     private String evidenceHandled;
