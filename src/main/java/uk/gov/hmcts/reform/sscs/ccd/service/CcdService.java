@@ -72,6 +72,10 @@ public class CcdService {
         return updateCcdCaseService.updateCase(caseData, caseId, eventType, summary, description, idamTokens);
     }
 
+    public SscsCaseDetails updateCaseWithoutRetry(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+        return updateCcdCaseService.updateCaseWithoutRetry(caseData, caseId, eventType, summary, description, idamTokens);
+    }
+
     public SscsCaseDetails findCcdCaseByNinoAndBenefitTypeAndMrnDate(String nino, String benefitCode, String mrnDate, IdamTokens idamTokens) {
         if (mrnDate != null) {
             try {

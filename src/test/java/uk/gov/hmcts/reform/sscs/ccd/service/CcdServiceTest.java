@@ -129,6 +129,20 @@ public class CcdServiceTest {
     }
 
     @Test
+    public void givenAnUpdateCaseRequest_thenUpdateTheCaseWithoutRetry() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        StartEventResponse startEventResponse = StartEventResponse.builder().build();
+
+        when(ccdClient.startEvent(idamTokens, 1L, "appealReceived")).thenReturn(startEventResponse);
+
+        when(ccdClient.submitEventForCaseworker(eq(idamTokens), eq(1L),  any())).thenReturn(caseDetails);
+
+        SscsCaseDetails result = ccdService.updateCaseWithoutRetry(sscsCaseData, 1L, "appealReceived", "SSCS - update event", "Updated case", idamTokens);
+
+        assertThat(result, is(sscsCaseDetails));
+    }
+
+    @Test
     public void shouldUpdateAppellantSubscriptionInCcd() {
 
         StartEventResponse startEventResponse = StartEventResponse.builder().build();
