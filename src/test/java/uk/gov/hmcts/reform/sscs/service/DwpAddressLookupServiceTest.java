@@ -207,6 +207,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenACarersAllowanceBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance", null);
+
+        assertEquals("Carer’s Allowance", result);
+    }
+
+    @Test
     public void givenACarresAllowanceBenefitType_thenReturnTheUcOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
