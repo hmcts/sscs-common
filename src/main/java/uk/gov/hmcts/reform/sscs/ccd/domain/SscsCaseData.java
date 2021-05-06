@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,6 +27,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -138,6 +144,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
     private String dateCaseSentToGaps;
+    private String dateTimeCaseSentToGaps;
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
@@ -571,6 +578,22 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public Optional<LocalDateTime> getDateTimeSentTooGaps() {
+
+        try {
+            if (this.dateTimeCaseSentToGaps != null) {
+                return Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            } else if (this.dateCaseSentToGaps != null) {
+                return Optional.of(LocalDateTime.of(LocalDate.parse(this.dateCaseSentToGaps), LocalTime.MIN));
+            }
+        } catch (DateTimeParseException e) {
+            
+        }
+        return Optional.empty();
     }
 
     public boolean isBenefitType(Benefit benefitType) {
