@@ -105,17 +105,13 @@ public class DwpAddressLookupService {
         Benefit benefit;
         try {
             benefit = Benefit.getBenefitByCode(benefitType);
+            if (benefit.isHasDwpRegionCentre()) {
+                return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
+            } else {
+                return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+            }
         } catch (BenefitMappingException e) {
             return null;
-        }
-        switch (benefit) {
-            case PIP:
-            case CARERS_ALLOWANCE:
-            case ATTENDANCE_ALLOWANCE:
-            case DLA:
-                return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
-            default:
-                return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
         }
     }
 
