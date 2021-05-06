@@ -408,8 +408,8 @@ public class RoboticsJsonMapper {
             elementsDisputed.put("childDisabled", buildElementIssueArray(sscsCaseData.getElementsDisputedChildDisabled()));
         }
 
-        if (sscsCaseData.getElementsDisputedLimited() != null && sscsCaseData.getElementsDisputedLimited().size() > 0) {
-            elementsDisputed.put("limitedCapabilityWork", buildElementIssueArray(sscsCaseData.getElementsDisputedLimited()));
+        if (sscsCaseData.getElementsDisputedLimitedWork() != null && sscsCaseData.getElementsDisputedLimitedWork().size() > 0) {
+            elementsDisputed.put("limitedCapabilityWork", buildElementIssueArray(sscsCaseData.getElementsDisputedLimitedWork()));
         }
         return elementsDisputed;
     }
