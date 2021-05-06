@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -763,4 +764,36 @@ public class SscsCaseDataTest {
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
+
+    @Test
+    public void givenNoDateSentToGapsOrDateTimeReturnNone() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(null).build();
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
+    }
+
+    @Test
+    public void givenDateSentToGapsAndNoDateTimeReturnDateAtMidnight() {
+
+        LocalDate today = LocalDate.now();
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(null).build();
+        LocalDateTime todayDateTime = LocalDateTime.of(LocalDate.parse(today.toString()), LocalTime.MIN);
+        assertEquals(todayDateTime, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
+    @Test
+    public void givenNoDateSentToGapsAndDateTimeReturnDateTime() {
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
+    @Test
+    public void givenDateSentToGapsAndDateTimeReturnDateTime() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
 }
