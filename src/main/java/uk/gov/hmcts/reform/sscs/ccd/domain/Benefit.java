@@ -37,6 +37,7 @@ public enum Benefit {
     private final String shortName;
     private final List<String> caseLoaderKeyId;
     private final boolean hasAcronym;
+    private boolean hasDwpRegionCentre;
     private final BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
