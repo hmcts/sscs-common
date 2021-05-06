@@ -269,6 +269,7 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedCare;
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
+    private List<ElementDisputed> elementsDisputedLimited;
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
