@@ -334,8 +334,8 @@ public class SscsCaseData implements CaseData {
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
     @JsonProperty("processAudioVideoReviewState")
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
-
     private String tempNoteDetail;
+    private YesNo showWorkCapabilityAssessmentPage;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
