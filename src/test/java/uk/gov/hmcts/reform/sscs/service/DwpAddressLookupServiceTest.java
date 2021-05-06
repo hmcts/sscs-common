@@ -266,7 +266,7 @@ public class DwpAddressLookupServiceTest {
     public void givenACarersAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
 
-        assertEquals("Carer’s Allowance Dispute Resolution Team", result);
+        assertEquals("Carer’s Allowance", result);
     }
 
     @Test
