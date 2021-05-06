@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -138,6 +142,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
     private String dateCaseSentToGaps;
+    private String dateTimeCaseSentToGaps;
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
@@ -571,6 +576,24 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public Optional<LocalDateTime> getDateTimeSentTooGaps() {
+
+        Optional<LocalDateTime> ldt = Optional.empty();
+
+        try {
+            if (this.dateTimeCaseSentToGaps != null) {
+                ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+            } else if (this.dateCaseSentToGaps != null) {
+                ldt = Optional.of(LocalDateTime.of(LocalDate.parse(this.dateCaseSentToGaps), LocalTime.MIN));
+            }
+        } catch (DateTimeParseException e) {
+            ldt =  Optional.empty();
+        }
+        return ldt;
     }
 
     public boolean isBenefitType(Benefit benefitType) {
