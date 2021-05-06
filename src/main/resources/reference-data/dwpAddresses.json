@@ -390,7 +390,8 @@
     "isDefault": true,
     "mapping": {
       "ccd": "Carer’s Allowance Dispute Resolution Team",
-      "gaps": "Carers Allowance DRT"
+      "gaps": "Carers Allowance DRT",
+      "dwpRegionCentre": "Carer’s Allowance"
     },
     "address": {
       "line1": "Carer’s Allowance Dispute Resolution Team",
