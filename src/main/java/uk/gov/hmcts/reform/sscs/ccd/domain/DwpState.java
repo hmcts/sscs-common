@@ -30,7 +30,8 @@ public enum DwpState {
     APPEAL_ABATED("appealAbated", "Appeal abated"),
     APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed"),
     PHME_GRANTED("phmeGranted", "PHME granted"),
-    PHME_REFUSED("phmeRefused", "PHME refused");
+    PHME_REFUSED("phmeRefused", "PHME refused"),
+    DECISION_ACTIONED("decisionActioned", "Decision actioned");
 
     private String id;
     private String label;
