@@ -31,7 +31,9 @@ public class BenefitTest {
             "ESA, Employment and Support Allowance (ESA)",
             "UC, Universal Credit (UC)",
             "JSA, Job Seekers Allowance (JSA)",
-            "DLA, Disability Living Allowance (DLA)"
+            "DLA, Disability Living Allowance (DLA)",
+            "Carer's Allowance, Carer's Allowance",
+            "Attendance Allowance, Attendance Allowance"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -52,6 +54,7 @@ public class BenefitTest {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
 
+    @SuppressWarnings({"unused"})
     private Object[] welshBenefitScenarios() {
 
         return new Object[]{
@@ -59,7 +62,9 @@ public class BenefitTest {
             new Object[]{"ESA", "Lwfans Cyflogaeth a Chymorth (ESA)"},
             new Object[]{"UC", "Credyd Cynhwysol (UC)"},
             new Object[]{"JSA", "Job Seekers Allowance (JSA)"},
-            new Object[]{"DLA", "Lwfans Byw i’r Anabl (DLA)"}
+            new Object[]{"DLA", "Lwfans Byw i’r Anabl (DLA)"},
+            new Object[]{"Carer's Allowance", "Lwfans Gofalwr"},
+            new Object[]{"Attendance Allowance", "Lwfans Gweini"}
         };
     }
 
@@ -82,5 +87,20 @@ public class BenefitTest {
             "ESA, 051"})
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
+    }
+
+    @Test
+    @Parameters({
+            "PIP, true",
+            "ATTENDANCE_ALLOWANCE, true",
+            "UC, false",
+            "JSA, false",
+            "DLA, true",
+            "CARERS_ALLOWANCE, true",
+            "ESA, false"
+    })
+    public void isAirLookupSameAsPip(Benefit benefit, boolean expected) {
+        assertThat(benefit.isAirLookupSameAsPip(), is(expected));
+
     }
 }

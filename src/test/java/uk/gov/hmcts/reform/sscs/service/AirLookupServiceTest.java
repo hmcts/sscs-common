@@ -13,12 +13,12 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @RunWith(JUnitParamsRunner.class)
 public class AirLookupServiceTest {
 
-    private static AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder()
+    private static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder()
         .pipVenue("Birmingham")
         .esaOrUcVenue("Birmingham")
         .build();
 
-    private static AirLookupService airLookupService;
+    private static final AirLookupService airLookupService;
 
     static {
         airLookupService = new AirLookupService();
@@ -74,7 +74,8 @@ public class AirLookupServiceTest {
             "b4 1lal, Birmingham, PIP",
             "NN85 1ss, Northampton, PIP",
             "NN85 1ss, Northampton, DLA",
-            "NN85 1ss, Northampton, carersAllowance"
+            "NN85 1ss, Northampton, carersAllowance",
+            "NN85 1ss, Northampton, attendanceAllowance"
     })
     public void checkVenueForPostCodeWithNoPipWithBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
         String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
