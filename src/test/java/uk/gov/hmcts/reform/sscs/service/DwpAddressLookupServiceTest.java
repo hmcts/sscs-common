@@ -90,6 +90,14 @@ public class DwpAddressLookupServiceTest {
         assertNotNull(address);
     }
 
+    @Test
+    @Parameters({"The Pension Service 11", "Recovery from Estates"})
+    public void attendanceAllowanceAddressesExist(final String dwpIssuingOffice) {
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("DLA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        Address address = dwpAddressLookup.lookupDwpAddress(caseData);
+        assertNotNull(address);
+    }
+
     @Test(expected = DwpAddressLookupException.class)
     @Parameters({"JOB", "UNK", "PLOP", "BIG", "FIG"})
     public void unknownBenefitTypeReturnsNone(final String benefitType) {
@@ -207,10 +215,31 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenACarresAllowanceBenefitType_thenReturnTheUcOffice() {
+    public void givenAAttendanceAllowanceBenefitTypeAndRfeDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance", "Recovery from Estates");
+
+        assertEquals("RfE", result);
+    }
+
+    @Test
+    public void givenAAttendanceAllowanceBenefitTypeAndAaDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance", "The Pension Service 11");
+
+        assertEquals("Attendance Allowance", result);
+    }
+
+    @Test
+    public void givenACarersAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
         assertEquals("Carer’s Allowance", result.get().getCode());
+    }
+
+    @Test
+    public void givenAnAttendanceAllowanceBenefitType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("attendanceAllowance", "Recovery from Estates");
+
+        assertEquals("Recovery from Estates", result.get().getCode());
     }
 
     @Test
@@ -267,6 +296,13 @@ public class DwpAddressLookupServiceTest {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
 
         assertEquals("Tyneview Park DRT", result);
+    }
+
+    @Test
+    public void givenAnAttendanceAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance");
+
+        assertEquals("Attendance Allowance", result);
     }
 
     @Test

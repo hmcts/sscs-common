@@ -329,7 +329,7 @@
       "code": "Disability Benefit Centre 4",
       "isDefault": false,
       "mapping": {
-        "ccd": "Birmingham DRT",
+        "ccd": "Disability Benefit Centre 4",
         "gaps": "Birmingham DRT"
       },
       "address": {
@@ -401,6 +401,41 @@
       "postCode": "WV98 1LW"
     }
   },
+  "attendanceAllowance": [
+    {
+      "code": "The Pension Service 11",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "The Pension Service 11",
+        "gaps": "Attendance Allowance & DLA65 DRT",
+        "dwpRegionCentre": "Attendance Allowance"
+      },
+      "address": {
+        "line1": "Department for Work and Pensions",
+        "line2": "The Pension Service 11",
+        "line3": "Attendance Allowance & DLA65 DRT",
+        "line4": "Mail Handling Site A",
+        "line5": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
