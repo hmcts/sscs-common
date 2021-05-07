@@ -9,6 +9,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import lombok.Getter;
@@ -19,13 +20,13 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @Getter
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping, false),
-    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, null, false),
-    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipDefaultMapping, true),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaDefaultMapping, false),
-    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping, false),
-    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping, true),
-    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, null, null, false);
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping),
+    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, null),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipDefaultMapping),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaDefaultMapping),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping),
+    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, null, null);
 
     private final String description;
     private final String welshDescription;
@@ -33,15 +34,15 @@ public enum Benefit {
     private final String shortName;
     private final List<String> caseLoaderKeyId;
     private final boolean hasAcronym;
-    private final boolean hasDwpRegionCentre;
     private final BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings;
+    private final Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
-    private final Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping;
+    private static final Set<Benefit> DWP_REGION_CENTRE_MAPPING_AVAILABLE = Set.of(PIP, CARERS_ALLOWANCE);
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
             BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings,
-            Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping, boolean hasDwpRegionCentre) {
+            Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping) {
         this.description = description;
         this.welshDescription = welshDescription;
         this.benefitCode = benefitCode;
@@ -50,7 +51,6 @@ public enum Benefit {
         this.hasAcronym = hasAcronym;
         this.officeMappings = officeMappings;
         this.defaultOfficeMapping = defaultOfficeMapping;
-        this.hasDwpRegionCentre = hasDwpRegionCentre;
     }
 
     public static Benefit getBenefitByCode(String code) {
@@ -89,6 +89,10 @@ public enum Benefit {
 
     public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
         return getBenefitByCode(code).getBenefitNameDescriptionWithAcronym(isEnglish);
+    }
+
+    public boolean isHasDwpRegionCentre() {
+        return DWP_REGION_CENTRE_MAPPING_AVAILABLE.contains(this);
     }
 
     private Optional<String> getShortNameOptional() {
