@@ -220,7 +220,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD"})
+    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD", "037DD, 037DD"})
     public void givenCaseCodeOnCase_shouldSetRetrieveCaseCodeAccordingly(@Nullable String caseCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().setCaseCode(caseCode);
 
@@ -726,5 +726,32 @@ public class RoboticsJsonMapperTest {
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
         assertFalse(roboticsJson.has("isConfidential"));
+    }
+
+    @Test
+    public void givenDlaCase_thenGetsDwpIssueOffice() {
+
+        SscsCaseData sscsCaseData = buildCaseData("Test", "DLA", "Disability Benefit Centre 4");
+        sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
+        roboticsWrapper = RoboticsWrapper
+                .builder()
+                .sscsCaseData(sscsCaseData)
+                .ccdCaseId(123L).evidencePresent("Yes")
+                .state(State.APPEAL_CREATED)
+                .build();
+
+        String date = LocalDate.now().toString();
+        roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
+
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        roboticsJsonValidator.validate(roboticsJson, caseId);
+
+        assertEquals("Disability Benefit Centre 4", roboticsJson.get("dwpIssuingOffice"));
+        assertEquals("Disability Benefit Centre 4", roboticsJson.get("dwpPresentingOffice"));
+
+
     }
 }

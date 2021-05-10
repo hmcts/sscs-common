@@ -21,6 +21,10 @@ public final class CaseDataUtils {
     }
 
     public static SscsCaseData buildCaseData(final String surname) {
+        return buildCaseData(surname, "PIP", "DWP PIP (1)");
+    }
+    
+    public static SscsCaseData buildCaseData(final String surname, String benefitTypeCode, String issuingOffice) {
         Name name = Name.builder()
                 .title("Mr")
                 .firstName("User")
@@ -89,7 +93,7 @@ public final class CaseDataUtils {
                 .build();
 
         BenefitType benefitType = BenefitType.builder()
-                .code("PIP")
+                .code(benefitTypeCode)
                 .build();
 
         DateRange dateRange1 = DateRange.builder()
@@ -136,7 +140,7 @@ public final class CaseDataUtils {
 
         MrnDetails mrnDetails = MrnDetails.builder()
                 .mrnDate("2018-06-29")
-                .dwpIssuingOffice("DWP PIP (1)")
+                .dwpIssuingOffice(issuingOffice)
                 .mrnLateReason("Lost my paperwork")
                 .build();
 

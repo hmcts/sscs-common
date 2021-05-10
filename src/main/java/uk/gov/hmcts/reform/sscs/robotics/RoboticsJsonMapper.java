@@ -27,6 +27,7 @@ public class RoboticsJsonMapper {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
+    private static final String DLA_CASE_CODE = "037DD";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
 

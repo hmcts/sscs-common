@@ -10,9 +10,7 @@ import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.stripToEmpty;
 import static org.apache.commons.lang3.StringUtils.substringBetween;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.ATTENDANCE_ALLOWANCE;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
 import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
@@ -97,6 +95,7 @@ public class DwpAddressLookupService {
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
 
         return PIP.name().equalsIgnoreCase(benefitType) || ATTENDANCE_ALLOWANCE.getShortName().equalsIgnoreCase(benefitType)
+                || DLA.getShortName().equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
@@ -106,6 +105,7 @@ public class DwpAddressLookupService {
         Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
 
         return PIP.name().equalsIgnoreCase(benefitType) || ATTENDANCE_ALLOWANCE.getShortName().equalsIgnoreCase(benefitType)
+                || DLA.getShortName().equalsIgnoreCase(benefitType)
                 ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
                 officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
