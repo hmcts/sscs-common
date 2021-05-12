@@ -108,4 +108,18 @@ public class BenefitTest {
         assertThat(benefit.isAirLookupSameAsPip(), is(expected));
 
     }
+
+    @Test
+    @Parameters({
+            "PIP, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
+            "ATTENDANCE_ALLOWANCE, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
+            "UC, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",
+            "JSA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",
+            "DLA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
+            "CARERS_ALLOWANCE, JUDGE",
+            "ESA, JUDGE_AND_A_DOCTOR"
+    })
+    public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
+        assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
+    }
 }
