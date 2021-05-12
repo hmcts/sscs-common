@@ -389,15 +389,15 @@
     }
   },
   "carersAllowance": {
-    "code": "Carer’s Allowance Dispute Resolution Team",
+    "code": "Carers Allowance Dispute Resolution Team",
     "isDefault": true,
     "mapping": {
-      "ccd": "Carer’s Allowance Dispute Resolution Team",
+      "ccd": "Carers Allowance Dispute Resolution Team",
       "gaps": "Carers Allowance DRT",
-      "dwpRegionCentre": "Carer’s Allowance"
+      "dwpRegionCentre": "Carers Allowance"
     },
     "address": {
-      "line1": "Carer’s Allowance Dispute Resolution Team",
+      "line1": "Carers Allowance Dispute Resolution Team",
       "line2": "Mail Handling Site A",
       "line3": "Pension Service 11",
       "line4": "Retirement Provision Directorate",
