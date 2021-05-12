@@ -389,7 +389,7 @@
     }
   },
   "carersAllowance": {
-    "code": "Carer’s Allowance",
+    "code": "Carer’s Allowance Dispute Resolution Team",
     "isDefault": true,
     "mapping": {
       "ccd": "Carer’s Allowance Dispute Resolution Team",
