@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'java-library'
     id 'maven-publish'
-    id 'com.jfrog.bintray' version '1.8.5'
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
@@ -21,19 +20,13 @@ targetCompatibility = 11
 repositories {
     mavenCentral()
     mavenLocal()
-    maven {
-        url "https://dl.bintray.com/hmcts/hmcts-maven"
-    }
     jcenter()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
-
-    // jitpack should be last resort
-    // see: https://github.com/jitpack/jitpack.io/issues/1939
-    maven { url 'https://jitpack.io' }
 }
 
 // region static code analysis
@@ -100,22 +93,6 @@ publishing {
     }
 }
 
-bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    publications = ['Main']
-    publish = true
-    pkg {
-        repo = 'hmcts-maven'
-        name = 'sscs-common'
-        userOrg = 'hmcts'
-        licenses = ['MIT']
-        vcsUrl = 'https://github.com/hmcts/sscs-common'
-        version {
-            name = project.version
-        }
-    }
-}
 
 dependencies {
     api("com.google.guava:guava:30.1.1-jre")
@@ -124,7 +101,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.12.3'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-    compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: '5.0.1'
+    compile group: 'com.github.hmcts', name: 'java-logging', version: '5.1.7'
     compile group: 'uk.gov.hmcts.reform', name: 'core-case-data-store-client', version: '4.7.6'
     compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.9.3'
 
