@@ -79,6 +79,7 @@ public class SscsCaseData implements CaseData {
     private String isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
+    private String dwpDueDate;
     private String interlocReviewState;
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
