@@ -67,8 +67,10 @@ public enum Benefit {
         switch (this) {
             case PIP: case DLA: case ATTENDANCE_ALLOWANCE:
                 return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
-            case ESA: return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE: return JUDGE;
+            case ESA:
+                return JUDGE_AND_A_DOCTOR;
+            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT:
+                return JUDGE;
             default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
         }
     }

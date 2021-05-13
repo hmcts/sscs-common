@@ -117,6 +117,7 @@ public class BenefitTest {
             "JSA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",
             "DLA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "CARERS_ALLOWANCE, JUDGE",
+            "BEREAVEMENT_BENEFIT, JUDGE",
             "ESA, JUDGE_AND_A_DOCTOR"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
