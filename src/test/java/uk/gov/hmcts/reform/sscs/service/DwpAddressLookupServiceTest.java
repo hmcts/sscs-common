@@ -232,14 +232,14 @@ public class DwpAddressLookupServiceTest {
     public void givenACarersAllowanceBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance", null);
 
-        assertEquals("Carers Allowance", result);
+        assertEquals("Carer’s Allowance", result);
     }
 
     @Test
     public void givenACarresAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
-        assertEquals("Carers Allowance Dispute Resolution Team", result.get().getCode());
+        assertEquals("Carer’s Allowance Dispute Resolution Team", result.get().getCode());
     }
 
     @Test
@@ -312,7 +312,7 @@ public class DwpAddressLookupServiceTest {
     public void givenACarersAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
 
-        assertEquals("Carers Allowance", result);
+        assertEquals("Carer’s Allowance", result);
     }
 
     @Test
