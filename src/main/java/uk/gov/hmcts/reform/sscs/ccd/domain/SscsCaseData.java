@@ -224,7 +224,6 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
@@ -250,13 +249,11 @@ public class SscsCaseData implements CaseData {
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String updateNotListableSetNewDueDate;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     @JsonProperty("languagePreferenceWelsh")
