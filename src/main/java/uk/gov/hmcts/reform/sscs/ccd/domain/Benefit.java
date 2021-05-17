@@ -6,6 +6,10 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.slf4j.LoggerFactory.getLogger;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_DOCTOR;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +61,18 @@ public enum Benefit {
 
     public boolean isAirLookupSameAsPip() {
         return AIR_LOOKUP_COLUMN_SAME_AS_PIP.contains(this);
+    }
+
+    public PanelComposition getPanelComposition() {
+        switch (this) {
+            case PIP: case DLA: case ATTENDANCE_ALLOWANCE:
+                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+            case ESA:
+                return JUDGE_AND_A_DOCTOR;
+            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT:
+                return JUDGE;
+            default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+        }
     }
 
     public static Benefit getBenefitByCode(String code) {
