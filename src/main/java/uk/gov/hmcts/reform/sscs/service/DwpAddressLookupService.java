@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
 import uk.gov.hmcts.reform.sscs.model.dwp.DwpMappings;
@@ -91,23 +92,27 @@ public class DwpAddressLookupService {
     }
 
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
-
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
-
-        return PIP.name().equalsIgnoreCase(benefitType) || ATTENDANCE_ALLOWANCE.getShortName().equalsIgnoreCase(benefitType)
-                || DLA.getShortName().equalsIgnoreCase(benefitType)
-                ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
-                officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
     }
 
     public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
-
         Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
+        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
+    }
 
-        return PIP.name().equalsIgnoreCase(benefitType) || ATTENDANCE_ALLOWANCE.getShortName().equalsIgnoreCase(benefitType)
-                || DLA.getShortName().equalsIgnoreCase(benefitType)
-                ? officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null) :
-                officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+    private String getDwpRegionalCenterByBenefitType(String benefitType, Optional<OfficeMapping> officeMapping) {
+        Benefit benefit;
+        try {
+            benefit = Benefit.getBenefitByCode(benefitType);
+            if (benefit.isHasDwpRegionCentre()) {
+                return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
+            } else {
+                return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+            }
+        } catch (BenefitMappingException e) {
+            return null;
+        }
     }
 
     public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {

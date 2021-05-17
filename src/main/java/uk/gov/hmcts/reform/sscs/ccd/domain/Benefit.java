@@ -34,6 +34,7 @@ public enum Benefit {
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, null, null);
 
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
+    private static final Set<Benefit> DWP_REGION_CENTRE_MAPPING_AVAILABLE = Set.of(PIP, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE, DLA);
 
     private final String description;
     private final String welshDescription;
@@ -42,9 +43,9 @@ public enum Benefit {
     private final List<String> caseLoaderKeyId;
     private final boolean hasAcronym;
     private final BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings;
+    private final Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
-    private final Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping;
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
             BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings,
@@ -111,6 +112,10 @@ public enum Benefit {
 
     public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
         return getBenefitByCode(code).getBenefitNameDescriptionWithAcronym(isEnglish);
+    }
+
+    public boolean isHasDwpRegionCentre() {
+        return DWP_REGION_CENTRE_MAPPING_AVAILABLE.contains(this);
     }
 
     private Optional<String> getShortNameOptional() {

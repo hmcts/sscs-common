@@ -229,10 +229,17 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenACarersAllowanceBenefitType_thenReturnTheOffice() {
+    public void givenACarersAllowanceBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance", null);
+
+        assertEquals("Carers Allowance", result);
+    }
+
+    @Test
+    public void givenACarresAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
-        assertEquals("Carer’s Allowance", result.get().getCode());
+        assertEquals("Carer’s Allowance Dispute Resolution Team", result.get().getCode());
     }
 
     @Test
@@ -305,7 +312,7 @@ public class DwpAddressLookupServiceTest {
     public void givenACarersAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
         String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
 
-        assertEquals("Tyneview Park DRT", result);
+        assertEquals("Carers Allowance", result);
     }
 
     @Test
