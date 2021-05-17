@@ -183,7 +183,8 @@ public enum EventType {
     DRAFT_TO_INCOMPLETE_APPLICATION("draftToIncompleteApplication", 0, false),
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
     DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false),
-    GENERATE_COVERSHEET("generateCoversheet", 0, false);
+    GENERATE_COVERSHEET("generateCoversheet", 0, false),
+    PLAYBACK_AUDIO_VIDEO_EVIDENCE("playbackAudioVideoEvidence", 0, false);
 
     private final String type;
     private final String ccdType;
