@@ -54,6 +54,7 @@ public class RoboticsJsonMapperTest {
     private final List<ElementDisputed> elementsDisputedCareList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedChildElementList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedChildDisabledList = new ArrayList<>();
+    private final List<ElementDisputed> elementsDisputedLimitedWorkList = new ArrayList<>();
 
     @Before
     public void setup() {
@@ -673,6 +674,7 @@ public class RoboticsJsonMapperTest {
         elementsDisputedCareList.add(ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedCare").build()).build());
         elementsDisputedChildElementList.add(ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedChildElement").build()).build());
         elementsDisputedChildDisabledList.add(ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedChildDisabled").build()).build());
+        elementsDisputedLimitedWorkList.add(ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedLimitedWork").build()).build());
 
         roboticsWrapper.getSscsCaseData().setElementsDisputedGeneral(elementsDisputedGeneralList);
         roboticsWrapper.getSscsCaseData().setElementsDisputedSanctions(elementsDisputedSanctionsList);
@@ -682,6 +684,7 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setElementsDisputedCare(elementsDisputedCareList);
         roboticsWrapper.getSscsCaseData().setElementsDisputedChildElement(elementsDisputedChildElementList);
         roboticsWrapper.getSscsCaseData().setElementsDisputedChildDisabled(elementsDisputedChildDisabledList);
+        roboticsWrapper.getSscsCaseData().setElementsDisputedLimitedWork(elementsDisputedLimitedWorkList);
     }
 
     @Test
