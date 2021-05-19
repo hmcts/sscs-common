@@ -45,6 +45,7 @@ public class DwpAddressLookupService {
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
 
+            //FIXME: This is only used in one class in Tribunals so refactor this at some point to make cleaner and make work with the new benefit types, probably as part of SSCS-9041
             allDwpBenefitOffices = of(dwpMappings.getPip(), dwpMappings.getEsa(), dwpMappings.getDla())
                     .flatMap(Stream::of)
                     .toArray(OfficeMapping[]::new);
@@ -93,19 +94,12 @@ public class DwpAddressLookupService {
 
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
-        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
+        return getDwpRegionalCenterByBenefitType(officeMapping);
     }
 
-    public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
-        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
-        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
-    }
-
-    private String getDwpRegionalCenterByBenefitType(String benefitType, Optional<OfficeMapping> officeMapping) {
-        Benefit benefit;
+    private String getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
         try {
-            benefit = Benefit.getBenefitByCode(benefitType);
-            if (benefit.isHasDwpRegionCentre()) {
+            if (officeMapping.map(m -> m.getMapping().getDwpRegionCentre() != null).orElse(false)) {
                 return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
             } else {
                 return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
@@ -121,7 +115,7 @@ public class DwpAddressLookupService {
         if (equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
             return Optional.of(dwpMappings.getTestHmctsAddress());
         }
-        return  findBenefitByShortName(benefitType)
+        return findBenefitByShortName(benefitType)
                 .flatMap(b -> b.getOfficeMappings().apply(this, dwpIssuingOffice));
     }
 
@@ -135,6 +129,10 @@ public class DwpAddressLookupService {
 
     public Optional<OfficeMapping> attendanceAllowanceOfficeMapping(String dwpIssuingOffice) {
         return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getAttendanceAllowance());
+    }
+
+    public Optional<OfficeMapping> bereavementBenefitOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
+        return Optional.of(dwpMappings.getBereavementBenefit());
     }
 
     public Optional<OfficeMapping> ucOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
@@ -167,6 +165,10 @@ public class DwpAddressLookupService {
 
     public Optional<OfficeMapping> ucDefaultMapping() {
         return of(dwpMappings.getUc()).filter(OfficeMapping::isDefault).findFirst();
+    }
+
+    public Optional<OfficeMapping> bereavementBenefitDefaultMapping() {
+        return of(dwpMappings.getBereavementBenefit()).filter(OfficeMapping::isDefault).findFirst();
     }
 
     public Optional<OfficeMapping> carersAllowanceDefaultMapping() {

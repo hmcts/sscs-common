@@ -31,10 +31,10 @@ public enum Benefit {
     UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping),
     CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping),
     ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMapping, DwpAddressLookupService::attendanceAllowanceDefaultMapping),
-    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, null, null);
+    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMapping, DwpAddressLookupService::bereavementBenefitDefaultMapping);
 
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
-    private static final Set<Benefit> DWP_REGION_CENTRE_MAPPING_AVAILABLE = Set.of(PIP, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE, DLA);
+    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_JSA = Set.of(JSA, BEREAVEMENT_BENEFIT);
 
     private final String description;
     private final String welshDescription;
@@ -62,6 +62,10 @@ public enum Benefit {
 
     public boolean isAirLookupSameAsPip() {
         return AIR_LOOKUP_COLUMN_SAME_AS_PIP.contains(this);
+    }
+
+    public boolean isAirLookupSameAsJsa() {
+        return AIR_LOOKUP_COLUMN_SAME_AS_JSA.contains(this);
     }
 
     public PanelComposition getPanelComposition() {
@@ -112,10 +116,6 @@ public enum Benefit {
 
     public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
         return getBenefitByCode(code).getBenefitNameDescriptionWithAcronym(isEnglish);
-    }
-
-    public boolean isHasDwpRegionCentre() {
-        return DWP_REGION_CENTRE_MAPPING_AVAILABLE.contains(this);
     }
 
     private Optional<String> getShortNameOptional() {
