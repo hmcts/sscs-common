@@ -162,6 +162,10 @@ public class DwpAddressLookupService {
         return dwpMappings.getPip();
     }
 
+    public OfficeMapping[] iidbOfficeMappings() {
+        return null;
+    }
+
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
         return stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
