@@ -456,6 +456,38 @@
       }
     }
   ],
+  "iidb": [
+    {
+      "code": "Barrow IIDB Centre",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Barrow IIDB Centre",
+        "gaps": "Barrow-In-Furness",
+        "dwpRegionCentre": "IIDB Barrow"
+      },
+      "address": {
+        "line1": "Barrow IIDB Centre",
+        "line2": "Mail Handling Site A",
+        "line5": "Wolverhampton",
+        "postCode": "WV98 2BR"
+      }
+    },
+    {
+      "code": "Barnsley Benefit Centre",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Barnsley Benefit Centre",
+        "gaps": "Barnsley IIDB Centre",
+        "dwpRegionCentre": "IIDB Barnsley"
+      },
+      "address": {
+        "line1": "Barnsley Benefit Centre",
+        "line2": "Mail Handling Site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1SY"
+      }
+    }
+  ],
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",

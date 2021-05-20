@@ -135,8 +135,8 @@ public class DwpAddressLookupService {
         return Optional.of(dwpMappings.getBereavementBenefit());
     }
 
-    public static Optional<OfficeMapping> iidbOfficeMapping(DwpAddressLookupService dwpAddressLookupService, String s) {
-        return Optional.of(null);
+    public Optional<OfficeMapping> iidbOfficeMapping(String dwpIssuingOffice) {
+        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getIidb());
     }
 
     public Optional<OfficeMapping> ucOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
@@ -191,8 +191,8 @@ public class DwpAddressLookupService {
         return of(dwpMappings.getPip()).filter(OfficeMapping::isDefault).findFirst();
     }
 
-    public static Optional<OfficeMapping> iidbDefaultMapping(DwpAddressLookupService dwpAddressLookupService) {
-        return Optional.of(null);
+    public Optional<OfficeMapping> iidbDefaultMapping() {
+        return of(dwpMappings.getIidb()).filter(OfficeMapping::isDefault).findFirst();
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
