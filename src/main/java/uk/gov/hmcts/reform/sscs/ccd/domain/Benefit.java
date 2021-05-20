@@ -35,6 +35,7 @@ public enum Benefit {
 
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_JSA = Set.of(JSA, BEREAVEMENT_BENEFIT);
+    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_IIDB = Set.of(IIDB);
 
     private final String description;
     private final String welshDescription;
@@ -63,6 +64,10 @@ public enum Benefit {
 
     public boolean isAirLookupSameAsJsa() {
         return AIR_LOOKUP_COLUMN_SAME_AS_JSA.contains(this);
+    }
+
+    public boolean isAirLookupSameAsIidb() {
+        return AIR_LOOKUP_COLUMN_SAME_AS_IIDB.contains(this);
     }
 
     public PanelComposition getPanelComposition() {

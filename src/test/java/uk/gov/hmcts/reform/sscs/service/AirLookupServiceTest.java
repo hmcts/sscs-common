@@ -99,6 +99,15 @@ public class AirLookupServiceTest {
         assertEquals(expectedVenue, venue);
     }
 
+    @Test
+    @Parameters({
+            "DW4 1ss, Chesterfield, industrialInjuriesDisablement"
+    })
+    public void checkVenueForPostCodeWithIidbBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
+        String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
+        assertEquals(expectedVenue, venue);
+    }
+
     private int lookupVenueId(String venue) {
         return airLookupService.getLookupVenueIdByAirVenueName().get(venue);
     }

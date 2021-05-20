@@ -163,7 +163,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] iidbOfficeMappings() {
-        return null;
+        return dwpMappings.getIidb();
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {

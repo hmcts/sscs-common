@@ -38,6 +38,7 @@ public class AirLookupService {
     private static final int ESA_UC_COLUMN = 3;
     private static final int JSA_COLUMN = 5;
     private static final int PIP_COLUMN = 6;
+    private static final int IIDB_COLUMN = 1;
 
     public String lookupRegionalCentre(String postcode) {
         if (isFullPostCodeGiven(postcode)) {
@@ -140,10 +141,12 @@ public class AirLookupService {
         Cell esaOrUcCell = row.getCell(ESA_UC_COLUMN);
         Cell jsaCell = row.getCell(JSA_COLUMN);
         Cell pipCell = row.getCell(PIP_COLUMN);
+        Cell iidbCell = row.getCell(IIDB_COLUMN);
         AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
                 .esaOrUcVenue(getStringValue(esaOrUcCell))
                 .jsaVenue(getStringValue(jsaCell))
                 .pipVenue(getStringValue(pipCell))
+                .iidbVenue(getStringValue(iidbCell))
                 .build();
         lookupAirVenueNameByPostcode.put(postcode, airlookupBenefitToVenue);
     }
@@ -181,6 +184,7 @@ public class AirLookupService {
     }
 
     private String getStringValue(Cell lookupName) {
+        System.out.println(lookupName.getRichStringCellValue().getString());
         return lookupName.getRichStringCellValue().getString();
     }
 
@@ -228,6 +232,8 @@ public class AirLookupService {
             return venue.getPipVenue();
         } else if (isAirLookupColumnForBenefitTheSameAsJsa(benefitOptional)) {
             return venue.getJsaVenue();
+        } else if (isAirLookupColumnForBenefitTheSameAsIidb(benefitOptional)) {
+            return venue.getIidbVenue();
         }
         return venue.getEsaOrUcVenue();
     }
@@ -238,5 +244,9 @@ public class AirLookupService {
 
     private boolean isAirLookupColumnForBenefitTheSameAsJsa(Optional<Benefit> benefitOptional) {
         return benefitOptional.map(Benefit::isAirLookupSameAsJsa).orElse(false);
+    }
+
+    private boolean isAirLookupColumnForBenefitTheSameAsIidb(Optional<Benefit> benefitOptional) {
+        return benefitOptional.map(Benefit::isAirLookupSameAsIidb).orElse(false);
     }
 }

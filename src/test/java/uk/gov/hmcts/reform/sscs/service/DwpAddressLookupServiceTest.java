@@ -339,6 +339,16 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    @Parameters({
+            "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
+    })
+    public void givenAIidbBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("industrialInjuriesDisablement", office);
+
+        assertEquals(dwpRegionalCentre, result);
+    }
+
+    @Test
     public void givenABenefitTypeNotMapped_thenReturnEmptyOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("hb", null);
 
@@ -364,6 +374,13 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("uc");
 
         assertEquals("Universal Credit", result.get().getCode());
+    }
+
+    @Test
+    public void givenAIidbBenefitType_thenReturnTheDefaultIidbOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("industrialInjuriesDisablement");
+
+        assertEquals("Barrow IIDB Centre", result.get().getCode());
     }
 
 }
