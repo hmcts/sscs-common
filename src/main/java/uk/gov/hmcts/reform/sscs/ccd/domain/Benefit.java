@@ -24,13 +24,13 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @Getter
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaDefaultMapping),
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMapping, DwpAddressLookupService::esaOfficeMappings),
     JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, null),
-    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipDefaultMapping),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaDefaultMapping),
-    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucDefaultMapping),
-    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceDefaultMapping),
-    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMapping, DwpAddressLookupService::attendanceAllowanceDefaultMapping),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMapping, DwpAddressLookupService::pipOfficeMappings),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMapping, DwpAddressLookupService::dlaOfficeMappings),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMapping, DwpAddressLookupService::ucOfficeMappings),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMapping, DwpAddressLookupService::carersAllowanceOfficeMappings),
+    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMapping, DwpAddressLookupService::attendanceAllowanceOfficeMappings),
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, null, null);
 
     private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
@@ -42,22 +42,22 @@ public enum Benefit {
     private final String shortName;
     private final List<String> caseLoaderKeyId;
     private final boolean hasAcronym;
-    private final BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings;
-    private final Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping;
+    private final BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappingsByDwpIssuingOffice;
+    private final Function<DwpAddressLookupService, OfficeMapping[]> officeMappings;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
-            BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappings,
-            Function<DwpAddressLookupService, Optional<OfficeMapping>> defaultOfficeMapping) {
+            BiFunction<DwpAddressLookupService, String, Optional<OfficeMapping>> officeMappingsByDwpIssuingOffice,
+            Function<DwpAddressLookupService, OfficeMapping[]> officeMappings) {
         this.description = description;
         this.welshDescription = welshDescription;
         this.benefitCode = benefitCode;
         this.shortName = shortName;
         this.caseLoaderKeyId = caseLoaderKeyId;
         this.hasAcronym = hasAcronym;
+        this.officeMappingsByDwpIssuingOffice = officeMappingsByDwpIssuingOffice;
         this.officeMappings = officeMappings;
-        this.defaultOfficeMapping = defaultOfficeMapping;
     }
 
     public boolean isAirLookupSameAsPip() {
