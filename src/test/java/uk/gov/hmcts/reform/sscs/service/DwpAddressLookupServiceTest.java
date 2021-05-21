@@ -286,7 +286,7 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenACarresAllowanceBenefitType_thenReturnTheOffice() {
+    public void givenACarersAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
         assertEquals("Carer’s Allowance Dispute Resolution Team", result.get().getCode());

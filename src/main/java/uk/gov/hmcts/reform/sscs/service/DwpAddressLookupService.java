@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static java.util.Arrays.stream;
 import static java.util.Objects.nonNull;
+import static java.util.Optional.of;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.io.IOUtils.resourceToString;
 import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
@@ -114,41 +115,29 @@ public class DwpAddressLookupService {
         log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
 
         if (equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
-            return Optional.of(dwpMappings.getTestHmctsAddress());
+            return of(dwpMappings.getTestHmctsAddress());
         }
-        return  findBenefitByShortName(benefitType)
-                .flatMap(b -> b.getOfficeMappingsByDwpIssuingOffice().apply(this, dwpIssuingOffice));
+        OfficeMapping[] dwpOfficeMappings = getDwpOfficeMappings(benefitType);
+        if (dwpOfficeMappings.length == 1) {
+            return of(dwpOfficeMappings[0]);
+        }
+        String dwpIssuingOfficeSearch = isPipBenefit(benefitType)
+                ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
     }
 
-    public Optional<OfficeMapping> carersAllowanceOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
-        return Optional.of(dwpMappings.getCarersAllowance());
+    private boolean isPipBenefit(String benefitType) {
+        return findBenefitByShortName(benefitType).filter(benefit -> benefit.equals(PIP)).isPresent();
     }
 
-    public Optional<OfficeMapping> dlaOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
-    }
-
-    public Optional<OfficeMapping> attendanceAllowanceOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getAttendanceAllowance());
-    }
-
-    public Optional<OfficeMapping> ucOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
-        return Optional.of(dwpMappings.getUc());
-    }
-
-    public Optional<OfficeMapping> esaOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
-    }
-
-    public Optional<OfficeMapping> pipOfficeMapping(String dwpIssuingOffice) {
+    private String stripDwpIssuingOfficeForPip(String dwpIssuingOffice) {
         String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice,"(", ")"))
                 .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
 
         if (isEmpty(dwpIssuingOfficeStripped)) {
             dwpIssuingOfficeStripped = dwpIssuingOffice;
         }
-
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
+        return dwpIssuingOfficeStripped;
     }
 
     public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
