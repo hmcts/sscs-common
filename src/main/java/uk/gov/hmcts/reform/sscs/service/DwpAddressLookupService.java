@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static java.util.Arrays.stream;
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Stream.of;
@@ -15,12 +14,12 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
@@ -92,9 +91,44 @@ public class DwpAddressLookupService {
             .build();
     }
 
+    public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
+        return findBenefitByShortName(benefitType)
+                .map(benefit -> benefit.getOfficeMappings().apply(this))
+                .orElse(List.of())
+                .stream()
+                .filter(OfficeMapping::isDefault)
+                .findFirst();
+    }
+
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
         return getDwpRegionalCenterByBenefitType(officeMapping);
+    }
+
+    public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
+        log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
+
+        if (equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
+            return Optional.of(dwpMappings.getTestHmctsAddress());
+        }
+
+        //PIP search code
+        String dwpIssuingOfficeStripped = null;
+        if (findBenefitByShortName(benefitType).map(b -> b == PIP).orElse(false)) {
+            dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice, "(", ")"))
+                    .orElse(dwpIssuingOffice == null ? "" : dwpIssuingOffice.replaceAll("\\D+", ""));
+        }
+        String dwpIssuingOfficeSearchKey = isEmpty(dwpIssuingOfficeStripped) ? dwpIssuingOffice : dwpIssuingOfficeStripped;
+
+        List<OfficeMapping> mappings = findBenefitByShortName(benefitType)
+                .map(b -> b.getOfficeMappings().apply(this)).orElse(List.of());
+
+        if (mappings.size() > 1) {
+            return mappings.stream()
+                    .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOfficeSearchKey)))
+                    .findFirst();
+        }
+        return mappings.stream().findFirst();
     }
 
     private String getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
@@ -109,96 +143,36 @@ public class DwpAddressLookupService {
         }
     }
 
-    public Optional<OfficeMapping> getDwpMappingByOffice(String benefitType, String dwpIssuingOffice) {
-        log.info("looking up officeAddress for benefitType {} and dwpIssuingOffice {}", benefitType, dwpIssuingOffice);
-
-        if (equalsIgnoreCase(dwpIssuingOffice, TEST_HMCTS_ADDRESS)) {
-            return Optional.of(dwpMappings.getTestHmctsAddress());
-        }
-        return findBenefitByShortName(benefitType)
-                .flatMap(b -> b.getOfficeMappings().apply(this, dwpIssuingOffice));
+    public List<OfficeMapping> esaOfficeMapping() {
+        return Arrays.asList(dwpMappings.getEsa());
     }
 
-    public Optional<OfficeMapping> carersAllowanceOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
-        return Optional.of(dwpMappings.getCarersAllowance());
+    public List<OfficeMapping> ucOfficeMapping() {
+        return List.of(dwpMappings.getUc());
     }
 
-    public Optional<OfficeMapping> dlaOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getDla());
+    public List<OfficeMapping> bereavementBenefitOfficeMapping() {
+        return List.of(dwpMappings.getBereavementBenefit());
     }
 
-    public Optional<OfficeMapping> attendanceAllowanceOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getAttendanceAllowance());
+    public List<OfficeMapping> carersAllowanceOfficeMapping() {
+        return List.of(dwpMappings.getCarersAllowance());
     }
 
-    public Optional<OfficeMapping> bereavementBenefitOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
-        return Optional.of(dwpMappings.getBereavementBenefit());
+    public List<OfficeMapping> dlaOfficeMapping() {
+        return Arrays.asList(dwpMappings.getDla());
     }
 
-    public Optional<OfficeMapping> iidbOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getIidb());
+    public List<OfficeMapping> attendanceAllowanceOfficeMapping() {
+        return Arrays.asList(dwpMappings.getAttendanceAllowance());
     }
 
-    public Optional<OfficeMapping> ucOfficeMapping(@SuppressWarnings("unused") String dwpIssuingOffice) {
-        return Optional.of(dwpMappings.getUc());
+    public List<OfficeMapping> pipOfficeMapping() {
+        return Arrays.asList(dwpMappings.getPip());
     }
 
-    public Optional<OfficeMapping> esaOfficeMapping(String dwpIssuingOffice) {
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOffice, dwpMappings.getEsa());
-    }
-
-    public Optional<OfficeMapping> pipOfficeMapping(String dwpIssuingOffice) {
-        String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice,"(", ")"))
-                .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
-
-        if (isEmpty(dwpIssuingOfficeStripped)) {
-            dwpIssuingOfficeStripped = dwpIssuingOffice;
-        }
-
-        return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeStripped, dwpMappings.getPip());
-    }
-
-    public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
-        return Benefit.findBenefitByShortName(benefitType)
-                .flatMap(benefit -> benefit.getDefaultOfficeMapping().apply(this));
-    }
-
-    public Optional<OfficeMapping> esaDefaultMapping() {
-        return of(dwpMappings.getEsa()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> ucDefaultMapping() {
-        return of(dwpMappings.getUc()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> bereavementBenefitDefaultMapping() {
-        return of(dwpMappings.getBereavementBenefit()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> carersAllowanceDefaultMapping() {
-        return of(dwpMappings.getCarersAllowance()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> dlaDefaultMapping() {
-        return of(dwpMappings.getDla()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> attendanceAllowanceDefaultMapping() {
-        return of(dwpMappings.getAttendanceAllowance()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> pipDefaultMapping() {
-        return of(dwpMappings.getPip()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    public Optional<OfficeMapping> iidbDefaultMapping() {
-        return of(dwpMappings.getIidb()).filter(OfficeMapping::isDefault).findFirst();
-    }
-
-    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
-        return stream(mappings)
-                .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
-                .findFirst();
+    public List<OfficeMapping> iidbOfficeMapping() {
+        return Arrays.asList(dwpMappings.getIidb());
     }
 
     public OfficeMapping[] allDwpBenefitOffices() {
