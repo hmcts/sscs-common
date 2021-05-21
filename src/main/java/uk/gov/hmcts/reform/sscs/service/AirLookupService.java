@@ -28,7 +28,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Slf4j
 public class AirLookupService {
     private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
-    protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").build();
+    protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").build();
     private static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private Map<String, String> lookupRegionalCentreByPostcode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
@@ -184,7 +184,6 @@ public class AirLookupService {
     }
 
     private String getStringValue(Cell lookupName) {
-        System.out.println(lookupName.getRichStringCellValue().getString());
         return lookupName.getRichStringCellValue().getString();
     }
 
