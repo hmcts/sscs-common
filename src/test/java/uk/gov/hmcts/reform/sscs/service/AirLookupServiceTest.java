@@ -101,7 +101,7 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "DW4 1ss, Chesterfield, industrialInjuriesDisablement"
+            "DE4 1SS, Chesterfield, industrialInjuriesDisablement"
     })
     public void checkVenueForPostCodeWithIidbBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
         String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
