@@ -112,23 +112,27 @@ public class DwpAddressLookupService {
             return Optional.of(dwpMappings.getTestHmctsAddress());
         }
 
-        //PIP search code
+        String pipIssuingOfficeStripped = extractPipIssuingOfficeSearchKey(benefitType, dwpIssuingOffice);
+        String dwpIssuingOfficeSearchKey = isEmpty(pipIssuingOfficeStripped) ? dwpIssuingOffice : pipIssuingOfficeStripped;
+
+        List<OfficeMapping> mappings = findBenefitByShortName(benefitType)
+                .map(b -> b.getOfficeMappings().apply(this)).orElse(List.of());
+
+        if (mappings.size() == 1) {
+            return mappings.stream().findFirst();
+        }
+        return mappings.stream()
+                .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOfficeSearchKey)))
+                .findFirst();
+    }
+
+    private String extractPipIssuingOfficeSearchKey(String benefitType, String dwpIssuingOffice) {
         String dwpIssuingOfficeStripped = null;
         if (findBenefitByShortName(benefitType).map(b -> b == PIP).orElse(false)) {
             dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice, "(", ")"))
                     .orElse(dwpIssuingOffice == null ? "" : dwpIssuingOffice.replaceAll("\\D+", ""));
         }
-        String dwpIssuingOfficeSearchKey = isEmpty(dwpIssuingOfficeStripped) ? dwpIssuingOffice : dwpIssuingOfficeStripped;
-
-        List<OfficeMapping> mappings = findBenefitByShortName(benefitType)
-                .map(b -> b.getOfficeMappings().apply(this)).orElse(List.of());
-
-        if (mappings.size() > 1) {
-            return mappings.stream()
-                    .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOfficeSearchKey)))
-                    .findFirst();
-        }
-        return mappings.stream().findFirst();
+        return dwpIssuingOfficeStripped;
     }
 
     private String getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
@@ -144,7 +148,7 @@ public class DwpAddressLookupService {
     }
 
     public List<OfficeMapping> esaOfficeMapping() {
-        return Arrays.asList(dwpMappings.getEsa());
+        return List.of(dwpMappings.getEsa());
     }
 
     public List<OfficeMapping> ucOfficeMapping() {
@@ -160,19 +164,19 @@ public class DwpAddressLookupService {
     }
 
     public List<OfficeMapping> dlaOfficeMapping() {
-        return Arrays.asList(dwpMappings.getDla());
+        return List.of(dwpMappings.getDla());
     }
 
     public List<OfficeMapping> attendanceAllowanceOfficeMapping() {
-        return Arrays.asList(dwpMappings.getAttendanceAllowance());
+        return List.of(dwpMappings.getAttendanceAllowance());
     }
 
     public List<OfficeMapping> pipOfficeMapping() {
-        return Arrays.asList(dwpMappings.getPip());
+        return List.of(dwpMappings.getPip());
     }
 
     public List<OfficeMapping> iidbOfficeMapping() {
-        return Arrays.asList(dwpMappings.getIidb());
+        return List.of(dwpMappings.getIidb());
     }
 
     public OfficeMapping[] allDwpBenefitOffices() {
