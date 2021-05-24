@@ -13,29 +13,27 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import lombok.Getter;
 import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
+import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
+import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
 @Getter
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings),
-    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null),
-    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings),
-    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings),
-    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings),
-    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings),
-    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings),
-    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings);
-
-    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_PIP = Set.of(PIP, DLA, CARERS_ALLOWANCE, ATTENDANCE_ALLOWANCE);
-    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_JSA = Set.of(JSA, BEREAVEMENT_BENEFIT);
-    private static final Set<Benefit> AIR_LOOKUP_COLUMN_SAME_AS_IIDB = Set.of(IIDB);
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings, AirLookupService::esaVenue),
+    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, AirLookupService::jsaVenue),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings, AirLookupService::pipVenue),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::dlaVenue),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings, AirLookupService::ucVenue),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings, AirLookupService::carersAllowanceVenue),
+    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::attendanceAllowanceVenue),
+    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::bereavementBenefitVenue),
+    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::iidbVenue);
 
     private final String description;
     private final String welshDescription;
@@ -44,11 +42,13 @@ public enum Benefit {
     private final List<String> caseLoaderKeyId;
     private final boolean hasAcronym;
     private final Function<DwpAddressLookupService, OfficeMapping[]> officeMappings;
+    private final BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue;
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
-            Function<DwpAddressLookupService, OfficeMapping[]> officeMappings) {
+            Function<DwpAddressLookupService, OfficeMapping[]> officeMappings,
+            BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue) {
         this.description = description;
         this.welshDescription = welshDescription;
         this.benefitCode = benefitCode;
@@ -56,18 +56,7 @@ public enum Benefit {
         this.caseLoaderKeyId = caseLoaderKeyId;
         this.hasAcronym = hasAcronym;
         this.officeMappings = officeMappings;
-    }
-
-    public boolean isAirLookupSameAsPip() {
-        return AIR_LOOKUP_COLUMN_SAME_AS_PIP.contains(this);
-    }
-
-    public boolean isAirLookupSameAsJsa() {
-        return AIR_LOOKUP_COLUMN_SAME_AS_JSA.contains(this);
-    }
-
-    public boolean isAirLookupSameAsIidb() {
-        return AIR_LOOKUP_COLUMN_SAME_AS_IIDB.contains(this);
+        this.airLookupVenue = airLookupVenue;
     }
 
     public PanelComposition getPanelComposition() {

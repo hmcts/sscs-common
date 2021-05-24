@@ -227,25 +227,42 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        if (isAirLookupColumnForBenefitTheSameAsPip(benefitOptional)) {
-            return venue.getPipVenue();
-        } else if (isAirLookupColumnForBenefitTheSameAsJsa(benefitOptional)) {
-            return venue.getJsaVenue();
-        } else if (isAirLookupColumnForBenefitTheSameAsIidb(benefitOptional)) {
-            return venue.getIidbVenue();
-        }
+        return benefitOptional.map(b -> b.getAirLookupVenue().apply(this, venue)).orElse(venue.getEsaOrUcVenue());
+    }
+
+    public String esaVenue(AirlookupBenefitToVenue venue) {
         return venue.getEsaOrUcVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsPip(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsPip).orElse(false);
+    public String ucVenue(AirlookupBenefitToVenue venue) {
+        return venue.getEsaOrUcVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsJsa(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsJsa).orElse(false);
+    public String pipVenue(AirlookupBenefitToVenue venue) {
+        return venue.getPipVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsIidb(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsIidb).orElse(false);
+    public String dlaVenue(AirlookupBenefitToVenue venue) {
+        return venue.getPipVenue();
+    }
+
+    public String carersAllowanceVenue(AirlookupBenefitToVenue venue) {
+        return venue.getPipVenue();
+    }
+
+    public String attendanceAllowanceVenue(AirlookupBenefitToVenue venue) {
+        return venue.getPipVenue();
+    }
+
+    public String jsaVenue(AirlookupBenefitToVenue venue) {
+        return venue.getJsaVenue();
+    }
+
+    public String bereavementBenefitVenue(AirlookupBenefitToVenue venue) {
+        return venue.getJsaVenue();
+    }
+
+    public String iidbVenue(AirlookupBenefitToVenue venue) {
+        return venue.getIidbVenue();
     }
 }

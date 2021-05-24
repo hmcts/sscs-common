@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static java.util.Arrays.stream;
 import static java.util.Objects.nonNull;
 import static java.util.Optional.of;
 import static java.util.Optional.ofNullable;
@@ -18,7 +17,6 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
@@ -164,11 +162,5 @@ public class DwpAddressLookupService {
 
     public OfficeMapping[] iidbOfficeMappings() {
         return dwpMappings.getIidb();
-    }
-
-    private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
-        return stream(mappings)
-                .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
-                .findFirst();
     }
 }
