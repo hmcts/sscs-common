@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -772,19 +771,19 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenDateSentToGapsAndNoDateTimeReturnDateAtMidnight() {
+    public void givenDateSentToGapsAndNoDateTimeReturnEmpty() {
 
         LocalDate today = LocalDate.now();
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(null).build();
-        LocalDateTime todayDateTime = LocalDateTime.of(LocalDate.parse(today.toString()), LocalTime.MIN);
-        assertEquals(todayDateTime, sscsCaseData.getDateTimeSentToGaps().get());
+
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
     }
 
     @Test
     public void givenNoDateSentToGapsAndDateTimeReturnDateTime() {
         LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(now.toString()).build();
         assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
     }
 
@@ -792,7 +791,7 @@ public class SscsCaseDataTest {
     public void givenDateSentToGapsAndDateTimeReturnDateTime() {
         LocalDate today = LocalDate.now();
         LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.toString()).build();
         assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
     }
 

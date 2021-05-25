@@ -12,8 +12,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -583,10 +581,7 @@ public class SscsCaseData implements CaseData {
 
         try {
             if (this.dateTimeCaseSentToGaps != null) {
-                ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-
-            } else if (this.dateCaseSentToGaps != null) {
-                ldt = Optional.of(LocalDateTime.of(LocalDate.parse(this.dateCaseSentToGaps), LocalTime.MIN));
+                ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps));
             }
         } catch (DateTimeParseException e) {
             ldt =  Optional.empty();
