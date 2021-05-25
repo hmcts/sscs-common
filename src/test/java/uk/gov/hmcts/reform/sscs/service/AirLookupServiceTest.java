@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -12,11 +13,6 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
 @RunWith(JUnitParamsRunner.class)
 public class AirLookupServiceTest {
-
-    private static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder()
-        .pipVenue("Birmingham")
-        .esaOrUcVenue("Birmingham")
-        .build();
 
     private static final AirLookupService airLookupService;
 
@@ -72,14 +68,24 @@ public class AirLookupServiceTest {
     @Test
     @Parameters({
             "b4 1lal, Birmingham, PIP",
-            "NN85 1ss, Northampton, PIP",
+            "CV9 1ss, Nuneaton, PIP",
             "NN85 1ss, Northampton, DLA",
             "NN85 1ss, Northampton, carersAllowance",
             "NN85 1ss, Northampton, attendanceAllowance"
     })
-    public void checkVenueForPostCodeWithNoPipWithBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
+    public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
         String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
         assertEquals(expectedPipVenue, pipVenue);
+    }
+
+    @Test
+    @Parameters({
+            "b4 1lal, Birmingham, JSA",
+            "CV9 1ss, Birmingham Civil Justice Centre, bereavementBenefit"
+    })
+    public void checkVenueForPostCodeWithJsaOrBereavementBenefitBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
+        String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
+        assertEquals(expectedVenue, venue);
     }
 
     @Test
@@ -88,7 +94,7 @@ public class AirLookupServiceTest {
             "NN85 1ss, Northampton, UC",
             "NN85 1ss, Northampton, HB"
     })
-    public void checkVenueForPostCodeWithOtherBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
+    public void checkVenueForPostCodeWithEsaOrUcBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
         String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
         assertEquals(expectedVenue, venue);
     }

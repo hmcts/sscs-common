@@ -405,6 +405,22 @@
       "postCode": "WV98 1LW"
     }
   },
+  "bereavementBenefit": {
+    "code": "Pensions Dispute Resolution Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Pensions Dispute Resolution Team",
+      "gaps": "Bereavement DRT",
+      "dwpRegionCentre": "Bereavement Benefit"
+    },
+    "address": {
+      "line1": "Pensions Dispute Resolution Team",
+      "line2": "The Pension Service 11",
+      "line3": "Mail Handing Site A",
+      "line4": "Wolverhampton",
+      "postCode": "WV98 1LW"
+    }
+  },
   "attendanceAllowance": [
     {
       "code": "The Pension Service 11",
