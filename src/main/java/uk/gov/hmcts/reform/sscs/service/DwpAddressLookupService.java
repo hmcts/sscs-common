@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
 import uk.gov.hmcts.reform.sscs.model.dwp.DwpMappings;
@@ -82,26 +81,14 @@ public class DwpAddressLookupService {
 
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
-        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
+        return getDwpRegionalCenterByBenefitType(officeMapping);
     }
 
-    public String getDefaultDwpRegionalCenterByBenefitTypeAndOffice(String benefitType) {
-        Optional<OfficeMapping> officeMapping = getDefaultDwpMappingByBenefitType(benefitType);
-        return getDwpRegionalCenterByBenefitType(benefitType, officeMapping);
-    }
-
-    private String getDwpRegionalCenterByBenefitType(String benefitType, Optional<OfficeMapping> officeMapping) {
-        Benefit benefit;
-        try {
-            benefit = Benefit.getBenefitByCode(benefitType);
-            if (benefit.isHasDwpRegionCentre()) {
-                return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
-            } else {
-                return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
-            }
-        } catch (BenefitMappingException e) {
-            return null;
+    private String getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
+        if (officeMapping.map(m -> m.getMapping().getDwpRegionCentre() != null).orElse(false)) {
+            return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
         }
+        return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
     }
 
     public OfficeMapping[] getDwpOfficeMappings(String benefitType) {
@@ -157,6 +144,10 @@ public class DwpAddressLookupService {
 
     public OfficeMapping[] carersAllowanceOfficeMappings() {
         return new OfficeMapping[]{dwpMappings.getCarersAllowance()};
+    }
+
+    public OfficeMapping[] bereavementBenefitOfficeMappings() {
+        return new OfficeMapping[]{dwpMappings.getBereavementBenefit()};
     }
 
     public OfficeMapping[] dlaOfficeMappings() {

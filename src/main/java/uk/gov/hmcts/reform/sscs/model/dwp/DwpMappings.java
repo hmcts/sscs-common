@@ -13,6 +13,7 @@ public class DwpMappings {
     private OfficeMapping[] dla;
     private OfficeMapping carersAllowance;
     private OfficeMapping[] attendanceAllowance;
+    private OfficeMapping bereavementBenefit;
     private OfficeMapping testHmctsAddress;
 }
 
