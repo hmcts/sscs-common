@@ -165,6 +165,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void bereavementBenefitOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.bereavementBenefitOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     public void carersAllowanceOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.carersAllowanceOfficeMappings();
         assertEquals(1, result.length);
@@ -199,6 +206,7 @@ public class DwpAddressLookupServiceTest {
             "ESA, 13",
             "DLA, 3",
             "CARERS_ALLOWANCE, 1",
+            "BEREAVEMENT_BENEFIT, 1",
             "ATTENDANCE_ALLOWANCE, 2"
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
