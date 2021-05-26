@@ -456,6 +456,67 @@
       }
     }
   ],
+  "jsa": [
+    {
+      "code": "Worthing DRT",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Worthing DRT",
+        "gaps": "Worthing DRT",
+        "dwpRegionCentre": "JSA Worthing"
+      },
+      "address": {
+        "line1": "Post Handling Site B",
+        "line2": "Wolverhampton",
+        "postCode": "WV99 1BY"
+      }
+    },
+    {
+      "code": "Birkenhead DRT",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Birkenhead DRT",
+        "gaps": "Birkenhead LM DRT",
+        "dwpRegionCentre": "JSA Birkenhead"
+      },
+      "address": {
+        "line1": "Post Handling Site B",
+        "line2": "Wolverhampton",
+        "postCode": "WV99 1FZ"
+      }
+    },
+    {
+      "code": "Inverness DRT",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Inverness DRT",
+        "gaps": "Inverness Benefit Centre",
+        "dwpRegionCentre": "JSA Inverness"
+      },
+      "address": {
+        "line1": "Inverness BC",
+        "line2": "Mail handling site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1PL"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",

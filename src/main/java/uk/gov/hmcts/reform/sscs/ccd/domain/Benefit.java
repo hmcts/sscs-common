@@ -24,7 +24,7 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 public enum Benefit {
 
     ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings),
-    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null),
+    JSA("Job Seekers Allowance", "Lwfans Ceisio Gwaith", "073", "JSA", List.of("073"), true, DwpAddressLookupService::jsaOfficeMappings),
     PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings),
     DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings),
     UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings),
@@ -70,7 +70,7 @@ public enum Benefit {
                 return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
             case ESA:
                 return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT:
+            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA:
                 return JUDGE;
             default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
         }

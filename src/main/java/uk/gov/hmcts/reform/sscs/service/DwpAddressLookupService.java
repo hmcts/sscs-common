@@ -138,6 +138,10 @@ public class DwpAddressLookupService {
         return dwpMappings.getEsa();
     }
 
+    public OfficeMapping[] jsaOfficeMappings() {
+        return dwpMappings.getJsa();
+    }
+
     public OfficeMapping[] ucOfficeMappings() {
         return new OfficeMapping[]{dwpMappings.getUc()};
     }
