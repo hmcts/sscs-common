@@ -230,39 +230,19 @@ public class AirLookupService {
         return benefitOptional.map(b -> b.getAirLookupVenue().apply(this, venue)).orElse(venue.getEsaOrUcVenue());
     }
 
-    public String esaVenue(AirlookupBenefitToVenue venue) {
+    public String getEsaUcVenue(AirlookupBenefitToVenue venue) {
         return venue.getEsaOrUcVenue();
     }
 
-    public String ucVenue(AirlookupBenefitToVenue venue) {
-        return venue.getEsaOrUcVenue();
-    }
-
-    public String pipVenue(AirlookupBenefitToVenue venue) {
+    public String getPipDlaCarersOrAttendanceAllowanceVenue(AirlookupBenefitToVenue venue) {
         return venue.getPipVenue();
     }
 
-    public String dlaVenue(AirlookupBenefitToVenue venue) {
-        return venue.getPipVenue();
-    }
-
-    public String carersAllowanceVenue(AirlookupBenefitToVenue venue) {
-        return venue.getPipVenue();
-    }
-
-    public String attendanceAllowanceVenue(AirlookupBenefitToVenue venue) {
-        return venue.getPipVenue();
-    }
-
-    public String jsaVenue(AirlookupBenefitToVenue venue) {
+    public String getJsaBereavementBenefitVenue(AirlookupBenefitToVenue venue) {
         return venue.getJsaVenue();
     }
 
-    public String bereavementBenefitVenue(AirlookupBenefitToVenue venue) {
-        return venue.getJsaVenue();
-    }
-
-    public String iidbVenue(AirlookupBenefitToVenue venue) {
+    public String getIidbVenue(AirlookupBenefitToVenue venue) {
         return venue.getIidbVenue();
     }
 }
