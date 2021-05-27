@@ -107,7 +107,8 @@ public class BenefitTest {
             "DLA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "CARERS_ALLOWANCE, JUDGE",
             "BEREAVEMENT_BENEFIT, JUDGE",
-            "ESA, JUDGE_AND_A_DOCTOR"
+            "ESA, JUDGE_AND_A_DOCTOR",
+            "IIDB, JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));

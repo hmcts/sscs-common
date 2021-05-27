@@ -7,7 +7,8 @@ public enum PanelComposition {
     JUDGE_DOCTOR_AND_DISABILITY_EXPERT("judge, doctor and disability expert", "barnwr, meddyg ac arbenigwr anableddau"),
     JUDGE_AND_A_DOCTOR("judge and a doctor", "barnwr a meddyg"),
     JUDGE("judge", "barnwr"),
-    JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE("judge, doctor and disability expert (if applicable)", "barnwr, meddyg ac arbenigwr anabledd (os yw’n berthnasol)");
+    JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE("judge, doctor and disability expert (if applicable)", "barnwr, meddyg ac arbenigwr anabledd (os yw’n berthnasol)"),
+    JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS("judge and up to 2 consultants doctors", "barnwr a hyd at 2 feddyg ymgynghorol");
 
     private final String english;
     private final String welsh;
