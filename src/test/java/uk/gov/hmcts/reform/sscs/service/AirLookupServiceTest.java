@@ -71,32 +71,17 @@ public class AirLookupServiceTest {
             "CV9 1ss, Nuneaton, PIP",
             "NN85 1ss, Northampton, DLA",
             "NN85 1ss, Northampton, carersAllowance",
-            "NN85 1ss, Northampton, attendanceAllowance"
-    })
-    public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
-        String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
-        assertEquals(expectedPipVenue, pipVenue);
-    }
-
-    @Test
-    @Parameters({
+            "NN85 1ss, Northampton, attendanceAllowance",
+            "DE4 1SS, Chesterfield, industrialInjuriesDisablement",
             "b4 1lal, Birmingham, JSA",
-            "CV9 1ss, Birmingham Civil Justice Centre, bereavementBenefit"
-    })
-    public void checkVenueForPostCodeWithJsaOrBereavementBenefitBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
-        String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
-        assertEquals(expectedVenue, venue);
-    }
-
-    @Test
-    @Parameters({
+            "CV9 1ss, Birmingham Civil Justice Centre, bereavementBenefit",
             "b4 1lal, Birmingham, ESA",
             "NN85 1ss, Northampton, UC",
             "NN85 1ss, Northampton, HB"
     })
-    public void checkVenueForPostCodeWithEsaOrUcBenefitType(String postcode, String expectedVenue, String benefitTypeCode) {
-        String venue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
-        assertEquals(expectedVenue, venue);
+    public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
+        String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
+        assertEquals(expectedPipVenue, pipVenue);
     }
 
     private int lookupVenueId(String venue) {
