@@ -230,7 +230,7 @@ public class AirLookupService {
         return benefitOptional.map(b -> b.getAirLookupVenue().apply(this, venue)).orElse(venue.getEsaOrUcVenue());
     }
 
-    public String getEsaUcVenue(AirlookupBenefitToVenue venue) {
+    public String getEsaOrUcVenue(AirlookupBenefitToVenue venue) {
         return venue.getEsaOrUcVenue();
     }
 
