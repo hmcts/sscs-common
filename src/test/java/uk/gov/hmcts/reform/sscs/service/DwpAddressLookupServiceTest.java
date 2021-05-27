@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Arrays.stream;
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
@@ -148,13 +149,70 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void getDwpOfficeNames() {
-        OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
+    public void pipOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.pipOfficeMappings();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertTrue(result[0].isDefault());
-        assertFalse(result[1].isDefault());
-        assertEquals(27, result.length);
+        assertEquals(10, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void ucOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.ucOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void bereavementBenefitOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.bereavementBenefitOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void carersAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.carersAllowanceOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void esaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.esaOfficeMappings();
+        assertEquals(13, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void dlaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.dlaOfficeMappings();
+        assertEquals(3, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void attendanceAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.attendanceAllowanceOfficeMappings();
+        assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    @Parameters({
+            "PIP, 10",
+            "UC, 1",
+            "ESA, 13",
+            "DLA, 3",
+            "CARERS_ALLOWANCE, 1",
+            "BEREAVEMENT_BENEFIT, 1",
+            "ATTENDANCE_ALLOWANCE, 2"
+    })
+    public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
+        OfficeMapping[] officeMappings = dwpAddressLookup.getDwpOfficeMappings(benefit.getShortName());
+        assertEquals(officeMappings.length, expectedNumberOfOffices);
+        assertTrue(stream(officeMappings).anyMatch(OfficeMapping::isDefault));
     }
 
     @Test

@@ -100,21 +100,6 @@ public class BenefitTest {
 
     @Test
     @Parameters({
-            "PIP, true",
-            "ATTENDANCE_ALLOWANCE, true",
-            "UC, false",
-            "JSA, false",
-            "DLA, true",
-            "CARERS_ALLOWANCE, true",
-            "ESA, false"
-    })
-    public void isAirLookupSameAsPip(Benefit benefit, boolean expected) {
-        assertThat(benefit.isAirLookupSameAsPip(), is(expected));
-
-    }
-
-    @Test
-    @Parameters({
             "PIP, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "ATTENDANCE_ALLOWANCE, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "UC, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",

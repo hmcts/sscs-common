@@ -227,25 +227,22 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        if (isAirLookupColumnForBenefitTheSameAsPip(benefitOptional)) {
-            return venue.getPipVenue();
-        } else if (isAirLookupColumnForBenefitTheSameAsJsa(benefitOptional)) {
-            return venue.getJsaVenue();
-        } else if (isAirLookupColumnForBenefitTheSameAsIidb(benefitOptional)) {
-            return venue.getIidbVenue();
-        }
+        return benefitOptional.map(b -> b.getAirLookupVenue().apply(this, venue)).orElse(venue.getEsaOrUcVenue());
+    }
+
+    public String getEsaUcVenue(AirlookupBenefitToVenue venue) {
         return venue.getEsaOrUcVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsPip(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsPip).orElse(false);
+    public String getPipDlaCarersOrAttendanceAllowanceVenue(AirlookupBenefitToVenue venue) {
+        return venue.getPipVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsJsa(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsJsa).orElse(false);
+    public String getJsaBereavementBenefitVenue(AirlookupBenefitToVenue venue) {
+        return venue.getJsaVenue();
     }
 
-    private boolean isAirLookupColumnForBenefitTheSameAsIidb(Optional<Benefit> benefitOptional) {
-        return benefitOptional.map(Benefit::isAirLookupSameAsIidb).orElse(false);
+    public String getIidbVenue(AirlookupBenefitToVenue venue) {
+        return venue.getIidbVenue();
     }
 }
