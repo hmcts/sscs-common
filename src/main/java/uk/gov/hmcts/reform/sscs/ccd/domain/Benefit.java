@@ -34,7 +34,8 @@ public enum Benefit {
     CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue);
+    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue),
+    MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, null, null);
 
     private final String description;
     private final String welshDescription;
@@ -66,7 +67,7 @@ public enum Benefit {
                 return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
             case ESA:
                 return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT:
+            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case MATERNITY_ALLOWANCE:
                 return JUDGE;
             case IIDB:
                 return JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS;
