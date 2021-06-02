@@ -763,4 +763,36 @@ public class SscsCaseDataTest {
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
+
+    @Test
+    public void givenNoDateSentToGapsOrDateTimeReturnNone() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(null).build();
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
+    }
+
+    @Test
+    public void givenDateSentToGapsAndNoDateTimeReturnEmpty() {
+
+        LocalDate today = LocalDate.now();
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(null).build();
+
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
+    }
+
+    @Test
+    public void givenNoDateSentToGapsAndDateTimeReturnDateTime() {
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(now.toString()).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
+    @Test
+    public void givenDateSentToGapsAndDateTimeReturnDateTime() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.toString()).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
 }
