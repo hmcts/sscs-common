@@ -166,6 +166,10 @@ public class DwpAddressLookupService {
         return dwpMappings.getIidb();
     }
 
+    public OfficeMapping[] maternityAllowanceOfficeMappings() {
+        return new OfficeMapping[]{dwpMappings.getMaternityAllowance()};
+    }
+
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
         return stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))

@@ -488,6 +488,21 @@
       }
     }
   ],
+  "maternityAllowance": {
+    "code": "Walsall Benefit Centre",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Walsall Benefit Centre",
+      "gaps": "Walsall Maternity Allowance",
+      "dwpRegionCentre": "Maternity Allowance"
+    },
+    "address": {
+      "line1": "Walsall Benefit Centre",
+      "line2": "Post Handling Site B",
+      "line3": "Wolverhampton",
+      "postCode": "WV99 1DY"
+    }
+  },
   "testHmctsAddress": {
     "address": {
       "line1": "Josh Greencroft",
