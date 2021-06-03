@@ -27,7 +27,7 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 public enum Benefit {
 
     ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    JSA("Job Seekers Allowance", "", "", "JSA", List.of("073"), true, null, AirLookupService::getJsaBereavementBenefitVenue),
+    JSA("Job Seekers Allowance", "Lwfans Ceisio Gwaith", "073", "JSA", List.of("073"), true, DwpAddressLookupService::jsaOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings, AirLookupService::getEsaOrUcVenue),
@@ -67,7 +67,7 @@ public enum Benefit {
                 return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
             case ESA:
                 return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case MATERNITY_ALLOWANCE:
+            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA: case MATERNITY_ALLOWANCE:
                 return JUDGE;
             case IIDB:
                 return JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS;
