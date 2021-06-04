@@ -17,7 +17,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private DocumentLink editedDocumentLink;
     private UploadParty partyUploaded;
     private String dateApproved;
-    private DocumentLink statementOfEvidencePdf;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -33,14 +32,12 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                @JsonProperty("dateApproved") String dateApproved,
-                               @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
-                               @JsonProperty("statementOfEvidencePdf") DocumentLink statementOfEvidencePdf) {
+                               @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink) {
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
         this.editedDocumentLink = editedDocumentLink;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
-        this.statementOfEvidencePdf = statementOfEvidencePdf;
     }
 }
