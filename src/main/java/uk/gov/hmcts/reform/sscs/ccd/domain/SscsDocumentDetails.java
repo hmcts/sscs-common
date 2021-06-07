@@ -18,6 +18,8 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private UploadParty partyUploaded;
     private String dateApproved;
     private DocumentLink avEvidenceDocumentLink;
+    // Workaround due to a limitation with bundling only accepting Strings with Regex requests (you can't check complex types are present!)
+    private YesNo isAvEvidenceDocumentLinkPresent;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -34,7 +36,8 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                @JsonProperty("dateApproved") String dateApproved,
                                @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
-                               @JsonProperty("avEvidenceDocumentLink") DocumentLink avEvidenceDocumentLink) {
+                               @JsonProperty("avEvidenceDocumentLink") DocumentLink avEvidenceDocumentLink,
+                               @JsonProperty("isAvEvidenceDocumentLinkPresent") YesNo isAvEvidenceDocumentLinkPresent) {
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
@@ -42,5 +45,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
         this.avEvidenceDocumentLink = avEvidenceDocumentLink;
+        this.isAvEvidenceDocumentLinkPresent = isAvEvidenceDocumentLinkPresent;
     }
 }
