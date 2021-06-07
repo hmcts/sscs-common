@@ -206,7 +206,8 @@ public enum EventType {
     SEND_VALID_CASE_TO_INTERLOC("sendValidCaseToInterloc", 0, false),
     ASYNC_STITCHING_COMPLETE("asyncStitchingComplete", 0, false),
     CCD_ADMIN("CCD_ADMIN", 0, false),
-    SYSTEM_MAINTENANCE("SYSTEM_MAINTENANCE", 0, false);
+    SYSTEM_MAINTENANCE("SYSTEM_MAINTENANCE", 0, false),
+    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false);
 
     private final String type;
     private final String ccdType;
