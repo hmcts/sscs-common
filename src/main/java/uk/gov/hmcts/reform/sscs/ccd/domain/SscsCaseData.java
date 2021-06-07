@@ -94,6 +94,7 @@ public class SscsCaseData implements CaseData {
     private List<AudioVideoEvidence> dwpUploadAudioVideoEvidence;
     private YesNo hasUnprocessedAudioVideoEvidence;
     private String informationFromAppellant;
+    private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
     private String assignedToJudge;
