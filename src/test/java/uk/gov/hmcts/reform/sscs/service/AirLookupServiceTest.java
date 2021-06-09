@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Arrays.stream;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import junitparams.JUnitParamsRunner;
@@ -8,6 +10,7 @@ import junitparams.Parameters;
 import junitparams.converters.Nullable;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
@@ -52,6 +55,12 @@ public class AirLookupServiceTest {
     @Test
     public void checkAirPostcodeWithNoPipReturnsBirminghamWithBenefitType() {
         assertEquals(DEFAULT_VENUE.getEsaOrUcVenue(), airLookupService.lookupAirVenueNameByPostCode("n1w1 wal", BenefitType.builder().code("Esa").build()));
+    }
+
+    @Test
+    public void lookupAirVenueNameByPostCodeReturnsNonNullValuesForAllBenefits() {
+        stream(Benefit.values())
+                .forEach(benefit -> assertNotNull(airLookupService.lookupAirVenueNameByPostCode("n1w1 wal", BenefitType.builder().code(benefit.getShortName()).build())));
     }
 
     @Test

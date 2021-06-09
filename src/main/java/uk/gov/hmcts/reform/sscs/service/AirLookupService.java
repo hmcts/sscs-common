@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static java.util.Optional.ofNullable;
+import static java.util.Optional.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
@@ -227,7 +227,7 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        return benefitOptional.map(b -> b.getAirLookupVenue().apply(this, venue)).orElse(venue.getEsaOrUcVenue());
+        return benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
     }
 
     public String getEsaOrUcVenue(AirlookupBenefitToVenue venue) {

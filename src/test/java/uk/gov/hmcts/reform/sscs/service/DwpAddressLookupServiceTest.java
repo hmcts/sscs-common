@@ -193,6 +193,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void jsaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.jsaOfficeMappings();
+        assertEquals(4, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     public void dlaOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.dlaOfficeMappings();
         assertEquals(3, result.length);
@@ -216,6 +223,7 @@ public class DwpAddressLookupServiceTest {
             "BEREAVEMENT_BENEFIT, 1",
             "ATTENDANCE_ALLOWANCE, 2",
             "MATERNITY_ALLOWANCE, 1",
+            "JSA, 4"
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
         OfficeMapping[] officeMappings = dwpAddressLookup.getDwpOfficeMappings(benefit.getShortName());

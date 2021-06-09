@@ -16,18 +16,43 @@ public class EventTypeTest {
     private static final String ALL_EVENT_TYPES =
             "secondHearingHoldingReminder\n" +
             "thirdHearingHoldingReminder\n" +
+            "abateCase\n" +
+            "dwpActionDirection\n" +
             "actionFurtherEvidence\n" +
+            "dwpActionRepAdded\n" +
+            "actionStrikeOut\n" +
             "addSCnumber\n" +
             "addNote\n" +
             "addRepresentative\n" +
+            "addHearing\n" +
+            "adminRestoreCases\n" +
+            "adminSendToAppealCreated\n" +
+            "adminSendToDormantAppealState\n" +
+            "adminSendToDraft\n" +
+            "adminSendToDraftArchived\n" +
+            "adminSendToHearing\n" +
+            "adminSendToIncompleteApplication\n" +
+            "adminSendToIncompleteApplicationInformationReqsted\n" +
+            "adminSendToInterlocutoryReviewState\n" +
+            "adminSendToReadyToList\n" +
+            "adminSendTorRsponseReceived\n" +
+            "adminSendToValidAppeal\n" +
+            "adminSendToVoidState\n" +
+            "adminSendToWithDwp\n" +
+            "adminUpdateEvent\n" +
+            "adminAppealWithdrawn\n" +
             "judgeDecisionAdmitAppeal\n" +
             "tcwDecisionAdmitAppeal\n" +
             "editBundle\n" +
+            "amendDueDate\n" +
+            "amendElementsIssues\n" +
+            "interlocReviewStateAmend\n" +
             "appealCreated\n" +
             "appealDormant\n" +
             "appealLapsed\n" +
             "appealReceived\n" +
             "dwpAppealRegistered\n" +
+            "appealToProceed\n" +
             "judgeDecisionAppealToProceed\n" +
             "tcwDecisionAppealToProceed\n" +
             "appealWithdrawn\n" +
@@ -37,6 +62,10 @@ public class EventTypeTest {
             "attachRoboticsJson\n" +
             "attachScannedDocs\n" +
             "dwpCaseInProgress\n" +
+            "CCD_ADMIN\n" +
+            "dwpChallengeValidity\n" +
+            "cloneBundle\n" +
+            "confirmLapsed\n" +
             "cohAnswersSubmitted\n" +
             "cohQuestionDeadlineExtensionDenied\n" +
             "cohQuestionDeadlineExtensionGranted\n" +
@@ -51,14 +80,24 @@ public class EventTypeTest {
             "createEditedBundle\n" +
             "createDraft\n" +
             "panelUpdate\n" +
+            "deathOfAppellant\n" +
+            "deathOfAppellantActioned\n" +
             "logDocsToDwp\n" +
+            "draftToIncompleteApplication\n" +
+            "draftToNonCompliant\n" +
+            "draftToValidAppealCreated\n" +
+            "dwpActionWithdrawal\n" +
+            "dwpDirectionResponse\n" +
             "dwpRaiseException\n" +
             "dwpResponseLateReminder\n" +
             "evidenceReceived\n" +
             "evidenceReminder\n" +
+            "furtherEvidenceHandledOffline\n" +
             "finalHearingHoldingReminder\n" +
+            "feNoAction\n" +
             "dwpEvidenceInProgress\n" +
             "createAppealPDF\n" +
+            "generateCoversheet\n" +
             "handleEvidence\n" +
             "hearingAdjourned\n" +
             "hearingBooked\n" +
@@ -66,95 +105,108 @@ public class EventTypeTest {
             "hearingPostponed\n" +
             "hearingReminder\n" +
             "incompleteApplicationReceived\n" +
+            "interlocInformationReceivedActionFurtherEvidence\n" +
             "interlocInformationReceived\n" +
-            "directionIssued\n" +
+            "issueAdjournmentNotice\n" +
+            "decisionIssued\n" +
             "judgeDirectionIssued\n" +
             "tcwDirectionIssued\n" +
+            "directionIssued\n" +
+            "issueFinalDecision\n" +
             "issueFurtherEvidence\n" +
+            "requestInfoIncompleteApplication\n" +
+            "jointPartyAdded\n" +
             "dwpLapseCase\n" +
             "hmctsLapseCase\n" +
             "linkACase\n" +
-            "removeLinkForCase\n" +
             "sentToJudge\n" +
+            "manageDwpDocuments\n" +
             "makeCaseUrgent\n" +
             "moveToAppealCreated\n" +
             "dwpNoAction\n" +
             "nonCompliant\n" +
             "dwpNotAbleToRegister\n" +
+            "notListable\n" +
+            "notificationSent\n" +
+            "processAudioVideo\n" +
+            "playbackAudioVideoEvidence\n" +
+            "processReasonableAdjustment\n" +
+            "provideAppointeeDetails\n" +
             "corDecision\n" +
             "reinstateAppeal\n" +
+            "readyToList\n" +
             "reinstateVoidAppeal\n" +
+            "reissueDocument\n" +
             "reissueFurtherEvidence\n" +
-            "requestInfoIncompleteApplication\n" +
+            "dwpRequestTimeExtension\n" +
+            "removeLinkForCase\n" +
             "resendAppealCreated\n" +
             "resendCaseToGAPS2\n" +
+            "resendToDwp\n" +
             "responseReceived\n" +
             "hmctsResponseReviewed\n" +
+            "reviewConfidentialityRequest\n" +
+            "reviewPhmeRequest\n" +
             "interlocSendToTcw\n" +
+            "sendFurtherEvidenceError\n" +
+            "sendToAdmin\n" +
             "sendToDwp\n" +
             "sendToDwpError\n" +
-            "sendToRoboticsError\n" +
             "sendToDwpOffline\n" +
+            "validSendToInterloc\n" +
             "nonCompliantSendToInterloc\n" +
             "tcwReferToJudge\n" +
+            "sendToRoboticsError\n" +
+            "sendValidCaseToInterloc\n" +
             "sentToDwp\n" +
-            "stitchBundle\n" +
+            "asyncStitchingComplete\n" +
+            "stopBulkPrintForReasonableAdjustment\n" +
             "judgeDecisionStrikeout\n" +
             "tcwDecisionStrikeOut\n" +
             "struckOut\n" +
             "dwpSupplementaryResponse\n" +
+            "SYSTEM_MAINTENANCE\n" +
             "unassignToJudge\n" +
             "updateCaseOnly\n" +
             "updateDraft\n" +
             "eventsUpdates\n" +
             "updateHearingType\n" +
             "updateIncompleteApplication\n" +
-            "caseUpdated\n" +
+            "updateNotListable\n" +
+            "updateReasonableAdjustment\n" +
             "subscriptionUpdated\n" +
+            "caseUpdated\n" +
+            "updateUCB\n" +
             "uploadCorDocument\n" +
             "uploadDocument\n" +
+            "uploadDocumentFurtherEvidence\n" +
             "uploadDraftCorDocument\n" +
             "uploadDraftDocument\n" +
             "uploadFurtherEvidence\n" +
             "dwpUploadResponse\n" +
             "validAppealCreated\n" +
-            "validAppeal\n" +
             "interlocValidAppeal\n" +
+            "validAppeal\n" +
             "voidCase\n" +
             "voidIncompleteApplication\n" +
-            "readyToList\n" +
-            "dwpChallengeValidity\n" +
-            "validSendToInterloc\n" +
-            "dwpRequestTimeExtension\n" +
-            "confirmLapsed\n" +
-            "actionStrikeOut\n" +
-            "sendFurtherEvidenceError\n" +
-            "furtherEvidenceHandledOffline\n" +
             "interlocVoidAppeal\n" +
-            "uploadDocumentFurtherEvidence\n" +
-            "resendToDwp\n" +
+            "adjournCase\n" +
             "writeFinalDecision\n" +
-            "uploadWelshDocument\n" +
+            "createWelshNotice\n" +
+            "cancelTranslations\n" +
+            "issueAdjournmentNoticeWelsh\n" +
+            "decisionIssuedWelsh\n" +
+            "directionIssuedWelsh\n" +
+            "issueFinalDecisionWelsh\n" +
+            "manageWelshDocuments\n" +
+            "markDocumentsForTranslation\n" +
+            "processAudioVideoWelsh\n" +
             "requestTranslationFromWLU\n" +
             "updateWelshPreference\n" +
-            "cancelTranslations\n" +
-            "createWelshNotice\n" +
-            "markDocumentsForTranslation\n" +
-            "jointPartyAdded\n" +
-            "issueAdjournmentNoticeWelsh\n" +
-            "abateCase\n" +
-            "provideAppointeeDetails\n" +
-            "deathOfAppellant\n" +
-            "updateUCB\n" +
-            "reviewPhmeRequest\n" +
-            "processReasonableAdjustment\n" +
-            "updateReasonableAdjustment\n" +
-            "createTestCase\n" +
-            "processAudioVideo\n" +
-            "processAudioVideoWelsh\n" +
-            "draftToIncompleteApplication\n" +
-            "draftToNonCompliant\n" +
-            "draftToValidAppealCreated";
+            "uploadWelshDocument\n" +
+            "createWithDwpTestCase\n" +
+            "createResponseReceivedTestCase\n" +
+            "createTestCase";
 
 
     @Test
@@ -179,7 +231,7 @@ public class EventTypeTest {
             LINK_A_CASE, REMOVE_LINK_FOR_CASE, ACTION_STRIKE_OUT, UPLOAD_DOCUMENT_FURTHER_EVIDENCE,
                 WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
                 CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED, UPDATE_UCB,
-                STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT);
+                STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT, CCD_ADMIN, SYSTEM_MAINTENANCE);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
