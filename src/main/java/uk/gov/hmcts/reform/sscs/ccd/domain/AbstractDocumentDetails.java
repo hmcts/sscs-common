@@ -27,7 +27,9 @@ public class AbstractDocumentDetails {
     private String dateApproved;
     private SscsDocumentTranslationStatus documentTranslationStatus;
     private DocumentLink resizedDocumentLink;
-
+    private DocumentLink avDocumentLink;
+    // Workaround due to a limitation with bundling only accepting Strings with Regex requests (you can't check complex types are present!)
+    private YesNo isAvDocumentLinkPresent;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -41,7 +43,9 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                    @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                    @JsonProperty("dateApproved") String dateApproved,
-                                   @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink) {
+                                   @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
+                                   @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
+                                   @JsonProperty("isAvDocumentLinkPresent") YesNo isAvDocumentLinkPresent) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -55,6 +59,8 @@ public class AbstractDocumentDetails {
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
         this.resizedDocumentLink = resizedDocumentLink;
+        this.avDocumentLink = avDocumentLink;
+        this.isAvDocumentLinkPresent = isAvDocumentLinkPresent;
     }
 
     @JsonIgnore
