@@ -163,7 +163,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList selectWhoReviewsCase;
     @Deprecated
     private DirectionType directionType;
-    private DynamicList directionTypeDl;
+    //private DynamicList directionTypeDl;
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
@@ -338,9 +338,12 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
-    @JsonUnwrapped
+    private DynamicList selectHearingDetails;
+    private List<HearingRecording> hearingRecordings;
+    /*@JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+    */
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -569,13 +572,13 @@ public class SscsCaseData implements CaseData {
         return pipSscsCaseData;
     }
 
-    @JsonIgnore
+    /*@JsonIgnore
     public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
         if (sscsHearingRecordingCaseData == null) {
             this.sscsHearingRecordingCaseData = new SscsHearingRecordingCaseData();
         }
         return sscsHearingRecordingCaseData;
-    }
+    }*/
 
     @JsonIgnore
     public Optional<Benefit> getBenefitType() {
