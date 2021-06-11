@@ -339,6 +339,7 @@ public class SscsCaseData implements CaseData {
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
     @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
     //private DynamicList selectHearingDetails;
     //private List<HearingRecording> hearingRecordings;
@@ -571,13 +572,13 @@ public class SscsCaseData implements CaseData {
         return pipSscsCaseData;
     }
 
-    /*@JsonIgnore
+    @JsonIgnore
     public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
         if (sscsHearingRecordingCaseData == null) {
             this.sscsHearingRecordingCaseData = new SscsHearingRecordingCaseData();
         }
         return sscsHearingRecordingCaseData;
-    }*/
+    }
 
     @JsonIgnore
     public Optional<Benefit> getBenefitType() {
