@@ -163,7 +163,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList selectWhoReviewsCase;
     @Deprecated
     private DirectionType directionType;
-    //private DynamicList directionTypeDl;
+    private DynamicList directionTypeDl;
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
@@ -338,12 +338,11 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
-    private DynamicList selectHearingDetails;
-    private List<HearingRecording> hearingRecordings;
-    /*@JsonUnwrapped
-    @Getter(AccessLevel.NONE)
+    @JsonUnwrapped
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
-    */
+//    private DynamicList selectHearingDetails;
+//    private List<HearingRecording> hearingRecordings;
+
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
