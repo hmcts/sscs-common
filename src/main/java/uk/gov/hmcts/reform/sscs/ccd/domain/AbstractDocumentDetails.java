@@ -28,8 +28,9 @@ public class AbstractDocumentDetails {
     private SscsDocumentTranslationStatus documentTranslationStatus;
     private DocumentLink resizedDocumentLink;
     private DocumentLink avDocumentLink;
-    // Workaround due to a limitation with bundling only accepting Strings with Regex requests (you can't check complex types are present!)
-    private YesNo isAvDocumentLinkPresent;
+    // Workaround due to a limitation with bundling only accepting Strings with Regex requests (you can't check complex types are present!).
+    // This basically tells the bundle service to include the appellant statement of evidence doc or the RIP1 document from the DWP
+    private YesNo shouldBundleIncludeDocLink;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -45,7 +46,7 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("dateApproved") String dateApproved,
                                    @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                                   @JsonProperty("isAvDocumentLinkPresent") YesNo isAvDocumentLinkPresent) {
+                                   @JsonProperty("shouldBundleIncludeDocLink") YesNo shouldBundleIncludeDocLink) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -60,7 +61,7 @@ public class AbstractDocumentDetails {
         this.dateApproved = dateApproved;
         this.resizedDocumentLink = resizedDocumentLink;
         this.avDocumentLink = avDocumentLink;
-        this.isAvDocumentLinkPresent = isAvDocumentLinkPresent;
+        this.shouldBundleIncludeDocLink = shouldBundleIncludeDocLink;
     }
 
     @JsonIgnore
