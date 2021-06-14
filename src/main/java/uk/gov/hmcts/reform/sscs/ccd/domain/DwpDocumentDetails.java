@@ -41,9 +41,9 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("partyUploaded") UploadParty partyUploaded,
                               @JsonProperty("dateApproved") String dateApproved,
                               @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                              @JsonProperty("isAvDocumentLinkPresent") YesNo isAvDocumentLinkPresent) {
+                              @JsonProperty("shouldBundleIncludeDocLink") YesNo shouldBundleIncludeDocLink) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, isAvDocumentLinkPresent);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, shouldBundleIncludeDocLink);
 
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
