@@ -35,7 +35,7 @@ public enum Benefit {
     ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue),
-    MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, null, null);
+    MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, DwpAddressLookupService::maternityAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
 
     private final String description;
     private final String welshDescription;

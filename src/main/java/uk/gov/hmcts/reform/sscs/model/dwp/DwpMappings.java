@@ -16,6 +16,7 @@ public class DwpMappings {
     private OfficeMapping[] jsa;
     private OfficeMapping bereavementBenefit;
     private OfficeMapping[] iidb;
+    private OfficeMapping maternityAllowance;
     private OfficeMapping testHmctsAddress;
 }
 

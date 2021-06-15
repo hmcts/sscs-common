@@ -179,6 +179,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void maternityAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.maternityAllowanceOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     public void esaOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.esaOfficeMappings();
         assertEquals(13, result.length);
@@ -215,6 +222,7 @@ public class DwpAddressLookupServiceTest {
             "CARERS_ALLOWANCE, 1",
             "BEREAVEMENT_BENEFIT, 1",
             "ATTENDANCE_ALLOWANCE, 2",
+            "MATERNITY_ALLOWANCE, 1",
             "JSA, 4"
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
@@ -347,6 +355,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenAMaternityAllowance_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("maternityAllowance", null);
+
+        assertEquals("Walsall Benefit Centre", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
     })
@@ -389,6 +404,13 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("industrialInjuriesDisablement");
 
         assertEquals("Barrow IIDB Centre", result.get().getCode());
+    }
+
+    @Test
+    public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultMaternityAllowanceOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("maternityAllowance");
+
+        assertEquals("Walsall Benefit Centre", result.get().getCode());
     }
 
 }

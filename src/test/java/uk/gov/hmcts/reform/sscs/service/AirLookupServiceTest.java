@@ -84,6 +84,7 @@ public class AirLookupServiceTest {
             "DE4 1SS, Chesterfield, industrialInjuriesDisablement",
             "b4 1lal, Birmingham, JSA",
             "CV9 1ss, Birmingham Civil Justice Centre, bereavementBenefit",
+            "CV9 1ss, Birmingham Civil Justice Centre, maternityAllowance",
             "b4 1lal, Birmingham, ESA",
             "NN85 1ss, Northampton, UC",
             "NN85 1ss, Northampton, HB"
