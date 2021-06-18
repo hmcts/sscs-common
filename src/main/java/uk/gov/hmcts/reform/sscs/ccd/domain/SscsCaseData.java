@@ -338,7 +338,9 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
-    private DynamicList selectHearingDetails;
+
+    @JsonUnwrapped
+    private SscsHearingRecordingsData hearingRecordingsData;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
