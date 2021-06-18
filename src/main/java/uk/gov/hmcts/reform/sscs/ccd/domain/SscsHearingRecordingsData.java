@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsHearingRecordingsData {
 
+    private DynamicList selectHearingDetails;
     private DynamicList requestableHearingDetails;
     private List<HearingRecordingRequest> requestedHearings;
     private List<HearingRecordingRequest> hearingRecordingRequests;
