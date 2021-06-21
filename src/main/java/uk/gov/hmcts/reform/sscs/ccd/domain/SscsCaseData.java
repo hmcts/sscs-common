@@ -570,6 +570,14 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public SscsHearingRecordingsData getHearingRecordingsData() {
+        if (hearingRecordingsData == null) {
+            this.hearingRecordingsData = new SscsHearingRecordingsData();
+        }
+        return hearingRecordingsData;
+    }
+
+    @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
