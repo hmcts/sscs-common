@@ -416,8 +416,8 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void allDwpMappingsHaveADwpRegionCentre() {
         stream(Benefit.values())
-                .flatMap(benefit-> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
-                .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+            .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
+            .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
     }
 
 }
