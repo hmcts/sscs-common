@@ -21,4 +21,7 @@ public class SscsHearingRecordingsData {
     private List<HearingRecordingRequest> requestedHearings;
     private List<HearingRecordingRequest> hearingRecordingRequests;
     private List<HearingRecordingRequest> releasedHearings;
+    private String requestedHearingsTextList;
+    private String releasedHearingsTextList;
+    private YesNo hearingRecordingRequestOutstanding;
 }
