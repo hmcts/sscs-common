@@ -113,7 +113,7 @@ public class BenefitTest {
             "CARERS_ALLOWANCE, JUDGE",
             "BEREAVEMENT_BENEFIT, JUDGE",
             "ESA, JUDGE_AND_A_DOCTOR",
-            "IIDB, JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS",
+            "IIDB, JUDGE_AND_ONE_OR_TWO_DOCTORS",
             "MATERNITY_ALLOWANCE, JUDGE",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
