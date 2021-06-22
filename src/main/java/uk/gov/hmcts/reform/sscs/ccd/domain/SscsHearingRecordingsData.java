@@ -19,7 +19,6 @@ public class SscsHearingRecordingsData {
     private DynamicList selectHearingDetails;
     private DynamicList requestableHearingDetails;
     private List<HearingRecordingRequest> requestedHearings;
-    private List<HearingRecordingRequest> hearingRecordingRequests;
     private List<HearingRecordingRequest> releasedHearings;
     private String requestedHearingsTextList;
     private String releasedHearingsTextList;
