@@ -8,7 +8,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.slf4j.LoggerFactory.getLogger;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_DOCTOR;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_ONE_OR_TWO_DOCTORS;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
 
@@ -70,7 +70,7 @@ public enum Benefit {
             case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA: case MATERNITY_ALLOWANCE:
                 return JUDGE;
             case IIDB:
-                return JUDGE_AND_UP_TO_TWO_CONSULTANT_DOCTORS;
+                return JUDGE_AND_ONE_OR_TWO_DOCTORS;
             default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
         }
     }

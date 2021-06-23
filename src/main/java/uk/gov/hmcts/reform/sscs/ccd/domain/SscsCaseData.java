@@ -331,6 +331,9 @@ public class SscsCaseData implements CaseData {
     private YesNo showWorkCapabilityAssessmentPage;
     private DynamicList selectHearingDetails;
     private String panelDoctorSpecialism;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -557,6 +560,14 @@ public class SscsCaseData implements CaseData {
             this.pipSscsCaseData = new SscsPipCaseData();
         }
         return pipSscsCaseData;
+    }
+
+    @JsonIgnore
+    public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
+        if (sscsHearingRecordingCaseData == null) {
+            this.sscsHearingRecordingCaseData = new SscsHearingRecordingCaseData();
+        }
+        return sscsHearingRecordingCaseData;
     }
 
     @JsonIgnore
