@@ -60,18 +60,13 @@ public class SscsCaseData implements CaseData {
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
-    private List<CorDocument> corDocument;
-    private List<CorDocument> draftCorDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
     private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
     private SscsStrikeOutDocument sscsStrikeOutDocument;
-    private String generatedNino;
-    private String generatedSurname;
-    private String generatedEmail;
     private String isSaveAndReturn;
-    private String generatedMobile;
-    @JsonProperty("generatedDOB")
-    private String generatedDob;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsDeprecatedFields sscsDeprecatedFields;
     private DirectionResponse directionResponse;
     private String evidencePresent;
     private String bulkScanCaseReference;
@@ -97,9 +92,6 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
-    private String assignedToJudge;
-    private String assignedToDisabilityMember;
-    private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
     @JsonProperty("resendToAppellant")
     private String resendToAppellant;
@@ -135,7 +127,6 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
-    private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
@@ -338,6 +329,7 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
+    private String panelDoctorSpecialism;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
