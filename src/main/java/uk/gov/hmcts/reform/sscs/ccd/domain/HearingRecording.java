@@ -24,3 +24,4 @@ public class HearingRecording {
         this.hearingType = hearingType;
     }
 }
+
