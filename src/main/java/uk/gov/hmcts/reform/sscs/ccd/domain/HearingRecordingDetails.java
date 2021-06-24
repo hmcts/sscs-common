@@ -14,12 +14,15 @@ import lombok.Data;
 public class HearingRecordingDetails {
     private DocumentLink documentLink;
     private String fileName;
+    private String hearingType;
 
     @JsonCreator
     public HearingRecordingDetails(@JsonProperty("documentLink") DocumentLink documentLink,
-                                   @JsonProperty("fileName") String fileName) {
+                                   @JsonProperty("fileName") String fileName,
+                                   @JsonProperty("hearingType") String hearingType) {
         this.documentLink = documentLink;
         this.fileName = fileName;
+        this.hearingType = hearingType;
     }
 
 }

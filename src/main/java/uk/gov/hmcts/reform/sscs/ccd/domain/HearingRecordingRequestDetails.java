@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 
@@ -15,7 +15,8 @@ public class HearingRecordingRequestDetails {
     String requestedHearing;
     String status;
     String requestedHearingName;
-    LocalDateTime dateRequested;
+    String dateRequested;
+    List<SscsHearingRecording> sscsHearingRecordingList;
 
 
     @JsonCreator
@@ -23,11 +24,13 @@ public class HearingRecordingRequestDetails {
                                    @JsonProperty("requestedHearing") String requestedHearing,
                                    @JsonProperty("status") String status,
                                    @JsonProperty("requestedHearingName") String requestedHearingName,
-                                   @JsonProperty("dateRequested") LocalDateTime dateRequested) {
+                                   @JsonProperty("dateRequested") String dateRequested,
+                                   @JsonProperty("sscsHearingRecordingList") List<SscsHearingRecording> sscsHearingRecordingList) {
         this.requestingParty = requestingParty;
         this.requestedHearing = requestedHearing;
         this.status = status;
         this.requestedHearingName = requestedHearingName;
         this.dateRequested = dateRequested;
+        this.sscsHearingRecordingList = sscsHearingRecordingList;
     }
 }

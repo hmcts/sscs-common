@@ -12,21 +12,20 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class HearingRecording implements Comparable<HearingRecording> {
+public class SscsHearingRecording implements Comparable<SscsHearingRecording> {
 
-    private HearingRecordingDetails value;
+    private SscsHearingRecordingDetails value;
 
     @JsonCreator
-    public HearingRecording(@JsonProperty("value") HearingRecordingDetails value) {
+    public SscsHearingRecording(@JsonProperty("value") SscsHearingRecordingDetails value) {
         this.value = value;
     }
 
     @Override
-    public int compareTo(HearingRecording o) {
+    public int compareTo(SscsHearingRecording o) {
         return new CompareToBuilder()
                 .append(this.value.getDocumentLink().getDocumentBinaryUrl(),
                         o.getValue().getDocumentLink().getDocumentBinaryUrl())
                 .toComparison();
     }
 }
-
