@@ -58,6 +58,7 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> caseBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
+    private SscsDocumentDetails withdrawalDocument;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private List<CorDocument> corDocument;
     private List<CorDocument> draftCorDocument;
