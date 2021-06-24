@@ -23,7 +23,6 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
 
     private final LocalDateTime documentDateTimeAdded;
     private String dwpEditedEvidenceReason;
-    private DocumentLink rip1DocumentLink;
 
     @JsonCreator
     public DwpDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -41,13 +40,13 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                               @JsonProperty("partyUploaded") UploadParty partyUploaded,
                               @JsonProperty("dateApproved") String dateApproved,
-                              @JsonProperty("rip1DocumentLink") DocumentLink rip1DocumentLink) {
+                              @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
+                              @JsonProperty("shouldBundleIncludeDocLink") YesNo shouldBundleIncludeDocLink) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, shouldBundleIncludeDocLink);
 
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
-        this.rip1DocumentLink = rip1DocumentLink;
     }
 
     @JsonIgnore

@@ -389,11 +389,12 @@
     }
   },
   "carersAllowance": {
-    "code": "Carer’s Allowance",
+    "code": "Carer’s Allowance Dispute Resolution Team",
     "isDefault": true,
     "mapping": {
-      "ccd": "Tyneview Park DRT",
-      "gaps": "Tyneview Park DRT"
+      "ccd": "Carer’s Allowance Dispute Resolution Team",
+      "gaps": "Carers Allowance DRT",
+      "dwpRegionCentre": "Carers Allowance"
     },
     "address": {
       "line1": "Carer’s Allowance Dispute Resolution Team",
@@ -401,6 +402,22 @@
       "line3": "Pension Service 11",
       "line4": "Retirement Provision Directorate",
       "line5": "Wolverhampton",
+      "postCode": "WV98 1LW"
+    }
+  },
+  "bereavementBenefit": {
+    "code": "Pensions Dispute Resolution Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Pensions Dispute Resolution Team",
+      "gaps": "Bereavement DRT",
+      "dwpRegionCentre": "Bereavement Benefit"
+    },
+    "address": {
+      "line1": "Pensions Dispute Resolution Team",
+      "line2": "The Pension Service 11",
+      "line3": "Mail Handing Site A",
+      "line4": "Wolverhampton",
       "postCode": "WV98 1LW"
     }
   },
@@ -420,6 +437,114 @@
         "line4": "Mail Handling Site A",
         "line5": "Wolverhampton",
         "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
+  "iidb": [
+    {
+      "code": "Barrow IIDB Centre",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Barrow IIDB Centre",
+        "gaps": "Barrow-In-Furness",
+        "dwpRegionCentre": "IIDB Barrow"
+      },
+      "address": {
+        "line1": "Barrow IIDB Centre",
+        "line2": "Mail Handling Site A",
+        "line5": "Wolverhampton",
+        "postCode": "WV98 2BR"
+      }
+    },
+    {
+      "code": "Barnsley Benefit Centre",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Barnsley Benefit Centre",
+        "gaps": "Barnsley IIDB Centre",
+        "dwpRegionCentre": "IIDB Barnsley"
+      },
+      "address": {
+        "line1": "Barnsley Benefit Centre",
+        "line2": "Mail Handling Site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1SY"
+      }
+    }
+  ],
+  "maternityAllowance": {
+    "code": "Walsall Benefit Centre",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Walsall Benefit Centre",
+      "gaps": "Walsall Maternity Allowance",
+      "dwpRegionCentre": "Maternity Allowance"
+    },
+    "address": {
+      "line1": "Walsall Benefit Centre",
+      "line2": "Post Handling Site B",
+      "line3": "Wolverhampton",
+      "postCode": "WV99 1DY"
+    }
+  },
+  "jsa": [
+    {
+      "code": "Worthing DRT",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Worthing DRT",
+        "gaps": "Worthing DRT",
+        "dwpRegionCentre": "JSA Worthing"
+      },
+      "address": {
+        "line1": "Post Handling Site B",
+        "line2": "Wolverhampton",
+        "postCode": "WV99 1BY"
+      }
+    },
+    {
+      "code": "Birkenhead DRT",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Birkenhead DRT",
+        "gaps": "Birkenhead LM DRT",
+        "dwpRegionCentre": "JSA Birkenhead"
+      },
+      "address": {
+        "line1": "Post Handling Site B",
+        "line2": "Wolverhampton",
+        "postCode": "WV99 1FZ"
+      }
+    },
+    {
+      "code": "Inverness DRT",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Inverness DRT",
+        "gaps": "Inverness Benefit Centre",
+        "dwpRegionCentre": "JSA Inverness"
+      },
+      "address": {
+        "line1": "Inverness BC",
+        "line2": "Mail handling site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1PL"
       }
     },
     {

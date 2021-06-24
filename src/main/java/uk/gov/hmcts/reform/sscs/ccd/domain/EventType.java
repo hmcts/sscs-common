@@ -183,7 +183,31 @@ public enum EventType {
     DRAFT_TO_INCOMPLETE_APPLICATION("draftToIncompleteApplication", 0, false),
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
     DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false),
-    GENERATE_COVERSHEET("generateCoversheet", 0, false);
+    GENERATE_COVERSHEET("generateCoversheet", 0, false),
+    PLAYBACK_AUDIO_VIDEO_EVIDENCE("playbackAudioVideoEvidence", 0, false),
+    DWP_ACTION_DIRECTION("dwpActionDirection", 0, false),
+    DWP_ACTION_REP_ADDED("dwpActionRepAdded", 0, false),
+    ADD_HEARING("addHearing", 0, false),
+    ADMIN_SEND_TO_APPEAL_CREATED("adminSendToAppealCreated", 0, false),
+    ADMIN_SEND_TO_DRAFT("adminSendToDraft", 0, false),
+    ADMIN_SEND_TO_DRAFT_ARCHIVED("adminSendToDraftArchived", 0, false),
+    ADMIN_SEND_TO_HEARING("adminSendToHearing", 0, false),
+    ADMIN_SEND_TO_INCOMPLETE_APPLICATION("adminSendToIncompleteApplication", 0, false),
+    ADMIN_SEND_TO_INCOMPLETE_APPLICATION_INFORMATION_REQSTED("adminSendToIncompleteApplicationInformationReqsted", 0, false),
+    ADMIN_SEND_TO_READY_TO_LIST("adminSendToReadyToList", 0, false),
+    ADMIN_SEND_TOR_RSPONSE_RECEIVED("adminSendTorRsponseReceived", 0, false),
+    ADMIN_SEND_TO_VALID_APPEAL("adminSendToValidAppeal", 0, false),
+    ADMIN_UPDATE_EVENT("adminUpdateEvent", 0, false),
+    AMEND_DUE_DATE("amendDueDate", 0, false),
+    INTERLOC_REVIEW_STATE_AMEND("interlocReviewStateAmend", 0, false),
+    CLONE_BUNDLE("cloneBundle", 0, false),
+    MANAGE_DWP_DOCUMENTS("manageDwpDocuments", 0, false),
+    MANAGE_WELSH_DOCUMENTS("manageWelshDocuments", 0, false),
+    SEND_VALID_CASE_TO_INTERLOC("sendValidCaseToInterloc", 0, false),
+    ASYNC_STITCHING_COMPLETE("asyncStitchingComplete", 0, false),
+    CCD_ADMIN("CCD_ADMIN", 0, false),
+    SYSTEM_MAINTENANCE("SYSTEM_MAINTENANCE", 0, false),
+    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false);
 
     private final String type;
     private final String ccdType;

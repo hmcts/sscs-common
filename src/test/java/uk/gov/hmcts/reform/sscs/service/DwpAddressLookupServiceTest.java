@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Arrays.stream;
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
@@ -148,13 +149,86 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void getDwpOfficeNames() {
-        OfficeMapping[] result = dwpAddressLookup.allDwpBenefitOffices();
+    public void pipOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.pipOfficeMappings();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertTrue(result[0].isDefault());
-        assertFalse(result[1].isDefault());
-        assertEquals(27, result.length);
+        assertEquals(10, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void ucOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.ucOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void bereavementBenefitOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.bereavementBenefitOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void carersAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.carersAllowanceOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void maternityAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.maternityAllowanceOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void esaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.esaOfficeMappings();
+        assertEquals(13, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void jsaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.jsaOfficeMappings();
+        assertEquals(4, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void dlaOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.dlaOfficeMappings();
+        assertEquals(3, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void attendanceAllowanceOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.attendanceAllowanceOfficeMappings();
+        assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    @Parameters({
+            "PIP, 10",
+            "UC, 1",
+            "ESA, 13",
+            "DLA, 3",
+            "CARERS_ALLOWANCE, 1",
+            "BEREAVEMENT_BENEFIT, 1",
+            "ATTENDANCE_ALLOWANCE, 2",
+            "MATERNITY_ALLOWANCE, 1",
+            "JSA, 4"
+    })
+    public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
+        OfficeMapping[] officeMappings = dwpAddressLookup.getDwpOfficeMappings(benefit.getShortName());
+        assertEquals(officeMappings.length, expectedNumberOfOffices);
+        assertTrue(stream(officeMappings).anyMatch(OfficeMapping::isDefault));
     }
 
     @Test
@@ -201,6 +275,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenAUcBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("uc", null);
+
+        assertEquals("Universal Credit", result);
+    }
+
+    @Test
     public void givenAPipBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pip", "3");
 
@@ -229,10 +310,17 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenACarersAllowanceBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance", null);
+
+        assertEquals("Carers Allowance", result);
+    }
+
+    @Test
     public void givenACarersAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
-        assertEquals("Carer’s Allowance", result.get().getCode());
+        assertEquals("Carer’s Allowance Dispute Resolution Team", result.get().getCode());
     }
 
     @Test
@@ -243,11 +331,42 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenABereavementBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("bereavementBenefit", null);
+
+        assertEquals("Bereavement Benefit", result);
+    }
+
+    @Test
+    public void givenABereavementBenefitType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("bereavementBenefit", null);
+
+        assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
     public void givenADlaBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("dla", office);
+
+        assertEquals(dwpRegionalCentre, result);
+    }
+
+    @Test
+    public void givenAMaternityAllowance_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("maternityAllowance", null);
+
+        assertEquals("Walsall Benefit Centre", result.get().getCode());
+    }
+
+    @Test
+    @Parameters({
+            "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
+    })
+    public void givenAIidbBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("industrialInjuriesDisablement", office);
 
         assertEquals(dwpRegionalCentre, result);
     }
@@ -281,51 +400,17 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenAPipBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("pip");
+    public void givenAIidbBenefitType_thenReturnTheDefaultIidbOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("industrialInjuriesDisablement");
 
-        assertEquals("Newcastle", result);
+        assertEquals("Barrow IIDB Centre", result.get().getCode());
     }
 
     @Test
-    public void givenAEsaBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("esa");
+    public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultMaternityAllowanceOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("maternityAllowance");
 
-        assertEquals("Sheffield DRT", result);
+        assertEquals("Walsall Benefit Centre", result.get().getCode());
     }
 
-    @Test
-    public void givenAUcBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("uc");
-
-        assertEquals("Universal Credit", result);
-    }
-
-    @Test
-    public void givenACarersAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("carersAllowance");
-
-        assertEquals("Tyneview Park DRT", result);
-    }
-
-    @Test
-    public void givenAnAttendanceAllowanceBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("attendanceAllowance");
-
-        assertEquals("Attendance Allowance", result);
-    }
-
-    @Test
-    public void givenABenefitTypeNotMapped_thenEmptyDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("hb");
-
-        assertNull(result);
-    }
-
-    @Test
-    public void givenADlaBenefitType_thenDefaultDwpRegionalCenter() {
-        String result = dwpAddressLookup.getDefaultDwpRegionalCenterByBenefitTypeAndOffice("dla");
-
-        assertEquals("RfE", result);
-    }
 }

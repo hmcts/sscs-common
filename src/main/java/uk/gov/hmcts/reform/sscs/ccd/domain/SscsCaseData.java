@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,7 +28,6 @@ import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
-import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustBeInFuture;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -60,18 +61,13 @@ public class SscsCaseData implements CaseData {
     private List<SscsDocument> draftSscsDocument;
     private SscsDocumentDetails withdrawalDocument;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
-    private List<CorDocument> corDocument;
-    private List<CorDocument> draftCorDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
     private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
     private SscsStrikeOutDocument sscsStrikeOutDocument;
-    private String generatedNino;
-    private String generatedSurname;
-    private String generatedEmail;
     private String isSaveAndReturn;
-    private String generatedMobile;
-    @JsonProperty("generatedDOB")
-    private String generatedDob;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsDeprecatedFields sscsDeprecatedFields;
     private DirectionResponse directionResponse;
     private String evidencePresent;
     private String bulkScanCaseReference;
@@ -94,11 +90,9 @@ public class SscsCaseData implements CaseData {
     private List<AudioVideoEvidence> dwpUploadAudioVideoEvidence;
     private YesNo hasUnprocessedAudioVideoEvidence;
     private String informationFromAppellant;
+    private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
-    private String assignedToJudge;
-    private String assignedToDisabilityMember;
-    private String assignedToMedicalMember;
     private DynamicList reissueFurtherEvidenceDocument;
     @JsonProperty("resendToAppellant")
     private String resendToAppellant;
@@ -134,12 +128,12 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
-    private List<SscsInterlocDirectionDocuments> historicSscsInterlocDirectionDocs;
     private String dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
     private String dateCaseSentToGaps;
+    private String dateTimeCaseSentToGaps;
     private List<CaseLink> associatedCase;
     private DwpResponseDocument dwpAT38Document;
     private DwpResponseDocument dwpEvidenceBundleDocument;
@@ -225,7 +219,6 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
@@ -251,13 +244,11 @@ public class SscsCaseData implements CaseData {
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
     private String updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
     private String updateNotListableSetNewDueDate;
-    @LocalDateMustBeInFuture(message = "Directions due date must be in the future")
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     @JsonProperty("languagePreferenceWelsh")
@@ -339,6 +330,10 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
+    private String panelDoctorSpecialism;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -568,12 +563,35 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
+        if (sscsHearingRecordingCaseData == null) {
+            this.sscsHearingRecordingCaseData = new SscsHearingRecordingCaseData();
+        }
+        return sscsHearingRecordingCaseData;
+    }
+
+    @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public Optional<LocalDateTime> getDateTimeSentToGaps() {
+
+        Optional<LocalDateTime> ldt = Optional.empty();
+
+        try {
+            if (this.dateTimeCaseSentToGaps != null) {
+                ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps));
+            }
+        } catch (DateTimeParseException e) {
+            ldt =  Optional.empty();
+        }
+        return ldt;
     }
 
     public boolean isBenefitType(Benefit benefitType) {

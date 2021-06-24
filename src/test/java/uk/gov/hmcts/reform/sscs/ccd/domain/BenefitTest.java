@@ -34,7 +34,9 @@ public class BenefitTest {
             "DLA, Disability Living Allowance (DLA)",
             "Carer's Allowance, Carer's Allowance",
             "Attendance Allowance, Attendance Allowance",
-            "Bereavement Benefit, Bereavement Benefit"
+            "Bereavement Benefit, Bereavement Benefit",
+            "Industrial Injuries Disablement Benefit, Industrial Injuries Disablement Benefit",
+            "Maternity Allowance, Maternity Allowance",
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -44,7 +46,9 @@ public class BenefitTest {
     @Parameters({
             "carersAllowance, Carer's Allowance",
             "attendanceAllowance, Attendance Allowance",
-            "bereavementBenefit, Bereavement Benefit"
+            "bereavementBenefit, Bereavement Benefit",
+            "industrialInjuriesDisablement, Industrial Injuries Disablement Benefit",
+            "maternityAllowance, Maternity Allowance",
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -63,11 +67,13 @@ public class BenefitTest {
             new Object[]{"PIP", "Taliad Annibyniaeth Personol (PIP)"},
             new Object[]{"ESA", "Lwfans Cyflogaeth a Chymorth (ESA)"},
             new Object[]{"UC", "Credyd Cynhwysol (UC)"},
-            new Object[]{"JSA", "Job Seekers Allowance (JSA)"},
+            new Object[]{"JSA", "Lwfans Ceisio Gwaith (JSA)"},
             new Object[]{"DLA", "Lwfans Byw i’r Anabl (DLA)"},
             new Object[]{"Carer's Allowance", "Lwfans Gofalwr"},
             new Object[]{"Attendance Allowance", "Lwfans Gweini"},
             new Object[]{"Bereavement Benefit", "Budd-dal Profedigaeth"},
+            new Object[]{"Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol"},
+            new Object[]{"Maternity Allowance", "Lwfans Mamolaeth"},
         };
     }
 
@@ -75,7 +81,9 @@ public class BenefitTest {
     @Parameters({
             "carersAllowance, Lwfans Gofalwr",
             "attendanceAllowance, Lwfans Gweini",
-            "bereavementBenefit, Budd-dal Profedigaeth"
+            "bereavementBenefit, Budd-dal Profedigaeth",
+            "industrialInjuriesDisablement, Budd-dal Anabledd Anafiadau Diwydiannol",
+            "maternityAllowance, Lwfans Mamolaeth",
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
@@ -89,24 +97,10 @@ public class BenefitTest {
             "DLA, 037",
             "CARERS_ALLOWANCE, 070",
             "ESA, 051",
-            "BEREAVEMENT_BENEFIT, 094"})
+            "BEREAVEMENT_BENEFIT, 094",
+            "MATERNITY_ALLOWANCE, 079"})
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
-    }
-
-    @Test
-    @Parameters({
-            "PIP, true",
-            "ATTENDANCE_ALLOWANCE, true",
-            "UC, false",
-            "JSA, false",
-            "DLA, true",
-            "CARERS_ALLOWANCE, true",
-            "ESA, false"
-    })
-    public void isAirLookupSameAsPip(Benefit benefit, boolean expected) {
-        assertThat(benefit.isAirLookupSameAsPip(), is(expected));
-
     }
 
     @Test
@@ -114,11 +108,13 @@ public class BenefitTest {
             "PIP, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "ATTENDANCE_ALLOWANCE, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "UC, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",
-            "JSA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",
+            "JSA, JUDGE",
             "DLA, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
             "CARERS_ALLOWANCE, JUDGE",
             "BEREAVEMENT_BENEFIT, JUDGE",
-            "ESA, JUDGE_AND_A_DOCTOR"
+            "ESA, JUDGE_AND_A_DOCTOR",
+            "IIDB, JUDGE_AND_ONE_OR_TWO_DOCTORS",
+            "MATERNITY_ALLOWANCE, JUDGE",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));

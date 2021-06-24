@@ -16,7 +16,8 @@ public class PanelCompositionTest {
             {"JUDGE_DOCTOR_AND_DISABILITY_EXPERT, judge\\, doctor and disability expert, barnwr\\, meddyg ac arbenigwr anableddau",
             "JUDGE_AND_A_DOCTOR, judge and a doctor, barnwr a meddyg",
             "JUDGE, judge, barnwr",
-            "JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE, judge\\, doctor and disability expert (if applicable), barnwr\\, meddyg ac arbenigwr anabledd (os yw’n berthnasol)"}
+            "JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE, judge\\, doctor and disability expert (if applicable), barnwr\\, meddyg ac arbenigwr anabledd (os yw’n berthnasol)",
+            "JUDGE_AND_ONE_OR_TWO_DOCTORS, judge and 1 or 2 doctors, barnwr ac 1 neu 2 feddyg"}
     )
     public void assertAllValues(PanelComposition panelComposition, String english, String welsh) {
         assertThat(panelComposition.getEnglish(), is(english));
