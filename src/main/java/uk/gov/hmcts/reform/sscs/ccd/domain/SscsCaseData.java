@@ -340,7 +340,7 @@ public class SscsCaseData implements CaseData {
     private YesNo showWorkCapabilityAssessmentPage;
 
     @JsonUnwrapped
-    private SscsHearingRecordingsData hearingRecordingsData;
+    private SscsHearingRecordingsData sscsHearingRecordingCaseData;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -570,11 +570,11 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public SscsHearingRecordingsData getHearingRecordingsData() {
-        if (hearingRecordingsData == null) {
-            this.hearingRecordingsData = new SscsHearingRecordingsData();
+    public SscsHearingRecordingsData getSscsHearingRecordingCaseData() {
+        if (sscsHearingRecordingCaseData == null) {
+            this.sscsHearingRecordingCaseData = new SscsHearingRecordingsData();
         }
-        return hearingRecordingsData;
+        return sscsHearingRecordingCaseData;
     }
 
     @JsonIgnore
