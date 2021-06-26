@@ -24,8 +24,8 @@ public class SscsHearingRecording implements Comparable<SscsHearingRecording> {
     @Override
     public int compareTo(SscsHearingRecording o) {
         return new CompareToBuilder()
-            .append(this.value.getDocumentLink().getDocumentBinaryUrl(),
-                o.getValue().getDocumentLink().getDocumentBinaryUrl())
+            .append(this.value.getHearingDate(),
+                o.getValue().getHearingDate())
             .toComparison();
     }
 }

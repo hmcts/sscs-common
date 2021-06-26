@@ -4,28 +4,23 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.Builder;
-import lombok.Value;
-import org.apache.commons.lang3.builder.CompareToBuilder;
+import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class HearingRecording implements Comparable<HearingRecording> {
+public class HearingRecording {
 
-    private HearingRecordingDetails value;
+    private List<HearingRecordingDetails> recordings;
+    private String hearingType;
 
     @JsonCreator
-    public HearingRecording(@JsonProperty("value") HearingRecordingDetails value) {
-        this.value = value;
-    }
-
-    @Override
-    public int compareTo(HearingRecording o) {
-        return new CompareToBuilder()
-            .append(this.value.getDocumentLink().getDocumentBinaryUrl(),
-                o.getValue().getDocumentLink().getDocumentBinaryUrl())
-            .toComparison();
+    public HearingRecording(@JsonProperty("recordings") List<HearingRecordingDetails> recordings,
+                            @JsonProperty("hearingType") String hearingType) {
+        this.recordings = recordings;
+        this.hearingType = hearingType;
     }
 }

@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 public class SscsHearingRecordingCaseData {
     private DynamicList selectHearingDetails;
 
-    @JsonProperty("hearingRecordings")
-    private List<HearingRecording> hearingRecordings;
+    @JsonProperty("hearingRecording")
+    private HearingRecording hearingRecording;
 
     @JsonProperty("sscsHearingRecordings")
     private List<SscsHearingRecording> sscsHearingRecordings;
