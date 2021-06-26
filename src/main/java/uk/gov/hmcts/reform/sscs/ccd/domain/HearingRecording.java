@@ -24,8 +24,8 @@ public class HearingRecording implements Comparable<HearingRecording> {
     @Override
     public int compareTo(HearingRecording o) {
         return new CompareToBuilder()
-            .append(this.value.getDocumentLink().getDocumentBinaryUrl(),
-                o.getValue().getDocumentLink().getDocumentBinaryUrl())
+            .append(this.value.getHearingType(),
+                o.getValue().getHearingType())
             .toComparison();
     }
 }
