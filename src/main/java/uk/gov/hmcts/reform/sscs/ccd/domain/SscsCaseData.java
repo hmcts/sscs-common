@@ -333,6 +333,8 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+    private TestField testField;
+    private DynamicList testFieldTop;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
