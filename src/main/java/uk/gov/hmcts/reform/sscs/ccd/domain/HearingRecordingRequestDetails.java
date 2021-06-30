@@ -12,7 +12,7 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class HearingRecordingRequestDetails {
     String requestingParty;
-    String requestedHearing;
+    String requestedHearingId;
     String status;
     String requestedHearingName;
     String dateRequested;
@@ -21,13 +21,13 @@ public class HearingRecordingRequestDetails {
 
     @JsonCreator
     public HearingRecordingRequestDetails(@JsonProperty("requestingParty") String requestingParty,
-                                   @JsonProperty("requestedHearing") String requestedHearing,
+                                   @JsonProperty("requestedHearingId") String requestedHearingId,
                                    @JsonProperty("status") String status,
                                    @JsonProperty("requestedHearingName") String requestedHearingName,
                                    @JsonProperty("dateRequested") String dateRequested,
                                    @JsonProperty("sscsHearingRecordingList") List<SscsHearingRecording> sscsHearingRecordingList) {
         this.requestingParty = requestingParty;
-        this.requestedHearing = requestedHearing;
+        this.requestedHearingId = requestedHearingId;
         this.status = status;
         this.requestedHearingName = requestedHearingName;
         this.dateRequested = dateRequested;
