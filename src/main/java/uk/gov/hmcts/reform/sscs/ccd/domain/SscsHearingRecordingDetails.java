@@ -17,16 +17,19 @@ public class SscsHearingRecordingDetails {
     private String hearingType;
     private String hearingDate;
     private String uploadDate;
+    private String hearingId;
 
     @JsonCreator
     public SscsHearingRecordingDetails(@JsonProperty("recordings") List<HearingRecordingDetails> recordings,
                                        @JsonProperty("hearingType") String hearingType,
                                        @JsonProperty("hearingDate") String hearingDate,
-                                       @JsonProperty("uploadDate") String uploadDate) {
+                                       @JsonProperty("uploadDate") String uploadDate,
+                                       @JsonProperty("hearingId") String hearingId) {
         this.recordings = recordings;
         this.hearingType = hearingType;
         this.hearingDate = hearingDate;
         this.uploadDate = uploadDate;
+        this.hearingId = hearingId;
     }
 
 }
