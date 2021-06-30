@@ -26,6 +26,5 @@ public class SscsHearingRecordingCaseData {
 
     private HearingRecording hearingRecording;
     private List<SscsHearingRecording> sscsHearingRecordings;
-    private YesNo showHearingRecordings;
 
 }
