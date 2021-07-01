@@ -15,15 +15,15 @@ public class CaseCodeServiceTest {
     CaseCodeService caseCodeService;
 
     @Test
-    @Parameters({"PIP, 002", "ESA, 051", "UC, 001", "DLA, 037", "Carer's Allowance, 070"})
+    @Parameters({"PIP, 002", "ESA, 051", "UC, 001", "DLA, 037", "Carer's Allowance, 070", "Social Fund, 061"})
     public void givenABenefit_thenReturnTheCorrectBenefitCode(String benefit, String expected) {
-        assertEquals(expected, caseCodeService.generateBenefitCode(benefit));
+        assertEquals(expected, caseCodeService.generateBenefitCode(benefit, "Pensions Dispute Resolution Team"));
     }
 
     @Test(expected = BenefitMappingException.class)
     public void givenAnUnknownBenefit_thenThrowABenefitMappingException() {
         String benefit = "random";
-        caseCodeService.generateBenefitCode(benefit);
+        caseCodeService.generateBenefitCode(benefit, null);
     }
 
     @Test
