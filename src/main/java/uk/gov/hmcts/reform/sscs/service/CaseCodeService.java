@@ -1,11 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
-
 import static com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils.isNotBlank;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_DOCTOR;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 
 public final class CaseCodeService {
 
@@ -23,6 +20,7 @@ public final class CaseCodeService {
                     return "089";
                 case "Pensions Dispute Resolution Team":
                     return "061";
+                default: return "088";
             }
         }
         return selectedBenefit.getBenefitCode();
