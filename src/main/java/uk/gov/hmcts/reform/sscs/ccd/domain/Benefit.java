@@ -36,7 +36,7 @@ public enum Benefit {
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue),
     MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, DwpAddressLookupService::maternityAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
+    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088", "089", "061"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
 
 
     private final String description;

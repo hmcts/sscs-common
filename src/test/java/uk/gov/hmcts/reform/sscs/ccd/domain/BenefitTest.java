@@ -37,6 +37,7 @@ public class BenefitTest {
             "Bereavement Benefit, Bereavement Benefit",
             "Industrial Injuries Disablement Benefit, Industrial Injuries Disablement Benefit",
             "Maternity Allowance, Maternity Allowance",
+            "Social Fund, Social Fund"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -49,6 +50,7 @@ public class BenefitTest {
             "bereavementBenefit, Bereavement Benefit",
             "industrialInjuriesDisablement, Industrial Injuries Disablement Benefit",
             "maternityAllowance, Maternity Allowance",
+            "socialFund, Social Fund"
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -74,6 +76,7 @@ public class BenefitTest {
             new Object[]{"Bereavement Benefit", "Budd-dal Profedigaeth"},
             new Object[]{"Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol"},
             new Object[]{"Maternity Allowance", "Lwfans Mamolaeth"},
+            new Object[]{"Social Fund", "Cronfa Gymdeithasol"},
         };
     }
 
@@ -84,6 +87,7 @@ public class BenefitTest {
             "bereavementBenefit, Budd-dal Profedigaeth",
             "industrialInjuriesDisablement, Budd-dal Anabledd Anafiadau Diwydiannol",
             "maternityAllowance, Lwfans Mamolaeth",
+            "socialFund, Cronfa Gymdeithasol"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
@@ -98,7 +102,8 @@ public class BenefitTest {
             "CARERS_ALLOWANCE, 070",
             "ESA, 051",
             "BEREAVEMENT_BENEFIT, 094",
-            "MATERNITY_ALLOWANCE, 079"})
+            "MATERNITY_ALLOWANCE, 079",
+            "SOCIAL_FUND, 088, 089, 061"})
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
@@ -115,6 +120,7 @@ public class BenefitTest {
             "ESA, JUDGE_AND_A_DOCTOR",
             "IIDB, JUDGE_AND_ONE_OR_TWO_DOCTORS",
             "MATERNITY_ALLOWANCE, JUDGE",
+            "SOCIAL_FUND, JUDGE"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
