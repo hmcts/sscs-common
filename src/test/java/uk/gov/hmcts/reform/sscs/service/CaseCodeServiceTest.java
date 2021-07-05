@@ -15,9 +15,15 @@ public class CaseCodeServiceTest {
     CaseCodeService caseCodeService;
 
     @Test
-    @Parameters({"PIP, 002", "ESA, 051", "UC, 001", "DLA, 037", "Carer's Allowance, 070", "Social Fund, 061"})
+    @Parameters({"PIP, 002", "ESA, 051", "UC, 001", "DLA, 037", "Carer's Allowance, 070"})
     public void givenABenefit_thenReturnTheCorrectBenefitCode(String benefit, String expected) {
-        assertEquals(expected, caseCodeService.generateBenefitCode(benefit, "Pensions Dispute Resolution Team"));
+        assertEquals(expected, caseCodeService.generateBenefitCode(benefit, null));
+    }
+
+    @Test
+    @Parameters({"St Helens Sure Start Maternity Grant, 088", "Funeral Payment Dispute Resolution Team, 089", "Pensions Dispute Resolution Team, 061"})
+    public void givenSocialFundBenefit_thenReturnTheCorrectBenefitCodeBasedOnAddress(String address, String expected) {
+        assertEquals(expected, caseCodeService.generateBenefitCode("socialFund", address));
     }
 
     @Test(expected = BenefitMappingException.class)
