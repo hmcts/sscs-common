@@ -29,8 +29,4 @@ public class SscsHearingRecordingCaseData {
 
     @JsonProperty("sscsHearingRecordings")
     private List<SscsHearingRecording> sscsHearingRecordings;
-
-    @JsonProperty("showHearingRecordings")
-    private YesNo showHearingRecordings;
-
 }
