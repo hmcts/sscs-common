@@ -592,14 +592,14 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Funeral Payment Dispute Resolution Team",
-        "gaps": "Funeral Payment",
-        "dwpRegionCentre": "JSA Birkenhead"
+        "gaps": "Funeral Payments DRT",
+        "dwpRegionCentre": "Funeral Payment"
       },
       "address": {
         "line1": "The Pension Service 11",
         "line2": "Mail Handing Site A",
         "line3": "Wolverhampton",
-        "postCode": "WV99 1FZ"
+        "postCode": "WV98 1LW"
       }
     },
     {
@@ -612,7 +612,7 @@
       },
       "address": {
         "line1": "The Pension Service 11",
-        "line2": "Mail handling site A",
+        "line2": "Mail Handling Site A",
         "line3": "Wolverhampton",
         "postCode": "WV98 1LW"
       }
