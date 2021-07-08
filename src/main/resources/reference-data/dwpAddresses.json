@@ -571,5 +571,51 @@
       "line3": "2 Leman Street, London",
       "postCode": "E1 8FA"
     }
-  }
+  },
+  "socialFund": [
+    {
+      "code": "St Helens Sure Start Maternity Grant",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "St Helens Sure Start Maternity Grant",
+        "gaps": "St Helens Maternity Grants",
+        "dwpRegionCentre": "SSMG"
+      },
+      "address": {
+        "line1": "Mail Handling Site A",
+        "line2": "Wolverhampton",
+        "postCode": "WV98 1SU"
+      }
+    },
+    {
+      "code": "Funeral Payment Dispute Resolution Team",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Funeral Payment Dispute Resolution Team",
+        "gaps": "Funeral Payments DRT",
+        "dwpRegionCentre": "Funeral Payment"
+      },
+      "address": {
+        "line1": "The Pension Service 11",
+        "line2": "Mail Handing Site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Pensions Dispute Resolution Team",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Pensions Dispute Resolution Team",
+        "gaps": "Pensions Disputes Resolution Team",
+        "dwpRegionCentre": "Winter Fuel Payment"
+      },
+      "address": {
+        "line1": "The Pension Service 11",
+        "line2": "Mail Handling Site A",
+        "line3": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    }
+  ]
 }
