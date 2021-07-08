@@ -81,7 +81,7 @@ public class IdamServiceTest {
         IdamTokens idamTokens = idamService.getIdamTokens();
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
         assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
@@ -133,7 +133,7 @@ public class IdamServiceTest {
 
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
         assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         // second time
@@ -141,7 +141,7 @@ public class IdamServiceTest {
 
         assertThat(idamTokens.getServiceAuthorization(), is(auth));
         assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getName()));
+        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
         verify(idamClient, atMostOnce()).getAccessToken("email", "pass");

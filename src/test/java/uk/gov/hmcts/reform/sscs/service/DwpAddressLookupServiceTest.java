@@ -200,6 +200,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void socialFundOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.socialFundOfficeMappings();
+        assertEquals(3, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     public void dlaOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.dlaOfficeMappings();
         assertEquals(3, result.length);
