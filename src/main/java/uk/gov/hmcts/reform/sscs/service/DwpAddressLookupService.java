@@ -178,6 +178,10 @@ public class DwpAddressLookupService {
         return dwpMappings.getSocialFund();
     }
 
+    public OfficeMapping[] incomeSupportOfficeMappings() {
+        return dwpMappings.getIncomeSupport();
+    }
+
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
         return stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
