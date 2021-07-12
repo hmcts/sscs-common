@@ -630,7 +630,6 @@
       "address": {
         "line1": "Post Handling Site B",
         "line2": "Wolverhampton",
-        "line3": "WOLVERHAMPTON",
         "postCode": "WV99 1BY"
       }
     },
@@ -644,7 +643,7 @@
       },
       "address": {
         "line1": "Post Handling Site B",
-        "line2": "WOLVERHAMPTON",
+        "line2": "Wolverhampton",
         "postCode": "WV99 1FZ"
       }
     },
@@ -658,7 +657,7 @@
       },
       "address": {
         "line1": "Inverness BC",
-        "line2": "Mail handling site A",
+        "line2": "Mail Handling Site A",
         "line3": "Wolverhampton",
         "postCode": "WV98 1PL"
       }
