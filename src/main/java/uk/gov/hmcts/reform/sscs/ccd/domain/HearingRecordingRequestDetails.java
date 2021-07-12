@@ -11,20 +11,23 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class HearingRecordingRequestDetails {
-    String requestingParty;
-    String status;
-    String dateRequested;
-    List<SscsHearingRecording> sscsHearingRecordingList;
+    private String requestingParty;
+    private String status;
+    private String dateRequested;
+    private DocumentLink requestDocument;
+    private List<SscsHearingRecording> sscsHearingRecordingList;
 
 
     @JsonCreator
     public HearingRecordingRequestDetails(@JsonProperty("requestingParty") String requestingParty,
                                    @JsonProperty("status") String status,
                                    @JsonProperty("dateRequested") String dateRequested,
+                                   @JsonProperty("requestDocument") DocumentLink requestDocument,
                                    @JsonProperty("sscsHearingRecordingList") List<SscsHearingRecording> sscsHearingRecordingList) {
         this.requestingParty = requestingParty;
         this.status = status;
         this.dateRequested = dateRequested;
+        this.requestDocument = requestDocument;
         this.sscsHearingRecordingList = sscsHearingRecordingList;
     }
 }
