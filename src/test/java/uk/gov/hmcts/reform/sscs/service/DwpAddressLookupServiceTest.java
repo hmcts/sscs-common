@@ -299,7 +299,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAEsaBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
 
-        assertEquals("Sheffield DRT", result);
+        assertEquals("Balham DRT", result);
     }
 
     @Test
@@ -418,6 +418,13 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("maternityAllowance");
 
         assertEquals("Walsall Benefit Centre", result.get().getCode());
+    }
+
+    @Test
+    public void allDwpMappingsHaveADwpRegionCentre() {
+        stream(Benefit.values())
+            .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
+            .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
     }
 
 }

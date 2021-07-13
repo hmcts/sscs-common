@@ -147,7 +147,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Balham DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -161,7 +162,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Birkenhead LM DRT",
-        "gaps": "Birkenhead LM DRT"
+        "gaps": "Birkenhead LM DRT",
+        "dwpRegionCentre": "Birkenhead LM DRT"
       },
       "address": {
         "line1": "Birkenhead Benefit Centre",
@@ -175,7 +177,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Chesterfield DRT",
-        "gaps": "Chesterfield Benefit Centre"
+        "gaps": "Chesterfield Benefit Centre",
+        "dwpRegionCentre": "Chesterfield DRT"
       },
       "address": {
         "line1": "Chesterfield Benefit Centre",
@@ -189,7 +192,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Coatbridge Benefit Centre",
-        "gaps": "Coatbridge Benefit Centre"
+        "gaps": "Coatbridge Benefit Centre",
+        "dwpRegionCentre": "Coatbridge Benefit Centre"
       },
       "address": {
         "line1": "Coatbridge Benefit Centre",
@@ -203,7 +207,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Inverness DRT",
-        "gaps": "Inverness Benefit Centre"
+        "gaps": "Inverness Benefit Centre",
+        "dwpRegionCentre": "Inverness DRT"
       },
       "address": {
         "line1": "Inverness Benefit Centre",
@@ -217,7 +222,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Lowestoft DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -231,7 +237,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Milton Keynes DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -245,7 +252,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Norwich DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -259,7 +267,8 @@
       "isDefault": true,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Sheffield DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -273,7 +282,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Springburn DRT",
-        "gaps": "Watford Service Centre"
+        "gaps": "Watford Service Centre",
+        "dwpRegionCentre": "Springburn DRT"
       },
       "address": {
         "line1": "Springburn DRT",
@@ -287,7 +297,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Watford DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -301,7 +312,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Wellingborough DRT",
-        "gaps": "Wellingborough DRT"
+        "gaps": "Wellingborough DRT",
+        "dwpRegionCentre": "Wellingborough DRT"
       },
       "address": {
         "line1": "Post Handling Site B",
@@ -314,7 +326,8 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Sheffield DRT",
-        "gaps": "Sheffield Benefit Centre"
+        "gaps": "Sheffield Benefit Centre",
+        "dwpRegionCentre": "Worthing DRT"
       },
       "address": {
         "line1": "Sheffield Benefit Centre",
@@ -379,7 +392,8 @@
     "isDefault": true,
     "mapping": {
       "ccd": "Universal Credit",
-      "gaps": "Universal Credit"
+      "gaps": "Universal Credit",
+      "dwpRegionCentre": "Universal Credit"
     },
     "address": {
       "line1": "Universal Credit",
