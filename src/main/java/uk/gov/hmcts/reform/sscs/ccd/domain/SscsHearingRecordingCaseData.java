@@ -23,6 +23,8 @@ public class SscsHearingRecordingCaseData {
     private String requestedHearingsTextList;
     private String releasedHearingsTextList;
     private YesNo hearingRecordingRequestOutstanding;
+    private DynamicList requestingParty;
+    private YesNo showRequestingPartyPage;
 
     @JsonProperty("hearingRecording")
     private HearingRecording hearingRecording;
