@@ -19,5 +19,6 @@ public class DwpMappings {
     private OfficeMapping maternityAllowance;
     private OfficeMapping testHmctsAddress;
     private OfficeMapping[] socialFund;
+    private OfficeMapping[] incomeSupport;
 }
 
