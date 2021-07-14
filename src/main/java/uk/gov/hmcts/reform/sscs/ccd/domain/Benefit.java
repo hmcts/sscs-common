@@ -75,8 +75,9 @@ public enum Benefit {
             case ESA:
                 return JUDGE_AND_A_DOCTOR;
             case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA: case MATERNITY_ALLOWANCE: case SOCIAL_FUND: case INCOME_SUPPORT:
+                case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME: case PENSION_CREDITS: case RETIREMENT_PENSION:
                 return JUDGE;
-            case IIDB:
+            case IIDB: case INDUSTRIAL_DEATH_BENEFIT:
                 return JUDGE_AND_ONE_OR_TWO_DOCTORS;
             default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
         }

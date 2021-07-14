@@ -127,7 +127,11 @@ public class BenefitTest {
             "IIDB, JUDGE_AND_ONE_OR_TWO_DOCTORS",
             "MATERNITY_ALLOWANCE, JUDGE",
             "SOCIAL_FUND, JUDGE",
-            "INCOME_SUPPORT, JUDGE"
+            "INCOME_SUPPORT, JUDGE",
+            "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, JUDGE",
+            "INDUSTRIAL_DEATH_BENEFIT, JUDGE_AND_ONE_OR_TWO_DOCTORS",
+            "PENSION_CREDITS, JUDGE",
+            "RETIREMENT_PENSION, JUDGE",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
