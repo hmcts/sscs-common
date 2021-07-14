@@ -160,7 +160,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void ucOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.ucOfficeMappings();
-        assertEquals(1, result.length);
+        assertEquals(2, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
@@ -230,7 +230,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({
             "PIP, 10",
-            "UC, 1",
+            "UC, 2",
             "ESA, 13",
             "DLA, 3",
             "CARERS_ALLOWANCE, 1",
@@ -297,6 +297,13 @@ public class DwpAddressLookupServiceTest {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("uc", null);
 
         assertEquals("Universal Credit", result);
+    }
+
+    @Test
+    public void givenAUcBenefitTypeAndOffice_thenReturnTheUcOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("uc", "Recovery from Estates");
+
+        assertEquals("Recovery from Estates", result.get().getCode());
     }
 
     @Test
