@@ -81,14 +81,11 @@ public class DwpAddressLookupService {
 
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
         Optional<OfficeMapping> officeMapping = getDwpMappingByOffice(benefitType, dwpIssuingOffice);
-        return getDwpRegionalCenterByBenefitType(officeMapping);
+        return getDwpRegionalCenterByBenefitType(officeMapping).orElse(null);
     }
 
-    private String getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
-        if (officeMapping.map(m -> m.getMapping().getDwpRegionCentre() != null).orElse(false)) {
-            return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre()).orElse(null);
-        }
-        return officeMapping.map(mapping -> mapping.getMapping().getCcd()).orElse(null);
+    private Optional<String> getDwpRegionalCenterByBenefitType(Optional<OfficeMapping> officeMapping) {
+        return officeMapping.map(mapping -> mapping.getMapping().getDwpRegionCentre());
     }
 
     public OfficeMapping[] getDwpOfficeMappings(String benefitType) {
@@ -172,6 +169,14 @@ public class DwpAddressLookupService {
 
     public OfficeMapping[] maternityAllowanceOfficeMappings() {
         return new OfficeMapping[]{dwpMappings.getMaternityAllowance()};
+    }
+
+    public OfficeMapping[] socialFundOfficeMappings() {
+        return dwpMappings.getSocialFund();
+    }
+
+    public OfficeMapping[] incomeSupportOfficeMappings() {
+        return dwpMappings.getIncomeSupport();
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {

@@ -200,6 +200,13 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void socialFundOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.socialFundOfficeMappings();
+        assertEquals(3, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     public void dlaOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.dlaOfficeMappings();
         assertEquals(3, result.length);
@@ -210,6 +217,13 @@ public class DwpAddressLookupServiceTest {
     public void attendanceAllowanceOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.attendanceAllowanceOfficeMappings();
         assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void incomeSupportOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.incomeSupportOfficeMappings();
+        assertEquals(4, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
@@ -235,6 +249,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", "3");
 
+        assertTrue(result.isPresent());
         assertEquals("3", result.get().getCode());
     }
 
@@ -250,6 +265,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAPipBenefitTypeAndAeOffice_thenFuzzyMatch(String pipAe) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", pipAe);
 
+        assertTrue(result.isPresent());
         assertEquals("AE", result.get().getCode());
     }
 
@@ -257,6 +273,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaEmpty() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", "Balham DRT");
 
+        assertTrue(result.isPresent());
         assertEquals("Balham DRT", result.get().getCode());
     }
 
@@ -271,6 +288,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAUcBenefitType_thenReturnTheUcOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("uc", null);
 
+        assertTrue(result.isPresent());
         assertEquals("Universal Credit", result.get().getCode());
     }
 
@@ -292,7 +310,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAEsaBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("esa", "Balham DRT");
 
-        assertEquals("Sheffield DRT", result);
+        assertEquals("Balham DRT", result);
     }
 
     @Test
@@ -320,6 +338,7 @@ public class DwpAddressLookupServiceTest {
     public void givenACarersAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("carersAllowance", null);
 
+        assertTrue(result.isPresent());
         assertEquals("Carer’s Allowance Dispute Resolution Team", result.get().getCode());
     }
 
@@ -327,6 +346,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAnAttendanceAllowanceBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("attendanceAllowance", "Recovery from Estates");
 
+        assertTrue(result.isPresent());
         assertEquals("Recovery from Estates", result.get().getCode());
     }
 
@@ -341,6 +361,7 @@ public class DwpAddressLookupServiceTest {
     public void givenABereavementBenefitType_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("bereavementBenefit", null);
 
+        assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
     }
 
@@ -358,6 +379,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAMaternityAllowance_thenReturnTheOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("maternityAllowance", null);
 
+        assertTrue(result.isPresent());
         assertEquals("Walsall Benefit Centre", result.get().getCode());
     }
 
@@ -382,6 +404,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAPipBenefitType_thenReturnTheDefaultPipOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
 
+        assertTrue(result.isPresent());
         assertEquals("1", result.get().getCode());
     }
 
@@ -389,6 +412,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAEsaBenefitType_thenReturnTheDefaultEsaOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("esa");
 
+        assertTrue(result.isPresent());
         assertEquals("Sheffield DRT", result.get().getCode());
     }
 
@@ -396,6 +420,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAUcBenefitType_thenReturnTheDefaultUcOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("uc");
 
+        assertTrue(result.isPresent());
         assertEquals("Universal Credit", result.get().getCode());
     }
 
@@ -403,6 +428,7 @@ public class DwpAddressLookupServiceTest {
     public void givenAIidbBenefitType_thenReturnTheDefaultIidbOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("industrialInjuriesDisablement");
 
+        assertTrue(result.isPresent());
         assertEquals("Barrow IIDB Centre", result.get().getCode());
     }
 
@@ -410,7 +436,23 @@ public class DwpAddressLookupServiceTest {
     public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultMaternityAllowanceOffice() {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("maternityAllowance");
 
+        assertTrue(result.isPresent());
         assertEquals("Walsall Benefit Centre", result.get().getCode());
+    }
+
+    @Test
+    public void givenAnIncomeSupportBenefitType_thenReturnTheDefaultIncomeSupprtOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("incomeSupport");
+
+        assertTrue(result.isPresent());
+        assertEquals("Worthing DRT", result.get().getCode());
+    }
+
+    @Test
+    public void allDwpMappingsHaveADwpRegionCentre() {
+        stream(Benefit.values())
+            .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
+            .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
     }
 
 }
