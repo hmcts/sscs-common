@@ -20,5 +20,10 @@ public class DwpMappings {
     private OfficeMapping testHmctsAddress;
     private OfficeMapping[] socialFund;
     private OfficeMapping[] incomeSupport;
+    private OfficeMapping bereavementSupportPaymentScheme;
+    private OfficeMapping[] industrialDeathBenefit;
+    private OfficeMapping[] pensionCredits;
+    private OfficeMapping[] retirementPension;
+
 }
 

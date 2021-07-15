@@ -38,7 +38,11 @@ public class BenefitTest {
             "Industrial Injuries Disablement Benefit, Industrial Injuries Disablement Benefit",
             "Maternity Allowance, Maternity Allowance",
             "Social Fund, Social Fund",
-            "Income Support, Income Support"
+            "Income Support, Income Support",
+            "Bereavement Support Payment Scheme, Bereavement Support Payment Scheme",
+            "Industrial Death Benefit, Industrial Death Benefit",
+            "Pension Credits, Pension Credits",
+            "Retirement Pension, Retirement Pension"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -52,7 +56,11 @@ public class BenefitTest {
             "industrialInjuriesDisablement, Industrial Injuries Disablement Benefit",
             "maternityAllowance, Maternity Allowance",
             "socialFund, Social Fund",
-            "incomeSupport, Income Support"
+            "incomeSupport, Income Support",
+            "bereavementSupportPaymentScheme, Bereavement Support Payment Scheme",
+            "industrialDeathBenefit, Industrial Death Benefit",
+            "pensionCredits, Pension Credits",
+            "retirementPension, Retirement Pension"
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -80,6 +88,10 @@ public class BenefitTest {
             new Object[]{"Maternity Allowance", "Lwfans Mamolaeth"},
             new Object[]{"Social Fund", "Cronfa Gymdeithasol"},
             new Object[]{"Income Support", "Cymhorthdal Incwm"},
+            new Object[]{"Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth"},
+            new Object[]{"Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol"},
+            new Object[]{"Pension Credits", "Credydau Pensiwn"},
+            new Object[]{"Retirement Pension", "Pensiwn Ymddeol"}
         };
     }
 
@@ -91,7 +103,11 @@ public class BenefitTest {
             "industrialInjuriesDisablement, Budd-dal Anabledd Anafiadau Diwydiannol",
             "maternityAllowance, Lwfans Mamolaeth",
             "socialFund, Cronfa Gymdeithasol",
-            "incomeSupport, Cymhorthdal Incwm"
+            "incomeSupport, Cymhorthdal Incwm",
+            "Bereavement Support Payment Scheme, Cynllun Taliad Cymorth Profedigaeth",
+            "Industrial Death Benefit, Budd Marwolaeth Ddiwydiannol",
+            "Pension Credits, Credydau Pensiwn",
+            "Retirement Pension, Pensiwn Ymddeol"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
@@ -109,6 +125,10 @@ public class BenefitTest {
             "MATERNITY_ALLOWANCE, 079",
             "SOCIAL_FUND, 088, 089, 061",
             "INCOME_SUPPORT, 061",
+            "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 095",
+            "INDUSTRIAL_DEATH_BENEFIT, 064",
+            "PENSION_CREDITS, 045",
+            "RETIREMENT_PENSION, 082",
     })
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
@@ -127,7 +147,11 @@ public class BenefitTest {
             "IIDB, JUDGE_AND_ONE_OR_TWO_DOCTORS",
             "MATERNITY_ALLOWANCE, JUDGE",
             "SOCIAL_FUND, JUDGE",
-            "INCOME_SUPPORT, JUDGE"
+            "INCOME_SUPPORT, JUDGE",
+            "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, JUDGE",
+            "INDUSTRIAL_DEATH_BENEFIT, JUDGE_AND_ONE_OR_TWO_DOCTORS",
+            "PENSION_CREDITS, JUDGE",
+            "RETIREMENT_PENSION, JUDGE",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
