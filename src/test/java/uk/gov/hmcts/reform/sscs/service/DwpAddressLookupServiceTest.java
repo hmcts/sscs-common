@@ -228,6 +228,27 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void industrialDeathBenefitOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.industrialDeathBenefitOfficeMappings();
+        assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void pensionCreditsOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.pensionCreditsOfficeMappings();
+        assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void retirementPensionOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.retirementPensionOfficeMappings();
+        assertEquals(2, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
     @Parameters({
             "PIP, 10",
             "UC, 1",
