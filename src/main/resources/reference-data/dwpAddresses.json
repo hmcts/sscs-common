@@ -139,6 +139,22 @@
         "line2": "WOLVERHAMPTON",
         "postCode": "WV98 2EU"
       }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "PIP Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
     }
   ],
   "esa": [
@@ -335,6 +351,22 @@
         "line3": "WOLVERHAMPTON",
         "postCode": "WV98 1FZ"
       }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "ESA Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
     }
   ],
   "dla": [
@@ -387,7 +419,7 @@
       }
     }
   ],
-  "uc": {
+  "uc": [{
     "code": "Universal Credit",
     "isDefault": true,
     "mapping": {
@@ -402,6 +434,22 @@
       "postCode": "WV99 1AJ"
     }
   },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "UC Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }],
   "carersAllowance": {
     "code": "Carer’s Allowance Dispute Resolution Team",
     "isDefault": true,
