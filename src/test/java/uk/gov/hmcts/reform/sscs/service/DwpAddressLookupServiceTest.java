@@ -153,7 +153,7 @@ public class DwpAddressLookupServiceTest {
         OfficeMapping[] result = dwpAddressLookup.pipOfficeMappings();
 
         assertEquals("DWP PIP (1)", result[0].getMapping().getGaps());
-        assertEquals(10, result.length);
+        assertEquals(11, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
@@ -188,7 +188,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void esaOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.esaOfficeMappings();
-        assertEquals(13, result.length);
+        assertEquals(14, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
@@ -229,9 +229,9 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "PIP, 10",
+            "PIP, 11",
             "UC, 2",
-            "ESA, 13",
+            "ESA, 14",
             "DLA, 3",
             "CARERS_ALLOWANCE, 1",
             "BEREAVEMENT_BENEFIT, 1",
@@ -246,11 +246,12 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", "3");
+    @Parameters({"3", "Recovery from Estates"})
+    public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice(String office) {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", office);
 
         assertTrue(result.isPresent());
-        assertEquals("3", result.get().getCode());
+        assertEquals(office, result.get().getCode());
     }
 
     @Test
@@ -270,11 +271,12 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaEmpty() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", "Balham DRT");
+    @Parameters({"Balham DRT", "Recovery from Estates"})
+    public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaEmpty(String office) {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", office);
 
         assertTrue(result.isPresent());
-        assertEquals("Balham DRT", result.get().getCode());
+        assertEquals(office, result.get().getCode());
     }
 
     @Test
