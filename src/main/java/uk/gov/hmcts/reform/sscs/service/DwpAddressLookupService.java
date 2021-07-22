@@ -182,6 +182,22 @@ public class DwpAddressLookupService {
         return dwpMappings.getIncomeSupport();
     }
 
+    public OfficeMapping[] bereavementSupportPaymentSchemeOfficeMappings() {
+        return new OfficeMapping[]{dwpMappings.getBereavementSupportPaymentScheme()};
+    }
+
+    public OfficeMapping[] industrialDeathBenefitOfficeMappings() {
+        return dwpMappings.getIndustrialDeathBenefit();
+    }
+
+    public OfficeMapping[] pensionCreditsOfficeMappings() {
+        return dwpMappings.getPensionCredits();
+    }
+
+    public OfficeMapping[] retirementPensionOfficeMappings() {
+        return dwpMappings.getRetirementPension();
+    }
+
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
         return stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
