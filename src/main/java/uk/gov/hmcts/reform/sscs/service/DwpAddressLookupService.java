@@ -105,6 +105,9 @@ public class DwpAddressLookupService {
         if (dwpOfficeMappings.length == 1) {
             return of(dwpOfficeMappings[0]);
         }
+        if (dwpIssuingOffice == null) {
+            return stream(dwpOfficeMappings).filter(OfficeMapping::isDefault).findFirst();
+        }
         String dwpIssuingOfficeSearch = isPipBenefit(benefitType)
                 ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
         return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
@@ -140,7 +143,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] ucOfficeMappings() {
-        return new OfficeMapping[]{dwpMappings.getUc()};
+        return dwpMappings.getUc();
     }
 
     public OfficeMapping[] carersAllowanceOfficeMappings() {
