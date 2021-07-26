@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -32,7 +31,6 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 public class DwpAddressLookupService {
 
     private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
-    private static final String RECOVERY_FROM_ESTATES = "Recovery from Estates";
 
     private final DwpMappings dwpMappings;
 
@@ -111,14 +109,8 @@ public class DwpAddressLookupService {
             return stream(dwpOfficeMappings).filter(OfficeMapping::isDefault).findFirst();
         }
 
-        String dwpIssuingOfficeSearch;
-        if (StringUtils.containsIgnoreCase(dwpIssuingOffice, RECOVERY_FROM_ESTATES)) {
-            dwpIssuingOfficeSearch = RECOVERY_FROM_ESTATES;
-        } else if (isPipBenefit(benefitType)) {
-            dwpIssuingOfficeSearch = stripDwpIssuingOfficeForPip(dwpIssuingOffice);
-        } else {
-            dwpIssuingOfficeSearch = dwpIssuingOffice;
-        }
+        String dwpIssuingOfficeSearch = isPipBenefit(benefitType) ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+
         return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
     }
 
@@ -208,8 +200,16 @@ public class DwpAddressLookupService {
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
-        return stream(mappings)
+        Optional<OfficeMapping> officeMapping = stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
                 .findFirst();
+
+        if (officeMapping.isEmpty()) {
+            officeMapping = stream(mappings)
+                    .filter(office -> equalsAnyIgnoreCase(office.getMapping().getCcd(), stripToEmpty(dwpIssuingOffice)))
+                    .findFirst();
+        }
+
+        return officeMapping;
     }
 }
