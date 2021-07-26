@@ -274,12 +274,12 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    @Parameters({"3", "Recovery from Estates"})
-    public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice(String office) {
+    @Parameters({"3, 3", "PIP Recovery from Estates, Recovery from Estates"})
+    public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice(String office, String expectedResult) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", office);
 
         assertTrue(result.isPresent());
-        assertEquals(office, result.get().getCode());
+        assertEquals(expectedResult, result.get().getCode());
     }
 
     @Test
@@ -299,12 +299,12 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    @Parameters({"Balham DRT", "Recovery from Estates"})
-    public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaEmpty(String office) {
+    @Parameters({"Balham DRT, Balham DRT", "ESA Recovery from Estates, Recovery from Estates"})
+    public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaOffice(String office, String expectedResult) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", office);
 
         assertTrue(result.isPresent());
-        assertEquals(office, result.get().getCode());
+        assertEquals(expectedResult, result.get().getCode());
     }
 
     @Test
@@ -331,7 +331,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenAUcBenefitTypeAndOffice_thenReturnTheUcOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("uc", "Recovery from Estates");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("uc", "PIP Recovery from Estates");
 
         assertEquals("Recovery from Estates", result.get().getCode());
     }
