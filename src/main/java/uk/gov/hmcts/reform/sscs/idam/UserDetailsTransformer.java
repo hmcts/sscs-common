@@ -14,6 +14,7 @@ public class UserDetailsTransformer {
     public UserDetails asLocalUserDetails() {
         return new UserDetails(
                 this.reformUserInfo.getUid(),
+                this.reformUserInfo.getSub(),
                 this.reformUserInfo.getName(),
                 this.reformUserInfo.getGivenName(),
                 this.reformUserInfo.getFamilyName(),

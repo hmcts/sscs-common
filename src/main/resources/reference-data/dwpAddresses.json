@@ -139,6 +139,22 @@
         "line2": "WOLVERHAMPTON",
         "postCode": "WV98 2EU"
       }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "PIP Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
     }
   ],
   "esa": [
@@ -335,6 +351,22 @@
         "line3": "WOLVERHAMPTON",
         "postCode": "WV98 1FZ"
       }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "ESA Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
     }
   ],
   "dla": [
@@ -387,7 +419,7 @@
       }
     }
   ],
-  "uc": {
+  "uc": [{
     "code": "Universal Credit",
     "isDefault": true,
     "mapping": {
@@ -402,6 +434,22 @@
       "postCode": "WV99 1AJ"
     }
   },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "UC Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }],
   "carersAllowance": {
     "code": "Carer’s Allowance Dispute Resolution Team",
     "isDefault": true,
@@ -621,7 +669,7 @@
       "isDefault": false,
       "mapping": {
         "ccd": "Pensions Dispute Resolution Team",
-        "gaps": "Pensions Disputes Resolution Team",
+        "gaps": "Pensions Dispute Resolution Team",
         "dwpRegionCentre": "Winter Fuel Payment"
       },
       "address": {
@@ -683,6 +731,124 @@
         "ccd": "Sheffield DRT",
         "gaps": "Recovery from Estates",
         "dwpRegionCentre": "Sheffield Benefit Centre"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
+  "bereavementSupportPaymentScheme": {
+    "code": "Pensions Dispute Resolution Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Pensions Dispute Resolution Team",
+      "gaps": "Bereavement DRT",
+      "dwpRegionCentre": "Bereavement Support Payment"
+    },
+    "address": {
+      "line1": "Pensions Dispute Resolution Team",
+      "line2": "The Pension Service 11",
+      "line3": "Mail Handing Site A",
+      "line3": "Wolverhampton",
+      "postCode": "WV98 1LW"
+    }
+  },
+  "industrialDeathBenefit": [
+    {
+      "code": "Barrow IIDB Centre",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Barrow IIDB Centre",
+        "gaps": "Barrow-In-Furness",
+        "dwpRegionCentre": "IDB Barrow"
+      },
+      "address": {
+        "line1": "Barrow-In-Furness",
+        "line2": "Barrow IIDB Centre",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2BR"
+      }
+    },
+    {
+      "code": "Barnsley Benefit Centre",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Barnsley Benefit Centre",
+        "gaps": "Barnsley IIDB Centre",
+        "dwpRegionCentre": "IDB Barnsley"
+      },
+      "address": {
+        "line1": "Barnsley",
+        "line2": "Barnsley Benefit Centre",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 1SY"
+      }
+    }
+  ],
+  "pensionCredits": [
+    {
+      "code": "Pensions Dispute Resolution Team",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Pensions Dispute Resolution Team",
+        "gaps": "Pensions Dispute Resolution Team",
+        "dwpRegionCentre": "Pension Credits"
+      },
+      "address": {
+        "line1": "Pensions Dispute Resolution Team",
+        "line2": "The Pension Service 11",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
+    }
+  ],
+  "retirementPension": [
+    {
+      "code": "Pensions Dispute Resolution Team",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Pensions Dispute Resolution Team",
+        "gaps": "Pensions Dispute Resolution Team",
+        "dwpRegionCentre": "Retirement Pension"
+      },
+      "address": {
+        "line1": "Pensions Dispute Resolution Team",
+        "line2": "The Pension Service 11",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
+    },
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
       },
       "address": {
         "line1": "Recovery from Estates",

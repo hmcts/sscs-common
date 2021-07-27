@@ -105,8 +105,12 @@ public class DwpAddressLookupService {
         if (dwpOfficeMappings.length == 1) {
             return of(dwpOfficeMappings[0]);
         }
-        String dwpIssuingOfficeSearch = isPipBenefit(benefitType)
-                ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+        if (dwpIssuingOffice == null) {
+            return stream(dwpOfficeMappings).filter(OfficeMapping::isDefault).findFirst();
+        }
+
+        String dwpIssuingOfficeSearch = isPipBenefit(benefitType) ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+
         return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
     }
 
@@ -140,7 +144,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] ucOfficeMappings() {
-        return new OfficeMapping[]{dwpMappings.getUc()};
+        return dwpMappings.getUc();
     }
 
     public OfficeMapping[] carersAllowanceOfficeMappings() {
@@ -179,9 +183,33 @@ public class DwpAddressLookupService {
         return dwpMappings.getIncomeSupport();
     }
 
+    public OfficeMapping[] bereavementSupportPaymentSchemeOfficeMappings() {
+        return new OfficeMapping[]{dwpMappings.getBereavementSupportPaymentScheme()};
+    }
+
+    public OfficeMapping[] industrialDeathBenefitOfficeMappings() {
+        return dwpMappings.getIndustrialDeathBenefit();
+    }
+
+    public OfficeMapping[] pensionCreditsOfficeMappings() {
+        return dwpMappings.getPensionCredits();
+    }
+
+    public OfficeMapping[] retirementPensionOfficeMappings() {
+        return dwpMappings.getRetirementPension();
+    }
+
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
-        return stream(mappings)
+        Optional<OfficeMapping> officeMapping = stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
                 .findFirst();
+
+        if (officeMapping.isEmpty()) {
+            officeMapping = stream(mappings)
+                    .filter(office -> equalsAnyIgnoreCase(office.getMapping().getCcd(), stripToEmpty(dwpIssuingOffice)))
+                    .findFirst();
+        }
+
+        return officeMapping;
     }
 }

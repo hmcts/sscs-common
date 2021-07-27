@@ -9,7 +9,7 @@ public class DwpMappings {
 
     private OfficeMapping[] pip;
     private OfficeMapping[] esa;
-    private OfficeMapping uc;
+    private OfficeMapping[] uc;
     private OfficeMapping[] dla;
     private OfficeMapping carersAllowance;
     private OfficeMapping[] attendanceAllowance;
@@ -20,5 +20,10 @@ public class DwpMappings {
     private OfficeMapping testHmctsAddress;
     private OfficeMapping[] socialFund;
     private OfficeMapping[] incomeSupport;
+    private OfficeMapping bereavementSupportPaymentScheme;
+    private OfficeMapping[] industrialDeathBenefit;
+    private OfficeMapping[] pensionCredits;
+    private OfficeMapping[] retirementPension;
+
 }
 

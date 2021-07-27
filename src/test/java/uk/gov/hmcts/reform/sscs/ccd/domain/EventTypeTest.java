@@ -208,6 +208,7 @@ public class EventTypeTest {
             "createResponseReceivedTestCase\n" +
             "createTestCase\n" +
             "uploadHearingRecording\n" +
+            "citizenRequestHearingRecording\n" +
             "dwpRequestHearingRecording";
 
 
@@ -234,7 +235,7 @@ public class EventTypeTest {
                 WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
                 CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED, UPDATE_UCB,
                 STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT, CCD_ADMIN, SYSTEM_MAINTENANCE, UPLOAD_HEARING_RECORDING,
-                DWP_REQUEST_HEARING_RECORDING);
+                DWP_REQUEST_HEARING_RECORDING, CITIZEN_REQUEST_HEARING_RECORDING);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
