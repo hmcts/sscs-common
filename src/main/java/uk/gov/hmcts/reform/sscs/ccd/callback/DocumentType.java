@@ -31,7 +31,7 @@ public enum DocumentType {
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
-    WITHDRAWAL_DOCUMENT("withdrawalRequest", "Withdrawal Request");
+    WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");
 
     private final String value;
     private String label;
