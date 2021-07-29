@@ -337,8 +337,8 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
-    public void givenAnIncomeSupportBenefitTypeAndSheffieldOffice_thenReturnTheUcOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("incomeSupport", "Sheffield DRT");
+    public void givenAnIncomeSupportBenefitTypeAndSheffieldOffice_thenReturnTheRfeOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("incomeSupport", "Recovery from Estates");
 
         assertEquals("Recovery from Estates", result.get().getCode());
     }
