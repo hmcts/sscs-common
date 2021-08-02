@@ -39,7 +39,7 @@ public class RoboticsJsonMapper {
     @Autowired
     public RoboticsJsonMapper(DwpAddressLookupService dwpAddressLookupService,
                               AirLookupService airLookupService,
-                              @Value("${feature.enhancedConfidentiality.enabled}") boolean enhancedConfidentialityFeature) {
+                              @Value("${feature.enhancedConfidentiality.enabled:false}") boolean enhancedConfidentialityFeature) {
         this.dwpAddressLookupService = dwpAddressLookupService;
         this.airLookupService = airLookupService;
         this.enhancedConfidentialityFeature = enhancedConfidentialityFeature;
