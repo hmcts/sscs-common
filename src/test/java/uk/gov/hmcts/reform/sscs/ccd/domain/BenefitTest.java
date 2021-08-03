@@ -7,13 +7,36 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 
 @RunWith(JUnitParamsRunner.class)
 public class BenefitTest {
+
+    @Test
+    @Parameters({
+            "ESA, ESA",
+            "JSA, JSA",
+            "Employment and Support Allowance, ESA",
+            "Job Seekers Allowance, JSA"
+    })
+    public void getBenefitOptionalByCodeReturnsTheBenefit(String code, Benefit expectedBenefit) {
+        assertThat(Benefit.getBenefitOptionalByCode(code), is(Optional.of(expectedBenefit)));
+    }
+
+    public void getBenefitOptionalByCodeReturnsEmptyIfInvalidBenefit() {
+        assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
+
+    }
+
+    @Test(expected = BenefitMappingException.class)
+    public void getBenefitByCodeOrThrowExceptionThrowsExceptionForInvalidBenefit() {
+        Benefit.getBenefitByCodeOrThrowException("invalid");
+    }
 
     @Test
     public void givenAValidBenefitString_thenReturnTrue() {

@@ -11,13 +11,13 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_D
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_ONE_OR_TWO_DOCTORS;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+import static uk.gov.hmcts.reform.sscs.exception.BenefitMappingException.createException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import lombok.Getter;
-import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
@@ -83,17 +83,15 @@ public enum Benefit {
         }
     }
 
-    public static Benefit getBenefitByCode(String code) {
-        Benefit benefit = findBenefitByShortName(code)
-                .orElseGet(() -> findBenefitByDescription(code)
-                        .orElse(null));
-        if (benefit == null) {
-            BenefitMappingException benefitMappingException =
-                    new BenefitMappingException(new Exception(code + " is not a recognised benefit type"));
-            LOG.error("Benefit type mapping error", benefitMappingException);
-            throw benefitMappingException;
-        }
-        return benefit;
+    public static Benefit getBenefitByCodeOrThrowException(String code) {
+        return getBenefitOptionalByCode(code)
+                .orElseThrow(() -> createException(code));
+    }
+
+
+    public static Optional<Benefit> getBenefitOptionalByCode(String code) {
+        return findBenefitByShortName(code)
+                .or(() -> findBenefitByDescription(code));
     }
 
     public static Optional<Benefit> findBenefitByShortName(String code) {
@@ -118,7 +116,9 @@ public enum Benefit {
     }
 
     public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
-        return getBenefitByCode(code).getBenefitNameDescriptionWithAcronym(isEnglish);
+        return getBenefitOptionalByCode(code)
+                .map(b -> b.getBenefitNameDescriptionWithAcronym(isEnglish))
+                .orElse(EMPTY);
     }
 
     private Optional<String> getShortNameOptional() {
