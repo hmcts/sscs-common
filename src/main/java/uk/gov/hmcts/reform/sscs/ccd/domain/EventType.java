@@ -184,7 +184,6 @@ public enum EventType {
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
     DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false),
     GENERATE_COVERSHEET("generateCoversheet", 0, false),
-    PLAYBACK_AUDIO_VIDEO_EVIDENCE("playbackAudioVideoEvidence", 0, false),
     DWP_ACTION_DIRECTION("dwpActionDirection", 0, false),
     DWP_ACTION_REP_ADDED("dwpActionRepAdded", 0, false),
     ADD_HEARING("addHearing", 0, false),

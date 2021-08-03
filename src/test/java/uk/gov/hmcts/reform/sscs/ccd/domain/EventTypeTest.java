@@ -129,7 +129,6 @@ public class EventTypeTest {
             "notListable\n" +
             "notificationSent\n" +
             "processAudioVideo\n" +
-            "playbackAudioVideoEvidence\n" +
             "processReasonableAdjustment\n" +
             "provideAppointeeDetails\n" +
             "corDecision\n" +
