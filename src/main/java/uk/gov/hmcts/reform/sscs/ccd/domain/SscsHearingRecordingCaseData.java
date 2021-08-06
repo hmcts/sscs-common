@@ -25,6 +25,7 @@ public class SscsHearingRecordingCaseData {
     private YesNo hearingRecordingRequestOutstanding;
     private DynamicList requestingParty;
     private YesNo showRequestingPartyPage;
+    private List<ProcessHearingRecordingRequest> processHearingRecordingRequests;
 
     @JsonProperty("hearingRecording")
     private HearingRecording hearingRecording;
