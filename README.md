@@ -12,14 +12,14 @@ This is the common code library for sscs. Currently it contains:
 To build run
 
 ```bash
-./gradlew clean build
+./gradlew publishToMavenLocal
 ```
 This will create a jar file in the projects build libs directory with a version of DEV-SNAPSHOT.
 If you want to then depend on this without publishing it you can add the following to your build.gradle file
 in the dependencies section.
 
 ```gradle
-compile files('{PROJECT_DIR}/sscs-common/build/libs/sscs-common-0.0.DEV-SNAPSHOT.jar')
+compile group: 'com.github.hmcts', name: 'sscs-common', version: 'DEV-SNAPSHOT'
 ```
 Once the changes have been merged into master a new verison of the library will be build on travis and 
 published to bintray with a version number of X.X.{TRAVIS_BUULD_NUMBER}.
