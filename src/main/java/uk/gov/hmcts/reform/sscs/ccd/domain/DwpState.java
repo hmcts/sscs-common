@@ -31,8 +31,7 @@ public enum DwpState {
     PHME_GRANTED("phmeGranted", "PHME granted"),
     PHME_REFUSED("phmeRefused", "PHME refused"),
     DECISION_ACTIONED("decisionActioned", "Decision actioned"),
-    HEARING_RECORDING_RELEASED("hearingRecordingReleased","Hearing Recording Released"),
-    HEARING_RECORDING_REFUSED("hearingRecordingRefused","Hearing Recording Refused");
+    HEARING_RECORDING_PROCESSED("hearingRecordingProcessed","Hearing Recording Processed");
 
     private String id;
     private String label;
