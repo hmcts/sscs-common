@@ -11,7 +11,6 @@ import lombok.Value;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
-@EqualsAndHashCode
 public class HearingRecordingRequestDetails {
     private String requestingParty;
     private String status;

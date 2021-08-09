@@ -13,7 +13,6 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@EqualsAndHashCode
 public class SscsHearingRecording implements Comparable<SscsHearingRecording> {
 
     private SscsHearingRecordingDetails value;

@@ -12,7 +12,6 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@EqualsAndHashCode
 public class DocumentLink {
 
     @JsonProperty("document_url")
