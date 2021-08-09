@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
@@ -33,12 +34,15 @@ public class RoboticsJsonMapper {
 
     private final DwpAddressLookupService dwpAddressLookupService;
     private final AirLookupService airLookupService;
+    private final boolean enhancedConfidentialityFeature;
 
     @Autowired
     public RoboticsJsonMapper(DwpAddressLookupService dwpAddressLookupService,
-                              AirLookupService airLookupService) {
+                              AirLookupService airLookupService,
+                              @Value("${feature.enhancedConfidentiality.enabled:false}") boolean enhancedConfidentialityFeature) {
         this.dwpAddressLookupService = dwpAddressLookupService;
         this.airLookupService = airLookupService;
+        this.enhancedConfidentialityFeature = enhancedConfidentialityFeature;
     }
 
     public JSONObject map(RoboticsWrapper roboticsWrapper) {
@@ -158,7 +162,7 @@ public class RoboticsJsonMapper {
     }
 
     private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
-        if (State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState())
+        if (((State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState()) && !enhancedConfidentialityFeature) || enhancedConfidentialityFeature)
             && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
             || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
             obj.put("isConfidential", YES);
