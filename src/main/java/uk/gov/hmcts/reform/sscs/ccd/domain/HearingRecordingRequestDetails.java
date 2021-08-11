@@ -14,7 +14,6 @@ import lombok.Value;
 @EqualsAndHashCode
 public class HearingRecordingRequestDetails {
     private String requestingParty;
-    private String status;
     private String dateRequested;
     private DocumentLink requestDocument;
     private List<SscsHearingRecording> sscsHearingRecordingList;
@@ -22,12 +21,10 @@ public class HearingRecordingRequestDetails {
 
     @JsonCreator
     public HearingRecordingRequestDetails(@JsonProperty("requestingParty") String requestingParty,
-                                   @JsonProperty("status") String status,
                                    @JsonProperty("dateRequested") String dateRequested,
                                    @JsonProperty("requestDocument") DocumentLink requestDocument,
                                    @JsonProperty("sscsHearingRecordingList") List<SscsHearingRecording> sscsHearingRecordingList) {
         this.requestingParty = requestingParty;
-        this.status = status;
         this.dateRequested = dateRequested;
         this.requestDocument = requestDocument;
         this.sscsHearingRecordingList = sscsHearingRecordingList;
