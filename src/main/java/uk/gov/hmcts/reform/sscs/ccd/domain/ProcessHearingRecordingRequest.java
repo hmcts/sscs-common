@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
-public class ProcessHearingRecordingRequest implements Comparable<ProcessHearingRecordingRequest>{
+public class ProcessHearingRecordingRequest implements Comparable<ProcessHearingRecordingRequest> {
 
     ProcessHearingRecordingRequestDetails value;
 
