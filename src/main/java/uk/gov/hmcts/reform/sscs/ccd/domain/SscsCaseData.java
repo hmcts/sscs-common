@@ -188,27 +188,11 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsPipCaseData pipSscsCaseData;
-    private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
-    private String writeFinalDecisionAllowedOrRefused;
-    private String writeFinalDecisionTypeOfHearing;
-    private String writeFinalDecisionPresentingOfficerAttendedQuestion;
-    private String writeFinalDecisionAppellantAttendedQuestion;
-    private String writeFinalDecisionStartDate;
-    private String writeFinalDecisionEndDateType;
-    private String writeFinalDecisionEndDate;
-    private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
-    private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
-    private String writeFinalDecisionOtherPanelMemberName;
-    @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
-    private String writeFinalDecisionDateOfDecision;
-    private String writeFinalDecisionDetailsOfDecision;
-    private List<CollectionItem<String>> writeFinalDecisionReasons;
-    private String writeFinalDecisionPageSectionReference;
-    private String writeFinalDecisionAnythingElse;
-    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
-    private DocumentLink writeFinalDecisionPreviewDocument;
-    private String writeFinalDecisionGeneratedDate;
+    //Moved to SscsFinalDecisionCaseData
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsFinalDecisionCaseData sscsFinalDecisionCaseData;
+
     @JsonProperty("adjournCaseGenerateNotice")
     private String adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
@@ -345,7 +329,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
-        return stringToBoolean(writeFinalDecisionIsDescriptorFlow);
+        return stringToBoolean(sscsFinalDecisionCaseData.getWriteFinalDecisionIsDescriptorFlow());
     }
 
     @JsonIgnore
