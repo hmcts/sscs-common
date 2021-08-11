@@ -7,11 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@EqualsAndHashCode
 public class SscsHearingRecordingDetails {
     private List<HearingRecordingDetails> recordings;
     private String hearingType;
