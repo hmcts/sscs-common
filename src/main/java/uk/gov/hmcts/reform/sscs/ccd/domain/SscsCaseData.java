@@ -92,6 +92,8 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
+    //50
+
     private DynamicList reissueFurtherEvidenceDocument;
     @JsonProperty("resendToAppellant")
     private String resendToAppellant;
@@ -150,6 +152,8 @@ public class SscsCaseData implements CaseData {
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
+    //100
+
     private DynamicList selectWhoReviewsCase;
     @Deprecated
     private DirectionType directionType;
@@ -188,27 +192,12 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsPipCaseData pipSscsCaseData;
-    private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
-    private String writeFinalDecisionAllowedOrRefused;
-    private String writeFinalDecisionTypeOfHearing;
-    private String writeFinalDecisionPresentingOfficerAttendedQuestion;
-    private String writeFinalDecisionAppellantAttendedQuestion;
-    private String writeFinalDecisionStartDate;
-    private String writeFinalDecisionEndDateType;
-    private String writeFinalDecisionEndDate;
-    private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
-    private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
-    private String writeFinalDecisionOtherPanelMemberName;
-    @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future")
-    private String writeFinalDecisionDateOfDecision;
-    private String writeFinalDecisionDetailsOfDecision;
-    private List<CollectionItem<String>> writeFinalDecisionReasons;
-    private String writeFinalDecisionPageSectionReference;
-    private String writeFinalDecisionAnythingElse;
-    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
-    private DocumentLink writeFinalDecisionPreviewDocument;
-    private String writeFinalDecisionGeneratedDate;
+    //Moved to SscsFinalDecisionCaseData
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsFinalDecisionCaseData finalDecisionCaseData;
     @JsonProperty("adjournCaseGenerateNotice")
     private String adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
@@ -228,6 +217,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDurationType;
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
+    //150
+
     private String adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
@@ -288,6 +279,8 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
+    //200
+
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private YesNo isConfidentialCase;
@@ -332,6 +325,7 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+    //231
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -341,11 +335,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isCorDecision() {
         return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
-    }
-
-    @JsonIgnore
-    public boolean isDailyLivingAndOrMobilityDecision() {
-        return stringToBoolean(writeFinalDecisionIsDescriptorFlow);
     }
 
     @JsonIgnore
@@ -558,6 +547,14 @@ public class SscsCaseData implements CaseData {
             this.pipSscsCaseData = new SscsPipCaseData();
         }
         return pipSscsCaseData;
+    }
+
+    @JsonIgnore
+    public SscsFinalDecisionCaseData getSscsFinalDecisionCaseData() {
+        if (finalDecisionCaseData == null) {
+            this.finalDecisionCaseData = new SscsFinalDecisionCaseData();
+        }
+        return finalDecisionCaseData;
     }
 
     @JsonIgnore
