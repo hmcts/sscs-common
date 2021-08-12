@@ -16,12 +16,15 @@ public class HearingRecording {
 
     private List<HearingRecordingDetails> recordings;
     private String hearingType;
+    private List<SscsHearingRecording> existingHearingRecordingList;
 
     @JsonCreator
     public HearingRecording(@JsonProperty("recordings") List<HearingRecordingDetails> recordings,
-                            @JsonProperty("hearingType") String hearingType) {
+                            @JsonProperty("hearingType") String hearingType,
+                            @JsonProperty("existingHearingRecordingList") List<SscsHearingRecording> existingHearingRecordingList) {
         this.recordings = recordings;
         this.hearingType = hearingType;
+        this.existingHearingRecordingList = existingHearingRecordingList;
     }
 }
 
