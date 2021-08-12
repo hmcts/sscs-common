@@ -196,7 +196,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] retirementPensionOfficeMappings() {
-        return dwpMappings.getRetirementPension();
+        return new OfficeMapping[]{dwpMappings.getRetirementPension()};
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
