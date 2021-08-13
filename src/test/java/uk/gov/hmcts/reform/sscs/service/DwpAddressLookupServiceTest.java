@@ -244,7 +244,7 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void retirementPensionOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.retirementPensionOfficeMappings();
-        assertEquals(2, result.length);
+        assertEquals(1, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
@@ -265,7 +265,7 @@ public class DwpAddressLookupServiceTest {
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
             "INDUSTRIAL_DEATH_BENEFIT, 2",
             "PENSION_CREDITS, 2",
-            "RETIREMENT_PENSION, 2",
+            "RETIREMENT_PENSION, 1",
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
         OfficeMapping[] officeMappings = dwpAddressLookup.getDwpOfficeMappings(benefit.getShortName());
@@ -467,7 +467,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Retirement Pension", "Recovery from Estates, RfE"
+            "Pensions Dispute Resolution Team, Retirement Pension"
     })
     public void givenARetirementPensionBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("retirementPension", office);
