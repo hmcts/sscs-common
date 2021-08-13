@@ -131,13 +131,16 @@ public class DwpAddressLookupService {
     }
 
     private String fuzzyPipOfficeMatching(String dwpIssuingOffice) {
-        String office = dwpIssuingOffice;
-        switch(dwpIssuingOffice) {
-            case "PIP AE":
+        String office;
+        switch (StringUtils.lowerCase(dwpIssuingOffice)) {
+            case "pip ae":
                 office = "AE";
                 break;
-            case "PIP Recovery from Estates":
+            case "pip recovery from estates":
                 office = "Recovery from Estates";
+                break;
+            default:
+                office = dwpIssuingOffice;
                 break;
         }
         return office;
