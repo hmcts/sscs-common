@@ -92,6 +92,8 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
+    //50
+
     private DynamicList reissueFurtherEvidenceDocument;
     @JsonProperty("resendToAppellant")
     private String resendToAppellant;
@@ -150,6 +152,8 @@ public class SscsCaseData implements CaseData {
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
+    //100
+
     private DynamicList selectWhoReviewsCase;
     @Deprecated
     private DirectionType directionType;
@@ -191,7 +195,9 @@ public class SscsCaseData implements CaseData {
     //Moved to SscsFinalDecisionCaseData
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
-    private SscsFinalDecisionCaseData sscsFinalDecisionCaseData;
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private SscsFinalDecisionCaseData finalDecisionCaseData;
 
     @JsonProperty("adjournCaseGenerateNotice")
     private String adjournCaseGenerateNotice;
@@ -212,6 +218,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDurationType;
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
+    //150
+
     private String adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
@@ -272,6 +280,8 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
+    //200
+
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private YesNo isConfidentialCase;
@@ -316,6 +326,7 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+    //231
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -329,7 +340,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
-        return stringToBoolean(sscsFinalDecisionCaseData.getWriteFinalDecisionIsDescriptorFlow());
+        return stringToBoolean(finalDecisionCaseData.getWriteFinalDecisionIsDescriptorFlow());
     }
 
     @JsonIgnore
@@ -543,6 +554,20 @@ public class SscsCaseData implements CaseData {
         }
         return pipSscsCaseData;
     }
+
+    @JsonIgnore
+    public SscsFinalDecisionCaseData getSscsFinalDecisionCaseData() {
+        if (finalDecisionCaseData == null) {
+            this.finalDecisionCaseData = new SscsFinalDecisionCaseData();
+        }
+        return finalDecisionCaseData;
+    }
+
+    @JsonIgnore
+    public String getWriteFinalDecisionAllowedOrRefused() {
+        return getSscsFinalDecisionCaseData().getWriteFinalDecisionAllowedOrRefused();
+    }
+
 
     @JsonIgnore
     public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
