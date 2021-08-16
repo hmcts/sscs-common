@@ -23,7 +23,7 @@ public class DwpMappings {
     private OfficeMapping bereavementSupportPaymentScheme;
     private OfficeMapping[] industrialDeathBenefit;
     private OfficeMapping[] pensionCredits;
-    private OfficeMapping retirementPension;
+    private OfficeMapping[] retirementPension;
 
 }
 

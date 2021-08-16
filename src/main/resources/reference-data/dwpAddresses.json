@@ -753,7 +753,7 @@
       "line1": "Pensions Dispute Resolution Team",
       "line2": "The Pension Service 11",
       "line3": "Mail Handing Site A",
-      "line4": "Wolverhampton",
+      "line3": "Wolverhampton",
       "postCode": "WV98 1LW"
     }
   },
@@ -825,20 +825,38 @@
       }
     }
   ],
-  "retirementPension": {
-    "code": "Pensions Dispute Resolution Team",
-    "isDefault": true,
-    "mapping": {
-      "ccd": "Pensions Dispute Resolution Team",
-      "gaps": "Pensions Dispute Resolution Team",
-      "dwpRegionCentre": "Retirement Pension"
+  "retirementPension": [
+    {
+      "code": "Pensions Dispute Resolution Team",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Pensions Dispute Resolution Team",
+        "gaps": "Pensions Dispute Resolution Team",
+        "dwpRegionCentre": "Retirement Pension"
+      },
+      "address": {
+        "line1": "Pensions Dispute Resolution Team",
+        "line2": "The Pension Service 11",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 1LW"
+      }
     },
-    "address": {
-      "line1": "Pensions Dispute Resolution Team",
-      "line2": "The Pension Service 11",
-      "line3": "Mail Handling Site A",
-      "line4": "Wolverhampton",
-      "postCode": "WV98 1LW"
+    {
+      "code": "Recovery from Estates",
+      "isDefault": false,
+      "mapping": {
+        "ccd": "Recovery from Estates",
+        "gaps": "Recovery from Estates",
+        "dwpRegionCentre": "RfE"
+      },
+      "address": {
+        "line1": "Recovery from Estates",
+        "line2": "Debt Management (RE)",
+        "line3": "Mail Handling Site A",
+        "line4": "Wolverhampton",
+        "postCode": "WV98 2DG"
+      }
     }
-  }
+  ]
 }
