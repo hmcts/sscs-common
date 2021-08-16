@@ -45,6 +45,14 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    @Parameters({"PIP (3)", "  PIP 3  ", "PIP 3", "DWP PIP (3)", "(AE)", "AE", "PIP AE", "DWP PIP (AE)", "Recovery from Estates", "PIP Recovery from Estates"})
+    public void pipFuzzyMatchingAddressesExist(final String dwpIssuingOffice) {
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        Address address = dwpAddressLookup.lookupDwpAddress(caseData);
+        assertNotNull(address);
+    }
+
+    @Test
     @Parameters({
         "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
         "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
