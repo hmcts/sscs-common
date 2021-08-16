@@ -791,14 +791,14 @@
       }
     }
   ],
-  "pensionCredits": [
+  "pensionCredit": [
     {
       "code": "Pensions Dispute Resolution Team",
       "isDefault": true,
       "mapping": {
         "ccd": "Pensions Dispute Resolution Team",
         "gaps": "Pensions Dispute Resolution Team",
-        "dwpRegionCentre": "Pension Credits"
+        "dwpRegionCentre": "Pension Credit"
       },
       "address": {
         "line1": "Pensions Dispute Resolution Team",

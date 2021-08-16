@@ -210,7 +210,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] pensionCreditsOfficeMappings() {
-        return dwpMappings.getPensionCredits();
+        return dwpMappings.getPensionCredit();
     }
 
     public OfficeMapping[] retirementPensionOfficeMappings() {

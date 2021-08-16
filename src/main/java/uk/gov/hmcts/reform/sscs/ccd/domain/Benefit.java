@@ -40,7 +40,7 @@ public enum Benefit {
     INCOME_SUPPORT("Income Support", "Cymhorthdal Incwm", "061", "incomeSupport", List.of("061"), false, DwpAddressLookupService::incomeSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     BEREAVEMENT_SUPPORT_PAYMENT_SCHEME("Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth", "095", "bereavementSupportPaymentScheme", List.of("095"), false, DwpAddressLookupService::bereavementSupportPaymentSchemeOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue),
-    PENSION_CREDITS("Pension Credits", "Credydau Pensiwn", "045", "pensionCredits", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
+    PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
 
 
@@ -75,7 +75,7 @@ public enum Benefit {
             case ESA:
                 return JUDGE_AND_A_DOCTOR;
             case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA: case MATERNITY_ALLOWANCE: case SOCIAL_FUND: case INCOME_SUPPORT:
-            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME: case PENSION_CREDITS: case RETIREMENT_PENSION:
+            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME: case PENSION_CREDIT: case RETIREMENT_PENSION:
                 return JUDGE;
             case IIDB: case INDUSTRIAL_DEATH_BENEFIT:
                 return JUDGE_AND_ONE_OR_TWO_DOCTORS;
