@@ -328,6 +328,7 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
+    private YesNo showPostponementDetailsPage;
     private String panelDoctorSpecialism;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
