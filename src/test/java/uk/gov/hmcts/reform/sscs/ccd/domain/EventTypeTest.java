@@ -208,6 +208,7 @@ public class EventTypeTest {
             "createTestCase\n" +
             "uploadHearingRecording\n" +
             "citizenRequestHearingRecording\n" +
+            "postponementRequest\n" +
             "dwpRequestHearingRecording";
 
 
