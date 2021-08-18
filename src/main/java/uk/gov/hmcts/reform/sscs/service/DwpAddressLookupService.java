@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -120,12 +121,29 @@ public class DwpAddressLookupService {
 
     private String stripDwpIssuingOfficeForPip(String dwpIssuingOffice) {
         String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice,"(", ")"))
-                .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+                .orElse(StringUtils.isEmpty(dwpIssuingOffice.replaceAll("\\D+",""))
+                        ? fuzzyPipOfficeMatching(dwpIssuingOffice) : dwpIssuingOffice.replaceAll("\\D+",""));
 
         if (isEmpty(dwpIssuingOfficeStripped)) {
             dwpIssuingOfficeStripped = dwpIssuingOffice;
         }
         return dwpIssuingOfficeStripped;
+    }
+
+    private String fuzzyPipOfficeMatching(String dwpIssuingOffice) {
+        String office;
+        switch (StringUtils.lowerCase(dwpIssuingOffice)) {
+            case "pip ae":
+                office = "AE";
+                break;
+            case "pip recovery from estates":
+                office = "Recovery from Estates";
+                break;
+            default:
+                office = dwpIssuingOffice;
+                break;
+        }
+        return office;
     }
 
     public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
