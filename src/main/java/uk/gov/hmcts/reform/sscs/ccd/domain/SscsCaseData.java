@@ -328,11 +328,15 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
-    private YesNo showPostponementDetailsPage;
+
     private String panelDoctorSpecialism;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private PostponementRequest postponementRequest;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -576,6 +580,14 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public PostponementRequest getPostponementRequest() {
+        if (postponementRequest == null) {
+            this.postponementRequest = new PostponementRequest();
+        }
+        return postponementRequest;
     }
 
     @JsonIgnore
