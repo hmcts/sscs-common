@@ -92,8 +92,6 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
-    //50
-
     private DynamicList reissueFurtherEvidenceDocument;
     @JsonProperty("resendToAppellant")
     private String resendToAppellant;
@@ -152,8 +150,6 @@ public class SscsCaseData implements CaseData {
     private String dwpResponseDate;
     private String linkedCasesBoolean;
     private String decisionType;
-    //100
-
     private DynamicList selectWhoReviewsCase;
     @Deprecated
     private DirectionType directionType;
@@ -192,7 +188,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsPipCaseData pipSscsCaseData;
-    //Moved to SscsFinalDecisionCaseData
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     @JsonUnwrapped
@@ -217,8 +212,6 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDurationType;
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
-    //150
-
     private String adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
@@ -279,8 +272,6 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
-    //200
-
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private YesNo isConfidentialCase;
@@ -325,7 +316,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
-    //231
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
