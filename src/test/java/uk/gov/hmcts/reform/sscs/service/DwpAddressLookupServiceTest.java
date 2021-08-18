@@ -1,9 +1,19 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.util.Arrays.stream;
-import static org.junit.Assert.*;
+import static org.apache.commons.io.IOUtils.resourceToString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -39,6 +49,14 @@ public class DwpAddressLookupServiceTest {
     @Test
     @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        Address address = dwpAddressLookup.lookupDwpAddress(caseData);
+        assertNotNull(address);
+    }
+
+    @Test
+    @Parameters({"PIP (3)", "  PIP 3  ", "PIP 3", "DWP PIP (3)", "(AE)", "AE", "PIP AE", "DWP PIP (AE)", "Recovery from Estates", "PIP Recovery from Estates"})
+    public void pipFuzzyMatchingAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
@@ -567,6 +585,16 @@ public class DwpAddressLookupServiceTest {
         stream(Benefit.values())
             .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
             .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+    }
+
+    @Test
+    public void isValidJsonWithNoDuplicateValues() throws Exception {
+        String json = resourceToString("reference-data/dwpAddresses.json",
+                StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
+        final JsonNode tree = mapper.readTree(json);
+        assertThat(tree, is(notNullValue()));
     }
 
 }
