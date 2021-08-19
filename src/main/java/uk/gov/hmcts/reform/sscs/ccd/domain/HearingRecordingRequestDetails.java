@@ -17,7 +17,7 @@ public class HearingRecordingRequestDetails {
     private String dateRequested;
     private String dateApproved;
     private DocumentLink requestDocument;
-    private SscsHearingRecording sscsHearingRecording;
+    private SscsHearingRecordingDetails sscsHearingRecording;
 
 
     @JsonCreator
@@ -25,7 +25,7 @@ public class HearingRecordingRequestDetails {
                                           @JsonProperty("dateRequested") String dateRequested,
                                           @JsonProperty("dateApproved") String dateApproved,
                                           @JsonProperty("requestDocument") DocumentLink requestDocument,
-                                          @JsonProperty("sscsHearingRecording") SscsHearingRecording sscsHearingRecording) {
+                                          @JsonProperty("sscsHearingRecording") SscsHearingRecordingDetails sscsHearingRecording) {
         this.requestingParty = requestingParty;
         this.dateRequested = dateRequested;
         this.dateApproved = dateApproved;
