@@ -14,7 +14,7 @@ public class HearingRecordingRequestDetails {
     private String status;
     private String dateRequested;
     private DocumentLink requestDocument;
-    private SscsHearingRecording sscsHearingRecording;
+    private SscsHearingRecordingDetails sscsHearingRecording;
 
 
     @JsonCreator
@@ -22,7 +22,7 @@ public class HearingRecordingRequestDetails {
                                    @JsonProperty("status") String status,
                                    @JsonProperty("dateRequested") String dateRequested,
                                    @JsonProperty("requestDocument") DocumentLink requestDocument,
-                                   @JsonProperty("sscsHearingRecording") SscsHearingRecording sscsHearingRecording) {
+                                   @JsonProperty("sscsHearingRecording") SscsHearingRecordingDetails sscsHearingRecording) {
         this.requestingParty = requestingParty;
         this.status = status;
         this.dateRequested = dateRequested;
