@@ -17,5 +17,5 @@ public class PostponementRequest {
     String postponementRequestHearingDateAndTime;
     String postponementRequestHearingVenue;
     String postponementRequestDetails;
-    DocumentLink postponementRequestPreviewDocument;
+    DocumentLink postponementPreviewDocument;
 }
