@@ -282,7 +282,7 @@ public class DwpAddressLookupServiceTest {
             "INCOME_SUPPORT, 4",
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
             "INDUSTRIAL_DEATH_BENEFIT, 2",
-            "PENSION_CREDITS, 2",
+            "PENSION_CREDIT, 2",
             "RETIREMENT_PENSION, 2",
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
@@ -475,10 +475,10 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Pension Credits", "Recovery from Estates, RfE"
+            "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
     })
     public void givenAPensionCreditsBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
-        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredits", office);
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredit", office);
 
         assertEquals(dwpRegionalCentre, result);
     }
@@ -566,7 +566,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultPensionCreditsOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredits");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredit");
 
         assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
