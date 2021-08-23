@@ -22,7 +22,7 @@ public class BenefitTest {
             "ESA, ESA",
             "JSA, JSA",
             "Employment and Support Allowance, ESA",
-            "Job Seekers Allowance, JSA"
+            "Jobseeker’s Allowance, JSA"
     })
     public void getBenefitOptionalByCodeReturnsTheBenefit(String code, Benefit expectedBenefit) {
         assertThat(Benefit.getBenefitOptionalByCode(code), is(Optional.of(expectedBenefit)));
@@ -53,7 +53,7 @@ public class BenefitTest {
             "PIP, Personal Independence Payment (PIP)",
             "ESA, Employment and Support Allowance (ESA)",
             "UC, Universal Credit (UC)",
-            "JSA, Job Seekers Allowance (JSA)",
+            "JSA, Jobseeker’s Allowance (JSA)",
             "DLA, Disability Living Allowance (DLA)",
             "Carer's Allowance, Carer's Allowance",
             "Attendance Allowance, Attendance Allowance",
