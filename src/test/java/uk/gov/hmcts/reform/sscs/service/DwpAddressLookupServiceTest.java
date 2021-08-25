@@ -1,9 +1,19 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.util.Arrays.stream;
-import static org.junit.Assert.*;
+import static org.apache.commons.io.IOUtils.resourceToString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -272,7 +282,7 @@ public class DwpAddressLookupServiceTest {
             "INCOME_SUPPORT, 4",
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
             "INDUSTRIAL_DEATH_BENEFIT, 2",
-            "PENSION_CREDITS, 2",
+            "PENSION_CREDIT, 2",
             "RETIREMENT_PENSION, 2",
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
@@ -465,10 +475,10 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Pension Credits", "Recovery from Estates, RfE"
+            "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
     })
     public void givenAPensionCreditsBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
-        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredits", office);
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredit", office);
 
         assertEquals(dwpRegionalCentre, result);
     }
@@ -556,7 +566,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultPensionCreditsOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredits");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredit");
 
         assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
@@ -575,6 +585,16 @@ public class DwpAddressLookupServiceTest {
         stream(Benefit.values())
             .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
             .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+    }
+
+    @Test
+    public void isValidJsonWithNoDuplicateValues() throws Exception {
+        String json = resourceToString("reference-data/dwpAddresses.json",
+                StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
+        final JsonNode tree = mapper.readTree(json);
+        assertThat(tree, is(notNullValue()));
     }
 
 }
