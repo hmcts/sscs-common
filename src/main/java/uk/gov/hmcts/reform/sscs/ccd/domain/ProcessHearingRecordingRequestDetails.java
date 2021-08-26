@@ -18,6 +18,7 @@ public class ProcessHearingRecordingRequestDetails {
     DynamicList dwp;
     DynamicList jointParty;
     DynamicList appellant;
+    DynamicList rep;
 
     @JsonCreator
     public ProcessHearingRecordingRequestDetails(@JsonProperty("hearingId") String hearingId,
@@ -26,7 +27,8 @@ public class ProcessHearingRecordingRequestDetails {
                                           @JsonProperty("recordings") List<CcdValue<DocumentLink>> recordings,
                                           @JsonProperty("dwp") DynamicList dwp,
                                           @JsonProperty("jointParty") DynamicList jointParty,
-                                          @JsonProperty("appellant") DynamicList appellant) {
+                                          @JsonProperty("appellant") DynamicList appellant,
+                                          @JsonProperty("rep") DynamicList rep) {
 
         this.hearingId = hearingId;
         this.hearingTitle = hearingTitle;
@@ -35,5 +37,6 @@ public class ProcessHearingRecordingRequestDetails {
         this.dwp = dwp;
         this.jointParty = jointParty;
         this.appellant = appellant;
+        this.rep = rep;
     }
 }
