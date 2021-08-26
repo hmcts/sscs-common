@@ -753,7 +753,7 @@
       "line1": "Pensions Dispute Resolution Team",
       "line2": "The Pension Service 11",
       "line3": "Mail Handing Site A",
-      "line3": "Wolverhampton",
+      "line4": "Wolverhampton",
       "postCode": "WV98 1LW"
     }
   },
@@ -791,14 +791,14 @@
       }
     }
   ],
-  "pensionCredits": [
+  "pensionCredit": [
     {
       "code": "Pensions Dispute Resolution Team",
       "isDefault": true,
       "mapping": {
         "ccd": "Pensions Dispute Resolution Team",
         "gaps": "Pensions Dispute Resolution Team",
-        "dwpRegionCentre": "Pension Credits"
+        "dwpRegionCentre": "Pension Credit"
       },
       "address": {
         "line1": "Pensions Dispute Resolution Team",
