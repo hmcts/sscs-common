@@ -90,7 +90,7 @@ public class AirLookupServiceTest {
             "NN85 1ss, Northampton, HB",
             "CV9 1ss, Birmingham Civil Justice Centre, bereavementSupportPaymentScheme",
             "CV9 1ss, Birmingham Civil Justice Centre, industrialDeathBenefit",
-            "CV9 1ss, Birmingham Civil Justice Centre, pensionCredits",
+            "CV9 1ss, Birmingham Civil Justice Centre, pensionCredit",
             "CV9 1ss, Birmingham Civil Justice Centre, retirementPension",
 
     })
