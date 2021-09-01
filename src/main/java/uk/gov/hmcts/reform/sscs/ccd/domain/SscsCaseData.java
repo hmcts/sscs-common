@@ -10,6 +10,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -337,10 +339,6 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
 
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
-    private PostponementRequest postponementRequest;
-
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -594,14 +592,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public PostponementRequest getPostponementRequest() {
-        if (postponementRequest == null) {
-            this.postponementRequest = new PostponementRequest();
-        }
-        return postponementRequest;
-    }
-
-    @JsonIgnore
     public Optional<LocalDateTime> getDateTimeSentToGaps() {
 
         Optional<LocalDateTime> ldt = Optional.empty();
@@ -611,7 +601,7 @@ public class SscsCaseData implements CaseData {
                 ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps));
             }
         } catch (DateTimeParseException e) {
-            ldt =  Optional.empty();
+            ldt = Optional.empty();
         }
         return ldt;
     }
