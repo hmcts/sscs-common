@@ -209,6 +209,7 @@ public class EventTypeTest {
             "uploadHearingRecording\n" +
             "processHearingRecordingRequest\n" +
             "citizenRequestHearingRecording\n" +
+            "postponementRequest\n" +
             "dwpRequestHearingRecording";
 
 
