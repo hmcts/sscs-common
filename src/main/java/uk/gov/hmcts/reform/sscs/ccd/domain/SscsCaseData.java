@@ -332,6 +332,9 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private PostponementRequest postponementRequest;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -566,6 +569,14 @@ public class SscsCaseData implements CaseData {
             this.sscsHearingRecordingCaseData = new SscsHearingRecordingCaseData();
         }
         return sscsHearingRecordingCaseData;
+    }
+
+    @JsonIgnore
+    public PostponementRequest getPostponementRequest() {
+        if (postponementRequest == null) {
+            this.postponementRequest = new PostponementRequest();
+        }
+        return postponementRequest;
     }
 
     @JsonIgnore
