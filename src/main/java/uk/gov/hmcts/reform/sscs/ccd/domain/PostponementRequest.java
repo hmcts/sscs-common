@@ -14,10 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostponementRequest {
-    private YesNo unprocessedPostponementRequest;
-    private String postponementRequestHearingDateAndTime;
-    private String postponementRequestHearingVenue;
-    private String postponementRequestDetails;
-    private DocumentLink postponementPreviewDocument;
-    private YesNo showPostponementDetailsPage;
+    YesNo unprocessedPostponementRequest;
+    String postponementRequestHearingDateAndTime;
+    String postponementRequestHearingVenue;
+    String postponementRequestDetails;
+    DocumentLink postponementPreviewDocument;
 }
