@@ -30,8 +30,7 @@ public enum DocumentType {
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
-    STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
-    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request");
+    STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence");
 
     private final String value;
     private String label;
