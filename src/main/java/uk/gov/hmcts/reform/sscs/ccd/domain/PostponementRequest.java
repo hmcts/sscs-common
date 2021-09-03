@@ -20,4 +20,5 @@ public class PostponementRequest {
     private String postponementRequestDetails;
     private DocumentLink postponementPreviewDocument;
     private YesNo showPostponementDetailsPage;
+    private String actionPostponementRequestSelected;
 }
