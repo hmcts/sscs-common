@@ -11,8 +11,7 @@ public enum ScannedDocumentType {
     COVERSHEET("coversheet", "Coversheet"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
-    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
-    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request");
+    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request");
 
     private String value;
     private String label;
