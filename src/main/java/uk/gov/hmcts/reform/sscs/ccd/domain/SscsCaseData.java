@@ -330,6 +330,7 @@ public class SscsCaseData implements CaseData {
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
+
     private String panelDoctorSpecialism;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -574,20 +575,20 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public PostponementRequest getPostponementRequest() {
+        if (postponementRequest == null) {
+            this.postponementRequest = new PostponementRequest();
+        }
+        return postponementRequest;
+    }
+
+    @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
         } else {
             return Optional.empty();
         }
-    }
-
-    @JsonIgnore
-    public PostponementRequest getPostponementRequest() {
-        if (postponementRequest == null) {
-            this.postponementRequest = new PostponementRequest();
-        }
-        return postponementRequest;
     }
 
     @JsonIgnore

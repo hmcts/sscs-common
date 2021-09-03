@@ -36,15 +36,6 @@ public enum DocumentType {
     private final String value;
     private String label;
 
-    DocumentType(String value) {
-        this.value = value;
-    }
-
-    DocumentType(String value, String label) {
-        this.value = value;
-        this.label = label;
-    }
-
     public static DocumentType fromValue(String text) {
 
         for (DocumentType documentType : DocumentType.values()) {
@@ -53,6 +44,15 @@ public enum DocumentType {
             }
         }
         return null;
+    }
+
+    DocumentType(String value) {
+        this.value = value;
+    }
+
+    DocumentType(String value, String label) {
+        this.value = value;
+        this.label = label;
     }
 
 }
