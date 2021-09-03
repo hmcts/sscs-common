@@ -209,6 +209,7 @@ public enum EventType {
     DWP_REQUEST_HEARING_RECORDING("dwpRequestHearingRecording", 0, false),
     CITIZEN_REQUEST_HEARING_RECORDING("citizenRequestHearingRecording", 0, false),
     UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
+    POSTPONEMENT_REQUEST("postponementRequest", 0, false),
     PROCESS_HEARING_RECORDING_REQUEST("processHearingRecordingRequest", 0, false);
 
     private final String type;
