@@ -31,10 +31,20 @@ public enum DocumentType {
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
-    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request");
+    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
+    POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice");
 
     private final String value;
     private String label;
+
+    DocumentType(String value) {
+        this.value = value;
+    }
+
+    DocumentType(String value, String label) {
+        this.value = value;
+        this.label = label;
+    }
 
     public static DocumentType fromValue(String text) {
 
@@ -44,15 +54,6 @@ public enum DocumentType {
             }
         }
         return null;
-    }
-
-    DocumentType(String value) {
-        this.value = value;
-    }
-
-    DocumentType(String value, String label) {
-        this.value = value;
-        this.label = label;
     }
 
 }
