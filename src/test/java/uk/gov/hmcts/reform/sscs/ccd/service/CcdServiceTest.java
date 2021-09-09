@@ -4,15 +4,16 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.initMocks;
+import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.*;
 
 import java.util.List;
-
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
@@ -45,10 +46,6 @@ public class CcdServiceTest {
     private SscsCaseDetails sscsCaseDetails;
     private CcdClient ccdClient;
     private CcdService ccdService;
-    private SscsCcdConvertService sscsCcdConvertService;
-    private SearchCcdCaseService searchCcdCaseService;
-    private UpdateCcdCaseService updateCcdCaseService;
-    private CreateCcdCaseService createCcdCaseService;
 
     @Mock
     private IdamService idamService;
@@ -62,7 +59,7 @@ public class CcdServiceTest {
 
     @Before
     public void setUp() {
-        initMocks(this);
+        openMocks(this);
         String userId = "userId";
         idamTokens = IdamTokens.builder()
                 .idamOauth2Token("oauthToken")
@@ -72,10 +69,10 @@ public class CcdServiceTest {
         caseDetails = CaseDataUtils.buildCaseDetails();
         sscsCaseDetails = CaseDataUtils.convertCaseDetailsToSscsCaseDetails(caseDetails);
         ccdClient = mock(CcdClient.class);
-        sscsCcdConvertService = new SscsCcdConvertService();
-        searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
-        updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
-        createCcdCaseService = new CreateCcdCaseService(sscsCcdConvertService, ccdClient);
+        SscsCcdConvertService sscsCcdConvertService = new SscsCcdConvertService();
+        SearchCcdCaseService searchCcdCaseService = new SearchCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
+        UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
+        CreateCcdCaseService createCcdCaseService = new CreateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
     }
 
