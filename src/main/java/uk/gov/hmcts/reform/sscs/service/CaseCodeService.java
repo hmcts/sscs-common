@@ -1,29 +1,35 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils.isNotBlank;
+import static java.util.Optional.of;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
+import java.util.Optional;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 
 public final class CaseCodeService {
 
     private CaseCodeService() {
-        // Empty
+        //not called
     }
 
-    public static String generateBenefitCode(String benefit, String addressName) {
-        Benefit selectedBenefit = Benefit.getBenefitByCode(benefit);
-        if (selectedBenefit.equals(Benefit.SOCIAL_FUND) && isNotBlank(addressName)) {
-            switch (addressName) {
-                case "St Helens Sure Start Maternity Grant":
-                    return "088";
-                case "Funeral Payment Dispute Resolution Team":
-                    return "089";
-                case "Pensions Dispute Resolution Team":
-                    return "061";
-                default: return "088";
-            }
+    public static Optional<String> generateBenefitCode(String benefit, String addressName) {
+        Optional<Benefit> benefitOptional = Benefit.getBenefitOptionalByCode(benefit);
+        if (Benefit.SOCIAL_FUND.equals(benefitOptional.orElse(null)) && isNotEmpty(addressName)) {
+            return socialFundAddressNameBenefitCode(addressName);
         }
-        return selectedBenefit.getBenefitCode();
+        return benefitOptional.map(Benefit::getBenefitCode);
+    }
+
+    private static Optional<String> socialFundAddressNameBenefitCode(String addressName) {
+        switch (addressName) {
+            case "St Helens Sure Start Maternity Grant":
+                return of("088");
+            case "Funeral Payment Dispute Resolution Team":
+                return of("089");
+            case "Pensions Dispute Resolution Team":
+                return of("061");
+            default: return of("088");
+        }
     }
 
     public static String generateIssueCode() {

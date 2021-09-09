@@ -129,7 +129,6 @@ public class EventTypeTest {
             "notListable\n" +
             "notificationSent\n" +
             "processAudioVideo\n" +
-            "playbackAudioVideoEvidence\n" +
             "processReasonableAdjustment\n" +
             "provideAppointeeDetails\n" +
             "corDecision\n" +
@@ -208,6 +207,7 @@ public class EventTypeTest {
             "createResponseReceivedTestCase\n" +
             "createTestCase\n" +
             "uploadHearingRecording\n" +
+            "processHearingRecordingRequest\n" +
             "citizenRequestHearingRecording\n" +
             "dwpRequestHearingRecording";
 

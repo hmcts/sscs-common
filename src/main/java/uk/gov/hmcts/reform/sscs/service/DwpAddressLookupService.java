@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -108,8 +109,9 @@ public class DwpAddressLookupService {
         if (dwpIssuingOffice == null) {
             return stream(dwpOfficeMappings).filter(OfficeMapping::isDefault).findFirst();
         }
-        String dwpIssuingOfficeSearch = isPipBenefit(benefitType)
-                ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+
+        String dwpIssuingOfficeSearch = isPipBenefit(benefitType) ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+
         return getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
     }
 
@@ -119,12 +121,29 @@ public class DwpAddressLookupService {
 
     private String stripDwpIssuingOfficeForPip(String dwpIssuingOffice) {
         String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice,"(", ")"))
-                .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+                .orElse(StringUtils.isEmpty(dwpIssuingOffice.replaceAll("\\D+",""))
+                        ? fuzzyPipOfficeMatching(dwpIssuingOffice) : dwpIssuingOffice.replaceAll("\\D+",""));
 
         if (isEmpty(dwpIssuingOfficeStripped)) {
             dwpIssuingOfficeStripped = dwpIssuingOffice;
         }
         return dwpIssuingOfficeStripped;
+    }
+
+    private String fuzzyPipOfficeMatching(String dwpIssuingOffice) {
+        String office;
+        switch (StringUtils.lowerCase(dwpIssuingOffice)) {
+            case "pip ae":
+                office = "AE";
+                break;
+            case "pip recovery from estates":
+                office = "Recovery from Estates";
+                break;
+            default:
+                office = dwpIssuingOffice;
+                break;
+        }
+        return office;
     }
 
     public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
@@ -191,7 +210,7 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] pensionCreditsOfficeMappings() {
-        return dwpMappings.getPensionCredits();
+        return dwpMappings.getPensionCredit();
     }
 
     public OfficeMapping[] retirementPensionOfficeMappings() {
@@ -199,8 +218,16 @@ public class DwpAddressLookupService {
     }
 
     private Optional<OfficeMapping> getOfficeMappingByDwpIssuingOffice(String dwpIssuingOffice, OfficeMapping[] mappings) {
-        return stream(mappings)
+        Optional<OfficeMapping> officeMapping = stream(mappings)
                 .filter(office -> equalsAnyIgnoreCase(office.getCode(), stripToEmpty(dwpIssuingOffice)))
                 .findFirst();
+
+        if (officeMapping.isEmpty()) {
+            officeMapping = stream(mappings)
+                    .filter(office -> equalsAnyIgnoreCase(office.getMapping().getCcd(), stripToEmpty(dwpIssuingOffice)))
+                    .findFirst();
+        }
+
+        return officeMapping;
     }
 }

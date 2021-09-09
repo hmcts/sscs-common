@@ -23,6 +23,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
@@ -59,7 +60,7 @@ public class RoboticsJsonMapperTest {
     @Before
     public void setup() {
         openMocks(this);
-        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
+        roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService, false);
 
         SscsCaseData sscsCaseData = buildCaseData();
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
@@ -685,6 +686,20 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().setElementsDisputedChildElement(elementsDisputedChildElementList);
         roboticsWrapper.getSscsCaseData().setElementsDisputedChildDisabled(elementsDisputedChildDisabledList);
         roboticsWrapper.getSscsCaseData().setElementsDisputedLimitedWork(elementsDisputedLimitedWorkList);
+    }
+
+    @Test
+    @Parameters({"RESPONSE_RECEIVED", "WITH_DWP"})
+    public void givenConfidentialityRequestOutcomeGrantedForAppellantAndEnhancedConfidentialityFeatureFlagOn_thenSetIsConfidentialFlag(State state) {
+        ReflectionTestUtils.setField(roboticsJsonMapper, "enhancedConfidentialityFeature", true);
+
+        roboticsWrapper.setState(state);
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeAppellant(DatedRequestOutcome.builder().requestOutcome(RequestOutcome.GRANTED).build());
+        roboticsWrapper.getSscsCaseData().setConfidentialityRequestOutcomeJointParty(null);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("Yes", roboticsJson.get("isConfidential"));
     }
 
     @Test

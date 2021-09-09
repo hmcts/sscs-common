@@ -123,7 +123,6 @@ public class SscsCaseData implements CaseData {
     private String bodyContent;
     private String signedBy;
     private String signedRole;
-    private String tempMediaUrl;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateAdded;
@@ -292,6 +291,7 @@ public class SscsCaseData implements CaseData {
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private YesNo isConfidentialCase;
+    private YesNo isInc5249521;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;

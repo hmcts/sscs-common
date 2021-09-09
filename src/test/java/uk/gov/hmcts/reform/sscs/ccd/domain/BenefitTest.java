@@ -7,13 +7,36 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 
 @RunWith(JUnitParamsRunner.class)
 public class BenefitTest {
+
+    @Test
+    @Parameters({
+            "ESA, ESA",
+            "JSA, JSA",
+            "Employment and Support Allowance, ESA",
+            "Jobseeker’s Allowance, JSA"
+    })
+    public void getBenefitOptionalByCodeReturnsTheBenefit(String code, Benefit expectedBenefit) {
+        assertThat(Benefit.getBenefitOptionalByCode(code), is(Optional.of(expectedBenefit)));
+    }
+
+    public void getBenefitOptionalByCodeReturnsEmptyIfInvalidBenefit() {
+        assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
+
+    }
+
+    @Test(expected = BenefitMappingException.class)
+    public void getBenefitByCodeOrThrowExceptionThrowsExceptionForInvalidBenefit() {
+        Benefit.getBenefitByCodeOrThrowException("invalid");
+    }
 
     @Test
     public void givenAValidBenefitString_thenReturnTrue() {
@@ -30,7 +53,7 @@ public class BenefitTest {
             "PIP, Personal Independence Payment (PIP)",
             "ESA, Employment and Support Allowance (ESA)",
             "UC, Universal Credit (UC)",
-            "JSA, Job Seekers Allowance (JSA)",
+            "JSA, Jobseeker’s Allowance (JSA)",
             "DLA, Disability Living Allowance (DLA)",
             "Carer's Allowance, Carer's Allowance",
             "Attendance Allowance, Attendance Allowance",
@@ -41,7 +64,7 @@ public class BenefitTest {
             "Income Support, Income Support",
             "Bereavement Support Payment Scheme, Bereavement Support Payment Scheme",
             "Industrial Death Benefit, Industrial Death Benefit",
-            "Pension Credits, Pension Credits",
+            "Pension Credit, Pension Credit",
             "Retirement Pension, Retirement Pension"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
@@ -59,7 +82,7 @@ public class BenefitTest {
             "incomeSupport, Income Support",
             "bereavementSupportPaymentScheme, Bereavement Support Payment Scheme",
             "industrialDeathBenefit, Industrial Death Benefit",
-            "pensionCredits, Pension Credits",
+            "pensionCredit, Pension Credit",
             "retirementPension, Retirement Pension"
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
@@ -90,7 +113,7 @@ public class BenefitTest {
             new Object[]{"Income Support", "Cymhorthdal Incwm"},
             new Object[]{"Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth"},
             new Object[]{"Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol"},
-            new Object[]{"Pension Credits", "Credydau Pensiwn"},
+            new Object[]{"Pension Credit", "Credydau Pensiwn"},
             new Object[]{"Retirement Pension", "Pensiwn Ymddeol"}
         };
     }
@@ -106,7 +129,7 @@ public class BenefitTest {
             "incomeSupport, Cymhorthdal Incwm",
             "Bereavement Support Payment Scheme, Cynllun Taliad Cymorth Profedigaeth",
             "Industrial Death Benefit, Budd Marwolaeth Ddiwydiannol",
-            "Pension Credits, Credydau Pensiwn",
+            "Pension Credit, Credydau Pensiwn",
             "Retirement Pension, Pensiwn Ymddeol"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
@@ -127,7 +150,7 @@ public class BenefitTest {
             "INCOME_SUPPORT, 061",
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 095",
             "INDUSTRIAL_DEATH_BENEFIT, 064",
-            "PENSION_CREDITS, 045",
+            "PENSION_CREDIT, 045",
             "RETIREMENT_PENSION, 082",
     })
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
@@ -150,7 +173,7 @@ public class BenefitTest {
             "INCOME_SUPPORT, JUDGE",
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, JUDGE",
             "INDUSTRIAL_DEATH_BENEFIT, JUDGE_AND_ONE_OR_TWO_DOCTORS",
-            "PENSION_CREDITS, JUDGE",
+            "PENSION_CREDIT, JUDGE",
             "RETIREMENT_PENSION, JUDGE",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {

@@ -184,7 +184,6 @@ public enum EventType {
     DRAFT_TO_NON_COMPLIANT("draftToNonCompliant", 0, false),
     DRAFT_TO_VALID_APPEAL_CREATED("draftToValidAppealCreated", 0, false),
     GENERATE_COVERSHEET("generateCoversheet", 0, false),
-    PLAYBACK_AUDIO_VIDEO_EVIDENCE("playbackAudioVideoEvidence", 0, false),
     DWP_ACTION_DIRECTION("dwpActionDirection", 0, false),
     DWP_ACTION_REP_ADDED("dwpActionRepAdded", 0, false),
     ADD_HEARING("addHearing", 0, false),
@@ -209,7 +208,8 @@ public enum EventType {
     SYSTEM_MAINTENANCE("SYSTEM_MAINTENANCE", 0, false),
     DWP_REQUEST_HEARING_RECORDING("dwpRequestHearingRecording", 0, false),
     CITIZEN_REQUEST_HEARING_RECORDING("citizenRequestHearingRecording", 0, false),
-    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false);
+    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
+    PROCESS_HEARING_RECORDING_REQUEST("processHearingRecordingRequest", 0, false);
 
     private final String type;
     private final String ccdType;
