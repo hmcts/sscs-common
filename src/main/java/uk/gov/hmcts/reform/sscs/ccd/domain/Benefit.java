@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
 import lombok.Getter;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
@@ -29,7 +30,7 @@ public enum Benefit {
     ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
     JSA("Jobseeker’s Allowance", "Lwfans Ceisio Gwaith", "073", "JSA", List.of("073"), true, DwpAddressLookupService::jsaOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl","037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl", "037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings, AirLookupService::getEsaOrUcVenue),
     CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
     ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
@@ -41,9 +42,11 @@ public enum Benefit {
     BEREAVEMENT_SUPPORT_PAYMENT_SCHEME("Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth", "095", "bereavementSupportPaymentScheme", List.of("095"), false, DwpAddressLookupService::bereavementSupportPaymentSchemeOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue),
     PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
+    RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
+    CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
 
 
+    private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
     private final String description;
     private final String welshDescription;
     private final String benefitCode;
@@ -52,8 +55,6 @@ public enum Benefit {
     private final boolean hasAcronym;
     private final Function<DwpAddressLookupService, OfficeMapping[]> officeMappings;
     private final BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue;
-
-    private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
             Function<DwpAddressLookupService, OfficeMapping[]> officeMappings,
@@ -68,26 +69,10 @@ public enum Benefit {
         this.airLookupVenue = airLookupVenue;
     }
 
-    public PanelComposition getPanelComposition() {
-        switch (this) {
-            case PIP: case DLA: case ATTENDANCE_ALLOWANCE:
-                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
-            case ESA:
-                return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE: case BEREAVEMENT_BENEFIT: case JSA: case MATERNITY_ALLOWANCE: case SOCIAL_FUND: case INCOME_SUPPORT:
-            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME: case PENSION_CREDIT: case RETIREMENT_PENSION:
-                return JUDGE;
-            case IIDB: case INDUSTRIAL_DEATH_BENEFIT:
-                return JUDGE_AND_ONE_OR_TWO_DOCTORS;
-            default: return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
-        }
-    }
-
     public static Benefit getBenefitByCodeOrThrowException(String code) {
         return getBenefitOptionalByCode(code)
                 .orElseThrow(() -> createException(code));
     }
-
 
     public static Optional<Benefit> getBenefitOptionalByCode(String code) {
         return findBenefitByShortName(code)
@@ -110,15 +95,41 @@ public enum Benefit {
         return stream(values()).anyMatch(benefit -> benefit.toString().equalsIgnoreCase(field));
     }
 
-    public String getBenefitNameDescriptionWithAcronym(boolean isEnglish) {
-        String description = isEnglish || getWelshDescription().isEmpty() ? getDescription() : getWelshDescription();
-        return description + getShortNameOptional().map(value -> format(" (%s)", value)).orElse(EMPTY);
-    }
-
     public static String getLongBenefitNameDescriptionWithOptionalAcronym(String code, boolean isEnglish) {
         return getBenefitOptionalByCode(code)
                 .map(b -> b.getBenefitNameDescriptionWithAcronym(isEnglish))
                 .orElse(EMPTY);
+    }
+
+    public PanelComposition getPanelComposition() {
+        switch (this) {
+            case PIP:
+            case DLA:
+            case ATTENDANCE_ALLOWANCE:
+                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+            case ESA:
+                return JUDGE_AND_A_DOCTOR;
+            case CARERS_ALLOWANCE:
+            case BEREAVEMENT_BENEFIT:
+            case JSA:
+            case MATERNITY_ALLOWANCE:
+            case SOCIAL_FUND:
+            case INCOME_SUPPORT:
+            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME:
+            case PENSION_CREDIT:
+            case RETIREMENT_PENSION:
+                return JUDGE;
+            case IIDB:
+            case INDUSTRIAL_DEATH_BENEFIT:
+                return JUDGE_AND_ONE_OR_TWO_DOCTORS;
+            default:
+                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+        }
+    }
+
+    public String getBenefitNameDescriptionWithAcronym(boolean isEnglish) {
+        String description = isEnglish || getWelshDescription().isEmpty() ? getDescription() : getWelshDescription();
+        return description + getShortNameOptional().map(value -> format(" (%s)", value)).orElse(EMPTY);
     }
 
     private Optional<String> getShortNameOptional() {
