@@ -265,6 +265,8 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private List<OtherParty> otherParties;
+
     private String reasonableAdjustmentChoice;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
