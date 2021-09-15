@@ -266,7 +266,7 @@ public class SscsCaseData implements CaseData {
     private String jointParty;
     private JointPartyName jointPartyName;
     private List<CcdValue<OtherParty>> otherParties;
-
+    private String childMaintenanceNumber;
     private String reasonableAdjustmentChoice;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
