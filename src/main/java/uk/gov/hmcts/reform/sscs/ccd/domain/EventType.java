@@ -212,7 +212,8 @@ public enum EventType {
     UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
     PROCESS_HEARING_RECORDING_REQUEST("processHearingRecordingRequest", 0, false),
-    ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false);
+    ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false),
+    ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false);
 
     private final String type;
     private final String ccdType;
