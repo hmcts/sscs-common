@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.PostConstruct;
+
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
@@ -27,18 +28,19 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Service
 @Slf4j
 public class AirLookupService {
-    private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
     protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").build();
+    private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
     private static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
-    private Map<String, String> lookupRegionalCentreByPostcode;
-    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
-    private Map<String, Integer> lookupVenueIdByAirVenueName;
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 7;
     private static final int ESA_UC_COLUMN = 3;
     private static final int JSA_COLUMN = 5;
     private static final int PIP_COLUMN = 6;
     private static final int IIDB_COLUMN = 1;
+    private static final int CSA_COLUMN = 2;
+    private Map<String, String> lookupRegionalCentreByPostcode;
+    private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
+    private Map<String, Integer> lookupVenueIdByAirVenueName;
 
     public String lookupRegionalCentre(String postcode) {
         if (isFullPostCodeGiven(postcode)) {
@@ -96,10 +98,11 @@ public class AirLookupService {
 
     /**
      * Read in spreadsheet and populate the Map with postcode.
+     *
      * @param wb the file on classpath
      */
-    private void parseAirLookupData(Workbook wb)  {
-        for (Sheet sheet: wb) {
+    private void parseAirLookupData(Workbook wb) {
+        for (Sheet sheet : wb) {
             if (sheet.getSheetName().equalsIgnoreCase("All")) {
                 parseLookupDataRows(sheet);
             }
@@ -142,22 +145,25 @@ public class AirLookupService {
         Cell jsaCell = row.getCell(JSA_COLUMN);
         Cell pipCell = row.getCell(PIP_COLUMN);
         Cell iidbCell = row.getCell(IIDB_COLUMN);
+        Cell csaCell = row.getCell(CSA_COLUMN);
         AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
                 .esaOrUcVenue(getStringValue(esaOrUcCell))
                 .jsaVenue(getStringValue(jsaCell))
                 .pipVenue(getStringValue(pipCell))
                 .iidbVenue(getStringValue(iidbCell))
+                .csaVenue(getStringValue(csaCell))
                 .build();
         lookupAirVenueNameByPostcode.put(postcode, airlookupBenefitToVenue);
     }
 
     /**
      * Read in csv file with mapping values between AIRLookup and GAPS.
+     *
      * @param wb the file on classpath
      */
     public void parseVenueData(Workbook wb) {
 
-        for (Sheet sheet: wb) {
+        for (Sheet sheet : wb) {
             if (sheet.getSheetName().equalsIgnoreCase(AIR_LOOKUP_VENUE_IDS_CSV)) {
                 populateVenueDataRow(sheet);
             }
@@ -190,6 +196,7 @@ public class AirLookupService {
     /**
      * Get the map with the first half of post code as the key and
      * the Regional Centre as the value.
+     *
      * @return map with the first half of post code as the key and the Regional Centre as the value
      */
     protected Map<String, String> getLookupRegionalCentreByPostcode() {
@@ -199,6 +206,7 @@ public class AirLookupService {
     /**
      * Get the map with the first half of the post code as the key
      * and the venue name as the value.
+     *
      * @return map with the first half of the post code as the key and the venue names as the values
      */
     protected Map<String, AirlookupBenefitToVenue> getLookupAirVenueNameByPostcode() {
@@ -208,6 +216,7 @@ public class AirLookupService {
     /**
      * Get the map with the air venue name as the key and the venue id
      * as the value.
+     *
      * @return map with the air venue name as the key and the venue id as the value
      */
     protected Map<String, Integer> getLookupVenueIdByAirVenueName() {
@@ -216,6 +225,7 @@ public class AirLookupService {
 
     /**
      * Return the venue names in the AirLookup spreadsheet for the given post code.
+     *
      * @param postcode The first half of a post code
      * @return venues
      */
@@ -244,5 +254,9 @@ public class AirLookupService {
 
     public String getIidbVenue(AirlookupBenefitToVenue venue) {
         return venue.getIidbVenue();
+    }
+
+    public String getCsaVenue(AirlookupBenefitToVenue venue) {
+        return venue.getCsaVenue();
     }
 }

@@ -43,7 +43,7 @@ public enum Benefit {
     INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue),
     PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
     RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue);
+    CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getCsaVenue);
 
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
