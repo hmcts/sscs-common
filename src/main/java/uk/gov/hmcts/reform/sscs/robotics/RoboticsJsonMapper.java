@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
@@ -45,214 +46,14 @@ public class RoboticsJsonMapper {
         this.enhancedConfidentialityFeature = enhancedConfidentialityFeature;
     }
 
-    public JSONObject map(RoboticsWrapper roboticsWrapper) {
-
-        SscsCaseData sscsCaseData = roboticsWrapper.getSscsCaseData();
-
-        JSONObject obj = buildAppealDetails(new JSONObject(), sscsCaseData);
-
-        obj.put("caseId", roboticsWrapper.getCcdCaseId());
-        obj.put("evidencePresent", roboticsWrapper.getEvidencePresent());
-        obj.put("caseCode", getCaseCode(sscsCaseData));
-
-        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
-            boolean sameAddressAsAppointee = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee());
-            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(), sameAddressAsAppointee));
-        }
-
-        obj.put("appellant", buildAppellantDetails(sscsCaseData.getAppeal().getAppellant()));
-
-        if (sscsCaseData.getAppeal().getRep() != null
-            && sscsCaseData.getAppeal().getRep().getHasRepresentative() != null
-            && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals(YES)) {
-            obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
-        }
-
-        if (sscsCaseData.getAppeal().getHearingOptions() != null) {
-            JSONObject hearingArrangements = buildHearingOptions(sscsCaseData.getAppeal().getHearingOptions());
-            if (hearingArrangements.length() > 0) {
-                obj.put("hearingArrangements", hearingArrangements);
-            }
-        }
-
-        addRpcEmail(sscsCaseData.getRegionalProcessingCenter(), obj);
-
-        String isReadyToList = NO;
-        if (roboticsWrapper.getState().equals(State.READY_TO_LIST)) {
-            isReadyToList = YES;
-        }
-        obj.put("isReadyToList", isReadyToList);
-
-        String isDigital = NO;
-        if (StringUtils.equals(roboticsWrapper.getSscsCaseData().getCreatedInGapsFrom(), "readyToList")) {
-            isDigital = YES;
-        }
-
-        obj.put("isDigital", isDigital);
-
-        setConfidentialFlag(roboticsWrapper, obj);
-
-        obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
-
-        Optional<OfficeMapping> officeMapping = buildOffice(sscsCaseData.getAppeal());
-
-        String dwpIssuingOffice = EMPTY;
-        String dwpPresentingOffice = EMPTY;
-
-        if (officeMapping.isEmpty()) {
-            log.error("could not find dwp officeAddress for benefitType {} and dwpIssuingOffice {} so could not set dwp offices in robotics",
-                sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getAppeal().getMrnDetails().getDwpIssuingOffice());
-        }
-
-        if (sscsCaseData.getDwpOriginatingOffice() != null && sscsCaseData.getDwpOriginatingOffice().getValue().getLabel() != null) {
-            dwpIssuingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpOriginatingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
-        }
-        if (dwpIssuingOffice.isEmpty() && officeMapping.isPresent()) {
-            dwpIssuingOffice = officeMapping.get().getMapping().getGaps();
-        }
-
-        if (sscsCaseData.getDwpPresentingOffice() != null && sscsCaseData.getDwpPresentingOffice().getValue().getLabel() != null) {
-            dwpPresentingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpPresentingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
-        }
-        if (dwpPresentingOffice.isEmpty() && officeMapping.isPresent()) {
-            dwpPresentingOffice = officeMapping.get().getMapping().getGaps();
-        }
-
-        String dwpIsOfficerAttending = sscsCaseData.getDwpIsOfficerAttending() != null ? sscsCaseData.getDwpIsOfficerAttending() : NO;
-        String dwpUcb = sscsCaseData.getDwpUcb() != null ? sscsCaseData.getDwpUcb() : NO;
-
-        obj.put("dwpIssuingOffice", dwpIssuingOffice);
-        obj.put("dwpPresentingOffice", dwpPresentingOffice);
-        obj.put("dwpIsOfficerAttending", dwpIsOfficerAttending);
-        obj.put("dwpUcb", dwpUcb);
-
-        JSONObject elementsDisputed = buildElementsDisputedLists(obj, sscsCaseData);
-        if (elementsDisputed.length() > 0) {
-            obj.put("elementsDisputed", elementsDisputed);
-        }
-
-        if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
-            if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
-            } else {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
-            }
-        }
-        if (sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers() != null) {
-            obj.put("ucDecisionDisputedByOthers", sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers());
-        }
-        if (sscsCaseData.getElementsDisputedLinkedAppealRef() != null) {
-            obj.put("linkedAppealRef", sscsCaseData.getElementsDisputedLinkedAppealRef());
-        }
-        if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
-            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone() != null) {
-                obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
-            }
-            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo() != null) {
-                obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
-            }
-            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace() != null) {
-                obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
-            }
-        }
-
-        return obj;
-    }
-
-    private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
-        if (((State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState()) && !enhancedConfidentialityFeature) || enhancedConfidentialityFeature)
-            && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
-            || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
-            obj.put("isConfidential", YES);
-        }
-    }
-
-    private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {
-        if (rpc != null && rpc.getEmail() != null) {
-            obj.put("rpcEmail", rpc.getEmail());
-        }
-    }
-
-    private JSONObject buildAppealDetails(JSONObject obj, SscsCaseData sscsCaseData) {
-        Appeal appeal = sscsCaseData.getAppeal();
-        obj.put("appellantNino", appeal.getAppellant().getIdentity().getNino());
-
-        Optional<String> venueNameO = findVenueName(sscsCaseData);
-
-        if (venueNameO.isPresent()) {
-            obj.put("appellantPostCode", venueNameO.get());
-        } else {
-            log.info("could not find venueName to use for appellantPostCode");
-        }
-
-        if (sscsCaseData.getCaseCreated() != null) {
-            obj.put("appealDate", sscsCaseData.getCaseCreated());
-        } else {
-            obj.put("appealDate", LocalDate.now().toString());
-        }
-
-        obj.put("receivedVia", appeal.getReceivedVia());
-
-        if (appeal.getMrnDetails() != null) {
-            if (appeal.getMrnDetails().getMrnDate() != null) {
-                obj.put("mrnDate", appeal.getMrnDetails().getMrnDate());
-            }
-            if (appeal.getMrnDetails().getMrnLateReason() != null) {
-                obj.put("mrnReasonForBeingLate", appeal.getMrnDetails().getMrnLateReason());
-            }
-        }
-
-        Optional<OfficeMapping> officeMapping = buildOffice(appeal);
-
-        if (officeMapping.isPresent()) {
-            obj.put("pipNumber", officeMapping.get().getMapping().getGaps());
-        } else {
-            log.error("could not find dwp officeAddress for benefitType {} and dwpIssuingOffice {}",
-                appeal.getBenefitType().getCode(), appeal.getMrnDetails().getDwpIssuingOffice());
-        }
-
-        obj.put("hearingType", convertBooleanToPaperOral(appeal.getHearingOptions().isWantsToAttendHearing()));
-
-        if (Boolean.TRUE.equals(appeal.getHearingOptions().isWantsToAttendHearing())) {
-            obj.put("hearingRequestParty", appeal.getAppellant().getName().getFullName());
-        }
-
-        return obj;
-    }
-
-    public Optional<String> findVenueName(SscsCaseData sscsCaseData) {
-        try {
-            String postcodeToUse = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
-                    ? sscsCaseData.getAppeal().getAppellant().getAppointee().getAddress().getPostcode()
-                    : sscsCaseData.getAppeal().getAppellant().getAddress().getPostcode();
-
-            String venueString  = airLookupService.lookupAirVenueNameByPostCode(postcodeToUse, sscsCaseData.getAppeal().getBenefitType());
-
-            return Optional.of(venueString);
-        } catch (Exception e) {
-            log.error("Error trying to find venue name", e);
-            return Optional.empty();
-        }
-    }
-
-    private Optional<OfficeMapping> buildOffice(Appeal appeal) {
-        return buildOffice(appeal.getBenefitType().getCode(), appeal.getMrnDetails().getDwpIssuingOffice());
-    }
-
-    private Optional<OfficeMapping> buildOffice(String benefitCode, String dwpIssuingOffice) {
-        return dwpAddressLookupService.getDwpMappingByOffice(benefitCode,dwpIssuingOffice);
-    }
-
     private static String getCaseCode(SscsCaseData sscsCaseData) {
 
         if (isNotEmpty(sscsCaseData.getCaseCode())) {
             return sscsCaseData.getCaseCode();
-            // Leave this in for now, whilst we have legacy cases where the case code is not set.
-            // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         }
 
+        // Leave this in for now, whilst we have legacy cases where the case code is not set.
+        // This will be an issue for cases where the caseworker tries to regenerate the robotics json. Can remove after a few weeks I suspect.
         Optional<Benefit> benefitOptional = findBenefitByShortName(sscsCaseData.getAppeal().getBenefitType().getCode());
 
         if (benefitOptional.filter(b -> ESA == b).isPresent()) {
@@ -343,7 +144,7 @@ public class RoboticsJsonMapper {
         }
 
         if (hearingOptions.getExcludeDates() != null
-            && hearingOptions.getExcludeDates().size() > 0) {
+                && hearingOptions.getExcludeDates().size() > 0) {
             JSONArray datesCantAttendArray = new JSONArray();
             for (ExcludeDate a : hearingOptions.getExcludeDates()) {
                 if (!isBlank(a.getValue().getStart())) {
@@ -428,43 +229,6 @@ public class RoboticsJsonMapper {
         return elementsDisputedArray;
     }
 
-    private boolean isAppointeeDetailsEmpty(Appointee appointee) {
-        return appointee == null
-            || (isAddressEmpty(appointee.getAddress())
-            && isContactEmpty(appointee.getContact())
-            && isIdentityEmpty(appointee.getIdentity())
-            && isNameEmpty(appointee.getName()));
-    }
-
-    private boolean isAddressEmpty(Address address) {
-        return address == null
-            || (address.getLine1() == null
-            && address.getLine2() == null
-            && address.getTown() == null
-            && address.getCounty() == null
-            && address.getPostcode() == null);
-    }
-
-    private boolean isContactEmpty(Contact contact) {
-        return contact == null
-            || (contact.getEmail() == null
-            && contact.getPhone() == null
-            && contact.getMobile() == null);
-    }
-
-    private boolean isIdentityEmpty(Identity identity) {
-        return identity == null
-            || (identity.getDob() == null
-            && identity.getNino() == null);
-    }
-
-    private boolean isNameEmpty(Name name) {
-        return name == null
-            || (name.getFirstName() == null
-            && name.getLastName() == null
-            && name.getTitle() == null);
-    }
-
     private static String convertBooleanToYesNo(Boolean value) {
         return Boolean.TRUE.equals(value) ? YES : NO;
     }
@@ -476,5 +240,242 @@ public class RoboticsJsonMapper {
     private static String getLocalDate(String dateStr) {
         LocalDate localDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         return localDate.toString();
+    }
+
+    public JSONObject map(RoboticsWrapper roboticsWrapper) {
+
+        SscsCaseData sscsCaseData = roboticsWrapper.getSscsCaseData();
+
+        JSONObject obj = buildAppealDetails(new JSONObject(), sscsCaseData);
+
+        obj.put("caseId", roboticsWrapper.getCcdCaseId());
+        obj.put("evidencePresent", roboticsWrapper.getEvidencePresent());
+        obj.put("caseCode", getCaseCode(sscsCaseData));
+
+        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
+            boolean sameAddressAsAppointee = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee());
+            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(), sameAddressAsAppointee));
+        }
+
+        obj.put("appellant", buildAppellantDetails(sscsCaseData.getAppeal().getAppellant()));
+
+        if (sscsCaseData.getAppeal().getRep() != null
+                && sscsCaseData.getAppeal().getRep().getHasRepresentative() != null
+                && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals(YES)) {
+            obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
+        }
+
+        if (sscsCaseData.getAppeal().getHearingOptions() != null) {
+            JSONObject hearingArrangements = buildHearingOptions(sscsCaseData.getAppeal().getHearingOptions());
+            if (hearingArrangements.length() > 0) {
+                obj.put("hearingArrangements", hearingArrangements);
+            }
+        }
+
+        addRpcEmail(sscsCaseData.getRegionalProcessingCenter(), obj);
+
+        String isReadyToList = NO;
+        if (roboticsWrapper.getState().equals(State.READY_TO_LIST)) {
+            isReadyToList = YES;
+        }
+        obj.put("isReadyToList", isReadyToList);
+
+        String isDigital = NO;
+        if (StringUtils.equals(roboticsWrapper.getSscsCaseData().getCreatedInGapsFrom(), "readyToList")) {
+            isDigital = YES;
+        }
+
+        obj.put("isDigital", isDigital);
+
+        setConfidentialFlag(roboticsWrapper, obj);
+
+        obj.put("dwpResponseDate", sscsCaseData.getDwpResponseDate());
+
+        Optional<OfficeMapping> officeMapping = buildOffice(sscsCaseData.getAppeal());
+
+        String dwpIssuingOffice = EMPTY;
+        String dwpPresentingOffice = EMPTY;
+
+        if (officeMapping.isEmpty()) {
+            log.error("could not find dwp officeAddress for benefitType {} and dwpIssuingOffice {} so could not set dwp offices in robotics",
+                    sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getAppeal().getMrnDetails().getDwpIssuingOffice());
+        }
+
+        if (sscsCaseData.getDwpOriginatingOffice() != null && sscsCaseData.getDwpOriginatingOffice().getValue().getLabel() != null) {
+            dwpIssuingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpOriginatingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
+        }
+        if (dwpIssuingOffice.isEmpty() && officeMapping.isPresent()) {
+            dwpIssuingOffice = officeMapping.get().getMapping().getGaps();
+        }
+
+        if (sscsCaseData.getDwpPresentingOffice() != null && sscsCaseData.getDwpPresentingOffice().getValue().getLabel() != null) {
+            dwpPresentingOffice = buildOffice(sscsCaseData.getAppeal().getBenefitType().getCode(), sscsCaseData.getDwpPresentingOffice().getValue().getLabel()).map(f -> f.getMapping().getGaps()).orElse(EMPTY);
+        }
+        if (dwpPresentingOffice.isEmpty() && officeMapping.isPresent()) {
+            dwpPresentingOffice = officeMapping.get().getMapping().getGaps();
+        }
+
+        String dwpIsOfficerAttending = sscsCaseData.getDwpIsOfficerAttending() != null ? sscsCaseData.getDwpIsOfficerAttending() : NO;
+        String dwpUcb = sscsCaseData.getDwpUcb() != null ? sscsCaseData.getDwpUcb() : NO;
+
+        obj.put("dwpIssuingOffice", dwpIssuingOffice);
+        obj.put("dwpPresentingOffice", dwpPresentingOffice);
+        obj.put("dwpIsOfficerAttending", dwpIsOfficerAttending);
+        obj.put("dwpUcb", dwpUcb);
+
+        JSONObject elementsDisputed = buildElementsDisputedLists(obj, sscsCaseData);
+        if (elementsDisputed.length() > 0) {
+            obj.put("elementsDisputed", elementsDisputed);
+        }
+
+        if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
+            if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
+                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
+                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+            } else {
+                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
+                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+            }
+        }
+        if (sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers() != null) {
+            obj.put("ucDecisionDisputedByOthers", sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers());
+        }
+        if (sscsCaseData.getElementsDisputedLinkedAppealRef() != null) {
+            obj.put("linkedAppealRef", sscsCaseData.getElementsDisputedLinkedAppealRef());
+        }
+        if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
+            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone() != null) {
+                obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
+            }
+            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo() != null) {
+                obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
+            }
+            if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace() != null) {
+                obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
+            }
+        }
+
+        return obj;
+    }
+
+    private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
+        if (((State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState()) && !enhancedConfidentialityFeature) || enhancedConfidentialityFeature)
+                && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
+                || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
+            obj.put("isConfidential", YES);
+        }
+    }
+
+    private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {
+        if (rpc != null && rpc.getEmail() != null) {
+            obj.put("rpcEmail", rpc.getEmail());
+        }
+    }
+
+    private JSONObject buildAppealDetails(JSONObject obj, SscsCaseData sscsCaseData) {
+        Appeal appeal = sscsCaseData.getAppeal();
+        obj.put("appellantNino", appeal.getAppellant().getIdentity().getNino());
+
+        Optional<String> venueNameO = findVenueName(sscsCaseData);
+
+        if (venueNameO.isPresent()) {
+            obj.put("appellantPostCode", venueNameO.get());
+        } else {
+            log.info("could not find venueName to use for appellantPostCode");
+        }
+
+        if (sscsCaseData.getCaseCreated() != null) {
+            obj.put("appealDate", sscsCaseData.getCaseCreated());
+        } else {
+            obj.put("appealDate", LocalDate.now().toString());
+        }
+
+        obj.put("receivedVia", appeal.getReceivedVia());
+
+        if (appeal.getMrnDetails() != null) {
+            if (appeal.getMrnDetails().getMrnDate() != null) {
+                obj.put("mrnDate", appeal.getMrnDetails().getMrnDate());
+            }
+            if (appeal.getMrnDetails().getMrnLateReason() != null) {
+                obj.put("mrnReasonForBeingLate", appeal.getMrnDetails().getMrnLateReason());
+            }
+        }
+
+        Optional<OfficeMapping> officeMapping = buildOffice(appeal);
+
+        if (officeMapping.isPresent()) {
+            obj.put("pipNumber", officeMapping.get().getMapping().getGaps());
+        } else {
+            log.error("could not find dwp officeAddress for benefitType {} and dwpIssuingOffice {}",
+                    appeal.getBenefitType().getCode(), appeal.getMrnDetails().getDwpIssuingOffice());
+        }
+
+        obj.put("hearingType", convertBooleanToPaperOral(appeal.getHearingOptions().isWantsToAttendHearing()));
+
+        if (Boolean.TRUE.equals(appeal.getHearingOptions().isWantsToAttendHearing())) {
+            obj.put("hearingRequestParty", appeal.getAppellant().getName().getFullName());
+        }
+
+        return obj;
+    }
+
+    public Optional<String> findVenueName(SscsCaseData sscsCaseData) {
+        try {
+            String postcodeToUse = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
+                    ? sscsCaseData.getAppeal().getAppellant().getAppointee().getAddress().getPostcode()
+                    : sscsCaseData.getAppeal().getAppellant().getAddress().getPostcode();
+
+            String venueString = airLookupService.lookupAirVenueNameByPostCode(postcodeToUse, sscsCaseData.getAppeal().getBenefitType());
+
+            return Optional.of(venueString);
+        } catch (Exception e) {
+            log.error("Error trying to find venue name", e);
+            return Optional.empty();
+        }
+    }
+
+    private Optional<OfficeMapping> buildOffice(Appeal appeal) {
+        return buildOffice(appeal.getBenefitType().getCode(), appeal.getMrnDetails().getDwpIssuingOffice());
+    }
+
+    private Optional<OfficeMapping> buildOffice(String benefitCode, String dwpIssuingOffice) {
+        return dwpAddressLookupService.getDwpMappingByOffice(benefitCode, dwpIssuingOffice);
+    }
+
+    private boolean isAppointeeDetailsEmpty(Appointee appointee) {
+        return appointee == null
+                || (isAddressEmpty(appointee.getAddress())
+                && isContactEmpty(appointee.getContact())
+                && isIdentityEmpty(appointee.getIdentity())
+                && isNameEmpty(appointee.getName()));
+    }
+
+    private boolean isAddressEmpty(Address address) {
+        return address == null
+                || (address.getLine1() == null
+                && address.getLine2() == null
+                && address.getTown() == null
+                && address.getCounty() == null
+                && address.getPostcode() == null);
+    }
+
+    private boolean isContactEmpty(Contact contact) {
+        return contact == null
+                || (contact.getEmail() == null
+                && contact.getPhone() == null
+                && contact.getMobile() == null);
+    }
+
+    private boolean isIdentityEmpty(Identity identity) {
+        return identity == null
+                || (identity.getDob() == null
+                && identity.getNino() == null);
+    }
+
+    private boolean isNameEmpty(Name name) {
+        return name == null
+                || (name.getFirstName() == null
+                && name.getLastName() == null
+                && name.getTitle() == null);
     }
 }
