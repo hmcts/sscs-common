@@ -28,10 +28,11 @@ public class SscsHearingRecordingCaseData {
     private DynamicList requestingParty;
     private YesNo showRequestingPartyPage;
     private List<ProcessHearingRecordingRequest> processHearingRecordingRequests;
-
     @JsonProperty("hearingRecording")
     private HearingRecording hearingRecording;
-
     @JsonProperty("sscsHearingRecordings")
     private List<SscsHearingRecording> sscsHearingRecordings;
+    @JsonProperty("existingHearingRecordings")
+    private SscsHearingRecordingDetails existingHearingRecordings;
+    private YesNo hearingRecordingExist;
 }
