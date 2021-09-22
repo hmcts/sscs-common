@@ -207,7 +207,7 @@ public class EventTypeTest {
             "createResponseReceivedTestCase\n" +
             "createTestCase\n" +
             "uploadHearingRecording\n" +
-            "processHearingRecordingRequest\n" +
+            "actionHearingRecordingRequest\n" +
             "citizenRequestHearingRecording\n" +
             "postponementRequest\n" +
             "dwpRequestHearingRecording";
