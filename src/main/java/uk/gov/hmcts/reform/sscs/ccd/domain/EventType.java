@@ -211,7 +211,7 @@ public enum EventType {
     CITIZEN_REQUEST_HEARING_RECORDING("citizenRequestHearingRecording", 0, false),
     UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
-    PROCESS_HEARING_RECORDING_REQUEST("processHearingRecordingRequest", 0, false),
+    ACTION_HEARING_RECORDING_REQUEST("actionHearingRecordingRequest", 0, false),
     ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false),
     ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false);
 
