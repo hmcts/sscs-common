@@ -16,6 +16,7 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private String controlNumber;
     private DocumentLink editedDocumentLink;
     private UploadParty partyUploaded;
+    private String originalPartySender;
     private String dateApproved;
 
     @JsonCreator
@@ -34,12 +35,14 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("dateApproved") String dateApproved,
                                @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
                                @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                               @JsonProperty("shouldBundleIncludeDocLink") YesNo shouldBundleIncludeDocLink) {
+                               @JsonProperty("shouldBundleIncludeDocLink") YesNo shouldBundleIncludeDocLink,
+                               @JsonProperty("originalPartySender") String originalPartySender) {
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, shouldBundleIncludeDocLink);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
         this.editedDocumentLink = editedDocumentLink;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
+        this.originalPartySender = originalPartySender;
     }
 }
