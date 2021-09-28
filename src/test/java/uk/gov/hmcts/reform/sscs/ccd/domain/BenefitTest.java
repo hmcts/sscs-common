@@ -175,6 +175,7 @@ public class BenefitTest {
             "INDUSTRIAL_DEATH_BENEFIT, JUDGE_AND_ONE_OR_TWO_DOCTORS",
             "PENSION_CREDIT, JUDGE",
             "RETIREMENT_PENSION, JUDGE",
+            "CHILD_SUPPORT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
