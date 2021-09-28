@@ -5,7 +5,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySi
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -59,6 +58,7 @@ public class SearchCcdCaseService {
 
     @Retryable
     public List<SscsCaseDetails>  findCaseBySearchCriteria(String query, IdamTokens idamTokens) {
+        log.info("in findCaseBySearchCriteria");
         return findCaseBySearchCriteriaRetryLogic(query, idamTokens);
     }
 
