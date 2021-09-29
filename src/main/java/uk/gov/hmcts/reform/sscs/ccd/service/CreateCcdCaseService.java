@@ -62,18 +62,6 @@ public class CreateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(caseDetails);
     }
 
-    @Recover
-    protected SscsCaseDetails recover(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
-        String nino = getAppellantNino(caseData);
-        log.info("Requesting IDAM tokens to create case for nino {} with eventType {}", nino, eventType);
-
-        idamTokens = idamService.getIdamTokens();
-
-        log.info("Received IDAM tokens for creating case for nino {} with eventType {}", nino, eventType);
-
-        return createCase(caseData, eventType, summary, description, idamTokens);
-    }
-
     private String getAppellantNino(SscsCaseData caseData) {
         return caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null && caseData.getAppeal().getAppellant().getIdentity() != null
                 ? caseData.getAppeal().getAppellant().getIdentity().getNino() : null;
