@@ -41,6 +41,7 @@ public class IdamService {
         this.idamClient = idamClient;
     }
 
+    @Retryable
     public String generateServiceAuthorization() {
         return authTokenGenerator.generate();
     }
@@ -51,16 +52,19 @@ public class IdamService {
         return idamClient.getUserDetails(oauth2Token).getId();
     }
 
+    @Retryable
     public UserDetails getUserDetails(String oauth2Token)  {
         UserInfo userInfo = idamClient.getUserInfo(oauth2Token);
         return new UserDetailsTransformer(userInfo).asLocalUserDetails();
     }
 
+    @Retryable
     public String getIdamOauth2Token() {
         cachedToken = getOpenAccessToken();
         return cachedToken;
     }
 
+    @Retryable
     public String getOpenAccessToken() {
         try {
             log.info("Requesting idam access token from Open End Point");

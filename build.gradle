@@ -132,7 +132,6 @@ dependencies {
 
     testCompile group: 'org.springframework.boot', version: '2.3.5.RELEASE', name: 'spring-boot-starter-test'
     testCompile group: 'org.springframework.boot', version: '2.3.5.RELEASE', name: 'spring-boot-starter-aop'
-    testCompile group: 'org.aspectj', version: '1.8.13', name: 'aspectjweaver'
     testCompile group: 'junit', name: 'junit', version: 4.12
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.3.10'

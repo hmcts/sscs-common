@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -17,7 +16,6 @@ import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
-import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 import uk.gov.hmcts.reform.sscs.utility.AppealNumberGenerator;
 
@@ -25,22 +23,20 @@ import uk.gov.hmcts.reform.sscs.utility.AppealNumberGenerator;
 @Service
 public class SearchCcdCaseService {
 
-    private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
     private final ReadCcdCaseService readCcdCaseService;
 
     @Autowired
-    public SearchCcdCaseService(IdamService idamService,
-                                SscsCcdConvertService sscsCcdConvertService,
+    public SearchCcdCaseService(SscsCcdConvertService sscsCcdConvertService,
                                 CcdClient ccdClient,
                                 ReadCcdCaseService readCcdCaseService) {
-        this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
         this.readCcdCaseService = readCcdCaseService;
     }
 
+    @Retryable
     public SscsCaseDetails findCaseByCaseRef(String caseRef, IdamTokens idamTokens) {
         log.info("searching cases by SC number {}", caseRef);
 
@@ -49,6 +45,7 @@ public class SearchCcdCaseService {
         return null != sscsCaseDetailsList && !sscsCaseDetailsList.isEmpty() ? sscsCaseDetailsList.get(0) : null;
     }
 
+    @Retryable
     public List<SscsCaseDetails> findListOfCasesByCaseRef(String caseRef, IdamTokens idamTokens) {
         log.info("searching list of cases by SC number {}", caseRef);
 
@@ -58,7 +55,7 @@ public class SearchCcdCaseService {
 
     @Retryable
     public List<SscsCaseDetails>  findCaseBySearchCriteria(String query, IdamTokens idamTokens) {
-        log.info("in findCaseBySearchCriteria");
+        log.info("findCaseBySearchCriteria {}", query);
         return findCaseBySearchCriteriaRetryLogic(query, idamTokens);
     }
 
@@ -74,24 +71,15 @@ public class SearchCcdCaseService {
         return null;
     }
 
-    @Recover
-    public List<SscsCaseDetails> findCaseBySearchCriteriaRecoverLogic(String query,
-                                                                      IdamTokens idamTokens) {
-
-        log.info("Requesting IDAM tokens for search");
-        idamTokens = idamService.getIdamTokens();
-        log.info("Received IDAM tokens for search");
-
-        return findCaseBySearchCriteriaRetryLogic(query, idamTokens);
-    }
-
     @Retryable
     public SscsCaseDetails findCaseByCaseRefOrCaseId(SscsCaseData caseData, IdamTokens idamTokens) {
+        log.info("findCaseByCaseRefOrCaseId {}", caseData.getCcdCaseId());
         return findCaseByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
     }
 
     @Retryable
     public List<SscsCaseDetails> findListOfCasesByCaseRefOrCaseId(SscsCaseData caseData, IdamTokens idamTokens) {
+        log.info("findListOfCasesByCaseRefOrCaseId {}", caseData.getCcdCaseId());
         return findListOfCasesByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
     }
 
@@ -120,20 +108,5 @@ public class SearchCcdCaseService {
         }
         return sscsCaseDetailsList;
     }
-
-    @Recover
-    public SscsCaseDetails findCaseByCaseRefOrCaseIdRecoverLogic(SscsCaseData caseData, IdamTokens idamTokens) {
-
-        final String caseId = caseData.getCcdCaseId();
-
-        log.info("Requesting IDAM tokens to get caseId {}", caseId);
-
-        idamTokens = idamService.getIdamTokens();
-
-        log.info("Received IDAM tokens for getting caseId {}", caseId);
-
-        return findCaseByCaseRefOrCaseIdRetryLogic(caseData, idamTokens);
-    }
-
 
 }
