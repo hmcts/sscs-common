@@ -128,7 +128,7 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("12345656789", actualSscsCaseCallback.getCaseDetails().getCaseData().getCcdCaseId());
         assertEquals(Optional.of(Benefit.ESA), actualSscsCaseCallback.getCaseDetails().getCaseData().getBenefitType());
         assertTrue(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(Benefit.ESA));
-        assertFalse(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(Benefit.PIP));
+        assertEquals("Benefit", actualSscsCaseCallback.getCaseTypeId());
 
     }
 

@@ -15,6 +15,7 @@ public class CaseDetails<T extends CaseData> {
     private State state;
     private T caseData;
     private LocalDateTime createdDate;
+    private String caseTypeId;
 
     private CaseDetails() {
         // noop -- for deserializer
@@ -25,13 +26,15 @@ public class CaseDetails<T extends CaseData> {
         String jurisdiction,
         State state,
         T caseData,
-        LocalDateTime createdDate
+        LocalDateTime createdDate,
+        String caseTypeId
     ) {
         this.id = id;
         this.jurisdiction = jurisdiction;
         this.state = state;
         this.caseData = caseData;
         this.createdDate = createdDate;
+        this.caseTypeId = caseTypeId;
     }
 
     public long getId() {
@@ -73,4 +76,9 @@ public class CaseDetails<T extends CaseData> {
 
         return createdDate;
     }
+
+    public String getCaseTypeId() {
+        return caseTypeId;
+    }
+
 }
