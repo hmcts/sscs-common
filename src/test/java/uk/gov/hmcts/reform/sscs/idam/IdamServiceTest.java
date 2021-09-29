@@ -1,20 +1,20 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.StringContains.containsString;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.atMostOnce;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +28,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.idam.client.IdamClient;
 import uk.gov.hmcts.reform.idam.client.models.UserInfo;
-
 
 @RunWith(MockitoJUnitRunner.class)
 public class IdamServiceTest {
@@ -84,7 +83,7 @@ public class IdamServiceTest {
         assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
         assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
 
-        verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
+        verify(mockAppender, times(5)).doAppend(captorLoggingEvent.capture());
         final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
 
         //Check the message being logged is correct
@@ -92,6 +91,7 @@ public class IdamServiceTest {
         assertThat(loggingEvent.get(1).getFormattedMessage(), containsString("Attempting to obtain token, retry attempt"));
         assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
         assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam access token successful"));
+        assertThat(loggingEvent.get(4).getFormattedMessage(), is("requesting user details"));
     }
 
     @Test
