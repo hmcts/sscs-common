@@ -48,12 +48,13 @@ public class IdamService {
 
     @Retryable
     public String getUserId(String oauth2Token) {
-
+        log.debug("get user Id");
         return idamClient.getUserDetails(oauth2Token).getId();
     }
 
     @Retryable
     public UserDetails getUserDetails(String oauth2Token)  {
+        log.debug("requesting user details");
         UserInfo userInfo = idamClient.getUserInfo(oauth2Token);
         return new UserDetailsTransformer(userInfo).asLocalUserDetails();
     }
@@ -85,7 +86,7 @@ public class IdamService {
 
     @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
     public IdamTokens getIdamTokens() {
-
+        log.debug("get idam tokens");
         String idamOauth2Token;
 
         if (StringUtils.isEmpty(cachedToken)) {
