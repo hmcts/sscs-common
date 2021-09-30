@@ -67,5 +67,4 @@ public class Callback<T extends CaseData> {
     public void setPageId(String pageId) {
         this.pageId = pageId;
     }
-
 }
