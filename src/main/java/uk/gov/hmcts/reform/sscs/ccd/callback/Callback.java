@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import static java.util.Objects.requireNonNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -24,9 +23,6 @@ public class Callback<T extends CaseData> {
 
     @JsonProperty("ignore_warning")
     private boolean ignoreWarnings;
-
-    @JsonIgnore
-    private String caseTypeId;
 
     private Callback() {
         // noop -- for deserializer
@@ -71,14 +67,5 @@ public class Callback<T extends CaseData> {
     public void setPageId(String pageId) {
         this.pageId = pageId;
     }
-
-    public String getCaseTypeId() {
-        return caseTypeId;
-    }
-
-    public void setCaseTypeId(String caseTypeId) {
-        this.caseTypeId = caseTypeId;
-    }
-
 
 }
