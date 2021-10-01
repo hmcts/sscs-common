@@ -18,6 +18,7 @@ public class Appellant {
     private String isAppointee;
     private Appointee appointee;
     private String isAddressSameAsAppointee;
+    private Role role;
     private YesNo confidentialityRequired;
 
     @JsonCreator
@@ -28,7 +29,8 @@ public class Appellant {
                      @JsonProperty("isAppointee") String isAppointee,
                      @JsonProperty("appointee") Appointee appointee,
                      @JsonProperty("isAddressSameAsAppointee") String isAddressSameAsAppointee,
-                     @JsonProperty("confidentialityRequired") YesNo confidentialityRequired) {
+                     @JsonProperty("confidentialityRequired") YesNo confidentialityRequired,
+                     @JsonProperty("role") Role role) {
         this.name = name;
         this.address = address;
         this.contact = contact;
@@ -37,5 +39,6 @@ public class Appellant {
         this.appointee = appointee;
         this.isAddressSameAsAppointee = isAddressSameAsAppointee;
         this.confidentialityRequired = confidentialityRequired;
+        this.role = role;
     }
 }
