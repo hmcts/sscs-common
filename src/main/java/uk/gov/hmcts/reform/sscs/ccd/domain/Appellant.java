@@ -18,8 +18,8 @@ public class Appellant {
     private String isAppointee;
     private Appointee appointee;
     private String isAddressSameAsAppointee;
-    private Role role;
     private YesNo confidentialityRequired;
+    private Role role;
 
     @JsonCreator
     public Appellant(@JsonProperty("name") Name name,
