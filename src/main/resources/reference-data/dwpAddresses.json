@@ -2,7 +2,7 @@
   "pip": [
     {
       "code": "1",
-      "isDefault": true,
+      "isDefault": false,
       "mapping": {
         "ccd": "DWP PIP (1)",
         "gaps": "DWP PIP (1)",
@@ -30,7 +30,7 @@
     },
     {
       "code": "3",
-      "isDefault": false,
+      "isDefault": true,
       "mapping": {
         "ccd": "DWP PIP (3)",
         "gaps": "DWP PIP (3)",
@@ -372,7 +372,7 @@
   "dla": [
     {
       "code": "Disability Benefit Centre 4",
-      "isDefault": false,
+      "isDefault": true,
       "mapping": {
         "ccd": "Disability Benefit Centre 4",
         "gaps": "Disability Benefit Centre 4",
@@ -404,7 +404,7 @@
     },
     {
       "code": "Recovery from Estates",
-      "isDefault": true,
+      "isDefault": false,
       "mapping": {
         "ccd": "Recovery from Estates",
         "gaps": "Recovery from Estates",
@@ -637,7 +637,7 @@
   "socialFund": [
     {
       "code": "St Helens Sure Start Maternity Grant",
-      "isDefault": true,
+      "isDefault": false,
       "mapping": {
         "ccd": "St Helens Sure Start Maternity Grant",
         "gaps": "St Helens Maternity Grants",
@@ -651,7 +651,7 @@
     },
     {
       "code": "Funeral Payment Dispute Resolution Team",
-      "isDefault": false,
+      "isDefault": true,
       "mapping": {
         "ccd": "Funeral Payment Dispute Resolution Team",
         "gaps": "Funeral Payments DRT",
