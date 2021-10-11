@@ -32,21 +32,9 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 public class RoboticsJsonMapperTest {
 
     private static final String caseId = "12345678";
-
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
-
-    private RoboticsJsonMapper roboticsJsonMapper;
-    private RoboticsWrapper roboticsWrapper;
     private final RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
             "/schema/sscs-robotics.json");
-    private JSONObject roboticsJson;
-
     private final DwpAddressLookupService dwpAddressLookupService = new DwpAddressLookupService();
-
-    @Mock
-    private AirLookupService airLookupService;
-
     private final List<ElementDisputed> elementsDisputedGeneralList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedSanctionsList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedOverpaymentList = new ArrayList<>();
@@ -56,6 +44,13 @@ public class RoboticsJsonMapperTest {
     private final List<ElementDisputed> elementsDisputedChildElementList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedChildDisabledList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedLimitedWorkList = new ArrayList<>();
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+    private RoboticsJsonMapper roboticsJsonMapper;
+    private RoboticsWrapper roboticsWrapper;
+    private JSONObject roboticsJson;
+    @Mock
+    private AirLookupService airLookupService;
 
     @Before
     public void setup() {
@@ -222,7 +217,7 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
-    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD", "037DD, 037DD"})
+    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD", "037DD, 037DD", "022DD, 022DD"})
     public void givenCaseCodeOnCase_shouldSetRetrieveCaseCodeAccordingly(@Nullable String caseCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().setCaseCode(caseCode);
 
