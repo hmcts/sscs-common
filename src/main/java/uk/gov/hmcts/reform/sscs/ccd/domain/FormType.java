@@ -17,23 +17,16 @@ public enum FormType {
     @JsonProperty("sscs1u")
     SSCS1U("sscs1u"),
 
+    @JsonProperty("sscs2")
+    SSCS2("sscs2"),
+
     @JsonProperty("unknown")
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
-
     private final String id;
 
     FormType(String id) {
         this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public String toString() {
-        return id;
     }
 
     public static FormType getById(String id) {
@@ -43,5 +36,14 @@ public enum FormType {
             }
         }
         return UNKNOWN;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return id;
     }
 }

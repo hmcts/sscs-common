@@ -270,6 +270,8 @@ public class SscsCaseData implements CaseData {
     private List<CcdValue<OtherParty>> otherParties;
     private String childMaintenanceNumber;
     private String reasonableAdjustmentChoice;
+    private YesNo doesOtherPersonKnowWhereYouLive;
+    private YesNo keepHomeAddressConfidential;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;

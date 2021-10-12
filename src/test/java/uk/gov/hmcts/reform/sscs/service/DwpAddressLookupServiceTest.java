@@ -13,8 +13,10 @@ import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -28,9 +30,8 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 @RunWith(JUnitParamsRunner.class)
 public class DwpAddressLookupServiceTest {
 
-    private SscsCaseData caseData;
-
     private final DwpAddressLookupService dwpAddressLookup = new DwpAddressLookupService();
+    private SscsCaseData caseData;
 
     @Before
     public void setup() {
@@ -64,8 +65,8 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-        "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
-        "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
+            "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
+            "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
     })
     public void benefitTypeIsCaseInsensitive(final String benefitType, String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -89,9 +90,9 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-        "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
-        "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
-        "Norwich DRT", "Sheffield DRT", "Worthing DRT"
+            "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
+            "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
+            "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -162,7 +163,7 @@ public class DwpAddressLookupServiceTest {
         caseData.setRegionalProcessingCenter(null);
 
         caseData = caseData.toBuilder().appeal(caseData.getAppeal().toBuilder().mrnDetails(
-            MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
+                MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
@@ -185,6 +186,13 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void bereavementBenefitOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.bereavementBenefitOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void childSupportOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.childSupportOfficeMappings();
         assertEquals(1, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
@@ -428,6 +436,21 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenAChildSupportTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("childSupport", null);
+
+        assertEquals("Child Support", result);
+    }
+
+    @Test
+    public void givenAChildSupportType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childSupport", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("Child Maintenance Service Group", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
@@ -451,6 +474,14 @@ public class DwpAddressLookupServiceTest {
 
         assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
+    }
+
+    @Test
+    public void givenAChildSupport_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childSupport", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("Child Maintenance Service Group", result.get().getCode());
     }
 
     @Test
@@ -583,8 +614,8 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void allDwpMappingsHaveADwpRegionCentre() {
         stream(Benefit.values())
-            .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
-            .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+                .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
+                .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
     }
 
     @Test
