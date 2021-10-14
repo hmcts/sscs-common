@@ -10,6 +10,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -265,7 +267,11 @@ public class SscsCaseData implements CaseData {
     private String elementsDisputedLinkedAppealRef;
     private String jointParty;
     private JointPartyName jointPartyName;
+    private List<CcdValue<OtherParty>> otherParties;
+    private String childMaintenanceNumber;
     private String reasonableAdjustmentChoice;
+    private YesNo doesOtherPersonKnowWhereYouLive;
+    private YesNo keepHomeAddressConfidential;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
@@ -291,6 +297,7 @@ public class SscsCaseData implements CaseData {
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
     private YesNo isConfidentialCase;
+    private YesNo isInc5249521;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
     private String confidentialityRequestAppellantGrantedOrRefused;
@@ -324,14 +331,21 @@ public class SscsCaseData implements CaseData {
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
+    
     @JsonProperty("processAudioVideoReviewState")
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
+
     private String panelDoctorSpecialism;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private PostponementRequest postponementRequest;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -569,6 +583,14 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public PostponementRequest getPostponementRequest() {
+        if (postponementRequest == null) {
+            this.postponementRequest = new PostponementRequest();
+        }
+        return postponementRequest;
+    }
+
+    @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
@@ -587,7 +609,7 @@ public class SscsCaseData implements CaseData {
                 ldt = Optional.of(LocalDateTime.parse(this.dateTimeCaseSentToGaps));
             }
         } catch (DateTimeParseException e) {
-            ldt =  Optional.empty();
+            ldt = Optional.empty();
         }
         return ldt;
     }

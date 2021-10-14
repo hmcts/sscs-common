@@ -419,21 +419,22 @@
       }
     }
   ],
-  "uc": [{
-    "code": "Universal Credit",
-    "isDefault": true,
-    "mapping": {
-      "ccd": "Universal Credit",
-      "gaps": "Universal Credit",
-      "dwpRegionCentre": "Universal Credit"
+  "uc": [
+    {
+      "code": "Universal Credit",
+      "isDefault": true,
+      "mapping": {
+        "ccd": "Universal Credit",
+        "gaps": "Universal Credit",
+        "dwpRegionCentre": "Universal Credit"
+      },
+      "address": {
+        "line1": "Universal Credit",
+        "line2": "Post Handling Site B",
+        "line3": "WOLVERHAMPTON",
+        "postCode": "WV99 1AJ"
+      }
     },
-    "address": {
-      "line1": "Universal Credit",
-      "line2": "Post Handling Site B",
-      "line3": "WOLVERHAMPTON",
-      "postCode": "WV99 1AJ"
-    }
-  },
     {
       "code": "Recovery from Estates",
       "isDefault": false,
@@ -449,7 +450,8 @@
         "line4": "Wolverhampton",
         "postCode": "WV98 2DG"
       }
-    }],
+    }
+  ],
   "carersAllowance": {
     "code": "Carer’s Allowance Dispute Resolution Team",
     "isDefault": true,
@@ -753,7 +755,7 @@
       "line1": "Pensions Dispute Resolution Team",
       "line2": "The Pension Service 11",
       "line3": "Mail Handing Site A",
-      "line3": "Wolverhampton",
+      "line4": "Wolverhampton",
       "postCode": "WV98 1LW"
     }
   },
@@ -791,14 +793,14 @@
       }
     }
   ],
-  "pensionCredits": [
+  "pensionCredit": [
     {
       "code": "Pensions Dispute Resolution Team",
       "isDefault": true,
       "mapping": {
         "ccd": "Pensions Dispute Resolution Team",
         "gaps": "Pensions Dispute Resolution Team",
-        "dwpRegionCentre": "Pension Credits"
+        "dwpRegionCentre": "Pension Credit"
       },
       "address": {
         "line1": "Pensions Dispute Resolution Team",
@@ -858,5 +860,21 @@
         "postCode": "WV98 2DG"
       }
     }
-  ]
+  ],
+  "childSupport": {
+    "code": "Child Maintenance Service Group",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "Child Support",
+      "gaps": "Child Support",
+      "dwpRegionCentre": "Child Support"
+    },
+    "address": {
+      "line1": "Child Support Agency",
+      "line2": "Child Support Agency 9",
+      "line3": "Post Handling Site B",
+      "line4": "Wolverhampton",
+      "postCode": "WV99 1TW"
+    }
+  }
 }

@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.CaseFormat;
+
 import java.util.Arrays;
 
 public enum EventType {
@@ -208,7 +209,11 @@ public enum EventType {
     SYSTEM_MAINTENANCE("SYSTEM_MAINTENANCE", 0, false),
     DWP_REQUEST_HEARING_RECORDING("dwpRequestHearingRecording", 0, false),
     CITIZEN_REQUEST_HEARING_RECORDING("citizenRequestHearingRecording", 0, false),
-    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false);
+    UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
+    POSTPONEMENT_REQUEST("postponementRequest", 0, false),
+    ACTION_HEARING_RECORDING_REQUEST("actionHearingRecordingRequest", 0, false),
+    ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false),
+    ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false);
 
     private final String type;
     private final String ccdType;
@@ -227,6 +232,21 @@ public enum EventType {
         this.ccdType = ccdType;
         this.order = order;
         this.notifiable = notifiable;
+    }
+
+    public static EventType getEventTypeByCcdType(String ccdType) {
+        EventType e = null;
+        for (EventType event : EventType.values()) {
+            if (event.getCcdType().equals(ccdType)) {
+                e = event;
+            }
+        }
+        return e;
+    }
+
+    @JsonCreator
+    static EventType findValue(String ccdType) {
+        return Arrays.stream(EventType.values()).filter(pt -> pt.ccdType.equals(ccdType)).findFirst().get();
     }
 
     public String getType() {
@@ -252,21 +272,6 @@ public enum EventType {
 
     public boolean isNotifiable() {
         return notifiable;
-    }
-
-    public static EventType getEventTypeByCcdType(String ccdType) {
-        EventType e = null;
-        for (EventType event : EventType.values()) {
-            if (event.getCcdType().equals(ccdType)) {
-                e = event;
-            }
-        }
-        return e;
-    }
-
-    @JsonCreator
-    static EventType findValue(String ccdType) {
-        return Arrays.stream(EventType.values()).filter(pt -> pt.ccdType.equals(ccdType)).findFirst().get();
     }
 }
 

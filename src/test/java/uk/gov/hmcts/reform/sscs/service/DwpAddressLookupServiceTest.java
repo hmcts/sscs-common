@@ -1,10 +1,22 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.util.Arrays.stream;
-import static org.junit.Assert.*;
+import static org.apache.commons.io.IOUtils.resourceToString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -18,9 +30,8 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 @RunWith(JUnitParamsRunner.class)
 public class DwpAddressLookupServiceTest {
 
-    private SscsCaseData caseData;
-
     private final DwpAddressLookupService dwpAddressLookup = new DwpAddressLookupService();
+    private SscsCaseData caseData;
 
     @Before
     public void setup() {
@@ -45,9 +56,17 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    @Parameters({"PIP (3)", "  PIP 3  ", "PIP 3", "DWP PIP (3)", "(AE)", "AE", "PIP AE", "DWP PIP (AE)", "Recovery from Estates", "PIP Recovery from Estates"})
+    public void pipFuzzyMatchingAddressesExist(final String dwpIssuingOffice) {
+        SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
+        Address address = dwpAddressLookup.lookupDwpAddress(caseData);
+        assertNotNull(address);
+    }
+
+    @Test
     @Parameters({
-        "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
-        "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
+            "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
+            "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
     })
     public void benefitTypeIsCaseInsensitive(final String benefitType, String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -71,9 +90,9 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-        "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
-        "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
-        "Norwich DRT", "Sheffield DRT", "Worthing DRT"
+            "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
+            "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
+            "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -144,7 +163,7 @@ public class DwpAddressLookupServiceTest {
         caseData.setRegionalProcessingCenter(null);
 
         caseData = caseData.toBuilder().appeal(caseData.getAppeal().toBuilder().mrnDetails(
-            MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
+                MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
         dwpAddressLookup.lookupDwpAddress(caseData);
     }
 
@@ -167,6 +186,13 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void bereavementBenefitOfficeMappings() {
         OfficeMapping[] result = dwpAddressLookup.bereavementBenefitOfficeMappings();
+        assertEquals(1, result.length);
+        assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
+    }
+
+    @Test
+    public void childSupportOfficeMappings() {
+        OfficeMapping[] result = dwpAddressLookup.childSupportOfficeMappings();
         assertEquals(1, result.length);
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
@@ -264,7 +290,7 @@ public class DwpAddressLookupServiceTest {
             "INCOME_SUPPORT, 4",
             "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
             "INDUSTRIAL_DEATH_BENEFIT, 2",
-            "PENSION_CREDITS, 2",
+            "PENSION_CREDIT, 2",
             "RETIREMENT_PENSION, 2",
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
@@ -410,6 +436,21 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenAChildSupportTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("childSupport", null);
+
+        assertEquals("Child Support", result);
+    }
+
+    @Test
+    public void givenAChildSupportType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childSupport", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("Child Maintenance Service Group", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
@@ -436,6 +477,14 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenAChildSupport_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childSupport", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("Child Maintenance Service Group", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
     })
@@ -457,10 +506,10 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Pension Credits", "Recovery from Estates, RfE"
+            "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
     })
     public void givenAPensionCreditsBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
-        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredits", office);
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredit", office);
 
         assertEquals(dwpRegionalCentre, result);
     }
@@ -548,7 +597,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void givenAMaternityAllowanceBenefitType_thenReturnTheDefaultPensionCreditsOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredits");
+        Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pensionCredit");
 
         assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
@@ -565,8 +614,18 @@ public class DwpAddressLookupServiceTest {
     @Test
     public void allDwpMappingsHaveADwpRegionCentre() {
         stream(Benefit.values())
-            .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
-            .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+                .flatMap(benefit -> stream(benefit.getOfficeMappings().apply(dwpAddressLookup)))
+                .forEach(f -> assertNotNull(f.getMapping().getDwpRegionCentre()));
+    }
+
+    @Test
+    public void isValidJsonWithNoDuplicateValues() throws Exception {
+        String json = resourceToString("reference-data/dwpAddresses.json",
+                StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
+        final JsonNode tree = mapper.readTree(json);
+        assertThat(tree, is(notNullValue()));
     }
 
 }

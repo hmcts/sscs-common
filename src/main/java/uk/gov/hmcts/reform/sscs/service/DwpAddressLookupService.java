@@ -13,9 +13,12 @@ import static org.apache.commons.lang3.StringUtils.substringBetween;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
 import com.google.gson.Gson;
+
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -37,7 +40,7 @@ public class DwpAddressLookupService {
     public DwpAddressLookupService() {
         try {
             String json = resourceToString("reference-data/dwpAddresses.json",
-                StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
+                    StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
         } catch (Exception exception) {
@@ -49,10 +52,10 @@ public class DwpAddressLookupService {
 
     public Address lookupDwpAddress(SscsCaseData caseData) {
         if (nonNull(caseData.getAppeal()) && nonNull(caseData.getAppeal().getMrnDetails())
-            && nonNull(caseData.getAppeal().getMrnDetails().getDwpIssuingOffice())) {
+                && nonNull(caseData.getAppeal().getMrnDetails().getDwpIssuingOffice())) {
 
             final OfficeAddress dwpAddress = lookup(caseData.getAppeal().getBenefitType().getCode(),
-                caseData.getAppeal().getMrnDetails().getDwpIssuingOffice());
+                    caseData.getAppeal().getMrnDetails().getDwpIssuingOffice());
 
             return buildAddress(dwpAddress);
         } else {
@@ -72,11 +75,11 @@ public class DwpAddressLookupService {
 
     private Address buildAddress(OfficeAddress dwpAddress) {
         return Address.builder()
-            .line1(dwpAddress.getLine1())
-            .town(dwpAddress.getLine2())
-            .county(dwpAddress.getLine3())
-            .postcode(dwpAddress.getPostCode())
-            .build();
+                .line1(dwpAddress.getLine1())
+                .town(dwpAddress.getLine2())
+                .county(dwpAddress.getLine3())
+                .postcode(dwpAddress.getPostCode())
+                .build();
     }
 
     public String getDwpRegionalCenterByBenefitTypeAndOffice(String benefitType, String dwpIssuingOffice) {
@@ -91,7 +94,7 @@ public class DwpAddressLookupService {
     public OfficeMapping[] getDwpOfficeMappings(String benefitType) {
         log.info("looking up all officeAddress for benefitType {}", benefitType);
 
-        return  findBenefitByShortName(benefitType)
+        return findBenefitByShortName(benefitType)
                 .map(b -> b.getOfficeMappings().apply(this)).orElse(new OfficeMapping[0]);
     }
 
@@ -119,13 +122,30 @@ public class DwpAddressLookupService {
     }
 
     private String stripDwpIssuingOfficeForPip(String dwpIssuingOffice) {
-        String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice,"(", ")"))
-                .orElse(dwpIssuingOffice.replaceAll("\\D+",""));
+        String dwpIssuingOfficeStripped = ofNullable(substringBetween(dwpIssuingOffice, "(", ")"))
+                .orElse(StringUtils.isEmpty(dwpIssuingOffice.replaceAll("\\D+", ""))
+                        ? fuzzyPipOfficeMatching(dwpIssuingOffice) : dwpIssuingOffice.replaceAll("\\D+", ""));
 
         if (isEmpty(dwpIssuingOfficeStripped)) {
             dwpIssuingOfficeStripped = dwpIssuingOffice;
         }
         return dwpIssuingOfficeStripped;
+    }
+
+    private String fuzzyPipOfficeMatching(String dwpIssuingOffice) {
+        String office;
+        switch (StringUtils.lowerCase(dwpIssuingOffice)) {
+            case "pip ae":
+                office = "AE";
+                break;
+            case "pip recovery from estates":
+                office = "Recovery from Estates";
+                break;
+            default:
+                office = dwpIssuingOffice;
+                break;
+        }
+        return office;
     }
 
     public Optional<OfficeMapping> getDefaultDwpMappingByBenefitType(String benefitType) {
@@ -192,7 +212,11 @@ public class DwpAddressLookupService {
     }
 
     public OfficeMapping[] pensionCreditsOfficeMappings() {
-        return dwpMappings.getPensionCredits();
+        return dwpMappings.getPensionCredit();
+    }
+
+    public OfficeMapping[] childSupportOfficeMappings() {
+        return new OfficeMapping[]{dwpMappings.getChildSupport()};
     }
 
     public OfficeMapping[] retirementPensionOfficeMappings() {

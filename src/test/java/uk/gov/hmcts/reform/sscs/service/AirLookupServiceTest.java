@@ -26,21 +26,21 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-        "BR3 8JK, Sutton",
-        "br3 8JK, Sutton",
-        "aa1 1aa, null",
-        "ze3 4gh, Glasgow",
-        "ab1 2gh, Glasgow",
-        "l2 1RT, Liverpool",
-        "HP27 1RT, Bradford",
-        "l21RT, Liverpool",
-        "HP271RT, Bradford",
-        "HP27, Bradford",
-        "bl11, Liverpool",
-        "bl78, Liverpool",
-        "s31, Leeds",
-        "s30, Leeds",
-        "br2, Sutton"
+            "BR3 8JK, Sutton",
+            "br3 8JK, Sutton",
+            "aa1 1aa, null",
+            "ze3 4gh, Glasgow",
+            "ab1 2gh, Glasgow",
+            "l2 1RT, Liverpool",
+            "HP27 1RT, Bradford",
+            "l21RT, Liverpool",
+            "HP271RT, Bradford",
+            "HP27, Bradford",
+            "bl11, Liverpool",
+            "bl78, Liverpool",
+            "s31, Leeds",
+            "s30, Leeds",
+            "br2, Sutton"
     })
     public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(postcode));
@@ -65,8 +65,8 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-        "b4, 1234",
-        "NN85, 1223",
+            "b4, 1234",
+            "NN85, 1223",
     })
     public void checkVenueIdForPostCodeWithNoPip(String postcode, int expectedPipVenue) {
         AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode(postcode);
@@ -90,8 +90,9 @@ public class AirLookupServiceTest {
             "NN85 1ss, Northampton, HB",
             "CV9 1ss, Birmingham Civil Justice Centre, bereavementSupportPaymentScheme",
             "CV9 1ss, Birmingham Civil Justice Centre, industrialDeathBenefit",
-            "CV9 1ss, Birmingham Civil Justice Centre, pensionCredits",
+            "CV9 1ss, Birmingham Civil Justice Centre, pensionCredit",
             "CV9 1ss, Birmingham Civil Justice Centre, retirementPension",
+            "CV8 1ss, Coventry (CMCB), childSupport",
 
     })
     public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
