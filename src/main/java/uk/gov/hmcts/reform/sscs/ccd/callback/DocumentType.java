@@ -33,7 +33,8 @@ public enum DocumentType {
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
-    RIP1("rip1Document", "RIP 1 document");
+    RIP1("rip1Document", "RIP 1 document"),
+    WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");
 
     private final String value;
     private String label;
