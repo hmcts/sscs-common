@@ -123,6 +123,7 @@ public class SscsCaseData implements CaseData {
     private String generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
+    private String directionNoticeContent;
     private String signedBy;
     private String signedRole;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
