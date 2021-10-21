@@ -536,7 +536,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
 
         assertTrue(result.isPresent());
-        assertEquals("1", result.get().getCode());
+        assertEquals("3", result.get().getCode());
     }
 
     @Test
