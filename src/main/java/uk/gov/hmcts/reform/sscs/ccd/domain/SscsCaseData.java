@@ -59,6 +59,7 @@ public class SscsCaseData implements CaseData {
     private Subscriptions subscriptions;
     private RegionalProcessingCenter regionalProcessingCenter;
     private List<Bundle> caseBundles;
+    private List<Bundle> historicalBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
@@ -316,7 +317,7 @@ public class SscsCaseData implements CaseData {
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
-    
+
     @JsonProperty("processAudioVideoReviewState")
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
