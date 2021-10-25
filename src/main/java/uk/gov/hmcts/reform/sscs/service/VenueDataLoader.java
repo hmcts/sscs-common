@@ -42,7 +42,8 @@ public class VenueDataLoader {
                         .districtId(line[10])
                         .url(line[11])
                         .active(line[12])
-                        .comments(line[13])
+                        .gapsVenName(line[13])
+                        .comments(line[14])
                         .build())
             );
         } catch (IOException e) {
