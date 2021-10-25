@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 import junitparams.JUnitParamsRunner;
@@ -58,5 +59,12 @@ public class VenueDataLoaderTest {
         long adjustForDuplicateSc238 = 1;
 
         assertThat(maxSize, is(distinctSize + adjustForDuplicateSc238));
+    }
+
+    @Test
+    public void venuesShouldHaveGapsVenueName() {
+        venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails -> {
+            assertNotNull(format("%s is not null", venueDetails.getVenueId()), venueDetails.getGapsVenName());
+        });
     }
 }
