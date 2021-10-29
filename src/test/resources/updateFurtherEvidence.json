@@ -130,6 +130,7 @@
               "document_filename": "Test_55B.pdf",
               "document_binary_url": "http://dm-store:4506/documents/fcb90250-30f3-41a6-9ede-b6cad55ba200/binary"
             },
+            "partyUploaded" : "",
             "documentType": "sscs1",
             "documentFileName": "Test_55B.pdf",
             "documentDateAdded": "2019-06-26"
