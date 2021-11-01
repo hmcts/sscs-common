@@ -24,4 +24,14 @@ public enum PartyItemList {
         this.documentFooter = documentFooter;
         this.documentType = documentType;
     }
+
+    public static PartyItemList findPartyItemByCode(String partyItemCode) {
+
+        for (PartyItemList party : PartyItemList.values()) {
+            if (partyItemCode != null && partyItemCode.equals(party.getCode())) {
+                return party;
+            }
+        }
+        return null;
+    }
 }
