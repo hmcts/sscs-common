@@ -19,5 +19,6 @@ public class VenueDetails {
     private String districtId;
     private String url;
     private String active;
+    private String gapsVenName;
     private String comments;
 }
