@@ -3,8 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -66,5 +65,29 @@ public class VenueDataLoaderTest {
         venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails -> {
             assertNotNull(format("%s is not null", venueDetails.getVenueId()), venueDetails.getGapsVenName());
         });
+    }
+
+    @Test
+    public void shouldGetGapsVenueNameForGivenVenueId() {
+        String result = venueDataLoader.getGapVenueName("test", "68");
+        assertEquals("Liverpool", result);
+    }
+
+    @Test
+    public void shouldGetGapsVenueNameIfVenueIdIsBlankAndVenueIsNotBlank() {
+        String result = venueDataLoader.getGapVenueName("Barnsley SSCS Hearing Venue", null);
+        assertEquals("Barnsley", result);
+    }
+
+    @Test
+    public void shouldGetExistingVenueNameIfVenueIdIsBlankAndVenueIsNotFound() {
+        String result = venueDataLoader.getGapVenueName("test", null);
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void shouldGetExistingVenueNameIfBothVenueIdAndVenueAreBlank() {
+        String result = venueDataLoader.getGapVenueName(null, null);
+        assertNull(result);
     }
 }
