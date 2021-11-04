@@ -325,6 +325,8 @@ public class SscsCaseData implements CaseData {
 
     private String panelDoctorSpecialism;
 
+    private YesNo functionalTest;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
