@@ -2,9 +2,14 @@ package uk.gov.hmcts.reform.sscs.model;
 
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType.*;
+import static uk.gov.hmcts.reform.sscs.model.PartyItemList.findPartyItemByCode;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class PartyItemListTest {
 
     @Test
@@ -35,6 +40,12 @@ public class PartyItemListTest {
     public void givenHmctsPartyItem_thenEnsureCorrectDetailsAreReturned() {
         assertEquals("hmcts", PartyItemList.HMCTS.getCode());
         assertEquals(HMCTS_EVIDENCE, PartyItemList.HMCTS.getDocumentType());
+    }
+
+    @Test
+    @Parameters({"APPELLANT, appellant", "REPRESENTATIVE, representative", "JOINT_PARTY, jointParty"})
+    public void givenPartyItemCode_thenReturnPartyItemListValue(PartyItemList expectedPartyItem, String partyItemCode) {
+        assertEquals(expectedPartyItem, findPartyItemByCode(partyItemCode));
     }
 
 }
