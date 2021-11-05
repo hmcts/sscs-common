@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @Service
@@ -47,7 +48,7 @@ public class VenueDataLoader {
                         .comments(line[14])
                         .build();
                 venueDetailsMap.put(line[0], venueDetails);
-                venueDetailsMapByVenueName.put(line[3], venueDetails);
+                venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
                 }
             );
         } catch (IOException e) {
@@ -59,24 +60,23 @@ public class VenueDataLoader {
         return venueDetailsMap;
     }
 
-    public String getGapVenueName(String venueName, String venueId) {
-        String resultVenue = venueName;
+    public String getGapVenueName(Venue venue, String venueId) {
         if (StringUtils.isNotBlank(venueId)) {
             VenueDetails venueDetails = venueDetailsMap.get(venueId);
             if (venueDetails != null) {
                 return venueDetails.getGapsVenName();
-            } else if (StringUtils.isNotBlank(venueName)) {
-                venueDetails = venueDetailsMapByVenueName.get(venueName);
+            } else if (venue != null && StringUtils.isNotBlank(venue.getName())) {
+                venueDetails = venueDetailsMapByVenueName.get(venue.getName() + venue.getAddress().getPostcode());
                 if (venueDetails != null) {
                     return venueDetails.getGapsVenName();
                 }
             }
-        } else if (StringUtils.isNotBlank(venueName)) {
-            VenueDetails venueDetails = venueDetailsMapByVenueName.get(venueName);
+        } else if (venue != null && StringUtils.isNotBlank(venue.getName())) {
+            VenueDetails venueDetails = venueDetailsMapByVenueName.get(venue.getName() + venue.getAddress().getPostcode());
             if (venueDetails != null) {
                 return venueDetails.getGapsVenName();
             }
         }
-        return resultVenue;
+        return (venue != null) ? venue.getName() : null;
     }
 }

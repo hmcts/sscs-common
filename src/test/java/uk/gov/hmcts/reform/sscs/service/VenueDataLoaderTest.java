@@ -9,6 +9,8 @@ import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
@@ -69,19 +71,22 @@ public class VenueDataLoaderTest {
 
     @Test
     public void shouldGetGapsVenueNameForGivenVenueId() {
-        String result = venueDataLoader.getGapVenueName("test", "68");
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, "68");
         assertEquals("Liverpool", result);
     }
 
     @Test
     public void shouldGetGapsVenueNameIfVenueIdIsBlankAndVenueIsNotBlank() {
-        String result = venueDataLoader.getGapVenueName("Barnsley SSCS Hearing Venue", null);
+        Venue venue = Venue.builder().name("Barnsley SSCS Hearing Venue").address(Address.builder().postcode("S70 1WA").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, null);
         assertEquals("Barnsley", result);
     }
 
     @Test
     public void shouldGetExistingVenueNameIfVenueIdIsBlankAndVenueIsNotFound() {
-        String result = venueDataLoader.getGapVenueName("test", null);
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, null);
         assertEquals("test", result);
     }
 
