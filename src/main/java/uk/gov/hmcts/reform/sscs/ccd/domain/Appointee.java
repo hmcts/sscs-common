@@ -23,7 +23,6 @@ public class Appointee {
                      @JsonProperty("address") Address address,
                      @JsonProperty("contact") Contact contact,
                      @JsonProperty("identity") Identity identity) {
-        this.id = id;
         this.name = name;
         this.address = address;
         this.contact = contact;
