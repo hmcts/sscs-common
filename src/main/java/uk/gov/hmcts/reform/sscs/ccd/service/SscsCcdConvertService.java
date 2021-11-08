@@ -62,6 +62,7 @@ public class SscsCcdConvertService {
     public SscsCaseData getCaseData(Map<String, Object> dataMap) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        mapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
         mapper.registerModule(new JavaTimeModule());
         try {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);

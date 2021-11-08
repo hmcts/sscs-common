@@ -536,7 +536,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDefaultDwpMappingByBenefitType("pip");
 
         assertTrue(result.isPresent());
-        assertEquals("1", result.get().getCode());
+        assertEquals("3", result.get().getCode());
     }
 
     @Test
@@ -626,6 +626,13 @@ public class DwpAddressLookupServiceTest {
         mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
         final JsonNode tree = mapper.readTree(json);
         assertThat(tree, is(notNullValue()));
+    }
+
+    @Test
+    @Parameters({"PIP,1,true", "ESA,,false", "carersAllowance,Invalid,false", "carersAllowance,Carer’s Allowance Dispute Resolution Team,true"})
+    public void validateIssuingOffice(String benefitType, String issuingOffice, boolean isValid) {
+        boolean result = dwpAddressLookup.validateIssuingOffice(benefitType, issuingOffice);
+        assertEquals(isValid, result);
     }
 
 }
