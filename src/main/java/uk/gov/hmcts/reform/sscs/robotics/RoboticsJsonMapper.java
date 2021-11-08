@@ -62,12 +62,12 @@ public class RoboticsJsonMapper {
         }
     }
 
-    private static JSONObject buildAppellantDetails(Appellant appellant) {
+    private static JSONObject buildDetails(Name name, Address address, Contact contact) {
         JSONObject json = new JSONObject();
 
-        buildName(json, appellant.getName().getTitle(), appellant.getName().getFirstName(), appellant.getName().getLastName());
+        buildName(json, name.getTitle(), name.getFirstName(), name.getLastName());
 
-        return buildContactDetails(json, appellant.getAddress(), appellant.getContact());
+        return buildContactDetails(json, address, contact);
     }
 
     private static JSONObject buildAppointeeDetails(Appointee appointee, boolean sameAddressAsAppellant) {
@@ -110,6 +110,43 @@ public class RoboticsJsonMapper {
         return buildContactDetails(json, rep.getAddress(), rep.getContact());
     }
 
+    @SuppressWarnings("unchecked")
+    private static JSONArray buildOtherParties(JSONObject obj, List<CcdValue<OtherParty>> otherParties) {
+
+        JSONArray otherPartyArray = new JSONArray();
+        for (CcdValue<OtherParty> otherParty : otherParties) {
+            if (otherParty != null) {
+                otherPartyArray.add(buildOtherPartyDetails(obj, otherParty.getValue()));
+            }
+        }
+
+        return otherPartyArray;
+    }
+
+    private static JSONObject buildOtherPartyDetails(JSONObject obj, OtherParty otherParty) {
+        JSONObject json = new JSONObject();
+
+        json.put("otherParty", buildDetails(otherParty.getName(), otherParty.getAddress(), otherParty.getContact()));
+
+        if (otherParty.getRep() != null) {
+            json.put("otherPartyRepresentative", buildRepresentativeDetails(otherParty.getRep()));
+        }
+
+        if (otherParty.getHearingOptions() != null) {
+            JSONObject hearingArrangements = buildHearingOptions(otherParty.getHearingOptions());
+            if (hearingArrangements.length() > 0) {
+                json.put("hearingArrangements", buildExcludedDates(otherParty.getHearingOptions(), hearingArrangements));
+            }
+        }
+
+        if (otherParty.getHearingOptions() != null
+                && Boolean.TRUE.equals(otherParty.getHearingOptions().isWantsToAttendHearing())) {
+            obj.put("hearingType", convertBooleanToPaperOral(otherParty.getHearingOptions().isWantsToAttendHearing()));
+        }
+
+        return json;
+    }
+
     private static void buildName(JSONObject json, String title, String firstName, String lastName) {
         json.put("title", title);
         json.put("firstName", firstName);
@@ -142,6 +179,12 @@ public class RoboticsJsonMapper {
             hearingArrangements.put("other", hearingOptions.getOther());
         }
 
+        buildExcludedDates(hearingOptions, hearingArrangements);
+
+        return hearingArrangements;
+    }
+
+    public static JSONObject buildExcludedDates(HearingOptions hearingOptions, JSONObject hearingArrangements) {
         if (hearingOptions.getExcludeDates() != null
                 && hearingOptions.getExcludeDates().size() > 0) {
             JSONArray datesCantAttendArray = new JSONArray();
@@ -159,16 +202,17 @@ public class RoboticsJsonMapper {
     }
 
     private static JSONObject buildContactDetails(JSONObject json, Address address, Contact contact) {
-        json.put("addressLine1", address.getLine1());
+        if (address != null) {
+            json.put("addressLine1", address.getLine1());
 
-        if (address.getLine2() != null) {
-            json.put("addressLine2", address.getLine2());
+            if (address.getLine2() != null) {
+                json.put("addressLine2", address.getLine2());
+            }
+
+            json.put("townOrCity", address.getTown());
+            json.put("county", address.getCounty());
+            json.put("postCode", address.getPostcode());
         }
-
-        json.put("townOrCity", address.getTown());
-        json.put("county", address.getCounty());
-        json.put("postCode", address.getPostcode());
-
         if (contact != null) {
             json.put("phoneNumber", contact.getMobile());
             json.put("email", contact.getEmail());
@@ -256,12 +300,29 @@ public class RoboticsJsonMapper {
             obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(), sameAddressAsAppointee));
         }
 
-        obj.put("appellant", buildAppellantDetails(sscsCaseData.getAppeal().getAppellant()));
+        obj.put("appellant", buildDetails(sscsCaseData.getAppeal().getAppellant().getName(),
+                sscsCaseData.getAppeal().getAppellant().getAddress(),
+                sscsCaseData.getAppeal().getAppellant().getContact()));
 
         if (sscsCaseData.getAppeal().getRep() != null
                 && sscsCaseData.getAppeal().getRep().getHasRepresentative() != null
                 && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals(YES)) {
             obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
+        }
+
+        if (sscsCaseData.getOtherParties() != null
+                && sscsCaseData.getOtherParties().size() > 0) {
+            JSONArray otherParties = buildOtherParties(obj, sscsCaseData.getOtherParties());
+
+            obj.put("otherParties", otherParties);
+        }
+
+        if (sscsCaseData.getAppeal().getAppellant().getRole() != null) {
+            obj.put("appellantRole", sscsCaseData.getAppeal().getAppellant().getRole().getName());
+        }
+
+        if (sscsCaseData.getChildMaintenanceNumber() != null) {
+            obj.put("childMaintenanceNumber", sscsCaseData.getChildMaintenanceNumber());
         }
 
         if (sscsCaseData.getAppeal().getHearingOptions() != null) {

@@ -764,7 +764,172 @@ public class RoboticsJsonMapperTest {
 
         assertEquals("Disability Benefit Centre 4", roboticsJson.get("dwpIssuingOffice"));
         assertEquals("Disability Benefit Centre 4", roboticsJson.get("dwpPresentingOffice"));
+    }
+
+    @Test
+    public void shouldPopulateRoboticsWithOtherPartyDetails() {
+
+        DateRange dateRange1 = DateRange.builder()
+                .start("2021-12-30")
+                .end("2021-12-30")
+                .build();
+        List<ExcludeDate> excludeDates = new ArrayList<>();
+        excludeDates.add(ExcludeDate.builder()
+                .value(dateRange1)
+                .build());
+
+        List<CcdValue<OtherParty>> otherPartyList = new ArrayList<>();
+        CcdValue<OtherParty> ccdValue = CcdValue.<OtherParty>builder().value(OtherParty.builder()
+                .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
+                .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
+                .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
+                .rep(Representative.builder().hasRepresentative("Yes")
+                        .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
+                        .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
+                        .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
+                        .organisation("My company").build())
+                .hearingOptions(HearingOptions.builder().excludeDates(excludeDates).build())
+                .build()).build();
+        otherPartyList.add(ccdValue);
+
+        roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
+        roboticsWrapper.getSscsCaseData().setChildMaintenanceNumber("12345");
+        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setRole(Role.builder().name("Paying parent").build());
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("12345", roboticsJson.get("childMaintenanceNumber"));
+        assertEquals("Paying parent", roboticsJson.get("appellantRole"));
+
+        assertTrue(roboticsJson.has("otherParties"));
+        assertEquals("Mr", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("title"));
+        assertEquals("Max", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("firstName"));
+        assertEquals("Edwards", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("lastName"));
+        assertEquals("07000000001", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("phoneNumber"));
+        assertEquals("test@email.com", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("email"));
+        assertEquals("123 My Road", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("addressLine1"));
+        assertEquals("The Village", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("addressLine2"));
+        assertEquals("Chelmsford", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("townOrCity"));
+        assertEquals("Essex", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("county"));
+        assertEquals("CM1 1RP", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("postCode"));
+
+        assertEquals("Mrs", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("title"));
+        assertEquals("Wendy", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("firstName"));
+        assertEquals("Povey", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("lastName"));
+        assertEquals("07000000029", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("phoneNumber"));
+        assertEquals("test2@email.com", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("email"));
+        assertEquals("456 My Road", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("addressLine1"));
+        assertEquals("The Green", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("addressLine2"));
+        assertEquals("Whitham", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("townOrCity"));
+        assertEquals("Essex", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("county"));
+        assertEquals("CM10 2PE", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("postCode"));
+        assertEquals("My company", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("organisation"));
+
+        assertEquals("2021-12-30", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("hearingArrangements")).getJSONArray("datesCantAttend").get(0));
+    }
+
+    @Test
+    public void shouldPopulateRoboticsWithMultipleOtherPartyDetails() {
+
+        DateRange dateRange1 = DateRange.builder()
+                .start("2021-12-30")
+                .end("2021-12-30")
+                .build();
+        List<ExcludeDate> excludeDates = new ArrayList<>();
+        excludeDates.add(ExcludeDate.builder()
+                .value(dateRange1)
+                .build());
+
+        List<CcdValue<OtherParty>> otherPartyList = new ArrayList<>();
+        CcdValue<OtherParty> ccdValue = CcdValue.<OtherParty>builder().value(OtherParty.builder()
+                .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
+                .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
+                .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
+                .rep(Representative.builder().hasRepresentative("Yes")
+                        .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
+                        .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
+                        .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
+                        .organisation("My company").build())
+                .hearingOptions(HearingOptions.builder().excludeDates(excludeDates).build())
+                .build()).build();
+        otherPartyList.add(ccdValue);
+
+        CcdValue<OtherParty> ccdValue2 = CcdValue.<OtherParty>builder().value(OtherParty.builder()
+                .name(Name.builder().title("Mr").firstName("Henry").lastName("Fitch").build())
+                .address(Address.builder().line1("999 My Road").line2("The Square").town("Ingatestone").county("Essex").postcode("CM6 4DW").build())
+                .contact(Contact.builder().phone("01243551299").mobile("07000000012").email("test3@email.com").build())
+                .build()).build();
+        otherPartyList.add(ccdValue2);
+
+        roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
+        roboticsWrapper.getSscsCaseData().setChildMaintenanceNumber("12345");
+        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setRole(Role.builder().name("Paying parent").build());
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("12345", roboticsJson.get("childMaintenanceNumber"));
+        assertEquals("Paying parent", roboticsJson.get("appellantRole"));
+
+        assertTrue(roboticsJson.has("otherParties"));
+        assertEquals("Mr", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("title"));
+        assertEquals("Max", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("firstName"));
+        assertEquals("Edwards", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("lastName"));
+        assertEquals("07000000001", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("phoneNumber"));
+        assertEquals("test@email.com", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("email"));
+        assertEquals("123 My Road", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("addressLine1"));
+        assertEquals("The Village", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("addressLine2"));
+        assertEquals("Chelmsford", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("townOrCity"));
+        assertEquals("Essex", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("county"));
+        assertEquals("CM1 1RP", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherParty")).get("postCode"));
+
+        assertEquals("Mrs", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("title"));
+        assertEquals("Wendy", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("firstName"));
+        assertEquals("Povey", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("lastName"));
+        assertEquals("07000000029", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("phoneNumber"));
+        assertEquals("test2@email.com", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("email"));
+        assertEquals("456 My Road", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("addressLine1"));
+        assertEquals("The Green", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("addressLine2"));
+        assertEquals("Whitham", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("townOrCity"));
+        assertEquals("Essex", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("county"));
+        assertEquals("CM10 2PE", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("postCode"));
+        assertEquals("My company", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("otherPartyRepresentative")).get("organisation"));
+
+        assertEquals("2021-12-30", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("hearingArrangements")).getJSONArray("datesCantAttend").get(0));
+
+        assertEquals("Mr", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("title"));
+        assertEquals("Henry", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("firstName"));
+        assertEquals("Fitch", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("lastName"));
+        assertEquals("07000000012", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("phoneNumber"));
+        assertEquals("test3@email.com", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("email"));
+        assertEquals("999 My Road", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("addressLine1"));
+        assertEquals("The Square", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("addressLine2"));
+        assertEquals("Ingatestone", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("townOrCity"));
+        assertEquals("Essex", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("county"));
+        assertEquals("CM6 4DW", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).get("otherParty")).get("postCode"));
 
 
+        assertFalse(((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).has("otherPartyRepresentative"));
+        assertFalse(((JSONObject) roboticsJson.getJSONArray("otherParties").get(1)).has("hearingArrangements"));
+    }
+
+    @Test
+    @Parameters({"No, No, Paper", "No, Yes, Oral", "Yes, No, Oral", "Yes, Yes, Oral"})
+    public void givenOtherPartyAndAppellantAttendingHearingPreference_thenSetHearingTypeCorrectly(String isAppellantAttending, String isOtherPartyAttending, String expectedResult) {
+
+        List<CcdValue<OtherParty>> otherPartyList = new ArrayList<>();
+        CcdValue<OtherParty> ccdValue = CcdValue.<OtherParty>builder().value(OtherParty.builder()
+                .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
+                .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
+                .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
+                .hearingOptions(HearingOptions.builder().wantsToAttend(isAppellantAttending).build())
+                .build()).build();
+        otherPartyList.add(ccdValue);
+
+        roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend(isOtherPartyAttending);
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals(expectedResult, roboticsJson.get("hearingType"));
     }
 }
