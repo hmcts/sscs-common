@@ -24,6 +24,5 @@ public class OtherParty {
     private HearingSubtype hearingSubtype;
     private String isAppointee;
     private Appointee appointee;
-    private String isRep;
     private Representative rep;
 }
