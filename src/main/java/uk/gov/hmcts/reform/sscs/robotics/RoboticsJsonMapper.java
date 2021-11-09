@@ -3,8 +3,7 @@ package uk.gov.hmcts.reform.sscs.robotics;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.ESA;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +14,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
@@ -28,21 +26,17 @@ public class RoboticsJsonMapper {
 
     private static final String YES = "Yes";
     private static final String NO = "No";
-    private static final String DLA_CASE_CODE = "037DD";
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
 
     private final DwpAddressLookupService dwpAddressLookupService;
     private final AirLookupService airLookupService;
-    private final boolean enhancedConfidentialityFeature;
 
     @Autowired
     public RoboticsJsonMapper(DwpAddressLookupService dwpAddressLookupService,
-                              AirLookupService airLookupService,
-                              @Value("${feature.enhancedConfidentiality.enabled:false}") boolean enhancedConfidentialityFeature) {
+                              AirLookupService airLookupService) {
         this.dwpAddressLookupService = dwpAddressLookupService;
         this.airLookupService = airLookupService;
-        this.enhancedConfidentialityFeature = enhancedConfidentialityFeature;
     }
 
     private static String getCaseCode(SscsCaseData sscsCaseData) {
@@ -126,7 +120,11 @@ public class RoboticsJsonMapper {
     private static JSONObject buildOtherPartyDetails(JSONObject obj, OtherParty otherParty) {
         JSONObject json = new JSONObject();
 
-        json.put("otherParty", buildDetails(otherParty.getName(), otherParty.getAddress(), otherParty.getContact()));
+        Name name = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getName() : otherParty.getName();
+        Address address = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getAddress() : otherParty.getAddress();
+        Contact contact = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getContact() : otherParty.getContact();
+
+        json.put("otherParty", buildDetails(name, address, contact));
 
         if (otherParty.getRep() != null) {
             json.put("otherPartyRepresentative", buildRepresentativeDetails(otherParty.getRep()));
@@ -419,9 +417,9 @@ public class RoboticsJsonMapper {
     }
 
     private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
-        if (((State.RESPONSE_RECEIVED.equals(roboticsWrapper.getState()) && !enhancedConfidentialityFeature) || enhancedConfidentialityFeature)
-                && ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
-                || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome())))) {
+        if ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
+                || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome()))
+                || (CHILD_SUPPORT.getShortName().equals(roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().getCode()) && YesNo.YES.equals(roboticsWrapper.getSscsCaseData().getIsConfidentialCase()))) {
             obj.put("isConfidential", YES);
         }
     }
