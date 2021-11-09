@@ -628,4 +628,11 @@ public class DwpAddressLookupServiceTest {
         assertThat(tree, is(notNullValue()));
     }
 
+    @Test
+    @Parameters({"PIP,1,true", "ESA,,false", "carersAllowance,Invalid,false", "carersAllowance,Carer’s Allowance Dispute Resolution Team,true"})
+    public void validateIssuingOffice(String benefitType, String issuingOffice, boolean isValid) {
+        boolean result = dwpAddressLookup.validateIssuingOffice(benefitType, issuingOffice);
+        assertEquals(isValid, result);
+    }
+
 }

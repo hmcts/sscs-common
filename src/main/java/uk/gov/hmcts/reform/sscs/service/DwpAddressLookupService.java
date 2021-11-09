@@ -73,6 +73,21 @@ public class DwpAddressLookupService {
         return officeMapping.get().getAddress();
     }
 
+    public boolean validateIssuingOffice(String benefitType, String dwpIssuingOffice) {
+        if (dwpIssuingOffice == null) {
+            return false;
+        }
+
+        OfficeMapping[] dwpOfficeMappings = getDwpOfficeMappings(benefitType);
+        if (dwpOfficeMappings.length == 1) {
+            return dwpOfficeMappings[0].getCode().equalsIgnoreCase(dwpIssuingOffice);
+        }
+
+        String dwpIssuingOfficeSearch = isPipBenefit(benefitType) ? stripDwpIssuingOfficeForPip(dwpIssuingOffice) : dwpIssuingOffice;
+        Optional<OfficeMapping> officeMapping = getOfficeMappingByDwpIssuingOffice(dwpIssuingOfficeSearch, dwpOfficeMappings);
+        return officeMapping.isPresent();
+    }
+
     private Address buildAddress(OfficeAddress dwpAddress) {
         return Address.builder()
                 .line1(dwpAddress.getLine1())
