@@ -20,6 +20,7 @@ public class HearingDetails {
     private String adjourned;
     private String eventDate;
     private String hearingId;
+    private String venueId;
 
     @JsonCreator
     public HearingDetails(@JsonProperty("venue") Venue venue,
@@ -27,13 +28,15 @@ public class HearingDetails {
                           @JsonProperty("time") String time,
                           @JsonProperty("adjourned") String adjourned,
                           @JsonProperty("eventDate") String eventDate,
-                          @JsonProperty("hearingId") String hearingId) {
+                          @JsonProperty("hearingId") String hearingId,
+                          @JsonProperty("venueId") String venueId) {
         this.venue = venue;
         this.hearingDate = hearingDate;
         this.time = time;
         this.adjourned = adjourned;
         this.eventDate = eventDate;
         this.hearingId = hearingId;
+        this.venueId = venueId;
     }
 
     @JsonIgnore
