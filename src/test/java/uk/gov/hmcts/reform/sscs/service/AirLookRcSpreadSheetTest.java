@@ -4,10 +4,10 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -179,7 +179,7 @@ public class AirLookRcSpreadSheetTest {
             if (counterOut > 0) {
                 fail("The postcodes above are missing from the spreadsheet");
             }
-        } catch (IOException e) {
+        } catch (IOException | CsvException e) {
             e.printStackTrace();
         } finally {
             try {
