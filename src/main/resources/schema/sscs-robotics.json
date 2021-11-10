@@ -25,6 +25,14 @@
     "appointee": {"$ref": "#/definitions/person"},
     "representative": {"$ref": "#/definitions/person"},
     "jointParty": {"$ref": "#/definitions/person"},
+    "otherParties": {
+      "type" : "array",
+      "items": {
+        "$ref": "#/definitions/other"
+      }
+    },
+    "appellantRole": {"type": "string"},
+    "childMaintenanceNumber": {"type": "string"},
     "rpcEmail": {"type": "string"},
     "isReadyToList": {"$ref": "#/definitions/yesOrNo"},
     "isDigital": {"$ref": "#/definitions/yesOrNo"},
@@ -189,7 +197,34 @@
     "nonEmptyString": {
       "type": "string",
       "minLength": 1
+    },
+    "other": {
+      "type": "object",
+      "properties": {
+        "otherParty": {
+          "$ref": "#/definitions/person"
+        },
+        "otherPartyRepresentative": {
+          "$ref": "#/definitions/person"
+        },
+        "hearingArrangements": {
+          "type": "object",
+          "properties": {
+            "datesCantAttend": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/dateType"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "otherParty"
+      ]
     }
   }
 }
+
 
