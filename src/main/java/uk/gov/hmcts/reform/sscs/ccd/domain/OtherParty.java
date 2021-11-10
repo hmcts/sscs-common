@@ -15,5 +15,6 @@ public class OtherParty {
 
     private Name name;
     private Address address;
+    private YesNo confidentialityRequired;
 
 }
