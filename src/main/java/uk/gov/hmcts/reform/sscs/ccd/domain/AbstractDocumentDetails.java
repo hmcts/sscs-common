@@ -28,6 +28,7 @@ public class AbstractDocumentDetails {
     private SscsDocumentTranslationStatus documentTranslationStatus;
     private DocumentLink resizedDocumentLink;
     private DocumentLink avDocumentLink;
+    private String originalPartySender;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -42,7 +43,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("partyUploaded") UploadParty partyUploaded,
                                    @JsonProperty("dateApproved") String dateApproved,
                                    @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
-                                   @JsonProperty("avDocumentLink") DocumentLink avDocumentLink) {
+                                   @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
+                                   @JsonProperty("originalPartySender") String originalPartySender) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -57,6 +59,7 @@ public class AbstractDocumentDetails {
         this.dateApproved = dateApproved;
         this.resizedDocumentLink = resizedDocumentLink;
         this.avDocumentLink = avDocumentLink;
+        this.originalPartySender = originalPartySender;
     }
 
     @JsonIgnore
