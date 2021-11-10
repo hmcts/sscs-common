@@ -135,11 +135,10 @@ public class RoboticsJsonMapper {
             if (hearingArrangements.length() > 0) {
                 json.put("hearingArrangements", buildExcludedDates(otherParty.getHearingOptions(), hearingArrangements));
             }
-        }
 
-        if (otherParty.getHearingOptions() != null
-                && Boolean.TRUE.equals(otherParty.getHearingOptions().isWantsToAttendHearing())) {
-            obj.put("hearingType", convertBooleanToPaperOral(otherParty.getHearingOptions().isWantsToAttendHearing()));
+            if (Boolean.TRUE.equals(otherParty.getHearingOptions().isWantsToAttendHearing())) {
+                obj.put("hearingType", convertBooleanToPaperOral(otherParty.getHearingOptions().isWantsToAttendHearing()));
+            }
         }
 
         return json;
