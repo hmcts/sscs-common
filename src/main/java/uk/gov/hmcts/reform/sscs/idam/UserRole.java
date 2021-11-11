@@ -6,6 +6,7 @@ public enum UserRole {
     DWP("caseworker-sscs-dwpresponsewriter"),
     JUDGE("caseworker-sscs-judge"),
     SUPER_USER("caseworker-sscs-superuser"),
+    SYSTEM_USER("caseworker-sscs-systemupdate"),
     CITIZEN("citizen");
 
     private final String value;

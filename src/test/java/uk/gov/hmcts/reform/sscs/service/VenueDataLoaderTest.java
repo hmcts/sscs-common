@@ -3,12 +3,14 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
@@ -58,5 +60,39 @@ public class VenueDataLoaderTest {
         long adjustForDuplicateSc238 = 1;
 
         assertThat(maxSize, is(distinctSize + adjustForDuplicateSc238));
+    }
+
+    @Test
+    public void venuesShouldHaveGapsVenueName() {
+        venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails -> {
+            assertNotNull(format("%s is not null", venueDetails.getVenueId()), venueDetails.getGapsVenName());
+        });
+    }
+
+    @Test
+    public void shouldGetGapsVenueNameForGivenVenueId() {
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, "68");
+        assertEquals("Liverpool", result);
+    }
+
+    @Test
+    public void shouldGetGapsVenueNameIfVenueIdIsBlankAndVenueIsNotBlank() {
+        Venue venue = Venue.builder().name("Barnsley SSCS Hearing Venue").address(Address.builder().postcode("S70 1WA").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, null);
+        assertEquals("Barnsley", result);
+    }
+
+    @Test
+    public void shouldGetExistingVenueNameIfVenueIdIsBlankAndVenueIsNotFound() {
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        String result = venueDataLoader.getGapVenueName(venue, null);
+        assertEquals("test", result);
+    }
+
+    @Test
+    public void shouldGetExistingVenueNameIfBothVenueIdAndVenueAreBlank() {
+        String result = venueDataLoader.getGapVenueName(null, null);
+        assertNull(result);
     }
 }
