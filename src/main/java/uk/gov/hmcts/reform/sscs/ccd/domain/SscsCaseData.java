@@ -254,6 +254,8 @@ public class SscsCaseData implements CaseData {
     private String jointParty;
     private JointPartyName jointPartyName;
     private List<CcdValue<OtherParty>> otherParties;
+    @JsonProperty("otherPartyUCB")
+    private String otherPartyUcb;
     private String childMaintenanceNumber;
     private String reasonableAdjustmentChoice;
     private YesNo doesOtherPersonKnowWhereYouLive;
