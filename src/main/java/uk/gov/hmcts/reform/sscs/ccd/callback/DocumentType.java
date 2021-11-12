@@ -34,7 +34,9 @@ public enum DocumentType {
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
     RIP1("rip1Document", "RIP 1 document"),
-    WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");
+    WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request"),
+    OTHER_PARTY_EVIDENCE("otherPartyEvidence", "Other party evidence"),
+    OTHER_PARTY_REPRESENTATIVE_EVIDENCE("otherPartyRepEvidence", "Other party representative evidence");
 
     private final String value;
     private String label;
