@@ -25,4 +25,7 @@ public class OtherParty {
     private String isAppointee;
     private Appointee appointee;
     private Representative rep;
+    private ReasonableAdjustmentDetails reasonableAdjustment;
+    private ReasonableAdjustmentDetails appointeeReasonableAdjustment;
+    private ReasonableAdjustmentDetails repReasonableAdjustment;
 }
