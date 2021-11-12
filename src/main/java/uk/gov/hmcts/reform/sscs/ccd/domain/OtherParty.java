@@ -25,4 +25,7 @@ public class OtherParty {
     private String isAppointee;
     private Appointee appointee;
     private Representative rep;
+    private Subscription appellantSubscription;
+    private Subscription appointeeSubscription;
+    private Subscription representativeSubscription;
 }
