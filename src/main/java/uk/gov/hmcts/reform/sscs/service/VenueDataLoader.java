@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @Service
@@ -19,6 +21,7 @@ public class VenueDataLoader {
 
     private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
+    private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -26,9 +29,8 @@ public class VenueDataLoader {
         try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
 
             List<String[]> linesList = reader.readAll();
-            linesList.forEach(line ->
-                venueDetailsMap.put(line[0],
-                    VenueDetails.builder()
+            linesList.forEach(line -> {
+                VenueDetails venueDetails = VenueDetails.builder()
                         .venueId(line[0])
                         .threeDigitReference(line[1])
                         .regionalProcessingCentre(line[2])
@@ -44,7 +46,10 @@ public class VenueDataLoader {
                         .active(line[12])
                         .gapsVenName(line[13])
                         .comments(line[14])
-                        .build())
+                        .build();
+                venueDetailsMap.put(line[0], venueDetails);
+                venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
+                }
             );
         } catch (IOException e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
@@ -53,5 +58,25 @@ public class VenueDataLoader {
 
     public Map<String, VenueDetails> getVenueDetailsMap() {
         return venueDetailsMap;
+    }
+
+    public String getGapVenueName(Venue venue, String venueId) {
+        if (StringUtils.isNotBlank(venueId)) {
+            VenueDetails venueDetails = venueDetailsMap.get(venueId);
+            if (venueDetails != null) {
+                return venueDetails.getGapsVenName();
+            } else if (venue != null && StringUtils.isNotBlank(venue.getName())) {
+                venueDetails = venueDetailsMapByVenueName.get(venue.getName() + venue.getAddress().getPostcode());
+                if (venueDetails != null) {
+                    return venueDetails.getGapsVenName();
+                }
+            }
+        } else if (venue != null && StringUtils.isNotBlank(venue.getName())) {
+            VenueDetails venueDetails = venueDetailsMapByVenueName.get(venue.getName() + venue.getAddress().getPostcode());
+            if (venueDetails != null) {
+                return venueDetails.getGapsVenName();
+            }
+        }
+        return (venue != null) ? venue.getName() : null;
     }
 }
