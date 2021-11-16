@@ -36,7 +36,6 @@ public class UpdateCcdCaseService {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
