@@ -33,7 +33,7 @@ public class UpdateCcdCaseService {
 
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        log.info("retry UpdateCase for caseId {} and eventType {}", caseId, eventType);
+        log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
 
