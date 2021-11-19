@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.junit.Assert.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Set;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.everit.json.schema.ValidationException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.junit.Test;
@@ -21,6 +23,12 @@ public class RoboticsJsonValidatorTest {
     private static final String caseId = "12345678";
     private JSONObject jsonData = new JSONObject(
             new JSONTokener(getClass().getResourceAsStream("/schema/valid_robotics_agreed.json")));
+
+    private JSONObject jsonDataSingleOtherParty = new JSONObject(
+            new JSONTokener(getClass().getResourceAsStream("/schema/valid_robotics_agreed_single_other_parties.json")));
+
+    private JSONObject jsonDataMultipleOtherParty = new JSONObject(
+            new JSONTokener(getClass().getResourceAsStream("/schema/valid_robotics_agreed_multiple_other_parties.json")));
 
     private RoboticsJsonValidator roboticsJsonValidator = new RoboticsJsonValidator(
             "/schema/sscs-robotics.json");
@@ -241,7 +249,7 @@ public class RoboticsJsonValidatorTest {
     }
 
     @Test
-    public void givenMultipleInvlidInputThenContainsMultipleErrorMessage() throws IOException {
+    public void givenMultipleInvalidInputThenContainsMultipleErrorMessage() throws IOException {
 
         jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellantNino");
         jsonData = updateEmbeddedProperty(jsonData.toString(), "", "caseCode");
@@ -254,6 +262,27 @@ public class RoboticsJsonValidatorTest {
 
     }
 
+    @Test
+    public void givenValidInputSingleOtherPartyAgreedWithAutomationTeam_thenValidateAgainstSchema() throws ValidationException {
+        Set<String> actual = roboticsJsonValidator.validate(jsonDataSingleOtherParty, caseId);
+        assertTrue(CollectionUtils.isEmpty(actual));
+    }
+
+    @Test
+    public void givenOtherPartyIsMissingFromOtherPartyObject_thenValidateAgainstSchema() throws ValidationException, IOException {
+
+        jsonDataSingleOtherParty = removeObjectFromJsonArrayObject(jsonDataSingleOtherParty, "otherParties", 0, "otherParty");
+
+        Set<String> actual = roboticsJsonValidator.validate(jsonDataSingleOtherParty, caseId);
+        assertEquals(1, actual.size());
+        assertTrue(actual.contains("otherParties[0].otherParty is missing/not populated - please correct."));
+    }
+
+    @Test
+    public void givenValidInputMultipleOtherPartyAgreedWithAutomationTeam_thenValidateAgainstSchema() throws ValidationException {
+        Set<String> actual = roboticsJsonValidator.validate(jsonDataMultipleOtherParty, caseId);
+        assertTrue(CollectionUtils.isEmpty(actual));
+    }
 
     private static JSONObject updateEmbeddedProperty(String json, String value, String... keys) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -281,6 +310,23 @@ public class RoboticsJsonValidatorTest {
         String jsonString = objectMapper.writeValueAsString(map);
 
         return new JSONObject(jsonString);
+    }
+
+    public static JSONObject removeObjectFromJsonArrayObject(JSONObject json, String jsonArrayKey, int arrayPosition, String keyToRemove) throws JsonProcessingException {
+        JSONArray array = json.getJSONArray(jsonArrayKey);
+        JSONObject o = (JSONObject) array.get(arrayPosition);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Map map = objectMapper.readValue(o.toString(), Map.class);
+
+        map.remove(keyToRemove);
+
+        JSONArray otherPartyArray = new JSONArray();
+        otherPartyArray.put(map);
+        json.put(jsonArrayKey, otherPartyArray);
+
+        return json;
     }
 
 }

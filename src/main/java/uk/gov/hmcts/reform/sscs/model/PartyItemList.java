@@ -11,6 +11,8 @@ public enum PartyItemList {
     REPRESENTATIVE("representative", "Representative", "Representative evidence", REPRESENTATIVE_EVIDENCE),
     DWP("dwp", "DWP", "DWP evidence", DWP_EVIDENCE),
     JOINT_PARTY("jointParty", "Joint party", "Joint party evidence", JOINT_PARTY_EVIDENCE),
+    OTHER_PARTY("otherParty", "Other party", "Other party %s evidence", OTHER_PARTY_EVIDENCE),
+    OTHER_PARTY_REPRESENTATIVE("otherPartyRep", "Other party", "Other party %s evidence", OTHER_PARTY_REPRESENTATIVE_EVIDENCE),
     HMCTS("hmcts", "HMCTS", "HMCTS evidence", HMCTS_EVIDENCE);
 
     private final String code;
