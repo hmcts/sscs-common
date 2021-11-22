@@ -11,16 +11,19 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class Appointee {
 
+    private String id;
     private Name name;
     private Address address;
     private Contact contact;
     private Identity identity;
 
     @JsonCreator
-    public Appointee(@JsonProperty("name") Name name,
+    public Appointee(@JsonProperty("id") String id,
+                     @JsonProperty("name") Name name,
                      @JsonProperty("address") Address address,
                      @JsonProperty("contact") Contact contact,
                      @JsonProperty("identity") Identity identity) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.contact = contact;
