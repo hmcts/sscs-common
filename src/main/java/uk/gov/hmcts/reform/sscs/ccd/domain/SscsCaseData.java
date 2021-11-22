@@ -304,6 +304,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("wcaAppeal")
     private YesNo wcaAppeal;
     private YesNo isAppellantDeceased;
+    private YesNo isFqpmRequired;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
