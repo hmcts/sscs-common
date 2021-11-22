@@ -50,7 +50,7 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
     private int secondCompareWithBundleNumbers(AbstractDocument doc2) {
         String o1 = this.getValue().getBundleAddition();
         String o2 = doc2.getValue().getBundleAddition();
-        if (StringUtils.isNotEmpty(o1) && StringUtils.isNotEmpty(o2) && o1.length() > 1 && o2.length() > 1) {
+        if (StringUtils.isNotEmpty(o1) && StringUtils.isNotEmpty(o2)) {
             Integer n1 = NumberUtils.isCreatable(o1.substring(1)) ? Integer.parseInt(o1.substring(1)) : 0;
             Integer n2 = NumberUtils.isCreatable(o2.substring(1)) ? Integer.parseInt(o2.substring(1)) : 0;
             return ComparatorUtils.<Integer>naturalComparator().compare(n1, n2);
