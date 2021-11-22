@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -32,11 +34,11 @@ public class OtherParty {
 
     @JsonIgnore
     public boolean hasAppointee() {
-        return YesNo.isYes(isAppointee);
+        return appointee != null && isYes(isAppointee);
     }
 
     @JsonIgnore
     public boolean hasRepresentative() {
-        return rep != null && YesNo.isYes(rep.getHasRepresentative());
+        return rep != null && isYes(rep.getHasRepresentative());
     }
 }
