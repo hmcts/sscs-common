@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +31,14 @@ public class OtherParty {
     private Subscription otherPartySubscription;
     private Subscription otherPartyAppointeeSubscription;
     private Subscription otherPartyRepresentativeSubscription;
+
+    @JsonIgnore
+    public boolean hasAppointee() {
+        return appointee != null && isYes(isAppointee);
+    }
+
+    @JsonIgnore
+    public boolean hasRepresentative() {
+        return rep != null && isYes(rep.getHasRepresentative());
+    }
 }
