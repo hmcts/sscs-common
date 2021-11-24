@@ -345,26 +345,18 @@ public class SscsCaseDataTest {
     public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
         List<SscsDocument> documents = new ArrayList<>();
 
-        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
-        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, now.toString(), "C", null));
-        documents.add(buildSscsDocument("A", DocumentType.DECISION_NOTICE, now.toString(), "A", null));
-        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, now.toString(), "D", null));
-        documents.add(buildSscsDocument("Z1", DocumentType.DECISION_NOTICE, now.toString(), "Z1", null));
-        documents.add(buildSscsDocument("Z11", DocumentType.DECISION_NOTICE, now.toString(), "Z11", null));
-        documents.add(buildSscsDocument("Z2", DocumentType.DECISION_NOTICE, now.toString(), "Z2", null));
-        documents.add(buildSscsDocument("Z", DocumentType.DECISION_NOTICE, now.toString(), "Z", null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString(), "C", null));
+        documents.add(buildSscsDocument("firstTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "A", null));
+        documents.add(buildSscsDocument("anotherTestUrl3", DocumentType.DECISION_NOTICE, now.toString(), "D", null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("A", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("B", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("C", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("D", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z1", sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z2", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("firstTestUrl", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl3", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
 
