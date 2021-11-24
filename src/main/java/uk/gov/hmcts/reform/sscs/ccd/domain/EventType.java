@@ -214,8 +214,7 @@ public enum EventType {
     ACTION_HEARING_RECORDING_REQUEST("actionHearingRecordingRequest", 0, false),
     ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false),
     ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false),
-    UPDATE_OTHER_PARTY_DATA("updateOtherPartyData", 0, false),
-    OTHER_PARTY_ADDED("otherPartyAdded", 0, false);
+    UPDATE_OTHER_PARTY_DATA("updateOtherPartyData", 0, false);
 
     private final String type;
     private final String ccdType;
