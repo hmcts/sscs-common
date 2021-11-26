@@ -126,7 +126,9 @@ public class RoboticsJsonMapper {
 
         json.put("otherParty", buildDetails(name, address, contact));
 
-        if (otherParty.getRep() != null) {
+        if (otherParty.getRep() != null
+                && otherParty.getRep().getHasRepresentative() != null
+                && otherParty.getRep().getHasRepresentative().equals(YES)) {
             json.put("otherPartyRepresentative", buildRepresentativeDetails(otherParty.getRep()));
         }
 
