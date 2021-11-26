@@ -31,7 +31,7 @@ public class OtherParty {
     private Subscription otherPartySubscription;
     private Subscription otherPartyAppointeeSubscription;
     private Subscription otherPartyRepresentativeSubscription;
-    private String sendNewOtherPartyNotification;
+    private YesNo sendNewOtherPartyNotification;
 
     @JsonIgnore
     public boolean hasAppointee() {
