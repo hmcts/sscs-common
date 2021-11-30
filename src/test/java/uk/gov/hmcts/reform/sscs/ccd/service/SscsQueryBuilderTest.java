@@ -41,6 +41,20 @@ public class SscsQueryBuilderTest {
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).value());
         assertEquals("data.subscriptions.jointPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).value());
+    }
+
+    @Test
+    public void givenValue_thenBuildQueryForTyaNumberWithOtherParty() {
+        SearchSourceBuilder result = findCaseByTyaNumberQueryWithOtherParty("tya123abc");
+
+        assertEquals("data.subscriptions.appellantSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(0)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(0)).value());
+        assertEquals("data.subscriptions.appointeeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(1)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(1)).value());
+        assertEquals("data.subscriptions.representativeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).value());
+        assertEquals("data.subscriptions.jointPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).value());
         assertEquals("data.otherParties.value.otherPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(4)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(4)).value());
         assertEquals("data.otherParties.value.otherPartyAppointeeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(5)).fieldName());

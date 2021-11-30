@@ -29,6 +29,19 @@ public class SscsQueryBuilder {
                 .should(matchQuery("data.subscriptions.appellantSubscription.tya", value))
                 .should(matchQuery("data.subscriptions.appointeeSubscription.tya", value))
                 .should(matchQuery("data.subscriptions.representativeSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.jointPartySubscription.tya", value)));
+
+        return searchBuilder;
+    }
+
+    public static SearchSourceBuilder findCaseByTyaNumberQueryWithOtherParty(String value) {
+        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
+
+        searchBuilder.query(QueryBuilders
+                .boolQuery()
+                .should(matchQuery("data.subscriptions.appellantSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.appointeeSubscription.tya", value))
+                .should(matchQuery("data.subscriptions.representativeSubscription.tya", value))
                 .should(matchQuery("data.subscriptions.jointPartySubscription.tya", value))
                 .should(matchQuery("data.otherParties.value.otherPartySubscription.tya", value))
                 .should(matchQuery("data.otherParties.value.otherPartyAppointeeSubscription.tya", value))
