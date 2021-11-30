@@ -32,6 +32,9 @@ public class OtherParty {
     private Subscription otherPartyAppointeeSubscription;
     private Subscription otherPartyRepresentativeSubscription;
     private YesNo sendNewOtherPartyNotification;
+    private ReasonableAdjustmentDetails reasonableAdjustment;
+    private ReasonableAdjustmentDetails appointeeReasonableAdjustment;
+    private ReasonableAdjustmentDetails repReasonableAdjustment;
 
     @JsonIgnore
     public boolean hasAppointee() {
