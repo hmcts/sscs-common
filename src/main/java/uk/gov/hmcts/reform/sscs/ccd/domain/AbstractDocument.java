@@ -1,8 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import lombok.experimental.SuperBuilder;
-import org.apache.commons.lang3.builder.CompareToBuilder;
 
 @SuperBuilder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -26,10 +27,18 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
 
     @Override
     public int compareTo(AbstractDocument doc2) {
-        return new CompareToBuilder()
-                .append(this.value.getBundleAddition(), doc2.getValue().getBundleAddition())
-                .append(doc2.getValue().getDateTimeFormatted(), this.value.getDateTimeFormatted())
-                .toComparison();
 
+        Comparator<String> nullSafeStringComparator = Comparator
+                .nullsFirst(String::compareToIgnoreCase);
+        Comparator<Integer> nullSafeIntegerComparator = Comparator
+                .nullsFirst(Integer::compareTo);
+        Comparator<LocalDateTime> nullSafeDateTimeComparator = Comparator
+                .nullsFirst(LocalDateTime::compareTo).reversed();
+
+        return Comparator
+                .comparing(AbstractDocumentDetails::getFirstHalfOfBundleAddition, nullSafeStringComparator)
+                .thenComparing(AbstractDocumentDetails::getSecondHalfOfBundleAddition, nullSafeIntegerComparator)
+                .thenComparing(AbstractDocumentDetails::getDateTimeFormatted, nullSafeDateTimeComparator)
+                .compare(this.getValue(), doc2.getValue());
     }
 }
