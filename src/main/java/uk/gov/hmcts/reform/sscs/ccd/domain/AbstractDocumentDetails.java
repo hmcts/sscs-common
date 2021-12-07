@@ -29,6 +29,7 @@ public class AbstractDocumentDetails {
     private DocumentLink resizedDocumentLink;
     private DocumentLink avDocumentLink;
     private String originalPartySender;
+    private String originalSenderOtherPartyId;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -44,7 +45,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("dateApproved") String dateApproved,
                                    @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                                   @JsonProperty("originalPartySender") String originalPartySender) {
+                                   @JsonProperty("originalPartySender") String originalPartySender,
+                                   @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -60,6 +62,7 @@ public class AbstractDocumentDetails {
         this.resizedDocumentLink = resizedDocumentLink;
         this.avDocumentLink = avDocumentLink;
         this.originalPartySender = originalPartySender;
+        this.originalSenderOtherPartyId = originalSenderOtherPartyId;
     }
 
     @JsonIgnore
