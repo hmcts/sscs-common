@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.model;
 import static org.junit.Assert.*;
 import static uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType.*;
 import static uk.gov.hmcts.reform.sscs.model.PartyItemList.findPartyItemByCode;
+import static uk.gov.hmcts.reform.sscs.model.PartyItemList.isOtherPartyItemType;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -43,9 +44,15 @@ public class PartyItemListTest {
     }
 
     @Test
-    @Parameters({"APPELLANT, appellant", "REPRESENTATIVE, representative", "JOINT_PARTY, jointParty"})
+    @Parameters({"APPELLANT, appellant", "REPRESENTATIVE, representative", "JOINT_PARTY, jointParty", "OTHER_PARTY, otherParty", "OTHER_PARTY_REPRESENTATIVE, otherPartyRep"})
     public void givenPartyItemCode_thenReturnPartyItemListValue(PartyItemList expectedPartyItem, String partyItemCode) {
         assertEquals(expectedPartyItem, findPartyItemByCode(partyItemCode));
+    }
+
+    @Test
+    @Parameters({"appellant, false", "representative, false", "jointParty, false", "otherParty, true", "otherPartyRep, true"})
+    public void givenPartyItemCode_thenCheckIfOtherPartyType(String expectedPartyItem, boolean isOtherParty) {
+        assertEquals(isOtherParty, isOtherPartyItemType(expectedPartyItem));
     }
 
 }
