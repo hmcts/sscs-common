@@ -316,7 +316,8 @@ public class RoboticsJsonMapper {
             obj.put("otherParties", otherParties);
         }
 
-        if (sscsCaseData.getAppeal().getAppellant().getRole() != null) {
+        if (sscsCaseData.getAppeal().getAppellant().getRole() != null
+                && !AppellantRole.OTHER.getName().equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getRole().getName())) {
             obj.put("appellantRole", sscsCaseData.getAppeal().getAppellant().getRole().getName());
         }
 

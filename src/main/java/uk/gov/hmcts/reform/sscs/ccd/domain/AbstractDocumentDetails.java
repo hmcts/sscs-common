@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -72,5 +73,21 @@ public class AbstractDocumentDetails {
         } catch (DateTimeParseException e) {
             return null;
         }
+    }
+
+    @JsonIgnore
+    public String getFirstHalfOfBundleAddition() {
+        if (StringUtils.isEmpty(bundleAddition)) {
+            return null;
+        }
+        return bundleAddition.substring(0,1);
+    }
+
+    @JsonIgnore
+    public Integer getSecondHalfOfBundleAddition() {
+        if (StringUtils.isEmpty(bundleAddition)) {
+            return null;
+        }
+        return NumberUtils.isCreatable(bundleAddition.substring(1)) ? Integer.parseInt(bundleAddition.substring(1)) : 0;
     }
 }

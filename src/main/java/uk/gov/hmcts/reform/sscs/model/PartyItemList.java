@@ -36,4 +36,13 @@ public enum PartyItemList {
         }
         return null;
     }
+
+    public static boolean isOtherPartyItemType(String partyItemCode) {
+        PartyItemList partyItem = findPartyItemByCode(partyItemCode);
+
+        if (OTHER_PARTY.equals(partyItem) || OTHER_PARTY_REPRESENTATIVE.equals(partyItem)) {
+            return true;
+        }
+        return false;
+    }
 }
