@@ -27,7 +27,7 @@ public class SscsHearingRecordingCaseData {
     private YesNo hearingRecordingRequestOutstanding;
     private DynamicList requestingParty;
     private YesNo showRequestingPartyPage;
-    private List<ProcessHearingRecordingRequest> processHearingRecordingRequests;
+    private ProcessHearingRecordingRequest processHearingRecordingRequest;
     @JsonProperty("hearingRecording")
     private HearingRecording hearingRecording;
     @JsonProperty("sscsHearingRecordings")
@@ -35,4 +35,7 @@ public class SscsHearingRecordingCaseData {
     @JsonProperty("existingHearingRecordings")
     private SscsHearingRecordingDetails existingHearingRecordings;
     private YesNo hearingRecordingExist;
+    private List<OtherPartyHearingRecordingReq> otherPartyHearingRecordingReq;
+    private List<OtherPartyHearingRecordingReqUi> otherPartyHearingRecordingReqUi;
+
 }
