@@ -35,7 +35,6 @@ public class SscsHearingRecordingCaseData {
     @JsonProperty("existingHearingRecordings")
     private SscsHearingRecordingDetails existingHearingRecordings;
     private YesNo hearingRecordingExist;
-    private List<OtherPartyHearingRecordingReq> otherPartyHearingRecordingReq;
     private List<OtherPartyHearingRecordingReqUi> otherPartyHearingRecordingReqUi;
 
 }
