@@ -95,13 +95,10 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
-    private DynamicList reissueFurtherEvidenceDocument;
-    @JsonProperty("resendToAppellant")
-    private String resendToAppellant;
-    @JsonProperty("resendToRepresentative")
-    private String resendToRepresentative;
-    @JsonProperty("resendToDwp")
-    private String resendToDwp;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private ReissueFurtherEvidence reissueFurtherEvidence;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
@@ -349,21 +346,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isResendToAppellant() {
-        return stringToBoolean(resendToAppellant);
-    }
-
-    @JsonIgnore
-    public boolean isResendToRepresentative() {
-        return stringToBoolean(resendToRepresentative);
-    }
-
-    @JsonIgnore
-    public boolean isResendToDwp() {
-        return stringToBoolean(resendToDwp);
-    }
-
-    @JsonIgnore
     public boolean isAdjournCaseGenerateNotice() {
         return stringToBoolean(adjournCaseGenerateNotice);
     }
@@ -404,6 +386,13 @@ public class SscsCaseData implements CaseData {
         return latestEvent != null ? latestEvent.getType() : null;
     }
 
+    @JsonIgnore
+    public ReissueFurtherEvidence getReissueFurtherEvidence() {
+        if (reissueFurtherEvidence == null) {
+            this.reissueFurtherEvidence = new ReissueFurtherEvidence();
+        }
+        return reissueFurtherEvidence;
+    }
 
     @JsonIgnore
     public boolean isWcaAppeal() {
