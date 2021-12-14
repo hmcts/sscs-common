@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ReissueArtifactWrapper {
+public class ReissueArtifactUi {
     private DynamicList reissueFurtherEvidenceDocument;
     private YesNo resendToAppellant;
     private YesNo resendToRepresentative;
