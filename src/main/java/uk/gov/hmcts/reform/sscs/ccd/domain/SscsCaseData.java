@@ -98,7 +98,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
-    private ReissueArtifactUi reissueArtifactUi;
+    private ReissueFurtherEvidence reissueFurtherEvidence;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
@@ -342,7 +342,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
@@ -387,11 +387,11 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public ReissueArtifactUi getReissueArtifactUi() {
-        if (reissueArtifactUi == null) {
-            this.reissueArtifactUi = new ReissueArtifactUi();
+    public ReissueFurtherEvidence getReissueFurtherEvidence() {
+        if (reissueFurtherEvidence == null) {
+            this.reissueFurtherEvidence = new ReissueFurtherEvidence();
         }
-        return reissueArtifactUi;
+        return reissueFurtherEvidence;
     }
 
     @JsonIgnore
@@ -418,7 +418,7 @@ public class SscsCaseData implements CaseData {
     public void sortCollections() {
 
         if (getCorrespondence() != null) {
-            Collections.sort(getCorrespondence(), Collections.reverseOrder());
+            getCorrespondence().sort(Collections.reverseOrder());
         }
         if (getEvents() != null) {
             getEvents().sort(Collections.reverseOrder());
@@ -457,9 +457,7 @@ public class SscsCaseData implements CaseData {
             Stream<SscsDocument> filteredStream = getSscsDocument().stream()
                     .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
-            List<SscsDocument> filteredList = filteredStream.collect(Collectors.toList());
-
-            Collections.sort(filteredList, (one, two) -> {
+            List<SscsDocument> filteredList = filteredStream.sorted((one, two) -> {
                 if (two.getValue().getDocumentDateAdded() == null) {
                     return -1;
                 }
@@ -470,7 +468,8 @@ public class SscsCaseData implements CaseData {
                     return -1;
                 }
                 return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
-            });
+            }).collect(Collectors.toList());
+
             if (filteredList.size() > 0) {
                 return filteredList.get(0);
             }
@@ -480,7 +479,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
-        return ofNullable(getSscsWelshDocuments()).map(Collection::stream).orElseGet(Stream::empty)
+        return ofNullable(getSscsWelshDocuments()).stream().flatMap(Collection::stream)
                 .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
                 .sorted()
                 .findFirst();
@@ -510,7 +509,7 @@ public class SscsCaseData implements CaseData {
             buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointParty());
         }
 
-        if (ofNullable(combinedLetters).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+        if (combinedLetters.stream().allMatch(ra -> ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
             this.reasonableAdjustmentsOutstanding = NO;
         } else {
             this.reasonableAdjustmentsOutstanding = YES;
