@@ -20,6 +20,9 @@ public enum FormType {
     @JsonProperty("sscs2")
     SSCS2("sscs2"),
 
+    @JsonProperty("sscs5")
+    SSCS5("sscs5"),
+
     @JsonProperty("unknown")
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
