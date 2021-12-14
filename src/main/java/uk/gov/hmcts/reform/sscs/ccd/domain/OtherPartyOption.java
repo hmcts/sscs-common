@@ -13,7 +13,7 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OtherPartyOption {
 
-    private OtherPartyOptionDetails value;
+    OtherPartyOptionDetails value;
 
     @JsonCreator
     public OtherPartyOption(@JsonProperty("value") OtherPartyOptionDetails value) {
