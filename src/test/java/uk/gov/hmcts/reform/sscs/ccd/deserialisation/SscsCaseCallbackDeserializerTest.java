@@ -91,7 +91,7 @@ public class SscsCaseCallbackDeserializerTest {
             fail("no expected exception here");
         }
         DynamicList reissueFurtherEvidenceDocument = actualSscsCaseCallback.getCaseDetails().getCaseData()
-                .getReissueFurtherEvidence().getReissueFurtherEvidenceDocument();
+                .getReissueArtifactUi().getReissueFurtherEvidenceDocument();
         log.info(reissueFurtherEvidenceDocument.toString());
     }
 
