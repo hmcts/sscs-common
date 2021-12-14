@@ -98,7 +98,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
-    private ReissueFurtherEvidence reissueFurtherEvidence;
+    private ReissueArtifactWrapper reissueFurtherEvidence;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
@@ -387,9 +387,9 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public ReissueFurtherEvidence getReissueFurtherEvidence() {
+    public ReissueArtifactWrapper getReissueFurtherEvidence() {
         if (reissueFurtherEvidence == null) {
-            this.reissueFurtherEvidence = new ReissueFurtherEvidence();
+            this.reissueFurtherEvidence = new ReissueArtifactWrapper();
         }
         return reissueFurtherEvidence;
     }
