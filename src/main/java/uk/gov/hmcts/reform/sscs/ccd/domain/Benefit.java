@@ -7,6 +7,7 @@ import static java.util.Optional.of;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.slf4j.LoggerFactory.getLogger;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.*;
 import static uk.gov.hmcts.reform.sscs.exception.BenefitMappingException.createException;
 
 import java.util.List;
@@ -23,32 +24,32 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @Getter
 public enum Benefit {
 
-    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    JSA("Jobseeker’s Allowance", "Lwfans Ceisio Gwaith", "073", "JSA", List.of("073"), true, DwpAddressLookupService::jsaOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
-    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl", "037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
-    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
-    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue),
-    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue),
-    MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, DwpAddressLookupService::maternityAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088", "089", "061"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    INCOME_SUPPORT("Income Support", "Cymhorthdal Incwm", "061", "incomeSupport", List.of("061"), false, DwpAddressLookupService::incomeSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    BEREAVEMENT_SUPPORT_PAYMENT_SCHEME("Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth", "095", "bereavementSupportPaymentScheme", List.of("095"), false, DwpAddressLookupService::bereavementSupportPaymentSchemeOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue),
-    PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue),
-    CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022", "023", "024", "025", "026", "028"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getCsaVenue),
+    ESA("Employment and Support Allowance", "Lwfans Cyflogaeth a Chymorth", "051", "ESA", List.of("051"), true, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS1),
+    JSA("Jobseeker’s Allowance", "Lwfans Ceisio Gwaith", "073", "JSA", List.of("073"), true, DwpAddressLookupService::jsaOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    PIP("Personal Independence Payment", "Taliad Annibyniaeth Personol", "002", "PIP", List.of("002", "003"), true, DwpAddressLookupService::pipOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue, SSCS1),
+    DLA("Disability Living Allowance", "Lwfans Byw i’r Anabl", "037", "DLA", List.of("037"), true, DwpAddressLookupService::dlaOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue, SSCS1),
+    UC("Universal Credit", "Credyd Cynhwysol", "001", "UC", List.of("001"), true, DwpAddressLookupService::ucOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS1),
+    CARERS_ALLOWANCE("Carer's Allowance", "Lwfans Gofalwr", "070", "carersAllowance", List.of("070"), false, DwpAddressLookupService::carersAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue, SSCS1),
+    ATTENDANCE_ALLOWANCE("Attendance Allowance", "Lwfans Gweini", "013", "attendanceAllowance", List.of("013"), false, DwpAddressLookupService::attendanceAllowanceOfficeMappings, AirLookupService::getPipDlaCarersOrAttendanceAllowanceVenue, SSCS1),
+    BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue, SSCS1),
+    MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, DwpAddressLookupService::maternityAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088", "089", "061"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    INCOME_SUPPORT("Income Support", "Cymhorthdal Incwm", "061", "incomeSupport", List.of("061"), false, DwpAddressLookupService::incomeSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    BEREAVEMENT_SUPPORT_PAYMENT_SCHEME("Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth", "095", "bereavementSupportPaymentScheme", List.of("095"), false, DwpAddressLookupService::bereavementSupportPaymentSchemeOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue, SSCS1),
+    PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022", "023", "024", "025", "026", "028"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getCsaVenue, SSCS2),
     //FIXME: map all of the SSCS5 fields to proper values - currently just populated with placeholders in order to progress other tickets
-    TAX_CREDIT("Tax Credit", "PLACEHOLDER WELSH", "000", "taxCredit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    GUARDIANS_ALLOWANCE("Guardians Allowance", "PLACEHOLDER WELSH", "000", "guardiansAllowance", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    TAX_FREE_CHILDCARE("Tax-Free Childcare", "PLACEHOLDER WELSH", "000", "taxFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "PLACEHOLDER WELSH", "000", "homeResponsibilitiesProtection", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    CHILD_BENEFIT("Child Benefit", "PLACEHOLDER WELSH", "000", "childBenefit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "PLACEHOLDER WELSH", "000", "thirtyHoursFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "PLACEHOLDER WELSH", "000", "guaranteedMinimumPension", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue),
-    NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "PLACEHOLDER WELSH", "000", "nationalInsuranceCredits", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue);
+    TAX_CREDIT("Tax Credit", "PLACEHOLDER WELSH", "000", "taxCredit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    GUARDIANS_ALLOWANCE("Guardians Allowance", "PLACEHOLDER WELSH", "000", "guardiansAllowance", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    TAX_FREE_CHILDCARE("Tax-Free Childcare", "PLACEHOLDER WELSH", "000", "taxFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "PLACEHOLDER WELSH", "000", "homeResponsibilitiesProtection", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    CHILD_BENEFIT("Child Benefit", "PLACEHOLDER WELSH", "000", "childBenefit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "PLACEHOLDER WELSH", "000", "thirtyHoursFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "PLACEHOLDER WELSH", "000", "guaranteedMinimumPension", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
+    NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "PLACEHOLDER WELSH", "000", "nationalInsuranceCredits", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5);
 
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
@@ -60,10 +61,11 @@ public enum Benefit {
     private final boolean hasAcronym;
     private final Function<DwpAddressLookupService, OfficeMapping[]> officeMappings;
     private final BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue;
+    private final SscsType sscsType;
 
     Benefit(String description, String welshDescription, String benefitCode, String shortName, List<String> caseLoaderKeyId, boolean hasAcronym,
             Function<DwpAddressLookupService, OfficeMapping[]> officeMappings,
-            BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue) {
+            BiFunction<AirLookupService, AirlookupBenefitToVenue, String> airLookupVenue, SscsType sscsType) {
         this.description = description;
         this.welshDescription = welshDescription;
         this.benefitCode = benefitCode;
@@ -72,6 +74,7 @@ public enum Benefit {
         this.hasAcronym = hasAcronym;
         this.officeMappings = officeMappings;
         this.airLookupVenue = airLookupVenue;
+        this.sscsType = sscsType;
     }
 
     public static Benefit getBenefitByCodeOrThrowException(String code) {
