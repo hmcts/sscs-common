@@ -35,8 +35,9 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("dateApproved") String dateApproved,
                                @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
                                @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                               @JsonProperty("originalPartySender") String originalPartySender) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, originalPartySender);
+                               @JsonProperty("originalPartySender") String originalPartySender,
+                               @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId) {
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, originalPartySender, originalSenderOtherPartyId);
         this.documentEmailContent = documentEmailContent;
         this.controlNumber = controlNumber;
         this.editedDocumentLink = editedDocumentLink;
