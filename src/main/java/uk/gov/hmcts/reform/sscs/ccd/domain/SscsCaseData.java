@@ -341,7 +341,22 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
+        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+    }
+
+    @JsonIgnore
+    public boolean isResendToAppellant() {
+        return YesNo.isYes(getReissueArtifactUi().getResendToAppellant());
+    }
+
+    @JsonIgnore
+    public boolean isResendToRepresentative() {
+        return YesNo.isYes(getReissueArtifactUi().getResendToRepresentative());
+    }
+
+    @JsonIgnore
+    public boolean isResendToDwp() {
+        return YesNo.isYes(getReissueArtifactUi().getResendToDwp());
     }
 
     @JsonIgnore
