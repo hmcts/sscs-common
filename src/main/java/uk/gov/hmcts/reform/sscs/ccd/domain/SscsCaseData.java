@@ -330,6 +330,8 @@ public class SscsCaseData implements CaseData {
 
     private YesNo functionalTest;
 
+    private String caseName;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
