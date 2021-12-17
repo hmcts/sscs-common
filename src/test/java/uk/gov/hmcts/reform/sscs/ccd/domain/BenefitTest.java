@@ -54,18 +54,7 @@ public class BenefitTest {
             "ESA, Employment and Support Allowance (ESA)",
             "UC, Universal Credit (UC)",
             "JSA, Jobseeker’s Allowance (JSA)",
-            "DLA, Disability Living Allowance (DLA)",
-            "Carer's Allowance, Carer's Allowance",
-            "Attendance Allowance, Attendance Allowance",
-            "Bereavement Benefit, Bereavement Benefit",
-            "Industrial Injuries Disablement Benefit, Industrial Injuries Disablement Benefit",
-            "Maternity Allowance, Maternity Allowance",
-            "Social Fund, Social Fund",
-            "Income Support, Income Support",
-            "Bereavement Support Payment Scheme, Bereavement Support Payment Scheme",
-            "Industrial Death Benefit, Industrial Death Benefit",
-            "Pension Credit, Pension Credit",
-            "Retirement Pension, Retirement Pension"
+            "DLA, Disability Living Allowance (DLA)"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -83,7 +72,15 @@ public class BenefitTest {
             "bereavementSupportPaymentScheme, Bereavement Support Payment Scheme",
             "industrialDeathBenefit, Industrial Death Benefit",
             "pensionCredit, Pension Credit",
-            "retirementPension, Retirement Pension"
+            "retirementPension, Retirement Pension",
+            "taxCredit, Tax Credit",
+            "guardiansAllowance, Guardians Allowance",
+            "taxFreeChildcare, Tax-Free Childcare",
+            "homeResponsibilitiesProtection, Home Responsibilities Protection",
+            "childBenefit, Child Benefit",
+            "thirtyHoursFreeChildcare, 30 Hours Free Childcare",
+            "guaranteedMinimumPension, Guaranteed Minimum Pension",
+            "nationalInsuranceCredits, National Insurance Credits",
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));

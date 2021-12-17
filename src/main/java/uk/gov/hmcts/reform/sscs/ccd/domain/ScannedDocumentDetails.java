@@ -21,6 +21,8 @@ public class ScannedDocumentDetails {
     private String exceptionRecordReference;
     private String subtype;
     private String includeInBundle;
+    private String originalSenderOtherPartyId;
+    private String originalSenderOtherPartyName;
 
     @JsonCreator
     public ScannedDocumentDetails(@JsonProperty("type") String type,
@@ -31,7 +33,9 @@ public class ScannedDocumentDetails {
                                   @JsonProperty("scannedDate") String scannedDate,
                                   @JsonProperty("exceptionRecordReference") String exceptionRecordReference,
                                   @JsonProperty("subtype") String subtype,
-                                  @JsonProperty("includeInBundle") String includeInBundle) {
+                                  @JsonProperty("includeInBundle") String includeInBundle,
+                                  @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
+                                  @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
         this.type = type;
         this.url = url;
         this.editedUrl = editedUrl;
@@ -41,6 +45,8 @@ public class ScannedDocumentDetails {
         this.exceptionRecordReference = exceptionRecordReference;
         this.subtype = subtype;
         this.includeInBundle = includeInBundle;
+        this.originalSenderOtherPartyId = originalSenderOtherPartyId;
+        this.originalSenderOtherPartyName = originalSenderOtherPartyName;
     }
 
 }

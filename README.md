@@ -30,6 +30,10 @@ https://travis-ci.org/hmcts/sscs-common
 Bintray repo
 https://dl.bintray.com/hmcts/hmcts-maven/uk/gov/hmcts/reform/sscs-common/ 
 
+### Sync with sscs-ccd-definition
+When you add fields to the sscs-common, you should also update the sscs-ccd-definition so that the
+definition file in AAT matches the java model in sscs-common, thereby avoiding validation failures.
+We recommend that the AAT CCD definition to be generated through master branch
 
 ### Usage
 

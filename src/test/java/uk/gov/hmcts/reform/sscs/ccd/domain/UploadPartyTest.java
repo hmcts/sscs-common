@@ -17,7 +17,10 @@ public class UploadPartyTest {
             "APPOINTEE, appointee",
             "REP, rep",
             "JOINT_PARTY, jointParty",
-            "DWP, dwp"
+            "DWP, dwp",
+            "OTHER_PARTY, otherParty",
+            "OTHER_PARTY_REP, otherPartyRep",
+            "OTHER_PARTY_APPOINTEE, otherPartyAppointee",
     })
     public void shouldGetAudioVideoPartyFromText(UploadParty party, String text) {
         assertEquals(party, UploadParty.fromValue(text));
