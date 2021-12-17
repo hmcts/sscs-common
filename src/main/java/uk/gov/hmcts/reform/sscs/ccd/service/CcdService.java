@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CcdException;
@@ -26,16 +27,19 @@ public class CcdService {
     private final ReadCcdCaseService readCcdCaseService;
     private static final String YES = "yes";
     private static final String NO = "no";
+    private final boolean sscs2Enabled;
 
     @Autowired
     public CcdService(CreateCcdCaseService createCcdCaseService,
                       SearchCcdCaseService searchCcdCaseService,
                       UpdateCcdCaseService updateCcdCaseService,
-                      ReadCcdCaseService readCcdCaseService) {
+                      ReadCcdCaseService readCcdCaseService,
+                      @Value("${feature.sscs2.enabled:false}") boolean sscs2Enabled) {
         this.createCcdCaseService = createCcdCaseService;
         this.searchCcdCaseService = searchCcdCaseService;
         this.updateCcdCaseService = updateCcdCaseService;
         this.readCcdCaseService = readCcdCaseService;
+        this.sscs2Enabled = sscs2Enabled;
     }
 
     public List<SscsCaseDetails> findCaseBy(String field, String value, IdamTokens idamTokens) {
@@ -152,7 +156,13 @@ public class CcdService {
     private SscsCaseDetails getCaseByAppealNumber(String appealNumber, IdamTokens idamTokens) {
         log.info("Finding case by appeal number {}", appealNumber);
 
-        SearchSourceBuilder searchBuilder = findCaseByTyaNumberQuery(appealNumber);
+        SearchSourceBuilder searchBuilder;
+        if (sscs2Enabled) {
+            searchBuilder = findCaseByTyaNumberQueryWithOtherParty(appealNumber);
+        } else {
+            searchBuilder = findCaseByTyaNumberQuery(appealNumber);
+        }
+
 
         List<SscsCaseDetails> caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
 
