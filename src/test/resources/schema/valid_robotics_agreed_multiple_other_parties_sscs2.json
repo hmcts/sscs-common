@@ -16,7 +16,7 @@
   "appellantNino": "JT012020B",
   "appellantPostCode": "Bedford",
   "evidencePresent": "Yes",
-  "caseCode": "002DD",
+  "caseCode": "022DD",
   "caseId": 1529335642096820,
   "hearingArrangements": {
     "accessibleHearingRoom": "No",
@@ -33,7 +33,7 @@
   "hearingType": "Oral",
   "mrnDate": "2017-10-10",
   "mrnReasonForBeingLate": "It was late",
-  "pipNumber": "Liverpool2 SSO",
+  "pipNumber": "Child Support",
   "receivedVia": "Online",
   "representative": {
     "title": "Mrs",
@@ -63,8 +63,8 @@
     "dob": "2018-08-12"
   },
   "isConfidential": "Yes",
-  "appellantRole": "Receiving parent",
-  "childMaintenanceNumber": "87654321",
+  "appellantRole": "Paying parent",
+  "childMaintenanceNumber": "12345678",
   "otherParties": [
     {
       "otherParty": {
@@ -96,6 +96,39 @@
         "datesCantAttend": [
           "2021-12-12",
           "2021-12-22"
+        ]
+      }
+    },
+    {
+      "otherParty": {
+        "addressLine1": "Cupidatat enim dolor consequatur facilis dolorum perspiciatis quibusdam aut",
+        "addressLine2": "Distinctio Commodo animi consequatur Aut iure ut odit dolor hic est architecto anim consequat Dolorem est",
+        "county": "Cupiditate incididunt repellendus Iure quia",
+        "email": "wygimyq@email.com",
+        "firstName": "Mary",
+        "lastName": "Smith",
+        "phoneNumber": "07683736510",
+        "postCode": "CM10 2RT",
+        "title": "Mrs",
+        "townOrCity": "Perferendis nemo id velit dolore qui officia"
+      },
+      "otherPartyRepresentative": {
+        "title": "Mrs",
+        "firstName": "Pat",
+        "lastName": "Kane",
+        "addressLine1": "2 Cedar Lane",
+        "addressLine2": "The Village",
+        "organisation": "Monsters inc",
+        "townOrCity": "My Town",
+        "county": "Manchester",
+        "postCode": "EM12 8PK",
+        "phoneNumber": "07345939292",
+        "email": "fiona@email.com"
+      },
+      "hearingArrangements": {
+        "datesCantAttend": [
+          "2021-11-12",
+          "2021-11-22"
         ]
       }
     }
