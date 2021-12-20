@@ -25,6 +25,14 @@ public class DwpMappings {
     private OfficeMapping[] pensionCredit;
     private OfficeMapping[] retirementPension;
     private OfficeMapping childSupport;
+    private OfficeMapping taxCredit;
+    private OfficeMapping guardiansAllowance;
+    private OfficeMapping taxFreeChildcare;
+    private OfficeMapping homeResponsibilitiesProtection;
+    private OfficeMapping childBenefit;
+    private OfficeMapping thirtyHoursFreeChildcare;
+    private OfficeMapping guaranteedMinimumPension;
+    private OfficeMapping nationalInsuranceCredits;
 
 }
 

@@ -41,15 +41,15 @@ public enum Benefit {
     PENSION_CREDIT("Pension Credit", "Credydau Pensiwn", "045", "pensionCredit", List.of("045"), false, DwpAddressLookupService::pensionCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     RETIREMENT_PENSION("Retirement Pension", "Pensiwn Ymddeol", "082", "retirementPension", List.of("082"), false, DwpAddressLookupService::retirementPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     CHILD_SUPPORT("Child Support", "Cynnal Plant", "022", "childSupport", List.of("022", "023", "024", "025", "026", "028"), false, DwpAddressLookupService::childSupportOfficeMappings, AirLookupService::getCsaVenue, SSCS2),
-    //FIXME: map all of the SSCS5 fields to proper values - currently just populated with placeholders in order to progress other tickets
-    TAX_CREDIT("Tax Credit", "PLACEHOLDER WELSH", "000", "taxCredit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    GUARDIANS_ALLOWANCE("Guardians Allowance", "PLACEHOLDER WELSH", "000", "guardiansAllowance", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    TAX_FREE_CHILDCARE("Tax-Free Childcare", "PLACEHOLDER WELSH", "000", "taxFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "PLACEHOLDER WELSH", "000", "homeResponsibilitiesProtection", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    CHILD_BENEFIT("Child Benefit", "PLACEHOLDER WELSH", "000", "childBenefit", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "PLACEHOLDER WELSH", "000", "thirtyHoursFreeChildcare", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "PLACEHOLDER WELSH", "000", "guaranteedMinimumPension", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5),
-    NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "PLACEHOLDER WELSH", "000", "nationalInsuranceCredits", List.of("000"), false, DwpAddressLookupService::esaOfficeMappings, AirLookupService::getEsaOrUcVenue, SSCS5);
+    //FIXME: map all of the Welsh SSCS5 fields to proper values - currently just populated with placeholders in order to progress other tickets
+    TAX_CREDIT("Tax Credit", "PLACEHOLDER WELSH", "053", "taxCredit", List.of("053", "054", "055"), false, DwpAddressLookupService::taxCreditOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    GUARDIANS_ALLOWANCE("Guardians Allowance", "PLACEHOLDER WELSH", "015", "guardiansAllowance", List.of("015"), false, DwpAddressLookupService::guardiansAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    TAX_FREE_CHILDCARE("Tax-Free Childcare", "PLACEHOLDER WELSH", "057", "taxFreeChildcare", List.of("057"), false, DwpAddressLookupService::taxFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "PLACEHOLDER WELSH", "050", "homeResponsibilitiesProtection", List.of("050"), false, DwpAddressLookupService::homeResponsibilitiesProtectionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    CHILD_BENEFIT("Child Benefit", "PLACEHOLDER WELSH", "016", "childBenefit", List.of("016"), false, DwpAddressLookupService::childBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "PLACEHOLDER WELSH", "058", "thirtyHoursFreeChildcare", List.of("058"), false, DwpAddressLookupService::thirtyHoursFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "PLACEHOLDER WELSH", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "PLACEHOLDER WELSH", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5);
 
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
