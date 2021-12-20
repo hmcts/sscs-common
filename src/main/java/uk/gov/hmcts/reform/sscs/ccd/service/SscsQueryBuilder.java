@@ -29,7 +29,10 @@ public class SscsQueryBuilder {
                 .should(matchQuery("data.subscriptions.appellantSubscription.tya", value))
                 .should(matchQuery("data.subscriptions.appointeeSubscription.tya", value))
                 .should(matchQuery("data.subscriptions.representativeSubscription.tya", value))
-                .should(matchQuery("data.subscriptions.jointPartySubscription.tya", value)));
+                .should(matchQuery("data.subscriptions.jointPartySubscription.tya", value))
+                .should(matchQuery("data.otherParties.value.otherPartySubscription.tya", value))
+                .should(matchQuery("data.otherParties.value.otherPartyAppointeeSubscription.tya", value))
+                .should(matchQuery("data.otherParties.value.otherPartyRepresentativeSubscription.tya", value)));
 
         return searchBuilder;
     }
