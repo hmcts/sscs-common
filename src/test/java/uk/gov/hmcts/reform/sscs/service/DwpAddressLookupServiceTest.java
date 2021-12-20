@@ -451,6 +451,126 @@ public class DwpAddressLookupServiceTest {
     }
 
     @Test
+    public void givenATaxCreditTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("taxCredit", null);
+
+        assertEquals("TCO Preston Appeals Team", result);
+    }
+
+    @Test
+    public void givenATaxCreditType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("taxCredit", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+    }
+
+    @Test
+    public void givenAGuardiansAllowanceTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("guardiansAllowance", null);
+
+        assertEquals("C.B.O (HMRC)", result);
+    }
+
+    @Test
+    public void givenAGuardiansAllowanceType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("guardiansAllowance", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("C.B.O (HMRC)", result.get().getCode());
+    }
+
+    @Test
+    public void givenATaxFreeChildcareTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("taxFreeChildcare", null);
+
+        assertEquals("C.B.O (HMRC)", result);
+    }
+
+    @Test
+    public void givenATaxFreeChildcareType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("taxFreeChildcare", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("C.B.O (HMRC)", result.get().getCode());
+    }
+
+    @Test
+    public void givenAHomeResponsibilitiesProtectionTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("homeResponsibilitiesProtection", null);
+
+        assertEquals("TCO Preston Appeals Team", result);
+    }
+
+    @Test
+    public void givenAHomeResponsibilitiesProtectionType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("homeResponsibilitiesProtection", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+    }
+
+    @Test
+    public void givenAChildBenefitTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("childBenefit", null);
+
+        assertEquals("C.B.O (HMRC)", result);
+    }
+
+    @Test
+    public void givenAChildBenefitType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childBenefit", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("C.B.O (HMRC)", result.get().getCode());
+    }
+
+    @Test
+    public void givenAThirtyHoursFreeChildcareAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("thirtyHoursFreeChildcare", null);
+
+        assertEquals("C.B.O (HMRC)", result);
+    }
+
+    @Test
+    public void givenAThirtyHoursFreeChildcareType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("thirtyHoursFreeChildcare", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("C.B.O (HMRC)", result.get().getCode());
+    }
+
+    @Test
+    public void givenAGuaranteedMinimumPensionTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("guaranteedMinimumPension", null);
+
+        assertEquals("TCO Preston Appeals Team", result);
+    }
+
+    @Test
+    public void givenAGuaranteedMinimumPensionType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("guaranteedMinimumPension", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+    }
+
+    @Test
+    public void givenANationalInsuranceCreditsTypeAndDwpOffice_thenCorrectDwpRegionalCenter() {
+        String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("nationalInsuranceCredits", null);
+
+        assertEquals("TCO Preston Appeals Team", result);
+    }
+
+    @Test
+    public void givenANationalInsuranceCreditsType_thenReturnTheOffice() {
+        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("nationalInsuranceCredits", null);
+
+        assertTrue(result.isPresent());
+        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+    }
+
+    @Test
     @Parameters({
             "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
@@ -474,14 +594,6 @@ public class DwpAddressLookupServiceTest {
 
         assertTrue(result.isPresent());
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
-    }
-
-    @Test
-    public void givenAChildSupport_thenReturnTheOffice() {
-        Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childSupport", null);
-
-        assertTrue(result.isPresent());
-        assertEquals("Child Maintenance Service Group", result.get().getCode());
     }
 
     @Test
@@ -620,7 +732,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void isValidJsonWithNoDuplicateValues() throws Exception {
-        String json = resourceToString("reference-data/dwpAddresses.json",
+        String json = resourceToString("reference-data/ogdAddresses.json",
                 StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
         final ObjectMapper mapper = new ObjectMapper();
         mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);

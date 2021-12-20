@@ -876,5 +876,133 @@
       "line4": "Wolverhampton",
       "postCode": "WV99 1TW"
     }
+  },
+  "childBenefit": {
+    "code": "C.B.O (HMRC)",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "C.B.O (HMRC)",
+      "gaps": "C.B.O (HMRC)",
+      "dwpRegionCentre": "C.B.O (HMRC)"
+    },
+    "address": {
+      "line1": "HMRC Child Benefit Office",
+      "line2": "CBO Appeals WP2012",
+      "line3": "Waterview Park, Washington",
+      "line4": "Newcastle Upon Tyne",
+      "postCode": "NE38 8QG"
+    }
+  },
+  "guardiansAllowance": {
+    "code": "C.B.O (HMRC)",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "C.B.O (HMRC)",
+      "gaps": "C.B.O (HMRC)",
+      "dwpRegionCentre": "C.B.O (HMRC)"
+    },
+    "address": {
+      "line1": "HMRC Child Benefit Office",
+      "line2": "CBO Appeals WP2012",
+      "line3": "Waterview Park, Washington",
+      "line4": "Newcastle Upon Tyne",
+      "postCode": "NE38 8QG"
+    }
+  },
+  "taxFreeChildcare": {
+    "code": "C.B.O (HMRC)",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "C.B.O (HMRC)",
+      "gaps": "C.B.O (HMRC)",
+      "dwpRegionCentre": "C.B.O (HMRC)"
+    },
+    "address": {
+      "line1": "HMRC Child Benefit Office",
+      "line2": "CBO Appeals WP2012",
+      "line3": "Waterview Park, Washington",
+      "line4": "Newcastle Upon Tyne",
+      "postCode": "NE38 8QG"
+    }
+  },
+  "thirtyHoursFreeChildcare": {
+    "code": "C.B.O (HMRC)",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "C.B.O (HMRC)",
+      "gaps": "C.B.O (HMRC)",
+      "dwpRegionCentre": "C.B.O (HMRC)"
+    },
+    "address": {
+      "line1": "HMRC Child Benefit Office",
+      "line2": "CBO Appeals WP2012",
+      "line3": "Waterview Park, Washington",
+      "line4": "Newcastle Upon Tyne",
+      "postCode": "NE38 8QG"
+    }
+  },
+  "homeResponsibilitiesProtection": {
+    "code": "TCO Preston Appeals Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "TCO Preston Appeals Team",
+      "gaps": "T.C.O Preston Appeals Team",
+      "dwpRegionCentre": "TCO Preston Appeals Team"
+    },
+    "address": {
+      "line1": "T.C.O Preston Appeals Team",
+      "line2": "Tax Credit Office",
+      "line3": "St Marks House, St Marys Street",
+      "line4": "Preston",
+      "postCode": "PR1 4AT"
+    }
+  },
+  "guaranteedMinimumPension": {
+    "code": "TCO Preston Appeals Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "TCO Preston Appeals Team",
+      "gaps": "T.C.O Preston Appeals Team",
+      "dwpRegionCentre": "TCO Preston Appeals Team"
+    },
+    "address": {
+      "line1": "T.C.O Preston Appeals Team",
+      "line2": "Tax Credit Office",
+      "line3": "St Marks House, St Marys Street",
+      "line4": "Preston",
+      "postCode": "PR1 4AT"
+    }
+  },
+  "nationalInsuranceCredits": {
+    "code": "TCO Preston Appeals Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "TCO Preston Appeals Team",
+      "gaps": "T.C.O Preston Appeals Team",
+      "dwpRegionCentre": "TCO Preston Appeals Team"
+    },
+    "address": {
+      "line1": "T.C.O Preston Appeals Team",
+      "line2": "Tax Credit Office",
+      "line3": "St Marks House, St Marys Street",
+      "line4": "Preston",
+      "postCode": "PR1 4AT"
+    }
+  },
+  "taxCredit": {
+    "code": "TCO Preston Appeals Team",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "TCO Preston Appeals Team",
+      "gaps": "T.C.O Preston Appeals Team",
+      "dwpRegionCentre": "TCO Preston Appeals Team"
+    },
+    "address": {
+      "line1": "T.C.O Preston Appeals Team",
+      "line2": "Tax Credit Office",
+      "line3": "St Marks House, St Marys Street",
+      "line4": "Preston",
+      "postCode": "PR1 4AT"
+    }
   }
 }

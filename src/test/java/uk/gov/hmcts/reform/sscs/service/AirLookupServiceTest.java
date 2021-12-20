@@ -93,6 +93,14 @@ public class AirLookupServiceTest {
             "CV9 1ss, Birmingham Civil Justice Centre, pensionCredit",
             "CV9 1ss, Birmingham Civil Justice Centre, retirementPension",
             "CV8 1ss, Coventry (CMCB), childSupport",
+            "CV9 1ss, Birmingham Civil Justice Centre, taxCredit",
+            "CV9 1ss, Birmingham Civil Justice Centre, guardiansAllowance",
+            "CV9 1ss, Birmingham Civil Justice Centre, taxFreeChildcare",
+            "CV9 1ss, Birmingham Civil Justice Centre, homeResponsibilitiesProtection",
+            "CV9 1ss, Birmingham Civil Justice Centre, childBenefit",
+            "CV9 1ss, Birmingham Civil Justice Centre, thirtyHoursFreeChildcare",
+            "CV9 1ss, Birmingham Civil Justice Centre, guaranteedMinimumPension",
+            "CV9 1ss, Birmingham Civil Justice Centre, nationalInsuranceCredits"
 
     })
     public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {

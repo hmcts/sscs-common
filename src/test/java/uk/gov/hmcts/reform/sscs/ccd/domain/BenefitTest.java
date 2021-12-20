@@ -149,6 +149,14 @@ public class BenefitTest {
             "INDUSTRIAL_DEATH_BENEFIT, 064",
             "PENSION_CREDIT, 045",
             "RETIREMENT_PENSION, 082",
+            "TAX_CREDIT, 053, 054, 055",
+            "GUARDIANS_ALLOWANCE, 015",
+            "TAX_FREE_CHILDCARE, 057",
+            "HOME_RESPONSIBILITIES_PROTECTION, 050",
+            "CHILD_BENEFIT, 016",
+            "THIRTY_HOURS_FREE_CHILDCARE, 058",
+            "GUARANTEED_MINIMUM_PENSION, 034",
+            "NATIONAL_INSURANCE_CREDITS, 030",
     })
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
