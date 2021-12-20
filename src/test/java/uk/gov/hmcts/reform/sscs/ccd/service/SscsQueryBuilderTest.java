@@ -41,6 +41,12 @@ public class SscsQueryBuilderTest {
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(2)).value());
         assertEquals("data.subscriptions.jointPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).fieldName());
         assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(3)).value());
+        assertEquals("data.otherParties.value.otherPartySubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(4)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(4)).value());
+        assertEquals("data.otherParties.value.otherPartyAppointeeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(5)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(5)).value());
+        assertEquals("data.otherParties.value.otherPartyRepresentativeSubscription.tya", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(6)).fieldName());
+        assertEquals("tya123abc", ((MatchQueryBuilder) ((BoolQueryBuilder) result.query()).should().get(6)).value());
     }
 
     @Test
