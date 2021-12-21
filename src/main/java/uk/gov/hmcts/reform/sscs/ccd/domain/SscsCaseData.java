@@ -334,10 +334,6 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
 
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
-    private TransientFields transientFields;
-
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -573,14 +569,6 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
-    }
-
-    @JsonIgnore
-    public TransientFields getTransientFields() {
-        if (transientFields == null) {
-            this.transientFields = new TransientFields();
-        }
-        return transientFields;
     }
 
     @JsonIgnore
