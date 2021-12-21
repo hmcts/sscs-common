@@ -349,21 +349,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isResendToAppellant() {
-        return YesNo.isYes(getReissueArtifactUi().getResendToAppellant());
-    }
-
-    @JsonIgnore
-    public boolean isResendToRepresentative() {
-        return YesNo.isYes(getReissueArtifactUi().getResendToRepresentative());
-    }
-
-    @JsonIgnore
-    public boolean isResendToDwp() {
-        return YesNo.isYes(getReissueArtifactUi().getResendToDwp());
-    }
-
-    @JsonIgnore
     public boolean isAdjournCaseGenerateNotice() {
         return stringToBoolean(adjournCaseGenerateNotice);
     }
