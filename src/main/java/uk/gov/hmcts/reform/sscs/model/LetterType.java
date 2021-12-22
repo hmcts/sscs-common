@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.model;
 
 public enum LetterType {
-    APPELLANT, REPRESENTATIVE, APPOINTEE, JOINT_PARTY;
+    APPELLANT, REPRESENTATIVE, APPOINTEE, JOINT_PARTY, OTHER_PARTY;
 
     public static LetterType findLetterTypeFromFurtherEvidenceLetterType(String letter) {
         if (letter.equals("appellantLetter")) {

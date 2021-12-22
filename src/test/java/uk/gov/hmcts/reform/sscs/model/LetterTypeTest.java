@@ -17,7 +17,7 @@ public class LetterTypeTest {
     }
 
     @Test
-    @Parameters({"APPELLANT, APPELLANT", "REPRESENTATIVE, REPRESENTATIVE", "APPOINTEE, APPOINTEE", "JOINT_PARTY, JOINT_PARTY"})
+    @Parameters({"APPELLANT, APPELLANT", "REPRESENTATIVE, REPRESENTATIVE", "APPOINTEE, APPOINTEE", "JOINT_PARTY, JOINT_PARTY", "OTHER_PARTY, OTHER_PARTY"})
     public void givenASubscriptionType_thenFindLetterType(String subscription, LetterType expected) {
         assertEquals(expected, LetterType.findLetterTypeFromSubscription(subscription));
 

@@ -315,6 +315,7 @@ public class SscsCaseData implements CaseData {
     private List<DraftSscsDocument> draftFurtherEvidenceDocuments;
     private ReasonableAdjustments reasonableAdjustments;
     private YesNo reasonableAdjustmentsOutstanding;
+    private YesNo showOtherPartyDetails;
     private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
 
     @JsonProperty("processAudioVideoReviewState")
@@ -325,6 +326,8 @@ public class SscsCaseData implements CaseData {
     private String panelDoctorSpecialism;
 
     private YesNo functionalTest;
+
+    private String caseName;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
