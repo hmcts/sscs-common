@@ -878,7 +878,7 @@
     }
   },
   "childBenefit": {
-    "code": "C.B.O (HMRC)",
+    "code": "Child Benefit Office",
     "isDefault": true,
     "mapping": {
       "ccd": "C.B.O (HMRC)",
@@ -894,7 +894,7 @@
     }
   },
   "guardiansAllowance": {
-    "code": "C.B.O (HMRC)",
+    "code": "Child Benefit Office",
     "isDefault": true,
     "mapping": {
       "ccd": "C.B.O (HMRC)",
@@ -910,7 +910,7 @@
     }
   },
   "taxFreeChildcare": {
-    "code": "C.B.O (HMRC)",
+    "code": "Childcare Service HMRC",
     "isDefault": true,
     "mapping": {
       "ccd": "C.B.O (HMRC)",
@@ -926,7 +926,7 @@
     }
   },
   "thirtyHoursFreeChildcare": {
-    "code": "C.B.O (HMRC)",
+    "code": "Childcare Service HMRC",
     "isDefault": true,
     "mapping": {
       "ccd": "C.B.O (HMRC)",
@@ -942,7 +942,7 @@
     }
   },
   "homeResponsibilitiesProtection": {
-    "code": "TCO Preston Appeals Team",
+    "code": "PT Operations North East England",
     "isDefault": true,
     "mapping": {
       "ccd": "TCO Preston Appeals Team",
@@ -958,7 +958,7 @@
     }
   },
   "guaranteedMinimumPension": {
-    "code": "TCO Preston Appeals Team",
+    "code": "PT Operations North East England",
     "isDefault": true,
     "mapping": {
       "ccd": "TCO Preston Appeals Team",
@@ -974,7 +974,7 @@
     }
   },
   "nationalInsuranceCredits": {
-    "code": "TCO Preston Appeals Team",
+    "code": "PT Operations North East England",
     "isDefault": true,
     "mapping": {
       "ccd": "TCO Preston Appeals Team",
@@ -990,7 +990,7 @@
     }
   },
   "taxCredit": {
-    "code": "TCO Preston Appeals Team",
+    "code": "Tax Credit Office",
     "isDefault": true,
     "mapping": {
       "ccd": "TCO Preston Appeals Team",

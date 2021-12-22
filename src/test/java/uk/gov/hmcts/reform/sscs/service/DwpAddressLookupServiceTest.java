@@ -462,7 +462,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("taxCredit", null);
 
         assertTrue(result.isPresent());
-        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+        assertEquals("Tax Credit Office", result.get().getCode());
     }
 
     @Test
@@ -477,7 +477,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("guardiansAllowance", null);
 
         assertTrue(result.isPresent());
-        assertEquals("C.B.O (HMRC)", result.get().getCode());
+        assertEquals("Child Benefit Office", result.get().getCode());
     }
 
     @Test
@@ -492,7 +492,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("taxFreeChildcare", null);
 
         assertTrue(result.isPresent());
-        assertEquals("C.B.O (HMRC)", result.get().getCode());
+        assertEquals("Childcare Service HMRC", result.get().getCode());
     }
 
     @Test
@@ -507,7 +507,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("homeResponsibilitiesProtection", null);
 
         assertTrue(result.isPresent());
-        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+        assertEquals("PT Operations North East England", result.get().getCode());
     }
 
     @Test
@@ -522,7 +522,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("childBenefit", null);
 
         assertTrue(result.isPresent());
-        assertEquals("C.B.O (HMRC)", result.get().getCode());
+        assertEquals("Child Benefit Office", result.get().getCode());
     }
 
     @Test
@@ -537,7 +537,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("thirtyHoursFreeChildcare", null);
 
         assertTrue(result.isPresent());
-        assertEquals("C.B.O (HMRC)", result.get().getCode());
+        assertEquals("Childcare Service HMRC", result.get().getCode());
     }
 
     @Test
@@ -552,7 +552,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("guaranteedMinimumPension", null);
 
         assertTrue(result.isPresent());
-        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+        assertEquals("PT Operations North East England", result.get().getCode());
     }
 
     @Test
@@ -567,7 +567,7 @@ public class DwpAddressLookupServiceTest {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("nationalInsuranceCredits", null);
 
         assertTrue(result.isPresent());
-        assertEquals("TCO Preston Appeals Team", result.get().getCode());
+        assertEquals("PT Operations North East England", result.get().getCode());
     }
 
     @Test
