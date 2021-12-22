@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
-import static java.util.Collections.emptyList;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
@@ -95,13 +94,10 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
-    private DynamicList reissueFurtherEvidenceDocument;
-    @JsonProperty("resendToAppellant")
-    private String resendToAppellant;
-    @JsonProperty("resendToRepresentative")
-    private String resendToRepresentative;
-    @JsonProperty("resendToDwp")
-    private String resendToDwp;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private ReissueArtifactUi reissueArtifactUi;
     private String caseCode;
     private String benefitCode;
     private String issueCode;
@@ -341,10 +337,6 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
 
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
-    private TransientFields transientFields;
-
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -353,21 +345,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isCorDecision() {
         return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
-    }
-
-    @JsonIgnore
-    public boolean isResendToAppellant() {
-        return stringToBoolean(resendToAppellant);
-    }
-
-    @JsonIgnore
-    public boolean isResendToRepresentative() {
-        return stringToBoolean(resendToRepresentative);
-    }
-
-    @JsonIgnore
-    public boolean isResendToDwp() {
-        return stringToBoolean(resendToDwp);
     }
 
     @JsonIgnore
@@ -411,6 +388,13 @@ public class SscsCaseData implements CaseData {
         return latestEvent != null ? latestEvent.getType() : null;
     }
 
+    @JsonIgnore
+    public ReissueArtifactUi getReissueArtifactUi() {
+        if (reissueArtifactUi == null) {
+            this.reissueArtifactUi = new ReissueArtifactUi();
+        }
+        return reissueArtifactUi;
+    }
 
     @JsonIgnore
     public boolean isWcaAppeal() {
@@ -436,7 +420,7 @@ public class SscsCaseData implements CaseData {
     public void sortCollections() {
 
         if (getCorrespondence() != null) {
-            Collections.sort(getCorrespondence(), Collections.reverseOrder());
+            getCorrespondence().sort(Collections.reverseOrder());
         }
         if (getEvents() != null) {
             getEvents().sort(Collections.reverseOrder());
@@ -475,9 +459,7 @@ public class SscsCaseData implements CaseData {
             Stream<SscsDocument> filteredStream = getSscsDocument().stream()
                     .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
-            List<SscsDocument> filteredList = filteredStream.collect(Collectors.toList());
-
-            Collections.sort(filteredList, (one, two) -> {
+            List<SscsDocument> filteredList = filteredStream.sorted((one, two) -> {
                 if (two.getValue().getDocumentDateAdded() == null) {
                     return -1;
                 }
@@ -488,7 +470,8 @@ public class SscsCaseData implements CaseData {
                     return -1;
                 }
                 return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
-            });
+            }).collect(Collectors.toList());
+
             if (filteredList.size() > 0) {
                 return filteredList.get(0);
             }
@@ -498,7 +481,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public Optional<SscsWelshDocument> getLatestWelshDocumentForDocumentType(DocumentType documentType) {
-        return ofNullable(getSscsWelshDocuments()).map(Collection::stream).orElseGet(Stream::empty)
+        return ofNullable(getSscsWelshDocuments()).stream().flatMap(Collection::stream)
                 .filter(wd -> wd.getValue().getDocumentType().equals(documentType.getValue()))
                 .sorted()
                 .findFirst();
@@ -528,7 +511,7 @@ public class SscsCaseData implements CaseData {
             buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointParty());
         }
 
-        if (ofNullable(combinedLetters).orElse(emptyList()).stream().noneMatch(ra -> !ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
+        if (combinedLetters.stream().allMatch(ra -> ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
             this.reasonableAdjustmentsOutstanding = NO;
         } else {
             this.reasonableAdjustmentsOutstanding = YES;
@@ -589,14 +572,6 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
-    }
-
-    @JsonIgnore
-    public TransientFields getTransientFields() {
-        if (transientFields == null) {
-            this.transientFields = new TransientFields();
-        }
-        return transientFields;
     }
 
     @JsonIgnore
