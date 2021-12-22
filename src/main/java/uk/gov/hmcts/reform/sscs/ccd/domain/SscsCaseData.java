@@ -19,12 +19,7 @@ import java.util.stream.Stream;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
@@ -61,6 +56,7 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> historicalBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
+    private String addedDocuments;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
     private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
