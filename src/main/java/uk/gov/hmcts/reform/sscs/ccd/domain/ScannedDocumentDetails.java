@@ -1,11 +1,14 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import lombok.Builder;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -49,4 +52,23 @@ public class ScannedDocumentDetails {
         this.originalSenderOtherPartyName = originalSenderOtherPartyName;
     }
 
+    @JsonIgnore
+    public LocalDateTime getScanDateTimeFormatted() {
+        try {
+            if (StringUtils.isEmpty(scannedDate)) {
+                return null;
+            }
+            return LocalDateTime.of(LocalDate.parse(scannedDate), LocalTime.MAX);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+    }
+
+    @JsonIgnore
+    public Long getLongControlNumber() {
+        if (StringUtils.isEmpty(controlNumber)) {
+            return null;
+        }
+        return NumberUtils.isCreatable(controlNumber) ? Long.parseLong(controlNumber) : 0;
+    }
 }
