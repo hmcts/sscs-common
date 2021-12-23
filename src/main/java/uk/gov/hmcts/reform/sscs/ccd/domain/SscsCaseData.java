@@ -61,7 +61,9 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> historicalBundles;
     private List<SscsDocument> sscsDocument;
     private List<SscsDocument> draftSscsDocument;
-    private String addedDocuments;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkAllocationFields workAllocationFields;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
     private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
@@ -574,6 +576,14 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
+    }
+
+    @JsonIgnore
+    public WorkAllocationFields getWorkAllocationFields() {
+        if (workAllocationFields == null) {
+            this.workAllocationFields = new WorkAllocationFields();
+        }
+        return workAllocationFields;
     }
 
     @JsonIgnore
