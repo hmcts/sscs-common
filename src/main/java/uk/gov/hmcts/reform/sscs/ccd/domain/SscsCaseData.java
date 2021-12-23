@@ -438,6 +438,10 @@ public class SscsCaseData implements CaseData {
             Collections.sort(getSscsDocument());
         }
 
+        if (getScannedDocuments() != null) {
+            Collections.sort(getScannedDocuments());
+        }
+
         if (getDwpDocuments() != null) {
             Collections.sort(getDwpDocuments());
         }
