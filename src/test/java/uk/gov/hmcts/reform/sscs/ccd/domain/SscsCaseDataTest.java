@@ -773,6 +773,28 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void givenACaseWithRequiredReasonableAdjustmentsLettersForOtherParties_ThenFlagIsYes() {
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseWithActionedReasonableAdjustmentsLettersForOtherParties_ThenFlagIsNo() {
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
     public void givenNoDateSentToGapsOrDateTimeReturnNone() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(null).build();
         assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
