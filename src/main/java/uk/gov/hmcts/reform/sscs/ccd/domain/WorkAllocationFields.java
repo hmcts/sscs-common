@@ -24,6 +24,8 @@ public class WorkAllocationFields {
     private String ogdType;
     private DynamicList caseManagementCategory;
     private String caseAccessCategory;
+    @JsonInclude
+    private String addedDocuments;
 
     public void setCaseNames(String caseName) {
         caseNameHmctsInternal = caseName;
