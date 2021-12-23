@@ -367,6 +367,31 @@ public class SscsCaseDataTest {
         assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
     }
 
+    @Test
+    public void givenACaseHasScannedMultipleDocumentsOfSameDayWithControlNumber_thenSortByControlNumber() {
+        List<ScannedDocument> documents = new ArrayList<>();
+
+        documents.add(buildScannedDocument("2000", DocumentType.OTHER_EVIDENCE, now.toString(), "2000"));
+        documents.add(buildScannedDocument("3000", DocumentType.AUDIO_DOCUMENT, now.toString(), "3000"));
+        documents.add(buildScannedDocument("1000", DocumentType.OTHER_EVIDENCE, now.toString(), "1000"));
+        documents.add(buildScannedDocument("4000", DocumentType.OTHER_EVIDENCE, now.toString(), "4000"));
+        documents.add(buildScannedDocument("6000", DocumentType.OTHER_EVIDENCE, now.toString(), "6000"));
+        documents.add(buildScannedDocument("8000", DocumentType.AUDIO_DOCUMENT, now.toString(), "8000"));
+        documents.add(buildScannedDocument("7000", DocumentType.AUDIO_DOCUMENT, now.toString(), "7000"));
+        documents.add(buildScannedDocument("5000", DocumentType.AUDIO_DOCUMENT, now.toString(), "5000"));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().scannedDocuments(documents).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("1000", sscsCaseData.getScannedDocuments().get(0).getValue().getUrl().getDocumentUrl());
+        assertEquals("2000", sscsCaseData.getScannedDocuments().get(1).getValue().getUrl().getDocumentUrl());
+        assertEquals("3000", sscsCaseData.getScannedDocuments().get(2).getValue().getUrl().getDocumentUrl());
+        assertEquals("4000", sscsCaseData.getScannedDocuments().get(3).getValue().getUrl().getDocumentUrl());
+        assertEquals("5000", sscsCaseData.getScannedDocuments().get(4).getValue().getUrl().getDocumentUrl());
+        assertEquals("6000", sscsCaseData.getScannedDocuments().get(5).getValue().getUrl().getDocumentUrl());
+        assertEquals("7000", sscsCaseData.getScannedDocuments().get(6).getValue().getUrl().getDocumentUrl());
+        assertEquals("8000", sscsCaseData.getScannedDocuments().get(7).getValue().getUrl().getDocumentUrl());
+    }
 
     @Test
     public void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
@@ -584,6 +609,16 @@ public class SscsCaseDataTest {
                 DwpDocumentDetails.builder().documentType(docType)
                         .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                         .documentDateAdded(date)
+                        .build()).build();
+    }
+
+    private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date, String controlNumber) {
+        String docType = documentType == null ? null : documentType.getValue();
+        return ScannedDocument.builder().value(
+                ScannedDocumentDetails.builder().type(docType)
+                        .url(DocumentLink.builder().documentUrl(documentUrl).build())
+                        .scannedDate(date)
+                        .controlNumber(controlNumber)
                         .build()).build();
     }
 
