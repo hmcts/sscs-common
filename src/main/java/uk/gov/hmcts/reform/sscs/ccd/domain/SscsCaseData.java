@@ -509,6 +509,7 @@ public class SscsCaseData implements CaseData {
             buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getAppointee());
             buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getRepresentative());
             buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getJointParty());
+            buildLetterList(combinedLetters, getReasonableAdjustmentsLetters().getOtherParty());
         }
 
         if (combinedLetters.stream().allMatch(ra -> ReasonableAdjustmentStatus.ACTIONED.equals(ra.getValue().getReasonableAdjustmentStatus()))) {
