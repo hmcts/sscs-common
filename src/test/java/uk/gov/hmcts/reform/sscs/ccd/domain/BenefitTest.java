@@ -107,11 +107,7 @@ public class BenefitTest {
             new Object[]{"Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol"},
             new Object[]{"Maternity Allowance", "Lwfans Mamolaeth"},
             new Object[]{"Social Fund", "Cronfa Gymdeithasol"},
-            new Object[]{"Income Support", "Cymhorthdal Incwm"},
-            new Object[]{"Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth"},
-            new Object[]{"Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol"},
-            new Object[]{"Pension Credit", "Credydau Pensiwn"},
-            new Object[]{"Retirement Pension", "Pensiwn Ymddeol"}
+            new Object[]{"Income Support", "Cymhorthdal Incwm"}
         };
     }
 
@@ -127,8 +123,15 @@ public class BenefitTest {
             "Bereavement Support Payment Scheme, Cynllun Taliad Cymorth Profedigaeth",
             "Industrial Death Benefit, Budd Marwolaeth Ddiwydiannol",
             "Pension Credit, Credydau Pensiwn",
-            "Retirement Pension, Pensiwn Ymddeol"
-    })
+            "Tax Credit, Credyd Treth",
+            "Guardians Allowance, Lwfans Gwarcheidwad",
+            "Tax-Free Childcare, Gofal Plant Di-dreth",
+            "Home Responsibilities Protection, Diogelu Cyfrifoldebau Cartref",
+            "Child Benefit, Budd-dal Plant",
+            "30 Hours Free Childcare, Gofal Plant am ddim - 30 awr",
+            "Guaranteed Minimum Pension, Isafswm Pensiwn Gwarantedig",
+            "National Insurance Credits, Credydau Yswiriant Gwladol"
+            })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
@@ -181,6 +184,14 @@ public class BenefitTest {
             "PENSION_CREDIT, JUDGE",
             "RETIREMENT_PENSION, JUDGE",
             "CHILD_SUPPORT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "TAX_CREDIT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "GUARDIANS_ALLOWANCE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "TAX_FREE_CHILDCARE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "HOME_RESPONSIBILITIES_PROTECTION, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "CHILD_BENEFIT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "THIRTY_HOURS_FREE_CHILDCARE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "GUARANTEED_MINIMUM_PENSION, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "NATIONAL_INSURANCE_CREDITS, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
