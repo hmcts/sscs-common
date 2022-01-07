@@ -69,6 +69,6 @@ public class ScannedDocumentDetails {
         if (StringUtils.isEmpty(controlNumber)) {
             return null;
         }
-        return NumberUtils.isCreatable(controlNumber) ? Long.parseLong(controlNumber) : 0;
+        return NumberUtils.isCreatable(controlNumber) ? Long.parseLong(controlNumber) : null;
     }
 }

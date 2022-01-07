@@ -26,9 +26,9 @@ public class ScannedDocument implements Comparable<ScannedDocument> {
     public int compareTo(ScannedDocument doc2) {
 
         Comparator<Long> nullSafeLongComparator = Comparator
-                .nullsFirst(Long::compareTo);
+                .nullsLast(Long::compareTo);
         Comparator<LocalDateTime> nullSafeDateTimeComparator = Comparator
-                .nullsFirst(LocalDateTime::compareTo).reversed();
+                .nullsLast(LocalDateTime::compareTo);
 
         return Comparator
                 .comparing(ScannedDocumentDetails::getScanDateTimeFormatted, nullSafeDateTimeComparator)
