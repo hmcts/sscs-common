@@ -379,6 +379,7 @@ public class SscsCaseDataTest {
         documents.add(buildScannedDocument("8000", DocumentType.AUDIO_DOCUMENT, now.toString(), "8000"));
         documents.add(buildScannedDocument("7000", DocumentType.AUDIO_DOCUMENT, now.toString(), "7000"));
         documents.add(buildScannedDocument("5000", DocumentType.AUDIO_DOCUMENT, now.toString(), "5000"));
+        documents.add(buildScannedDocument("dummyString", DocumentType.AUDIO_DOCUMENT, now.toString(), "dummyString"));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().scannedDocuments(documents).build();
         sscsCaseData.sortCollections();
@@ -391,6 +392,7 @@ public class SscsCaseDataTest {
         assertEquals("6000", sscsCaseData.getScannedDocuments().get(5).getValue().getUrl().getDocumentUrl());
         assertEquals("7000", sscsCaseData.getScannedDocuments().get(6).getValue().getUrl().getDocumentUrl());
         assertEquals("8000", sscsCaseData.getScannedDocuments().get(7).getValue().getUrl().getDocumentUrl());
+        assertEquals("dummyString", sscsCaseData.getScannedDocuments().get(8).getValue().getUrl().getDocumentUrl());
     }
 
     @Test
