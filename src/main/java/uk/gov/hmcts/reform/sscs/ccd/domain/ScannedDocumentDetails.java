@@ -58,7 +58,7 @@ public class ScannedDocumentDetails {
             if (StringUtils.isEmpty(scannedDate)) {
                 return null;
             }
-            return LocalDateTime.of(LocalDate.parse(scannedDate), LocalTime.MAX);
+            return LocalDateTime.of(LocalDate.parse(scannedDate), LocalTime.MIN);
         } catch (DateTimeParseException e) {
             return null;
         }
