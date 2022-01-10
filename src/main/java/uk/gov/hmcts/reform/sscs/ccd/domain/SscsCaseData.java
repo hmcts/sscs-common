@@ -327,7 +327,12 @@ public class SscsCaseData implements CaseData {
 
     private YesNo functionalTest;
 
-    private String caseName;
+    private String caseNameHmctsInternal;
+    private String caseNameHmctsRestricted;
+    private String caseNamePublic;
+    private String ogdType;
+    private DynamicList caseManagementCategory;
+    private String caseAccessCategory;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
