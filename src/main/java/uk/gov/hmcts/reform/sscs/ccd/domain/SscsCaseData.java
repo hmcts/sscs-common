@@ -328,6 +328,7 @@ public class SscsCaseData implements CaseData {
     private YesNo functionalTest;
 
     private String caseName;
+    private CaseManagementLocation caseManagementLocation;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
