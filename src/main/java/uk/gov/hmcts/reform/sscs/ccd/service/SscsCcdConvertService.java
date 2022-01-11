@@ -24,6 +24,18 @@ public class SscsCcdConvertService {
 
     private static final Logger LOG = getLogger(SscsCcdConvertService.class);
 
+    private Map<String, Object> hmctsServiceIdMap = new HashMap<>() {
+        {
+            put("HMCTSServiceId", "BBA3");
+        }
+    };
+
+    private Map<String, Map<String, Object>> supplementaryDataRequestMap = new HashMap<>() {
+        {
+            put("$set", hmctsServiceIdMap);
+        }
+    };
+
     public CaseDataContent getCaseDataContent(SscsCaseData caseData, StartEventResponse startEventResponse,
                                                String summary, String description) {
         return CaseDataContent.builder()
@@ -34,6 +46,7 @@ public class SscsCcdConvertService {
                         .description(description)
                         .build())
                 .data(caseData)
+                .supplementaryDataRequest(supplementaryDataRequestMap)
                 .build();
     }
 
