@@ -29,7 +29,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Slf4j
 public class AirLookupService {
     protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham").build();
-    private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup14.xlsx";
+    private static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup15.xlsx";
     private static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 7;
