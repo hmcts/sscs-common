@@ -20,13 +20,12 @@ targetCompatibility = 11
 repositories {
     mavenCentral()
     mavenLocal()
-    jcenter()
     mavenCentral()
     maven { url 'https://jitpack.io' }
-
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
+    jcenter()
 }
 
 // region static code analysis
