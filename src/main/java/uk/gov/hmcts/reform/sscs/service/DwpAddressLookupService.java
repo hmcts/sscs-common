@@ -32,7 +32,7 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 @Service
 @Slf4j
 public class DwpAddressLookupService {
-    //FIXME: Now we are onboarding HMRC, we need to replace all references to DWP with OGD (Other Government Departments)
+    //FIXME: Now we are onboarding HMRC, we need to replace all references to FTA with OGD (Other Government Departments)
 
     private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
 

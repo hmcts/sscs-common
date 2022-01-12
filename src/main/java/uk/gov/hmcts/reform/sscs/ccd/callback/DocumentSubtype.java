@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum DocumentSubtype {
 
-    DWP_EVIDENCE("DWP evidence");
+    DWP_EVIDENCE("FTA evidence");
 
     private String value;
 
