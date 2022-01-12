@@ -21,7 +21,7 @@ public class RefDataService {
     }
 
     public CourtVenue getVenueRefData(String venueName) {
-        log.info("Requesting venue ref data for venue name : {}", venueName);
+        log.info("Requesting venue ref data for venue name: {}", venueName);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         return refDataApi.courtVenueByName(idamTokens.getIdamOauth2Token(),
