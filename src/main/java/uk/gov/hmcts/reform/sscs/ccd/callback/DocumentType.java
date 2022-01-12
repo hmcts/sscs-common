@@ -7,7 +7,7 @@ public enum DocumentType {
 
     OTHER_EVIDENCE("Other evidence"),
     OTHER_DOCUMENT("Other document"),
-    DWP_RESPONSE("DWP response"),
+    DWP_RESPONSE("FTA response"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL6("dl6", "DL6"),
@@ -15,7 +15,7 @@ public enum DocumentType {
     HMCTS_EVIDENCE("hmctsEvidence", "HMCTS evidence"),
     APPELLANT_EVIDENCE("appellantEvidence", "Appellant evidence"),
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
-    DWP_EVIDENCE("dwpEvidence", "DWP evidence"),
+    DWP_EVIDENCE("dwpEvidence", "FTA evidence"),
     AT38("at38", "AT38"),
     SSCS1("sscs1", "SSCS1"),
     DRAFT_DECISION_NOTICE("draftDecisionNotice", "Draft Decision Notice"),
