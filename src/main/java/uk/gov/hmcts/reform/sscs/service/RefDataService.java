@@ -11,7 +11,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 
 @Service
 @Slf4j
-@ConditionalOnProperty(value = "refdata.enabled", havingValue = "true")
+@ConditionalOnProperty(value = "location_ref.enabled", havingValue = "true")
 public class RefDataService {
     private final RefDataApi refDataApi;
     private final IdamService idamService;
