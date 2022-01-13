@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -10,6 +11,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 
 @Service
 @Slf4j
+@ConditionalOnProperty(value="refdata.enabled", havingValue = "true")
 public class RefDataService {
     private final RefDataApi refDataApi;
     private final IdamService idamService;
