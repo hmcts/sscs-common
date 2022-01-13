@@ -25,7 +25,6 @@ repositories {
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
-    jcenter()
 }
 
 // region static code analysis
