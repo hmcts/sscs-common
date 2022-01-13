@@ -10,8 +10,8 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 
 
 @FeignClient(
-        name = "ref-data-api",
-        url = "${ref_data.api.url}"
+        name = "location-ref-data-api",
+        url = "${location_ref.api.url}"
 )
 public interface RefDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
