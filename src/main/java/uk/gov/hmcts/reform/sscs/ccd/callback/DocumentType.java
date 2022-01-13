@@ -7,7 +7,7 @@ public enum DocumentType {
 
     OTHER_EVIDENCE("Other evidence"),
     OTHER_DOCUMENT("Other document"),
-    DWP_RESPONSE("FTA response"),
+    DWP_RESPONSE("DWP response", "FTA response"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL6("dl6", "DL6"),
