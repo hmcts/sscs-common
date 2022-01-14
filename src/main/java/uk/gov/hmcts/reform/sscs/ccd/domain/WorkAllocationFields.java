@@ -30,7 +30,7 @@ public class WorkAllocationFields {
         caseNamePublic = caseName;
     }
 
-    public void setCategorys(Benefit benefit) {
+    public void setCategories(Benefit benefit) {
         DynamicListItem caseManagementCategoryItem = new DynamicListItem(benefit.getShortName(), benefit.getDescription());
         List<DynamicListItem> listItems = Arrays.asList(caseManagementCategoryItem);
         caseAccessCategory = benefit.getDescription();
