@@ -19,7 +19,7 @@ public class CourtVenue {
     private String siteName;
     @JsonProperty("court_name")
     private String courtName;
-    @JsonProperty("epims_id")
+    @JsonProperty("epimms_id")
     private String epimsId;
     @JsonProperty("open_for_public")
     private String openForPublic;

@@ -4,9 +4,11 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import uk.gov.hmcts.reform.sscs.model.CourtVenue;
+
 
 
 @FeignClient(
@@ -21,9 +23,9 @@ public interface RefDataApi {
             value = "refdata/location/court-venues",
             headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
     )
-    CourtVenue courtVenueByName(
+    List<CourtVenue> courtVenueByName(
             @RequestHeader(AUTHORIZATION) String authorisation,
             @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-            @RequestParam("court_venue_name") String venueName
+            @RequestParam("court_type_id") String courtTypeId
     );
 }
