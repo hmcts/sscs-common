@@ -32,7 +32,7 @@ import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 @Service
 @Slf4j
 public class DwpAddressLookupService {
-    //FIXME: Now we are onboarding HMRC, we need to replace all references to FTA with OGD (Other Government Departments)
+    //FIXME: Now we are onboarding HMRC, we need to replace all references to DWP with FTA (First Tier Agency)
 
     private static final String TEST_HMCTS_ADDRESS = "test-hmcts-address";
 
@@ -45,8 +45,8 @@ public class DwpAddressLookupService {
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
         } catch (Exception exception) {
-            log.error("Cannot parse ogd addresses. " + exception.getMessage(), exception);
-            throw new RuntimeException("cannot parse ogd addresses", exception);
+            log.error("Cannot parse FTA addresses. " + exception.getMessage(), exception);
+            throw new RuntimeException("cannot parse FTA addresses", exception);
         }
     }
 
