@@ -20,6 +20,7 @@ public class OtherParty {
     private Name name;
     private Address address;
     private Contact contact;
+    private YesNo showRole;
     private Role role;
     private YesNo confidentialityRequired;
     private YesNo unacceptableCustomerBehaviour;

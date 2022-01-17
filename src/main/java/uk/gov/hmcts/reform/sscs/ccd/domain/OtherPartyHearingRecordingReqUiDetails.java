@@ -12,13 +12,19 @@ import lombok.Value;
 public class OtherPartyHearingRecordingReqUiDetails {
 
     String otherPartyName;
+    String otherPartyId;
+    String requestingParty;
     DynamicList hearingRecordingStatus;
 
     @JsonCreator
     public OtherPartyHearingRecordingReqUiDetails(@JsonProperty("otherPartyName") String otherPartyName,
+                                                  @JsonProperty("otherPartyId") String otherPartyId,
+                                                  @JsonProperty("requestingParty") String requestingParty,
                                                   @JsonProperty("hearingRecordingStatus") DynamicList hearingRecordingStatus) {
 
         this.otherPartyName = otherPartyName;
+        this.otherPartyId = otherPartyId;
+        this.requestingParty = requestingParty;
         this.hearingRecordingStatus = hearingRecordingStatus;
     }
 }
