@@ -10,7 +10,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.*;
 import static uk.gov.hmcts.reform.sscs.exception.BenefitMappingException.createException;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
