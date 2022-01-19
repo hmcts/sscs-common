@@ -5,9 +5,8 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 
 import lombok.NonNull;
@@ -239,6 +238,13 @@ public class AirLookupService {
 
         String retorno = benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
         return retorno;
+    }
+
+    public List<String> lookupAirVenueNamesByBenefitCode(@NonNull Benefit benefit) {
+        Collection<AirlookupBenefitToVenue> benefitVenues = lookupAirVenueNameByPostcode.values();
+        return benefitVenues.stream()
+                .map(b -> benefit.getAirLookupVenue().apply(this, b))
+                .collect(Collectors.toList());
     }
 
     public String getEsaOrUcVenue(AirlookupBenefitToVenue venue) {
