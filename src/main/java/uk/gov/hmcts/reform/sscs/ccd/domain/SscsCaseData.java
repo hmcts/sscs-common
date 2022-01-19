@@ -426,6 +426,10 @@ public class SscsCaseData implements CaseData {
             getEvents().sort(Collections.reverseOrder());
         }
 
+        if (getScannedDocuments() != null) {
+            Collections.sort(getScannedDocuments());
+        }
+
         if (getHearings() != null) {
             getHearings().sort(Collections.reverseOrder());
         }
@@ -436,10 +440,6 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null) {
             Collections.sort(getSscsDocument());
-        }
-
-        if (getScannedDocuments() != null) {
-            Collections.sort(getScannedDocuments());
         }
 
         if (getDwpDocuments() != null) {
