@@ -196,4 +196,14 @@ public class BenefitTest {
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
     }
+
+    @Test
+    public void isBenefitCodeByCorrectSscsTypeTrue() {
+        assertTrue(Benefit.TAX_CREDIT.isBenefitSscsType(SscsType.SSCS5));
+    }
+
+    @Test
+    public void isBenefitCodeByIncorrectSscsTypeFalse() {
+        assertFalse(Benefit.TAX_CREDIT.isBenefitSscsType(SscsType.SSCS2));
+    }
 }
