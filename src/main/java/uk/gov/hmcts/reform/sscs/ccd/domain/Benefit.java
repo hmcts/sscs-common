@@ -154,9 +154,4 @@ public enum Benefit {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
 
-    public boolean isBenefitSscsType(SscsType sscsType) {
-        return this.getShortName() != null
-                && (Arrays.stream(Benefit.values()).anyMatch(b -> (sscsType.equals(b.getSscsType()))
-                && b.getShortName().equals(this.getShortName())));
-    }
 }
