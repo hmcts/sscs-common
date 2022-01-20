@@ -40,7 +40,7 @@ public class DwpAddressLookupService {
 
     public DwpAddressLookupService() {
         try {
-            String json = resourceToString("reference-data/ogdAddresses.json",
+            String json = resourceToString("reference-data/ftaAddresses.json",
                     StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
             Gson gson = new Gson();
             dwpMappings = gson.fromJson(json, DwpMappings.class);
