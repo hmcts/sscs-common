@@ -28,8 +28,8 @@ public enum DwpState {
     REINSTATEMENT_REFUSED("reinstatementRefused", "Reinstatement Refused"),
     APPEAL_ABATED("appealAbated", "Appeal abated"),
     APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed"),
-    PHME_GRANTED("phmeGranted", "PHME granted"),
-    PHME_REFUSED("phmeRefused", "PHME refused"),
+    PHE_GRANTED("phmeGranted", "PHE granted"),
+    PHE_REFUSED("phmeRefused", "PHE refused"),
     DECISION_ACTIONED("decisionActioned", "Decision actioned"),
     HEARING_RECORDING_PROCESSED("hearingRecordingProcessed","Hearing recording processed"),
     HEARING_RECORDING_ACTIONED("hearingRecordingActioned","Hearing recording actioned");
