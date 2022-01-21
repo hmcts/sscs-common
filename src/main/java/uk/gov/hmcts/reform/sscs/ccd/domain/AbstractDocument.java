@@ -33,12 +33,15 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
         Comparator<Integer> nullSafeIntegerComparator = Comparator
                 .nullsFirst(Integer::compareTo);
         Comparator<LocalDateTime> nullSafeDateTimeComparator = Comparator
-                .nullsFirst(LocalDateTime::compareTo).reversed();
+                .nullsFirst(LocalDateTime::compareTo);
+        Comparator<String> nullSafeControlNumberComparator = Comparator
+                .nullsFirst(String::compareTo);
 
         return Comparator
                 .comparing(AbstractDocumentDetails::getFirstHalfOfBundleAddition, nullSafeStringComparator)
                 .thenComparing(AbstractDocumentDetails::getSecondHalfOfBundleAddition, nullSafeIntegerComparator)
                 .thenComparing(AbstractDocumentDetails::getDateTimeFormatted, nullSafeDateTimeComparator)
+                .thenComparing(AbstractDocumentDetails::getControlNumber, nullSafeControlNumberComparator)
                 .compare(this.getValue(), doc2.getValue());
     }
 }
