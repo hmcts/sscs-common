@@ -327,8 +327,6 @@ public class SscsCaseData implements CaseData {
 
     private YesNo functionalTest;
 
-    private String caseName;
-
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
@@ -336,6 +334,10 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkAllocationFields workAllocationFields;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -573,6 +575,14 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
+    }
+
+    @JsonIgnore
+    public WorkAllocationFields getWorkAllocationFields() {
+        if (workAllocationFields == null) {
+            this.workAllocationFields = new WorkAllocationFields();
+        }
+        return workAllocationFields;
     }
 
     @JsonIgnore
