@@ -101,7 +101,6 @@ public class AbstractDocumentDetails {
         return NumberUtils.isCreatable(bundleAddition.substring(1)) ? Integer.parseInt(bundleAddition.substring(1)) : 0;
     }
 
-    @JsonIgnore
     public String getControlNumber(){
         return controlNumber;
     }
