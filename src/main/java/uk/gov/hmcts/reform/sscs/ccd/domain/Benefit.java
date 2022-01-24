@@ -153,4 +153,11 @@ public enum Benefit {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
 
+    public static boolean isSscsCaseType(String code, SscsType sscsType) {
+        return Optional.ofNullable(code)
+            .filter(b -> findBenefitByShortName(b)
+                .filter(benefit -> benefit.getSscsType().equals(sscsType)).isPresent())
+            .isPresent();
+    }
+
 }
