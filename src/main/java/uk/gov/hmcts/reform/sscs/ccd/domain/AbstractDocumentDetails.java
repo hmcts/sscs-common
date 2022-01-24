@@ -50,9 +50,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
                                    @JsonProperty("originalPartySender") String originalPartySender,
                                    @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
-                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName
-//                                   @JsonProperty("controlNumber") String controlNumber
-    ) {
+                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) 
+    {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -70,7 +69,7 @@ public class AbstractDocumentDetails {
         this.originalPartySender = originalPartySender;
         this.originalSenderOtherPartyId = originalSenderOtherPartyId;
         this.originalSenderOtherPartyName = originalSenderOtherPartyName;
-//        this.controlNumber = controlNumber;
+
     }
 
     @JsonIgnore
