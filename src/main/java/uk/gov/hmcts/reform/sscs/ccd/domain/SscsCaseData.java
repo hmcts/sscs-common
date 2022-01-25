@@ -327,6 +327,9 @@ public class SscsCaseData implements CaseData {
 
     private YesNo functionalTest;
 
+    //FIXME: Don't merge this
+    private String caseName;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
