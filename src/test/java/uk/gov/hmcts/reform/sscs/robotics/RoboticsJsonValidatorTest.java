@@ -269,6 +269,20 @@ public class RoboticsJsonValidatorTest {
     }
 
     @Test
+    public void givenMultipleInvalidInputThenContainsMultipleErrorMessage2() throws IOException {
+
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellantNino");
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "caseCode");
+        jsonData = updateEmbeddedProperty(jsonData.toString(), "", "appellant", "firstName");
+        Set<String> actual = roboticsSchema.validate(jsonData, caseId);
+        assertEquals(3, actual.size());
+        assertTrue(actual.contains("caseCode is invalid - please correct."));
+        assertTrue(actual.contains("appellantNino is missing/not populated - please correct."));
+        assertTrue(actual.contains("appellant.firstName is missing/not populated - please correct."));
+
+    }
+
+    @Test
     public void givenValidInputSingleOtherPartyAgreedWithAutomationTeam_thenValidateAgainstSchema() throws ValidationException {
         Set<String> actual = roboticsSchema.validate(jsonDataSingleOtherParty, caseId);
         assertTrue(CollectionUtils.isEmpty(actual));
