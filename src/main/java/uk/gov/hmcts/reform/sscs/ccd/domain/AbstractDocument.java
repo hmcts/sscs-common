@@ -33,7 +33,7 @@ public class AbstractDocument<D extends AbstractDocumentDetails> implements Comp
         Comparator<Integer> nullSafeIntegerComparator = Comparator
                 .nullsFirst(Integer::compareTo);
         Comparator<LocalDateTime> nullSafeDateTimeComparator = Comparator
-                .nullsFirst(LocalDateTime::compareTo);
+                .nullsLast(LocalDateTime::compareTo);
         Comparator<String> nullSafeControlNumberComparator = Comparator
                 .nullsFirst(String::compareTo);
 
