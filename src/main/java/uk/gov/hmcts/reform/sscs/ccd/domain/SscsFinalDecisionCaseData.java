@@ -27,6 +27,7 @@ public class SscsFinalDecisionCaseData {
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
     private String writeFinalDecisionAppellantAttendedQuestion;
+    private List<OtherPartyAttendedQuestion> otherPartyAttendedQuestions;
     private String writeFinalDecisionStartDate;
     private String writeFinalDecisionEndDateType;
     private String writeFinalDecisionEndDate;
