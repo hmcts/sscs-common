@@ -38,9 +38,7 @@ public enum PartyItemList {
     }
 
     public static boolean isOtherPartyItemType(String partyItemCode) {
-        PartyItemList partyItem = findPartyItemByCode(partyItemCode);
-
-        if (OTHER_PARTY.equals(partyItem) || OTHER_PARTY_REPRESENTATIVE.equals(partyItem)) {
+        if (partyItemCode != null && partyItemCode.startsWith(OTHER_PARTY.getCode())) {
             return true;
         }
         return false;

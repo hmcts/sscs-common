@@ -50,7 +50,7 @@ public class PartyItemListTest {
     }
 
     @Test
-    @Parameters({"appellant, false", "representative, false", "jointParty, false", "otherParty, true", "otherPartyRep, true"})
+    @Parameters({"appellant, false", "representative, false", "jointParty, false", "otherParty, true", "otherPartyRep, true", "otherParty1, true", "otherPartyRep2, true"})
     public void givenPartyItemCode_thenCheckIfOtherPartyType(String expectedPartyItem, boolean isOtherParty) {
         assertEquals(isOtherParty, isOtherPartyItemType(expectedPartyItem));
     }
