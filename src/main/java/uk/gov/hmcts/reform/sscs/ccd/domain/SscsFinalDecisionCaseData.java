@@ -33,6 +33,7 @@ public class SscsFinalDecisionCaseData {
     private String writeFinalDecisionEndDate;
     private String writeFinalDecisionDisabilityQualifiedPanelMemberName;
     private String writeFinalDecisionMedicallyQualifiedPanelMemberName;
+    private String writeFinalDecisionFinanciallyQualifiedPanelMemberName;
     private String writeFinalDecisionOtherPanelMemberName;
     @LocalDateMustNotBeInFuture(message = "Decision notice date of decision must not be in the future", groups = UniversalCreditValidationGroup.class)
     private String writeFinalDecisionDateOfDecision;
