@@ -49,6 +49,7 @@ public class SscsCaseData implements CaseData {
     private InfoRequests infoRequests;
     private String region;
     private Appeal appeal;
+    private List<Party> parties;
     private List<Hearing> hearings;
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;

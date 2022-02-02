@@ -19,6 +19,7 @@ public class HearingOptions {
     private String signLanguageType;
     private List<String> arrangements;
     private String scheduleHearing;
+    private List<UnavailabilityDow> unavailabilityDow;
     private List<ExcludeDate> excludeDates;
     private String agreeLessNotice;
     private String other;
@@ -31,6 +32,7 @@ public class HearingOptions {
                           @JsonProperty("signLanguageType") String signLanguageType,
                           @JsonProperty("arrangements") List<String> arrangements,
                           @JsonProperty("scheduleHearing") String scheduleHearing,
+                          @JsonProperty("unavailabilityDow") List<UnavailabilityDow> unavailabilityDow,
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
                           @JsonProperty("agreeLessNotice") String agreeLessNotice,
                           @JsonProperty("other") String other) {
@@ -41,6 +43,7 @@ public class HearingOptions {
         this.signLanguageType = signLanguageType;
         this.arrangements = arrangements;
         this.scheduleHearing = scheduleHearing;
+        this.unavailabilityDow = unavailabilityDow;
         this.excludeDates = excludeDates;
         this.agreeLessNotice = agreeLessNotice;
         this.other = other;

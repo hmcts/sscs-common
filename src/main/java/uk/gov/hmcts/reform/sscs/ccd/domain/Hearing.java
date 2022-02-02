@@ -12,19 +12,22 @@ import org.apache.commons.lang3.math.NumberUtils;
 @Value
 @Builder(toBuilder = true)
 public class Hearing implements Comparable<Hearing> {
-    private HearingDetails value;
+    private HearingDetails hearingDetails;
+    private HearingRequest requestDetails;
 
     @JsonCreator
-    public Hearing(@JsonProperty("value") HearingDetails value) {
-        this.value = value;
+    public Hearing(@JsonProperty("hearingDetails") HearingDetails hearingDetails,
+                   @JsonProperty("requestDetails") HearingRequest requestDetails) {
+        this.hearingDetails = hearingDetails;
+        this.requestDetails = requestDetails;
     }
 
     @Override
     public int compareTo(Hearing o) {
         return new CompareToBuilder()
-                .append(NumberUtils.createInteger(this.value.getHearingId()),
-                        NumberUtils.createInteger(o.getValue().getHearingId()))
-                .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
+                .append(NumberUtils.createInteger(this.hearingDetails.getHearingId()),
+                        NumberUtils.createInteger(o.getHearingDetails().getHearingId()))
+                .append(this.hearingDetails.getHearingDateTime(), o.getHearingDetails().getHearingDateTime())
                 .toComparison();
     }
 }

@@ -72,9 +72,9 @@ public class SscsCaseDataTest {
     @Test
     public void sortHearingsByDateWhenIdsAreBlank() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-01-01").time("12:00").build()).build();
-        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-03-01").time("12:00").build()).build();
-        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-02-01").time("12:00").build()).build();
+        Hearing hearing1 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingDate("2019-01-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingDate("2019-03-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingDate("2019-02-01").time("12:00").build()).build();
         hearings.add(hearing1);
         hearings.add(hearing2);
         hearings.add(hearing3);
@@ -82,18 +82,18 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
-        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
-        assertEquals("2019-01-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
+        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getHearingDetails().getHearingDate());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getHearingDetails().getHearingDate());
+        assertEquals("2019-01-01", sscsCaseData.getHearings().get(2).getHearingDetails().getHearingDate());
     }
 
     @Test
     public void sortHearingsByIdFirstThenDate() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingId("2").hearingDate("2019-04-01").time("12:00").build()).build();
-        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-03-01").time("12:00").build()).build();
-        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-02-01").time("12:00").build()).build();
-        Hearing hearing4 = Hearing.builder().value(HearingDetails.builder().hearingId("3").hearingDate("2019-02-01").time("12:00").build()).build();
+        Hearing hearing1 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingId("2").hearingDate("2019-04-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingId("20").hearingDate("2019-03-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingId("20").hearingDate("2019-02-01").time("12:00").build()).build();
+        Hearing hearing4 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingId("3").hearingDate("2019-02-01").time("12:00").build()).build();
 
         hearings.add(hearing1);
         hearings.add(hearing2);
@@ -103,22 +103,22 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
-        assertEquals("20", sscsCaseData.getHearings().get(0).getValue().getHearingId());
-        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
-        assertEquals("20", sscsCaseData.getHearings().get(1).getValue().getHearingId());
-        assertEquals("2019-02-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
-        assertEquals("3", sscsCaseData.getHearings().get(2).getValue().getHearingId());
-        assertEquals("2019-04-01", sscsCaseData.getHearings().get(3).getValue().getHearingDate());
-        assertEquals("2", sscsCaseData.getHearings().get(3).getValue().getHearingId());
+        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getHearingDetails().getHearingDate());
+        assertEquals("20", sscsCaseData.getHearings().get(0).getHearingDetails().getHearingId());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getHearingDetails().getHearingDate());
+        assertEquals("20", sscsCaseData.getHearings().get(1).getHearingDetails().getHearingId());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(2).getHearingDetails().getHearingDate());
+        assertEquals("3", sscsCaseData.getHearings().get(2).getHearingDetails().getHearingId());
+        assertEquals("2019-04-01", sscsCaseData.getHearings().get(3).getHearingDetails().getHearingDate());
+        assertEquals("2", sscsCaseData.getHearings().get(3).getHearingDetails().getHearingId());
     }
 
     @Test
     public void sortHearingsByIdWhenFewHearingsHaveBlankId() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-04-01").time("12:00").build()).build();
-        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-05-01").time("12:00").build()).build();
-        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("1").hearingDate("2019-02-01").time("12:00").build()).build();
+        Hearing hearing1 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingDate("2019-04-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingDate("2019-05-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().hearingDetails(HearingDetails.builder().hearingId("1").hearingDate("2019-02-01").time("12:00").build()).build();
         hearings.add(hearing1);
         hearings.add(hearing2);
         hearings.add(hearing3);
@@ -126,12 +126,12 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("2019-02-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
-        assertEquals("1", sscsCaseData.getHearings().get(0).getValue().getHearingId());
-        assertEquals("2019-05-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
-        assertNull(sscsCaseData.getHearings().get(1).getValue().getHearingId());
-        assertEquals("2019-04-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
-        assertNull(sscsCaseData.getHearings().get(2).getValue().getHearingId());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(0).getHearingDetails().getHearingDate());
+        assertEquals("1", sscsCaseData.getHearings().get(0).getHearingDetails().getHearingId());
+        assertEquals("2019-05-01", sscsCaseData.getHearings().get(1).getHearingDetails().getHearingDate());
+        assertNull(sscsCaseData.getHearings().get(1).getHearingDetails().getHearingId());
+        assertEquals("2019-04-01", sscsCaseData.getHearings().get(2).getHearingDetails().getHearingDate());
+        assertNull(sscsCaseData.getHearings().get(2).getHearingDetails().getHearingId());
     }
 
     @Test
