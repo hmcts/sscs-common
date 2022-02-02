@@ -141,5 +141,7 @@ dependencies {
     testRuntime 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
     testCompileOnly "org.projectlombok:lombok:$versions.lombok"
     testAnnotationProcessor "org.projectlombok:lombok:$versions.lombok"
+
+    implementation 'org.apache.commons:commons-text:1.9'
 }
 
