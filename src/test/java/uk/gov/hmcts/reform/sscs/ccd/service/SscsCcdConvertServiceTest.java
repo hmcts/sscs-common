@@ -11,7 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Test;
+import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 
 public class SscsCcdConvertServiceTest {
@@ -281,5 +283,12 @@ public class SscsCcdConvertServiceTest {
         assertEquals(YesNo.NO, caseDetails.getData().getSscsEsaCaseData().getDoesRegulation29Apply());
         assertTrue(YesNo.YES.toBoolean());
         assertFalse(YesNo.NO.toBoolean());
+    }
+
+    @Test
+    public void givenGetCaseDataContent_thenSetSupplementaryData() {
+        CaseDataContent caseDataContent = new SscsCcdConvertService().getCaseDataContent(SscsCaseData.builder().build(), StartEventResponse.builder().build(), "Summary", "Description");
+
+        assertEquals("BBA3", caseDataContent.getSupplementaryDataRequest().get("$set").get("HMCTSServiceId"));
     }
 }

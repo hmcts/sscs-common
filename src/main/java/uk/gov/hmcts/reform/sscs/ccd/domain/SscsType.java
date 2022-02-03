@@ -1,44 +1,31 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public enum FormType {
+public enum SscsType {
 
     @JsonProperty("sscs1")
     SSCS1("sscs1"),
-
-    @JsonProperty("sscs1pe")
-    SSCS1PE("sscs1pe"),
-
-    @JsonProperty("sscs1peu")
-    SSCS1PEU("sscs1peu"),
-
-    @JsonProperty("sscs1u")
-    SSCS1U("sscs1u"),
 
     @JsonProperty("sscs2")
     SSCS2("sscs2"),
 
     @JsonProperty("sscs5")
-    SSCS5("sscs5"),
+    SSCS5("sscs5");
 
-    @JsonProperty("unknown")
-    @JsonEnumDefaultValue
-    UNKNOWN("unknown");
     private final String id;
 
-    FormType(String id) {
+    SscsType(String id) {
         this.id = id;
     }
 
-    public static FormType getById(String id) {
-        for (FormType e : values()) {
+    public static SscsType getById(String id) {
+        for (SscsType e : values()) {
             if (e.id.equalsIgnoreCase(id)) {
                 return e;
             }
         }
-        return UNKNOWN;
+        return null;
     }
 
     public String getId() {

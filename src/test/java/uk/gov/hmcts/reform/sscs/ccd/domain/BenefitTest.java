@@ -54,18 +54,7 @@ public class BenefitTest {
             "ESA, Employment and Support Allowance (ESA)",
             "UC, Universal Credit (UC)",
             "JSA, Jobseeker’s Allowance (JSA)",
-            "DLA, Disability Living Allowance (DLA)",
-            "Carer's Allowance, Carer's Allowance",
-            "Attendance Allowance, Attendance Allowance",
-            "Bereavement Benefit, Bereavement Benefit",
-            "Industrial Injuries Disablement Benefit, Industrial Injuries Disablement Benefit",
-            "Maternity Allowance, Maternity Allowance",
-            "Social Fund, Social Fund",
-            "Income Support, Income Support",
-            "Bereavement Support Payment Scheme, Bereavement Support Payment Scheme",
-            "Industrial Death Benefit, Industrial Death Benefit",
-            "Pension Credit, Pension Credit",
-            "Retirement Pension, Retirement Pension"
+            "DLA, Disability Living Allowance (DLA)"
     })
     public void givenABenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -83,7 +72,15 @@ public class BenefitTest {
             "bereavementSupportPaymentScheme, Bereavement Support Payment Scheme",
             "industrialDeathBenefit, Industrial Death Benefit",
             "pensionCredit, Pension Credit",
-            "retirementPension, Retirement Pension"
+            "retirementPension, Retirement Pension",
+            "taxCredit, Tax Credit",
+            "guardiansAllowance, Guardians Allowance",
+            "taxFreeChildcare, Tax-Free Childcare",
+            "homeResponsibilitiesProtection, Home Responsibilities Protection",
+            "childBenefit, Child Benefit",
+            "thirtyHoursFreeChildcare, 30 Hours Free Childcare",
+            "guaranteedMinimumPension, Guaranteed Minimum Pension",
+            "nationalInsuranceCredits, National Insurance Credits",
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
@@ -110,11 +107,7 @@ public class BenefitTest {
             new Object[]{"Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol"},
             new Object[]{"Maternity Allowance", "Lwfans Mamolaeth"},
             new Object[]{"Social Fund", "Cronfa Gymdeithasol"},
-            new Object[]{"Income Support", "Cymhorthdal Incwm"},
-            new Object[]{"Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth"},
-            new Object[]{"Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol"},
-            new Object[]{"Pension Credit", "Credydau Pensiwn"},
-            new Object[]{"Retirement Pension", "Pensiwn Ymddeol"}
+            new Object[]{"Income Support", "Cymhorthdal Incwm"}
         };
     }
 
@@ -130,8 +123,15 @@ public class BenefitTest {
             "Bereavement Support Payment Scheme, Cynllun Taliad Cymorth Profedigaeth",
             "Industrial Death Benefit, Budd Marwolaeth Ddiwydiannol",
             "Pension Credit, Credydau Pensiwn",
-            "Retirement Pension, Pensiwn Ymddeol"
-    })
+            "Tax Credit, Credyd Treth",
+            "Guardians Allowance, Lwfans Gwarcheidwad",
+            "Tax-Free Childcare, Gofal Plant Di-dreth",
+            "Home Responsibilities Protection, Diogelu Cyfrifoldebau Cartref",
+            "Child Benefit, Budd-dal Plant",
+            "30 Hours Free Childcare, Gofal Plant am ddim - 30 awr",
+            "Guaranteed Minimum Pension, Isafswm Pensiwn Gwarantedig",
+            "National Insurance Credits, Credydau Yswiriant Gwladol"
+            })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
@@ -152,6 +152,14 @@ public class BenefitTest {
             "INDUSTRIAL_DEATH_BENEFIT, 064",
             "PENSION_CREDIT, 045",
             "RETIREMENT_PENSION, 082",
+            "TAX_CREDIT, 053, 054, 055",
+            "GUARDIANS_ALLOWANCE, 015",
+            "TAX_FREE_CHILDCARE, 057",
+            "HOME_RESPONSIBILITIES_PROTECTION, 050",
+            "CHILD_BENEFIT, 016",
+            "THIRTY_HOURS_FREE_CHILDCARE, 058",
+            "GUARANTEED_MINIMUM_PENSION, 034",
+            "NATIONAL_INSURANCE_CREDITS, 030",
     })
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
@@ -176,6 +184,14 @@ public class BenefitTest {
             "PENSION_CREDIT, JUDGE",
             "RETIREMENT_PENSION, JUDGE",
             "CHILD_SUPPORT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "TAX_CREDIT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "GUARDIANS_ALLOWANCE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "TAX_FREE_CHILDCARE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "HOME_RESPONSIBILITIES_PROTECTION, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "CHILD_BENEFIT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "THIRTY_HOURS_FREE_CHILDCARE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "GUARANTEED_MINIMUM_PENSION, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+            "NATIONAL_INSURANCE_CREDITS, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));

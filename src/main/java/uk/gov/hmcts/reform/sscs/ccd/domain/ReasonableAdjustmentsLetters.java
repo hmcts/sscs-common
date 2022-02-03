@@ -15,14 +15,18 @@ public class ReasonableAdjustmentsLetters {
     private List<Correspondence> appointee;
     private List<Correspondence> representative;
     private List<Correspondence> jointParty;
+    private List<Correspondence> otherParty;
 
     public ReasonableAdjustmentsLetters(@JsonProperty("appellant") List<Correspondence> appellant,
                                  @JsonProperty("appointee") List<Correspondence> appointee,
                                  @JsonProperty("representative") List<Correspondence> representative,
-                                 @JsonProperty("jointParty") List<Correspondence> jointParty) {
+                                 @JsonProperty("jointParty") List<Correspondence> jointParty,
+                                 @JsonProperty("otherParty") List<Correspondence> otherParty) {
         this.appellant = appellant;
         this.appointee = appointee;
         this.representative = representative;
         this.jointParty = jointParty;
+        this.otherParty = otherParty;
+                
     }
 }

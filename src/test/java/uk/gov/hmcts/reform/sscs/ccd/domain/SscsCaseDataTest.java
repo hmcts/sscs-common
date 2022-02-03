@@ -345,18 +345,26 @@ public class SscsCaseDataTest {
     public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
         List<SscsDocument> documents = new ArrayList<>();
 
-        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
-        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DECISION_NOTICE, now.toString(), "C", null));
-        documents.add(buildSscsDocument("firstTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "A", null));
-        documents.add(buildSscsDocument("anotherTestUrl3", DocumentType.DECISION_NOTICE, now.toString(), "D", null));
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, now.toString(), "C", null));
+        documents.add(buildSscsDocument("A", DocumentType.DECISION_NOTICE, now.toString(), "A", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, now.toString(), "D", null));
+        documents.add(buildSscsDocument("Z1", DocumentType.DECISION_NOTICE, now.toString(), "Z1", null));
+        documents.add(buildSscsDocument("Z11", DocumentType.DECISION_NOTICE, now.toString(), "Z11", null));
+        documents.add(buildSscsDocument("Z2", DocumentType.DECISION_NOTICE, now.toString(), "Z2", null));
+        documents.add(buildSscsDocument("Z", DocumentType.DECISION_NOTICE, now.toString(), "Z", null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("firstTestUrl", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("anotherTestUrl3", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("A", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("B", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("C", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("D", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z1", sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z2", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
     }
 
 
@@ -762,6 +770,28 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters1).jointParty(letters2).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
         assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseWithRequiredReasonableAdjustmentsLettersForOtherParties_ThenFlagIsYes() {
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
+    }
+
+    @Test
+    public void givenACaseWithActionedReasonableAdjustmentsLettersForOtherParties_ThenFlagIsNo() {
+        List<Correspondence> letters = new ArrayList<>();
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
+        sscsCaseData.updateReasonableAdjustmentsOutstanding();
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test

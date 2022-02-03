@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Arrays.stream;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -16,7 +18,13 @@ public enum UploadParty {
     @JsonProperty("jointParty")
     JOINT_PARTY("jointParty", "Joint party"),
     @JsonProperty("dwp")
-    DWP("dwp", "DWP");
+    DWP("dwp", "DWP"),
+    @JsonProperty("otherParty")
+    OTHER_PARTY("otherParty", "Other party"),
+    @JsonProperty("otherPartyRep")
+    OTHER_PARTY_REP("otherPartyRep", "Other party representative"),
+    @JsonProperty("otherPartyAppointee")
+    OTHER_PARTY_APPOINTEE("otherPartyAppointee", "Other party appointee");
 
     private final String value;
     private final String label;
@@ -37,12 +45,10 @@ public enum UploadParty {
 
     public static UploadParty fromValue(String text) {
 
-        for (UploadParty party : UploadParty.values()) {
-            if (text != null && party.getValue() != null && party.getValue().equalsIgnoreCase(text)) {
-                return party;
-            }
-        }
-        return null;
+        return stream(UploadParty.values())
+                .filter(party -> party.getValue().equalsIgnoreCase(text))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

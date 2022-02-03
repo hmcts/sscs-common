@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -29,6 +30,8 @@ public class AbstractDocumentDetails {
     private DocumentLink resizedDocumentLink;
     private DocumentLink avDocumentLink;
     private String originalPartySender;
+    private String originalSenderOtherPartyId;
+    private String originalSenderOtherPartyName;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -44,7 +47,9 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("dateApproved") String dateApproved,
                                    @JsonProperty("resizedDocumentLink") DocumentLink resizedDocumentLink,
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
-                                   @JsonProperty("originalPartySender") String originalPartySender) {
+                                   @JsonProperty("originalPartySender") String originalPartySender,
+                                   @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
+                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -60,6 +65,8 @@ public class AbstractDocumentDetails {
         this.resizedDocumentLink = resizedDocumentLink;
         this.avDocumentLink = avDocumentLink;
         this.originalPartySender = originalPartySender;
+        this.originalSenderOtherPartyId = originalSenderOtherPartyId;
+        this.originalSenderOtherPartyName = originalSenderOtherPartyName;
     }
 
     @JsonIgnore
@@ -72,5 +79,21 @@ public class AbstractDocumentDetails {
         } catch (DateTimeParseException e) {
             return null;
         }
+    }
+
+    @JsonIgnore
+    public String getFirstHalfOfBundleAddition() {
+        if (StringUtils.isEmpty(bundleAddition)) {
+            return null;
+        }
+        return bundleAddition.substring(0,1);
+    }
+
+    @JsonIgnore
+    public Integer getSecondHalfOfBundleAddition() {
+        if (StringUtils.isEmpty(bundleAddition)) {
+            return null;
+        }
+        return NumberUtils.isCreatable(bundleAddition.substring(1)) ? Integer.parseInt(bundleAddition.substring(1)) : 0;
     }
 }
