@@ -74,7 +74,7 @@ public class CcdServiceTest {
         SearchCcdCaseService searchCcdCaseService = new SearchCcdCaseService(sscsCcdConvertService, ccdClient, readCcdCaseService);
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         CreateCcdCaseService createCcdCaseService = new CreateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
-        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService);
+        ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService, false);
     }
 
     @Test
