@@ -421,9 +421,14 @@ public class RoboticsJsonMapper {
     private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
         if ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
                 || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome()))
-                || (CHILD_SUPPORT.getShortName().equals(roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().getCode()) && YesNo.YES.equals(roboticsWrapper.getSscsCaseData().getIsConfidentialCase()))) {
+                || (isSscs2Or5Type(roboticsWrapper.getSscsCaseData().getBenefitType()) && YesNo.YES.equals(roboticsWrapper.getSscsCaseData().getIsConfidentialCase()))) {
             obj.put("isConfidential", YES);
         }
+    }
+
+    private boolean isSscs2Or5Type(Optional<Benefit> benefitType) {
+        return benefitType.filter(benefit -> SscsType.SSCS2.equals(benefit.getSscsType())
+                || SscsType.SSCS5.equals(benefit.getSscsType())).isPresent();
     }
 
     private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {

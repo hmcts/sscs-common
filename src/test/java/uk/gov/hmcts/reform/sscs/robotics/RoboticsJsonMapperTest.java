@@ -6,8 +6,7 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.openMocks;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
@@ -703,6 +702,16 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
+    public void givenConfidentialCaseAndSscs5Benefit_thenSetIsConfidentialFlag() {
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YesNo.YES);
+        roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(GUARDIANS_ALLOWANCE.getShortName());
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        assertEquals("Yes", roboticsJson.get("isConfidential"));
+    }
+
+    @Test
     public void givenConfidentialCaseAndNonChildSupportBenefit_thenDoNotSetIsConfidentialFlag() {
         roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YesNo.YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(PIP.getShortName());
@@ -759,13 +768,14 @@ public class RoboticsJsonMapperTest {
                         .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
                         .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
                         .organisation("My company").build())
-                .hearingOptions(HearingOptions.builder().excludeDates(excludeDates).build())
+                .hearingOptions(HearingOptions.builder().wantsToAttend("Yes").excludeDates(excludeDates).build())
                 .build()).build();
         otherPartyList.add(ccdValue);
 
         roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
         roboticsWrapper.getSscsCaseData().setChildMaintenanceNumber("12345");
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setRole(Role.builder().name("Paying parent").build());
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend("Yes");
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
