@@ -327,7 +327,7 @@ public class SscsCaseData implements CaseData {
 
     private YesNo functionalTest;
 
-    private String caseName;
+    private CaseManagementLocation caseManagementLocation;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -336,6 +336,10 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkAllocationFields workAllocationFields;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -436,10 +440,6 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null) {
             Collections.sort(getSscsDocument());
-        }
-
-        if (getScannedDocuments() != null) {
-            Collections.sort(getScannedDocuments());
         }
 
         if (getDwpDocuments() != null) {
@@ -577,6 +577,14 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
+    }
+
+    @JsonIgnore
+    public WorkAllocationFields getWorkAllocationFields() {
+        if (workAllocationFields == null) {
+            this.workAllocationFields = new WorkAllocationFields();
+        }
+        return workAllocationFields;
     }
 
     @JsonIgnore
