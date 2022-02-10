@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import lombok.Builder;
+import lombok.experimental.SuperBuilder;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@Builder(toBuilder = true)
+@SuperBuilder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ScannedDocumentDetails {
     private String type;
@@ -54,6 +54,7 @@ public class ScannedDocumentDetails {
 
     @JsonIgnore
     public LocalDateTime getScanDateTimeFormatted() {
+        System.out.println("getScanDateTimeFormatted" + scannedDate);
         try {
             if (StringUtils.isEmpty(scannedDate)) {
                 return null;

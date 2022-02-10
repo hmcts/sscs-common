@@ -3,12 +3,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -77,11 +79,12 @@ public class AbstractDocumentDetails {
             if (StringUtils.isEmpty(documentDateAdded)) {
                 return null;
             }
-            return LocalDateTime.of(LocalDate.parse(documentDateAdded), LocalTime.MIN);
+            return LocalDateTime.parse(documentDateAdded, DateTimeFormatter.ISO_DATE_TIME);
         } catch (DateTimeParseException e) {
-            return null;
+            return LocalDateTime.of(LocalDate.parse(documentDateAdded), LocalTime.MIN);
         }
     }
+
 
     @JsonIgnore
     public String getFirstHalfOfBundleAddition() {
