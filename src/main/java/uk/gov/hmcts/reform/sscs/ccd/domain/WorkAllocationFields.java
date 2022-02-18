@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.text.CaseUtils;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -33,7 +34,7 @@ public class WorkAllocationFields {
     public void setCategories(Benefit benefit) {
         DynamicListItem caseManagementCategoryItem = new DynamicListItem(benefit.getShortName(), benefit.getDescription());
         List<DynamicListItem> listItems = Arrays.asList(caseManagementCategoryItem);
-        caseAccessCategory = benefit.getDescription();
+        caseAccessCategory = CaseUtils.toCamelCase(benefit.getDescription(), false, ' ');
         caseManagementCategory = new DynamicList(caseManagementCategoryItem, listItems);
 
     }
