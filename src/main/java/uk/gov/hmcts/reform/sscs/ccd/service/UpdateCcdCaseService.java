@@ -63,6 +63,8 @@ public class UpdateCcdCaseService {
     }
 
     public void setSupplementaryData(IdamTokens idamTokens, Long caseId, Map<String, Map<String, Map<String, Object>>> supplementaryData) {
+        log.info("Setting supplementary data for caseId {} ", caseId);
+        
         ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 }
