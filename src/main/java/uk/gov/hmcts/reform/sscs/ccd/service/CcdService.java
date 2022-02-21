@@ -4,9 +4,9 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SUBSCRIPTION_UPDATED
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -177,5 +177,9 @@ public class CcdService {
         CcdException ccdException = new CcdException(message, ex);
         log.error(message, ccdException);
         return ccdException;
+    }
+
+    public void setSupplementaryData(IdamTokens idamTokens, Long caseId, Map<String, Map<String, Map<String, Object>>> supplementaryData) {
+        updateCcdCaseService.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 }
