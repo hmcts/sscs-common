@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
@@ -11,28 +12,30 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CreateCcdCaseException;
+import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
 
 @Slf4j
 @Service
 public class CreateCcdCaseService {
+    private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
 
     @Autowired
-    public CreateCcdCaseService(SscsCcdConvertService sscsCcdConvertService,
+    public CreateCcdCaseService(IdamService idamService, SscsCcdConvertService sscsCcdConvertService,
                                 CcdClient ccdClient) {
+        this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
     }
 
+    @Retryable
     public SscsCaseDetails createCase(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
-        String nino = caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null && caseData.getAppeal().getAppellant().getIdentity() != null
-                ? caseData.getAppeal().getAppellant().getIdentity().getNino() : null;
+        String nino = getAppellantNino(caseData);
         try {
-            SscsCaseDetails sscsCaseDetails = createCaseInCcd(caseData, eventType, summary, description, idamTokens, nino);
-            return sscsCaseDetails;
+            return createCaseInCcd(caseData, eventType, summary, description, idamTokens, nino);
         } catch (Exception e) {
 
             throw new CreateCcdCaseException(String.format(
@@ -57,4 +60,10 @@ public class CreateCcdCaseService {
 
         return sscsCcdConvertService.getCaseDetails(caseDetails);
     }
+
+    private String getAppellantNino(SscsCaseData caseData) {
+        return caseData.getAppeal() != null && caseData.getAppeal().getAppellant() != null && caseData.getAppeal().getAppellant().getIdentity() != null
+                ? caseData.getAppeal().getAppellant().getIdentity().getNino() : null;
+    }
+
 }

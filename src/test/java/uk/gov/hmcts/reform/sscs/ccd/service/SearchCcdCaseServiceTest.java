@@ -9,7 +9,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySi
 
 import java.util.Collections;
 import java.util.List;
-
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.assertj.core.util.Lists;
@@ -24,7 +23,6 @@ import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils;
-import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
 @RunWith(JUnitParamsRunner.class)
@@ -36,9 +34,6 @@ public class SearchCcdCaseServiceTest {
     private IdamTokens idamTokens;
     private CaseDetails caseDetails;
     private SscsCaseDetails sscsCaseDetails;
-
-    @Mock
-    private IdamService idamService;
 
     private SscsCcdConvertService sscsCcdConvertService;
 
@@ -63,8 +58,7 @@ public class SearchCcdCaseServiceTest {
         sscsCaseDetails = CaseDataUtils.convertCaseDetailsToSscsCaseDetails(caseDetails);
         sscsCcdConvertService = new SscsCcdConvertService();
 
-        searchCcdCaseService = new SearchCcdCaseService(idamService,
-                sscsCcdConvertService, ccdClient, readCcdCaseService);
+        searchCcdCaseService = new SearchCcdCaseService(sscsCcdConvertService, ccdClient, readCcdCaseService);
     }
 
     @Test

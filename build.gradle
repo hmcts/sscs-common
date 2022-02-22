@@ -91,6 +91,7 @@ publishing {
 }
 
 def versions = [
+    spring : '2.3.5.RELEASE',
     lombok: '1.18.22'
 ]
 
@@ -130,6 +131,8 @@ dependencies {
     compileOnly "org.projectlombok:lombok:$versions.lombok"
     annotationProcessor "org.projectlombok:lombok:$versions.lombok"
 
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.spring
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.spring
     testCompile group: 'junit', name: 'junit', version: 4.12
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.3.12'
