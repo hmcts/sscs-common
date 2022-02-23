@@ -170,7 +170,11 @@
           }
         ]
       },
-      "generatedMobile": "07398785050"
+      "generatedMobile": "07398785050",
+      "additionalSecurityFlag": null,
+      "autoListFlag": null,
+      "hearingsInWelshFlag": null,
+      "restrictedFlag": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -727,7 +731,11 @@
       "interlocReviewState": "interlocutoryReview",
       "region": "NEWCASTLE",
       "generatedDOB": "1981-11-11",
-      "generatedMobile": "07398785050"
+      "generatedMobile": "07398785050",
+      "additionalSecurityFlag": null,
+      "autoListFlag": null,
+      "hearingsInWelshFlag": null,
+      "restrictedFlag": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
