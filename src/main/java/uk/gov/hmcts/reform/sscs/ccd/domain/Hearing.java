@@ -22,9 +22,9 @@ public class Hearing implements Comparable<Hearing> {
     @Override
     public int compareTo(Hearing o) {
         return new CompareToBuilder()
+                .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
                 .append(NumberUtils.createInteger(this.value.getHearingId()),
                         NumberUtils.createInteger(o.getValue().getHearingId()))
-                .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
                 .toComparison();
     }
 }

@@ -202,7 +202,11 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "additionalSecurityFlag": null,
+      "autoListFlag": null,
+      "hearingsInWelshFlag": null,
+      "sensitiveFlag": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -952,7 +956,11 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "additionalSecurityFlag": null,
+      "autoListFlag": null,
+      "hearingsInWelshFlag": null,
+      "sensitiveFlag": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
