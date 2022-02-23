@@ -2,17 +2,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@SuperBuilder
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-@JsonInclude
-public class Appointee extends Entity {
-
+@Builder(toBuilder = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class RelatedParty {
+    private String relatedPartyId;
+    private String relationshipType;
 }
