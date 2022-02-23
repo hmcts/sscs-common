@@ -2,29 +2,31 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.lang3.builder.CompareToBuilder;
-import org.apache.commons.lang3.math.NumberUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
-public class Hearing implements Comparable<Hearing> {
-    private HearingDetails value;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class HmcHearing implements Comparable<HmcHearing> {
+
+    private HmcHearingDetails value;
 
     @JsonCreator
-    public Hearing(@JsonProperty("value") HearingDetails value) {
+    public HmcHearing(@JsonProperty("value") HmcHearingDetails value) {
         this.value = value;
     }
 
     @Override
-    public int compareTo(Hearing o) {
+    public int compareTo(HmcHearing o) {
         return new CompareToBuilder()
-                .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
-                .append(NumberUtils.createInteger(this.value.getHearingId()),
-                        NumberUtils.createInteger(o.getValue().getHearingId()))
+                .append(this.value.getHearingRequest().getInitialRequestTimestamp(),
+                        o.getValue().getHearingRequest().getInitialRequestTimestamp())
                 .toComparison();
     }
+
 }

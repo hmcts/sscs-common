@@ -50,6 +50,7 @@ public class SscsCaseData implements CaseData {
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
+    private List<HmcHearing> hmcHearings;
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
@@ -329,6 +330,11 @@ public class SscsCaseData implements CaseData {
 
     private CaseManagementLocation caseManagementLocation;
 
+    private YesNo autoListFlag;
+    private YesNo hearingsInWelshFlag;
+    private YesNo additionalSecurityFlag;
+    private YesNo sensitiveFlag;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsHearingRecordingCaseData sscsHearingRecordingCaseData;
@@ -342,13 +348,23 @@ public class SscsCaseData implements CaseData {
     private WorkAllocationFields workAllocationFields;
 
     @JsonIgnore
-    private EventDetails getLatestEvent() {
+    public EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
     }
 
     @JsonIgnore
+    public HearingDetails getLatestHearing() {
+        return hearings != null && !hearings.isEmpty() ? hearings.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
+    public HmcHearingDetails getLatestHmcHearing() {
+        return hmcHearings != null && !hmcHearings.isEmpty() ? hmcHearings.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
@@ -434,6 +450,10 @@ public class SscsCaseData implements CaseData {
             getHearings().sort(Collections.reverseOrder());
         }
 
+        if (getHmcHearings() != null) {
+            getHmcHearings().sort(Collections.reverseOrder());
+        }
+
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
@@ -476,7 +496,7 @@ public class SscsCaseData implements CaseData {
                 return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
             }).collect(Collectors.toList());
 
-            if (filteredList.size() > 0) {
+            if (!filteredList.isEmpty()) {
                 return filteredList.get(0);
             }
         }
@@ -582,7 +602,7 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public WorkAllocationFields getWorkAllocationFields() {
         if (workAllocationFields == null) {
-            this.workAllocationFields = new WorkAllocationFields();
+            workAllocationFields = new WorkAllocationFields();
         }
         return workAllocationFields;
     }
