@@ -26,7 +26,7 @@ public class OtherParty {
     private YesNo unacceptableCustomerBehaviour;
     private HearingOptions hearingOptions;
     private HearingSubtype hearingSubtype;
-    private String isAppointee;
+    private YesNo isAppointee;
     private Appointee appointee;
     private Representative rep;
     private Subscription otherPartySubscription;

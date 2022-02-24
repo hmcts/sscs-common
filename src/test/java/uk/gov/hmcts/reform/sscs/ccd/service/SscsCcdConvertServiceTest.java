@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.hasAppellantIdentify;
 
 import java.time.LocalDate;
@@ -269,8 +271,8 @@ public class SscsCcdConvertServiceTest {
         String caseReference = "caseRef";
         HashMap<String, Object> data = new HashMap<>();
         data.put("caseReference", caseReference);
-        data.put("showRegulation29Page", YesNo.YES);
-        data.put("doesRegulation29Apply", YesNo.NO);
+        data.put("showRegulation29Page", YES);
+        data.put("doesRegulation29Apply", NO);
 
         long id = 123L;
         CaseDetails build = CaseDetails.builder()
@@ -279,10 +281,10 @@ public class SscsCcdConvertServiceTest {
                 .build();
         SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
 
-        assertEquals(YesNo.YES, caseDetails.getData().getSscsEsaCaseData().getShowRegulation29Page());
-        assertEquals(YesNo.NO, caseDetails.getData().getSscsEsaCaseData().getDoesRegulation29Apply());
-        assertTrue(YesNo.YES.toBoolean());
-        assertFalse(YesNo.NO.toBoolean());
+        assertEquals(YES, caseDetails.getData().getSscsEsaCaseData().getShowRegulation29Page());
+        assertEquals(NO, caseDetails.getData().getSscsEsaCaseData().getDoesRegulation29Apply());
+        assertTrue(YES.toBoolean());
+        assertFalse(NO.toBoolean());
     }
 
     @Test

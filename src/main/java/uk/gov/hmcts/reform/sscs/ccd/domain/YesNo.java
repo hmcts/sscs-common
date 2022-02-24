@@ -32,7 +32,15 @@ public enum YesNo {
     }
 
     public static boolean isYes(String yesNo) {
-        return YES.getValue().equals(yesNo);
+        return YES.getValue().equalsIgnoreCase(yesNo);
+    }
+
+    public static YesNo isYesOrNo(boolean isYes) {
+        return isYes ? YES : NO;
+    }
+
+    public static YesNo isYesOrNo(String yesNo) {
+        return isYesOrNo(isYes(yesNo));
     }
 
     public static boolean isNoOrNull(YesNo yesNo) {
@@ -40,7 +48,15 @@ public enum YesNo {
     }
 
     public static boolean isNoOrNull(String yesNo) {
-        return isNull(yesNo) || NO.getValue().equals(yesNo);
+        return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
+    }
+
+    public static boolean isNo(YesNo yesNo) {
+        return NO.equals(yesNo);
+    }
+
+    public static boolean isNo(String yesNo) {
+        return NO.getValue().equalsIgnoreCase(yesNo);
     }
 
     @Override
