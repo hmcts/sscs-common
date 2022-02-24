@@ -25,7 +25,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -70,7 +69,7 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private SscsDeprecatedFields sscsDeprecatedFields;
     private DirectionResponse directionResponse;
-    private String evidencePresent;
+    private YesNo evidencePresent;
     private String bulkScanCaseReference;
     private String decisionNotes;
     @JsonProperty("isCorDecision")
@@ -93,7 +92,7 @@ public class SscsCaseData implements CaseData {
     private String informationFromAppellant;
     private DynamicList informationFromPartySelected;
     private String outcome;
-    private String evidenceHandled;
+    private YesNo evidenceHandled;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -103,13 +102,13 @@ public class SscsCaseData implements CaseData {
     private String issueCode;
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
-    private String dwpIsOfficerAttending;
+    private YesNo dwpIsOfficerAttending;
     @JsonProperty("dwpUCB")
-    private String dwpUcb;
+    private YesNo dwpUcb;
     private DocumentLink dwpUcbEvidenceDocument;
     @JsonProperty("dwpPHME")
-    private String dwpPhme;
-    private String dwpComplexAppeal;
+    private YesNo dwpPhme;
+    private YesNo dwpComplexAppeal;
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
     private ReasonableAdjustmentsLetters reasonableAdjustmentsLetters;
@@ -117,7 +116,7 @@ public class SscsCaseData implements CaseData {
     private String interlocReferralReason;
     private String dwpRegionalCentre;
     @JsonProperty("generateNotice")
-    private String generateNotice;
+    private YesNo generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
     private String directionNoticeContent;
@@ -162,7 +161,7 @@ public class SscsCaseData implements CaseData {
     private Panel panel;
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
-    private String urgentCase;
+    private YesNo urgentCase;
     private String urgentHearingRegistered;
     private String urgentHearingOutcome;
     private String documentSentToDwp;
@@ -194,12 +193,12 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
     @JsonProperty("adjournCaseGenerateNotice")
-    private String adjournCaseGenerateNotice;
+    private YesNo adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
     @JsonProperty("adjournCaseCanCaseBeListedRightAway")
     private String adjournCaseCanCaseBeListedRightAway;
     @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
-    private String adjournCaseAreDirectionsBeingMadeToParties;
+    private YesNo adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
@@ -212,7 +211,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDurationType;
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
-    private String adjournCaseInterpreterRequired;
+    private YesNo adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
     private String adjournCaseNextHearingDateOrPeriod;
@@ -234,7 +233,7 @@ public class SscsCaseData implements CaseData {
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     @JsonProperty("languagePreferenceWelsh")
-    private String languagePreferenceWelsh;
+    private YesNo languagePreferenceWelsh;
     private List<String> elementsDisputedList;
     private List<ElementDisputed> elementsDisputedGeneral;
     private List<ElementDisputed> elementsDisputedSanctions;
@@ -245,9 +244,9 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
     private List<ElementDisputed> elementsDisputedLimitedWork;
-    private String elementsDisputedIsDecisionDisputedByOthers;
+    private YesNo elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
-    private String jointParty;
+    private YesNo jointParty;
     private JointPartyName jointPartyName;
     private List<CcdValue<OtherParty>> otherParties;
     @JsonProperty("otherPartyUCB")
@@ -260,12 +259,12 @@ public class SscsCaseData implements CaseData {
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Identity jointPartyIdentity;
     @JsonProperty("jointPartyAddressSameAsAppellant")
-    private String jointPartyAddressSameAsAppellant;
+    private YesNo jointPartyAddressSameAsAppellant;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private Address jointPartyAddress;
     @JsonProperty("translationWorkOutstanding")
-    private String translationWorkOutstanding;
+    private YesNo translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private String sscsWelshPreviewNextEvent;
@@ -290,7 +289,7 @@ public class SscsCaseData implements CaseData {
     private FormType formType;
     private String isProgressingViaGaps;
     @JsonProperty("supportGroupOnlyAppeal")
-    private String supportGroupOnlyAppeal;
+    private YesNo supportGroupOnlyAppeal;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsEsaCaseData sscsEsaCaseData;
@@ -353,37 +352,37 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isAdjournCaseGenerateNotice() {
-        return stringToBoolean(adjournCaseGenerateNotice);
+        return isYes(adjournCaseGenerateNotice);
     }
 
     @JsonIgnore
     public boolean isAdjournCaseAbleToBeListedRightAway() {
-        return stringToBoolean(adjournCaseCanCaseBeListedRightAway);
+        return isYes(adjournCaseCanCaseBeListedRightAway);
     }
 
     @JsonIgnore
     public boolean isAdjournCaseDirectionsMadeToParties() {
-        return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
+        return isYes(adjournCaseAreDirectionsBeingMadeToParties);
     }
 
     @JsonIgnore
     public boolean isGenerateNotice() {
-        return stringToBoolean(generateNotice);
+        return isYes(generateNotice);
     }
 
     @JsonIgnore
     public boolean isSupportGroupOnlyAppeal() {
-        return stringToBoolean(supportGroupOnlyAppeal);
+        return isYes(supportGroupOnlyAppeal);
     }
 
     @JsonIgnore
     public boolean isThereAJointParty() {
-        return stringToBoolean(jointParty);
+        return isYes(jointParty);
     }
 
     @JsonIgnore
     public boolean isJointPartyAddressSameAsAppeallant() {
-        return stringToBoolean(jointPartyAddressSameAsAppellant);
+        return isYes(jointPartyAddressSameAsAppellant);
     }
 
     @JsonIgnore
@@ -402,12 +401,12 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isWcaAppeal() {
-        return isYes(wcaAppeal);
+        return YesNo.isYes(wcaAppeal);
     }
 
     @JsonIgnore
     public boolean isLanguagePreferenceWelsh() {
-        return stringToBoolean(languagePreferenceWelsh);
+        return isYes(languagePreferenceWelsh);
     }
 
     @JsonIgnore
@@ -417,7 +416,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isTranslationWorkOutstanding() {
-        return stringToBoolean(translationWorkOutstanding);
+        return isYes(translationWorkOutstanding);
     }
 
     @JsonIgnore
@@ -449,11 +448,6 @@ public class SscsCaseData implements CaseData {
 
     public Subscriptions getSubscriptions() {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
-    }
-
-    @JsonIgnore
-    private boolean stringToBoolean(String value) {
-        return StringUtils.equalsIgnoreCase("yes", value);
     }
 
     @JsonIgnore
@@ -498,9 +492,9 @@ public class SscsCaseData implements CaseData {
         boolean noDwpDocumentsWithTranslation = emptyIfNull(getDwpDocuments()).stream().noneMatch(dd -> translationStatuses.contains(dd.getValue().getDocumentTranslationStatus()));
 
         if (noSscsDocumentsWithTranslation && noDwpDocumentsWithTranslation) {
-            this.translationWorkOutstanding = "No";
+            this.translationWorkOutstanding = NO;
         } else {
-            this.translationWorkOutstanding = "Yes";
+            this.translationWorkOutstanding = YES;
         }
     }
 

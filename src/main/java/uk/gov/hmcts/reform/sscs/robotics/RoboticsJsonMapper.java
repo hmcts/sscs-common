@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -120,15 +121,13 @@ public class RoboticsJsonMapper {
     private static JSONObject buildOtherPartyDetails(JSONObject obj, OtherParty otherParty) {
         JSONObject json = new JSONObject();
 
-        Name name = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getName() : otherParty.getName();
-        Address address = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getAddress() : otherParty.getAddress();
-        Contact contact = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getContact() : otherParty.getContact();
+        Name name = otherParty.hasAppointee() ? otherParty.getAppointee().getName() : otherParty.getName();
+        Address address = otherParty.hasAppointee() ? otherParty.getAppointee().getAddress() : otherParty.getAddress();
+        Contact contact = otherParty.hasAppointee() ? otherParty.getAppointee().getContact() : otherParty.getContact();
 
         json.put("otherParty", buildDetails(name, address, contact));
 
-        if (otherParty.getRep() != null
-                && otherParty.getRep().getHasRepresentative() != null
-                && otherParty.getRep().getHasRepresentative().equals(YES)) {
+        if (otherParty.hasRepresentative()) {
             json.put("otherPartyRepresentative", buildRepresentativeDetails(otherParty.getRep()));
         }
 
@@ -158,11 +157,11 @@ public class RoboticsJsonMapper {
 
         if (hearingOptions.getArrangements() != null) {
 
-            if (hearingOptions.getLanguageInterpreter() != null && hearingOptions.getLanguageInterpreter().equals(YES) && hearingOptions.getLanguages() != null) {
+            if (isYes(hearingOptions.getLanguageInterpreter()) && hearingOptions.getLanguages() != null) {
                 hearingArrangements.put("languageInterpreter", hearingOptions.getLanguages());
             }
 
-            if (Boolean.TRUE.equals(hearingOptions.wantsSignLanguageInterpreter()) && hearingOptions.getSignLanguageType() != null) {
+            if (hearingOptions.wantsSignLanguageInterpreter() && hearingOptions.getSignLanguageType() != null) {
                 hearingArrangements.put("signLanguageInterpreter", hearingOptions.getSignLanguageType());
             }
 
@@ -294,18 +293,16 @@ public class RoboticsJsonMapper {
         obj.put("evidencePresent", roboticsWrapper.getEvidencePresent());
         obj.put("caseCode", getCaseCode(sscsCaseData));
 
-        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
-            boolean sameAddressAsAppointee = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee());
-            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(), sameAddressAsAppointee));
+        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && isYes(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
+            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(),
+                    isYes(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee())));
         }
 
         obj.put("appellant", buildDetails(sscsCaseData.getAppeal().getAppellant().getName(),
                 sscsCaseData.getAppeal().getAppellant().getAddress(),
                 sscsCaseData.getAppeal().getAppellant().getContact()));
 
-        if (sscsCaseData.getAppeal().getRep() != null
-                && sscsCaseData.getAppeal().getRep().getHasRepresentative() != null
-                && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals(YES)) {
+        if (isYes(sscsCaseData.getAppeal().getRep().getHasRepresentative())) {
             obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
         }
 
@@ -375,8 +372,8 @@ public class RoboticsJsonMapper {
             dwpPresentingOffice = officeMapping.get().getMapping().getGaps();
         }
 
-        String dwpIsOfficerAttending = sscsCaseData.getDwpIsOfficerAttending() != null ? sscsCaseData.getDwpIsOfficerAttending() : NO;
-        String dwpUcb = sscsCaseData.getDwpUcb() != null ? sscsCaseData.getDwpUcb() : NO;
+        String dwpIsOfficerAttending = isYes(sscsCaseData.getDwpIsOfficerAttending()) ? YES : NO;
+        String dwpUcb = isYes(sscsCaseData.getDwpUcb()) ? YES : NO;
 
         obj.put("dwpIssuingOffice", dwpIssuingOffice);
         obj.put("dwpPresentingOffice", dwpPresentingOffice);
@@ -388,7 +385,7 @@ public class RoboticsJsonMapper {
             obj.put("elementsDisputed", elementsDisputed);
         }
 
-        if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
+        if (isYes(sscsCaseData.getJointParty())) {
             if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
                 obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
                         sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
@@ -486,7 +483,7 @@ public class RoboticsJsonMapper {
 
     public Optional<String> findVenueName(SscsCaseData sscsCaseData) {
         try {
-            String postcodeToUse = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
+            String postcodeToUse = isYes(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
                     ? sscsCaseData.getAppeal().getAppellant().getAppointee().getAddress().getPostcode()
                     : sscsCaseData.getAppeal().getAppellant().getAddress().getPostcode();
 

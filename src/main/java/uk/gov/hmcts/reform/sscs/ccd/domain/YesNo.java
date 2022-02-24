@@ -35,6 +35,14 @@ public enum YesNo {
         return YES.getValue().equals(yesNo);
     }
 
+    public static YesNo isYesOrNo(boolean isYes) {
+        return isYes ? YES : NO;
+    }
+
+    public static YesNo isYesOrNo(String yesNo) {
+        return isYesOrNo(isYes(yesNo));
+    }
+
     public static boolean isNoOrNull(YesNo yesNo) {
         return isNull(yesNo) || NO.equals(yesNo);
     }

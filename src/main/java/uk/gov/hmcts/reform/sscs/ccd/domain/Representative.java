@@ -12,7 +12,7 @@ import lombok.Data;
 public class Representative {
 
     private String id;
-    private String hasRepresentative;
+    private YesNo hasRepresentative;
     private String organisation;
     private Name name;
     private Address address;
@@ -20,7 +20,7 @@ public class Representative {
 
     @JsonCreator
     public Representative(@JsonProperty("id") String id,
-                          @JsonProperty("hasRepresentative") String hasRepresentative,
+                          @JsonProperty("hasRepresentative") YesNo hasRepresentative,
                           @JsonProperty("organisation") String organisation,
                           @JsonProperty("name") Name name,
                           @JsonProperty("address") Address address,

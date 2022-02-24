@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.*;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -11,18 +12,18 @@ import org.apache.commons.lang3.StringUtils;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingSubtype {
 
-    private String wantsHearingTypeTelephone;
+    private YesNo wantsHearingTypeTelephone;
     private String hearingTelephoneNumber;
-    private String wantsHearingTypeVideo;
+    private YesNo wantsHearingTypeVideo;
     private String hearingVideoEmail;
-    private String wantsHearingTypeFaceToFace;
+    private YesNo wantsHearingTypeFaceToFace;
 
     @JsonCreator
-    public HearingSubtype(@JsonProperty("wantsHearingTypeTelephone") String wantsHearingTypeTelephone,
+    public HearingSubtype(@JsonProperty("wantsHearingTypeTelephone") YesNo wantsHearingTypeTelephone,
                           @JsonProperty("hearingTelephoneNumber") String hearingTelephoneNumber,
-                          @JsonProperty("wantsHearingTypeVideo") String wantsHearingTypeVideo,
+                          @JsonProperty("wantsHearingTypeVideo") YesNo wantsHearingTypeVideo,
                           @JsonProperty("hearingVideoEmail") String hearingVideoEmail,
-                          @JsonProperty("wantsHearingTypeFaceToFace") String wantsHearingTypeFaceToFace) {
+                          @JsonProperty("wantsHearingTypeFaceToFace") YesNo wantsHearingTypeFaceToFace) {
         this.wantsHearingTypeTelephone = wantsHearingTypeTelephone;
         this.hearingTelephoneNumber = hearingTelephoneNumber;
         this.wantsHearingTypeVideo = wantsHearingTypeVideo;
@@ -32,16 +33,16 @@ public class HearingSubtype {
 
     @JsonIgnore
     public Boolean isWantsHearingTypeTelephone() {
-        return StringUtils.isNotBlank(wantsHearingTypeTelephone) && wantsHearingTypeTelephone.toLowerCase().equals("yes");
+        return isYes(wantsHearingTypeTelephone);
     }
 
     @JsonIgnore
     public Boolean isWantsHearingTypeVideo() {
-        return StringUtils.isNotBlank(wantsHearingTypeVideo) && wantsHearingTypeVideo.toLowerCase().equals("yes");
+        return isYes(wantsHearingTypeVideo);
     }
 
     @JsonIgnore
     public Boolean isWantsHearingTypeFaceToFace() {
-        return StringUtils.isNotBlank(wantsHearingTypeFaceToFace) && wantsHearingTypeFaceToFace.toLowerCase().equals("yes");
+        return isYes(wantsHearingTypeFaceToFace);
     }
 }
