@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -12,27 +13,27 @@ import org.apache.commons.lang3.StringUtils;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOptions {
 
-    private String wantsToAttend;
-    private String wantsSupport;
-    private String languageInterpreter;
+    private YesNo wantsToAttend;
+    private YesNo wantsSupport;
+    private YesNo languageInterpreter;
     private String languages;
     private String signLanguageType;
     private List<String> arrangements;
-    private String scheduleHearing;
+    private YesNo scheduleHearing;
     private List<ExcludeDate> excludeDates;
-    private String agreeLessNotice;
+    private YesNo agreeLessNotice;
     private String other;
 
     @JsonCreator
-    public HearingOptions(@JsonProperty("wantsToAttend") String wantsToAttend,
-                          @JsonProperty("wantsSupport") String wantsSupport,
-                          @JsonProperty("languageInterpreter") String languageInterpreter,
+    public HearingOptions(@JsonProperty("wantsToAttend") YesNo wantsToAttend,
+                          @JsonProperty("wantsSupport") YesNo wantsSupport,
+                          @JsonProperty("languageInterpreter") YesNo languageInterpreter,
                           @JsonProperty("languages") String languages,
                           @JsonProperty("signLanguageType") String signLanguageType,
                           @JsonProperty("arrangements") List<String> arrangements,
-                          @JsonProperty("scheduleHearing") String scheduleHearing,
+                          @JsonProperty("scheduleHearing") YesNo scheduleHearing,
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
-                          @JsonProperty("agreeLessNotice") String agreeLessNotice,
+                          @JsonProperty("agreeLessNotice") YesNo agreeLessNotice,
                           @JsonProperty("other") String other) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
@@ -48,12 +49,12 @@ public class HearingOptions {
 
     @JsonIgnore
     public Boolean isWantsToAttendHearing() {
-        return StringUtils.isNotBlank(wantsToAttend) && wantsToAttend.toLowerCase().equals("yes");
+        return isYes(wantsToAttend);
     }
 
     @JsonIgnore
     public Boolean isAgreeLessNotice() {
-        return StringUtils.isNotBlank(agreeLessNotice) && agreeLessNotice.toLowerCase().equals("yes");
+        return isYes(agreeLessNotice);
     }
 
     public Boolean wantsSignLanguageInterpreter() {

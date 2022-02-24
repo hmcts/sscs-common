@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -37,7 +39,7 @@ public class SscsEsaCaseData {
     private String esaWriteFinalDecisionGettingAboutQuestion;
     private String esaWriteFinalDecisionSocialEngagementQuestion;
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
-    private String esaWriteFinalDecisionSchedule3ActivitiesApply;
+    private YesNo esaWriteFinalDecisionSchedule3ActivitiesApply;
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
     private YesNo doesRegulation29Apply;
     private YesNo showRegulation29Page;
@@ -46,7 +48,7 @@ public class SscsEsaCaseData {
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
-        if ("No".equalsIgnoreCase(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
+        if (isNoOrNull(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
             return doesRegulation35Apply;
         }
         return null;
@@ -54,9 +56,9 @@ public class SscsEsaCaseData {
 
     @JsonIgnore
     public List<String> getSchedule3Selections() {
-        if ("Yes".equalsIgnoreCase(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
+        if (isYes(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
             return esaWriteFinalDecisionSchedule3ActivitiesQuestion;
-        } else if ("No".equalsIgnoreCase(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
+        } else if (isNo(esaWriteFinalDecisionSchedule3ActivitiesApply)) {
             return new ArrayList<>();
         }
         return null;
