@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.client;
 
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,5 +91,13 @@ public class CcdClient {
                 ccdRequestDetails.getCaseTypeId(),
                 caseId.toString()
         );
+    }
+
+    public void setSupplementaryData(IdamTokens idamTokens, Long caseId, Map<String, Map<String, Map<String, Object>>> supplementaryData) {
+        coreCaseDataApi.submitSupplementaryData(
+                idamTokens.getIdamOauth2Token(),
+                idamTokens.getServiceAuthorization(),
+                caseId.toString(),
+                supplementaryData);
     }
 }
