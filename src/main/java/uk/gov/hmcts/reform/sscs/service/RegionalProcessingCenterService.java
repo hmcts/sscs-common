@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+
+import com.opencsv.exceptions.CsvException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +61,7 @@ public class RegionalProcessingCenterService {
                 sccodeRegionalProcessingCentermap.put(line[1], line[2]);
                 venueIdToRegionalProcessingCentre.put(line[0], line[2]);
             });
-        } catch (IOException e) {
+        } catch (IOException | CsvException e) {
             LOG.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH, new RegionalProcessingCenterServiceException(e));
         }
     }
@@ -69,7 +71,7 @@ public class RegionalProcessingCenterService {
         try (InputStream inputStream  = classPathResource.getInputStream()) {
             ObjectMapper mapper = new ObjectMapper();
             regionalProcessingCenterMap =
-                    mapper.readValue(inputStream, new TypeReference<Map<String,RegionalProcessingCenter>>(){});
+                    mapper.readValue(inputStream, new TypeReference<>(){});
 
         } catch (IOException e) {
             LOG.error("Error while reading RegionalProcessingCenter from " + RPC_DATA_JSON, new RegionalProcessingCenterServiceException(e));
