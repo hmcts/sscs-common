@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
@@ -59,6 +60,12 @@ public class UpdateCcdCaseService {
         log.info("Received IDAM tokens for updating caseId {} with eventType {}", caseId, eventType);
 
         return updateCase(caseData, caseId, eventType, summary, description, idamTokens);
+    }
+
+    public void setSupplementaryData(IdamTokens idamTokens, Long caseId, Map<String, Map<String, Map<String, Object>>> supplementaryData) {
+        log.info("Setting supplementary data for caseId {} ", caseId);
+
+        ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 
 }
