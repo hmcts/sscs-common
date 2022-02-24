@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 import uk.gov.hmcts.reform.sscs.ccd.exception.RequiredFieldMissingException;
 
@@ -18,7 +17,6 @@ public class CaseDetails<T extends CaseData> {
     private T caseData;
     private LocalDateTime createdDate;
     private String caseTypeId;
-    private Map<String, Map<String, Object>> supplementaryData;
 
     private CaseDetails() {
         // noop -- for deserializer
@@ -82,14 +80,6 @@ public class CaseDetails<T extends CaseData> {
 
     public String getCaseTypeId() {
         return caseTypeId;
-    }
-
-    public Map<String, Map<String, Object>> getSupplementaryData() {
-        return supplementaryData;
-    }
-
-    public void setSupplementaryData(Map<String, Map<String, Object>> supplementaryData) {
-        this.supplementaryData = supplementaryData;
     }
 
 }
