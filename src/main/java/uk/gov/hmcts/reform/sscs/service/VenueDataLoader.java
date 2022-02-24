@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+
+import com.opencsv.exceptions.CsvException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -26,33 +28,35 @@ public class VenueDataLoader {
     @PostConstruct
     protected void init() {
         InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
-        try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
+        if(is != null){
+            try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
 
-            List<String[]> linesList = reader.readAll();
-            linesList.forEach(line -> {
-                VenueDetails venueDetails = VenueDetails.builder()
-                        .venueId(line[0])
-                        .threeDigitReference(line[1])
-                        .regionalProcessingCentre(line[2])
-                        .venName(line[3])
-                        .venAddressLine1(line[4])
-                        .venAddressLine2(line[5])
-                        .venAddressTown(line[6])
-                        .venAddressCounty(line[7])
-                        .venAddressPostcode(line[8])
-                        .venAddressTelNo(line[9])
-                        .districtId(line[10])
-                        .url(line[11])
-                        .active(line[12])
-                        .gapsVenName(line[13])
-                        .comments(line[14])
-                        .build();
-                venueDetailsMap.put(line[0], venueDetails);
-                venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
-                }
-            );
-        } catch (IOException e) {
-            log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
+                List<String[]> linesList = reader.readAll();
+                linesList.forEach(line -> {
+                    VenueDetails venueDetails = VenueDetails.builder()
+                            .venueId(line[0])
+                            .threeDigitReference(line[1])
+                            .regionalProcessingCentre(line[2])
+                            .venName(line[3])
+                            .venAddressLine1(line[4])
+                            .venAddressLine2(line[5])
+                            .venAddressTown(line[6])
+                            .venAddressCounty(line[7])
+                            .venAddressPostcode(line[8])
+                            .venAddressTelNo(line[9])
+                            .districtId(line[10])
+                            .url(line[11])
+                            .active(line[12])
+                            .gapsVenName(line[13])
+                            .comments(line[14])
+                            .build();
+                    venueDetailsMap.put(line[0], venueDetails);
+                    venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
+                    }
+                );
+            } catch (IOException | CsvException e) {
+                log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
+            }
         }
     }
 
