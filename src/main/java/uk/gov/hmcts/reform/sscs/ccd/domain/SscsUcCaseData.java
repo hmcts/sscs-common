@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isNo;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -37,7 +40,7 @@ public class SscsUcCaseData {
     private String ucWriteFinalDecisionGettingAboutQuestion;
     private String ucWriteFinalDecisionSocialEngagementQuestion;
     private String ucWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
-    private String ucWriteFinalDecisionSchedule7ActivitiesApply;
+    private YesNo ucWriteFinalDecisionSchedule7ActivitiesApply;
     private List<String> ucWriteFinalDecisionSchedule7ActivitiesQuestion;
     private YesNo doesSchedule8Paragraph4Apply;
     private YesNo showSchedule8Paragraph4Page;
@@ -46,7 +49,7 @@ public class SscsUcCaseData {
 
     @JsonIgnore
     public YesNo getSchedule9Paragraph4Selection() {
-        if ("No".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+        if (isNo(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
             return doesSchedule9Paragraph4Apply;
         }
         return null;
@@ -54,9 +57,9 @@ public class SscsUcCaseData {
 
     @JsonIgnore
     public List<String> getSchedule7Selections() {
-        if ("Yes".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+        if (isYes(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
             return ucWriteFinalDecisionSchedule7ActivitiesQuestion;
-        } else if ("No".equalsIgnoreCase(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
+        } else if (isNo(ucWriteFinalDecisionSchedule7ActivitiesApply)) {
             return new ArrayList<>();
         }
         return null;

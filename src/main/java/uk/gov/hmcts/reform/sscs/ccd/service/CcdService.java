@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SUBSCRIPTION_UPDATED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.*;
 
 import java.util.List;
@@ -24,8 +26,6 @@ public class CcdService {
     private final SearchCcdCaseService searchCcdCaseService;
     private final UpdateCcdCaseService updateCcdCaseService;
     private final ReadCcdCaseService readCcdCaseService;
-    private static final String YES = "yes";
-    private static final String NO = "no";
     private final boolean sscs2Enabled;
 
     @Autowired
@@ -119,7 +119,7 @@ public class CcdService {
 
     private Optional<Subscription> updateSubscription(final Subscription subscription, final String tya, String email) {
         if (subscription != null && tya.equals(subscription.getTya())) {
-            String subscribeEmail = null != email ? YES : NO;
+            YesNo subscribeEmail = null != email ? YES : NO;
             return Optional.of(subscription.toBuilder().email(email).subscribeEmail(subscribeEmail).build());
         }
         return Optional.empty();
