@@ -30,7 +30,6 @@ public class VenueDataLoader {
         InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
         if(is != null){
             try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
-
                 List<String[]> linesList = reader.readAll();
                 linesList.forEach(line -> {
                     VenueDetails venueDetails = VenueDetails.builder()
