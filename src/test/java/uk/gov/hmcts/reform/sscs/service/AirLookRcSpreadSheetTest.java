@@ -1,17 +1,17 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static org.junit.Assert.*;
+
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
-import com.opencsv.exceptions.CsvException;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
-import static org.junit.Assert.*;
 
 /**
  * Tests to look at the integrity of the data in a business spreadsheet
@@ -114,7 +114,7 @@ public class AirLookRcSpreadSheetTest {
         Set<String> missingAirLookupNames = new HashSet<>();
         Set<String> workingAirLookupNames = new HashSet<>();
 
-        for(String postCodesForVenueName: postCodesForVenueNames){
+        for (String postCodesForVenueName: postCodesForVenueNames) {
             String pipVenue = venueData.get(postCodesForVenueName).getPipVenue();
             String esaVenue = venueData.get(postCodesForVenueName).getEsaOrUcVenue();
 
