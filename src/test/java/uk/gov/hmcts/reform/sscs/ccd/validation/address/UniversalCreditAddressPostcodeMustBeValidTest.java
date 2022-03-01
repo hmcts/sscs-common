@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-jakarta.validation.Valid;
+import jakarta.validation.Valid;
 import jakarta.validation.groups.ConvertGroup;
 import org.junit.Assert;
 import org.junit.Test;
