@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;

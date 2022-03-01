@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.identity;
 
-import java.time.LocalDate;
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
