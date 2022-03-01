@@ -9,22 +9,15 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
+import jakarta.validation.Valid;
+import jakarta.validation.groups.ConvertGroup;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import jakarta.validation.Valid;
-import jakarta.validation.groups.ConvertGroup;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
@@ -348,7 +341,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
