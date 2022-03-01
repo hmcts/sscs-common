@@ -16,8 +16,8 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.validation.Valid;
-import javax.validation.groups.ConvertGroup;
+jakarta.validation.Valid;
+import jakarta.validation.groups.ConvertGroup;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

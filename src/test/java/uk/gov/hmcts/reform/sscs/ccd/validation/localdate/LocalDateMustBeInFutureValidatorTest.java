@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.localdate;
 
 import java.time.LocalDate;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
