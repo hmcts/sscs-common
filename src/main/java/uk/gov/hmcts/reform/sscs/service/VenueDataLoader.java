@@ -3,12 +3,14 @@ package uk.gov.hmcts.reform.sscs.service;
 import static com.google.common.collect.Maps.newHashMap;
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -27,7 +29,6 @@ public class VenueDataLoader {
     protected void init() {
         InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
         try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
-
             List<String[]> linesList = reader.readAll();
             linesList.forEach(line -> {
                 VenueDetails venueDetails = VenueDetails.builder()
@@ -51,7 +52,7 @@ public class VenueDataLoader {
                 venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
                 }
             );
-        } catch (IOException e) {
+        } catch (IOException | CsvException e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
     }

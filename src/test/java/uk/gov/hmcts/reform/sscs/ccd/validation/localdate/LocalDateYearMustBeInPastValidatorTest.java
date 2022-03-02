@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.localdate;
 
+import jakarta.validation.ConstraintViolation;
 import java.time.LocalDate;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 @RunWith(MockitoJUnitRunner.class)

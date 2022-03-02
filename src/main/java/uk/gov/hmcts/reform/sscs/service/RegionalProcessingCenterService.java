@@ -6,6 +6,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -59,7 +60,7 @@ public class RegionalProcessingCenterService {
                 sccodeRegionalProcessingCentermap.put(line[1], line[2]);
                 venueIdToRegionalProcessingCentre.put(line[0], line[2]);
             });
-        } catch (IOException e) {
+        } catch (IOException | CsvException e) {
             LOG.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH, new RegionalProcessingCenterServiceException(e));
         }
     }
@@ -69,7 +70,7 @@ public class RegionalProcessingCenterService {
         try (InputStream inputStream  = classPathResource.getInputStream()) {
             ObjectMapper mapper = new ObjectMapper();
             regionalProcessingCenterMap =
-                    mapper.readValue(inputStream, new TypeReference<Map<String,RegionalProcessingCenter>>(){});
+                    mapper.readValue(inputStream, new TypeReference<>(){});
 
         } catch (IOException e) {
             LOG.error("Error while reading RegionalProcessingCenter from " + RPC_DATA_JSON, new RegionalProcessingCenterServiceException(e));

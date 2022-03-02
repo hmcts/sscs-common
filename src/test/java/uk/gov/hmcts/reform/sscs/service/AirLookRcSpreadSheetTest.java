@@ -1,17 +1,17 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
+
 
 /**
  * Tests to look at the integrity of the data in a business spreadsheet
@@ -93,12 +93,10 @@ public class AirLookRcSpreadSheetTest {
         List<String> missingPipVenuePostcodes = new ArrayList<>();
 
         Set<String> rcKeys = lookupData.keySet();
-        Iterator<String> iterator = rcKeys.iterator();
-        while (iterator.hasNext()) {
-            String postcode = iterator.next();
-            if (!venueData.keySet().contains(postcode) && !lookupData.get(postcode).equals("Glasgow")) {
-                if (!realPostcodesWithNoVenue.contains(postcode)  && !notRealPostcodes.contains(postcode)) {
-                    missingPipVenuePostcodes.add(postcode);
+        for (String rcKey: rcKeys) {
+            if (!venueData.containsKey(rcKey) && !lookupData.get(rcKey).equals("Glasgow")) {
+                if (!realPostcodesWithNoVenue.contains(rcKey)  && !notRealPostcodes.contains(rcKey)) {
+                    missingPipVenuePostcodes.add(rcKey);
                 }
             }
         }
@@ -116,11 +114,9 @@ public class AirLookRcSpreadSheetTest {
         Set<String> missingAirLookupNames = new HashSet<>();
         Set<String> workingAirLookupNames = new HashSet<>();
 
-        Iterator postCodeIterator = postCodesForVenueNames.iterator();
-        while (postCodeIterator.hasNext()) {
-            Object postCode = postCodeIterator.next();
-            String pipVenue = venueData.get(postCode).getPipVenue();
-            String esaVenue = venueData.get(postCode).getEsaOrUcVenue();
+        for (String postCodesForVenueName: postCodesForVenueNames) {
+            String pipVenue = venueData.get(postCodesForVenueName).getPipVenue();
+            String esaVenue = venueData.get(postCodesForVenueName).getEsaOrUcVenue();
 
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, pipVenue);
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, esaVenue);
@@ -135,7 +131,7 @@ public class AirLookRcSpreadSheetTest {
     private void checkVenueExists(Set<String> missingAirLookupNames, Set<String> workingAirLookupNames, String venue) {
         Integer venueId = lookupVenueIdByAirLookupName.get(venue);
 
-        if (venueId == null || venueId.intValue() == 0) {
+        if (venueId == null || venueId == 0) {
             missingAirLookupNames.add(venue);
         } else {
             workingAirLookupNames.add(venue);
@@ -154,7 +150,7 @@ public class AirLookRcSpreadSheetTest {
         CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
         try {
 
-            List<String> allUkPostcodes = new ArrayList();
+            List<String> allUkPostcodes = new ArrayList<>();
             //read the headers in
             reader.readNext();
 
@@ -179,7 +175,7 @@ public class AirLookRcSpreadSheetTest {
             if (counterOut > 0) {
                 fail("The postcodes above are missing from the spreadsheet");
             }
-        } catch (IOException e) {
+        } catch (IOException | CsvException e) {
             e.printStackTrace();
         } finally {
             try {
