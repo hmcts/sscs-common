@@ -9,7 +9,8 @@
     "postcode" : "L2 5UZ",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 324 0109",
-    "email" : "Liverpool_SYA_Resp@justice.gov.uk"
+    "email" : "Liverpool_SYA_Resp@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Cardiff":{
     "name" : "CARDIFF",
@@ -21,7 +22,8 @@
     "postcode" : "CF24 0AB",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4438",
-    "email" : "Cardiff_SYA_Respon@justice.gov.uk"
+    "email" : "Cardiff_SYA_Respon@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Leeds":{
     "name" : "LEEDS",
@@ -33,7 +35,8 @@
     "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
-    "email" : "Leeds_SYA_Response@justice.gov.uk"
+    "email" : "Leeds_SYA_Response@justice.gov.uk",
+    "listAssist" : "false"
 
   },
   "SSCS Sutton":{
@@ -46,7 +49,8 @@
     "postcode" : "SM1 1DA",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4229",
-    "email" : "Sutton_SYA_Respons@justice.gov.uk"
+    "email" : "Sutton_SYA_Respons@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Birmingham":{
     "name" : "BIRMINGHAM",
@@ -58,7 +62,8 @@
     "postcode" : "B16 6FR",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0126 434 7983",
-    "email" : "Birmingham-SYA-Receipts@justice.gov.uk"
+    "email" : "Birmingham-SYA-Receipts@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Newcastle":{
     "name" : "LEEDS",
@@ -70,7 +75,8 @@
     "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
-    "email" : "Leeds_SYA_Response@justice.gov.uk"
+    "email" : "Leeds_SYA_Response@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Glasgow": {
     "name" : "GLASGOW",
@@ -82,7 +88,8 @@
     "postcode": "G2 8GT",
     "phoneNumber" : "0300 790 6234",
     "faxNumber" : "01264 347 981",
-    "email" : "GlasgowSYAresponse@justice.gov.uk"
+    "email" : "GlasgowSYAresponse@justice.gov.uk",
+    "listAssist" : "false"
   },
   "SSCS Bradford":{
     "name" : "BRADFORD",
@@ -94,6 +101,7 @@
     "postcode": "BD3 7BH",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0126 434 7983",
-    "email" : "SSCS_Bradford@justice.gov.uk"
+    "email" : "SSCS_Bradford@justice.gov.uk",
+    "listAssist" : "false"
   }
 }
