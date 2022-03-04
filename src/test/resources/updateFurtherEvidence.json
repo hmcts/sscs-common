@@ -24,6 +24,7 @@
     ],
     "security_classification": "PUBLIC",
     "case_data": {
+      "addedDocuments": null,
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
       "sscsInterlocDirectionDocument": {
@@ -602,6 +603,7 @@
     ],
     "security_classification": "PUBLIC",
     "case_data": {
+      "addedDocuments": null,
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
       "dwpDocuments": [],
