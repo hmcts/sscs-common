@@ -30,6 +30,7 @@ public class RefDataService {
     public CourtVenue getVenueRefData(@NonNull String venueName) {
         log.info("Requesting venue ref data for venue name: {}", venueName);
         IdamTokens idamTokens = idamService.getIdamTokens();
+        log.info("Userdetails = " + idamTokens.getEmail());
 
         List<CourtVenue> venues = refDataApi.courtVenueByName(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), SSCS_COURT_TYPE_ID);

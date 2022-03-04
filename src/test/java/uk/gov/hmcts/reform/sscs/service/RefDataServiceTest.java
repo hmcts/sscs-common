@@ -31,7 +31,7 @@ public class RefDataServiceTest {
 
     @Test
     public void shouldReturnCourtVenue() {
-        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").email("").serviceAuthorization("s2s").build();
 
         List<CourtVenue> refData = List.of(CourtVenue.builder().epimsId("epims_id").venueName("venue_name").build(),
                 CourtVenue.builder().epimsId("epims_id").venueName("not_venue_name").build());
@@ -48,7 +48,7 @@ public class RefDataServiceTest {
 
     @Test
     public void shouldReturnNullReponseForEmptyRefDataResponse() {
-        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").email("").serviceAuthorization("s2s").build();
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(refDataApi.courtVenueByName("auth2", "s2s", "31")).thenReturn(null);
