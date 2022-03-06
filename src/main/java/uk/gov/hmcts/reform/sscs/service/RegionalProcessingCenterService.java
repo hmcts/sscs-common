@@ -6,6 +6,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -61,6 +62,8 @@ public class RegionalProcessingCenterService {
             });
         } catch (IOException e) {
             LOG.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH, new RegionalProcessingCenterServiceException(e));
+        } catch (CsvException e) {
+            LOG.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH, new CsvException(e.getMessage()));
         }
     }
 
