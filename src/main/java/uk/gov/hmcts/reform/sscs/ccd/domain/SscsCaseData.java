@@ -220,6 +220,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingFirstAvailableDateAfterDate;
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
     private String hearingRoute;
+    private StateOfHearing hearingState;
     private AdjournCaseTime adjournCaseTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private List<CollectionItem<String>> adjournCaseAdditionalDirections;
