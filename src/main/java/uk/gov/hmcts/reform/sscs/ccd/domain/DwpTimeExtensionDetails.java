@@ -10,12 +10,12 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class DwpTimeExtensionDetails {
-    private String requested;
-    private String granted;
+    private YesNo requested;
+    private YesNo granted;
 
     @JsonCreator
-    public DwpTimeExtensionDetails(@JsonProperty("requested") String requested,
-                                   @JsonProperty("granted") String granted) {
+    public DwpTimeExtensionDetails(@JsonProperty("requested") YesNo requested,
+                                   @JsonProperty("granted") YesNo granted) {
         this.requested = requested;
         this.granted = granted;
     }

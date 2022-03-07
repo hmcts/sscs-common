@@ -20,7 +20,7 @@ public class ScannedDocumentDetails {
     private String scannedDate;
     private String exceptionRecordReference;
     private String subtype;
-    private String includeInBundle;
+    private YesNo includeInBundle;
     private String originalSenderOtherPartyId;
     private String originalSenderOtherPartyName;
 
@@ -33,7 +33,7 @@ public class ScannedDocumentDetails {
                                   @JsonProperty("scannedDate") String scannedDate,
                                   @JsonProperty("exceptionRecordReference") String exceptionRecordReference,
                                   @JsonProperty("subtype") String subtype,
-                                  @JsonProperty("includeInBundle") String includeInBundle,
+                                  @JsonProperty("includeInBundle") YesNo includeInBundle,
                                   @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
         this.type = type;
