@@ -17,7 +17,7 @@ public class HearingDetails {
     private Venue venue;
     private String hearingDate;
     private String time;
-    private String adjourned;
+    private YesNo adjourned;
     private String eventDate;
     private String hearingId;
     private String venueId;
@@ -26,7 +26,7 @@ public class HearingDetails {
     public HearingDetails(@JsonProperty("venue") Venue venue,
                           @JsonProperty("hearingDate") String hearingDate,
                           @JsonProperty("time") String time,
-                          @JsonProperty("adjourned") String adjourned,
+                          @JsonProperty("adjourned") YesNo adjourned,
                           @JsonProperty("eventDate") String eventDate,
                           @JsonProperty("hearingId") String hearingId,
                           @JsonProperty("venueId") String venueId) {
