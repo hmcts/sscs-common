@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
@@ -21,12 +22,12 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsFinalDecisionCaseData {
 
-    private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
+    private YesNo writeFinalDecisionIsDescriptorFlow;
+    private YesNo writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
-    private String writeFinalDecisionPresentingOfficerAttendedQuestion;
-    private String writeFinalDecisionAppellantAttendedQuestion;
+    private YesNo writeFinalDecisionPresentingOfficerAttendedQuestion;
+    private YesNo writeFinalDecisionAppellantAttendedQuestion;
     private List<OtherPartyAttendedQuestion> otherPartyAttendedQuestions;
     private String writeFinalDecisionStartDate;
     private String writeFinalDecisionEndDateType;
@@ -47,7 +48,7 @@ public class SscsFinalDecisionCaseData {
 
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
-        return StringUtils.equalsIgnoreCase("yes", writeFinalDecisionIsDescriptorFlow);
+        return isYes(writeFinalDecisionIsDescriptorFlow);
     }
 
 }

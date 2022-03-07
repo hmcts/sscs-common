@@ -11,11 +11,11 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class EvidenceReceivedInformationDetails {
 
-    private String evidenceReceivedBoolean;
+    private YesNo evidenceReceivedBoolean;
     private String evidenceReceivedDate;
 
     @JsonCreator
-    public EvidenceReceivedInformationDetails(@JsonProperty("evidenceReceivedBoolean") String evidenceReceivedBoolean,
+    public EvidenceReceivedInformationDetails(@JsonProperty("evidenceReceivedBoolean") YesNo evidenceReceivedBoolean,
                        @JsonProperty("evidenceReceivedDate") String evidenceReceivedDate) {
         this.evidenceReceivedBoolean = evidenceReceivedBoolean;
         this.evidenceReceivedDate = evidenceReceivedDate;

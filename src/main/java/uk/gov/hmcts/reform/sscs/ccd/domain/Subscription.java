@@ -1,34 +1,35 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 public class Subscription {
 
-    String wantSmsNotifications;
+    YesNo wantSmsNotifications;
     String tya;
     String email;
     String mobile;
-    String subscribeEmail;
-    String subscribeSms;
+    YesNo subscribeEmail;
+    YesNo subscribeSms;
     String reason;
     String lastLoggedIntoMya;
 
     @JsonCreator
-    public Subscription(@JsonProperty("wantSmsNotifications") String wantSmsNotifications,
+    public Subscription(@JsonProperty("wantSmsNotifications") YesNo wantSmsNotifications,
                         @JsonProperty("tya") String tya,
                         @JsonProperty("email") String email,
                         @JsonProperty("mobile") String mobile,
-                        @JsonProperty("subscribeEmail") String subscribeEmail,
-                        @JsonProperty("subscribeSms") String subscribeSms,
+                        @JsonProperty("subscribeEmail") YesNo subscribeEmail,
+                        @JsonProperty("subscribeSms") YesNo subscribeSms,
                         @JsonProperty("reason") String reason,
                         @JsonProperty("lastLoggedIntoMya") String lastLoggedIntoMya) {
         this.wantSmsNotifications = wantSmsNotifications;
@@ -43,16 +44,12 @@ public class Subscription {
 
     @JsonIgnore
     public Boolean isSmsSubscribed() {
-        if (StringUtils.isNotBlank(wantSmsNotifications)
-            && wantSmsNotifications.equalsIgnoreCase("yes")) {
-            return !StringUtils.isBlank(subscribeSms) && !subscribeSms.equalsIgnoreCase("no");
-        }
-        return false;
+        return isYes(wantSmsNotifications) && isYes(subscribeSms);
     }
 
     @JsonIgnore
     public Boolean isEmailSubscribed() {
-        return !StringUtils.isBlank(subscribeEmail) && !subscribeEmail.equalsIgnoreCase("no");
+        return isYes(subscribeEmail);
     }
 
     @JsonIgnore
