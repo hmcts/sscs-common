@@ -22,7 +22,7 @@ public class AbstractDocumentDetails {
     private String documentComment;
     private DocumentLink documentLink;
     private DocumentLink editedDocumentLink;
-    private String evidenceIssued;
+    private YesNo evidenceIssued;
     private String bundleAddition;
     private UploadParty partyUploaded;
     private String dateApproved;
@@ -41,7 +41,7 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("documentLink") DocumentLink documentLink,
                                    @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                                    @JsonProperty("documentComment") String documentComment,
-                                   @JsonProperty("evidenceIssued") String evidenceIssued,
+                                   @JsonProperty("evidenceIssued") YesNo evidenceIssued,
                                    @JsonProperty("bundleAddition") String bundleAddition,
                                    @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                    @JsonProperty("partyUploaded") UploadParty partyUploaded,

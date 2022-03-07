@@ -26,7 +26,7 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("documentLink") DocumentLink documentLink,
                                @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                                @JsonProperty("documentComment") String documentComment,
-                               @JsonProperty("evidenceIssued") String evidenceIssued,
+                               @JsonProperty("evidenceIssued") YesNo evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                                @JsonProperty("partyUploaded") UploadParty partyUploaded,

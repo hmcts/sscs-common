@@ -2,17 +2,27 @@ package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.openMocks;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.GUARDIANS_ALLOWANCE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYesOrNo;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
@@ -58,7 +68,7 @@ public class RoboticsJsonMapperTest {
         roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
 
         SscsCaseData sscsCaseData = buildCaseData();
-        sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
+        sscsCaseData.getAppeal().getAppellant().setIsAppointee(YES);
         roboticsWrapper = RoboticsWrapper
                 .builder()
                 .sscsCaseData(sscsCaseData)
@@ -102,7 +112,7 @@ public class RoboticsJsonMapperTest {
         assertEquals("DWP PIP (1)", roboticsJson.get("dwpPresentingOffice"));
         assertEquals("No", roboticsJson.get("dwpIsOfficerAttending"));
         assertEquals("No", roboticsJson.get("dwpUcb"));
-        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
+        assertEquals(YES.getValue(), roboticsJson.get("wantsHearingTypeTelephone"));
 
         assertEquals(
                 "If this fails, add an assertion below, do not just increment the number :)", 11,
@@ -274,7 +284,7 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenLanguageInterpreterIsTrue_thenSetToLanguageInterpreterType() {
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages("My Language");
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter("Yes");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter(YES);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -332,7 +342,7 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenLanguageInterpreterIsFalse_thenDoNotSetLanguageInterpreter() {
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages("My Language");
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter("No");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter(NO);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -342,7 +352,7 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenLanguageInterpreterIsTrueAndInterpreterLanguageTypeIsNull_thenDoNotSetLanguageInterpreter() {
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages(null);
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter("Yes");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter(YES);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -400,7 +410,7 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().getAppeal().getRep().setAddress(null);
         roboticsWrapper.getSscsCaseData().getAppeal().getRep().setName(null);
         roboticsWrapper.getSscsCaseData().getAppeal().getRep().setOrganisation(null);
-        roboticsWrapper.getSscsCaseData().getAppeal().getRep().setHasRepresentative("No");
+        roboticsWrapper.getSscsCaseData().getAppeal().getRep().setHasRepresentative(NO);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -421,7 +431,7 @@ public class RoboticsJsonMapperTest {
                 .contact(roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().getContact())
                 .build();
 
-        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setIsAddressSameAsAppointee("Yes");
+        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setIsAddressSameAsAppointee(YES);
 
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setAppointee(appointee);
 
@@ -467,7 +477,7 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenNoAppointee_thenProcessRobotics() {
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setAppointee(null);
-        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setIsAppointee("No");
+        roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setIsAppointee(NO);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -516,8 +526,8 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.setState(State.READY_TO_LIST);
         roboticsWrapper.getSscsCaseData().setDwpOriginatingOffice(new DynamicList(value, Collections.singletonList(value)));
         roboticsWrapper.getSscsCaseData().setDwpPresentingOffice(new DynamicList(value, Collections.singletonList(value)));
-        roboticsWrapper.getSscsCaseData().setDwpIsOfficerAttending("Yes");
-        roboticsWrapper.getSscsCaseData().setDwpUcb("Yes");
+        roboticsWrapper.getSscsCaseData().setDwpIsOfficerAttending(YES);
+        roboticsWrapper.getSscsCaseData().setDwpUcb(YES);
 
         String date = LocalDate.now().toString();
         roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
@@ -565,11 +575,11 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().getJointParty().setName(Name.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
         roboticsWrapper.getSscsCaseData().getJointParty().setAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
         roboticsWrapper.getSscsCaseData().getJointParty().setJointPartyAddressSameAsAppellant(NO);
-        roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers("Yes");
+        roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers(YES);
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
         roboticsWrapper.getSscsCaseData().getJointParty().setIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
-                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
+                .wantsHearingTypeTelephone(YES).hearingTelephoneNumber("07999888000").wantsHearingTypeVideo(YES).hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace(NO).build());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -595,10 +605,10 @@ public class RoboticsJsonMapperTest {
         assertEquals("firstIssueElementsDisputedChildElement", roboticsJson.getJSONObject("elementsDisputed").getJSONArray("childElement").get(0));
         assertEquals("firstIssueElementsDisputedChildDisabled", roboticsJson.getJSONObject("elementsDisputed").getJSONArray("childDisabled").get(0));
 
-        assertEquals("Yes", roboticsJson.get("ucDecisionDisputedByOthers"));
-        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
-        assertEquals("Yes", roboticsJson.get("wantsHearingTypeVideo"));
-        assertEquals("No", roboticsJson.get("wantsHearingTypeFaceToFace"));
+        assertEquals(YES.getValue(), roboticsJson.get("ucDecisionDisputedByOthers"));
+        assertEquals(YES.getValue(), roboticsJson.get("wantsHearingTypeTelephone"));
+        assertEquals(YES.getValue(), roboticsJson.get("wantsHearingTypeVideo"));
+        assertEquals(NO.getValue(), roboticsJson.get("wantsHearingTypeFaceToFace"));
     }
 
     @Test
@@ -609,11 +619,11 @@ public class RoboticsJsonMapperTest {
         roboticsWrapper.getSscsCaseData().getJointParty().setName(Name.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
         roboticsWrapper.getSscsCaseData().getJointParty().setAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
         roboticsWrapper.getSscsCaseData().getJointParty().setJointPartyAddressSameAsAppellant(YES);
-        roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers("Yes");
+        roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers(YES);
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
         roboticsWrapper.getSscsCaseData().getJointParty().setIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
-                .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
+                .wantsHearingTypeTelephone(YES).hearingTelephoneNumber("07999888000").wantsHearingTypeVideo(YES).hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace(NO).build());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -639,11 +649,11 @@ public class RoboticsJsonMapperTest {
         assertEquals("firstIssueElementsDisputedChildElement", roboticsJson.getJSONObject("elementsDisputed").getJSONArray("childElement").get(0));
         assertEquals("firstIssueElementsDisputedChildDisabled", roboticsJson.getJSONObject("elementsDisputed").getJSONArray("childDisabled").get(0));
 
-        assertEquals("Yes", roboticsJson.get("ucDecisionDisputedByOthers"));
+        assertEquals(YES.getValue(), roboticsJson.get("ucDecisionDisputedByOthers"));
         assertEquals("12345678", roboticsJson.get("linkedAppealRef"));
-        assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
-        assertEquals("Yes", roboticsJson.get("wantsHearingTypeVideo"));
-        assertEquals("No", roboticsJson.get("wantsHearingTypeFaceToFace"));
+        assertEquals(YES.getValue(), roboticsJson.get("wantsHearingTypeTelephone"));
+        assertEquals(YES.getValue(), roboticsJson.get("wantsHearingTypeVideo"));
+        assertEquals(NO.getValue(), roboticsJson.get("wantsHearingTypeFaceToFace"));
     }
 
     @Test
@@ -727,7 +737,7 @@ public class RoboticsJsonMapperTest {
     public void givenDlaCase_thenGetsDwpIssueOffice() {
 
         SscsCaseData sscsCaseData = buildCaseData("Test", "DLA", "Disability Benefit Centre 4");
-        sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
+        sscsCaseData.getAppeal().getAppellant().setIsAppointee(YES);
         roboticsWrapper = RoboticsWrapper
                 .builder()
                 .sscsCaseData(sscsCaseData)
@@ -765,19 +775,19 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .rep(Representative.builder().hasRepresentative("Yes")
+                .rep(Representative.builder().hasRepresentative(YES)
                         .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
                         .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
                         .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
                         .organisation("My company").build())
-                .hearingOptions(HearingOptions.builder().wantsToAttend("Yes").excludeDates(excludeDates).build())
+                .hearingOptions(HearingOptions.builder().wantsToAttend(YES).excludeDates(excludeDates).build())
                 .build()).build();
         otherPartyList.add(ccdValue);
 
         roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
         roboticsWrapper.getSscsCaseData().setChildMaintenanceNumber("12345");
         roboticsWrapper.getSscsCaseData().getAppeal().getAppellant().setRole(Role.builder().name("Paying parent").build());
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend("Yes");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend(YES);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 
@@ -828,7 +838,7 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .isAppointee("No")
+                .isAppointee(NO)
                 .appointee(Appointee.builder().build())
                 .rep(Representative.builder().build())
                 .hearingOptions(HearingOptions.builder().excludeDates(excludeDates).build())
@@ -877,12 +887,12 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .isAppointee("Yes")
+                .isAppointee(YES)
                 .appointee(Appointee.builder()
                         .name(Name.builder().title("Mr").firstName("Lucas").lastName("Moura").build())
                         .address(Address.builder().line1("777 My Road").line2("The Square").town("Braintree").county("Essex").postcode("CM5 2XD").build())
                         .contact(Contact.builder().phone("01243551555").mobile("07000000028").email("test6@email.com").build()).build())
-                .rep(Representative.builder().hasRepresentative("Yes")
+                .rep(Representative.builder().hasRepresentative(YES)
                         .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
                         .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
                         .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
@@ -944,7 +954,7 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .rep(Representative.builder().hasRepresentative("Yes")
+                .rep(Representative.builder().hasRepresentative(YES)
                         .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
                         .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
                         .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
@@ -1028,7 +1038,7 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .rep(Representative.builder().hasRepresentative("Yes")
+                .rep(Representative.builder().hasRepresentative(YES)
                         .name(Name.builder().title("Mrs").firstName("Wendy").lastName("Povey").build())
                         .address(Address.builder().line1("456 My Road").line2("The Green").town("Whitham").county("Essex").postcode("CM10 2PE").build())
                         .contact(Contact.builder().phone("01243551444").mobile("07000000029").email("test2@email.com").build())
@@ -1082,12 +1092,12 @@ public class RoboticsJsonMapperTest {
                 .name(Name.builder().title("Mr").firstName("Max").lastName("Edwards").build())
                 .address(Address.builder().line1("123 My Road").line2("The Village").town("Chelmsford").county("Essex").postcode("CM1 1RP").build())
                 .contact(Contact.builder().phone("01243551233").mobile("07000000001").email("test@email.com").build())
-                .hearingOptions(HearingOptions.builder().wantsToAttend(isAppellantAttending).build())
+                .hearingOptions(HearingOptions.builder().wantsToAttend(isYesOrNo(isAppellantAttending)).build())
                 .build()).build();
         otherPartyList.add(ccdValue);
 
         roboticsWrapper.getSscsCaseData().setOtherParties(otherPartyList);
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend(isOtherPartyAttending);
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setWantsToAttend(isYesOrNo(isOtherPartyAttending));
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
 

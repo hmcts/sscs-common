@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
@@ -25,8 +26,8 @@ import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 @Slf4j
 public class RoboticsJsonMapper {
 
-    private static final String YES = "Yes";
-    private static final String NO = "No";
+    private static final String YES = YesNo.YES.getValue();
+    private static final String NO = YesNo.NO.getValue();
     private static final String ESA_CASE_CODE = "051DD";
     private static final String PIP_CASE_CODE = "002DD";
 
@@ -121,15 +122,13 @@ public class RoboticsJsonMapper {
     private static JSONObject buildOtherPartyDetails(JSONObject obj, OtherParty otherParty) {
         JSONObject json = new JSONObject();
 
-        Name name = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getName() : otherParty.getName();
-        Address address = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getAddress() : otherParty.getAddress();
-        Contact contact = YES.equalsIgnoreCase(otherParty.getIsAppointee()) ? otherParty.getAppointee().getContact() : otherParty.getContact();
+        Name name = otherParty.hasAppointee() ? otherParty.getAppointee().getName() : otherParty.getName();
+        Address address = otherParty.hasAppointee() ? otherParty.getAppointee().getAddress() : otherParty.getAddress();
+        Contact contact = otherParty.hasAppointee() ? otherParty.getAppointee().getContact() : otherParty.getContact();
 
         json.put("otherParty", buildDetails(name, address, contact));
 
-        if (otherParty.getRep() != null
-                && otherParty.getRep().getHasRepresentative() != null
-                && otherParty.getRep().getHasRepresentative().equals(YES)) {
+        if (otherParty.hasRepresentative()) {
             json.put("otherPartyRepresentative", buildRepresentativeDetails(otherParty.getRep()));
         }
 
@@ -159,11 +158,11 @@ public class RoboticsJsonMapper {
 
         if (hearingOptions.getArrangements() != null) {
 
-            if (hearingOptions.getLanguageInterpreter() != null && hearingOptions.getLanguageInterpreter().equals(YES) && hearingOptions.getLanguages() != null) {
+            if (isYes(hearingOptions.getLanguageInterpreter()) && hearingOptions.getLanguages() != null) {
                 hearingArrangements.put("languageInterpreter", hearingOptions.getLanguages());
             }
 
-            if (Boolean.TRUE.equals(hearingOptions.wantsSignLanguageInterpreter()) && hearingOptions.getSignLanguageType() != null) {
+            if (hearingOptions.wantsSignLanguageInterpreter() && hearingOptions.getSignLanguageType() != null) {
                 hearingArrangements.put("signLanguageInterpreter", hearingOptions.getSignLanguageType());
             }
 
@@ -186,7 +185,7 @@ public class RoboticsJsonMapper {
 
     public static JSONObject buildExcludedDates(HearingOptions hearingOptions, JSONObject hearingArrangements) {
         if (hearingOptions.getExcludeDates() != null
-                && hearingOptions.getExcludeDates().size() > 0) {
+                && !hearingOptions.getExcludeDates().isEmpty()) {
             JSONArray datesCantAttendArray = new JSONArray();
             for (ExcludeDate a : hearingOptions.getExcludeDates()) {
                 if (!isBlank(a.getValue().getStart())) {
@@ -225,39 +224,39 @@ public class RoboticsJsonMapper {
 
         JSONObject elementsDisputed = new JSONObject();
 
-        if (sscsCaseData.getElementsDisputedGeneral() != null && sscsCaseData.getElementsDisputedGeneral().size() > 0) {
+        if (sscsCaseData.getElementsDisputedGeneral() != null && !sscsCaseData.getElementsDisputedGeneral().isEmpty()) {
             elementsDisputed.put("general", buildElementIssueArray(sscsCaseData.getElementsDisputedGeneral()));
         }
 
-        if (sscsCaseData.getElementsDisputedSanctions() != null && sscsCaseData.getElementsDisputedSanctions().size() > 0) {
+        if (sscsCaseData.getElementsDisputedSanctions() != null && !sscsCaseData.getElementsDisputedSanctions().isEmpty()) {
             elementsDisputed.put("sanctions", buildElementIssueArray(sscsCaseData.getElementsDisputedSanctions()));
         }
 
-        if (sscsCaseData.getElementsDisputedOverpayment() != null && sscsCaseData.getElementsDisputedOverpayment().size() > 0) {
+        if (sscsCaseData.getElementsDisputedOverpayment() != null && !sscsCaseData.getElementsDisputedOverpayment().isEmpty()) {
             elementsDisputed.put("overpayment", buildElementIssueArray(sscsCaseData.getElementsDisputedOverpayment()));
         }
 
-        if (sscsCaseData.getElementsDisputedHousing() != null && sscsCaseData.getElementsDisputedHousing().size() > 0) {
+        if (sscsCaseData.getElementsDisputedHousing() != null && !sscsCaseData.getElementsDisputedHousing().isEmpty()) {
             elementsDisputed.put("housing", buildElementIssueArray(sscsCaseData.getElementsDisputedHousing()));
         }
 
-        if (sscsCaseData.getElementsDisputedChildCare() != null && sscsCaseData.getElementsDisputedChildCare().size() > 0) {
+        if (sscsCaseData.getElementsDisputedChildCare() != null && !sscsCaseData.getElementsDisputedChildCare().isEmpty()) {
             elementsDisputed.put("childCare", buildElementIssueArray(sscsCaseData.getElementsDisputedChildCare()));
         }
 
-        if (sscsCaseData.getElementsDisputedCare() != null && sscsCaseData.getElementsDisputedCare().size() > 0) {
+        if (sscsCaseData.getElementsDisputedCare() != null && !sscsCaseData.getElementsDisputedCare().isEmpty()) {
             elementsDisputed.put("care", buildElementIssueArray(sscsCaseData.getElementsDisputedCare()));
         }
 
-        if (sscsCaseData.getElementsDisputedChildElement() != null && sscsCaseData.getElementsDisputedChildElement().size() > 0) {
+        if (sscsCaseData.getElementsDisputedChildElement() != null && !sscsCaseData.getElementsDisputedChildElement().isEmpty()) {
             elementsDisputed.put("childElement", buildElementIssueArray(sscsCaseData.getElementsDisputedChildElement()));
         }
 
-        if (sscsCaseData.getElementsDisputedChildDisabled() != null && sscsCaseData.getElementsDisputedChildDisabled().size() > 0) {
+        if (sscsCaseData.getElementsDisputedChildDisabled() != null && !sscsCaseData.getElementsDisputedChildDisabled().isEmpty()) {
             elementsDisputed.put("childDisabled", buildElementIssueArray(sscsCaseData.getElementsDisputedChildDisabled()));
         }
 
-        if (sscsCaseData.getElementsDisputedLimitedWork() != null && sscsCaseData.getElementsDisputedLimitedWork().size() > 0) {
+        if (sscsCaseData.getElementsDisputedLimitedWork() != null && !sscsCaseData.getElementsDisputedLimitedWork().isEmpty()) {
             elementsDisputed.put("limitedCapabilityWork", buildElementIssueArray(sscsCaseData.getElementsDisputedLimitedWork()));
         }
         return elementsDisputed;
@@ -295,23 +294,21 @@ public class RoboticsJsonMapper {
         obj.put("evidencePresent", roboticsWrapper.getEvidencePresent());
         obj.put("caseCode", getCaseCode(sscsCaseData));
 
-        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
-            boolean sameAddressAsAppointee = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee());
-            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(), sameAddressAsAppointee));
+        if (!isAppointeeDetailsEmpty(sscsCaseData.getAppeal().getAppellant().getAppointee()) && isYes(sscsCaseData.getAppeal().getAppellant().getIsAppointee())) {
+            obj.put("appointee", buildAppointeeDetails(sscsCaseData.getAppeal().getAppellant().getAppointee(),
+                    isYes(sscsCaseData.getAppeal().getAppellant().getIsAddressSameAsAppointee())));
         }
 
         obj.put("appellant", buildDetails(sscsCaseData.getAppeal().getAppellant().getName(),
                 sscsCaseData.getAppeal().getAppellant().getAddress(),
                 sscsCaseData.getAppeal().getAppellant().getContact()));
 
-        if (sscsCaseData.getAppeal().getRep() != null
-                && sscsCaseData.getAppeal().getRep().getHasRepresentative() != null
-                && sscsCaseData.getAppeal().getRep().getHasRepresentative().equals(YES)) {
+        if (nonNull(sscsCaseData.getAppeal().getRep()) && isYes(sscsCaseData.getAppeal().getRep().getHasRepresentative())) {
             obj.put("representative", buildRepresentativeDetails(sscsCaseData.getAppeal().getRep()));
         }
 
         if (sscsCaseData.getOtherParties() != null
-                && sscsCaseData.getOtherParties().size() > 0) {
+                && !sscsCaseData.getOtherParties().isEmpty()) {
             JSONArray otherParties = buildOtherParties(obj, sscsCaseData.getOtherParties());
 
             obj.put("otherParties", otherParties);
@@ -376,8 +373,8 @@ public class RoboticsJsonMapper {
             dwpPresentingOffice = officeMapping.get().getMapping().getGaps();
         }
 
-        String dwpIsOfficerAttending = sscsCaseData.getDwpIsOfficerAttending() != null ? sscsCaseData.getDwpIsOfficerAttending() : NO;
-        String dwpUcb = sscsCaseData.getDwpUcb() != null ? sscsCaseData.getDwpUcb() : NO;
+        String dwpIsOfficerAttending = isYes(sscsCaseData.getDwpIsOfficerAttending()) ? YES : NO;
+        String dwpUcb = isYes(sscsCaseData.getDwpUcb()) ? YES : NO;
 
         obj.put("dwpIssuingOffice", dwpIssuingOffice);
         obj.put("dwpPresentingOffice", dwpPresentingOffice);
@@ -391,8 +388,7 @@ public class RoboticsJsonMapper {
 
         JointParty jointParty = sscsCaseData.getJointParty();
         if (isYes(jointParty.getHasJointParty())) {
-            boolean sameAddressAsAppellant = isYes(jointParty.getJointPartyAddressSameAsAppellant());
-            if (sameAddressAsAppellant) {
+            if (isYes(jointParty.getJointPartyAddressSameAsAppellant())) {
                 obj.put("jointParty", buildJointPartyDetails(jointParty.getName(), sscsCaseData.getAppeal().getAppellant().getAddress(), true,
                         jointParty.getIdentity().getDob(), jointParty.getIdentity().getNino()));
             } else {
@@ -401,20 +397,20 @@ public class RoboticsJsonMapper {
             }
         }
         if (sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers() != null) {
-            obj.put("ucDecisionDisputedByOthers", sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers());
+            obj.put("ucDecisionDisputedByOthers", sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers().getValue());
         }
         if (sscsCaseData.getElementsDisputedLinkedAppealRef() != null) {
             obj.put("linkedAppealRef", sscsCaseData.getElementsDisputedLinkedAppealRef());
         }
         if (sscsCaseData.getAppeal().getHearingSubtype() != null) {
             if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone() != null) {
-                obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone());
+                obj.put("wantsHearingTypeTelephone", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeTelephone().getValue());
             }
             if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo() != null) {
-                obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo());
+                obj.put("wantsHearingTypeVideo", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeVideo().getValue());
             }
             if (sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace() != null) {
-                obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace());
+                obj.put("wantsHearingTypeFaceToFace", sscsCaseData.getAppeal().getHearingSubtype().getWantsHearingTypeFaceToFace().getValue());
             }
         }
 
@@ -489,7 +485,7 @@ public class RoboticsJsonMapper {
 
     public Optional<String> findVenueName(SscsCaseData sscsCaseData) {
         try {
-            String postcodeToUse = YES.equalsIgnoreCase(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
+            String postcodeToUse = isYes(sscsCaseData.getAppeal().getAppellant().getIsAppointee())
                     ? sscsCaseData.getAppeal().getAppellant().getAppointee().getAddress().getPostcode()
                     : sscsCaseData.getAppeal().getAppellant().getAddress().getPostcode();
 

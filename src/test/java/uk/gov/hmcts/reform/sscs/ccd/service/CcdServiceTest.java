@@ -13,6 +13,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseDataMap;
 
@@ -45,7 +47,6 @@ public class CcdServiceTest {
     private static final String APPELLANT_APPEAL_NUMBER = "app-appeal-number";
     private static final String REPRESENTATIVE_APPEAL_NUMBER = "rep-appeal-number";
     private static final String UPDATED_TEST_COM = "updated@test.com";
-    private static final String YES = "yes";
 
     private IdamTokens idamTokens;
     private CaseDetails caseDetails;
@@ -207,7 +208,7 @@ public class CcdServiceTest {
         ccdService.updateSubscription(APPELLANT_APPEAL_NUMBER, null, idamTokens);
 
         assertNull(((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getEmail());
-        assertEquals("no", ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getSubscribeEmail());
+        assertEquals(NO, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getAppellantSubscription().getSubscribeEmail());
     }
 
     @Test

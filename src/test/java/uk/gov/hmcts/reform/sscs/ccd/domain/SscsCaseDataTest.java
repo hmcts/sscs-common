@@ -521,7 +521,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals(YES, sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
@@ -537,7 +537,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("No", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals(NO, sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
@@ -553,7 +553,7 @@ public class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
+        assertEquals(YES, sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
@@ -568,9 +568,9 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
         if (translationStatus == null) {
-            assertEquals(NO.getValue(), sscsCaseData.getTranslationWorkOutstanding());
+            assertEquals(NO, sscsCaseData.getTranslationWorkOutstanding());
         } else {
-            assertEquals(YES.getValue(), sscsCaseData.getTranslationWorkOutstanding());
+            assertEquals(YES, sscsCaseData.getTranslationWorkOutstanding());
         }
     }
 
@@ -636,13 +636,13 @@ public class SscsCaseDataTest {
 
     @Test
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnTrue() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(YES).build();
         assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.TRUE);
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnFalse() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(NO).build();
         assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.FALSE);
     }
 
@@ -654,13 +654,13 @@ public class SscsCaseDataTest {
 
     @Test
     public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(NO).build();
         assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.ENGLISH);
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
-        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(YES).build();
         assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.WELSH);
     }
 
@@ -668,8 +668,8 @@ public class SscsCaseDataTest {
     public void givenUrgentHearingInfo_thenShouldReturnUrgentHearingInfo() {
         String todaysDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
         String expectedUrgentHearingOutcome = "In progress";
-        SscsCaseData sscsCaseData = SscsCaseData.builder().urgentCase("Yes").urgentHearingRegistered(todaysDate).urgentHearingOutcome("In progress").build();
-        assertEquals("Yes", sscsCaseData.getUrgentCase());
+        SscsCaseData sscsCaseData = SscsCaseData.builder().urgentCase(YES).urgentHearingRegistered(todaysDate).urgentHearingOutcome("In progress").build();
+        assertEquals(YES, sscsCaseData.getUrgentCase());
         assertEquals(todaysDate, sscsCaseData.getUrgentHearingRegistered());
         assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
     }

@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.model;
 
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 
 @Value
 @Builder
@@ -18,7 +19,7 @@ public class VenueDetails {
     private String venAddressTelNo;
     private String districtId;
     private String url;
-    private String active;
+    private YesNo active;
     private String gapsVenName;
     private String comments;
     private String epimsId;

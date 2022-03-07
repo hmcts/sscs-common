@@ -15,15 +15,15 @@ public class BundleDetails {
     private String id;
     private String title;
     private String description;
-    private String eligibleForStitching;
-    private String eligibleForCloning;
+    private YesNo eligibleForStitching;
+    private YesNo eligibleForCloning;
     private List<BundleDocument> documents;
     private List<BundleFolder> folders;
     private String stitchStatus;
     private DocumentLink stitchedDocument;
-    private String hasCoversheets;
-    private String hasTableOfContents;
-    private String hasFolderCoversheets;
+    private YesNo hasCoversheets;
+    private YesNo hasTableOfContents;
+    private YesNo hasFolderCoversheets;
     private String stitchingFailureMessage;
     private String fileName;
     private String paginationStyle;
@@ -35,15 +35,15 @@ public class BundleDetails {
     public BundleDetails(@JsonProperty("id") String id,
                          @JsonProperty("title") String title,
                          @JsonProperty("description") String description,
-                         @JsonProperty("eligibleForStitching") String eligibleForStitching,
-                         @JsonProperty("eligibleForCloning") String eligibleForCloning,
+                         @JsonProperty("eligibleForStitching") YesNo eligibleForStitching,
+                         @JsonProperty("eligibleForCloning") YesNo eligibleForCloning,
                          @JsonProperty("documents") List<BundleDocument> documents,
                          @JsonProperty("folders") List<BundleFolder> folders,
                          @JsonProperty("stitchStatus") String stitchStatus,
                          @JsonProperty("stitchedDocument") DocumentLink stitchedDocument,
-                         @JsonProperty("hasCoversheets") String hasCoversheets,
-                         @JsonProperty("hasTableOfContents") String hasTableOfContents,
-                         @JsonProperty("hasFolderCoversheets") String hasFolderCoversheets,
+                         @JsonProperty("hasCoversheets") YesNo hasCoversheets,
+                         @JsonProperty("hasTableOfContents") YesNo hasTableOfContents,
+                         @JsonProperty("hasFolderCoversheets") YesNo hasFolderCoversheets,
                          @JsonProperty("stitchingFailureMessage") String stitchingFailureMessage,
                          @JsonProperty("fileName") String fileName,
                          @JsonProperty("paginationStyle") String paginationStyle,

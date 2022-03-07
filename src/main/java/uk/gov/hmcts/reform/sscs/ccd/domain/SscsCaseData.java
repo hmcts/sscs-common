@@ -27,7 +27,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -67,16 +66,16 @@ public class SscsCaseData implements CaseData {
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
     private SscsInterlocDirectionDocument sscsInterlocDirectionDocument;
     private SscsStrikeOutDocument sscsStrikeOutDocument;
-    private String isSaveAndReturn;
+    private YesNo isSaveAndReturn;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsDeprecatedFields sscsDeprecatedFields;
     private DirectionResponse directionResponse;
-    private String evidencePresent;
+    private YesNo evidencePresent;
     private String bulkScanCaseReference;
     private String decisionNotes;
     @JsonProperty("isCorDecision")
-    private String isCorDecision;
+    private YesNo isCorDecision;
     private String relistingReason;
     private String dateSentToDwp;
     private String dwpDueDate;
@@ -92,10 +91,10 @@ public class SscsCaseData implements CaseData {
     private List<AudioVideoEvidence> audioVideoEvidence;
     private List<AudioVideoEvidence> dwpUploadAudioVideoEvidence;
     private YesNo hasUnprocessedAudioVideoEvidence;
-    private String informationFromAppellant;
+    private YesNo informationFromAppellant;
     private DynamicList informationFromPartySelected;
     private String outcome;
-    private String evidenceHandled;
+    private YesNo evidenceHandled;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -105,21 +104,21 @@ public class SscsCaseData implements CaseData {
     private String issueCode;
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
-    private String dwpIsOfficerAttending;
+    private YesNo dwpIsOfficerAttending;
     @JsonProperty("dwpUCB")
-    private String dwpUcb;
+    private YesNo dwpUcb;
     private DocumentLink dwpUcbEvidenceDocument;
     @JsonProperty("dwpPHME")
-    private String dwpPhme;
-    private String dwpComplexAppeal;
-    private String dwpFurtherInfo;
+    private YesNo dwpPhme;
+    private YesNo dwpComplexAppeal;
+    private YesNo dwpFurtherInfo;
     private List<Correspondence> correspondence;
     private ReasonableAdjustmentsLetters reasonableAdjustmentsLetters;
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
     @JsonProperty("generateNotice")
-    private String generateNotice;
+    private YesNo generateNotice;
     private DocumentLink previewDocument;
     private String bodyContent;
     private String directionNoticeContent;
@@ -147,10 +146,10 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument dwpLT203;
     private DwpResponseDocument dwpLapseLetter;
     private DocumentLink rip1Doc;
-    private String isRip1Doc;
+    private YesNo isRip1Doc;
     private YesNo showRip1DocPage;
     private String dwpResponseDate;
-    private String linkedCasesBoolean;
+    private YesNo linkedCasesBoolean;
     private String decisionType;
     private DynamicList selectWhoReviewsCase;
     @Deprecated
@@ -160,29 +159,29 @@ public class SscsCaseData implements CaseData {
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
     private DwpResponseDocument tl1Form;
-    private String isInterlocRequired;
+    private YesNo isInterlocRequired;
     private Panel panel;
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
-    private String urgentCase;
+    private YesNo urgentCase;
     private String urgentHearingRegistered;
     private String urgentHearingOutcome;
-    private String documentSentToDwp;
+    private YesNo documentSentToDwp;
     private String directionDueDate;
     private String reservedToJudge;
     private List<CaseLink> linkedCase;
-    private String isWaiverNeeded;
+    private YesNo isWaiverNeeded;
     private List<String> waiverDeclaration;
     private List<String> waiverReason;
     private String waiverReasonOther;
     private List<String> clerkDelegatedAuthority;
     private List<String> clerkAppealSatisfactionText;
     @JsonProperty("clerkConfirmationOfMRN")
-    private String clerkConfirmationOfMrn;
-    private String clerkOtherReason;
+    private YesNo clerkConfirmationOfMrn;
+    private YesNo clerkOtherReason;
     private String clerkConfirmationOther;
-    private String responseRequired;
-    private String timeExtensionRequested;
+    private YesNo responseRequired;
+    private YesNo timeExtensionRequested;
     private String bundleConfiguration;
     private List<MultiBundleConfig> multiBundleConfiguration;
     private String pcqId;
@@ -196,12 +195,12 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
     @JsonProperty("adjournCaseGenerateNotice")
-    private String adjournCaseGenerateNotice;
+    private YesNo adjournCaseGenerateNotice;
     private String adjournCaseTypeOfHearing;
     @JsonProperty("adjournCaseCanCaseBeListedRightAway")
-    private String adjournCaseCanCaseBeListedRightAway;
+    private YesNo adjournCaseCanCaseBeListedRightAway;
     @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
-    private String adjournCaseAreDirectionsBeingMadeToParties;
+    private YesNo adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
     private String adjournCaseTypeOfNextHearing;
@@ -214,7 +213,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDurationType;
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
-    private String adjournCaseInterpreterRequired;
+    private YesNo adjournCaseInterpreterRequired;
     private String adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
     private String adjournCaseNextHearingDateOrPeriod;
@@ -229,14 +228,14 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
-    private String updateNotListableDirectionsFulfilled;
-    private String updateNotListableInterlocReview;
+    private YesNo updateNotListableDirectionsFulfilled;
+    private YesNo updateNotListableInterlocReview;
     private String updateNotListableWhoReviewsCase;
-    private String updateNotListableSetNewDueDate;
+    private YesNo updateNotListableSetNewDueDate;
     private String updateNotListableDueDate;
     private String updateNotListableWhereShouldCaseMoveTo;
     @JsonProperty("languagePreferenceWelsh")
-    private String languagePreferenceWelsh;
+    private YesNo languagePreferenceWelsh;
     private List<String> elementsDisputedList;
     private List<ElementDisputed> elementsDisputedGeneral;
     private List<ElementDisputed> elementsDisputedSanctions;
@@ -247,17 +246,17 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedChildElement;
     private List<ElementDisputed> elementsDisputedChildDisabled;
     private List<ElementDisputed> elementsDisputedLimitedWork;
-    private String elementsDisputedIsDecisionDisputedByOthers;
+    private YesNo elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
     private List<CcdValue<OtherParty>> otherParties;
     @JsonProperty("otherPartyUCB")
-    private String otherPartyUcb;
+    private YesNo otherPartyUcb;
     private String childMaintenanceNumber;
     private String reasonableAdjustmentChoice;
     private YesNo doesOtherPersonKnowWhereYouLive;
     private YesNo keepHomeAddressConfidential;
     @JsonProperty("translationWorkOutstanding")
-    private String translationWorkOutstanding;
+    private YesNo translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
     private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     private String sscsWelshPreviewNextEvent;
@@ -266,7 +265,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList documentTypes;
     private String welshBodyContent;
     private String englishBodyContent;
-    private String isScottishCase;
+    private YesNo isScottishCase;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate reinstatementRegistered;
@@ -280,9 +279,9 @@ public class SscsCaseData implements CaseData {
     private String confidentialityRequestJointPartyGrantedOrRefused;
     @JsonProperty(value = "formType")
     private FormType formType;
-    private String isProgressingViaGaps;
+    private YesNo isProgressingViaGaps;
     @JsonProperty("supportGroupOnlyAppeal")
-    private String supportGroupOnlyAppeal;
+    private YesNo supportGroupOnlyAppeal;
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsEsaCaseData sscsEsaCaseData;
@@ -390,32 +389,32 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
+        return isYes(this.isCorDecision);
     }
 
     @JsonIgnore
     public boolean isAdjournCaseGenerateNotice() {
-        return stringToBoolean(adjournCaseGenerateNotice);
+        return isYes(adjournCaseGenerateNotice);
     }
 
     @JsonIgnore
     public boolean isAdjournCaseAbleToBeListedRightAway() {
-        return stringToBoolean(adjournCaseCanCaseBeListedRightAway);
+        return isYes(adjournCaseCanCaseBeListedRightAway);
     }
 
     @JsonIgnore
     public boolean isAdjournCaseDirectionsMadeToParties() {
-        return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
+        return isYes(adjournCaseAreDirectionsBeingMadeToParties);
     }
 
     @JsonIgnore
     public boolean isGenerateNotice() {
-        return stringToBoolean(generateNotice);
+        return isYes(generateNotice);
     }
 
     @JsonIgnore
     public boolean isSupportGroupOnlyAppeal() {
-        return stringToBoolean(supportGroupOnlyAppeal);
+        return isYes(supportGroupOnlyAppeal);
     }
 
     @JsonIgnore
@@ -444,7 +443,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isLanguagePreferenceWelsh() {
-        return stringToBoolean(languagePreferenceWelsh);
+        return isYes(languagePreferenceWelsh);
     }
 
     @JsonIgnore
@@ -454,7 +453,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isTranslationWorkOutstanding() {
-        return stringToBoolean(translationWorkOutstanding);
+        return isYes(translationWorkOutstanding);
     }
 
     @JsonIgnore
@@ -490,11 +489,6 @@ public class SscsCaseData implements CaseData {
 
     public Subscriptions getSubscriptions() {
         return null != subscriptions ? subscriptions : Subscriptions.builder().build();
-    }
-
-    @JsonIgnore
-    private boolean stringToBoolean(String value) {
-        return StringUtils.equalsIgnoreCase("yes", value);
     }
 
     @JsonIgnore
@@ -539,9 +533,9 @@ public class SscsCaseData implements CaseData {
         boolean noDwpDocumentsWithTranslation = emptyIfNull(getDwpDocuments()).stream().noneMatch(dd -> translationStatuses.contains(dd.getValue().getDocumentTranslationStatus()));
 
         if (noSscsDocumentsWithTranslation && noDwpDocumentsWithTranslation) {
-            this.translationWorkOutstanding = "No";
+            this.translationWorkOutstanding = NO;
         } else {
-            this.translationWorkOutstanding = "Yes";
+            this.translationWorkOutstanding = YES;
         }
     }
 
@@ -600,6 +594,8 @@ public class SscsCaseData implements CaseData {
     public SscsFinalDecisionCaseData getSscsFinalDecisionCaseData() {
         if (finalDecisionCaseData == null) {
             this.finalDecisionCaseData = new SscsFinalDecisionCaseData();
+            this.finalDecisionCaseData.setWriteFinalDecisionPresentingOfficerAttendedQuestion(YES);
+
         }
         return finalDecisionCaseData;
     }

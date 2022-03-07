@@ -67,9 +67,8 @@ public class RoboticsJsonValidator {
         return objectMapper.readTree(jsonObj.toString());
     }
 
-    public Set<ValidationMessage>  validateAgainstSchema(JsonNode node) {
-        Set<ValidationMessage> errors = schema.validate(node);
-        return errors;
+    public Set<ValidationMessage> validateAgainstSchema(JsonNode node) {
+        return schema.validate(node);
     }
 
     private Set<String> getErrors(Set<ValidationMessage> validationErrors, String caseId) {

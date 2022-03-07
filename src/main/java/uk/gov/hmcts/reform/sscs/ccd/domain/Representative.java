@@ -13,5 +13,5 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude
 @EqualsAndHashCode(callSuper = true)
 public class Representative extends Entity {
-    private String hasRepresentative;
+    private YesNo hasRepresentative;
 }

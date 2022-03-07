@@ -35,7 +35,7 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                               @JsonProperty("dwpEditedEvidenceReason") String dwpEditedEvidenceReason,
                               @JsonProperty("documentComment") String documentComment,
-                              @JsonProperty("evidenceIssued") String evidenceIssued,
+                              @JsonProperty("evidenceIssued") YesNo evidenceIssued,
                               @JsonProperty("bundleAddition") String bundleAddition,
                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                               @JsonProperty("partyUploaded") UploadParty partyUploaded,

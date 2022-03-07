@@ -24,7 +24,7 @@ public class SscsWelshDocumentDetails extends AbstractDocumentDetails {
                                     @JsonProperty("originalDocumentFileName") String originalDocumentFileName,
                                     @JsonProperty("documentComment") String documentComment,
                                     @JsonProperty("documentLanguage") String documentLanguage,
-                                    @JsonProperty("evidenceIssued") String evidenceIssued,
+                                    @JsonProperty("evidenceIssued") YesNo evidenceIssued,
                                     @JsonProperty("bundleAddition") String bundleAddition,
                                     @JsonProperty("controlNumber") String controlNumber) {
         super(documentType, documentFileName, documentDateAdded, documentLink, null, documentComment, evidenceIssued, bundleAddition, null, null, null, null, null, null, null, null, controlNumber);

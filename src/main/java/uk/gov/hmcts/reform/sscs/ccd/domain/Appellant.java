@@ -12,6 +12,5 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude
 @EqualsAndHashCode(callSuper = true)
 public class Appellant extends Party {
-
-    private String isAddressSameAsAppointee;
+    private YesNo isAddressSameAsAppointee;
 }

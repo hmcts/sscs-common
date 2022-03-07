@@ -25,7 +25,7 @@ public class HearingDetails {
     private String hearingId;
     private String hearingDate;
     private String time;
-    private String adjourned;
+    private YesNo adjourned;
     private String eventDate;
     private Venue venue;
     private String venueId;

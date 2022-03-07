@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYesOrNo;
 
 import com.google.common.collect.ImmutableMap;
 import com.opencsv.CSVReader;
@@ -50,7 +51,7 @@ public class VenueDataLoader {
                         .venAddressTelNo(line[9])
                         .districtId(line[10])
                         .url(line[11])
-                        .active(line[12])
+                        .active(isYesOrNo(line[12]))
                         .gapsVenName(line[13])
                         .comments(line[14])
                         .epimsId(line[15])

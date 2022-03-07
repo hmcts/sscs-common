@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.util;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -10,8 +13,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService;
 
 public final class CaseDataUtils {
-
-    public static final String YES = "Yes";
 
     private CaseDataUtils() {
     }
@@ -134,7 +135,7 @@ public final class CaseDataUtils {
                 .build();
 
         HearingSubtype hearingSubtype = HearingSubtype.builder()
-                .wantsHearingTypeTelephone("Yes")
+                .wantsHearingTypeTelephone(YES)
                 .hearingTelephoneNumber("07988999000")
                 .build();
 
@@ -237,8 +238,8 @@ public final class CaseDataUtils {
                 .tya("")
                 .email("supporter@email.com")
                 .mobile("")
-                .subscribeEmail("")
-                .subscribeSms("")
+                .subscribeEmail(NO)
+                .subscribeSms(NO)
                 .reason("")
                 .lastLoggedIntoMya("2001-12-14T21:59:43.10-05:00")
                 .build();
