@@ -21,7 +21,8 @@ public class RegionalProcessingCenter {
                                     @JsonProperty("address3") String address3,
                                     @JsonProperty("postcode") String postcode,
                                     @JsonProperty("city") String city,
-                                    @JsonProperty("email") String email) {
+                                    @JsonProperty("email") String email,
+                                    @JsonProperty("listAssist") String listAssist){
         this.faxNumber = faxNumber;
         this.address4 = address4;
         this.phoneNumber = phoneNumber;
@@ -32,6 +33,7 @@ public class RegionalProcessingCenter {
         this.postcode = postcode;
         this.city = city;
         this.email = email;
+        this.listAssist = listAssist;
     }
 
     private String faxNumber;
@@ -53,4 +55,6 @@ public class RegionalProcessingCenter {
     private String city;
 
     private String email;
+
+    private String listAssist;
 }
