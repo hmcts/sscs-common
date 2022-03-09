@@ -22,7 +22,7 @@ public class RegionalProcessingCenter {
                                     @JsonProperty("postcode") String postcode,
                                     @JsonProperty("city") String city,
                                     @JsonProperty("email") String email,
-                                    @JsonProperty("listAssist") String listAssist){
+                                    @JsonProperty("listAssist") YesNo listAssist){
         this.faxNumber = faxNumber;
         this.address4 = address4;
         this.phoneNumber = phoneNumber;
@@ -56,5 +56,5 @@ public class RegionalProcessingCenter {
 
     private String email;
 
-    private String listAssist;
+    private YesNo listAssist;
 }
