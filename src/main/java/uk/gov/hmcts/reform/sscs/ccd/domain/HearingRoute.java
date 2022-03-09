@@ -4,19 +4,20 @@ import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import lombok.Getter;
 
 @Getter
-public enum StateOfHearing {
+public enum HearingRoute {
 
     @JsonEnumDefaultValue
-    HEARING_CREATED("Hearing Created");
+    LIST_ASSIST("List Assist"),
+    GAPS("Gaps");
 
-    private final String state;
+    private final String type;
 
-    StateOfHearing(String state) {
-        this.state = state;
+    HearingRoute(String type) {
+        this.type = type;
     }
 
     @Override
     public String toString() {
-        return this.state;
+        return this.type;
     }
 }
