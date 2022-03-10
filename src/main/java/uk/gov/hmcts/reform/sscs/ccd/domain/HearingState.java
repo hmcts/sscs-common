@@ -1,17 +1,19 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
-public enum StateOfHearing {
+public enum HearingState {
 
     @JsonEnumDefaultValue
-    HEARING_CREATED("Hearing Created");
+    @JsonProperty
+    HEARING_CREATED("hearingCreated");
 
     private final String state;
 
-    StateOfHearing(String state) {
+    HearingState(String state) {
         this.state = state;
     }
 

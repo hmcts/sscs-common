@@ -1,14 +1,17 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 @Getter
 public enum HearingRoute {
 
     @JsonEnumDefaultValue
-    LIST_ASSIST("List Assist"),
-    GAPS("Gaps");
+    @JsonProperty
+    LIST_ASSIST("listAssist"),
+    @JsonProperty
+    GAPS("gaps");
 
     private final String type;
 
