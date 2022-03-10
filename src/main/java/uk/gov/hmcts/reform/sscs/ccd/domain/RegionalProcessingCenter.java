@@ -22,7 +22,7 @@ public class RegionalProcessingCenter {
                                     @JsonProperty("postcode") String postcode,
                                     @JsonProperty("city") String city,
                                     @JsonProperty("email") String email,
-                                    @JsonProperty("hearingRoute") HearingRoute hearingRoute){
+                                    @JsonProperty("hearingRoute") HearingRoute hearingRoute) {
         this.faxNumber = faxNumber;
         this.address4 = address4;
         this.phoneNumber = phoneNumber;
