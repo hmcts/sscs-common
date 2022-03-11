@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.sscs.model.client;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.NonNull;
 import lombok.Value;
-
-import java.io.Serializable;
 
 @Value
 @Builder
