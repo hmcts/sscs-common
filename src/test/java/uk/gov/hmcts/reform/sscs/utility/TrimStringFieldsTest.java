@@ -31,4 +31,17 @@ class TrimStringFieldsTest {
         // then
         assertThat(deserializedText).isEqualTo("test");
     }
+
+    @Test
+    void shouldReturnNullIfTrimStringsFieldsFails() throws IOException {
+
+        // given
+        when(jp.readValueAsTree()).thenThrow(new IOException("something went wrong"));
+
+        // when
+        String deserializedText = (String) underTest.deserialize(jp, dc);
+
+        // then
+        assertThat(deserializedText).isNull();
+    }
 }
