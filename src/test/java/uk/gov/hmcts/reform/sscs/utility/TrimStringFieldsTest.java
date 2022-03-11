@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 class TrimStringFieldsTest {
 
-    TrimStringFields underTest = new TrimStringFields();
-    JsonParser jp = mock(JsonParser.class);
-    DeserializationContext dc = mock(DeserializationContext.class);
+    private final TrimStringFields underTest = new TrimStringFields();
+    private final JsonParser jp = mock(JsonParser.class);
+    private final DeserializationContext dc = mock(DeserializationContext.class);
 
     @Test
     void shouldTrimStringsFields() throws IOException {
