@@ -2,9 +2,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Getter
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal=true, level= AccessLevel.PRIVATE)
 public enum HearingRoute {
 
     @JsonEnumDefaultValue
@@ -13,14 +18,5 @@ public enum HearingRoute {
     @JsonProperty
     GAPS("gaps");
 
-    private final String type;
-
-    HearingRoute(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return this.type;
-    }
+    String type;
 }
