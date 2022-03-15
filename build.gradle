@@ -92,8 +92,10 @@ publishing {
 }
 
 def versions = [
-    spring : '2.3.5.RELEASE',
-    lombok: '1.18.22'
+    azureStreamBinderServiceBusQueue: '2.14.0',
+    lombok          : '1.18.22',
+    reactorCore     : '3.4.15',
+    spring          : '2.3.5.RELEASE'
 ]
 
 dependencies {
@@ -128,6 +130,10 @@ dependencies {
     compile group: 'com.github.hmcts', name: 'idam-java-client', version: '2.0.1'
 
     compile group: "com.networknt", name: "json-schema-validator", version: "1.0.58"
+
+    compile group: 'com.azure.spring', name: 'azure-spring-cloud-stream-binder-servicebus-queue',
+            version: versions.azureStreamBinderServiceBusQueue
+    compile group: 'io.projectreactor', name: 'reactor-core', version: versions.reactorCore
 
     compileOnly "org.projectlombok:lombok:$versions.lombok"
     annotationProcessor "org.projectlombok:lombok:$versions.lombok"
