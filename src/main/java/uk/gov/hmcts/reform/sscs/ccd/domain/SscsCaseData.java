@@ -399,7 +399,7 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public boolean isJointPartyAddressSameAsAppeallant() {
+    public boolean isJointPartyAddressSameAsAppellant() {
         return stringToBoolean(jointPartyAddressSameAsAppellant);
     }
 
