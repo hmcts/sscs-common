@@ -132,7 +132,7 @@ public class RegionalProcessingCenterService {
         return "";
     }
 
-    public HearingRoute getHearingRoute(SscsCaseDetails caseDetails){
+    public HearingRoute getHearingRoute(SscsCaseDetails caseDetails) {
         String region = caseDetails.getData().getRegion();
 
         return regionalProcessingCenterMap.values().stream()
