@@ -389,11 +389,11 @@ public class RoboticsJsonMapper {
         }
 
         if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
-            if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
+            if (sscsCaseData.isJointPartyAddressSameAsAppellant()) {
+                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppellant(),
                         sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
             } else {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
+                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppellant(),
                         sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
             }
         }
