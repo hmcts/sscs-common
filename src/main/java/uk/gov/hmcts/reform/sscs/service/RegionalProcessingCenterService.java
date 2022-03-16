@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.exception.RegionalProcessingCenterServiceException;
 
 @Service
@@ -128,6 +130,15 @@ public class RegionalProcessingCenterService {
             return postcode.substring(0, postcode.length() - 3).trim();
         }
         return "";
+    }
+
+    public HearingRoute getHearingRoute(SscsCaseDetails caseDetails){
+        String region = caseDetails.getData().getRegion();
+
+        return regionalProcessingCenterMap.values().stream()
+            .filter(rpc -> rpc.getName().equalsIgnoreCase(region))
+            .map(RegionalProcessingCenter::getHearingRoute)
+            .findFirst().orElse(HearingRoute.LIST_ASSIST);
     }
 
 }
