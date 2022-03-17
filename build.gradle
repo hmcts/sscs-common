@@ -92,9 +92,9 @@ publishing {
 }
 
 def versions = [
-    azureStreamBinderServiceBusQueue: '2.14.0',
+    azureCore       : '1.26.0',
+    azureMessagingServicebus: '7.6.0',
     lombok          : '1.18.22',
-    reactorCore     : '3.4.15',
     spring          : '2.3.5.RELEASE'
 ]
 
@@ -131,9 +131,8 @@ dependencies {
 
     compile group: "com.networknt", name: "json-schema-validator", version: "1.0.58"
 
-    compile group: 'com.azure.spring', name: 'azure-spring-cloud-stream-binder-servicebus-queue',
-            version: versions.azureStreamBinderServiceBusQueue
-    compile group: 'io.projectreactor', name: 'reactor-core', version: versions.reactorCore
+    compile group: 'com.azure', name: 'azure-core', version: versions.azureCore
+    compile group: 'com.azure', name: 'azure-messaging-servicebus', version: versions.azureMessagingServicebus
 
     compileOnly "org.projectlombok:lombok:$versions.lombok"
     annotationProcessor "org.projectlombok:lombok:$versions.lombok"
