@@ -1,33 +1,35 @@
 package uk.gov.hmcts.reform.sscs.model.servicebus;
 
-import com.azure.spring.integration.core.AzureHeaders;
-import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
+import com.azure.messaging.servicebus.ServiceBusMessage;
+import com.azure.messaging.servicebus.ServiceBusSenderClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.support.MessageBuilder;
-import reactor.core.publisher.Sinks;
 import uk.gov.hmcts.reform.sscs.service.servicebus.SessionAwareMessagingService;
 
 @Slf4j
 public class SessionAwareServiceBusMessagingService implements SessionAwareMessagingService {
 
-    private final Sinks.Many<Message<SessionAwareRequest>> eventSink;
+    private final ServiceBusSenderClient senderClient;
 
     public SessionAwareServiceBusMessagingService(
-        Sinks.Many<Message<SessionAwareRequest>> eventSink) {
-        this.eventSink = eventSink;
+        ServiceBusSenderClient senderClient) {
+        this.senderClient = senderClient;
     }
 
+    @Override
     public boolean sendMessage(SessionAwareRequest message) {
 
-        log.info("About to emit request: {}", message);
-
         try {
-            eventSink.emitNext(MessageBuilder.withPayload(message)
-                    .setHeader(ServiceBusMessageHeaders.SESSION_ID, message.getSessionId())
-                    .setHeader(AzureHeaders.PARTITION_KEY, message.getSessionId())
-                    .build(),
-                Sinks.EmitFailureHandler.FAIL_FAST);
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            ServiceBusMessage serviceBusMessage = new ServiceBusMessage(objectMapper.writeValueAsString(message));
+            serviceBusMessage.setSessionId(message.getSessionId());
+            serviceBusMessage.setPartitionKey(message.getSessionId());
+
+            log.info("About to send request with body: {}", serviceBusMessage.getBody().toString());
+
+            senderClient.sendMessage(serviceBusMessage);
+
         } catch (Exception ex) {
             log.error("Unable to send message {}. Cause: {}", message, ex);
 
