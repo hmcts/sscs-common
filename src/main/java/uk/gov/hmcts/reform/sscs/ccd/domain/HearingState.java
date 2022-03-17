@@ -20,8 +20,8 @@ public enum HearingState {
     @JsonProperty
     PARTY_NOTIFIED("partyNotified", "Parties Notified");
 
-    private String state;
-    private String description;
+    private final String state;
+    private final String description;
 
     @JsonValue
     public String getState() {
