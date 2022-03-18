@@ -73,7 +73,7 @@ public class RegionalProcessingCenterService {
         try (InputStream inputStream  = classPathResource.getInputStream()) {
             ObjectMapper mapper = new ObjectMapper();
             regionalProcessingCenterMap =
-                    mapper.readValue(inputStream, new TypeReference<Map<String,RegionalProcessingCenter>>(){});
+                    mapper.readValue(inputStream, new TypeReference<>(){});
 
         } catch (IOException e) {
             LOG.error("Error while reading RegionalProcessingCenter from " + RPC_DATA_JSON, new RegionalProcessingCenterServiceException(e));
