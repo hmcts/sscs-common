@@ -200,6 +200,11 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
         assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
         assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+    }
+
+    @Test
+    public void givenHearingRouteIsNull_HearingRouteShouldBeListAssist(){
+        assertEquals(regionalProcessingCenterService.getHearingRoute(null), HearingRoute.LIST_ASSIST);
 
     }
 }
