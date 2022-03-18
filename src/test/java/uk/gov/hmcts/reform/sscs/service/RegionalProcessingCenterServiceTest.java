@@ -203,7 +203,7 @@ public class RegionalProcessingCenterServiceTest {
     }
 
     @Test
-    public void givenHearingRouteIsNull_HearingRouteShouldBeListAssist(){
+    public void givenHearingRouteIsNull_HearingRouteShouldBeListAssist() {
         assertEquals(regionalProcessingCenterService.getHearingRoute(null), HearingRoute.LIST_ASSIST);
 
     }
