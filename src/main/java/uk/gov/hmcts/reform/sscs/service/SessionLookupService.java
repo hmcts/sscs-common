@@ -51,20 +51,23 @@ public class SessionLookupService {
         }
     }
 
-    public String getPanelMembers(String ccdCode){
+    public String getPanelMembers(String caseCode){
 
-        if (StringUtils.isNotBlank(ccdCode)) {
-            CaseCodeMappingDetails caseCodeMappingDetails = caseCodeDetailsMap.get(ccdCode);
+        if (StringUtils.isNotBlank(caseCode)) {
+            CaseCodeMappingDetails caseCodeMappingDetails = caseCodeDetailsMap.get(caseCode);
             if(caseCodeMappingDetails!=null){
                 return caseCodeMappingDetails.getPanelMembers();
             }
         }
+        return null;
     }
 
     public int getDuration(String caseCode){
+        int duration = 30;
         if (StringUtils.isNotBlank(ccdCode)) {
             return caseCodeDetailsMap.get(caseCode).getDuration();
         }
+        return duration;
     }
 
 
