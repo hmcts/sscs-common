@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.model.CaseCodeMappingDetails;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.google.common.collect.Maps.newHashMap;
-
+@Slf4j
 public class SessionLookupService {
     private static final String CSV_FILE_PATH = "reference-data/casecodeDetails.csv";
     private final Map<String, CaseCodeMappingDetails> caseCodeDetailsMap = newHashMap();
