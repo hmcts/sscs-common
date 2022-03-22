@@ -64,7 +64,7 @@ public class SessionLookupService {
 
     public int getDuration(String caseCode){
         int duration = 30;
-        if (StringUtils.isNotBlank(ccdCode)) {
+        if (StringUtils.isNotBlank(caseCode)) {
             return caseCodeDetailsMap.get(caseCode).getDuration();
         }
         return duration;
