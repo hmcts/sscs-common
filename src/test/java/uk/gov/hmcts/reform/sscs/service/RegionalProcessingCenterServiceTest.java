@@ -59,7 +59,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals(expectedRpc.getPhoneNumber(), actualRpc.getPhoneNumber());
         assertEquals(expectedRpc.getFaxNumber(), actualRpc.getFaxNumber());
         assertEquals(expectedRpc.getEmail(), actualRpc.getEmail());
-
+        assertEquals(expectedRpc.getHearingRoute(), actualRpc.getHearingRoute());
     }
 
     @SuppressWarnings("unused")
