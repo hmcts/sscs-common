@@ -40,7 +40,7 @@ public class SessionLookupService {
                         .duration(Integer.parseInt(line[7]))
                         .panelMembers(line[8])
                         .build();
-                caseCodeDetailsMap.put(line[0],caseCodeDetails);
+                caseCodeDetailsMap.put(line[0], caseCodeDetails);
                     }
             );
         } catch (IOException e) {
@@ -50,18 +50,18 @@ public class SessionLookupService {
         }
     }
 
-    public String getPanelMembers(String caseCode){
+    public String getPanelMembers(String caseCode) {
 
         if (StringUtils.isNotBlank(caseCode)) {
             CaseCodeMappingDetails caseCodeMappingDetails = caseCodeDetailsMap.get(caseCode);
-            if(caseCodeMappingDetails!=null){
+            if (caseCodeMappingDetails != null) {
                 return caseCodeMappingDetails.getPanelMembers();
             }
         }
         return null;
     }
 
-    public int getDuration(String caseCode){
+    public int getDuration(String caseCode) {
         int duration = 30;
         if (StringUtils.isNotBlank(caseCode)) {
             return caseCodeDetailsMap.get(caseCode).getDuration();
