@@ -326,6 +326,7 @@ public class SscsCaseData implements CaseData {
     private YesNo showWorkCapabilityAssessmentPage;
 
     private String panelDoctorSpecialism;
+    private String secondPanelDoctorSpecialism;
 
     private YesNo functionalTest;
 
