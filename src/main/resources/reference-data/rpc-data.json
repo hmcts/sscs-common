@@ -23,7 +23,7 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4438",
     "email" : "Cardiff_SYA_Respon@justice.gov.uk",
-    "hearingRoute" : "listAssist"
+    "hearingRoute" : "gaps"
   },
   "SSCS Leeds":{
     "name" : "LEEDS",
@@ -50,7 +50,7 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4229",
     "email" : "Sutton_SYA_Respons@justice.gov.uk",
-    "hearingRoute" : "listAssist"
+    "hearingRoute" : "gaps"
   },
   "SSCS Birmingham":{
     "name" : "BIRMINGHAM",
@@ -76,7 +76,7 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
     "email" : "Leeds_SYA_Response@justice.gov.uk",
-    "hearingRoute" : null
+    "hearingRoute" : "gaps"
   },
   "SSCS Glasgow": {
     "name" : "GLASGOW",
@@ -102,6 +102,6 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0126 434 7983",
     "email" : "SSCS_Bradford@justice.gov.uk",
-    "hearingRoute" : null
+    "hearingRoute" : "gaps"
   }
 }
