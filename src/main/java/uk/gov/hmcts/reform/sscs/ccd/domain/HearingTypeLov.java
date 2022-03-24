@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum HearingTypeLOV {
+public enum HearingTypeLov {
     SUBSTANTIVE("BBA3-substantive", "Substantive"),
     DIRECTION_HEARINGS("BBA3-directionHearings", "Direction Hearings"),
     CHAMBERS_OUTCOME("BBA3-chambersOutcome", "Chambers Outcome");

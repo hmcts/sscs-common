@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.CaseType.*;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import static uk.gov.hmcts.reform.sscs.ccd.domain.CaseType.*;
 
 @SuppressWarnings({"PMD.ExcessiveClassLength","PMD.AvoidDuplicateLiterals"})
 @Getter
