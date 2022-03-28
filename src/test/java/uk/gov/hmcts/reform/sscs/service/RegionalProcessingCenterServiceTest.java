@@ -122,40 +122,10 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
     }
 
-    @Test
-    public void shouldReturnBirminghamRegionalProcessingCenterAsDefault() {
 
-        //Given
-        String referenceNumber = "SC000/13/00010";
 
-        //When
-        RegionalProcessingCenter regionalProcessingCenter =
-            regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
 
-        //Then
-        assertBirminghamRpc(regionalProcessingCenter);
 
-    }
-
-    @Test
-    public void shouldReturnBirminghamRpcIfTheScNumberIsNull() {
-        //When
-        RegionalProcessingCenter regionalProcessingCenter =
-            regionalProcessingCenterService.getByScReferenceCode(null);
-
-        //Then
-        assertBirminghamRpc(regionalProcessingCenter);
-    }
-
-    @Test
-    public void shouldReturnBirminghamRpcIfTheScNumberIsEmpty() {
-        //When
-        RegionalProcessingCenter regionalProcessingCenter =
-            regionalProcessingCenterService.getByScReferenceCode("");
-
-        //Then
-        assertBirminghamRpc(regionalProcessingCenter);
-    }
 
     @Test
     public void getRegionalProcessingCentreFromVenueId() {
