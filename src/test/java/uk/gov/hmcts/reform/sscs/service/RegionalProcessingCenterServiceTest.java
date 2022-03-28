@@ -29,6 +29,38 @@ public class RegionalProcessingCenterServiceTest {
         regionalProcessingCenterService.init();
     }
 
+    @Test
+    public void givenVenuesCvsFile_shouldLoadSccodeToRpcMap() {
+        Map<String, String> sccodeRegionalProcessingCentermap
+                = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
+        assertEquals(248, sccodeRegionalProcessingCentermap.size());
+        assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
+        assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
+        assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
+    }
+
+    @Test
+    @Parameters(method = "getDifferentRpcScenarios")
+    public void givenRpcMetaData_shouldLoadRpcMetadataToMap(RegionalProcessingCenter expectedRpc, String rpcKey) {
+        //Then
+        Map<String, RegionalProcessingCenter> regionalProcessingCenterMap
+            = regionalProcessingCenterService.getRegionalProcessingCenterMap();
+
+        int rpcCenters = 8;
+        assertEquals(rpcCenters, regionalProcessingCenterMap.size());
+        RegionalProcessingCenter actualRpc = regionalProcessingCenterMap.get(rpcKey);
+        assertEquals(expectedRpc.getName(), actualRpc.getName());
+        assertEquals(expectedRpc.getAddress1(), actualRpc.getAddress1());
+        assertEquals(expectedRpc.getAddress2(), actualRpc.getAddress2());
+        assertEquals(expectedRpc.getAddress3(), actualRpc.getAddress3());
+        assertEquals(expectedRpc.getAddress4(), actualRpc.getAddress4());
+        assertEquals(expectedRpc.getCity(), actualRpc.getCity());
+        assertEquals(expectedRpc.getPostcode(), actualRpc.getPostcode());
+        assertEquals(expectedRpc.getPhoneNumber(), actualRpc.getPhoneNumber());
+        assertEquals(expectedRpc.getFaxNumber(), actualRpc.getFaxNumber());
+        assertEquals(expectedRpc.getEmail(), actualRpc.getEmail());
+        assertEquals(expectedRpc.getHearingRoute(), actualRpc.getHearingRoute());
+    }
 
     @SuppressWarnings("unused")
     private Object[] getDifferentRpcScenarios() {
@@ -65,5 +97,114 @@ public class RegionalProcessingCenterServiceTest {
             new Object[]{liverpoolRpc, "SSCS Liverpool"},
             new Object[]{cardiffRpc, "SSCS Cardiff"}
         };
+    }
+
+    @Test
+    public void shouldReturnRegionalProcessingCenterForGivenAppealReferenceNumber() {
+        //Given
+        String referenceNumber = "SC274/13/00010";
+
+        //When
+        RegionalProcessingCenter regionalProcessingCenter =
+            regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
+
+        //Then
+        assertEquals("LIVERPOOL", regionalProcessingCenter.getName());
+        assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
+        assertEquals("Social Security & Child Support Appeals", regionalProcessingCenter.getAddress2());
+        assertEquals("Prudential Buildings", regionalProcessingCenter.getAddress3());
+        assertEquals("36 Dale Street", regionalProcessingCenter.getAddress4());
+        assertEquals("LIVERPOOL", regionalProcessingCenter.getCity());
+        assertEquals("L2 5UZ", regionalProcessingCenter.getPostcode());
+        assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
+        assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+    }
+
+    @Test
+    public void shouldReturnBirminghamRegionalProcessingCenterAsDefault() {
+
+        //Given
+        String referenceNumber = "SC000/13/00010";
+
+        //When
+        RegionalProcessingCenter regionalProcessingCenter =
+            regionalProcessingCenterService.getByScReferenceCode(referenceNumber);
+
+        //Then
+        assertBirminghamRpc(regionalProcessingCenter);
+
+    }
+
+    @Test
+    public void shouldReturnBirminghamRpcIfTheScNumberIsNull() {
+        //When
+        RegionalProcessingCenter regionalProcessingCenter =
+            regionalProcessingCenterService.getByScReferenceCode(null);
+
+        //Then
+        assertBirminghamRpc(regionalProcessingCenter);
+    }
+
+    @Test
+    public void shouldReturnBirminghamRpcIfTheScNumberIsEmpty() {
+        //When
+        RegionalProcessingCenter regionalProcessingCenter =
+            regionalProcessingCenterService.getByScReferenceCode("");
+
+        //Then
+        assertBirminghamRpc(regionalProcessingCenter);
+    }
+
+    @Test
+    public void getRegionalProcessingCentreFromVenueId() {
+        String leedsVenueId = "10";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByVenueId(leedsVenueId);
+
+        assertEquals("LEEDS", rpc.getName());
+    }
+
+    @Test
+    public void getRegionalProcessingCentreFromPostcode() {
+        String somePostcode = "AB10 1AB";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode);
+
+        assertEquals("GLASGOW", rpc.getName());
+    }
+
+    @Test
+    public void givenAPostcode_thenRemoveLastThreeCharacters() {
+        assertEquals("AB12", getFirstHalfOfPostcode("AB12 3TH"));
+    }
+
+    @Test
+    public void givenAPostcodeWithLessThanThreeCharacters_thenReturnEmpty() {
+        assertEquals("", getFirstHalfOfPostcode("AB"));
+    }
+
+    @Test
+    public void givenANullPostcode_thenReturnEmpty() {
+        assertEquals("", getFirstHalfOfPostcode(null));
+    }
+
+    private void assertBirminghamRpc(RegionalProcessingCenter regionalProcessingCenter) {
+        assertEquals("BIRMINGHAM", regionalProcessingCenter.getName());
+        assertEquals("HM Courts & Tribunals Service", regionalProcessingCenter.getAddress1());
+        assertEquals("Social Security & Child Support Appeals", regionalProcessingCenter.getAddress2());
+        assertEquals("Administrative Support Centre", regionalProcessingCenter.getAddress3());
+        assertEquals("PO Box 14620", regionalProcessingCenter.getAddress4());
+        assertEquals("BIRMINGHAM", regionalProcessingCenter.getCity());
+        assertEquals("B16 6FR", regionalProcessingCenter.getPostcode());
+        assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
+        assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
+        assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+    }
+
+    @Test
+    public void givenHearingRouteIsNull_HearingRouteShouldBeListAssist() {
+        assertEquals(regionalProcessingCenterService.getHearingRoute(null), HearingRoute.LIST_ASSIST);
+
     }
 }
