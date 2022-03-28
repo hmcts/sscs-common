@@ -341,6 +341,10 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private WorkAllocationFields workAllocationFields;
 
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SchedulingAndListingFields schedulingAndListingFields;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -586,6 +590,15 @@ public class SscsCaseData implements CaseData {
         }
         return workAllocationFields;
     }
+
+    @JsonIgnore
+    public SchedulingAndListingFields getSchedulingAndListingFields() {
+        if (schedulingAndListingFields == null) {
+            this.schedulingAndListingFields = new SchedulingAndListingFields();
+        }
+        return schedulingAndListingFields;
+    }
+
 
     @JsonIgnore
     public Optional<Benefit> getBenefitType() {
