@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class WorkAllocationFields {
     private String caseNamePublic;
     private String ogdType;
     private DynamicList caseManagementCategory;
+    @JsonProperty("CaseAccessCategory")
     private String caseAccessCategory;
     @JsonInclude
     private String addedDocuments;
