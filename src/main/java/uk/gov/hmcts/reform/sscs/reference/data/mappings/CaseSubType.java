@@ -1,6 +1,6 @@
-package uk.gov.hmcts.reform.sscs.ccd.domain;
+package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.CaseType.*;
+import static uk.gov.hmcts.reform.sscs.reference.data.mappings.CaseType.*;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

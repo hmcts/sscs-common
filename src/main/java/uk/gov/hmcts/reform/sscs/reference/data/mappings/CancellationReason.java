@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.domain;
+package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public enum CancellationReason {
     NO_LONGER_READY_FOR_HEARING("noLongerReadyForHearing", "No longer ready for hearing"),
     SETTLED("settled", "Settled"),
     JUDICIAL_DIRECTION("judicialDirection", "Judicial direction"),
-    FEE_NOT_PAID("feeNotPaid", "Fee not paid?"),
+    FEE_NOT_PAID("feeNotPaid", "Fee not paid"),
     PARTY_DID_NOT_ATTEND("partyDidNotAttend", "Party did not attend"),
     LAPSED("lapsed", "Lapsed");
 

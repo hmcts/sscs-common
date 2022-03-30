@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.domain;
+package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
