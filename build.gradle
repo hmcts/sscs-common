@@ -98,6 +98,10 @@ def versions = [
     spring          : '2.3.5.RELEASE'
 ]
 
+configurations.all {
+    exclude group: 'com.fasterxml.jackson.dataformat', module: 'jackson-dataformat-xml'
+}
+
 dependencies {
     api("com.google.guava:guava:31.0.1-jre")
     api("org.apache.commons:commons-lang3:3.12.0")
@@ -145,6 +149,8 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
     testCompile group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
     testCompile 'pl.pragmatists:JUnitParams:1.1.1'
+    testCompile group: 'com.azure', name: 'azure-core', version: versions.azureCore
+    testCompile group: 'com.azure', name: 'azure-messaging-servicebus', version: versions.azureMessagingServiceBus
 
     testRuntime 'org.glassfish:jakarta.el:3.0.3'
     testRuntime 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
