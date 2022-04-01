@@ -6,6 +6,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -65,8 +67,8 @@ public class SessionLookupService {
         return Integer.parseInt(StringUtils.strip(durationFaceToFace,"minutes").trim());
     }
 
-    public String getPanelMembers(String ccdKey) {
-        return sessionCaseCodeMappingMap.get(ccdKey).getPanelMembers();
+    public List<String> getPanelMembers(String ccdKey) {
+        return Arrays.asList(sessionCaseCodeMappingMap.get(ccdKey).getPanelMembers(), ",");
 
     }
 

@@ -22,7 +22,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": "If the elementAndIssueCode.issueCode = WC or SG"
  },
  {
@@ -48,7 +48,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": "If the elementAndIssueCode.issueCode = WC or SG"
  },
  {
@@ -74,7 +74,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -87,7 +87,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -100,7 +100,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -113,7 +113,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -126,7 +126,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -139,7 +139,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -152,7 +152,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -165,7 +165,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -178,7 +178,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -191,7 +191,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -204,7 +204,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -217,7 +217,7 @@
    "otherSessionCat": "1?",
    "durationFaceToFace": "20 minutes",
    "durationPaper": "10 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": "03 session, but judge must have 01 ticketing"
  },
  {
@@ -230,7 +230,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -243,7 +243,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -256,7 +256,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -269,7 +269,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -282,7 +282,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -295,7 +295,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -308,7 +308,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -321,7 +321,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -334,7 +334,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -347,7 +347,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -360,7 +360,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -373,7 +373,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -386,7 +386,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -399,7 +399,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -412,7 +412,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -425,7 +425,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -438,7 +438,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -451,7 +451,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -464,7 +464,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -477,7 +477,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -490,7 +490,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -503,7 +503,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -516,7 +516,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -529,7 +529,7 @@
    "otherSessionCat": "1?",
    "durationFaceToFace": "20 minutes",
    "durationPaper": "10 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": "03 session, but judge must have 01 ticketing"
  },
  {
@@ -542,7 +542,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -555,7 +555,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -568,7 +568,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -581,7 +581,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -594,7 +594,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -607,7 +607,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -620,7 +620,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -633,7 +633,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -646,7 +646,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -659,7 +659,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -672,7 +672,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -685,7 +685,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -698,7 +698,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -711,7 +711,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -724,7 +724,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -737,7 +737,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -750,7 +750,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -763,7 +763,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -776,7 +776,7 @@
    "otherSessionCat": "1?",
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": "03 session, but judge must have 01 ticketing"
  },
  {
@@ -789,7 +789,7 @@
    "otherSessionCat": "1?",
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": "03 session, but judge must have 01 ticketing"
  },
  {
@@ -802,7 +802,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -815,7 +815,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -828,7 +828,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -841,7 +841,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -854,7 +854,7 @@
    "otherSessionCat": "1?",
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": "03 session, but judge must have 01 ticketing"
  },
  {
@@ -867,7 +867,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -880,7 +880,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -893,7 +893,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -906,7 +906,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -919,7 +919,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -932,7 +932,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -945,7 +945,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -958,7 +958,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -971,7 +971,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "Cat 5 means 1 specialst, Cat 6 means 2"
  },
  {
@@ -984,7 +984,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "Cat 5 means 1 specialst, Cat 6 means 2"
  },
  {
@@ -4676,7 +4676,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4689,7 +4689,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4702,7 +4702,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4715,7 +4715,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4728,7 +4728,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4741,7 +4741,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4754,7 +4754,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4767,7 +4767,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4780,7 +4780,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4793,7 +4793,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4806,7 +4806,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4819,7 +4819,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4832,7 +4832,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4845,7 +4845,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4858,7 +4858,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4871,7 +4871,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4884,7 +4884,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4897,7 +4897,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4910,7 +4910,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4923,7 +4923,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -4936,7 +4936,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -5690,7 +5690,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -5703,7 +5703,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -5716,7 +5716,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -5729,7 +5729,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -5742,7 +5742,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5755,7 +5755,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5768,7 +5768,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5781,7 +5781,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5794,7 +5794,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5807,7 +5807,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5820,7 +5820,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5833,7 +5833,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5846,7 +5846,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5859,7 +5859,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5872,7 +5872,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5885,7 +5885,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5898,7 +5898,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5911,7 +5911,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5924,7 +5924,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5937,7 +5937,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5950,7 +5950,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5963,7 +5963,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -5976,7 +5976,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "60 minutes",
    "durationPaper": "30 minutes",
-   "panelMembers": "Judge, Doctor & Disability Member (DQPM)",
+   "panelMembers": "Judge, Doctor , Disability Member (DQPM)",
    "comment": null
  },
  {
@@ -6808,7 +6808,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": "Cat 5 means 1 specialst, Cat 6 means 2"
  },
  {
@@ -6847,7 +6847,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": "Cat 5 means 1 specialst, Cat 6 means 2"
  },
  {
@@ -8329,7 +8329,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": null
  },
  {
@@ -8355,7 +8355,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "40 minutes",
    "durationPaper": "20 minutes",
-   "panelMembers": "Judge & Doctor",
+   "panelMembers": "Judge , Doctor",
    "comment": null
  },
  {
@@ -8368,7 +8368,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8381,7 +8381,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8394,7 +8394,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8407,7 +8407,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8420,7 +8420,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8433,7 +8433,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8446,7 +8446,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8459,7 +8459,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8472,7 +8472,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8485,7 +8485,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8498,7 +8498,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8511,7 +8511,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8524,7 +8524,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8537,7 +8537,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8550,7 +8550,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8563,7 +8563,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8576,7 +8576,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8589,7 +8589,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8602,7 +8602,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8615,7 +8615,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8628,7 +8628,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8641,7 +8641,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8654,7 +8654,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8667,7 +8667,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8680,7 +8680,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8693,7 +8693,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8706,7 +8706,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8719,7 +8719,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8732,7 +8732,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8745,7 +8745,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8758,7 +8758,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8771,7 +8771,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8784,7 +8784,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8797,7 +8797,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8810,7 +8810,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8823,7 +8823,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8836,7 +8836,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8849,7 +8849,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8862,7 +8862,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -8875,7 +8875,7 @@
    "otherSessionCat": "06",
    "durationFaceToFace": "Referred to Judge for time slot",
    "durationPaper": "Referred to Judge for time slot",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": null
  },
  {
@@ -11163,7 +11163,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11176,7 +11176,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11189,7 +11189,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11202,7 +11202,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11215,7 +11215,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11228,7 +11228,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11241,7 +11241,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11254,7 +11254,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11267,7 +11267,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11280,7 +11280,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11293,7 +11293,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
@@ -11306,7 +11306,7 @@
    "otherSessionCat": null,
    "durationFaceToFace": "N/A",
    "durationPaper": "N/A",
-   "panelMembers": "Judge & Specialist Doctor",
+   "panelMembers": "Judge , Specialist Doctor",
    "comment": "02 if isFqpmRequired = \"Yes\""
  },
  {
