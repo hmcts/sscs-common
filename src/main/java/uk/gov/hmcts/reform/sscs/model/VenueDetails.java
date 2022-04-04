@@ -21,4 +21,5 @@ public class VenueDetails {
     private String active;
     private String gapsVenName;
     private String comments;
+    private String epimsId;
 }

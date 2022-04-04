@@ -95,4 +95,11 @@ public class VenueDataLoaderTest {
         String result = venueDataLoader.getGapVenueName(null, null);
         assertNull(result);
     }
+
+    @Test
+    public void shouldGetGapsEpimsIdForGivenVenueId() {
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        String result = venueDataLoader.getVenueDetailsMap().get("68").getEpimsId();
+        assertEquals("196538", result);
+    }
 }
