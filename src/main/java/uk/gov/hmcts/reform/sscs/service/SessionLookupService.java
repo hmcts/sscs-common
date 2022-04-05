@@ -6,11 +6,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -49,8 +51,7 @@ public class SessionLookupService {
         ClassPathResource classPathResource = new ClassPathResource(MAPPING_FILE_PATH);
         try (InputStream inputStream  = classPathResource.getInputStream()) {
             ObjectMapper mapper = new ObjectMapper();
-            sessionCaseCodeMappingMap =
-                    mapper.readValue(inputStream, new TypeReference<Map<String,SessionCaseCodeMapping>>(){});
+            MapUtils.populateMap(sessionCaseCodeMappingMap, mapper.readValue(inputStream, new TypeReference<List<SessionCaseCodeMapping>>() {}), SessionCaseCodeMapping::getCcdKey);
         }
 
     }
@@ -68,8 +69,13 @@ public class SessionLookupService {
     }
 
     public List<String> getPanelMembers(String ccdKey) {
-        return Arrays.asList(sessionCaseCodeMappingMap.get(ccdKey).getPanelMembers(), ",");
+        return Stream.of(sessionCaseCodeMappingMap.get(ccdKey).getPanelMembers().split(","))
+                .map(String::trim)
+                .collect(Collectors.toList());
+    }
 
+    public Map<String, SessionCaseCodeMapping> getSessionCaseCodeMappingMap() {
+        return sessionCaseCodeMappingMap;
     }
 
 
