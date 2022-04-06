@@ -32,11 +32,18 @@ public class SessionLookUpServiceTest {
     @Test
     public void shouldGetDurationForValidCcdKey() {
         assertEquals(sessionLookUpService.getDuration("002CC"), 60);
+        assertEquals(sessionLookUpService.getDuration("051FR"), 20);
+        assertEquals(sessionLookUpService.getDuration("061WI"), 20);
     }
 
     @Test
     public void shouldGetEmptyDurationForCcdKeyWithNoDuration() {
         assertEquals(sessionLookUpService.getDuration("002AA"), 0);
+    }
+
+    @Test
+    public void shouldReturnZeroIfCcdKeyDoesntExist() {
+        assertEquals(sessionLookUpService.getDuration("1234"), 0);
     }
 
     @Test

@@ -62,7 +62,11 @@ public class SessionLookupService {
     }
 
     public int getDuration(String ccdKey) {
-        return returnDurationInt(sessionCaseCodeMappingMap.get(ccdKey).getDurationFaceToFace());
+        if (sessionCaseCodeMappingMap.containsKey(ccdKey)) {
+            return returnDurationInt(sessionCaseCodeMappingMap.get(ccdKey).getDurationFaceToFace());
+        } else {
+            return 0;
+        }
     }
 
     private int returnDurationInt(String durationFaceToFace) {
@@ -81,6 +85,10 @@ public class SessionLookupService {
 
     public Map<String, SessionCaseCodeMapping> getSessionCaseCodeMappingMap() {
         return sessionCaseCodeMappingMap;
+    }
+
+    public int testGet() {
+        return 1;
     }
 
 
