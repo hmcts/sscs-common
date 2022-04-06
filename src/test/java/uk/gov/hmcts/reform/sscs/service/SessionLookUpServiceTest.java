@@ -35,6 +35,11 @@ public class SessionLookUpServiceTest {
     }
 
     @Test
+    public void shouldGetEmptyDurationForCcdKeyWithNoDuration() {
+        assertEquals(sessionLookUpService.getDuration("002AA"), 0);
+    }
+
+    @Test
     public void sessionCaseCodeMappingMapShouldNotBeNull() {
         assertNotNull(sessionLookUpService.getSessionCaseCodeMappingMap());
     }

@@ -24,6 +24,7 @@ import uk.gov.hmcts.reform.sscs.model.SessionCaseCodeMapping;
 public class SessionLookupService {
 
     private static final String MAPPING_FILE_PATH = "reference-data/sscs-session-mapping.json";
+    public static final String MINUTES = "minutes";
     private Map<String, SessionCaseCodeMapping> sessionCaseCodeMappingMap = newHashMap();
 
     @PostConstruct
@@ -65,7 +66,11 @@ public class SessionLookupService {
     }
 
     private int returnDurationInt(String durationFaceToFace) {
-        return Integer.parseInt(StringUtils.strip(durationFaceToFace,"minutes").trim());
+        int duration = 0;
+        if (!durationFaceToFace.isBlank() && durationFaceToFace.contains(MINUTES)) {
+            duration = Integer.parseInt(StringUtils.strip(durationFaceToFace, MINUTES).trim());
+        }
+        return duration;
     }
 
     public List<String> getPanelMembers(String ccdKey) {
