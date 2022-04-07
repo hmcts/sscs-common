@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
 import static uk.gov.hmcts.reform.sscs.reference.data.mappings.CaseTypePanelMembers.*;
+
+import java.util.Arrays;
 import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -73,5 +75,16 @@ public enum CaseType {
     private final String typeDescriptionEN;
     private final String typeDescriptionCY;
     private final List<CaseTypePanelMembers> panelMembers;
+
+    public CaseType getCaseType(String benefitCode){
+        return getCaseType(benefitCode, "BBA3");
+    }
+
+    public CaseType getCaseType(String benefitCode, String serviceCode){
+        return Arrays.stream(CaseType.values())
+            .filter(c -> c.getBenefitCode().equals(benefitCode) && c.getServiceCode().equals(serviceCode))
+            .findFirst()
+            .orElse(null);
+    }
 
 }

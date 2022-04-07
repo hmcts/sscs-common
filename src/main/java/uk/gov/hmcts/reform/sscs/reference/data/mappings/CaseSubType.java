@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
+import java.util.Arrays;
 import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -1103,4 +1104,18 @@ public enum CaseSubType {
     private final List<CaseTypePanelMembers> panelMembers;
     private final CaseType parentCode;
 
+
+    private CaseSubType getCaseSubType (String benefitCode, String issueCode) {
+        return Arrays.stream(CaseSubType.values())
+            .filter(c -> c.getBenefitCode().equals(benefitCode) && c.getIssueCode().equals(issueCode))
+            .findFirst()
+            .orElse(null);
+    }
+
+    private CaseSubType getCaseSubType(String benefitCode, String issueCode, String serviceCode){
+        return Arrays.stream(CaseSubType.values())
+            .filter(c -> c.getBenefitCode().equals(benefitCode) && c.getIssueCode().equals(issueCode) && c.getServiceCode().equals(serviceCode))
+            .findFirst()
+            .orElse(null);
+    }
 }
