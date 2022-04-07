@@ -53,6 +53,9 @@ public enum State {
     @JsonProperty("notListable")
     NOT_LISTABLE("notListable"),
 
+    @JsonProperty("handlingError")
+    HANDLING_ERROR("handlingError"),
+
     @JsonProperty("unknown")
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
