@@ -219,6 +219,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingDateOrTime;
     private String adjournCaseNextHearingFirstAvailableDateAfterDate;
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
+    private HearingRoute hearingRoute;
+    private HearingState hearingState;
     private AdjournCaseTime adjournCaseTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private List<CollectionItem<String>> adjournCaseAdditionalDirections;
@@ -349,7 +351,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
