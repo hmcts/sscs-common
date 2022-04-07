@@ -22,12 +22,4 @@ public enum EntityRoleCode {
     private final String valueCY;
     private final String serviceCode;
 
-    public static EntityRoleCode getEntityRoleCode(String value) {
-        for (EntityRoleCode erc : EntityRoleCode.values()) {
-            if (erc.getValueEN().equals(value)) {
-                return erc;
-            }
-        }
-        return null;
-    }
 }

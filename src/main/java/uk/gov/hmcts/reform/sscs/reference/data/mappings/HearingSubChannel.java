@@ -3,20 +3,22 @@ package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import static uk.gov.hmcts.reform.sscs.reference.data.mappings.HearingChannel.*;
+
 @Getter
 @RequiredArgsConstructor
 public enum HearingSubChannel {
-    TELEPHONE_BT_MEET_ME("telephone","telephone-btMeetMe", "Telephone - BTMeetme", "", "BBA3"),
-    TELEPHONE_CVP("telephone","telephone-other", "Telephone - Other", "", "BBA3"),
-    TELEPHONE_OTHER("telephone","telephone-other", "Telephone - Other", "", "BBA3"),
-    TELEPHONE_SKYPE("telephone","telephone-skype", "Telephone - Skype", "", "BBA3"),
-    VIDEO_CVP("video","video-cvp", "Video - CVP", "", "BBA3"),
-    VIDEO_CONFERENCE("video","video-conference", "Video Conference", "", "BBA3"),
-    VIDEO_OTHER("video","video-other", "Video - Other", "", "BBA3"),
-    VIDEO_SKYPE("video","video-skype", "Video - Skype", "", "BBA3"),
-    VIDEO_TEAMS("video","video-teams", "Video - Teams", "", "BBA3");
+    TELEPHONE_BT_MEET_ME(TELEPHONE,"telephone-btMeetMe", "Telephone - BTMeetme", "", "BBA3"),
+    TELEPHONE_CVP(TELEPHONE,"telephone-other", "Telephone - Other", "", "BBA3"),
+    TELEPHONE_OTHER(TELEPHONE,"telephone-other", "Telephone - Other", "", "BBA3"),
+    TELEPHONE_SKYPE(TELEPHONE,"telephone-skype", "Telephone - Skype", "", "BBA3"),
+    VIDEO_CVP(VIDEO,"video-cvp", "Video - CVP", "", "BBA3"),
+    VIDEO_CONFERENCE(VIDEO,"video-conference", "Video Conference", "", "BBA3"),
+    VIDEO_OTHER(VIDEO,"video-other", "Video - Other", "", "BBA3"),
+    VIDEO_SKYPE(VIDEO,"video-skype", "Video - Skype", "", "BBA3"),
+    VIDEO_TEAMS(VIDEO,"video-teams", "Video - Teams", "", "BBA3");
 
-    private final String key;
+    private final HearingChannel hearingChannel;
     private final String subTypeKey;
     private final String valueEN;
     private final String valueCY;
