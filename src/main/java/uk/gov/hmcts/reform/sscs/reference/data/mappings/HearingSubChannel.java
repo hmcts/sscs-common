@@ -6,22 +6,25 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum HearingSubChannel {
-    TELEPHONE_BT_MEET_ME("telephone-btMeetMe", "Telephone - BTMeetme"),
-    TELEPHONE_CVP("telephone-other", "Telephone - Other"),
-    TELEPHONE_OTHER("telephone-other", "Telephone - Other"),
-    TELEPHONE_SKYPE("telephone-skype", "Telephone - Skype"),
-    VIDEO_CVP("video-cvp", "Video - CVP"),
-    VIDEO_CONFERENCE("video-conference", "Video Conference"),
-    VIDEO_OTHER("video-other", "Video - Other"),
-    VIDEO_SKYPE("video-skype", "Video - Skype"),
-    VIDEO_TEAMS("video-teams", "Video - Teams");
+    TELEPHONE_BT_MEET_ME("telephone","telephone-btMeetMe", "Telephone - BTMeetme", "", "BBA3"),
+    TELEPHONE_CVP("telephone","telephone-other", "Telephone - Other", "", "BBA3"),
+    TELEPHONE_OTHER("telephone","telephone-other", "Telephone - Other", "", "BBA3"),
+    TELEPHONE_SKYPE("telephone","telephone-skype", "Telephone - Skype", "", "BBA3"),
+    VIDEO_CVP("video","video-cvp", "Video - CVP", "", "BBA3"),
+    VIDEO_CONFERENCE("video","video-conference", "Video Conference", "", "BBA3"),
+    VIDEO_OTHER("video","video-other", "Video - Other", "", "BBA3"),
+    VIDEO_SKYPE("video","video-skype", "Video - Skype", "", "BBA3"),
+    VIDEO_TEAMS("video","video-teams", "Video - Teams", "", "BBA3");
 
     private final String key;
-    private final String value;
+    private final String subTypeKey;
+    private final String valueEN;
+    private final String valueCY;
+    private final String serviceCode;
 
     public static HearingSubChannel getHearingSubChannel(String value) {
         for (HearingSubChannel hsc : HearingSubChannel.values()) {
-            if (hsc.getValue().equals(value)) {
+            if (hsc.getValueEN().equals(value)) {
                 return hsc;
             }
         }
