@@ -18,7 +18,7 @@ import uk.gov.hmcts.reform.sscs.model.UserRequest;
 
 
 @FeignClient(
-    name = "caseworker-ref-data-api",
+    name = "caseworker-ref-users-data-api",
     url = "${caseworker-ref.api.url}"
 )
 public interface CaseWorkerRefUsersDataApi {
