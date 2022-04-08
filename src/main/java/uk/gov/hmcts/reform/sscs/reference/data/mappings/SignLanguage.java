@@ -20,11 +20,11 @@ public enum SignLanguage {
     PALANTYPIST("palantypist", "Palantypist / Speech to text");
 
     private final String key;
-    private final String value;
+    private final String language;
 
     public static SignLanguage getSignLanguageByValue(String value) {
         for (SignLanguage sl : SignLanguage.values()) {
-            if (sl.getValue().equals(value)) {
+            if (sl.getLanguage().equals(value)) {
                 return sl;
             }
         }
