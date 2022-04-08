@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@SuppressWarnings({"PMD.AvoidDuplicateLiterals"})
 @Getter
 @RequiredArgsConstructor
 public enum InterpreterLanguage {
@@ -199,12 +198,12 @@ public enum InterpreterLanguage {
     ZUL_ZUL("zul-zul", "Zulu", "");
 
     private final String key;
-    private final String value;
+    private final String language;
     private final String dialect;
 
-    public static InterpreterLanguage getInterpreterLanguageByValueAndDialect(String value, String dialect) {
+    public static InterpreterLanguage getInterpreterLanguageByLanguageAndDialect(String value, String dialect) {
         for (InterpreterLanguage il : InterpreterLanguage.values()) {
-            if (il.getValue().equals(value) && il.getDialect().equals(dialect)) {
+            if (il.getLanguage().equals(value) && il.getDialect().equals(dialect)) {
                 return il;
             }
         }

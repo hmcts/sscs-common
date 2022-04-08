@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import static uk.gov.hmcts.reform.sscs.reference.data.mappings.CaseType.*;
 
-@SuppressWarnings({"PMD.ExcessiveClassLength","PMD.AvoidDuplicateLiterals"})
+
 @Getter
 @RequiredArgsConstructor
 public enum CaseSubType {
