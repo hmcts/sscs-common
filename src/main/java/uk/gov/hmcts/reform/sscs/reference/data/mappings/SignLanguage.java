@@ -22,7 +22,7 @@ public enum SignLanguage {
     private final String key;
     private final String language;
 
-    public static SignLanguage getSignLanguageByValue(String value) {
+    public static SignLanguage getSignLanguageByLanguage(String value) {
         for (SignLanguage sl : SignLanguage.values()) {
             if (sl.getLanguage().equals(value)) {
                 return sl;
