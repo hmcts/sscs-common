@@ -14,7 +14,8 @@ public enum EntityRoleCode {
     WELFARE_REPRESENTATIVE("BBA3-welfareRepresentative","Representative", "Welfare Representative", "", "BBA3"),
     LEGAL_REPRESENTATIVE("BBA3-legalRepresentative","Representative", "Legal Representative", "", "BBA3"),
     BARRISTER("BBA3-barrister","Representative", "Barrister", "", "BBA3"),
-    INTERPRETER("BBA3-interpreter","Interpreter", "Interpreter", "", "BBA3");
+    INTERPRETER("BBA3-interpreter","Interpreter", "Interpreter", "", "BBA3"),
+    REPRESENTATIVE("BBA3-Representative","Representative", "Barrister", "", "BBA3");
 
     private final String key;
     private final String parentRole;
