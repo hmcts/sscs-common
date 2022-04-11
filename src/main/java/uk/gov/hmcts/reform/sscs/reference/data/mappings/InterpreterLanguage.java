@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
+import java.util.Arrays;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -208,5 +209,12 @@ public enum InterpreterLanguage {
             }
         }
         return null;
+    }
+
+    public InterpreterLanguage getLanguageAndConvert(String languages){
+        return Arrays.stream(InterpreterLanguage.values())
+            .filter(c -> c.getLanguage().equals(languages))
+            .findFirst()
+            .orElse(null);
     }
 }
