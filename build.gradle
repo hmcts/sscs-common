@@ -92,8 +92,8 @@ publishing {
 }
 
 def versions = [
-    spring : '2.3.5.RELEASE',
-    lombok: '1.18.22'
+    lombok          : '1.18.22',
+    spring          : '2.3.5.RELEASE'
 ]
 
 dependencies {

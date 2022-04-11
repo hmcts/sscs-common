@@ -17,5 +17,4 @@ public enum HearingRoute {
     public String getState() {
         return state;
     }
-
 }
