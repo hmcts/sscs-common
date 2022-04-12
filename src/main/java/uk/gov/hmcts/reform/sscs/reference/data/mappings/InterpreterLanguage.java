@@ -211,10 +211,116 @@ public enum InterpreterLanguage {
         return null;
     }
 
-    public InterpreterLanguage getLanguageAndConvert(String languages){
+    public static InterpreterLanguage getLanguageAndConvert(String languages){
         return Arrays.stream(InterpreterLanguage.values())
             .filter(c -> c.getLanguage().equals(languages))
             .findFirst()
-            .orElse(null);
+            .orElse(conditionNotMet(languages));
+    }
+
+    public static InterpreterLanguage conditionNotMet(String languages){
+        switch (languages){
+            case "Arabic (Middle Eastern)":
+                return ARA_MIDDLEEASTERN;
+            case "Arabic (North African)":
+                return ARA_NORTHAFRICAN;
+            case "Ashanti":
+                return TWI_TWI;
+            case "Azari":
+                return AZE_AZE;
+            case "Bajuni":
+                return SWA_KIBAJUNI;
+            case "Bardini":
+                return KUR_KURMANJI;
+            case "Bengali (Sylheti)":
+                return BEN_SYLHETI;
+            case "Bharuchi":
+                return GUJ_GUJ;
+            case "Bravanese":
+                return SWA_BRAVANESE;
+            case "Cambellpuri":
+                return null;
+            case "Edo/Benin":
+                return BIN_BIN;
+            case "Emakhuna":
+                return null;
+            case "Feili":
+                return null;
+            case "French (Arabic)":
+                return FRE_ARABIC;
+            case "French(African)":
+                return FRE_AFRICAN;
+            case "Gallacian":
+                return null;
+            case "Guran":
+                return null;
+            case "Hendko":
+                return HND_HND;
+            case "Hokkien":
+                return null;
+            case "Ishan":
+                return null;
+            case "Karaninka":
+                return MNK_MNK;
+            case "Khymer Khymer":
+                return KHM_KHM;
+            case "Kibajuni,Kibanjuni,Bajuni,Ban":
+                return SWA_KIBAJUNI;
+            case "Kibanjuni":
+                return SWA_KIBAJUNI;
+            case "Kichagga":
+                return null;
+            case "Kisakata":
+                return null;
+            case "Kiswahili":
+                return SWA_SWA;
+            case "Kurdish (Bardini)":
+                return KUR_BARDINI;
+            case "Kurdish (Kurmanji)":
+                return KUR_KURMANJI;
+            case "Kurdish (Sorani)":
+                return KUR_SORANI;
+            case "Lugisa":
+                return null;
+            case "Lunyankole":
+                return null;
+            case "Luo (Kenyan)":
+                return LUO_KENYAN;
+            case "Luo (Ugandan[Acholi District])":
+                return LUO_ACHOLI;
+            case "Luo (Ugandan[Lango District])":
+                return LUO_LANGO;
+            case "Lutoro":
+                return null;
+            case "Maghreb":
+                return null;
+            case "Mirpuri":
+                return null;
+            case "Navsari":
+                return GUJ_GUJ;
+            case "Ngwa":
+                return null;
+            case "Pathwari":
+                return BFZ_BFZ;
+            case "Pidgin English":
+                return null;
+            case "Punjabi (Indian)":
+                return PAN_INDIAN;
+            case "Punjabi (Pakistani)":
+                return PAN_PAKISTANI;
+            case "Putonghue":
+                return null;
+            case "Sarahuleh":
+                return null;
+            case "Senegal (French) Olof Dialect":
+                return null;
+            case "Senegal (Wolof)":
+                return null;
+            case "Serbo‑Croatian":
+                return HBS_HBS;
+            case "Training":
+                return null;
+        }
+        return null;
     }
 }
