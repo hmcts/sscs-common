@@ -62,7 +62,16 @@
           "address": {},
           "contact": {},
           "organisation": null,
-          "hasRepresentative": "No"
+          "hasRepresentative": "No",
+          "confidentialityRequired": null,
+          "id": null,
+          "identity": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "sendNotification": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "signer": "Appellant Test",
         "appellant": {
@@ -89,9 +98,36 @@
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "confidentialityRequired": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null,
+            "subscription": null,
+            "reasonableAdjustment": null,
+            "sendNotification": null,
+            "unacceptableCustomerBehaviour": null,
+            "vulnerabilityDetails": null,
+            "vulnerableFlag": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "hasRepresentative": null,
+          "id": null,
+          "organisation": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "rep": null,
+          "role": null,
+          "sendNotification": null,
+          "showRole": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -636,7 +672,16 @@
           "address": {},
           "contact": {},
           "organisation": null,
-          "hasRepresentative": "No"
+          "hasRepresentative": "No",
+          "confidentialityRequired": null,
+          "id": null,
+          "identity": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "sendNotification": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "signer": "AN Test",
         "appellant": {
@@ -663,9 +708,36 @@
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "confidentialityRequired": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null,
+            "subscription": null,
+            "reasonableAdjustment": null,
+            "sendNotification": null,
+            "unacceptableCustomerBehaviour": null,
+            "vulnerabilityDetails": null,
+            "vulnerableFlag": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "hasRepresentative": null,
+          "id": null,
+          "organisation": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "rep": null,
+          "role": null,
+          "sendNotification": null,
+          "showRole": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
