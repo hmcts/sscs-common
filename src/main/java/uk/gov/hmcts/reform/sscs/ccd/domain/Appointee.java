@@ -1,32 +1,16 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-@Builder(toBuilder = true)
-public class Appointee {
+@SuperBuilder
+@RequiredArgsConstructor
+@JsonInclude
+@EqualsAndHashCode(callSuper = true)
+public class Appointee extends Entity {
 
-    private String id;
-    private Name name;
-    private Address address;
-    private Contact contact;
-    private Identity identity;
-
-    @JsonCreator
-    public Appointee(@JsonProperty("id") String id,
-                     @JsonProperty("name") Name name,
-                     @JsonProperty("address") Address address,
-                     @JsonProperty("contact") Contact contact,
-                     @JsonProperty("identity") Identity identity) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.contact = contact;
-        this.identity = identity;
-    }
 }
