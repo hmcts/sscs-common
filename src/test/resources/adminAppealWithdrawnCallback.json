@@ -70,7 +70,16 @@
             "mobile": "07411999999"
           },
           "organisation": "HP Ltd",
-          "hasRepresentative": "Yes"
+          "hasRepresentative": "Yes",
+          "confidentialityRequired": null,
+          "id": null,
+          "identity": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "sendNotification": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "signer": null,
         "appellant": {
@@ -95,9 +104,36 @@
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "confidentialityRequired": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null,
+            "subscription": null,
+            "reasonableAdjustment": null,
+            "sendNotification": null,
+            "unacceptableCustomerBehaviour": null,
+            "vulnerabilityDetails": null,
+            "vulnerableFlag": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "hasRepresentative": null,
+          "id": null,
+          "organisation": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "rep": null,
+          "role": null,
+          "sendNotification": null,
+          "showRole": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -838,7 +874,16 @@
             "mobile": "07411999999"
           },
           "organisation": "HP Ltd",
-          "hasRepresentative": "Yes"
+          "hasRepresentative": "Yes",
+          "confidentialityRequired": null,
+          "id": null,
+          "identity": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "sendNotification": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "signer": null,
         "appellant": {
@@ -863,9 +908,36 @@
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "confidentialityRequired": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null,
+            "subscription": null,
+            "reasonableAdjustment": null,
+            "sendNotification": null,
+            "unacceptableCustomerBehaviour": null,
+            "vulnerabilityDetails": null,
+            "vulnerableFlag": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "hasRepresentative": null,
+          "id": null,
+          "organisation": null,
+          "subscription": null,
+          "reasonableAdjustment": null,
+          "rep": null,
+          "role": null,
+          "sendNotification": null,
+          "showRole": null,
+          "unacceptableCustomerBehaviour": null,
+          "vulnerabilityDetails": null,
+          "vulnerableFlag": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
