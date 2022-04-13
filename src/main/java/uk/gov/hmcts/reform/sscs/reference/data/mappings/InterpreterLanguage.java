@@ -202,9 +202,9 @@ public enum InterpreterLanguage {
     private final String language;
     private final String dialect;
 
-    public static InterpreterLanguage getInterpreterLanguageByLanguageAndDialect(String value, String dialect) {
+    public static InterpreterLanguage getInterpreterLanguageByLanguageAndDialect(String languages, String dialect) {
         for (InterpreterLanguage il : InterpreterLanguage.values()) {
-            if (il.getLanguage().equals(value) && il.getDialect().equals(dialect)) {
+            if (il.getLanguage().equals(languages) && il.getDialect().equals(dialect)) {
                 return il;
             }
         }
