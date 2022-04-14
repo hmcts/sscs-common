@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -76,11 +77,11 @@ public class RoboticsJsonMapper {
         return buildContactDetails(json, appointee.getAddress(), appointee.getContact());
     }
 
-    private static JSONObject buildJointPartyDetails(JointPartyName jointPartyName, Address jointPartyAddress, boolean sameAddressAsAppellant,
+    private static JSONObject buildJointPartyDetails(Name name, Address jointPartyAddress, boolean sameAddressAsAppellant,
                                                      String dob, String nino) {
         JSONObject json = new JSONObject();
 
-        buildName(json, jointPartyName.getTitle(), jointPartyName.getFirstName(), jointPartyName.getLastName());
+        buildName(json, name.getTitle(), name.getFirstName(), name.getLastName());
 
         json.put("sameAddressAsAppellant", sameAddressAsAppellant ? YES : NO);
         json.put("dob", dob);
@@ -388,13 +389,15 @@ public class RoboticsJsonMapper {
             obj.put("elementsDisputed", elementsDisputed);
         }
 
-        if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
-            if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+        JointParty jointParty = sscsCaseData.getJointParty();
+        if (isYes(jointParty.getHasJointParty())) {
+            boolean sameAddressAsAppellant = isYes(jointParty.getJointPartyAddressSameAsAppellant());
+            if (sameAddressAsAppellant) {
+                obj.put("jointParty", buildJointPartyDetails(jointParty.getName(), sscsCaseData.getAppeal().getAppellant().getAddress(), true,
+                        jointParty.getIdentity().getDob(), jointParty.getIdentity().getNino()));
             } else {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+                obj.put("jointParty", buildJointPartyDetails(jointParty.getName(), jointParty.getAddress(), false,
+                        jointParty.getIdentity().getDob(), jointParty.getIdentity().getNino()));
             }
         }
         if (sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers() != null) {
