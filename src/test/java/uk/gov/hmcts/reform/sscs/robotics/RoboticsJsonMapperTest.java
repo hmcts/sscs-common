@@ -7,6 +7,8 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
@@ -559,13 +561,13 @@ public class RoboticsJsonMapperTest {
     public void shouldPopulateRoboticsWithUcFields() {
         initialiseElementDisputedLists();
 
-        roboticsWrapper.getSscsCaseData().setJointParty("Yes");
-        roboticsWrapper.getSscsCaseData().setJointPartyName(JointPartyName.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
-        roboticsWrapper.getSscsCaseData().setJointPartyAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
-        roboticsWrapper.getSscsCaseData().setJointPartyAddressSameAsAppellant("No");
+        roboticsWrapper.getSscsCaseData().getJointParty().setHasJointParty(YES);
+        roboticsWrapper.getSscsCaseData().getJointParty().setName(Name.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setJointPartyAddressSameAsAppellant(NO);
         roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers("Yes");
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
-        roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
                 .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
 
@@ -603,13 +605,13 @@ public class RoboticsJsonMapperTest {
     public void shouldPopulateRoboticsWithUcFieldsSameAddress() {
         initialiseElementDisputedLists();
 
-        roboticsWrapper.getSscsCaseData().setJointParty("Yes");
-        roboticsWrapper.getSscsCaseData().setJointPartyName(JointPartyName.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
-        roboticsWrapper.getSscsCaseData().setJointPartyAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
-        roboticsWrapper.getSscsCaseData().setJointPartyAddressSameAsAppellant("Yes");
+        roboticsWrapper.getSscsCaseData().getJointParty().setHasJointParty(YES);
+        roboticsWrapper.getSscsCaseData().getJointParty().setName(Name.builder().title("Mr").firstName("Harry").lastName("Hotspur").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setAddress(Address.builder().line1("The road").line2("Test").town("Bedrock").county("Bedfordshire").postcode("BD1 5LK").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setJointPartyAddressSameAsAppellant(YES);
         roboticsWrapper.getSscsCaseData().setElementsDisputedIsDecisionDisputedByOthers("Yes");
         roboticsWrapper.getSscsCaseData().setElementsDisputedLinkedAppealRef("12345678");
-        roboticsWrapper.getSscsCaseData().setJointPartyIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
+        roboticsWrapper.getSscsCaseData().getJointParty().setIdentity(Identity.builder().nino("JT000000B").dob("2000-01-01").build());
         roboticsWrapper.getSscsCaseData().getAppeal().setHearingSubtype(HearingSubtype.builder()
                 .wantsHearingTypeTelephone("Yes").hearingTelephoneNumber("07999888000").wantsHearingTypeVideo("Yes").hearingVideoEmail("m@test.com").wantsHearingTypeFaceToFace("No").build());
 
@@ -693,7 +695,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndChildSupportBenefit_thenSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YesNo.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(CHILD_SUPPORT.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -703,7 +705,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndSscs5Benefit_thenSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YesNo.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(GUARDIANS_ALLOWANCE.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -713,7 +715,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndNonChildSupportBenefit_thenDoNotSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YesNo.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(PIP.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
