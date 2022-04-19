@@ -325,9 +325,7 @@ public class SscsCaseData implements CaseData {
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
 
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
-    private SscsIndustrialInjuriesData sscsIndustrialInjuriesData;
+    private String panelDoctorSpecialism;
 
     private YesNo functionalTest;
 
@@ -613,14 +611,6 @@ public class SscsCaseData implements CaseData {
             ldt = Optional.empty();
         }
         return ldt;
-    }
-
-    @JsonIgnore
-    public SscsIndustrialInjuriesData getSscsIndustrialInjuriesData() {
-        if (sscsIndustrialInjuriesData == null) {
-            this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
-        }
-        return sscsIndustrialInjuriesData;
     }
 
     public boolean isBenefitType(Benefit benefitType) {
