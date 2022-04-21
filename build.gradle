@@ -92,8 +92,8 @@ publishing {
 }
 
 def versions = [
-    spring : '2.3.5.RELEASE',
-    lombok: '1.18.22'
+    lombok          : '1.18.22',
+    spring          : '2.3.5.RELEASE'
 ]
 
 dependencies {
@@ -107,7 +107,7 @@ dependencies {
     compile group: 'com.github.hmcts', name: 'ccd-client', version: '4.8.6'
     compile group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.15.2'
 
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    compile group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.7'
     compile group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.13.0'
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '7.15.1'
 
