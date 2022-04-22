@@ -219,8 +219,6 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingDateOrTime;
     private String adjournCaseNextHearingFirstAvailableDateAfterDate;
     private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
-    private HearingRoute hearingRoute;
-    private HearingState hearingState;
     private AdjournCaseTime adjournCaseTime;
     private List<CollectionItem<String>> adjournCaseReasons;
     private List<CollectionItem<String>> adjournCaseAdditionalDirections;
@@ -344,6 +342,10 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private WorkAllocationFields workAllocationFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SchedulingAndListingFields schedulingAndListingFields;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
@@ -589,6 +591,14 @@ public class SscsCaseData implements CaseData {
             this.workAllocationFields = new WorkAllocationFields();
         }
         return workAllocationFields;
+    }
+
+    @JsonIgnore
+    public SchedulingAndListingFields getSchedulingAndListingFields() {
+        if (schedulingAndListingFields == null) {
+            this.schedulingAndListingFields = new SchedulingAndListingFields();
+        }
+        return schedulingAndListingFields;
     }
 
     @JsonIgnore
