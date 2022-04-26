@@ -217,7 +217,8 @@ public enum InterpreterLanguage {
             .findFirst()
             .orElse(conditionNotMet(languages));
     }
-
+    
+    //TODO: Finish of list of lanuages SSCS-10445
     public static InterpreterLanguage conditionNotMet(String languages){
         switch (languages){
             case "Arabic (Middle Eastern)":
