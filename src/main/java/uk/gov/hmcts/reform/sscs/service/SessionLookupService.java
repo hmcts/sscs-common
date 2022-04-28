@@ -33,19 +33,10 @@ public class SessionLookupService {
         try  {
             loadSessionMappingFile();
         } catch (IOException e) {
-            logErrorWithSessionDetailLookUp(e);
+            String message = "Unable to read in spreadsheet with session-mapping data: " + MAPPING_FILE_PATH;
+            SessionDetailsLookUpException ex = new SessionDetailsLookUpException(e);
+            log.error(message, ex);
         }
-    }
-
-    private void logErrorWithSessionDetailLookUp(IOException e) {
-        String message = "Unable to read in spreadsheet with session-mapping data: " + MAPPING_FILE_PATH;
-        SessionDetailsLookUpException ex = new SessionDetailsLookUpException(e);
-        log.error(message, ex);
-    }
-
-    private void logErrorWithSessionDetailLookUp(String error) {
-        SessionDetailsLookUpException ex = new SessionDetailsLookUpException(error);
-        log.error("Error while processing the session look up file",ex);
     }
 
     private void loadSessionMappingFile() throws IOException {
