@@ -13,5 +13,10 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude
 @EqualsAndHashCode(callSuper = true)
 public abstract class Party extends Entity {
+    private String isAppointee;
+    private Appointee appointee;
+
     private Role role;
+
+    private YesNo confidentialityRequired;
 }

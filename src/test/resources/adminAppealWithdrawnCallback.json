@@ -52,6 +52,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -70,16 +72,7 @@
             "mobile": "07411999999"
           },
           "organisation": "HP Ltd",
-          "hasRepresentative": "Yes",
-          "confidentialityRequired": null,
-          "id": null,
-          "identity": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "sendNotification": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "hasRepresentative": "Yes"
         },
         "signer": null,
         "appellant": {
@@ -100,40 +93,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
           "appointee": {
             "address": null,
-            "confidentialityRequired": null,
             "contact": null,
             "id": null,
             "identity": null,
             "name": null,
-            "organisation": null,
-            "subscription": null,
-            "reasonableAdjustment": null,
-            "sendNotification": null,
-            "unacceptableCustomerBehaviour": null,
-            "vulnerabilityDetails": null,
-            "vulnerableFlag": null
+            "organisation": null
           },
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "hasRepresentative": null,
-          "id": null,
-          "organisation": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "rep": null,
-          "role": null,
-          "sendNotification": null,
-          "showRole": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -856,6 +833,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -874,16 +853,7 @@
             "mobile": "07411999999"
           },
           "organisation": "HP Ltd",
-          "hasRepresentative": "Yes",
-          "confidentialityRequired": null,
-          "id": null,
-          "identity": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "sendNotification": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "hasRepresentative": "Yes"
         },
         "signer": null,
         "appellant": {
@@ -904,40 +874,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
           "appointee": {
             "address": null,
-            "confidentialityRequired": null,
             "contact": null,
             "id": null,
             "identity": null,
             "name": null,
-            "organisation": null,
-            "subscription": null,
-            "reasonableAdjustment": null,
-            "sendNotification": null,
-            "unacceptableCustomerBehaviour": null,
-            "vulnerabilityDetails": null,
-            "vulnerableFlag": null
+            "organisation": null
           },
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "hasRepresentative": null,
-          "id": null,
-          "organisation": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "rep": null,
-          "role": null,
-          "sendNotification": null,
-          "showRole": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
