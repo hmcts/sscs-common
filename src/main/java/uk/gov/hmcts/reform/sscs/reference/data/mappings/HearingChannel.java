@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum HearingChannel {
-    TELEPHONE("telephone", "Telephone", "Ffôn", "BBA3"),
-    VIDEO("video", "Video", "Fideo", "BBA3"),
-    FACE_TO_FACE("faceToFace", "Face To Face", "Wyneb yn wyneb", "BBA3"),
-    NOT_ATTENDING("notAttending", "Not Attending", "", "BBA3");
+    TELEPHONE("TEL", "Telephone", "Ffôn", "BBA3"),
+    VIDEO("VID", "Video", "Fideo", "BBA3"),
+    FACE_TO_FACE("INTER", "Face To Face", "Wyneb yn wyneb", "BBA3"),
+    NOT_ATTENDING("ONPPRS", "Not Attending", "", "BBA3");
 
     private final String key;
     private final String valueEN;
