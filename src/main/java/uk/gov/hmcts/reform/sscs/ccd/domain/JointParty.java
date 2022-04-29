@@ -36,6 +36,4 @@ public class JointParty extends Party {
     private YesNo hasJointParty;
 
     private YesNo jointPartyAddressSameAsAppellant;
-
-    private Role role;
 }

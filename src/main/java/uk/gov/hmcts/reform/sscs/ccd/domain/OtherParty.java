@@ -21,24 +21,28 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OtherParty extends Party {
 
-    private HearingOptions hearingOptions;
-    private HearingSubtype hearingSubtype;
+    private YesNo showRole;
 
     private YesNo unacceptableCustomerBehaviour;
 
-    private YesNo confidentialityRequired;
+    private HearingOptions hearingOptions;
+    private HearingSubtype hearingSubtype;
 
     private Representative rep;
 
-    private String isAppointee;
+    private Subscription otherPartySubscription;
+    private Subscription otherPartyAppointeeSubscription;
+    private Subscription otherPartyRepresentativeSubscription;
 
-    private Appointee appointee;
+    private YesNo sendNewOtherPartyNotification;
 
-    private YesNo showRole;
+    private ReasonableAdjustmentDetails reasonableAdjustment;
+    private ReasonableAdjustmentDetails appointeeReasonableAdjustment;
+    private ReasonableAdjustmentDetails repReasonableAdjustment;
 
     @JsonIgnore
     public boolean hasAppointee() {
-        return  nonNull(appointee) && isYes(isAppointee);
+        return nonNull(getAppointee()) && isYes(getIsAppointee());
     }
 
     @JsonIgnore
