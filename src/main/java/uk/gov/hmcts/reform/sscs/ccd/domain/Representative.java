@@ -14,4 +14,5 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 public class Representative extends Entity {
     private String hasRepresentative;
+    private String organisation;
 }

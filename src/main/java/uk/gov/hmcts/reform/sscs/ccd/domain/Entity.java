@@ -20,14 +20,5 @@ public abstract class Entity {
     private Name name;
     private Address address;
     private Contact contact;
-
     private String organisation;
-
-    private YesNo confidentialityRequired;
-    private YesNo unacceptableCustomerBehaviour;
-    private YesNo vulnerableFlag;
-    private String vulnerabilityDetails;
-
-    private Subscription subscription;
-    private ReasonableAdjustmentDetails reasonableAdjustment;
 }
