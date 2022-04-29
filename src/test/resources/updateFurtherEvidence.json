@@ -58,20 +58,13 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {},
           "address": {},
           "contact": {},
           "organisation": null,
-          "hasRepresentative": "No",
-          "confidentialityRequired": null,
-          "id": null,
-          "identity": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "sendNotification": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "hasRepresentative": "No"
         },
         "signer": "Appellant Test",
         "appellant": {
@@ -94,40 +87,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
           "appointee": {
             "address": null,
-            "confidentialityRequired": null,
             "contact": null,
             "id": null,
             "identity": null,
             "name": null,
-            "organisation": null,
-            "subscription": null,
-            "reasonableAdjustment": null,
-            "sendNotification": null,
-            "unacceptableCustomerBehaviour": null,
-            "vulnerabilityDetails": null,
-            "vulnerableFlag": null
+            "organisation": null
           },
           "isAppointee": "No",
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "hasRepresentative": null,
-          "id": null,
-          "organisation": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "rep": null,
-          "role": null,
-          "sendNotification": null,
-          "showRole": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -668,20 +645,13 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {},
           "address": {},
           "contact": {},
           "organisation": null,
-          "hasRepresentative": "No",
-          "confidentialityRequired": null,
-          "id": null,
-          "identity": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "sendNotification": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "hasRepresentative": "No"
         },
         "signer": "AN Test",
         "appellant": {
@@ -704,40 +674,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
           "appointee": {
             "address": null,
-            "confidentialityRequired": null,
             "contact": null,
             "id": null,
             "identity": null,
             "name": null,
-            "organisation": null,
-            "subscription": null,
-            "reasonableAdjustment": null,
-            "sendNotification": null,
-            "unacceptableCustomerBehaviour": null,
-            "vulnerabilityDetails": null,
-            "vulnerableFlag": null
+            "organisation": null
           },
           "isAppointee": "No",
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "hasRepresentative": null,
-          "id": null,
-          "organisation": null,
-          "subscription": null,
-          "reasonableAdjustment": null,
-          "rep": null,
-          "role": null,
-          "sendNotification": null,
-          "showRole": null,
-          "unacceptableCustomerBehaviour": null,
-          "vulnerabilityDetails": null,
-          "vulnerableFlag": null
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",

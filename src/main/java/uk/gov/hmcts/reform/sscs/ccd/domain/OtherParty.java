@@ -26,8 +26,6 @@ public class OtherParty extends Party {
 
     private YesNo unacceptableCustomerBehaviour;
 
-    private YesNo confidentialityRequired;
-
     private Representative rep;
 
     private String isAppointee;
@@ -38,7 +36,7 @@ public class OtherParty extends Party {
 
     @JsonIgnore
     public boolean hasAppointee() {
-        return  nonNull(appointee) && isYes(isAppointee);
+        return nonNull(appointee) && isYes(isAppointee);
     }
 
     @JsonIgnore
