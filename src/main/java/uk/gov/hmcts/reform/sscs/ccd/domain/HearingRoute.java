@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,8 +12,8 @@ public enum HearingRoute {
 
     private final String state;
 
-    @JsonValue
-    public String getState() {
+    @Override
+    public String toString() {
         return state;
     }
 }
