@@ -16,8 +16,9 @@ public enum HearingState {
 
     private final String state;
 
+    @Override
     @JsonValue
-    public String getState() {
+    public String toString() {
         return state;
     }
 
