@@ -13,4 +13,8 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 public class Appellant extends Party {
 
+    private String isAddressSameAsAppointee;
+    private YesNo confidentialityRequired;
+    private String isAppointee;
+    private Appointee appointee;
 }
