@@ -75,7 +75,7 @@ public class RegionalProcessingCenterServiceTest {
             .phoneNumber("0300 123 1142")
             .faxNumber("0870 324 0109")
             .email("Liverpool_SYA_Resp@justice.gov.uk")
-            .hearingRoute(HearingRoute.GAPS)
+            .hearingRoute(HearingRoute.LIST_ASSIST)
             .build();
 
         RegionalProcessingCenter cardiffRpc = RegionalProcessingCenter.builder()
@@ -119,7 +119,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
         assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
-        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+        assertEquals("listAssist", regionalProcessingCenter.getHearingRoute().toString());
     }
 
     @Test
