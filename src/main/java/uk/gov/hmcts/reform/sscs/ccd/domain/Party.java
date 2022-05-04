@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
+
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -9,9 +9,14 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @RequiredArgsConstructor
+@AllArgsConstructor
 @JsonInclude
 @EqualsAndHashCode(callSuper = true)
-public class Appellant extends Party {
+public abstract class Party extends Entity {
+    private String isAppointee;
+    private Appointee appointee;
 
-    private String isAddressSameAsAppointee;
+    private Role role;
+
+    private YesNo confidentialityRequired;
 }

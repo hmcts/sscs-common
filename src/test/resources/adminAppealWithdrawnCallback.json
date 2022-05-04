@@ -52,6 +52,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -91,13 +93,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -820,6 +833,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -859,13 +874,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",

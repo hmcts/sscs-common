@@ -4,10 +4,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import org.junit.Assert;
 import org.junit.Test;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class JointPartyAddressAndAppellantAddressValidationTest extends ValidatorTestBase {
@@ -24,7 +21,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
     public void testWhenJointPartyHasEmptyAddress_IsValid() {
 
         Address jointPartyAddress = Address.builder().build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyAddress(jointPartyAddress).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         Assert.assertTrue(violations.isEmpty());
     }
@@ -33,7 +30,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
     public void testWhenJointPartyHasAddressWithLine1WithNoSpecialCharacters_IsValid() {
 
         Address jointPartyAddress = Address.builder().line1("some text").build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyAddress(jointPartyAddress).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         Assert.assertTrue(violations.isEmpty());
     }
@@ -45,7 +42,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
     public void testWhenJointPartyHasAddressWithLine1WithSpecialCharacters_IsInValid() {
 
         Address jointPartyAddress = Address.builder().line1("some @text").build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyAddress(jointPartyAddress).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         assertSingleViolationWithMessage(violations, "Line 1 must not contain special characters");
     }
@@ -57,7 +54,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
     public void testWhenJointPartyHasInvalidPostcode_IsInValid() {
 
         Address jointPartyAddress = Address.builder().postcode("some text").build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyAddress(jointPartyAddress).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         assertSingleViolationWithMessage(violations, "Please enter a valid postcode");
     }

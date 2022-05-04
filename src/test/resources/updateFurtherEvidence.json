@@ -58,6 +58,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {},
           "address": {},
           "contact": {},
@@ -85,13 +87,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -632,6 +645,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": null,
           "name": {},
           "address": {},
           "contact": {},
@@ -659,13 +674,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id":null,
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": null,
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
