@@ -50,6 +50,9 @@ public enum State {
     @JsonProperty("hearing")
     HEARING("hearing"),
 
+    @JsonProperty("handlingError")
+    HANDLING_ERROR("handlingError"),
+
     @JsonProperty("notListable")
     NOT_LISTABLE("notListable"),
 
