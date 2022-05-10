@@ -9,36 +9,64 @@ public class HearingDurationTest {
 
     @Test
     public void getHearingDuration() {
-        HearingDuration result = HearingDuration.getHearingDuration("003", "LE", null);
+        HearingDuration result = HearingDuration.getHearingDuration("003", "LE");
 
         assertEquals(HearingDuration.PIP_REASSESSMENT_CASE_LE,result);
     }
 
     @Test
-    public void getHearingDurationNoElement() {
-        HearingDuration result = HearingDuration.getHearingDuration("001", "US", List.of());
+    public void getDurationFaceToFaceNoElement() {
+        int result = HearingDuration.UC_US.getDurationFaceToFace(List.of());
 
-        assertEquals(HearingDuration.UC_US,result);
+        assertEquals(30,result);
     }
 
     @Test
-    public void getHearingDurationNoCorrectElement() {
-        HearingDuration result = HearingDuration.getHearingDuration("001", "US", List.of("PH"));
+    public void getDurationFaceToFaceNoCorrectElement() {
+        int result = HearingDuration.UC_US.getDurationFaceToFace(List.of("PH"));
 
-        assertEquals(HearingDuration.UC_US,result);
+        assertEquals(30,result);
     }
 
     @Test
-    public void getHearingDurationWC() {
-        HearingDuration result = HearingDuration.getHearingDuration("001", "US", List.of("WC"));
+    public void getDurationFaceToFaceWc() {
+        int result = HearingDuration.UC_US.getDurationFaceToFace(List.of("WC"));
 
-        assertEquals(HearingDuration.UC_US_WC,result);
+        assertEquals(45,result);
     }
 
     @Test
-    public void getHearingDurationSG() {
-        HearingDuration result = HearingDuration.getHearingDuration("001", "US", List.of("SG"));
+    public void getDurationFaceToFaceSg() {
+        int result = HearingDuration.UC_US.getDurationFaceToFace(List.of("SG"));
 
-        assertEquals(HearingDuration.UC_US_SG,result);
+        assertEquals(45,result);
+    }
+
+    @Test
+    public void getDurationInterpreterNoElement() {
+        int result = HearingDuration.UC_US.getDurationInterpreter(List.of());
+
+        assertEquals(60,result);
+    }
+
+    @Test
+    public void getDurationInterpreterNoCorrectElement() {
+        int result = HearingDuration.UC_US.getDurationInterpreter(List.of("PH"));
+
+        assertEquals(60,result);
+    }
+
+    @Test
+    public void getDurationInterpreterWc() {
+        int result = HearingDuration.UC_US.getDurationInterpreter(List.of("WC"));
+
+        assertEquals(75,result);
+    }
+
+    @Test
+    public void getDurationInterpreterSg() {
+        int result = HearingDuration.UC_US.getDurationInterpreter(List.of("SG"));
+
+        assertEquals(75,result);
     }
 }
