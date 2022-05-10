@@ -199,7 +199,7 @@ public enum InterpreterLanguage {
     ZZA_ZZA("zza", "Zaza", null),
     ZUL_ZUL("zul", "Zulu", null);
 
-    private final String key;
+    private final String hmcReference;
     private final String language;
     private final String dialect;
 
