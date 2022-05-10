@@ -715,7 +715,7 @@ public enum HearingDuration {
         } else {
             return hearingDurations.stream()
                     .filter(x -> nonNull(x.getElement()))
-                    .findFirst().orElseThrow();
+                    .findFirst().orElse(null);
         }
     }
 }
