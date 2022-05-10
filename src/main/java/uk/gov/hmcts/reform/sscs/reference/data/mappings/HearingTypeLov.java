@@ -12,17 +12,9 @@ public enum HearingTypeLov {
     DIRECTION_HEARINGS("BBA3-directionHearings", "Direction Hearings", "", "BBA3"),
     CHAMBERS_OUTCOME("BBA3-chambersOutcome", "Chambers Outcome", "", "BBA3");
 
-    private final String key;
+    private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
     private final String serviceCode;
 
-    public static HearingType getHearingType(String value) {
-        for (HearingType ht : HearingType.values()) {
-            if (ht.getValue().equals(value)) {
-                return ht;
-            }
-        }
-        return null;
-    }
 }

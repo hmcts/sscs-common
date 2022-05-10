@@ -7,22 +7,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingChannel {
 
-    TELEPHONE("TEL", "Telephone", "Ffôn", "BBA3"),
-    VIDEO("VID", "Video", "Fideo", "BBA3"),
-    FACE_TO_FACE("INTER", "Face To Face", "Wyneb yn wyneb", "BBA3"),
-    NOT_ATTENDING("ONPPRS", "Not Attending", "", "BBA3");
+    TELEPHONE("telephone", "Telephone", "Ffôn", "BBA3"),
+    VIDEO("video", "Video", "Fideo", "BBA3"),
+    FACE_TO_FACE("faceToFace", "Face To Face", "Wyneb yn wyneb", "BBA3"),
+    NOT_ATTENDING("notAttending", "Not Attending", null, "BBA3");
 
-    private final String key;
+    private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
     private final String serviceCode;
 
-    public static HearingChannel getHearingChannel(String value) {
-        for (HearingChannel hc : HearingChannel.values()) {
-            if (hc.getValueEn().equals(value)) {
-                return hc;
-            }
-        }
-        return null;
-    }
 }

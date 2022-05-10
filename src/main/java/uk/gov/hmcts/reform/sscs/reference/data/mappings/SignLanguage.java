@@ -20,12 +20,12 @@ public enum SignLanguage {
     VISUAL_FRAME_SIGNING("visualFrameSigning", "Visual frame signing"),
     PALANTYPIST("palantypist", "Palantypist / Speech to text");
 
-    private final String key;
-    private final String language;
+    private final String hmcReference;
+    private final String ccdReference;
 
-    public static SignLanguage getSignLanguageByLanguage(String value) {
+    public static SignLanguage getSignLanguageKeyByCcdReference(String value) {
         for (SignLanguage sl : SignLanguage.values()) {
-            if (sl.getLanguage().equals(value)) {
+            if (sl.getCcdReference().equals(value)) {
                 return sl;
             }
         }
