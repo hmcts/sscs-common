@@ -7,7 +7,9 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -697,11 +699,22 @@ public enum HearingDuration {
     private final Integer durationInterpreter;
     private final Integer durationPaper;
 
+    private static final Map<BenefitCode, Map<Issue, HearingDuration>> BY_BENEFIT = new HashMap<>();
+    private static final  Map<Issue, HearingDuration> BY_ISSUE = new HashMap<>();
+
+    static {
+        for (HearingDuration e: values()) {
+            BY_ISSUE.put(e.issue,e);
+            BY_BENEFIT.put(e.benefitCode, BY_ISSUE);
+        }
+    }
+
     public static HearingDuration getHearingDuration(String benefitCode, String issueCode, List<String> elements) {
         return getHearingDuration(BenefitCode.getBenefitCode(benefitCode), Issue.getIssue(issueCode), elements);
     }
 
     public static HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue, List<String> elements) {
+        HearingDuration duration = BY_BENEFIT.get(benefitCode).get(issue);
         List<HearingDuration> hearingDurations = Arrays.stream(values())
                 .filter(hearingDuration ->
                         hearingDuration.benefitCode.equals(benefitCode)

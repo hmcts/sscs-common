@@ -4,7 +4,8 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory.*;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -996,19 +997,26 @@ public enum SessionCategoryMap {
 
     public static final String SERVICE_CODE = "BBA3";
 
+    private static final Map<BenefitCode, Map<Issue, Map<Boolean, Map<Boolean, SessionCategoryMap>>>> BY_BENEFIT = new HashMap<>();
+    private static final Map<Issue, Map<Boolean, Map<Boolean, SessionCategoryMap>>> BY_ISSUE = new HashMap<>();
+    private static final Map<Boolean, Map<Boolean, SessionCategoryMap>> BY_SECOND_DOCTOR = new HashMap<>();
+    private static final Map<Boolean, SessionCategoryMap> BY_FQPM_REQUIRED = new HashMap<>();
+
+    static {
+        for (SessionCategoryMap e: values()) {
+            BY_FQPM_REQUIRED.put(e.fqpmRequired, e);
+            BY_SECOND_DOCTOR.put(e.secondDoctor, BY_FQPM_REQUIRED);
+            BY_ISSUE.put(e.issue, BY_SECOND_DOCTOR);
+            BY_BENEFIT.put(e.benefitCode, BY_ISSUE);
+        }
+    }
+
     public static SessionCategoryMap getSessionCategory(String benefitCode, String issueCode, boolean secondDoctor, boolean fqpmRequired) {
         return getSessionCategory(BenefitCode.getBenefitCode(benefitCode), Issue.getIssue(issueCode), secondDoctor, fqpmRequired);
     }
 
     public static SessionCategoryMap getSessionCategory(BenefitCode benefitCode, Issue issue, boolean secondDoctor, boolean fqpmRequired) {
-        return Arrays.stream(values())
-                .filter(sessionCategoryMap ->
-                        sessionCategoryMap.benefitCode.equals(benefitCode)
-                                && sessionCategoryMap.issue == issue
-                                && sessionCategoryMap.secondDoctor == secondDoctor
-                                && sessionCategoryMap.fqpmRequired == fqpmRequired)
-                .findFirst()
-                .orElse(null);
+        return BY_BENEFIT.get(benefitCode).get(issue).get(secondDoctor).get(fqpmRequired);
     }
 
     public String getCategoryTypeValue() {
