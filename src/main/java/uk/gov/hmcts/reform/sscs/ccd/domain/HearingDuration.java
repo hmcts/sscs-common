@@ -3,13 +3,11 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -699,13 +697,11 @@ public enum HearingDuration {
     private final Integer durationInterpreter;
     private final Integer durationPaper;
 
-    private static final Map<BenefitCode, Map<Issue, HearingDuration>> BY_BENEFIT = new HashMap<>();
-    private static final  Map<Issue, HearingDuration> BY_ISSUE = new HashMap<>();
+    private static final  Map<Integer, HearingDuration> BY_QUERY = new HashMap<>();
 
     static {
         for (HearingDuration e: values()) {
-            BY_ISSUE.put(e.issue,e);
-            BY_BENEFIT.put(e.benefitCode, BY_ISSUE);
+            BY_QUERY.put(getQueryHash(e.benefitCode,e.issue,e.element), e);
         }
     }
 
@@ -714,21 +710,24 @@ public enum HearingDuration {
     }
 
     public static HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue, List<String> elements) {
-        HearingDuration duration = BY_BENEFIT.get(benefitCode).get(issue);
-        List<HearingDuration> hearingDurations = Arrays.stream(values())
-                .filter(hearingDuration ->
-                        hearingDuration.benefitCode.equals(benefitCode)
-                                && hearingDuration.issue.equals(issue)
-                                && (isNull(hearingDuration.element) || isNotEmpty(elements) && elements.contains(hearingDuration.element)))
+        List<HearingDuration> hearingDurations = Optional.ofNullable(elements)
+                .orElse(Collections.emptyList()).stream()
+                .map(x -> BY_QUERY.get(getQueryHash(benefitCode, issue, x)))
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        if (hearingDurations.isEmpty()) {
-            return null;
-        } else if (hearingDurations.size() == 1) {
+
+        if (hearingDurations.isEmpty()){
+            hearingDurations.add(BY_QUERY.get(getQueryHash(benefitCode, issue, null)));
+        }
+
+        if (hearingDurations.size() == 1) {
             return hearingDurations.get(0);
         } else {
-            return hearingDurations.stream()
-                    .filter(x -> nonNull(x.getElement()))
-                    .findFirst().orElse(null);
+            return hearingDurations.stream().findFirst().orElse(null);
         }
+    }
+
+    private static Integer getQueryHash(BenefitCode benefitCode, Issue issue, String element) {
+        return Objects.hash(benefitCode, issue, element);
     }
 }
