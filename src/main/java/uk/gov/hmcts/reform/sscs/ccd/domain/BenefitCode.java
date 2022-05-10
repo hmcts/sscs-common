@@ -8,7 +8,6 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-
 public enum BenefitCode {
     UC(1,"Universal Credit"),
     PIP_NEW_CLAIM(2,"Personal Independent Payment (New Claim)"),
@@ -62,9 +61,8 @@ public enum BenefitCode {
     public static BenefitCode getBenefitCode(String ccdReference) {
         if (isNotBlank(ccdReference) && ccdReference.trim().matches("\\d+")) {
             return getBenefitCode(Integer.parseInt(ccdReference.trim()));
-        } else {
-            return null;
         }
+        return null;
     }
 
     public static BenefitCode getBenefitCode(int code) {
