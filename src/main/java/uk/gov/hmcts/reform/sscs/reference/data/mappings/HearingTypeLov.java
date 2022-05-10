@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingType;
 
 @Getter
 @RequiredArgsConstructor
