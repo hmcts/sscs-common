@@ -12,12 +12,7 @@ public enum CancellationReason {
     PARTY_UNABLE_TO_ATTEND("BBA3-partyUnableToAttend", "Party unable to attend", null, "BBA3"),
     EXCLUSION("BBA3-exclusion", "Exclusion", null, "BBA3"),
     LAPSED("BBA3-lapsed", "Lapsed", null, "BBA3"),
-    OTHER("BBA3-other", "Other", null, "BBA3"),
-    NO_LONGER_READY_FOR_HEARING("noLongerReadyForHearing", "No longer ready for hearing", null, null),
-    SETTLED("settled", "Settled", null, null),
-    JUDICIAL_DIRECTION("judicialDirection", "Judicial direction", null, null),
-    FEE_NOT_PAID("feeNotPaid", "Fee not paid", null, null),
-    PARTY_DID_NOT_ATTEND("partyDidNotAttend", "Party did not attend", null, null);
+    OTHER("BBA3-other", "Other", null, "BBA3");
 
     private final String hmcReference;
     private final String value;
