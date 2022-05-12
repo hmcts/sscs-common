@@ -23,9 +23,28 @@ public class HearingDurationTest {
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
             + "the valid duration is returned")
     @Test
-    public void getDurationFaceToFaceNoElement() {
+    public void getDurationFaceToFace() {
         int result = HearingDuration.getHearingDuration("001", "US")
                 .getDurationFaceToFace(List.of());
+
+        assertEquals(30,result);
+    }
+
+    @DisplayName("When an empty list of elements Disputed is given to getDurationInterpreter"
+            + "the valid duration is returned")
+    @Test
+    public void getDurationInterpreter() {
+        int result = HearingDuration.getHearingDuration("001", "US")
+                .getDurationInterpreter(List.of());
+
+        assertEquals(60,result);
+    }
+
+    @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
+            + "the valid duration is returned")
+    @Test
+    public void addExtraTimeNoElement() {
+        int result = HearingDuration.getHearingDuration("001", "US").addExtraTime(30,List.of());
 
         assertEquals(30,result);
     }
@@ -33,70 +52,29 @@ public class HearingDurationTest {
     @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationFaceToFace "
             + "the valid duration is returned")
     @Test
-    public void getDurationFaceToFaceNoCorrectElement() {
+    public void addExtraTimeCorrectElement() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationFaceToFace(List.of("PH"));
-
+                .addExtraTime(30,List.of("RY"));
         assertEquals(30,result);
     }
 
-    @DisplayName("When a list with the elements Disputed WC that give extra time are given to getDurationFaceToFace "
+    @DisplayName("When a list with the elements Disputed WorkCapability that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
-    public void getDurationFaceToFaceWc() {
+    public void addExtraTimeCorrectWc() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationFaceToFace(List.of("WC"));
+                .addExtraTime(30,List.of("WC"));
 
         assertEquals(45,result);
     }
 
-    @DisplayName("When a list with the elements Disputed SG that give extra time are given to getDurationFaceToFace "
+    @DisplayName("When a list with the elements Disputed SupportGroup that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
-    public void getDurationFaceToFaceSg() {
+    public void addExtraTimeCorrectSg() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationFaceToFace(List.of("SG"));
+                .addExtraTime(30,List.of("SG"));
 
         assertEquals(45,result);
-    }
-
-    @DisplayName("When an empty list of elements Disputed is given to getDurationInterpreter"
-            + "the valid duration is returned")
-    @Test
-    public void getDurationInterpreterNoElement() {
-        int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationInterpreter(List.of());
-
-        assertEquals(60,result);
-    }
-
-    @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationInterpreter "
-            + "the valid duration is returned")
-    @Test
-    public void getDurationInterpreterNoCorrectElement() {
-        int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationInterpreter(List.of("PH"));
-
-        assertEquals(60,result);
-    }
-
-    @DisplayName("When a list with the elements Disputed WC that give extra time are given to getDurationInterpreter "
-            + "the valid duration with extra time is returned")
-    @Test
-    public void getDurationInterpreterWc() {
-        int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationInterpreter(List.of("WC"));
-
-        assertEquals(75,result);
-    }
-
-    @DisplayName("When a list with the elements Disputed SG that give extra time are given to getDurationInterpreter "
-            + "the valid duration with extra time is returned")
-    @Test
-    public void getDurationInterpreterSg() {
-        int result = HearingDuration.getHearingDuration("001", "US")
-                .getDurationInterpreter(List.of("SG"));
-
-        assertEquals(75,result);
     }
 }
