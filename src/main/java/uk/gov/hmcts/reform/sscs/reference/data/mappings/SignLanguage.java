@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
+import java.util.Arrays;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
 
 @Getter
 @RequiredArgsConstructor
