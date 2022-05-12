@@ -7,24 +7,22 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
 import java.util.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
-import uk.gov.hmcts.reform.sscs.exception.HearingDurationImportException;
 
+@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Slf4j
-public class HearingDuration {
+public class HearingDuration extends ReferenceData {
 
     private BenefitCode benefitCode;
     private Issue issue;
@@ -32,26 +30,16 @@ public class HearingDuration {
     private Integer durationInterpreter;
     private Integer durationPaper;
 
-    private static final List<HearingDuration> hearingDurations;
-
-    private static final Map<Integer, HearingDuration> BY_QUERY = new HashMap<>();
-
     private static final int MULTIPLE_ISSUES_EXTRA_TIME = 15;
 
     public static final String JSON_DATA_LOCATION = "reference-data/hearing-durations.json";
 
+    private static List<HearingDuration> hearingDurations;
+    private static Map<Integer, HearingDuration> hashMap;
+
     static {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            hearingDurations = objectMapper.readValue(new ClassPathResource(JSON_DATA_LOCATION).getInputStream(), new TypeReference<List<HearingDuration>>(){});
-        } catch (IOException exception) {
-            log.error("Error while reading HearingDuration from " + JSON_DATA_LOCATION + exception.getMessage(), exception);
-            throw new HearingDurationImportException("Error while reading HearingDuration from " + JSON_DATA_LOCATION, exception);
-        }
-        for (HearingDuration hearingDuration: hearingDurations) {
-            Integer hash = getQueryHash(hearingDuration.benefitCode, hearingDuration.issue);
-            BY_QUERY.put(hash, hearingDuration);
-        }
+        hearingDurations = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>(){});
+        hashMap = generateHashMap(hearingDurations);
     }
 
     public Integer getDurationFaceToFace(List<String> elementsDisputed) {
@@ -67,10 +55,14 @@ public class HearingDuration {
     }
 
     public static HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue) {
-        return BY_QUERY.get(getQueryHash(benefitCode, issue));
+        return hashMap.get(getHash(benefitCode, issue));
     }
 
-    private static Integer getQueryHash(BenefitCode benefitCode, Issue issue) {
+    public Integer getHash() {
+        return getHash(benefitCode, issue);
+    }
+
+    private static Integer getHash(BenefitCode benefitCode, Issue issue) {
         return Objects.hash(benefitCode, issue);
     }
 
