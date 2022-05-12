@@ -60,7 +60,11 @@ public enum BenefitCode {
 
     public static BenefitCode getBenefitCode(String ccdReference) {
         if (isNotBlank(ccdReference) && ccdReference.trim().matches("\\d+")) {
-            return getBenefitCode(Integer.parseInt(ccdReference.trim()));
+            try {
+                return getBenefitCode(Integer.parseInt(ccdReference.trim()));
+            } catch (NumberFormatException exception) {
+                return null;
+            }
         }
         return null;
     }
