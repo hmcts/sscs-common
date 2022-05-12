@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public enum SignLanguage {
@@ -24,11 +26,9 @@ public enum SignLanguage {
     private final String ccdReference;
 
     public static SignLanguage getSignLanguageKeyByCcdReference(String value) {
-        for (SignLanguage sl : SignLanguage.values()) {
-            if (sl.getCcdReference().equals(value)) {
-                return sl;
-            }
-        }
-        return null;
+        return Arrays.stream(SignLanguage.values())
+                .filter(sl -> sl.getCcdReference().equals(value))
+                .findFirst()
+                .orElse(null);
     }
 }
