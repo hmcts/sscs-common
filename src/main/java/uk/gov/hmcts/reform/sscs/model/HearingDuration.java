@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.model;
 
-import static java.util.Objects.isNull;
-import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+import static java.util.Objects.nonNull;
+import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 
@@ -69,20 +69,23 @@ public class HearingDuration extends ReferenceData {
     }
 
     Integer addExtraTimeIfNeeded(Integer initialDuration, List<String> elements) {
-        if (isNull(initialDuration) || isEmpty(elements)) {
-            return initialDuration;
-        }
+        if (nonNull(initialDuration) && isNotEmpty(elements)) {
+            List<Issue> issues = getIssues(elements);
 
-        if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)) {
-            List<Issue> issues = elements.stream()
-                    .map(Issue::getIssue)
-                    .collect(Collectors.toList());
-            if (isIssueWorkCapabilityAssessment(issues) || isSupportGroupPlacement(issues)) {
+            if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)
+                && (isIssueWorkCapabilityAssessment(issues)
+                || isSupportGroupPlacement(issues))) {
                 return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
             }
         }
 
         return initialDuration;
+    }
+
+    List<Issue> getIssues(List<String> elements) {
+        return elements.stream()
+            .map(Issue::getIssue)
+            .collect(Collectors.toList());
     }
 
     boolean isSupportGroupPlacement(List<Issue> issues) {
