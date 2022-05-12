@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.model;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
@@ -16,8 +15,8 @@ public class HearingDurationTest {
     public void getHearingDuration() {
         HearingDuration result = HearingDuration.getHearingDuration("003", "LE");
 
-        Assert.assertEquals(BenefitCode.PIP_REASSESSMENT_CASE,result.getBenefitCode());
-        Assert.assertEquals(Issue.LE,result.getIssue());
+        assertEquals(BenefitCode.PIP_REASSESSMENT_CASE, result.getBenefitCode());
+        assertEquals(Issue.LE, result.getIssue());
     }
 
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
@@ -27,7 +26,7 @@ public class HearingDurationTest {
         int result = HearingDuration.getHearingDuration("001", "US")
                 .getDurationFaceToFace(List.of());
 
-        assertEquals(30,result);
+        assertEquals(30, result);
     }
 
     @DisplayName("When an empty list of elements Disputed is given to getDurationInterpreter"
@@ -37,16 +36,17 @@ public class HearingDurationTest {
         int result = HearingDuration.getHearingDuration("001", "US")
                 .getDurationInterpreter(List.of());
 
-        assertEquals(60,result);
+        assertEquals(60, result);
     }
 
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
             + "the valid duration is returned")
     @Test
     public void addExtraTimeNoElement() {
-        int result = HearingDuration.getHearingDuration("001", "US").addExtraTimeIfNeeded(30,List.of());
+        int result = HearingDuration.getHearingDuration("001", "US")
+            .addExtraTimeIfNeeded(30, List.of());
 
-        assertEquals(30,result);
+        assertEquals(30, result);
     }
 
     @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationFaceToFace "

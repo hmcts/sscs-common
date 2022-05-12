@@ -21,6 +21,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
 @Data
 @Slf4j
 public class SessionCategoryMap extends ReferenceData {
+
     private BenefitCode benefitCode;
     private Issue issue;
     private boolean secondDoctor;
