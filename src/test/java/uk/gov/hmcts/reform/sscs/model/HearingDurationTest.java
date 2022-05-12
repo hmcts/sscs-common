@@ -30,7 +30,7 @@ public class HearingDurationTest {
         assertEquals(30,result);
     }
 
-    @DisplayName("When an list with no elements Disputed that give extra time are given to getDurationFaceToFace "
+    @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationFaceToFace "
             + "the valid duration is returned")
     @Test
     public void getDurationFaceToFaceNoCorrectElement() {
@@ -40,7 +40,7 @@ public class HearingDurationTest {
         assertEquals(30,result);
     }
 
-    @DisplayName("When an list with the elements Disputed WC that give extra time are given to getDurationFaceToFace "
+    @DisplayName("When a list with the elements Disputed WC that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
     public void getDurationFaceToFaceWc() {
@@ -50,7 +50,7 @@ public class HearingDurationTest {
         assertEquals(45,result);
     }
 
-    @DisplayName("When an list with the elements Disputed SG that give extra time are given to getDurationFaceToFace "
+    @DisplayName("When a list with the elements Disputed SG that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
     public void getDurationFaceToFaceSg() {
@@ -70,7 +70,7 @@ public class HearingDurationTest {
         assertEquals(60,result);
     }
 
-    @DisplayName("When an list with no elements Disputed that give extra time are given to getDurationInterpreter "
+    @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationInterpreter "
             + "the valid duration is returned")
     @Test
     public void getDurationInterpreterNoCorrectElement() {
@@ -80,7 +80,7 @@ public class HearingDurationTest {
         assertEquals(60,result);
     }
 
-    @DisplayName("When an list with the elements Disputed WC that give extra time are given to getDurationInterpreter "
+    @DisplayName("When a list with the elements Disputed WC that give extra time are given to getDurationInterpreter "
             + "the valid duration with extra time is returned")
     @Test
     public void getDurationInterpreterWc() {
@@ -90,7 +90,7 @@ public class HearingDurationTest {
         assertEquals(75,result);
     }
 
-    @DisplayName("When an list with the elements Disputed SG that give extra time are given to getDurationInterpreter "
+    @DisplayName("When a list with the elements Disputed SG that give extra time are given to getDurationInterpreter "
             + "the valid duration with extra time is returned")
     @Test
     public void getDurationInterpreterSg() {
