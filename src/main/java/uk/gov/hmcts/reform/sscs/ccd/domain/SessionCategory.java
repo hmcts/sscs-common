@@ -25,8 +25,11 @@ public enum SessionCategory {
     private final String name;
 
     public static SessionCategory getSessionCategory(String sessionCategoryCode) {
-        int sessionCategoryCodeInt = Integer.parseInt(sessionCategoryCode.replaceFirst("^0+(?!$)", ""));
-        return getSessionCategory(sessionCategoryCodeInt);
+        try {
+            return getSessionCategory(Integer.parseInt(sessionCategoryCode));
+        } catch (NumberFormatException exception) {
+            return null;
+        }
     }
 
     public static SessionCategory getSessionCategory(int sessionCategoryCode) {

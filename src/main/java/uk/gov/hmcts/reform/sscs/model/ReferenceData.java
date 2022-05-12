@@ -16,9 +16,11 @@ public abstract class ReferenceData {
         try {
             return JsonDataReader.importObjectDataList(filename,  typeReference);
         } catch (IOException exception) {
-            String message = String.format("Error setting Reference Data while reading from %s, %s", filename, exception.getMessage());
-            log.error(message);
-            throw new ReferenceDataImportException(message, exception);
+            ReferenceDataImportException referenceDataException = new ReferenceDataImportException(String
+                    .format("Error loading Reference Data while reading from %s, %s",
+                            filename, exception.getMessage()), exception);
+            log.error(referenceDataException.getMessage());
+            throw referenceDataException;
         }
     }
 
