@@ -1,13 +1,14 @@
 package uk.gov.hmcts.reform.sscs.model;
 
-import static java.util.Objects.nonNull;
-import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
+import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.*;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -66,11 +67,36 @@ public class HearingDuration extends ReferenceData {
         return Objects.hash(benefitCode, issue);
     }
 
-    private Integer addExtraTime(Integer initialDuration, List<String> elements) {
-        return nonNull(initialDuration)
-                && UC.equals(this.benefitCode) && (UM.equals(this.issue) || US.equals(this.issue))
-                && isNotEmpty(elements) && (elements.contains("WC") || elements.contains("SG"))
-                ? initialDuration + MULTIPLE_ISSUES_EXTRA_TIME
-                : initialDuration;
+    Integer addExtraTime(Integer initialDuration, List<String> elements) {
+        if (isNull(initialDuration) || isEmpty(elements)) {
+            return initialDuration;
+        }
+
+        if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)) {
+            List<Issue> issues = elements.stream()
+                    .map(Issue::getIssue)
+                    .collect(Collectors.toList());
+            if (isIssueWorkCapabilityAssessment(issues) || isSupportGroupPlacement(issues)) {
+                return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
+            }
+        }
+
+        return initialDuration;
+    }
+
+    boolean isSupportGroupPlacement(List<Issue> issues) {
+        return issues.contains(SG);
+    }
+
+    boolean isIssueWorkCapabilityAssessment(List<Issue> issues) {
+        return issues.contains(WC);
+    }
+
+    boolean isUniversalCreditAndSingleOrMultipleIssues(BenefitCode benefitCode, Issue issue) {
+        return UC.equals(benefitCode) && isSingleOrMultipleIssues(issue);
+    }
+
+    boolean isSingleOrMultipleIssues(Issue issue) {
+        return UM.equals(issue) || US.equals(issue);
     }
 }
