@@ -44,11 +44,11 @@ public class HearingDuration extends ReferenceData {
     }
 
     public Integer getDurationFaceToFace(List<String> elementsDisputed) {
-        return addExtraTime(durationFaceToFace, elementsDisputed);
+        return addExtraTimeIfNeeded(durationFaceToFace, elementsDisputed);
     }
 
     public Integer getDurationInterpreter(List<String> elementsDisputed) {
-        return addExtraTime(durationInterpreter, elementsDisputed);
+        return addExtraTimeIfNeeded(durationInterpreter, elementsDisputed);
     }
 
     public static HearingDuration getHearingDuration(String benefitCode, String issueCode) {
@@ -59,6 +59,7 @@ public class HearingDuration extends ReferenceData {
         return hashMap.get(getHash(benefitCode, issue));
     }
 
+    @Override
     public Integer getHash() {
         return getHash(benefitCode, issue);
     }
@@ -67,7 +68,7 @@ public class HearingDuration extends ReferenceData {
         return Objects.hash(benefitCode, issue);
     }
 
-    Integer addExtraTime(Integer initialDuration, List<String> elements) {
+    Integer addExtraTimeIfNeeded(Integer initialDuration, List<String> elements) {
         if (isNull(initialDuration) || isEmpty(elements)) {
             return initialDuration;
         }

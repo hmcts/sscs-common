@@ -56,6 +56,7 @@ public class SessionCategoryMap extends ReferenceData {
         return String.format("%s%s", getCategoryTypeValue(), issue.name());
     }
 
+    @Override
     public Integer getHash() {
         return getHash(benefitCode, issue, secondDoctor, fqpmRequired);
     }

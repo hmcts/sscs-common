@@ -44,7 +44,7 @@ public class HearingDurationTest {
             + "the valid duration is returned")
     @Test
     public void addExtraTimeNoElement() {
-        int result = HearingDuration.getHearingDuration("001", "US").addExtraTime(30,List.of());
+        int result = HearingDuration.getHearingDuration("001", "US").addExtraTimeIfNeeded(30,List.of());
 
         assertEquals(30,result);
     }
@@ -54,7 +54,7 @@ public class HearingDurationTest {
     @Test
     public void addExtraTimeCorrectElement() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .addExtraTime(30,List.of("RY"));
+                .addExtraTimeIfNeeded(30,List.of("RY"));
         assertEquals(30,result);
     }
 
@@ -63,7 +63,7 @@ public class HearingDurationTest {
     @Test
     public void addExtraTimeCorrectWc() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .addExtraTime(30,List.of("WC"));
+                .addExtraTimeIfNeeded(30,List.of("WC"));
 
         assertEquals(45,result);
     }
@@ -73,7 +73,7 @@ public class HearingDurationTest {
     @Test
     public void addExtraTimeCorrectSg() {
         int result = HearingDuration.getHearingDuration("001", "US")
-                .addExtraTime(30,List.of("SG"));
+                .addExtraTimeIfNeeded(30,List.of("SG"));
 
         assertEquals(45,result);
     }
