@@ -7,14 +7,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingPriority {
 
-    NORMAL("normal", "Normal", null, null),
-    HIGH("high", "High", null, null),
-    CRITICAL("critical", "Critical", null, null),
-    PENDING("pending", "Pending", null, null);
+    NORMAL("normal", "Normal", null),
+    HIGH("high", "High", null),
+    CRITICAL("critical", "Critical", null),
+    PENDING("pending", "Pending", null);
 
     private final String key;
     private final String valueEn;
     private final String valueCy;
-    private final String hintText;
 
 }
