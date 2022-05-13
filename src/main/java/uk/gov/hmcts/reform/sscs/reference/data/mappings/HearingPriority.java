@@ -12,7 +12,7 @@ public enum HearingPriority {
     CRITICAL("critical", "Critical", null),
     PENDING("pending", "Pending", null);
 
-    private final String key;
+    private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
 

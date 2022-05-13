@@ -7,21 +7,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum EntityRoleCode {
 
-    APPELLANT("BBA3-appellant", "Applicant", "Appellant", "", "BBA3"),
-    APPOINTEE("BBA3-appointee", "?", "Appointee", "", "BBA3"),
-    JOINT_PARTY("BBA3-jointParty", "Applicant", "Joint Party", "", "BBA3"),
-    OTHER_PARTY("BBA3-otherParty", "Respondent", "Other Party", "", "BBA3"),
-    RESPONDENT("BBA3-respondent", "Respondent", "Respondent", "", "BBA3"),
-    WELFARE_REPRESENTATIVE("BBA3-welfareRepresentative", "Representative", "Welfare Representative", "", "BBA3"),
-    LEGAL_REPRESENTATIVE("BBA3-legalRepresentative", "Representative", "Legal Representative", "", "BBA3"),
-    BARRISTER("BBA3-barrister", "Representative", "Barrister", "", "BBA3"),
-    INTERPRETER("BBA3-interpreter", "Interpreter", "Interpreter", "", "BBA3"),
-    REPRESENTATIVE("BBA3-Representative", "Representative", "Barrister", "", "BBA3");
+    APPELLANT("BBA3-appellant", "Applicant", "Appellant", ""),
+    APPOINTEE("BBA3-appointee", "Appointee", "Appointee", ""),
+    JOINT_PARTY("BBA3-jointParty", "Applicant", "Joint Party", ""),
+    OTHER_PARTY("BBA3-otherParty", "Respondent", "Other Party", ""),
+    RESPONDENT("BBA3-respondent", "Respondent", "Respondent", ""),
+    WELFARE_REPRESENTATIVE("BBA3-welfareRepresentative", "Representative", "Welfare Representative", ""),
+    LEGAL_REPRESENTATIVE("BBA3-legalRepresentative", "Representative", "Legal Representative", ""),
+    BARRISTER("BBA3-barrister", "Representative", "Barrister", ""),
+    INTERPRETER("BBA3-interpreter", "Interpreter", "Interpreter", ""),
+    REPRESENTATIVE("BBA3-Representative", "Representative", "Barrister", "");
 
-    private final String key;
+    private final String hmcReference;
     private final String parentRole;
     private final String valueEn;
     private final String valueCy;
-    private final String serviceCode;
 
 }
