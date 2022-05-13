@@ -25,11 +25,7 @@ public enum SessionCategory {
     private final String name;
 
     public static SessionCategory getSessionCategory(String sessionCategoryCode) {
-        try {
-            return getSessionCategory(Integer.parseInt(sessionCategoryCode));
-        } catch (NumberFormatException exception) {
-            return null;
-        }
+        return getSessionCategory(Integer.parseInt(sessionCategoryCode));
     }
 
     public static SessionCategory getSessionCategory(int sessionCategoryCode) {
