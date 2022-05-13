@@ -152,11 +152,7 @@ public enum Issue {
 
     public static Issue getIssue(String issueCode) {
         if (isNotBlank(issueCode)) {
-            try {
-                return Issue.valueOf(issueCode);
-            } catch (IllegalArgumentException excException) {
-                return null;
-            }
+            return Issue.valueOf(issueCode);
         }
         return null;
     }
