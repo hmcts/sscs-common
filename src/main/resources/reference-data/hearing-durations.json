@@ -2372,6 +2372,8 @@
   {
     "benefitCode": "WORKING_TAX_CREDIT",
     "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -2384,6 +2386,8 @@
   {
     "benefitCode": "WORKING_TAX_CREDIT",
     "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -2403,6 +2407,8 @@
   {
     "benefitCode": "WORKING_TAX_CREDIT",
     "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -2415,6 +2421,8 @@
   {
     "benefitCode": "WORKING_TAX_CREDIT",
     "issue": "FX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -2448,6 +2456,8 @@
   {
     "benefitCode": "WORKING_TAX_CREDIT",
     "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -2502,6 +2512,8 @@
   {
     "benefitCode": "TAX_FREE_CHILDCARE",
     "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -4249,6 +4261,8 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -4261,6 +4275,8 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -4280,6 +4296,8 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
     "durationPaper": 30
   },
   {
@@ -4306,6 +4324,8 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "OC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
     "durationPaper": 30
   },
   {
@@ -4318,11 +4338,15 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "OS",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
     "durationPaper": 30
   },
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "OX",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
     "durationPaper": 30
   },
   {
@@ -4335,6 +4359,8 @@
   {
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "RC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
     "durationPaper": 30
   }
 ]
