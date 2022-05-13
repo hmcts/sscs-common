@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.nonNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
@@ -30,9 +32,11 @@ public class CaseAccessManagementFields {
     }
 
     public void setCategories(Benefit benefit) {
-        DynamicListItem caseManagementCategoryItem = new DynamicListItem(benefit.getShortName(), benefit.getDescription());
-        List<DynamicListItem> listItems = List.of(caseManagementCategoryItem);
-        caseAccessCategory = CaseUtils.toCamelCase(benefit.getDescription(), false, ' ');
-        caseManagementCategory = new DynamicList(caseManagementCategoryItem, listItems);
+        if (nonNull(benefit)) {
+            DynamicListItem caseManagementCategoryItem = new DynamicListItem(benefit.getShortName(), benefit.getDescription());
+            List<DynamicListItem> listItems = List.of(caseManagementCategoryItem);
+            caseAccessCategory = CaseUtils.toCamelCase(benefit.getDescription(), false, ' ');
+            caseManagementCategory = new DynamicList(caseManagementCategoryItem, listItems);
+        }
     }
 }
