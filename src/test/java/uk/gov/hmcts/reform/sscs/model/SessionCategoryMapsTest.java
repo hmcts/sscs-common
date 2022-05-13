@@ -7,11 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
-import uk.gov.hmcts.reform.sscs.service.SessionCategoryMapsComponent;
+import uk.gov.hmcts.reform.sscs.service.SessionCategoryMapService;
 
 public class SessionCategoryMapsTest {
 
-    SessionCategoryMapsComponent sessionCategoryMaps = new SessionCategoryMapsComponent();
+    SessionCategoryMapService sessionCategoryMaps = new SessionCategoryMapService();
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration the valid mapping is returned")
     @Test

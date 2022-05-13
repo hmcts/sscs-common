@@ -1,13 +1,6 @@
 package uk.gov.hmcts.reform.sscs.model;
 
-import static java.util.Objects.nonNull;
-import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.*;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.*;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,65 +13,11 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 @NoArgsConstructor
 @Data
 @Slf4j
-public class HearingDuration implements Hashable {
+public class HearingDuration {
 
     private BenefitCode benefitCode;
     private Issue issue;
     private Integer durationFaceToFace;
     private Integer durationInterpreter;
     private Integer durationPaper;
-
-    private static final int MULTIPLE_ISSUES_EXTRA_TIME = 15;
-
-    public Integer getDurationFaceToFace(List<String> elementsDisputed) {
-        return addExtraTimeIfNeeded(durationFaceToFace, elementsDisputed);
-    }
-
-    public Integer getDurationInterpreter(List<String> elementsDisputed) {
-        return addExtraTimeIfNeeded(durationInterpreter, elementsDisputed);
-    }
-
-    public Integer getHash() {
-        return getHash(benefitCode, issue);
-    }
-
-    public static Integer getHash(BenefitCode benefitCode, Issue issue) {
-        return Objects.hash(benefitCode, issue);
-    }
-
-    Integer addExtraTimeIfNeeded(Integer initialDuration, List<String> elements) {
-        if (nonNull(initialDuration) && isNotEmpty(elements)) {
-            List<Issue> issues = getIssues(elements);
-
-            if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)
-                && (isIssueWorkCapabilityAssessment(issues)
-                || isSupportGroupPlacement(issues))) {
-                return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
-            }
-        }
-
-        return initialDuration;
-    }
-
-    List<Issue> getIssues(List<String> elements) {
-        return elements.stream()
-            .map(Issue::getIssue)
-            .collect(Collectors.toList());
-    }
-
-    boolean isSupportGroupPlacement(List<Issue> issues) {
-        return issues.contains(SG);
-    }
-
-    boolean isIssueWorkCapabilityAssessment(List<Issue> issues) {
-        return issues.contains(WC);
-    }
-
-    boolean isUniversalCreditAndSingleOrMultipleIssues(BenefitCode benefitCode, Issue issue) {
-        return UC.equals(benefitCode) && isSingleOrMultipleIssues(issue);
-    }
-
-    boolean isSingleOrMultipleIssues(Issue issue) {
-        return UM.equals(issue) || US.equals(issue);
-    }
 }

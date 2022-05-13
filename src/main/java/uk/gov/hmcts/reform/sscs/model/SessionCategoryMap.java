@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
 @NoArgsConstructor
 @Data
 @Slf4j
-public class SessionCategoryMap implements Hashable {
+public class SessionCategoryMap {
 
     private BenefitCode benefitCode;
     private Issue issue;
@@ -23,24 +22,4 @@ public class SessionCategoryMap implements Hashable {
     private boolean fqpmRequired;
     private SessionCategory category;
     private Integer ticketOverride;
-
-    private static final String SERVICE_CODE = "BBA3";
-
-    public Integer getHash() {
-        return getHash(benefitCode, issue, secondDoctor, fqpmRequired);
-    }
-
-    public static Integer getHash(BenefitCode benefitCode, Issue issue, boolean secondDoctor, boolean fqpmRequired) {
-        return Objects.hash(benefitCode, issue, secondDoctor, fqpmRequired);
-    }
-
-    public String getCategoryTypeValue() {
-        return String.format("%s-%03d", SERVICE_CODE, benefitCode.getCcdReference());
-    }
-
-    public String getCategorySubTypeValue() {
-        return String.format("%s%s", getCategoryTypeValue(), issue.name());
-    }
-
-
 }
