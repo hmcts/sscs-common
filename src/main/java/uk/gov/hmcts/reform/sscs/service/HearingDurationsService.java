@@ -64,25 +64,25 @@ public class HearingDurationsService {
         return initialDuration;
     }
 
-    List<Issue> getIssues(List<String> elements) {
+    public List<Issue> getIssues(List<String> elements) {
         return elements.stream()
                 .map(Issue::getIssue)
                 .collect(Collectors.toList());
     }
 
-    boolean isSupportGroupPlacement(List<Issue> issues) {
+    public boolean isSupportGroupPlacement(List<Issue> issues) {
         return issues.contains(SG);
     }
 
-    boolean isIssueWorkCapabilityAssessment(List<Issue> issues) {
+    public boolean isIssueWorkCapabilityAssessment(List<Issue> issues) {
         return issues.contains(WC);
     }
 
-    boolean isUniversalCreditAndSingleOrMultipleIssues(BenefitCode benefitCode, Issue issue) {
+    public boolean isUniversalCreditAndSingleOrMultipleIssues(BenefitCode benefitCode, Issue issue) {
         return UC.equals(benefitCode) && isSingleOrMultipleIssues(issue);
     }
 
-    boolean isSingleOrMultipleIssues(Issue issue) {
+    public boolean isSingleOrMultipleIssues(Issue issue) {
         return UM.equals(issue) || US.equals(issue);
     }
 }
