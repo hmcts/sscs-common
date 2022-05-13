@@ -29,7 +29,6 @@ public class CaseAccessManagementFieldsTest {
 
     @Test
     public void shouldNotSetSetCaseNameFields_givenInvalidCaseName() {
-
         unitUnderTest.setCaseNames(null);
 
         assertThat(unitUnderTest.getCaseNameHmctsInternal()).isNull();
@@ -38,12 +37,24 @@ public class CaseAccessManagementFieldsTest {
     }
 
     @Test
-    public void shouldSetCategories_givenValidBenefit() {
+    public void shouldSetCaseAccessCategory_givenValidBenefit() {
+        unitUnderTest.setCategories(BEREAVEMENT_BENEFIT);
 
+        assertThat(unitUnderTest.getCaseAccessCategory()).isEqualTo("bereavementBenefit");
+    }
+
+    @Test
+    public void shouldNotSetCaseAccessCategory_givenInvalidBenefit() {
+        unitUnderTest.setCategories(null);
+
+        assertThat(unitUnderTest.getCaseAccessCategory()).isNull();
+    }
+
+    @Test
+    public void shouldSetCaseManagementCategory_givenValidBenefit() {
         unitUnderTest.setCategories(BEREAVEMENT_BENEFIT);
 
         DynamicListItem expectedValue = new DynamicListItem("bereavementBenefit", "Bereavement Benefit");
-        assertThat(unitUnderTest.getCaseAccessCategory()).isEqualTo("bereavementBenefit");
         assertThat(unitUnderTest.getCaseManagementCategory()).isEqualTo(
             new DynamicList(
                 expectedValue,
@@ -51,11 +62,9 @@ public class CaseAccessManagementFieldsTest {
     }
 
     @Test
-    public void shouldNotSetCategories_givenInvalidBenefit() {
-
+    public void shouldSetCaseManagementCategory_givenInvalidBenefit() {
         unitUnderTest.setCategories(null);
 
-        assertThat(unitUnderTest.getCaseAccessCategory()).isNull();
         assertThat(unitUnderTest.getCaseManagementCategory()).isNull();
     }
 
