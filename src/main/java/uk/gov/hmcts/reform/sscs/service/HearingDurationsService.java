@@ -27,11 +27,11 @@ public class HearingDurationsService {
     private static final int MULTIPLE_ISSUES_EXTRA_TIME = 15;
 
     private List<HearingDuration> hearingDurations;
-    private Map<Integer, HearingDuration> hashMap;
+    private Map<Integer, HearingDuration> hearingDurationsHashMap;
 
     public HearingDurationsService() {
         hearingDurations = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
-        hashMap = generateHashMap(hearingDurations);
+        hearingDurationsHashMap = generateHashMap(hearingDurations);
     }
 
     private Map<Integer, HearingDuration> generateHashMap(List<HearingDuration> hearingDurations) {
@@ -43,15 +43,11 @@ public class HearingDurationsService {
     }
 
     public HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue) {
-        return hashMap.get(getHash(benefitCode, issue));
+        return hearingDurationsHashMap.get(Objects.hash(benefitCode, issue));
     }
 
     public Integer getHash(HearingDuration hearingDuration) {
-        return getHash(hearingDuration.getBenefitCode(), hearingDuration.getIssue());
-    }
-
-    public Integer getHash(BenefitCode benefitCode, Issue issue) {
-        return Objects.hash(benefitCode, issue);
+        return Objects.hash(hearingDuration.getBenefitCode(), hearingDuration.getIssue());
     }
 
     public Integer addExtraTimeIfNeeded(Integer initialDuration, BenefitCode benefitCode, Issue issue, List<String> elements) {
