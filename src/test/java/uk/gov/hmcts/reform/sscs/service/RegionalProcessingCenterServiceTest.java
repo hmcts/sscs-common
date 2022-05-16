@@ -1,12 +1,10 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
