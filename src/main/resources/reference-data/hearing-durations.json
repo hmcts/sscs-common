@@ -3060,22 +3060,7 @@
   },
   {
     "benefitCode": "ESA_REASSESSMENT",
-    "issue": "CE",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
-    "issue": "CP",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
     "issue": "CS",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
-    "issue": "DD",
     "durationPaper": 30
   },
   {
@@ -3085,17 +3070,7 @@
   },
   {
     "benefitCode": "ESA_REASSESSMENT",
-    "issue": "EC",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
     "issue": "EX",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
-    "issue": "GC",
     "durationPaper": 30
   },
   {
@@ -3110,27 +3085,12 @@
   },
   {
     "benefitCode": "ESA_REASSESSMENT",
-    "issue": "LE",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
     "issue": "ON",
     "durationPaper": 30
   },
   {
     "benefitCode": "ESA_REASSESSMENT",
-    "issue": "OS",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
     "issue": "OX",
-    "durationPaper": 30
-  },
-  {
-    "benefitCode": "ESA_REASSESSMENT",
-    "issue": "RA",
     "durationPaper": 30
   },
   {

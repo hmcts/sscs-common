@@ -4,7 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -19,6 +20,18 @@ public class HearingDurationTest {
     @Before
     public void setup() {
         hearingDurations = new HearingDurationsService();
+    }
+
+    @DisplayName("There should be no duplicate hearing durations")
+    @Test
+    public void hearingDurationsDuplicates() {
+        List<HearingDuration> hearingDurationsList = hearingDurations.getHearingDurations();
+        Set<HearingDuration> result = new HashSet<>(hearingDurationsList);
+
+        assertThat(result)
+                .withFailMessage("There are the following duplicates:\n%s",
+                        getDuplicates(hearingDurationsList))
+                .hasSameSizeAs(hearingDurationsList);
     }
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
@@ -88,5 +101,20 @@ public class HearingDurationTest {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("SG"));
 
         assertThat(result).isEqualTo(45);
+    }
+
+    public static <T> String getDuplicates(Collection<T> collection) {
+
+        Set<T> duplicates = new LinkedHashSet<>();
+        Set<T> uniques = new HashSet<>();
+
+        for (T t : collection) {
+            if (!uniques.add(t)) {
+                duplicates.add(t);
+            }
+        }
+        return duplicates.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("\n-"));
     }
 }

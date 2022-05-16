@@ -1,11 +1,11 @@
 package uk.gov.hmcts.reform.sscs.helper;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.sscs.exception.ReferenceDataImportException;
 import uk.gov.hmcts.reform.sscs.utility.JsonDataReader;
@@ -30,8 +30,6 @@ public final class ReferenceDataHelper {
     }
 
     public static <T> Map<T, T> generateHashMap(Collection<T> collection) {
-        return collection.stream()
-                .collect(Collectors
-                        .toMap(reference -> reference, reference -> reference, (a, b) -> b));
+        return Maps.uniqueIndex(collection, reference -> reference);
     }
 }
