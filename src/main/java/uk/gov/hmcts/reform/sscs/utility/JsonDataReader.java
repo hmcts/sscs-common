@@ -10,6 +10,8 @@ import org.springframework.core.io.ClassPathResource;
 @Slf4j
 public class JsonDataReader {
 
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private JsonDataReader() {
 
     }
@@ -19,7 +21,6 @@ public class JsonDataReader {
     }
 
     public static <T> T importObjectDataList(String filename, TypeReference<T> typeReference) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(getResource(filename), typeReference);
+        return OBJECT_MAPPER.readValue(getResource(filename), typeReference);
     }
 }

@@ -21,7 +21,7 @@ public class ReferenceDataHelper {
             ReferenceDataImportException referenceDataException = new ReferenceDataImportException(String
                     .format("Error loading Reference Data while reading from %s, %s",
                             filename, exception.getMessage()), exception);
-            log.error(referenceDataException.getMessage());
+            log.error("Error", referenceDataException);
             throw referenceDataException;
         }
     }

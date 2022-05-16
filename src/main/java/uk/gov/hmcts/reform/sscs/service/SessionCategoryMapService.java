@@ -21,6 +21,8 @@ public class SessionCategoryMapService {
     private static final String JSON_DATA_LOCATION = "reference-data/session-category-map.json";
 
     private static final String SERVICE_CODE = "BBA3";
+    public static final String CATEGORY_TYPE_TEMPLATE = "%s-%03d";
+    public static final String CATEGORY_SUBTYPE_TEMPLATE = "%s%s";
 
     private List<SessionCategoryMap> sessionCategoryMaps;
     private Map<Integer, SessionCategoryMap> sessionCategoryHashMap;
@@ -31,26 +33,34 @@ public class SessionCategoryMapService {
     }
 
     private Map<Integer, SessionCategoryMap> generateHashMap(List<SessionCategoryMap> sessionCategoryMaps) {
-        return sessionCategoryMaps.stream().collect(Collectors.toMap(this::getHash, reference -> reference, (a, b) -> b));
+        return sessionCategoryMaps.stream()
+                .collect(Collectors
+                        .toMap(this::getHash, reference -> reference, (a, b) -> b));
     }
 
-    public SessionCategoryMap getSessionCategory(String benefitCode, String issueCode, boolean secondDoctor, boolean fqpmRequired) {
-        return getSessionCategory(BenefitCode.getBenefitCode(benefitCode), Issue.getIssue(issueCode), secondDoctor, fqpmRequired);
+    public SessionCategoryMap getSessionCategory(String benefitCode, String issueCode,
+                                                 boolean secondDoctor, boolean fqpmRequired) {
+        return getSessionCategory(BenefitCode.getBenefitCode(benefitCode), Issue.getIssue(issueCode),
+                secondDoctor, fqpmRequired);
     }
 
-    public SessionCategoryMap getSessionCategory(BenefitCode benefitCode, Issue issue, boolean secondDoctor, boolean fqpmRequired) {
+    public SessionCategoryMap getSessionCategory(BenefitCode benefitCode, Issue issue,
+                                                 boolean secondDoctor, boolean fqpmRequired) {
         return sessionCategoryHashMap.get(Objects.hash(benefitCode, issue, secondDoctor, fqpmRequired));
     }
 
     public Integer getHash(SessionCategoryMap sessionCategoryMap) {
-        return Objects.hash(sessionCategoryMap.getBenefitCode(), sessionCategoryMap.getIssue(), sessionCategoryMap.isSecondDoctor(), sessionCategoryMap.isFqpmRequired());
+        return Objects.hash(sessionCategoryMap.getBenefitCode(), sessionCategoryMap.getIssue(),
+                sessionCategoryMap.isSecondDoctor(), sessionCategoryMap.isFqpmRequired());
     }
 
     public String getCategoryTypeValue(SessionCategoryMap sessionCategoryMap) {
-        return String.format("%s-%03d", SERVICE_CODE, sessionCategoryMap.getBenefitCode().getCcdReference());
+        return String.format(CATEGORY_TYPE_TEMPLATE, SERVICE_CODE,
+                sessionCategoryMap.getBenefitCode().getCcdReference());
     }
 
     public String getCategorySubTypeValue(SessionCategoryMap sessionCategoryMap) {
-        return String.format("%s%s", getCategoryTypeValue(sessionCategoryMap), sessionCategoryMap.getIssue().name());
+        return String.format(CATEGORY_SUBTYPE_TEMPLATE,
+                getCategoryTypeValue(sessionCategoryMap), sessionCategoryMap.getIssue().name());
     }
 }
