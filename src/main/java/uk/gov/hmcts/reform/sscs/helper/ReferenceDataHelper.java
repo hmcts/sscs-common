@@ -2,13 +2,16 @@ package uk.gov.hmcts.reform.sscs.helper;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.sscs.exception.ReferenceDataImportException;
 import uk.gov.hmcts.reform.sscs.utility.JsonDataReader;
 
 @Slf4j
-public class ReferenceDataHelper {
+public final class ReferenceDataHelper {
 
     private ReferenceDataHelper() {
 
@@ -24,5 +27,11 @@ public class ReferenceDataHelper {
             log.error("Error", referenceDataException);
             throw referenceDataException;
         }
+    }
+
+    public static <T> Map<Integer, T> generateHashMap(Collection<T> collection) {
+        return collection.stream()
+                .collect(Collectors
+                        .toMap(Object::hashCode, reference -> reference, (a, b) -> b));
     }
 }

@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,14 @@ public class HearingDuration {
     private Integer durationFaceToFace;
     private Integer durationInterpreter;
     private Integer durationPaper;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(benefitCode, issue);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj;
+    }
 }
