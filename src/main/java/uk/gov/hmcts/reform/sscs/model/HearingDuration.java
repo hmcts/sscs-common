@@ -23,12 +23,20 @@ public class HearingDuration {
     private Integer durationPaper;
 
     @Override
-    public int hashCode() {
-        return Objects.hash(benefitCode, issue);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        HearingDuration that = (HearingDuration) o;
+        return benefitCode == that.benefitCode
+                && issue == that.issue;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return this == obj;
+    public int hashCode() {
+        return Objects.hash(benefitCode, issue);
     }
 }
