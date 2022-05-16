@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static java.util.Objects.nonNull;
-import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
+import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
@@ -50,15 +50,15 @@ public class HearingDurationsService {
         return Objects.hash(hearingDuration.getBenefitCode(), hearingDuration.getIssue());
     }
 
-    public Integer addExtraTimeIfNeeded(Integer initialDuration, BenefitCode benefitCode, Issue issue, List<String> elements) {
-        if (nonNull(initialDuration) && isNotEmpty(elements)) {
-            List<Issue> issues = getIssues(elements);
+    public Integer addExtraTimeIfNeeded(Integer initialDuration, BenefitCode benefitCode, Issue issue,
+                                        List<String> elements) {
+        if (isNull(initialDuration) || isEmpty(elements)) {
+            return initialDuration;
+        }
 
-            if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)
-                    && (isIssueWorkCapabilityAssessment(issues)
-                    || isSupportGroupPlacement(issues))) {
-                return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
-            }
+        if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)
+                && isIssueWorkCapabilityAssessmentOrIsSupportGroup(getIssues(elements))) {
+            return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
         }
 
         return initialDuration;
@@ -68,6 +68,11 @@ public class HearingDurationsService {
         return elements.stream()
                 .map(Issue::getIssue)
                 .collect(Collectors.toList());
+    }
+
+    public boolean isIssueWorkCapabilityAssessmentOrIsSupportGroup(List<Issue> issues) {
+        return isIssueWorkCapabilityAssessment(issues)
+                || isSupportGroupPlacement(issues);
     }
 
     public boolean isSupportGroupPlacement(List<Issue> issues) {
