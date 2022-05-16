@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
@@ -13,7 +14,6 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
-import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnitParamsRunner.class)
 public class RegionalProcessingCenterServiceTest {
