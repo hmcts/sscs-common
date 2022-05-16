@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.sscs.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.*;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
@@ -12,6 +14,19 @@ import uk.gov.hmcts.reform.sscs.service.SessionCategoryMapService;
 public class SessionCategoryMapsTest {
 
     SessionCategoryMapService sessionCategoryMaps = new SessionCategoryMapService();
+
+    @DisplayName("There should be no duplicate Session Category Maps")
+    @Test
+    public void hearingDurationsDuplicates() {
+        List<SessionCategoryMap> sessionCategoryMaps = this.sessionCategoryMaps.getSessionCategoryMaps();
+        Set<SessionCategoryMap> result = new HashSet<>(sessionCategoryMaps);
+
+        assertThat(result)
+                .withFailMessage("There are the following duplicates:\n%s",
+                        getDuplicates(sessionCategoryMaps))
+                .hasSameSizeAs(sessionCategoryMaps);
+    }
+
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration the valid mapping is returned")
     @Test
@@ -95,5 +110,20 @@ public class SessionCategoryMapsTest {
                 .getSessionCategory("003", "LE", false, true);
 
         assertThat(sessionCategoryMap).isNull();
+    }
+
+    public static <T> String getDuplicates(Collection<T> collection) {
+
+        Set<T> duplicates = new LinkedHashSet<>();
+        Set<T> uniques = new HashSet<>();
+
+        for (T t : collection) {
+            if (!uniques.add(t)) {
+                duplicates.add(t);
+            }
+        }
+        return duplicates.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining("\n-"));
     }
 }
