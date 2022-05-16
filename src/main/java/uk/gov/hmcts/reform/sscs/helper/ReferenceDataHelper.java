@@ -29,9 +29,9 @@ public final class ReferenceDataHelper {
         }
     }
 
-    public static <T> Map<Integer, T> generateHashMap(Collection<T> collection) {
+    public static <T> Map<T, T> generateHashMap(Collection<T> collection) {
         return collection.stream()
                 .collect(Collectors
-                        .toMap(Object::hashCode, reference -> reference, (a, b) -> b));
+                        .toMap(reference -> reference, reference -> reference, (a, b) -> b));
     }
 }

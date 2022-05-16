@@ -11,7 +11,6 @@ import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getReferenceDa
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +27,7 @@ public class HearingDurationsService {
     private static final int MULTIPLE_ISSUES_EXTRA_TIME = 15;
 
     private List<HearingDuration> hearingDurations;
-    private Map<Integer, HearingDuration> hearingDurationsHashMap;
+    private Map<HearingDuration, HearingDuration> hearingDurationsHashMap;
 
     public HearingDurationsService() {
         hearingDurations = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -40,7 +39,7 @@ public class HearingDurationsService {
     }
 
     public HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue) {
-        return hearingDurationsHashMap.get(Objects.hash(benefitCode, issue));
+        return hearingDurationsHashMap.get(new HearingDuration(benefitCode, issue));
     }
 
     public Integer addExtraTimeIfNeeded(Integer initialDuration, BenefitCode benefitCode, Issue issue,

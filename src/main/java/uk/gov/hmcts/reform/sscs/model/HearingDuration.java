@@ -22,6 +22,11 @@ public class HearingDuration {
     private Integer durationInterpreter;
     private Integer durationPaper;
 
+    public HearingDuration(BenefitCode benefitCode, Issue issue) {
+        this.benefitCode = benefitCode;
+        this.issue = issue;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
