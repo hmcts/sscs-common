@@ -24,6 +24,14 @@ public class SessionCategoryMap {
     private SessionCategory category;
     private Integer ticketOverride;
 
+    public SessionCategoryMap(BenefitCode benefitCode, Issue issue,
+                              boolean secondDoctor, boolean fqpmRequired) {
+        this.benefitCode = benefitCode;
+        this.issue = issue;
+        this.secondDoctor = secondDoctor;
+        this.fqpmRequired = fqpmRequired;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

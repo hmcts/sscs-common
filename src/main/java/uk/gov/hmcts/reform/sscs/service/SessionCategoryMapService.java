@@ -6,7 +6,6 @@ import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getReferenceDa
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -25,7 +24,7 @@ public class SessionCategoryMapService {
     public static final String CATEGORY_SUBTYPE_TEMPLATE = "%s%s";
 
     private List<SessionCategoryMap> sessionCategoryMaps;
-    private Map<Integer, SessionCategoryMap> sessionCategoryHashMap;
+    private Map<SessionCategoryMap, SessionCategoryMap> sessionCategoryHashMap;
 
     public SessionCategoryMapService() {
         sessionCategoryMaps = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -41,7 +40,7 @@ public class SessionCategoryMapService {
 
     public SessionCategoryMap getSessionCategory(BenefitCode benefitCode, Issue issue,
                                                  boolean secondDoctor, boolean fqpmRequired) {
-        return sessionCategoryHashMap.get(Objects.hash(benefitCode, issue, secondDoctor, fqpmRequired));
+        return sessionCategoryHashMap.get(new SessionCategoryMap(benefitCode, issue, secondDoctor, fqpmRequired));
     }
 
     public String getCategoryTypeValue(SessionCategoryMap sessionCategoryMap) {
