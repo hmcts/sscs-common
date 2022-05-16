@@ -13,6 +13,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnitParamsRunner.class)
 public class RegionalProcessingCenterServiceTest {
@@ -74,6 +75,7 @@ public class RegionalProcessingCenterServiceTest {
             .phoneNumber("0300 123 1142")
             .faxNumber("0870 324 0109")
             .email("Liverpool_SYA_Resp@justice.gov.uk")
+            .hearingRoute(HearingRoute.GAPS)
             .build();
 
         RegionalProcessingCenter cardiffRpc = RegionalProcessingCenter.builder()
@@ -87,6 +89,7 @@ public class RegionalProcessingCenterServiceTest {
             .phoneNumber("0300 123 1142")
             .faxNumber("0870 739 4438")
             .email("Cardiff_SYA_Respon@justice.gov.uk")
+            .hearingRoute(HearingRoute.GAPS)
             .build();
 
 
@@ -116,6 +119,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
         assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertTrue("gaps".equalsIgnoreCase(regionalProcessingCenter.getHearingRoute().toString()));
     }
 
     @Test
@@ -195,6 +199,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
         assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
     }
 
     @Test
