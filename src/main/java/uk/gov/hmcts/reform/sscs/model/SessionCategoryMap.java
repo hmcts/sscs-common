@@ -25,12 +25,22 @@ public class SessionCategoryMap {
     private Integer ticketOverride;
 
     @Override
-    public int hashCode() {
-        return Objects.hash(benefitCode, issue, secondDoctor, fqpmRequired);
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SessionCategoryMap that = (SessionCategoryMap) o;
+        return secondDoctor == that.secondDoctor
+                && fqpmRequired == that.fqpmRequired
+                && benefitCode == that.benefitCode
+                && issue == that.issue;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return this == obj;
+    public int hashCode() {
+        return Objects.hash(benefitCode, issue, secondDoctor, fqpmRequired);
     }
 }
