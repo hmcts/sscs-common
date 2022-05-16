@@ -10,7 +10,7 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 324 0109",
     "email" : "Liverpool_SYA_Resp@justice.gov.uk",
-    "hearingRoute" : "gaps"
+    "hearingRoute" : "listAssist"
   },
   "SSCS Cardiff":{
     "name" : "CARDIFF",
@@ -89,7 +89,7 @@
     "phoneNumber" : "0300 790 6234",
     "faxNumber" : "01264 347 981",
     "email" : "GlasgowSYAresponse@justice.gov.uk",
-    "hearingRoute" : "gaps"
+    "hearingRoute" : "listAssist"
   },
   "SSCS Bradford":{
     "name" : "BRADFORD",
