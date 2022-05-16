@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
 
@@ -22,15 +21,36 @@ public class HearingDurationTest {
         hearingDurations = new HearingDurationsService();
     }
 
-    @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration the valid mapping is returned")
+    @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
+            + "the valid Face To Face mapping is returned")
     @Test
-    public void getHearingDuration() {
+    public void getHearingDurationFaceToFace() {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
-        assertEquals(BenefitCode.PIP_REASSESSMENT_CASE, result.getBenefitCode());
+        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
         assertThat(result.getIssue()).isEqualTo(Issue.LE);
         assertThat(result.getDurationFaceToFace()).isEqualTo(60);
+    }
+
+    @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
+            + "the valid Interpreter mapping is returned")
+    @Test
+    public void getHearingDurationInterpreter() {
+        HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
+
+        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
+        assertThat(result.getIssue()).isEqualTo(Issue.LE);
         assertThat(result.getDurationInterpreter()).isEqualTo(90);
+    }
+
+    @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
+            + "the valid Paper mapping is returned")
+    @Test
+    public void getHearingDurationPaper() {
+        HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
+
+        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
+        assertThat(result.getIssue()).isEqualTo(Issue.LE);
         assertThat(result.getDurationPaper()).isEqualTo(30);
     }
 
