@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
+import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.generateHashMap;
 import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,20 +35,12 @@ public class HearingDurationsService {
         hearingDurationsHashMap = generateHashMap(hearingDurations);
     }
 
-    private Map<Integer, HearingDuration> generateHashMap(List<HearingDuration> hearingDurations) {
-        return hearingDurations.stream().collect(Collectors.toMap(this::getHash, reference -> reference, (a, b) -> b));
-    }
-
     public HearingDuration getHearingDuration(String benefitCode, String issueCode) {
         return getHearingDuration(BenefitCode.getBenefitCode(benefitCode), Issue.getIssue(issueCode));
     }
 
     public HearingDuration getHearingDuration(BenefitCode benefitCode, Issue issue) {
         return hearingDurationsHashMap.get(Objects.hash(benefitCode, issue));
-    }
-
-    public Integer getHash(HearingDuration hearingDuration) {
-        return Objects.hash(hearingDuration.getBenefitCode(), hearingDuration.getIssue());
     }
 
     public Integer addExtraTimeIfNeeded(Integer initialDuration, BenefitCode benefitCode, Issue issue,
