@@ -1,19 +1,19 @@
-package uk.gov.hmcts.reform.sscs.model;
+package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
+import static uk.gov.hmcts.reform.sscs.helper.TestHelper.getDuplicates;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
-import uk.gov.hmcts.reform.sscs.service.HearingDurationsService;
+import uk.gov.hmcts.reform.sscs.model.HearingDuration;
 
-public class HearingDurationTest {
+public class HearingDurationsServiceTest {
 
     HearingDurationsService hearingDurations;
 
@@ -24,7 +24,7 @@ public class HearingDurationTest {
 
     @DisplayName("There should be no duplicate hearing durations")
     @Test
-    public void hearingDurationsDuplicates() {
+    public void testHearingDurationsDuplicates() {
         List<HearingDuration> hearingDurationsList = hearingDurations.getHearingDurations();
         Set<HearingDuration> result = new HashSet<>(hearingDurationsList);
 
@@ -37,7 +37,7 @@ public class HearingDurationTest {
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Face To Face mapping is returned")
     @Test
-    public void getHearingDurationFaceToFace() {
+    public void testGHearingDurationFaceToFace() {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
@@ -48,7 +48,7 @@ public class HearingDurationTest {
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Interpreter mapping is returned")
     @Test
-    public void getHearingDurationInterpreter() {
+    public void testGHearingDurationInterpreter() {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
@@ -59,7 +59,7 @@ public class HearingDurationTest {
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Paper mapping is returned")
     @Test
-    public void getHearingDurationPaper() {
+    public void testGHearingDurationPaper() {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
@@ -70,7 +70,7 @@ public class HearingDurationTest {
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
             + "the valid duration is returned")
     @Test
-    public void addExtraTimeNoElement() {
+    public void testAddExtraTimeNoElement() {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of());
 
         assertThat(result).isEqualTo(30);
@@ -79,7 +79,7 @@ public class HearingDurationTest {
     @DisplayName("When a list with no elements Disputed that give extra time are given to getDurationFaceToFace "
             + "the valid duration is returned")
     @Test
-    public void addExtraTimeCorrectElement() {
+    public void testAddExtraTimeCorrectElement() {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("RY"));
 
         assertThat(result).isEqualTo(30);
@@ -88,7 +88,7 @@ public class HearingDurationTest {
     @DisplayName("When a list with the elements Disputed WorkCapability that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
-    public void addExtraTimeCorrectWc() {
+    public void testAddExtraTimeCorrectWc() {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("WC"));
 
         assertThat(result).isEqualTo(45);
@@ -97,24 +97,9 @@ public class HearingDurationTest {
     @DisplayName("When a list with the elements Disputed SupportGroup that give extra time are given to getDurationFaceToFace "
             + "the valid duration with extra time is returned")
     @Test
-    public void addExtraTimeCorrectSg() {
+    public void testAddExtraTimeCorrectSg() {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("SG"));
 
         assertThat(result).isEqualTo(45);
-    }
-
-    public static <T> String getDuplicates(Collection<T> collection) {
-
-        Set<T> duplicates = new LinkedHashSet<>();
-        Set<T> uniques = new HashSet<>();
-
-        for (T t : collection) {
-            if (!uniques.add(t)) {
-                duplicates.add(t);
-            }
-        }
-        return duplicates.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n-"));
     }
 }
