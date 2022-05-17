@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.sscs.helper.TestHelper.getDuplicates;
+import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getDuplicates;
 
 import java.util.*;
 import org.junit.Test;
