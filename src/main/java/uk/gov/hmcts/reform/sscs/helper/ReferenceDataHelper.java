@@ -21,11 +21,9 @@ public final class ReferenceDataHelper {
         try {
             return JsonDataReader.importObjectDataList(filename,  typeReference);
         } catch (IOException exception) {
-            ReferenceDataImportException referenceDataException = new ReferenceDataImportException(String
+            throw new ReferenceDataImportException(String
                     .format("Error loading Reference Data while reading from %s, %s",
                             filename, exception.getMessage()), exception);
-            log.error("Error", referenceDataException);
-            throw referenceDataException;
         }
     }
 

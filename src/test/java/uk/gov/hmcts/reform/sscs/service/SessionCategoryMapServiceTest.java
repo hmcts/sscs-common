@@ -1,23 +1,23 @@
-package uk.gov.hmcts.reform.sscs.model;
+package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.helper.TestHelper.getDuplicates;
 
 import java.util.*;
-import java.util.stream.Collectors;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
-import uk.gov.hmcts.reform.sscs.service.SessionCategoryMapService;
+import uk.gov.hmcts.reform.sscs.model.SessionCategoryMap;
 
-public class SessionCategoryMapsTest {
+public class SessionCategoryMapServiceTest {
 
     SessionCategoryMapService sessionCategoryMaps = new SessionCategoryMapService();
 
     @DisplayName("There should be no duplicate Session Category Maps")
     @Test
-    public void hearingDurationsDuplicates() {
+    public void testHearingDurationsDuplicates() {
         List<SessionCategoryMap> sessionCategoryMaps = this.sessionCategoryMaps.getSessionCategoryMaps();
         Set<SessionCategoryMap> result = new HashSet<>(sessionCategoryMaps);
 
@@ -30,7 +30,7 @@ public class SessionCategoryMapsTest {
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration the valid mapping is returned")
     @Test
-    public void getSessionCategory() {
+    public void testGetSessionCategory() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("003", "LE", false, false);
 
@@ -43,7 +43,7 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code and a secondDoctor is given to getHearingDuration"
             + "the valid mapping is returned")
     @Test
-    public void getSessionCategorySecondDoctor() {
+    public void testGSessionCategorySecondDoctor() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("064", "GC", true, false);
 
@@ -56,7 +56,7 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code and no secondDoctor is given to getHearingDuration"
             + "the valid mapping is returned")
     @Test
-    public void getSessionCategoryNoSecondDoctor() {
+    public void testGSessionCategoryNoSecondDoctor() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("064", "GC", false, false);
 
@@ -69,7 +69,7 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code but secondDoctor shouldn't be given to getHearingDuration"
             + "null is returned")
     @Test
-    public void getSessionCategorySecondDoctorInvalid() {
+    public void testGSessionCategorySecondDoctorInvalid() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("003", "LE", true, false);
 
@@ -79,7 +79,7 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code and a secondDoctor is given to getHearingDuration"
             + "the valid mapping is returned")
     @Test
-    public void getSessionCategoryFqpmRequired() {
+    public void testGSessionCategoryFqpmRequired() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("023", "RB", false, true);
 
@@ -92,7 +92,7 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code and no secondDoctor is given to getHearingDuration"
             + "the valid mapping is returned")
     @Test
-    public void getSessionCategoryFqpmNotRequired() {
+    public void testGSessionCategoryFqpmNotRequired() {
         SessionCategoryMap sessionCategory = sessionCategoryMaps
                 .getSessionCategory("023", "RB", false, false);
 
@@ -105,25 +105,10 @@ public class SessionCategoryMapsTest {
     @DisplayName("When valid Benefit Code, Issue Code but fqpmRequired shouldn't be given to getHearingDuration"
             + "null is returned")
     @Test
-    public void getSessionCategoryFqpmRequiredInvalid() {
+    public void testGSessionCategoryFqpmRequiredInvalid() {
         SessionCategoryMap sessionCategoryMap = sessionCategoryMaps
                 .getSessionCategory("003", "LE", false, true);
 
         assertThat(sessionCategoryMap).isNull();
-    }
-
-    public static <T> String getDuplicates(Collection<T> collection) {
-
-        Set<T> duplicates = new LinkedHashSet<>();
-        Set<T> uniques = new HashSet<>();
-
-        for (T t : collection) {
-            if (!uniques.add(t)) {
-                duplicates.add(t);
-            }
-        }
-        return duplicates.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n-"));
     }
 }
