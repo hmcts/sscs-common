@@ -348,6 +348,10 @@ public class SscsCaseData implements CaseData {
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private JointParty jointParty;
 
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkBasketFields workBasketFields;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -611,6 +615,14 @@ public class SscsCaseData implements CaseData {
             this.jointParty = new JointParty();
         }
         return jointParty;
+    }
+
+    @JsonIgnore
+    public WorkBasketFields getWorkBasketFields() {
+        if (isNull(workBasketFields)) {
+            workBasketFields = new WorkBasketFields();
+        }
+        return workBasketFields;
     }
 
     @JsonIgnore
