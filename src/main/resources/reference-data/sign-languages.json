@@ -1,0 +1,62 @@
+[
+  {
+    "reference":"americanSignLanguage",
+    "nameEn":"American Sign Language (ASL)",
+    "ccdReferences": ["americanSignLanguage", "American Sign Language", "ASL", "American Sign Language (ASL)", "American Sign Language ASL"]
+  },
+  {
+    "reference":"britishSignLanguage",
+    "nameEn":"British Sign Language (BSL)",
+    "ccdReferences": ["britishSignLanguage", "British Sign Language", "BSL", "British Sign Language (BSL)", "British Sign Language BSL"]
+  },
+  {
+    "reference":"deafblindManualAlphabet",
+    "nameEn":"Deafblind Manual Alphabet",
+    "ccdReferences": ["deafblindManualAlphabet", "Deafblind Manual Alphabet"]
+  },
+  {
+    "reference":"deafRelay",
+    "nameEn":"Deaf Relay",
+    "ccdReferences": ["deafRelay", "Deaf Relay"]
+  },
+  {
+    "reference":"handsOnSigning",
+    "nameEn":"Hands on signing",
+    "ccdReferences": ["handsOnSigning", "Hands on signing"]
+  },
+  {
+    "reference":"internationalSign",
+    "nameEn":"International Sign (IS)",
+    "ccdReferences": ["internationalSign", "IS", "International Sign (IS)", "International Sign IS"]
+  },
+  {
+    "reference":"lipspeaker",
+    "nameEn":"Lipspeaker",
+    "ccdReferences": ["Lipspeaker", "Lip Speaker"]
+  },
+  {
+    "reference":"makaton",
+    "nameEn":"Makaton",
+    "ccdReferences": ["Makaton"]
+  },
+  {
+    "reference":"notetaker",
+    "nameEn":"Notetaker",
+    "ccdReferences": ["Notetaker"]
+  },
+  {
+    "reference":"palantypist",
+    "nameEn":"Palantypist / Speech to text",
+    "ccdReferences": ["Palantypist", "Palantypist / Speech to Text", "Speech to Text", "STT"]
+  },
+  {
+    "reference":"speechSupportedEnglish",
+    "nameEn":"Speech Supported English (SSE)",
+    "ccdReferences": ["speechSupportedEnglish", "Speech Supported English", "SSE", "Speech Supported English (SSE)", "Speech Supported English SSE"]
+  },
+  {
+    "reference":"visualFrameSigning",
+    "nameEn":"Visual Frame Signing",
+    "ccdReferences": ["visualFrameSigning", "Visual Frame Signing"]
+  }
+]

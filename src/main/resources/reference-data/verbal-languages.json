@@ -1,0 +1,983 @@
+[
+ {
+   "reference": "abr",
+   "nameEn": "Brong",
+   "ccdReferences": ["Brong"]
+ },
+ {
+   "reference": "ach",
+   "nameEn": "Acholi",
+   "ccdReferences": ["Acholi"]
+ },
+ {
+   "reference": "afr",
+   "nameEn": "Afrikaans",
+   "ccdReferences": ["afrikaans"]
+ },
+ {
+   "reference": "aii",
+   "nameEn": "Assyrian",
+   "ccdReferences": ["assyrian"]
+ },
+ {
+   "reference": "aka",
+   "nameEn": "Akan",
+   "ccdReferences": ["akan"]
+ },
+ {
+   "reference": "alb",
+   "nameEn": "Albanian",
+   "ccdReferences": ["albanian"]
+ },
+ {
+   "reference": "amh",
+   "nameEn": "Amharic",
+   "ccdReferences": ["amharic"]
+ },
+ {
+   "reference": "ara",
+   "nameEn": "Arabic",
+   "ccdReferences": ["arabic"]
+ },
+ {
+   "reference": "ara",
+   "nameEn": "Arabic",
+   "dialectReference": "middleEastern",
+   "dialectEn": "Middle Eastern",
+   "ccdReferences": ["arabicMiddleEastern","Arabic (Middle Eastern)", "Arabic Middle Eastern"]
+ },
+ {
+   "reference": "ara",
+   "nameEn": "Arabic",
+   "dialectReference": "northAfrican",
+   "dialectEn": "North African",
+   "ccdReferences": ["arabicNorthAfrican","Arabic (North African)", "Arabic North African"]
+ },
+ {
+   "reference": "arm",
+   "nameEn": "Armenian",
+   "ccdReferences": ["armenian"]
+ },
+ {
+   "reference": "arq",
+   "nameEn": "Algerian",
+   "ccdReferences": ["algerian"]
+ },
+ {
+   "reference": "aze",
+   "nameEn": "Azerbajani (aka Nth Azari)",
+   "ccdReferences": ["azari","azerbajani","Azerbajani (aka Nth Azari)","Nth Azari","North Azari"]
+ },
+ {
+   "reference": "bal",
+   "nameEn": "Baluchi",
+   "ccdReferences": ["baluchi"]
+ },
+ {
+   "reference": "bam",
+   "nameEn": "Bambara",
+   "ccdReferences": ["bambara"]
+ },
+ {
+   "reference": "bas",
+   "nameEn": "Bassa",
+   "ccdReferences": ["bassa"]
+ },
+ {
+   "reference": "bel",
+   "nameEn": "Belorussian",
+   "ccdReferences": ["belorussian"]
+ },
+ {
+   "reference": "bem",
+   "nameEn": "Benba (Bemba)",
+   "ccdReferences": ["benba","Benba (Bemba)","Benba Bemba","Bemba"]
+ },
+ {
+   "reference": "ben",
+   "nameEn": "Bengali",
+   "ccdReferences": ["bengali"]
+ },
+ {
+   "reference": "ben",
+   "nameEn": "Bengali",
+   "dialectReference": "sylheti",
+   "dialectEn": "Sylheti",
+   "ccdReferences": ["bengaliSylheti","Bengali (Sylheti)","Bengali Sylheti"]
+ },
+ {
+   "reference": "ber",
+   "nameEn": "Berber",
+   "ccdReferences": ["berber"]
+ },
+ {
+   "reference": "bfz",
+   "nameEn": "Pahari",
+   "ccdReferences": ["Pahari"]
+ },
+ {
+   "reference": "bih",
+   "nameEn": "Bihari",
+   "ccdReferences": ["bihari"]
+ },
+ {
+   "reference": "bin",
+   "nameEn": "Benin/Edo",
+   "ccdReferences": ["benin","Edo/Benin","Benin/Edo","Edo Benin","Edo"]
+ },
+ {
+   "reference": "bjs",
+   "nameEn": "Bajan (West Indian)",
+   "ccdReferences": ["bajan","Bajan (West Indian)","West Indian"]
+ },
+ {
+   "reference": "btn",
+   "nameEn": "Bhutanese",
+   "ccdReferences": ["bhutanese"]
+ },
+ {
+   "reference": "bul",
+   "nameEn": "Bulgarian",
+   "ccdReferences": ["Bulgarian"]
+ },
+ {
+   "reference": "bur",
+   "nameEn": "Burmese",
+   "ccdReferences": ["Burmese"]
+ },
+ {
+   "reference": "byn",
+   "nameEn": "Bilin",
+   "ccdReferences": ["Bilin"]
+ },
+ {
+   "reference": "ceb",
+   "nameEn": "Cebuano",
+   "ccdReferences": ["Cebuano"]
+ },
+ {
+   "reference": "cgg",
+   "nameEn": "Rukiga",
+   "ccdReferences": ["Rukiga"]
+ },
+ {
+   "reference": "che",
+   "nameEn": "Chechen",
+   "ccdReferences": ["Chechen"]
+ },
+ {
+   "reference": "cmn",
+   "nameEn": "Mandarin",
+   "ccdReferences": ["Mandarin"]
+ },
+ {
+   "reference": "cpe",
+   "nameEn": "Creole (English)",
+   "ccdReferences": ["Creole (English)", "Creole English"]
+ },
+ {
+   "reference": "cpf",
+   "nameEn": "Creole (French)",
+   "ccdReferences": ["Creole (French)", "Creole French"]
+ },
+ {
+   "reference": "cpp",
+   "nameEn": "Creole (Portuguese)",
+   "ccdReferences": ["Creole (Portuguese)", "Creole Portuguese"]
+ },
+ {
+   "reference": "crp",
+   "nameEn": "Creole (Spanish)",
+   "ccdReferences": ["Creole (Spanish)", "Creole Spanish"]
+ },
+ {
+   "reference": "ctg",
+   "nameEn": "Chittagonain",
+   "ccdReferences": ["Chittagonain"]
+ },
+ {
+   "reference": "cze",
+   "nameEn": "Czech",
+   "ccdReferences": ["Czech"]
+ },
+ {
+   "reference": "dan",
+   "nameEn": "Danish",
+   "ccdReferences": ["Danish"]
+ },
+ {
+   "reference": "din",
+   "nameEn": "Dinka",
+   "ccdReferences": ["Dinka"]
+ },
+ {
+   "reference": "div",
+   "nameEn": "Maldivian",
+   "ccdReferences": ["Maldivian"]
+ },
+ {
+   "reference": "don",
+   "nameEn": "Toura",
+   "ccdReferences": ["Toura"]
+ },
+ {
+   "reference": "dua",
+   "nameEn": "Douala",
+   "ccdReferences": ["Douala"]
+ },
+ {
+   "reference": "dut",
+   "nameEn": "Dutch",
+   "ccdReferences": ["Dutch"]
+ },
+ {
+   "reference": "dyu",
+   "nameEn": "Dioula",
+   "ccdReferences": ["Dioula"]
+ },
+ {
+   "reference": "efi",
+   "nameEn": "Efik",
+   "ccdReferences": ["Efik"]
+ },
+ {
+   "reference": "est",
+   "nameEn": "Estonian",
+   "ccdReferences": ["Estonian"]
+ },
+ {
+   "reference": "ewe",
+   "nameEn": "Ewe",
+   "ccdReferences": ["Ewe"]
+ },
+ {
+   "reference": "ewo",
+   "nameEn": "Ewondo",
+   "ccdReferences": ["Ewondo"]
+ },
+ {
+   "reference": "fas",
+   "nameEn": "Farsi",
+   "ccdReferences": ["Farsi"]
+ },
+ {
+   "reference": "fat",
+   "nameEn": "Fanti",
+   "ccdReferences": ["Fanti"]
+ },
+ {
+   "reference": "fij",
+   "nameEn": "Fijian",
+   "ccdReferences": ["Fijian"]
+ },
+ {
+   "reference": "fre",
+   "nameEn": "French",
+   "ccdReferences": ["French"]
+ },
+ {
+   "reference": "fre",
+   "nameEn": "French",
+   "dialectReference": "african",
+   "dialectEn": "African",
+   "ccdReferences": ["French (African)", "French African"]
+ },
+ {
+   "reference": "fre",
+   "nameEn": "French",
+   "dialectReference": "arabic",
+   "dialectEn": "Arabic",
+   "ccdReferences": ["French (Arabic)", "French Arabic"]
+ },
+ {
+   "reference": "ful",
+   "nameEn": "Fula",
+   "ccdReferences": ["Fula"]
+ },
+ {
+   "reference": "gaa",
+   "nameEn": "Ga",
+   "ccdReferences": ["Ga"]
+ },
+ {
+   "reference": "geo",
+   "nameEn": "Georgian",
+   "ccdReferences": ["Georgian"]
+ },
+ {
+   "reference": "ger",
+   "nameEn": "German",
+   "ccdReferences": ["German"]
+ },
+ {
+   "reference": "gjk",
+   "nameEn": "Kachi",
+   "ccdReferences": ["Kachi"]
+ },
+ {
+   "reference": "gre",
+   "nameEn": "Greek",
+   "ccdReferences": ["Greek"]
+ },
+ {
+   "reference": "guj",
+   "nameEn": "Gujarati",
+   "ccdReferences": ["Gujarati"]
+ },
+ {
+   "reference": "hac",
+   "nameEn": "Gorani",
+   "ccdReferences": ["Gorani"]
+ },
+ {
+   "reference": "hak",
+   "nameEn": "Hakka",
+   "ccdReferences": ["Hakka"]
+ },
+ {
+   "reference": "hau",
+   "nameEn": "Hausa",
+   "ccdReferences": ["Hausa"]
+ },
+ {
+   "reference": "hbs",
+   "nameEn": "Serbo-Croatian",
+   "ccdReferences": ["serboCroatian","Serbo","Croatian","Serbo-Croatian", "Serbo Croatian"]
+ },
+ {
+   "reference": "heb",
+   "nameEn": "Hebrew",
+   "ccdReferences": ["Hebrew"]
+ },
+ {
+   "reference": "her",
+   "nameEn": "Herero",
+   "ccdReferences": ["Herero"]
+ },
+ {
+   "reference": "hin",
+   "nameEn": "Hindi",
+   "ccdReferences": ["Hindi"]
+ },
+ {
+   "reference": "hnd",
+   "nameEn": "Hindko",
+   "ccdReferences": ["Hindko"]
+ },
+ {
+   "reference": "hun",
+   "nameEn": "Hungarian",
+   "ccdReferences": ["Hungarian"]
+ },
+ {
+   "reference": "ibb",
+   "nameEn": "Ibibio",
+   "ccdReferences": ["Ibibio"]
+ },
+ {
+   "reference": "ibo",
+   "nameEn": "Igbo (Also Known As Ibo)",
+   "ccdReferences": ["Igbo", "Ibo", "Igbo (Also Known As Ibo)", "Igbo Also Known As Ibo"]
+ },
+ {
+   "reference": "ilo",
+   "nameEn": "Ilocano",
+   "ccdReferences": ["Ilocano"]
+ },
+ {
+   "reference": "ind",
+   "nameEn": "Indonesian",
+   "ccdReferences": ["Indonesian"]
+ },
+ {
+   "reference": "iso",
+   "nameEn": "Isoko",
+   "ccdReferences": ["Isoko"]
+ },
+ {
+   "reference": "ita",
+   "nameEn": "Italian",
+   "ccdReferences": ["Italian"]
+ },
+ {
+   "reference": "jam",
+   "nameEn": "Jamaican",
+   "ccdReferences": ["Jamaican"]
+ },
+ {
+   "reference": "jav",
+   "nameEn": "Javanese",
+   "ccdReferences": ["Javanese"]
+ },
+ {
+   "reference": "jpn",
+   "nameEn": "Japanese",
+   "ccdReferences": ["Japanese"]
+ },
+ {
+   "reference": "kas",
+   "nameEn": "Kashmiri",
+   "ccdReferences": ["Kashmiri"]
+ },
+ {
+   "reference": "kck",
+   "nameEn": "Khalanga",
+   "ccdReferences": ["Khalanga"]
+ },
+ {
+   "reference": "kfr",
+   "nameEn": "Kutchi",
+   "ccdReferences": ["Kutchi"]
+ },
+ {
+   "reference": "khm",
+   "nameEn": "Khmer",
+   "ccdReferences": ["Khmer"]
+ },
+ {
+   "reference": "kik",
+   "nameEn": "Kikuyu",
+   "ccdReferences": ["Kikuyu"]
+ },
+ {
+   "reference": "kin",
+   "nameEn": "Kinyarwandan",
+   "ccdReferences": ["Kinyarwandan"]
+ },
+ {
+   "reference": "kir",
+   "nameEn": "Kyrgyz",
+   "ccdReferences": ["Kyrgyz"]
+ },
+ {
+   "reference": "knn",
+   "nameEn": "Konkani",
+   "ccdReferences": ["Konkani"]
+ },
+ {
+   "reference": "kon",
+   "nameEn": "Kikongo",
+   "ccdReferences": ["Kikongo"]
+ },
+ {
+   "reference": "kor",
+   "nameEn": "Korean",
+   "ccdReferences": ["Korean"]
+ },
+ {
+   "reference": "kri",
+   "nameEn": "Krio (Sierra Leone)",
+   "ccdReferences": ["Krio", "Sierra Leone", "Krio (Sierra Leone)", "Krio Sierra Leone"]
+ },
+ {
+   "reference": "krn",
+   "nameEn": "Sarpo",
+   "ccdReferences": ["Sarpo"]
+ },
+ {
+   "reference": "kru",
+   "nameEn": "Kru",
+   "ccdReferences": ["Kru"]
+ },
+ {
+   "reference": "kur",
+   "nameEn": "Kurdish",
+   "dialectReference": "bardini",
+   "dialectEn": "Bardini",
+   "ccdReferences": ["kurdishBardini", "Bardini", "Kurdish (Bardini)", "Kurdish Bardini"]
+ },
+ {
+   "reference": "kur",
+   "nameEn": "Kurdish",
+   "dialectReference": "kurmanji",
+   "dialectEn": "Kurmanji",
+   "ccdReferences": ["kurdishKurmanji", "Kurmanji", "Kurdish (Kurmanji)", "Kurdish Kurmanji"]
+ },
+ {
+   "reference": "kur",
+   "nameEn": "Kurdish",
+   "dialectReference": "sorani",
+   "dialectEn": "Sorani",
+   "ccdReferences": ["kurdishSorani", "Sorani", "Kurdish (Sorani)", "Kurdish Sorani"]
+ },
+ {
+   "reference": "laj",
+   "nameEn": "Lango",
+   "ccdReferences": ["Lango"]
+ },
+ {
+   "reference": "lav",
+   "nameEn": "Latvian",
+   "ccdReferences": ["Latvian"]
+ },
+ {
+   "reference": "lin",
+   "nameEn": "Lingala",
+   "ccdReferences": ["Lingala"]
+ },
+ {
+   "reference": "lit",
+   "nameEn": "Lithuanian",
+   "ccdReferences": ["Lithuanian"]
+ },
+ {
+   "reference": "lub",
+   "nameEn": "Luba (Tshiluba)",
+   "ccdReferences": ["lubaTshiluba", "Luba", "Tshiluba", "Luba (Tshiluba)", "Luba Tshiluba"]
+ },
+ {
+   "reference": "lug",
+   "nameEn": "Lugandan",
+   "ccdReferences": ["Lugandan"]
+ },
+ {
+   "reference": "luo",
+   "nameEn": "Luo",
+   "ccdReferences": ["Luo"]
+ },
+ {
+   "reference": "luo",
+   "nameEn": "Luo",
+   "dialectReference": "acholi",
+   "dialectEn": "Acholi",
+   "ccdReferences": ["luoUgandanAcholi", "Luo Acholi", "Luo (Ugandan[Acholi District])", "Luo Ugandan Acholi District", "Luo Acholi District"]
+ },
+ {
+   "reference": "luo",
+   "nameEn": "Luo",
+   "dialectReference": "kenyan",
+   "dialectEn": "Kenyan",
+   "ccdReferences": ["luoKenyan", "Luo (Kenyan)", "Luo Kenyan"]
+ },
+ {
+   "reference": "luo",
+   "nameEn": "Luo",
+   "dialectReference": "lango",
+   "dialectEn": "Lango",
+   "ccdReferences": ["luoUgandanLango","Luo (Ugandan[Lango District])", "Luo Ugandan Lango District", "Luo Lango District"]
+ },
+ {
+   "reference": "mac",
+   "nameEn": "Macedonian",
+   "ccdReferences": ["Macedonian"]
+ },
+ {
+   "reference": "mal",
+   "nameEn": "Malayalam",
+   "ccdReferences": ["Malayalam"]
+ },
+ {
+   "reference": "mar",
+   "nameEn": "Marathi",
+   "ccdReferences": ["Marathi"]
+ },
+ {
+   "reference": "men",
+   "nameEn": "Mende",
+   "ccdReferences": ["Mende"]
+ },
+ {
+   "reference": "min",
+   "nameEn": "Mina",
+   "ccdReferences": ["Mina"]
+ },
+ {
+   "reference": "mku",
+   "nameEn": "Malinke",
+   "ccdReferences": ["Malinke"]
+ },
+ {
+   "reference": "mkw",
+   "nameEn": "Monokutuba",
+   "ccdReferences": ["Monokutuba"]
+ },
+ {
+   "reference": "mlt",
+   "nameEn": "Maltese",
+   "ccdReferences": ["Maltese"]
+ },
+ {
+   "reference": "mnk",
+   "nameEn": "Mandinka",
+   "ccdReferences": ["Mandinka"]
+ },
+ {
+   "reference": "mon",
+   "nameEn": "Mongolian",
+   "ccdReferences": ["Mongolian"]
+ },
+ {
+   "reference": "msa",
+   "nameEn": "Malay",
+   "ccdReferences": ["Malay"]
+ },
+ {
+   "reference": "nde",
+   "nameEn": "Ndebele",
+   "ccdReferences": ["Ndebele"]
+ },
+ {
+   "reference": "nep",
+   "nameEn": "Nepali",
+   "ccdReferences": ["Nepali"]
+ },
+ {
+   "reference": "nld",
+   "nameEn": "Flemish",
+   "ccdReferences": ["Flemish"]
+ },
+ {
+   "reference": "nor",
+   "nameEn": "Norwegian",
+   "ccdReferences": ["Norwegian"]
+ },
+ {
+   "reference": "nya",
+   "nameEn": "Chichewa",
+   "ccdReferences": ["Chichewa"]
+ },
+ {
+   "reference": "nyo",
+   "nameEn": "Runyoro",
+   "ccdReferences": ["Runyoro"]
+ },
+ {
+   "reference": "nzi",
+   "nameEn": "Nzima",
+   "ccdReferences": ["Nzima"]
+ },
+ {
+   "reference": "orm",
+   "nameEn": "Oromo",
+   "ccdReferences": ["Oromo"]
+ },
+ {
+   "reference": "pag",
+   "nameEn": "Pangasinan",
+   "ccdReferences": ["Pangasinan"]
+ },
+ {
+   "reference": "pam",
+   "nameEn": "Pampangan",
+   "ccdReferences": ["Pampangan"]
+ },
+ {
+   "reference": "pan",
+   "nameEn": "Punjabi",
+   "ccdReferences": ["Punjabi"]
+ },
+ {
+   "reference": "pan",
+   "nameEn": "Punjabi",
+   "nameEn": "Punjabi",
+   "dialectReference": "indian",
+   "dialectEn": "Indian",
+   "ccdReferences": ["punjabiIndian", "Punjabi (Indian)","Punjabi Indian"]
+ },
+ {
+   "reference": "pan",
+   "nameEn": "Punjabi",
+   "dialectReference": "pakistani",
+   "dialectEn": "Pakistani",
+   "ccdReferences": ["Pakistani", "punjabiPakistani","Punjabi (Pakistani)", "Punjabi Pakistani"]
+ },
+ {
+   "reference": "pat",
+   "nameEn": "Patois",
+   "ccdReferences": ["Patois"]
+ },
+ {
+   "reference": "phr",
+   "nameEn": "Pothohari",
+   "ccdReferences": ["Pothohari"]
+ },
+ {
+   "reference": "pol",
+   "nameEn": "Polish",
+   "ccdReferences": ["Polish"]
+ },
+ {
+   "reference": "por",
+   "nameEn": "Portuguese",
+   "ccdReferences": ["Portuguese"]
+ },
+ {
+   "reference": "prs",
+   "nameEn": "Dari",
+   "ccdReferences": ["Dari"]
+ },
+ {
+   "reference": "pus",
+   "nameEn": "Pushtu (Also Known As Pashto)",
+   "ccdReferences": ["Pushtu", "Pashto", "Pushtu (Also Known As Pashto)", "Pushtu Also Known As Pashto"]
+ },
+ {
+   "reference": "rmm",
+   "nameEn": "Roma",
+   "ccdReferences": ["Roma"]
+ },
+ {
+   "reference": "rom",
+   "nameEn": "Romany",
+   "ccdReferences": ["Romany"]
+ },
+ {
+   "reference": "ron",
+   "nameEn": "Moldovan",
+   "ccdReferences": ["Moldovan"]
+ },
+ {
+   "reference": "rum",
+   "nameEn": "Romanian",
+   "ccdReferences": ["Romanian"]
+ },
+ {
+   "reference": "run",
+   "nameEn": "Kirundi",
+   "ccdReferences": ["Kirundi"]
+ },
+ {
+   "reference": "rus",
+   "nameEn": "Russian",
+   "ccdReferences": ["Russian"]
+ },
+ {
+   "reference": "scl",
+   "nameEn": "Shina",
+   "ccdReferences": ["Shina"]
+ },
+ {
+   "reference": "sgw",
+   "nameEn": "Gurage",
+   "ccdReferences": ["Gurage"]
+ },
+ {
+   "reference": "sin",
+   "nameEn": "Sinhalese",
+   "ccdReferences": ["Sinhalese"]
+ },
+ {
+   "reference": "skr",
+   "nameEn": "Saraiki (Seraiki)",
+   "ccdReferences": ["Saraiki", "Seraiki", "Saraiki (Seraiki)", "Saraiki Seraiki"]
+ },
+ {
+   "reference": "slo",
+   "nameEn": "Slovak",
+   "ccdReferences": ["Slovak"]
+ },
+ {
+   "reference": "slv",
+   "nameEn": "Slovenian",
+   "ccdReferences": ["Slovenian"]
+ },
+ {
+   "reference": "sna",
+   "nameEn": "Shona",
+   "ccdReferences": ["Shona"]
+ },
+ {
+   "reference": "snd",
+   "nameEn": "Sindhi",
+   "ccdReferences": ["Sindhi"]
+ },
+ {
+   "reference": "som",
+   "nameEn": "Somali",
+   "ccdReferences": ["Somali"]
+ },
+ {
+   "reference": "spa",
+   "nameEn": "Spanish",
+   "ccdReferences": ["Spanish"]
+ },
+ {
+   "reference": "sus",
+   "nameEn": "Susu",
+   "ccdReferences": ["Susu"]
+ },
+ {
+   "reference": "swa",
+   "nameEn": "Swahili",
+   "ccdReferences": ["Swahili"]
+ },
+ {
+   "reference": "swa",
+   "nameEn": "Swahili",
+   "dialectReference": "bravanese",
+   "dialectEn": "Bravanese",
+   "ccdReferences": ["Bravanese"]
+ },
+ {
+   "reference": "swa",
+   "nameEn": "Swahili",
+   "dialectReference": "kibajuni",
+   "dialectEn": "Kibajuni",
+   "ccdReferences": ["Kibajuni", "Kibanjuni", "Bajuni", "Ban", "Kibajuni,Kibanjuni,Bajuni,Ban"]
+ },
+ {
+   "reference": "swe",
+   "nameEn": "Swedish",
+   "ccdReferences": ["Swedish"]
+ },
+ {
+   "reference": "syl",
+   "nameEn": "Sylheti",
+   "ccdReferences": ["Sylheti"]
+ },
+ {
+   "reference": "tai",
+   "nameEn": "Taiwanese",
+   "ccdReferences": ["Taiwanese"]
+ },
+ {
+   "reference": "tam",
+   "nameEn": "Tamil",
+   "ccdReferences": ["Tamil"]
+ },
+ {
+   "reference": "tel",
+   "nameEn": "Telugu",
+   "ccdReferences": ["Telugu"]
+ },
+ {
+   "reference": "tem",
+   "nameEn": "Temne",
+   "ccdReferences": ["Temne"]
+ },
+ {
+   "reference": "teo",
+   "nameEn": "Ateso",
+   "ccdReferences": ["Ateso"]
+ },
+ {
+   "reference": "tgl",
+   "nameEn": "Tagalog",
+   "ccdReferences": ["Tagalog"]
+ },
+ {
+   "reference": "tha",
+   "nameEn": "Thai",
+   "ccdReferences": ["Thai"]
+ },
+ {
+   "reference": "tib",
+   "nameEn": "Tibetan",
+   "ccdReferences": ["Tibetan"]
+ },
+ {
+   "reference": "tig",
+   "nameEn": "Tigre",
+   "ccdReferences": ["Tigre"]
+ },
+ {
+   "reference": "tir",
+   "nameEn": "Tigrinya",
+   "ccdReferences": ["Tigrinya"]
+ },
+ {
+   "reference": "tsn",
+   "nameEn": "Setswana",
+   "ccdReferences": ["Setswana"]
+ },
+ {
+   "reference": "ttj",
+   "nameEn": "Rutoro",
+   "ccdReferences": ["Rutoro"]
+ },
+ {
+   "reference": "tuk",
+   "nameEn": "Turkmen",
+   "ccdReferences": ["Turkmen"]
+ },
+ {
+   "reference": "tur",
+   "nameEn": "Turkish",
+   "ccdReferences": ["Turkish"]
+ },
+ {
+   "reference": "twi",
+   "nameEn": "Twi",
+   "ccdReferences": ["Twi"]
+ },
+ {
+   "reference": "uig",
+   "nameEn": "Uighur",
+   "ccdReferences": ["Uighur"]
+ },
+ {
+   "reference": "ukr",
+   "nameEn": "Ukrainian",
+   "ccdReferences": ["Ukrainian"]
+ },
+ {
+   "reference": "urd",
+   "nameEn": "Urdu",
+   "ccdReferences": ["Urdu"]
+ },
+ {
+   "reference": "urh",
+   "nameEn": "Urohobo",
+   "ccdReferences": ["Urohobo"]
+ },
+ {
+   "reference": "uzb",
+   "nameEn": "Uzbek",
+   "ccdReferences": ["Uzbek"]
+ },
+ {
+   "reference": "vie",
+   "nameEn": "Vietnamese",
+   "ccdReferences": ["Vietnamese"]
+ },
+ {
+   "reference": "vsa",
+   "nameEn": "Visayan",
+   "ccdReferences": ["Visayan"]
+ },
+ {
+   "reference": "wel",
+   "nameEn": "Welsh",
+   "ccdReferences": ["Welsh"]
+ },
+ {
+   "reference": "wol",
+   "nameEn": "Wolof",
+   "ccdReferences": ["Wolof", "senegalWolof", "Senegal (Wolof)", "Senegal Wolof"]
+ },
+ {
+   "reference": "xho",
+   "nameEn": "Xhosa",
+   "ccdReferences": ["Xhosa"]
+ },
+ {
+   "reference": "xog",
+   "nameEn": "Lusoga",
+   "ccdReferences": ["Lusoga"]
+ },
+ {
+   "reference": "yor",
+   "nameEn": "Yoruba",
+   "ccdReferences": ["Yoruba"]
+ },
+ {
+   "reference": "yue",
+   "nameEn": "Cantonese",
+   "ccdReferences": ["Cantonese"]
+ },
+ {
+   "reference": "zag",
+   "nameEn": "Zaghawa",
+   "ccdReferences": ["Zaghawa"]
+ },
+ {
+   "reference": "zul",
+   "nameEn": "Zulu",
+   "ccdReferences": ["Zulu"]
+ },
+ {
+   "reference": "zza",
+   "nameEn": "Zaza",
+   "ccdReferences": ["Zaza"]
+ }
+]
