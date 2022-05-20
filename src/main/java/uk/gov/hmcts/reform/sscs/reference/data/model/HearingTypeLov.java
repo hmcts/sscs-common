@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingTypeLov {
 
-    SUBSTANTIVE("BBA3-SUB", "Substantive", null),
-    DIRECTION_HEARINGS("BBA3-DIR", "Direction Hearings", null),
-    CHAMBERS_OUTCOME("BBA3-CHA", "Chambers Outcome", null);
+    SUBSTANTIVE("BBA3-substantive", "Substantive", null),
+    DIRECTION_HEARINGS("BBA3-directionHearings", "Direction Hearings", null),
+    CHAMBERS_OUTCOME("BBA3-chambersOutcome", "Chambers Outcome", null);
 
     private final String hmcReference;
     private final String valueEn;
