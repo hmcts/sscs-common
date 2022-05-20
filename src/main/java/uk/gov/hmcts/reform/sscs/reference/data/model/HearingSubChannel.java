@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.reference.data.mappings;
+package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import static uk.gov.hmcts.reform.sscs.reference.data.mappings.HearingChannel.TELEPHONE;
 import static uk.gov.hmcts.reform.sscs.reference.data.mappings.HearingChannel.VIDEO;

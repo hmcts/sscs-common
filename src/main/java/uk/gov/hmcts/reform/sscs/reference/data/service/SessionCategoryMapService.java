@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.sscs.service;
+package uk.gov.hmcts.reform.sscs.reference.data.service;
 
-import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.generateHashMap;
-import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getReferenceData;
+import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.generateHashMap;
+import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.List;
@@ -11,7 +11,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
-import uk.gov.hmcts.reform.sscs.model.SessionCategoryMap;
+import uk.gov.hmcts.reform.sscs.reference.data.model.SessionCategoryMap;
 
 @Getter
 @Setter
