@@ -27,8 +27,7 @@ public class VenueServiceTest {
 
     @Mock
     private AirLookupService airLookupService;
-
-
+    
     @Test
     public void getHearingLocations_shouldReturnCorrespondingEpimsIdForVenue() {
 
@@ -46,7 +45,6 @@ public class VenueServiceTest {
     private void setupVenueMaps() {
         Map<String, Integer> venueIdMap = Map.of(PROCESSING_VENUE_1,
             68, PROCESSING_VENUE_2, 2);
-
 
         Map<String, VenueDetails> venueDetailsMap = Map.of(
             "68", VenueDetails.builder()
