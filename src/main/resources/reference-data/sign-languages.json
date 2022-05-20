@@ -1,62 +1,62 @@
 [
   {
-    "reference":"ase",
+    "reference":"americanSignLanguage",
     "nameEn":"American Sign Language (ASL)",
-    "ccdReferences": ["ase","americanSignLanguage", "American Sign Language", "ASL", "American Sign Language (ASL)", "American Sign Language ASL", "signAmericanSign", "Sign (American Sign)", "Sign American Sign", "American Sign"]
+    "ccdReferences": ["americanSignLanguage", "American Sign Language", "ASL", "American Sign Language (ASL)", "American Sign Language ASL"]
   },
   {
-    "reference":"bfi",
+    "reference":"britishSignLanguage",
     "nameEn":"British Sign Language (BSL)",
-    "ccdReferences": ["bfi", "British Sign Language", "BSL", "British Sign Language (BSL)", "British Sign Language BSL",  "Sign (BSL)",  "Sign BSL", "signBsl"]
+    "ccdReferences": ["britishSignLanguage", "British Sign Language", "BSL", "British Sign Language (BSL)", "British Sign Language BSL"]
   },
   {
-    "reference":"sign-dma",
+    "reference":"deafblindManualAlphabet",
     "nameEn":"Deafblind Manual Alphabet",
-    "ccdReferences": ["sign-dma","deafblindManualAlphabet", "Deafblind Manual Alphabet", "Sign (Manual Alphabet)", "Sign Manual Alphabet", "signManualAlphabet"]
+    "ccdReferences": ["deafblindManualAlphabet", "Deafblind Manual Alphabet"]
   },
   {
-    "reference":"sign-dfr",
+    "reference":"deafRelay",
     "nameEn":"Deaf Relay",
-    "ccdReferences": ["sign-dfr","deafRelay", "Deaf Relay", "Sign (Relay)", "Sign Relay", "signRelay"]
+    "ccdReferences": ["deafRelay", "Deaf Relay"]
   },
   {
-    "reference":"sign-hos",
+    "reference":"handsOnSigning",
     "nameEn":"Hands on signing",
-    "ccdReferences": ["sign-hos","handsOnSigning", "Hands on signing", "Sign (Deaf Blind ‑ Hands on)", "Sign Deaf Blind ‑ Hands on", "Sign Deaf Blind", "Deaf Blind", "Sign Hands on", "signDeafBlind"]
+    "ccdReferences": ["handsOnSigning", "Hands on signing"]
   },
   {
-    "reference":"ils",
+    "reference":"internationalSign",
     "nameEn":"International Sign (IS)",
-    "ccdReferences": ["ils","internationalSign", "IS", "International Sign (IS)", "International Sign IS", "signInternationalSign", "Sign (International Sign)", "Sign International Sign", "International Sign"]
+    "ccdReferences": ["internationalSign", "IS", "International Sign (IS)", "International Sign IS"]
   },
   {
-    "reference":"sign-lps",
+    "reference":"lipspeaker",
     "nameEn":"Lipspeaker",
-    "ccdReferences": ["sign-lps","Lipspeaker", "Lip Speaker", "Sign (Lip Speaker)", "Sign Lip Speaker", "signLipSpeaker"]
+    "ccdReferences": ["Lipspeaker", "Lip Speaker"]
   },
   {
-    "reference":"sign-mkn",
+    "reference":"makaton",
     "nameEn":"Makaton",
-    "ccdReferences": ["sign-mkn","Makaton", "Sign (Makaton)", "Sign Makaton", "signMakaton"]
+    "ccdReferences": ["Makaton"]
   },
   {
-    "reference":"sign-ntr",
+    "reference":"notetaker",
     "nameEn":"Notetaker",
-    "ccdReferences": ["sign-ntr","Notetaker", "signNoteTaker", "Sign (Note Taker)", "Sign Note Taker", "Note Taker"]
+    "ccdReferences": ["Notetaker"]
   },
   {
-    "reference":"sign-pst",
+    "reference":"palantypist",
     "nameEn":"Palantypist / Speech to text",
-    "ccdReferences": ["sign-pst","Palantypist", "Palantypist / Speech to Text", "Speech to Text", "STT", "signPalantypist", "Sign Palantypist/Speech to TX", "Sign Palantypist", "Speech to TX"]
+    "ccdReferences": ["Palantypist", "Palantypist / Speech to Text", "Speech to Text", "STT"]
   },
   {
-    "reference":"sign-sse",
+    "reference":"speechSupportedEnglish",
     "nameEn":"Speech Supported English (SSE)",
-    "ccdReferences": ["sign-sse","speechSupportedEnglish", "Speech Supported English", "SSE", "Speech Supported English (SSE)", "Speech Supported English SSE", "signSse", "Sign (SSE)", "Sign SSE"]
+    "ccdReferences": ["speechSupportedEnglish", "Speech Supported English", "SSE", "Speech Supported English (SSE)", "Speech Supported English SSE"]
   },
   {
-    "reference":"sign-vfs",
+    "reference":"visualFrameSigning",
     "nameEn":"Visual Frame Signing",
-    "ccdReferences": ["sign-vfs","visualFrameSigning", "Visual Frame Signing", "Sign (Visual Frame)", "Sign Visual Frame", "signVisualFrame", "Visual Frame"]
+    "ccdReferences": ["visualFrameSigning", "Visual Frame Signing"]
   }
 ]
