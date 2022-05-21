@@ -331,6 +331,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    private CaseAccessManagementFields caseAccessManagementFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private WorkAllocationFields workAllocationFields;
 
     @JsonUnwrapped
@@ -574,6 +578,14 @@ public class SscsCaseData implements CaseData {
             this.postponementRequest = new PostponementRequest();
         }
         return postponementRequest;
+    }
+
+    @JsonIgnore
+    public CaseAccessManagementFields getCaseAccessManagementFields() {
+        if (caseAccessManagementFields == null) {
+            this.caseAccessManagementFields = new CaseAccessManagementFields();
+        }
+        return caseAccessManagementFields;
     }
 
     @JsonIgnore
