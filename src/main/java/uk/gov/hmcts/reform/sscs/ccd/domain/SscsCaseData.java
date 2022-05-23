@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
-import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
@@ -607,7 +606,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public JointParty getJointParty() {
-        if (isNull(jointParty)) {
+        if (jointParty == null) {
             this.jointParty = new JointParty();
         }
         return jointParty;

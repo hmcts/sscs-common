@@ -5,6 +5,7 @@ import static java.util.Objects.nonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.apache.commons.lang3.BooleanUtils;
 
 public enum YesNo {
 
@@ -41,7 +42,8 @@ public enum YesNo {
     }
 
     public static boolean isNoOrNull(String yesNo) {
-        return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
+
+        return !BooleanUtils.toBoolean(yesNo);
     }
 
     @Override
