@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public enum CancellationReason {
@@ -17,4 +19,10 @@ public enum CancellationReason {
     private final String hmcReference;
     private final String value;
 
+    public static CancellationReason getCancellationReasonByValue(String value){
+        return Arrays.stream(CancellationReason.values())
+                .filter(sl -> sl.getValue().equals(value))
+                .findFirst()
+                .orElse(null);
+    }
 }
