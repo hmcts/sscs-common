@@ -13,7 +13,10 @@ public enum CancellationReason {
     PARTY_UNABLE_TO_ATTEND("BBA3-partyUnableToAttend", "Party unable to attend"),
     EXCLUSION("BBA3-exclusion", "Exclusion"),
     LAPSED("BBA3-lapsed", "Lapsed"),
-    OTHER("BBA3-other", "Other");
+    OTHER("BBA3-other", "Other"),
+    INCOMPLETE_TRIBUNAL("BBA3-incompleteTribunal", "Incomplete Tribunal"),
+    LISTED_IN_ERROR("BBA3-listedInError", "Listed In Error"),
+    PARTY_DID_NOT_ATTEND("BBA3-partyDidNotAttend", "Party Did Not Attend");
 
     private final String hmcReference;
     private final String value;
