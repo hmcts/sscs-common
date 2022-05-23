@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingChannel {
 
-    TELEPHONE("telephone", "Telephone", "Ffôn"),
-    VIDEO("video", "Video", "Fideo"),
-    FACE_TO_FACE("faceToFace", "Face To Face", "Wyneb yn wyneb"),
-    NOT_ATTENDING("notAttending", "Not Attending", null);
+    TEL("telephone", "Telephone", "Ffôn"),
+    VID("video", "Video", "Fideo"),
+    INTER("faceToFace", "Face To Face", "Wyneb yn wyneb"),
+    NA("notAttending", "Not Attending", null),
+    ONPPRS("paper", "Paper", "Papur"),;
 
     private final String hmcReference;
     private final String valueEn;
