@@ -92,7 +92,7 @@ publishing {
 }
 
 def versions = [
-    lombok          : '1.18.22',
+    lombok          : '1.18.24',
     spring          : '2.3.5.RELEASE'
 ]
 
