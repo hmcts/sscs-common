@@ -9,15 +9,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingSubChannel {
 
-    TELEPHONE_BT_MEET_ME(TELEPHONE, "telephone-btMeetMe", "Telephone - BTMeetme", null),
-    TELEPHONE_CVP(TELEPHONE, "telephone-cvp", "Telephone - CVP", null),
-    TELEPHONE_OTHER(TELEPHONE, "telephone-other", "Telephone - Other", null),
-    TELEPHONE_SKYPE(TELEPHONE, "telephone-skype", "Telephone - Skype", null),
-    VIDEO_CVP(VIDEO, "video-cvp", "Video - CVP", null),
-    VIDEO_CONFERENCE(VIDEO, "video-conference", "Video - Conference", null),
-    VIDEO_OTHER(VIDEO, "video-other", "Video - Other", null),
-    VIDEO_SKYPE(VIDEO, "video-skype", "Video - Skype", null),
-    VIDEO_TEAMS(VIDEO, "video-teams", "Video - Teams", null);
+    TELEPHONE_BT_MEET_ME(TELEPHONE, "TELBTM", "Telephone - BTMeetme", null),
+    TELEPHONE_CVP(TELEPHONE, "TELCVP", "Telephone - CVP", null),
+    TELEPHONE_OTHER(TELEPHONE, "TELOTHER", "Telephone - Other", null),
+    TELEPHONE_SKYPE(TELEPHONE, "TELSKYP", "Telephone - Skype", null),
+    VIDEO_CVP(VIDEO, "VIDCVP", "Video - CVP", null),
+    VIDEO_OTHER(VIDEO, "VIDOTHER", "Video - Other", null),
+    VIDEO_SKYPE(VIDEO, "VIDSKYPE", "Video - Skype", null),
+    VIDEO_TEAMS(VIDEO, "VIDTEAMS", "Video - Teams", null),
+    VIDEO_VHS(VIDEO, "VIDBHS", "Video - Video Hearing Service", null);
 
     private final HearingChannel hearingChannel;
     private final String hmcReference;
