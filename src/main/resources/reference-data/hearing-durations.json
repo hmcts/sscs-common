@@ -1,0 +1,4326 @@
+[
+  {
+    "benefitCode": "UC",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "UC",
+    "issue": "UM",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "UC",
+    "issue": "US",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "AR",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "CC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "CD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "CE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "CF",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "CP",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "DD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "EC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "EI",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "EX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "LC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "LE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "MD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "ML",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "MO",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "ON",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "RA",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "RC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_NEW_CLAIM",
+    "issue": "VW",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "AR",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "CC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "CD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "CE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "CF",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "CP",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "DD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "EC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "EI",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "EX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "LC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "LE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "MD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "ML",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "MO",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "ON",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "RA",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "RC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PIP_REASSESSMENT_CASE",
+    "issue": "VW",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "AR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "CD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "CE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "CF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "EI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "LE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "MD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ATTENDANCE_ALLOWANCE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "GUARDIANS_ALLOWANCE",
+    "issue": "FX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "CE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "GC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "LE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "RG",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_BENEFIT_LONE_PARENT",
+    "issue": "SU",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "CA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_ASSESSMENTS",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "CA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORMS",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "CA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_REFORM_VARIATION_REFERRAL",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "CA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_VARIATION_REFERRAL",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "PC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "RB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "SS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_SUPPORT_DEPARTURES_REFERRAL",
+    "issue": "SX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "CO",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "GC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "LE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_APPROVED_TRAINING",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_JURY_SERVICE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_SICK_PAY",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "SS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "COEG",
+    "issue": "SX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CREDITS_STATUTORY_MATERNITY_PAY",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "AR",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "CC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "CD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "CE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "CF",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "CP",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "DD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "EC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "EI",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "EX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "LE",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "MD",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "OC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "RA",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "DLA",
+    "issue": "RC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "AP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "AS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "BW",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CL",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CO",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "DA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "DP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "HC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "HT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "IQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "PR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "RB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "SF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "SM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "SS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENSION_CREDITS",
+    "issue": "SX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "HRP",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "FR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "WI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "HT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "IM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "NC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "PC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "SG",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "TL",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "TP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
+    "issue": "WC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "FX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILD_TAX_CREDIT",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "FX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "VW",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_TAX_CREDIT",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "EQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "FC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "PENALTY_PROCEEDINGS",
+    "issue": "IS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "DK",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "DS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "RO",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "OI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "FX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "TAX_FREE_CHILDCARE",
+    "issue": "TU",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "THIRTY_HOURS_FREE_CHILDCARE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "THIRTY_HOURS_FREE_CHILDCARE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "THIRTY_HOURS_FREE_CHILDCARE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "AS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "AT",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "BW",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CL",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CO",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "DP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "DQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "WI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "HC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "HT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "IA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "ID",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "IQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "LM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "PC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "PR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "RB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "RG",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "SF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "SM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "SS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "SU",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "SX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "TT",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "INCOME_SUPPORT",
+    "issue": "WF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "HT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "IM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "NC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "PC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "SG",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "TP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "WC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "AA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "CS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "DQ",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "IA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "ID",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA_REASSESSMENT",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "CB",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "CC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "CE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "CP",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "CS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "DD",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "DM",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "DQ",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "EC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "EX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "FW",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "GC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "IA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "ID",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "LE",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "OK",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "ON",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "OS",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "OX",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "RA",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "IIDB",
+    "issue": "RC",
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "EI",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CARERS_ALLOWANCE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "AS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "AT",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "AV",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "AW",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "BW",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CL",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CO",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "DR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "FT",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "HC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "HT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "IQ",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "LM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "PC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RE",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RG",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "RT",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "SM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "SS",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "SU",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "JSA",
+    "issue": "SX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "MATERNITY_ALLOWANCE",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "RETIREMENT_PENSION",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "SF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_MATERNITY",
+    "issue": "SM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "PF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "SF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "SOCIAL_FUND_FUNERAL",
+    "issue": "SM",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILDRENS_FUNERAL_FUND",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "CHILDRENS_FUNERAL_FUND",
+    "issue": "FF",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "LT",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "OC",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "OX",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_BENEFIT",
+    "issue": "RC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "CB",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "OS",
+    "durationFaceToFace": 60,
+    "durationInterpreter": 90,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "BEREAVEMENT_SUPPORT_PAYMENT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "CC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "CE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "CP",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "CR",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "DD",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "EC",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "EX",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "GC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "LE",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "OC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "ON",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "OS",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "OX",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "RA",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
+    "issue": "RC",
+    "durationFaceToFace": 30,
+    "durationInterpreter": 60,
+    "durationPaper": 30
+  }
+]
