@@ -43,7 +43,7 @@ public class VenueServiceTest {
     public void givenRpcPostcode_shouldReturnCorrespondingEpimsIdForVenue() {
         setupVenueMaps();
 
-        Optional<String> result = venueService.getEpimsIdForVenueByPostcode("LN5 7PS");
+        Optional<String> result = venueService.getEpimsIdForActiveVenueByPostcode("LN5 7PS");
 
         assertThat(result).isPresent();
         String epimsId = result.get();
@@ -72,7 +72,7 @@ public class VenueServiceTest {
 
         when(airLookupService.getLookupVenueIdByAirVenueName()).thenReturn(venueIdMap);
         when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
-        when(venueDataLoader.getVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
+        when(venueDataLoader.getActiveVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
     }
 
 }
