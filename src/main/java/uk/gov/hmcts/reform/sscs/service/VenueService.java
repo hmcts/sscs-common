@@ -25,9 +25,9 @@ public class VenueService {
             .map(VenueDetails::getEpimsId);
     }
 
-    public Optional<String> getEpimsIdForVenueByPostcode(String postcode) {
+    public Optional<String> getEpimsIdForActiveVenueByPostcode(String postcode) {
 
-        VenueDetails venueDetails = venueDataLoader.getVenueDetailsMapByPostcode()
+        VenueDetails venueDetails = venueDataLoader.getActiveVenueDetailsMapByPostcode()
             .get(postcode);
 
         return Optional.ofNullable(venueDetails)
