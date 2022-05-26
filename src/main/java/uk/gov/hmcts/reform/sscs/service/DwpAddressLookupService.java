@@ -12,8 +12,7 @@ import static org.apache.commons.lang3.StringUtils.stripToEmpty;
 import static org.apache.commons.lang3.StringUtils.substringBetween;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 
-import com.google.gson.Gson;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
@@ -40,10 +39,10 @@ public class DwpAddressLookupService {
 
     public DwpAddressLookupService() {
         try {
+            ObjectMapper mapper = new ObjectMapper();
             String json = resourceToString("reference-data/ftaAddresses.json",
                     StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
-            Gson gson = new Gson();
-            dwpMappings = gson.fromJson(json, DwpMappings.class);
+            dwpMappings = mapper.readValue(json, DwpMappings.class);
         } catch (Exception exception) {
             log.error("Cannot parse FTA addresses. " + exception.getMessage(), exception);
             throw new RuntimeException("cannot parse FTA addresses", exception);
