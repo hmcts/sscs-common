@@ -9,8 +9,6 @@ import static org.mockito.MockitoAnnotations.openMocks;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.springframework.retry.backoff.FixedBackOffPolicy;
-import org.springframework.retry.support.RetryTemplate;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
@@ -50,7 +48,7 @@ public class CreateCcdCaseServiceTest {
         caseDetails = CaseDataUtils.buildCaseDetails();
         sscsCaseData = CaseDataUtils.buildCaseData();
 
-        createCcdCaseService = new CreateCcdCaseService(new SscsCcdConvertService(), ccdClient);
+        createCcdCaseService = new CreateCcdCaseService(idamService, new SscsCcdConvertService(), ccdClient);
     }
 
     @Test
@@ -66,14 +64,4 @@ public class CreateCcdCaseServiceTest {
         assertNotNull(sscsCaseDetails);
     }
 
-
-    private RetryTemplate retryTemplate() {
-        RetryTemplate retryTemplate = new RetryTemplate();
-
-        FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
-        fixedBackOffPolicy.setBackOffPeriod(2000L);
-        retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
-
-        return retryTemplate;
-    }
 }

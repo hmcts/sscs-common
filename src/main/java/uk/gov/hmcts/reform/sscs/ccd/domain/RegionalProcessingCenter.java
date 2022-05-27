@@ -21,7 +21,8 @@ public class RegionalProcessingCenter {
                                     @JsonProperty("address3") String address3,
                                     @JsonProperty("postcode") String postcode,
                                     @JsonProperty("city") String city,
-                                    @JsonProperty("email") String email) {
+                                    @JsonProperty("email") String email,
+                                    @JsonProperty("hearingRoute") HearingRoute hearingRoute) {
         this.faxNumber = faxNumber;
         this.address4 = address4;
         this.phoneNumber = phoneNumber;
@@ -32,25 +33,28 @@ public class RegionalProcessingCenter {
         this.postcode = postcode;
         this.city = city;
         this.email = email;
+        this.hearingRoute = hearingRoute;
     }
 
-    private String faxNumber;
+    String faxNumber;
 
-    private String address4;
+    String address4;
 
-    private String phoneNumber;
+    String phoneNumber;
 
-    private String name;
+    String name;
 
-    private String address1;
+    String address1;
 
-    private String address2;
+    String address2;
 
-    private String address3;
+    String address3;
 
-    private String postcode;
+    String postcode;
 
-    private String city;
+    String city;
 
-    private String email;
+    String email;
+
+    HearingRoute hearingRoute;
 }
