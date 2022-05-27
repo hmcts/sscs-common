@@ -23,14 +23,14 @@ public enum CancellationReason {
 
     public static CancellationReason getCancellationReasonByHmcReference(String value) {
         return Arrays.stream(CancellationReason.values())
-                .filter(sl -> sl.getHmcReference().equals(value))
+                .filter(cancellationReason -> cancellationReason.getHmcReference().equals(value))
                 .findFirst()
                 .orElse(null);
     }
 
     public static CancellationReason getCancellationReasonByLabel(String value) {
         return Arrays.stream(CancellationReason.values())
-                .filter(sl -> sl.getLabel().equals(value))
+                .filter(cancellationReason -> cancellationReason.getLabel().equals(value))
                 .findFirst()
                 .orElse(null);
     }
