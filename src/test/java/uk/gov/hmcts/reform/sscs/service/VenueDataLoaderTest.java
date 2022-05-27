@@ -7,18 +7,46 @@ import static org.junit.Assert.*;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
+import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
 
-    private static final VenueDataLoader venueDataLoader = new VenueDataLoader();
+    private static final String VALID_EPIMS_ID = "45900";
+    private static final String INVALID_EPIMS_ID = "abcd";
+    private VenueDataLoader venueDataLoader;
 
-    static {
+    private VenueDetails.VenueDetailsBuilder venueDetailsBuilder;
+
+
+    @Before
+    public void setUp() {
+        venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
+
+        venueDetailsBuilder = VenueDetails.builder()
+            .venueId("1234")
+            .threeDigitReference("SC944")
+            .regionalProcessingCentre("SSCS Liverpool")
+            .venName("Stockport Law Courts")
+            .venAddressLine1("The Court House")
+            .venAddressLine2("Edward Street")
+            .venAddressTown("Stockport")
+            .venAddressCounty("Cheshire")
+            .venAddressPostcode("SK1 3DQ")
+            .venAddressTelNo("")
+            .districtId("601")
+            .url("https://www.google.co.uk/maps/etc")
+            .active("Yes")
+            .gapsVenName("Stockport")
+            .comments("Comments")
+            .epimsId(VALID_EPIMS_ID);
     }
 
     @Test
@@ -94,5 +122,51 @@ public class VenueDataLoaderTest {
     public void shouldGetExistingVenueNameIfBothVenueIdAndVenueAreBlank() {
         String result = venueDataLoader.getGapVenueName(null, null);
         assertNull(result);
+    }
+
+    @DisplayName("When a valid epims ID is searched, getVenue return the correct Venue Rpc Details")
+    @Test
+    public void testGetVenue() {
+        VenueDetails result = venueDataLoader.getAnActiveVenueByEpims(VALID_EPIMS_ID);
+
+        assertNotNull(result);
+        assertEquals("1236", result.getVenueId());
+        assertEquals("SC287", result.getThreeDigitReference());
+        assertEquals(VALID_EPIMS_ID, result.getEpimsId());
+    }
+
+    @DisplayName("When a invalid epims ID is searched, getVenue returns null")
+    @Test
+    public void testGetVenueInvalidEpims() {
+        VenueDetails result = venueDataLoader.getAnActiveVenueByEpims(INVALID_EPIMS_ID);
+
+        assertNull(result);
+    }
+
+    @DisplayName("When a Venue with the field Active is Yes is given, isActiveVenue returns true")
+    @Test
+    public void testIsActiveVenue() {
+        VenueDetails venueDetails = venueDetailsBuilder.active("Yes").build();
+        boolean result = venueDataLoader.isActiveVenue(venueDetails);
+
+        assertTrue(result);
+    }
+
+    @DisplayName("When a Venue with the field Active is not Yes is given, isActiveVenue returns false")
+    @Test
+    @Parameters({"No", "", "null"})
+    public void testIsActiveVenueNo(String value) {
+        VenueDetails venueDetails = venueDetailsBuilder.active(value).build();
+        boolean result = venueDataLoader.isActiveVenue(venueDetails);
+
+        assertFalse(result);
+    }
+
+    @DisplayName("When a null Venue is given, isActiveVenue returns false")
+    @Test
+    public void testIsActiveVenueNull() {
+        boolean result = venueDataLoader.isActiveVenue(null);
+
+        assertFalse(result);
     }
 }
