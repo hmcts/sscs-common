@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
-import static uk.gov.hmcts.reform.sscs.reference.data.mappings.HearingChannel.TELEPHONE;
-import static uk.gov.hmcts.reform.sscs.reference.data.mappings.HearingChannel.VIDEO;
+import static uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel.TELEPHONE;
+import static uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel.VIDEO;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
