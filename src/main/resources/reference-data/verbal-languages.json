@@ -9,6 +9,31 @@
    "nameEn": "Acholi",
    "ccdReferences": ["Acholi"]
  },
+  {
+    "reference": "acc-fey",
+    "nameEn": "Feyli",
+    "ccdReferences": ["Feyli"]
+  },
+  {
+    "reference": "acc-hki",
+    "nameEn": "Hokkien",
+    "ccdReferences": ["Hokkien"]
+  },
+  {
+    "reference": "acc-kgc",
+    "nameEn": "Kichagga",
+    "ccdReferences": ["Kichagga"]
+  },
+  {
+    "reference": "acc-mhh",
+    "nameEn": "Maghreb",
+    "ccdReferences": ["Maghreb"]
+  },
+  {
+    "reference": "acc-wol",
+    "nameEn": "Senegal (French)",
+    "ccdReferences": ["senegalFrench","Senegal French","Senegal (French)","Senegal (French) Olof Dialect","Senegal French Olof Dialect"]
+  },
  {
    "reference": "afr",
    "nameEn": "Afrikaans",
@@ -42,14 +67,14 @@
  {
    "reference": "ara",
    "nameEn": "Arabic",
-   "dialectReference": "middleEastern",
+   "dialectReference": "ame",
    "dialectEn": "Middle Eastern",
    "ccdReferences": ["arabicMiddleEastern","Arabic (Middle Eastern)", "Arabic Middle Eastern"]
  },
  {
    "reference": "ara",
    "nameEn": "Arabic",
-   "dialectReference": "northAfrican",
+   "dialectReference": "ana",
    "dialectEn": "North African",
    "ccdReferences": ["arabicNorthAfrican","Arabic (North African)", "Arabic North African"]
  },
@@ -101,7 +126,7 @@
  {
    "reference": "ben",
    "nameEn": "Bengali",
-   "dialectReference": "sylheti",
+   "dialectReference": "bsy",
    "dialectEn": "Sylheti",
    "ccdReferences": ["bengaliSylheti","Bengali (Sylheti)","Bengali Sylheti"]
  },
@@ -168,12 +193,12 @@
  {
    "reference": "cmn",
    "nameEn": "Mandarin",
-   "ccdReferences": ["Mandarin"]
+   "ccdReferences": ["Mandarin","Putonghue"]
  },
  {
    "reference": "cpe",
    "nameEn": "Creole (English)",
-   "ccdReferences": ["Creole (English)", "Creole English"]
+   "ccdReferences": ["Creole (English)", "Creole English","pidginEnglish","Pidgin English"]
  },
  {
    "reference": "cpf",
@@ -271,21 +296,21 @@
    "ccdReferences": ["Fijian"]
  },
  {
-   "reference": "fre",
+   "reference": "fra",
    "nameEn": "French",
    "ccdReferences": ["French"]
  },
  {
-   "reference": "fre",
+   "reference": "fra",
    "nameEn": "French",
-   "dialectReference": "african",
+   "dialectReference": "faf",
    "dialectEn": "African",
    "ccdReferences": ["French (African)", "French African"]
  },
  {
-   "reference": "fre",
+   "reference": "fra",
    "nameEn": "French",
-   "dialectReference": "arabic",
+   "dialectReference": "far",
    "dialectEn": "Arabic",
    "ccdReferences": ["French (Arabic)", "French Arabic"]
  },
@@ -315,6 +340,11 @@
    "ccdReferences": ["Kachi"]
  },
  {
+   "reference": "glg",
+   "nameEn": "Gallacian",
+   "ccdReferences": ["Gallacian"]
+ },
+ {
    "reference": "gre",
    "nameEn": "Greek",
    "ccdReferences": ["Greek"]
@@ -322,12 +352,12 @@
  {
    "reference": "guj",
    "nameEn": "Gujarati",
-   "ccdReferences": ["Gujarati"]
+   "ccdReferences": ["Gujarati","Navsari"]
  },
  {
    "reference": "hac",
    "nameEn": "Gorani",
-   "ccdReferences": ["Gorani"]
+   "ccdReferences": ["Gorani","Guran"]
  },
  {
    "reference": "hak",
@@ -338,6 +368,11 @@
    "reference": "hau",
    "nameEn": "Hausa",
    "ccdReferences": ["Hausa"]
+ },
+ {
+   "reference": "hno",
+   "nameEn": "Northern Hindko",
+   "ccdReferences": ["Northern Hindko"]
  },
  {
    "reference": "hbs",
@@ -362,7 +397,7 @@
  {
    "reference": "hnd",
    "nameEn": "Hindko",
-   "ccdReferences": ["Hindko"]
+   "ccdReferences": ["Hindko", "Southern Hindko"]
  },
  {
    "reference": "hun",
@@ -377,7 +412,7 @@
  {
    "reference": "ibo",
    "nameEn": "Igbo (Also Known As Ibo)",
-   "ccdReferences": ["Igbo", "Ibo", "Igbo (Also Known As Ibo)", "Igbo Also Known As Ibo"]
+   "ccdReferences": ["Igbo", "Ibo", "Igbo (Also Known As Ibo)", "Igbo Also Known As Ibo","Ngwa"]
  },
  {
    "reference": "ilo",
@@ -388,6 +423,11 @@
    "reference": "ind",
    "nameEn": "Indonesian",
    "ccdReferences": ["Indonesian"]
+ },
+ {
+   "reference": "isn",
+   "nameEn": "Esan",
+   "ccdReferences": ["Esan"]
  },
  {
    "reference": "iso",
@@ -432,7 +472,7 @@
  {
    "reference": "khm",
    "nameEn": "Khmer",
-   "ccdReferences": ["Khmer"]
+   "ccdReferences": ["Khmer","Khymer Khymer", "khymer"]
  },
  {
    "reference": "kik",
@@ -480,23 +520,28 @@
    "ccdReferences": ["Kru"]
  },
  {
+   "reference": "krx",
+   "nameEn": "Karon",
+   "ccdReferences": ["Karon"]
+ },
+ {
    "reference": "kur",
    "nameEn": "Kurdish",
-   "dialectReference": "bardini",
+   "dialectReference": "kbr",
    "dialectEn": "Bardini",
    "ccdReferences": ["kurdishBardini", "Bardini", "Kurdish (Bardini)", "Kurdish Bardini"]
  },
  {
    "reference": "kur",
    "nameEn": "Kurdish",
-   "dialectReference": "kurmanji",
+   "dialectReference": "kkr",
    "dialectEn": "Kurmanji",
    "ccdReferences": ["kurdishKurmanji", "Kurmanji", "Kurdish (Kurmanji)", "Kurdish Kurmanji"]
  },
  {
    "reference": "kur",
    "nameEn": "Kurdish",
-   "dialectReference": "sorani",
+   "dialectReference": "ksr",
    "dialectEn": "Sorani",
    "ccdReferences": ["kurdishSorani", "Sorani", "Kurdish (Sorani)", "Kurdish Sorani"]
  },
@@ -538,21 +583,21 @@
  {
    "reference": "luo",
    "nameEn": "Luo",
-   "dialectReference": "acholi",
+   "dialectReference": "lah",
    "dialectEn": "Acholi",
    "ccdReferences": ["luoUgandanAcholi", "Luo Acholi", "Luo (Ugandan[Acholi District])", "Luo Ugandan Acholi District", "Luo Acholi District"]
  },
  {
    "reference": "luo",
    "nameEn": "Luo",
-   "dialectReference": "kenyan",
+   "dialectReference": "lky",
    "dialectEn": "Kenyan",
    "ccdReferences": ["luoKenyan", "Luo (Kenyan)", "Luo Kenyan"]
  },
  {
    "reference": "luo",
    "nameEn": "Luo",
-   "dialectReference": "lango",
+   "dialectReference": "llg",
    "dialectEn": "Lango",
    "ccdReferences": ["luoUgandanLango","Luo (Ugandan[Lango District])", "Luo Ugandan Lango District", "Luo Lango District"]
  },
@@ -612,6 +657,11 @@
    "ccdReferences": ["Malay"]
  },
  {
+   "reference": "myx",
+   "nameEn": "Masaaba",
+   "ccdReferences": ["Masaaba"]
+ },
+ {
    "reference": "nde",
    "nameEn": "Ndebele",
    "ccdReferences": ["Ndebele"]
@@ -642,6 +692,11 @@
    "ccdReferences": ["Runyoro"]
  },
  {
+   "reference": "nyn",
+   "nameEn": "Nyankole",
+   "ccdReferences": ["Nyankole"]
+ },
+ {
    "reference": "nzi",
    "nameEn": "Nzima",
    "ccdReferences": ["Nzima"]
@@ -670,14 +725,14 @@
    "reference": "pan",
    "nameEn": "Punjabi",
    "nameEn": "Punjabi",
-   "dialectReference": "indian",
+   "dialectReference": "pji",
    "dialectEn": "Indian",
    "ccdReferences": ["punjabiIndian", "Punjabi (Indian)","Punjabi Indian"]
  },
  {
    "reference": "pan",
    "nameEn": "Punjabi",
-   "dialectReference": "pakistani",
+   "dialectReference": "pjp",
    "dialectEn": "Pakistani",
    "ccdReferences": ["Pakistani", "punjabiPakistani","Punjabi (Pakistani)", "Punjabi Pakistani"]
  },
@@ -690,6 +745,11 @@
    "reference": "phr",
    "nameEn": "Pothohari",
    "ccdReferences": ["Pothohari"]
+ },
+ {
+   "reference": "phj",
+   "nameEn": "Pathwari",
+   "ccdReferences": ["Pathwari","Mirpuri"]
  },
  {
    "reference": "pol",
@@ -762,6 +822,11 @@
    "ccdReferences": ["Saraiki", "Seraiki", "Saraiki (Seraiki)", "Saraiki Seraiki"]
  },
  {
+   "reference": "skt",
+   "nameEn": "Sakata",
+   "ccdReferences": ["Sakata"]
+ },
+ {
    "reference": "slo",
    "nameEn": "Slovak",
    "ccdReferences": ["Slovak"]
@@ -781,6 +846,11 @@
    "nameEn": "Sindhi",
    "ccdReferences": ["Sindhi"]
  },
+  {
+   "reference": "snk",
+   "nameEn": "Sarahuleh",
+   "ccdReferences": ["Sarahuleh"]
+ },
  {
    "reference": "som",
    "nameEn": "Somali",
@@ -791,6 +861,11 @@
    "nameEn": "Spanish",
    "ccdReferences": ["Spanish"]
  },
+  {
+    "reference": "spv",
+    "nameEn": "Cambellpuri",
+    "ccdReferences": ["Cambellpuri"]
+  },
  {
    "reference": "sus",
    "nameEn": "Susu",
@@ -804,21 +879,26 @@
  {
    "reference": "swa",
    "nameEn": "Swahili",
-   "dialectReference": "bravanese",
+   "dialectReference": "sbv",
    "dialectEn": "Bravanese",
    "ccdReferences": ["Bravanese"]
  },
- {
-   "reference": "swa",
-   "nameEn": "Swahili",
-   "dialectReference": "kibajuni",
-   "dialectEn": "Kibajuni",
-   "ccdReferences": ["Kibajuni", "Kibanjuni", "Bajuni", "Ban", "Kibajuni,Kibanjuni,Bajuni,Ban"]
- },
+{
+  "reference": "swa",
+  "nameEn": "Swahili",
+  "dialectReference": "skb",
+  "dialectEn": "Kibanjuni",
+  "ccdReferences": ["Kibanjuni"]
+},
  {
    "reference": "swe",
    "nameEn": "Swedish",
    "ccdReferences": ["Swedish"]
+ },
+ {
+   "reference": "swh",
+   "nameEn": "Kiswahili",
+   "ccdReferences": ["Kiswahili","Kibajuni", "banjuni", "Bajuni", "Ban", "Kibajuni,Kibanjuni,Bajuni,Ban"]
  },
  {
    "reference": "syl",
@@ -883,7 +963,7 @@
  {
    "reference": "ttj",
    "nameEn": "Rutoro",
-   "ccdReferences": ["Rutoro"]
+   "ccdReferences": ["Rutoro","Tooro"]
  },
  {
    "reference": "tuk",
@@ -898,7 +978,7 @@
  {
    "reference": "twi",
    "nameEn": "Twi",
-   "ccdReferences": ["Twi"]
+   "ccdReferences": ["Twi", "Ashanti"]
  },
  {
    "reference": "uig",
