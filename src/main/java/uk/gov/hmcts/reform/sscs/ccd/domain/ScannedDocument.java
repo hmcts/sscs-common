@@ -23,7 +23,7 @@ public class ScannedDocument  implements Comparable<ScannedDocument> {
         System.out.println("ScannedDocument" + value);
     }
 
-// We believe sorting is done in sscsDocument so the below sorting may not be needed
+    // We believe sorting is done in sscsDocument so the below sorting may not be needed
     @Override
     public int compareTo(ScannedDocument doc2) {
         System.out.println("Comparator");
