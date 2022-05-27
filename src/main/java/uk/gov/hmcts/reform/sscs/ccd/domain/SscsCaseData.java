@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
@@ -247,8 +248,6 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedLimitedWork;
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
-    private String jointParty;
-    private JointPartyName jointPartyName;
     private List<CcdValue<OtherParty>> otherParties;
     @JsonProperty("otherPartyUCB")
     private String otherPartyUcb;
@@ -256,14 +255,6 @@ public class SscsCaseData implements CaseData {
     private String reasonableAdjustmentChoice;
     private YesNo doesOtherPersonKnowWhereYouLive;
     private YesNo keepHomeAddressConfidential;
-    @Valid
-    @ConvertGroup(to = UniversalCreditValidationGroup.class)
-    private Identity jointPartyIdentity;
-    @JsonProperty("jointPartyAddressSameAsAppellant")
-    private String jointPartyAddressSameAsAppellant;
-    @Valid
-    @ConvertGroup(to = UniversalCreditValidationGroup.class)
-    private Address jointPartyAddress;
     @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
@@ -323,11 +314,13 @@ public class SscsCaseData implements CaseData {
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
 
-    private String panelDoctorSpecialism;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsIndustrialInjuriesData sscsIndustrialInjuriesData;
 
     private YesNo functionalTest;
 
-    private String caseName;
+    private CaseManagementLocation caseManagementLocation;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -337,6 +330,24 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private PostponementRequest postponementRequest;
 
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private CaseAccessManagementFields caseAccessManagementFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkAllocationFields workAllocationFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SchedulingAndListingFields schedulingAndListingFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private JointParty jointParty;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -344,7 +355,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
@@ -374,12 +385,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isThereAJointParty() {
-        return stringToBoolean(jointParty);
-    }
-
-    @JsonIgnore
-    public boolean isJointPartyAddressSameAsAppeallant() {
-        return stringToBoolean(jointPartyAddressSameAsAppellant);
+        return isYes(getJointParty().getHasJointParty());
     }
 
     @JsonIgnore
@@ -580,6 +586,38 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public CaseAccessManagementFields getCaseAccessManagementFields() {
+        if (caseAccessManagementFields == null) {
+            this.caseAccessManagementFields = new CaseAccessManagementFields();
+        }
+        return caseAccessManagementFields;
+    }
+
+    @JsonIgnore
+    public WorkAllocationFields getWorkAllocationFields() {
+        if (workAllocationFields == null) {
+            this.workAllocationFields = new WorkAllocationFields();
+        }
+        return workAllocationFields;
+    }
+
+    @JsonIgnore
+    public SchedulingAndListingFields getSchedulingAndListingFields() {
+        if (schedulingAndListingFields == null) {
+            this.schedulingAndListingFields = new SchedulingAndListingFields();
+        }
+        return schedulingAndListingFields;
+    }
+
+    @JsonIgnore
+    public JointParty getJointParty() {
+        if (isNull(jointParty)) {
+            this.jointParty = new JointParty();
+        }
+        return jointParty;
+    }
+
+    @JsonIgnore
     public Optional<Benefit> getBenefitType() {
         if (appeal != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
             return findBenefitByShortName(appeal.getBenefitType().getCode().toUpperCase());
@@ -601,6 +639,14 @@ public class SscsCaseData implements CaseData {
             ldt = Optional.empty();
         }
         return ldt;
+    }
+
+    @JsonIgnore
+    public SscsIndustrialInjuriesData getSscsIndustrialInjuriesData() {
+        if (sscsIndustrialInjuriesData == null) {
+            this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
+        }
+        return sscsIndustrialInjuriesData;
     }
 
     public boolean isBenefitType(Benefit benefitType) {

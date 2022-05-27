@@ -732,7 +732,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     public void isValidJsonWithNoDuplicateValues() throws Exception {
-        String json = resourceToString("reference-data/ogdAddresses.json",
+        String json = resourceToString("reference-data/ftaAddresses.json",
                 StandardCharsets.UTF_8, Thread.currentThread().getContextClassLoader());
         final ObjectMapper mapper = new ObjectMapper();
         mapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
@@ -746,5 +746,4 @@ public class DwpAddressLookupServiceTest {
         boolean result = dwpAddressLookup.validateIssuingOffice(benefitType, issuingOffice);
         assertEquals(isValid, result);
     }
-
 }

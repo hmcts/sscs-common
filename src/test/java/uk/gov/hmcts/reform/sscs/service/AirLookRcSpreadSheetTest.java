@@ -2,14 +2,18 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+import com.opencsv.exceptions.CsvValidationException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
@@ -18,6 +22,7 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
  * and our list of venues.
  */
 public class AirLookRcSpreadSheetTest {
+    private static final Logger LOG = getLogger(RegionalProcessingCenterService.class);
     AirLookupService airLookupService;
     Map<String, String> lookupData;
     Map<String, AirlookupBenefitToVenue> venueData;
@@ -181,6 +186,10 @@ public class AirLookRcSpreadSheetTest {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (CsvValidationException e) {
+            LOG.error("Error occurred while testing all Uk postcodes "  + e);
+        } catch (CsvException e) {
+            LOG.error("Error occurred while testing all Uk postcodes "  + e);
         } finally {
             try {
                 reader.close();

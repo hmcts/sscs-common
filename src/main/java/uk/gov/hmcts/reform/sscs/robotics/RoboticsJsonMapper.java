@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -76,17 +77,17 @@ public class RoboticsJsonMapper {
         return buildContactDetails(json, appointee.getAddress(), appointee.getContact());
     }
 
-    private static JSONObject buildJointPartyDetails(JointPartyName jointPartyName, Address jointPartyAddress, boolean sameAddressAsAppellant,
+    private static JSONObject buildJointPartyDetails(Name name, Address address, boolean sameAddressAsAppellant,
                                                      String dob, String nino) {
         JSONObject json = new JSONObject();
 
-        buildName(json, jointPartyName.getTitle(), jointPartyName.getFirstName(), jointPartyName.getLastName());
+        buildName(json, name.getTitle(), name.getFirstName(), name.getLastName());
 
         json.put("sameAddressAsAppellant", sameAddressAsAppellant ? YES : NO);
         json.put("dob", dob);
         json.put("nino", nino);
 
-        return buildContactDetails(json, jointPartyAddress, null);
+        return buildContactDetails(json, address, null);
     }
 
     private static JSONObject buildRepresentativeDetails(Representative rep) {
@@ -388,13 +389,15 @@ public class RoboticsJsonMapper {
             obj.put("elementsDisputed", elementsDisputed);
         }
 
-        if (null != sscsCaseData.getJointParty() && YES.equalsIgnoreCase(sscsCaseData.getJointParty())) {
-            if (sscsCaseData.isJointPartyAddressSameAsAppeallant()) {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getAppeal().getAppellant().getAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+        JointParty jointParty = sscsCaseData.getJointParty();
+        if (isYes(jointParty.getHasJointParty())) {
+            boolean sameAddressAsAppellant = isYes(jointParty.getJointPartyAddressSameAsAppellant());
+            if (sameAddressAsAppellant) {
+                obj.put("jointParty", buildJointPartyDetails(jointParty.getName(), sscsCaseData.getAppeal().getAppellant().getAddress(), true,
+                        jointParty.getIdentity().getDob(), jointParty.getIdentity().getNino()));
             } else {
-                obj.put("jointParty", buildJointPartyDetails(sscsCaseData.getJointPartyName(), sscsCaseData.getJointPartyAddress(), sscsCaseData.isJointPartyAddressSameAsAppeallant(),
-                        sscsCaseData.getJointPartyIdentity().getDob(), sscsCaseData.getJointPartyIdentity().getNino()));
+                obj.put("jointParty", buildJointPartyDetails(jointParty.getName(), jointParty.getAddress(), false,
+                        jointParty.getIdentity().getDob(), jointParty.getIdentity().getNino()));
             }
         }
         if (sscsCaseData.getElementsDisputedIsDecisionDisputedByOthers() != null) {
@@ -421,9 +424,14 @@ public class RoboticsJsonMapper {
     private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
         if ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
                 || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome()))
-                || (CHILD_SUPPORT.getShortName().equals(roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().getCode()) && YesNo.YES.equals(roboticsWrapper.getSscsCaseData().getIsConfidentialCase()))) {
+                || (isSscs2Or5Type(roboticsWrapper.getSscsCaseData().getBenefitType()) && YesNo.YES.equals(roboticsWrapper.getSscsCaseData().getIsConfidentialCase()))) {
             obj.put("isConfidential", YES);
         }
+    }
+
+    private boolean isSscs2Or5Type(Optional<Benefit> benefitType) {
+        return benefitType.filter(benefit -> SscsType.SSCS2.equals(benefit.getSscsType())
+                || SscsType.SSCS5.equals(benefit.getSscsType())).isPresent();
     }
 
     private void addRpcEmail(RegionalProcessingCenter rpc, JSONObject obj) {

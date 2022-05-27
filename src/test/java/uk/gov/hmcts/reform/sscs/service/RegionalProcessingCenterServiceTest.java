@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 
 @RunWith(JUnitParamsRunner.class)
@@ -32,7 +34,7 @@ public class RegionalProcessingCenterServiceTest {
     public void givenVenuesCvsFile_shouldLoadSccodeToRpcMap() {
         Map<String, String> sccodeRegionalProcessingCentermap
                 = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
-        assertEquals(247, sccodeRegionalProcessingCentermap.size());
+        assertEquals(248, sccodeRegionalProcessingCentermap.size());
         assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
         assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
         assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
@@ -73,6 +75,7 @@ public class RegionalProcessingCenterServiceTest {
             .phoneNumber("0300 123 1142")
             .faxNumber("0870 324 0109")
             .email("Liverpool_SYA_Resp@justice.gov.uk")
+            .hearingRoute(HearingRoute.GAPS)
             .build();
 
         RegionalProcessingCenter cardiffRpc = RegionalProcessingCenter.builder()
@@ -86,6 +89,7 @@ public class RegionalProcessingCenterServiceTest {
             .phoneNumber("0300 123 1142")
             .faxNumber("0870 739 4438")
             .email("Cardiff_SYA_Respon@justice.gov.uk")
+            .hearingRoute(HearingRoute.GAPS)
             .build();
 
 
@@ -115,6 +119,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
         assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertTrue("gaps".equalsIgnoreCase(regionalProcessingCenter.getHearingRoute().toString()));
     }
 
     @Test
@@ -176,7 +181,6 @@ public class RegionalProcessingCenterServiceTest {
     @Test
     public void givenAPostcodeWithLessThanThreeCharacters_thenReturnEmpty() {
         assertEquals("", getFirstHalfOfPostcode("AB"));
-
     }
 
     @Test
@@ -195,6 +199,12 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
         assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
+        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+    }
+
+    @Test
+    public void givenHearingRouteIsNull_HearingRouteShouldBeListAssist() {
+        assertEquals(regionalProcessingCenterService.getHearingRoute(null), HearingRoute.LIST_ASSIST);
 
     }
 }

@@ -9,7 +9,7 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 public enum PartyItemList {
     APPELLANT("appellant", "Appellant (or Appointee)", "Appellant evidence", APPELLANT_EVIDENCE),
     REPRESENTATIVE("representative", "Representative", "Representative evidence", REPRESENTATIVE_EVIDENCE),
-    DWP("dwp", "DWP", "DWP evidence", DWP_EVIDENCE),
+    DWP("dwp", "FTA", "FTA evidence", DWP_EVIDENCE),
     JOINT_PARTY("jointParty", "Joint party", "Joint party evidence", JOINT_PARTY_EVIDENCE),
     OTHER_PARTY("otherParty", "Other party", "Other party %s evidence", OTHER_PARTY_EVIDENCE),
     OTHER_PARTY_REPRESENTATIVE("otherPartyRep", "Other party", "Other party %s evidence", OTHER_PARTY_REPRESENTATIVE_EVIDENCE),
@@ -38,9 +38,7 @@ public enum PartyItemList {
     }
 
     public static boolean isOtherPartyItemType(String partyItemCode) {
-        PartyItemList partyItem = findPartyItemByCode(partyItemCode);
-
-        if (OTHER_PARTY.equals(partyItem) || OTHER_PARTY_REPRESENTATIVE.equals(partyItem)) {
+        if (partyItemCode != null && partyItemCode.startsWith(OTHER_PARTY.getCode())) {
             return true;
         }
         return false;
