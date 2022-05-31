@@ -16,18 +16,20 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 @RunWith(MockitoJUnitRunner.class)
 public class VenueServiceTest {
 
-    public static final String PROCESSING_VENUE_1 = "test_place";
-    public static final String PROCESSING_VENUE_2 = "test_other_place";
-
-    @InjectMocks
-    private VenueService venueService;
+    private static final String PROCESSING_VENUE_1 = "test_place";
+    private static final String PROCESSING_VENUE_2 = "test_other_place";
+    private static final String VALID_EPIMS_ID = "45900";
+    private static final String INVALID_EPIMS_ID = "abcdes";
 
     @Mock
     private VenueDataLoader venueDataLoader;
 
     @Mock
     private AirLookupService airLookupService;
-    
+
+    @InjectMocks
+    private VenueService venueService;
+
     @Test
     public void getHearingLocations_shouldReturnCorrespondingEpimsIdForVenue() {
 
@@ -39,7 +41,25 @@ public class VenueServiceTest {
 
         String epimsId = result.get();
 
-        assertThat(epimsId).isEqualTo("9876");
+        assertThat(epimsId).isEqualTo("987632");
+    }
+
+    @Test
+    public void givenEpimsId_shouldReturnCorrespondingVenueDetails() {
+        setupVenueMaps();
+
+        VenueDetails result = venueService.getVenueDetailsForActiveVenueByEpims(VALID_EPIMS_ID);
+
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    public void givenInvalidEpimsId_shouldReturnNull() {
+        setupVenueMaps();
+
+        VenueDetails result = venueService.getVenueDetailsForActiveVenueByEpims(INVALID_EPIMS_ID);
+
+        assertThat(result).isNull();
     }
 
     private void setupVenueMaps() {
@@ -48,14 +68,23 @@ public class VenueServiceTest {
 
         Map<String, VenueDetails> venueDetailsMap = Map.of(
             "68", VenueDetails.builder()
-                .epimsId("9876")
+                .epimsId("987632")
                 .build(),
             "2", VenueDetails.builder()
-                .epimsId("1111")
+                .epimsId("111111")
+                .build());
+
+        Map<String, VenueDetails> venueDetailsMapByEpims = Map.of(
+                VALID_EPIMS_ID, VenueDetails.builder()
+                .epimsId(VALID_EPIMS_ID)
+                .build(),
+            "111111", VenueDetails.builder()
+                .epimsId("111111")
                 .build());
 
         when(airLookupService.getLookupVenueIdByAirVenueName()).thenReturn(venueIdMap);
         when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
+        when(venueDataLoader.getActiveVenueDetailsMapByEpims()).thenReturn(venueDetailsMapByEpims);
     }
 
 }

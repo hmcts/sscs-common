@@ -25,4 +25,10 @@ public class VenueService {
             .map(VenueDetails::getEpimsId);
     }
 
+    public VenueDetails getVenueDetailsForActiveVenueByEpims(String epimsId) {
+
+        return venueDataLoader.getActiveVenueDetailsMapByEpims()
+                .get(epimsId);
+    }
+
 }

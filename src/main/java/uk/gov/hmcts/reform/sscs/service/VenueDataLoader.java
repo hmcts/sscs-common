@@ -1,20 +1,16 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static com.google.common.collect.Maps.newHashMap;
-import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
+import com.google.common.collect.ImmutableMap;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -28,8 +24,8 @@ public class VenueDataLoader {
 
     private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
-    private final Map<String, List<VenueDetails>> venueDetailsEpimsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
+    private final Map<String, VenueDetails> activeVenueDetailsMapByEpims = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -58,27 +54,22 @@ public class VenueDataLoader {
                             .build();
                     venueDetailsMap.put(line[0], venueDetails);
                     venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
-                    mapEpimsVenueDetails(line, venueDetails);
+                if (isYes(venueDetails.getActive())) {
+                    activeVenueDetailsMapByEpims.put(line[15], venueDetails);
+                }
                 }
             );
-        } catch (IOException e) {
-            log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
-        } catch (CsvException e) {
+        } catch (IOException | CsvException e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
-    }
-
-    private void mapEpimsVenueDetails(String[] line, VenueDetails venueDetails) {
-        List<VenueDetails> epimsVenues = venueDetailsEpimsMap.get(line[15]);
-        if (isNull(epimsVenues)) {
-            epimsVenues = new ArrayList<>();
-        }
-        epimsVenues.add(venueDetails);
-        venueDetailsEpimsMap.put(line[15], epimsVenues);
     }
 
     public Map<String, VenueDetails> getVenueDetailsMap() {
-        return venueDetailsMap;
+        return ImmutableMap.copyOf(venueDetailsMap);
+    }
+
+    public Map<String, VenueDetails> getActiveVenueDetailsMapByEpims() {
+        return ImmutableMap.copyOf(activeVenueDetailsMapByEpims);
     }
 
     public String getGapVenueName(Venue venue, String venueId) {
@@ -99,24 +90,5 @@ public class VenueDataLoader {
             }
         }
         return (venue != null) ? venue.getName() : null;
-    }
-
-    public List<VenueDetails> getVenuesByEpims(String epimsId) {
-        return Optional.ofNullable(venueDetailsEpimsMap.get(epimsId))
-            .orElse(List.of());
-    }
-
-    public VenueDetails getAnActiveVenueByEpims(String epimsId) {
-        return getVenuesByEpims(epimsId)
-            .stream()
-            .filter(Objects::nonNull)
-            .filter(this::isActiveVenue)
-            .findAny()
-            .orElse(null);
-    }
-
-    public boolean isActiveVenue(VenueDetails venueDetails) {
-        return nonNull(venueDetails)
-            && isYes(venueDetails.getActive());
     }
 }
