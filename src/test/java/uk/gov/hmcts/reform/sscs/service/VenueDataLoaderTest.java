@@ -19,7 +19,7 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 public class VenueDataLoaderTest {
 
     private static final String VALID_EPIMS_ID = "45900";
-    private static final String INVALID_EPIMS_ID = "abcd";
+
     private VenueDataLoader venueDataLoader;
 
     private VenueDetails.VenueDetailsBuilder venueDetailsBuilder;
@@ -124,49 +124,14 @@ public class VenueDataLoaderTest {
         assertNull(result);
     }
 
-    @DisplayName("When a valid epims ID is searched, getVenue return the correct Venue Rpc Details")
+    @DisplayName("When a valid epims ID is searched, getVenue return the correct venue details")
     @Test
     public void testGetVenue() {
-        VenueDetails result = venueDataLoader.getAnActiveVenueByEpims(VALID_EPIMS_ID);
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get(VALID_EPIMS_ID);
 
         assertNotNull(result);
         assertEquals("1236", result.getVenueId());
         assertEquals("SC287", result.getThreeDigitReference());
         assertEquals(VALID_EPIMS_ID, result.getEpimsId());
-    }
-
-    @DisplayName("When a invalid epims ID is searched, getVenue returns null")
-    @Test
-    public void testGetVenueInvalidEpims() {
-        VenueDetails result = venueDataLoader.getAnActiveVenueByEpims(INVALID_EPIMS_ID);
-
-        assertNull(result);
-    }
-
-    @DisplayName("When a Venue with the field Active is Yes is given, isActiveVenue returns true")
-    @Test
-    public void testIsActiveVenue() {
-        VenueDetails venueDetails = venueDetailsBuilder.active("Yes").build();
-        boolean result = venueDataLoader.isActiveVenue(venueDetails);
-
-        assertTrue(result);
-    }
-
-    @DisplayName("When a Venue with the field Active is not Yes is given, isActiveVenue returns false")
-    @Test
-    @Parameters({"No", "", "null"})
-    public void testIsActiveVenueNo(String value) {
-        VenueDetails venueDetails = venueDetailsBuilder.active(value).build();
-        boolean result = venueDataLoader.isActiveVenue(venueDetails);
-
-        assertFalse(result);
-    }
-
-    @DisplayName("When a null Venue is given, isActiveVenue returns false")
-    @Test
-    public void testIsActiveVenueNull() {
-        boolean result = venueDataLoader.isActiveVenue(null);
-
-        assertFalse(result);
     }
 }
