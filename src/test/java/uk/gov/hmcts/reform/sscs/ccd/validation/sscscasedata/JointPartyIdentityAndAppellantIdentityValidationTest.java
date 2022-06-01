@@ -27,6 +27,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         Assert.assertTrue(violations.isEmpty());
     }
+
     @Test
     public void testWhenJointPartyHasEmptyIdentity_IsValid() {
 
