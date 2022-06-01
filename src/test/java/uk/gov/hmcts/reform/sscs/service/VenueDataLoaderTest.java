@@ -18,35 +18,12 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
 
-    private static final String VALID_EPIMS_ID = "45900";
-
     private VenueDataLoader venueDataLoader;
-
-    private VenueDetails.VenueDetailsBuilder venueDetailsBuilder;
-
 
     @Before
     public void setUp() {
         venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
-
-        venueDetailsBuilder = VenueDetails.builder()
-            .venueId("1234")
-            .threeDigitReference("SC944")
-            .regionalProcessingCentre("SSCS Liverpool")
-            .venName("Stockport Law Courts")
-            .venAddressLine1("The Court House")
-            .venAddressLine2("Edward Street")
-            .venAddressTown("Stockport")
-            .venAddressCounty("Cheshire")
-            .venAddressPostcode("SK1 3DQ")
-            .venAddressTelNo("")
-            .districtId("601")
-            .url("https://www.google.co.uk/maps/etc")
-            .active("Yes")
-            .gapsVenName("Stockport")
-            .comments("Comments")
-            .epimsId(VALID_EPIMS_ID);
     }
 
     @Test
@@ -127,11 +104,11 @@ public class VenueDataLoaderTest {
     @DisplayName("When a valid epims ID is searched, getVenue return the correct venue details")
     @Test
     public void testGetVenue() {
-        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get(VALID_EPIMS_ID);
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("45900");
 
         assertNotNull(result);
         assertEquals("1236", result.getVenueId());
         assertEquals("SC287", result.getThreeDigitReference());
-        assertEquals(VALID_EPIMS_ID, result.getEpimsId());
+        assertEquals("45900", result.getEpimsId());
     }
 }
