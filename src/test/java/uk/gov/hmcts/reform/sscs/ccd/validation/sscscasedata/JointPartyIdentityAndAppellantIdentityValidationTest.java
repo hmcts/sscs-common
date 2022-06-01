@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 import java.time.LocalDate;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
+
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
@@ -18,6 +20,13 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
         Assert.assertTrue(violations.isEmpty());
     }
 
+    @Test
+    public void testWhenJointPartyHasEmptyId_IsValid() {
+
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().id(StringUtils.EMPTY).build()).build();
+        Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
+        Assert.assertTrue(violations.isEmpty());
+    }
     @Test
     public void testWhenJointPartyHasEmptyIdentity_IsValid() {
 
@@ -85,7 +94,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
      * with the nested Identity validator annotations.
      */
     @Test
-    public void testWhenAppellantHasIdentityWithInvalidInvalidNinp_IsValid() {
+    public void testWhenAppellantHasIdentityWithInvalidInvalidNino_IsValid() {
 
         Identity identity = Identity.builder().nino("blah").build();
         Appellant appellant = Appellant.builder().identity(identity).build();
