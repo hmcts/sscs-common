@@ -11,7 +11,7 @@ import lombok.NonNull;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState;
 import uk.gov.hmcts.reform.sscs.model.servicebus.SessionAwareRequest;
-import uk.gov.hmcts.reform.sscs.reference.data.mappings.CancellationReason;
+import uk.gov.hmcts.reform.sscs.reference.data.model.CancellationReason;
 
 @Data
 @Builder(builderMethodName = "internalBuilder")
