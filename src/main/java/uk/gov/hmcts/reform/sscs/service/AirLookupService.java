@@ -4,6 +4,7 @@ import static java.util.Optional.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
+import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -198,8 +199,8 @@ public class AirLookupService {
      *
      * @return map with the first half of post code as the key and the Regional Centre as the value
      */
-    protected Map<String, String> getLookupRegionalCentreByPostcode() {
-        return lookupRegionalCentreByPostcode;
+    public Map<String, String> getLookupRegionalCentreByPostcode() {
+        return ImmutableMap.copyOf(lookupRegionalCentreByPostcode);
     }
 
     /**
@@ -208,8 +209,8 @@ public class AirLookupService {
      *
      * @return map with the first half of the post code as the key and the venue names as the values
      */
-    protected Map<String, AirlookupBenefitToVenue> getLookupAirVenueNameByPostcode() {
-        return lookupAirVenueNameByPostcode;
+    public Map<String, AirlookupBenefitToVenue> getLookupAirVenueNameByPostcode() {
+        return ImmutableMap.copyOf(lookupAirVenueNameByPostcode);
     }
 
     /**
@@ -218,8 +219,8 @@ public class AirLookupService {
      *
      * @return map with the air venue name as the key and the venue id as the value
      */
-    protected Map<String, Integer> getLookupVenueIdByAirVenueName() {
-        return lookupVenueIdByAirVenueName;
+    public Map<String, Integer> getLookupVenueIdByAirVenueName() {
+        return ImmutableMap.copyOf(lookupVenueIdByAirVenueName);
     }
 
     /**
