@@ -19,6 +19,10 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = true)
 public class JointParty extends Party {
+
+    @JsonProperty("jointPartyId")
+    private String id;
+
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     @JsonProperty("jointPartyIdentity")
