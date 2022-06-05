@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.mappings;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.DORMANT_APPEAL_STATE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.State.NOT_LISTABLE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.READY_TO_LIST;
 
 import java.util.Arrays;
@@ -12,15 +13,19 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 @RequiredArgsConstructor
 public enum CancellationReason {
 
-    EXCLUSION("BBA3-exclusion", "Exclusion", READY_TO_LIST),
-    INCOMPLETE_TRIBUNAL("BBA3-incompleteTribunal", "Incomplete Tribunal", READY_TO_LIST),
-    LAPSED("BBA3-lapsed", "Lapsed", DORMANT_APPEAL_STATE),
-    LISTED_IN_ERROR("BBA3-listedInError", "Listed In Error", READY_TO_LIST),
-    OTHER("BBA3-other", "Other", READY_TO_LIST),
-    PARTY_DID_NOT_ATTEND("BBA3-partyDidNotAttend", "Party Did Not Attend", READY_TO_LIST),
-    PARTY_UNABLE_TO_ATTEND("BBA3-partyUnableToAttend", "Party unable to attend", READY_TO_LIST),
-    STRUCK_OUT("BBA3-struckOut", "Struck Out", DORMANT_APPEAL_STATE),
-    WITHDRAWN("BBA3-withdrawn", "Withdrawn", DORMANT_APPEAL_STATE);
+    WITHDRAWN("withdraw", "Withdrawn", DORMANT_APPEAL_STATE),
+    STRUCK_OUT("struck", "Struck Out", DORMANT_APPEAL_STATE),
+    PARTY_UNABLE_TO_ATTEND("unable", "Party Unable To Attend", READY_TO_LIST),
+    EXCLUSION("exclusio", "Exclusion", READY_TO_LIST),
+    INCOMPLETE_TRIBUNAL("incompl", "Incomplete Tribunal", READY_TO_LIST),
+    LISTED_IN_ERROR("listerr", "Listed In Error", READY_TO_LIST),
+    OTHER("other", "Other", READY_TO_LIST),
+    NOT_READY("notready", "No longer ready for hearing", NOT_LISTABLE),
+    SETTLED("settled", "Settled", NOT_LISTABLE),
+    JUDICIAL_DIRECTION("jodir", "Judicial direction", NOT_LISTABLE),
+    FEE_NOT_PAID("notpaid", "Fee not paid", NOT_LISTABLE),
+    PARTY_DID_NOT_ATTEND("notatt", "Party Did Not Attend", READY_TO_LIST),
+    LAPSED("lapsed", "Lapsed", DORMANT_APPEAL_STATE);
 
     private final String hmcReference;
     private final String label;
@@ -39,5 +44,4 @@ public enum CancellationReason {
                 .findFirst()
                 .orElse(null);
     }
-
 }
