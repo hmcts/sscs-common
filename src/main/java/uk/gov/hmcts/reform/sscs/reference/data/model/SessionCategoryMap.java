@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.model;
+package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Objects;
