@@ -7,14 +7,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum CancellationReason {
 
-    WITHDRAWN("BBA3-withdrawn", "Withdrawn"),
-    STRUCK_OUT("BBA3-struckOut", "Struck Out"),
-    PARTY_UNABLE_TO_ATTEND("BBA3-partyUnableToAttend", "Party unable to attend"),
-    EXCLUSION("BBA3-exclusion", "Exclusion"),
-    LAPSED("BBA3-lapsed", "Lapsed"),
-    OTHER("BBA3-other", "Other");
+    WITHDRAWN("BBA3-withdrawn", "Withdrawn", "withdraw"),
+    STRUCK_OUT("BBA3-struckOut", "Struck Out", "struck"),
+    PARTY_UNABLE_TO_ATTEND("BBA3-partyUnableToAttend", "Party unable to attend", "unable"),
+    EXCLUSION("BBA3-exclusion", "Exclusion", "exclusio"),
+    LAPSED("BBA3-lapsed", "Lapsed", "lapsed"),
+    OTHER("BBA3-other", "Other", "other");
 
     private final String hmcReference;
     private final String value;
+    private final String cancellationCode;
 
 }
