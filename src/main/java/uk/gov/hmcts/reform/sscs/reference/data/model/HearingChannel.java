@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.reference.data.mappings;
+package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
