@@ -30,5 +30,4 @@ public class VenueService {
         return venueDataLoader.getActiveVenueDetailsMapByEpimsId()
                 .get(epimsId);
     }
-
 }
