@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getDuplicates;
+import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
 import java.util.*;
 import org.junit.Test;
@@ -9,7 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
-import uk.gov.hmcts.reform.sscs.model.SessionCategoryMap;
+import uk.gov.hmcts.reform.sscs.reference.data.model.SessionCategoryMap;
+import uk.gov.hmcts.reform.sscs.reference.data.service.SessionCategoryMapService;
 
 public class SessionCategoryMapServiceTest {
 

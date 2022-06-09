@@ -1,12 +1,12 @@
-package uk.gov.hmcts.reform.sscs.service;
+package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
-import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.generateHashMap;
-import static uk.gov.hmcts.reform.sscs.helper.ReferenceDataHelper.getReferenceData;
+import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.generateHashMap;
+import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.List;
@@ -17,7 +17,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
-import uk.gov.hmcts.reform.sscs.model.HearingDuration;
+import uk.gov.hmcts.reform.sscs.reference.data.model.HearingDuration;
 
 @Getter
 @Setter
