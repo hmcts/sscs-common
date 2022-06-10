@@ -14,9 +14,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SchedulingAndListingFields {
-    private HearingRoute hearingRoute;
-    private HearingState hearingState;
-    private Long activeHearingId;
-    private Long activeHearingVersionNumber;
     private OverrideSchedulingListingFields overrideSchedulingListingFields;
 }
