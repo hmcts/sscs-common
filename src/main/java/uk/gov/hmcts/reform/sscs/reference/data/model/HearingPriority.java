@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingPriority {
 
-    STANDARD("standard", "Standard", null),
-    URGENT("urgent", "Urgent", null);
+    STANDARD("Standard", "Standard", null),
+    URGENT("Urgent", "Urgent", null);
 
     private final String hmcReference;
     private final String valueEn;
