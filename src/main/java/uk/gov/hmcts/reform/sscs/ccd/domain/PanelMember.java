@@ -10,11 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PanelMember {
-    // TODO These are based on mock data and subject to change.
-//    SALARIED_JUDGE("BBA3-?","Salaried Judge"),
-//    JUDGE("BBA3-?","Judge"),
-//    DOCTOR("BBA3-?","Doctor"),
-//    SPECIALIST_MEMBER("BBA3-?","Specialist Member"),
+
     DQPM(TRIBUNALS_MEMBER_DISABILITY.getReference(), TRIBUNALS_MEMBER_DISABILITY),
     MQPM1(TRIBUNALS_MEMBER_MEDICAL.getReference(), TRIBUNALS_MEMBER_MEDICAL),
     MQPM2(TRIBUNALS_MEMBER_MEDICAL.getReference(), TRIBUNALS_MEMBER_MEDICAL),
