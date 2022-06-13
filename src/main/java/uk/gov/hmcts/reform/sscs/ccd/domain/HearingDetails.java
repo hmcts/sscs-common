@@ -28,6 +28,7 @@ public class HearingDetails {
     
     private LocalDateTime hearingRequested;
     private Long versionNumber;
+    private HearingStatus hearingStatus;
     private LocalDateTime start;
     private LocalDateTime end;
     private String epimsId;
