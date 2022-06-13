@@ -746,5 +746,4 @@ public class DwpAddressLookupServiceTest {
         boolean result = dwpAddressLookup.validateIssuingOffice(benefitType, issuingOffice);
         assertEquals(isValid, result);
     }
-
 }
