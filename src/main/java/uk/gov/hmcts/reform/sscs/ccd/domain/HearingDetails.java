@@ -18,16 +18,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class HearingDetails {
-    private Venue venue;
+    private String hearingId;
     private String hearingDate;
     private String time;
     private String adjourned;
     private String eventDate;
-    private String hearingId;
+    private Venue venue;
     private String venueId;
 
+    private LocalDateTime hearingRequested;
+    private Long hmcHearingId;
+    private Long hmcVersionNumber;
     private LocalDateTime start;
     private LocalDateTime end;
+    private String epimsId;
+
     @JsonIgnore
     public LocalDateTime getHearingDateTime() {
         if (nonNull(start)) {
