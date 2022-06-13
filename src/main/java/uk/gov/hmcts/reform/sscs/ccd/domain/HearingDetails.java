@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.nonNull;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDate;
@@ -16,16 +18,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class HearingDetails {
-    private Venue venue;
+    private String hearingId;
     private String hearingDate;
     private String time;
     private String adjourned;
     private String eventDate;
-    private String hearingId;
+    private Venue venue;
     private String venueId;
+
+    private LocalDateTime hearingRequested;
+    private Long versionNumber;
+    private HearingStatus hearingStatus;
+    private LocalDateTime start;
+    private LocalDateTime end;
+    private String epimsId;
 
     @JsonIgnore
     public LocalDateTime getHearingDateTime() {
+        if (nonNull(start)) {
+            return start;
+        }
         return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
     }
 }
