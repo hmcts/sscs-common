@@ -7,6 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PanelMemberMedicallyQualified {
+
     CARDIOLOGIST("cardiologist","1","Cardiologist"),
     CARER("carer","2","Carer"),
     EYE_SURGEON("eyeSurgeon","3","Eye Surgeon"),
