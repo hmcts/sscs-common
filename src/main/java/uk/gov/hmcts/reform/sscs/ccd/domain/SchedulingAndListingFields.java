@@ -17,8 +17,4 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
 
     private HearingState hearingState;
-
-    private Long activeHearingId;
-
-    private Long activeHearingVersionNumber;
 }
