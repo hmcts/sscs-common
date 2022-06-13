@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.JudgeType.TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMember.*;
 
 import java.util.Arrays;
