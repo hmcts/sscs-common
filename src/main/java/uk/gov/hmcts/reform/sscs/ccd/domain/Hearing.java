@@ -25,6 +25,7 @@ public class Hearing implements Comparable<Hearing> {
                 .append(NumberUtils.createInteger(this.value.getHearingId()),
                         NumberUtils.createInteger(o.getValue().getHearingId()))
                 .append(this.value.getHearingDateTime(), o.getValue().getHearingDateTime())
+                .append(this.value.getHearingRequested(), o.getValue().getHearingRequested())
                 .toComparison();
     }
 }
