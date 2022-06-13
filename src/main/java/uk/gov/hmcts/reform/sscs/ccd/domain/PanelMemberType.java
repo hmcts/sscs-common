@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.Arrays;
 
 @AllArgsConstructor
 @Getter
@@ -19,7 +18,6 @@ public enum PanelMemberType {
 
     private final int key;
     private final String en;
-
 
     public static PanelMemberType getPanelMemberType(int key) {
         return Arrays.stream(values())
