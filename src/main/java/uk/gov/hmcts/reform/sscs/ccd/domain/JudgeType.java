@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.Arrays;
 
 @AllArgsConstructor
 @Getter
