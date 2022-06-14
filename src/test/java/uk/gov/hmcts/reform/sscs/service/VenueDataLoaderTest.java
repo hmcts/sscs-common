@@ -97,8 +97,14 @@ public class VenueDataLoaderTest {
     }
 
     @Test
-    public void shouldGetGapsEpimsIdForGivenVenueId() {
+    public void shouldGetEpimsIdForGivenVenueId() {
         String result = venueDataLoader.getVenueDetailsMap().get("68").getEpimsId();
         assertEquals("196538", result);
+    }
+
+    @Test
+    public void shouldGetEpimsIdForGivenPostcode() {
+        String result = venueDataLoader.getActiveVenueDetailsMapByPostcode().get("MK9 2AJ").getEpimsId();
+        assertEquals("815997", result);
     }
 }
