@@ -3,8 +3,11 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -27,10 +30,16 @@ public class HearingDetails {
     private Venue venue;
     private String venueId;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime hearingRequested;
     private Long versionNumber;
     private HearingStatus hearingStatus;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime start;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime end;
     private String epimsId;
 
