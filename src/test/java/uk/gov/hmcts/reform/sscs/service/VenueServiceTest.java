@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
-
 @RunWith(MockitoJUnitRunner.class)
 public class VenueServiceTest {
 

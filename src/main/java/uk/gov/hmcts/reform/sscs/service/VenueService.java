@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
-
 @Service
 @RequiredArgsConstructor
 public class VenueService {
