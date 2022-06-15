@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WorkBasketFields {
-    // TODO Find out if its a good idea/worth to moving the other search fields here?
-
     @JsonProperty("workBasketHearingEpimsId")
     private String hearingEpimsId;
 
