@@ -217,7 +217,8 @@
         }
       }],
       "generatedMobile": "01234567890",
-      "workBasketHearingDate": null
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -982,7 +983,8 @@
         }
       }],
       "generatedMobile": "01234567890",
-      "workBasketHearingDate": null
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
