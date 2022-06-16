@@ -15,10 +15,10 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 @RunWith(MockitoJUnitRunner.class)
 public class VenueServiceTest {
 
-    private static final String PROCESSING_VENUE_1 = "test_place";
-    private static final String PROCESSING_VENUE_2 = "test_other_place";
     private static final String VALID_EPIMS_ID = "45900";
     private static final String INVALID_EPIMS_ID = "abcdes";
+    public static final String PROCESSING_VENUE_1 = "test_place";
+    public static final String PROCESSING_VENUE_2 = "test_other_place";
 
     @Mock
     private VenueDataLoader venueDataLoader;

@@ -27,7 +27,7 @@ public class VenueService {
     public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {
 
         return venueDataLoader.getActiveVenueDetailsMapByEpimsId()
-                .get(epimsId);
+            .get(epimsId);
     }
 
     public Optional<String> getEpimsIdForActiveVenueByPostcode(String postcode) {
