@@ -4,6 +4,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
+import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
@@ -348,9 +349,22 @@ public class SscsCaseData implements CaseData {
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private JointParty jointParty;
 
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkBasketFields workBasketFields;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
+    }
+
+    @JsonIgnore
+    public Hearing getLatestHearing() {
+        if (isNotEmpty(hearings)) {
+            getHearings().sort(Collections.reverseOrder());
+            return hearings.get(0);
+        }
+        return null;
     }
 
     @JsonIgnore
@@ -611,6 +625,14 @@ public class SscsCaseData implements CaseData {
             this.jointParty = new JointParty();
         }
         return jointParty;
+    }
+
+    @JsonIgnore
+    public WorkBasketFields getWorkBasketFields() {
+        if (isNull(workBasketFields)) {
+            workBasketFields = new WorkBasketFields();
+        }
+        return workBasketFields;
     }
 
     @JsonIgnore

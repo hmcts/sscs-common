@@ -1,46 +1,56 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
+import static java.util.Objects.nonNull;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder(toBuilder = true)
 public class HearingDetails {
-    private Venue venue;
+    private String hearingId;
     private String hearingDate;
     private String time;
     private String adjourned;
     private String eventDate;
-    private String hearingId;
+    private Venue venue;
     private String venueId;
 
-    @JsonCreator
-    public HearingDetails(@JsonProperty("venue") Venue venue,
-                          @JsonProperty("hearingDate") String hearingDate,
-                          @JsonProperty("time") String time,
-                          @JsonProperty("adjourned") String adjourned,
-                          @JsonProperty("eventDate") String eventDate,
-                          @JsonProperty("hearingId") String hearingId,
-                          @JsonProperty("venueId") String venueId) {
-        this.venue = venue;
-        this.hearingDate = hearingDate;
-        this.time = time;
-        this.adjourned = adjourned;
-        this.eventDate = eventDate;
-        this.hearingId = hearingId;
-        this.venueId = venueId;
-    }
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime hearingRequested;
+    private Long versionNumber;
+    private HearingStatus hearingStatus;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime start;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime end;
+    private String epimsId;
 
     @JsonIgnore
     public LocalDateTime getHearingDateTime() {
-        return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
+        if (nonNull(start)) {
+            return start;
+        }
+        if (isNotBlank(hearingDate) && isNotBlank(time)) {
+            return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
+        }
+        return null;
     }
 }

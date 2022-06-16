@@ -24,6 +24,12 @@ public class VenueService {
             .map(VenueDetails::getEpimsId);
     }
 
+    public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {
+
+        return venueDataLoader.getActiveVenueDetailsMapByEpimsId()
+            .get(epimsId);
+    }
+
     public Optional<String> getEpimsIdForActiveVenueByPostcode(String postcode) {
 
         VenueDetails venueDetails = venueDataLoader.getActiveVenueDetailsMapByPostcode()
@@ -32,5 +38,4 @@ public class VenueService {
         return Optional.ofNullable(venueDetails)
             .map(VenueDetails::getEpimsId);
     }
-
 }

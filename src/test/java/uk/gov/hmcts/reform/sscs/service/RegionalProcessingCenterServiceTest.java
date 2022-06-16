@@ -119,7 +119,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0870 324 0109", regionalProcessingCenter.getFaxNumber());
         assertEquals("Liverpool_SYA_Resp@justice.gov.uk", regionalProcessingCenter.getEmail());
-        assertTrue("gaps".equalsIgnoreCase(regionalProcessingCenter.getHearingRoute().toString()));
+        assertTrue("listAssist".equalsIgnoreCase(regionalProcessingCenter.getHearingRoute().toString()));
     }
 
     @Test
@@ -199,7 +199,7 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("0300 123 1142", regionalProcessingCenter.getPhoneNumber());
         assertEquals("0126 434 7983", regionalProcessingCenter.getFaxNumber());
         assertEquals("Birmingham-SYA-Receipts@justice.gov.uk", regionalProcessingCenter.getEmail());
-        assertEquals("GAPS", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
+        assertEquals("LISTASSIST", regionalProcessingCenter.getHearingRoute().toString().toUpperCase());
     }
 
     @Test

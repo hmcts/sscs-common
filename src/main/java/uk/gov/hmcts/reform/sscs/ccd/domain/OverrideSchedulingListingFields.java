@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SchedulingAndListingFields {
-    private HearingRoute hearingRoute;
-    private HearingState hearingState;
-    private OverrideSchedulingListingFields overrideSchedulingListingFields;
+public class OverrideSchedulingListingFields {
+
+    private int overrideDuration;
 }
