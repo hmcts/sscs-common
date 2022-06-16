@@ -7,17 +7,22 @@ import static org.junit.Assert.*;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
+import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
 
-    private static final VenueDataLoader venueDataLoader = new VenueDataLoader();
+    private VenueDataLoader venueDataLoader;
 
-    static {
+    @Before
+    public void setUp() {
+        venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
     }
 
@@ -96,7 +101,17 @@ public class VenueDataLoaderTest {
         assertNull(result);
     }
 
+    @DisplayName("When a valid epims ID is searched, getVenue return the correct venue details")
     @Test
+    public void testGetVenue() {
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("45900");
+
+        assertNotNull(result);
+        assertEquals("1236", result.getVenueId());
+        assertEquals("SC287", result.getThreeDigitReference());
+        assertEquals("45900", result.getEpimsId());
+    }
+
     public void shouldGetEpimsIdForGivenVenueId() {
         String result = venueDataLoader.getVenueDetailsMap().get("68").getEpimsId();
         assertEquals("196538", result);
