@@ -26,6 +26,7 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
+    private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -34,32 +35,32 @@ public class VenueDataLoader {
 
             List<String[]> linesList = reader.readAll();
             linesList.forEach(line -> {
-                    VenueDetails venueDetails = VenueDetails.builder()
-                            .venueId(line[0])
-                            .threeDigitReference(line[1])
-                            .regionalProcessingCentre(line[2])
-                            .venName(line[3])
-                            .venAddressLine1(line[4])
-                            .venAddressLine2(line[5])
-                            .venAddressTown(line[6])
-                            .venAddressCounty(line[7])
-                            .venAddressPostcode(line[8])
-                            .venAddressTelNo(line[9])
-                            .districtId(line[10])
-                            .url(line[11])
-                            .active(line[12])
-                            .gapsVenName(line[13])
-                            .comments(line[14])
-                            .epimsId(line[15])
-                            .build();
-                    venueDetailsMap.put(line[0], venueDetails);
-                    venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
+                VenueDetails venueDetails = VenueDetails.builder()
+                        .venueId(line[0])
+                        .threeDigitReference(line[1])
+                        .regionalProcessingCentre(line[2])
+                        .venName(line[3])
+                        .venAddressLine1(line[4])
+                        .venAddressLine2(line[5])
+                        .venAddressTown(line[6])
+                        .venAddressCounty(line[7])
+                        .venAddressPostcode(line[8])
+                        .venAddressTelNo(line[9])
+                        .districtId(line[10])
+                        .url(line[11])
+                        .active(line[12])
+                        .gapsVenName(line[13])
+                        .comments(line[14])
+                        .epimsId(line[15])
+                        .build();
+                venueDetailsMap.put(line[0], venueDetails);
+                venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
                 if (isYes(venueDetails.getActive())) {
+                    activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
                     activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
                 }
-                }
-            );
-        } catch (IOException | CsvException e) {
+            });
+        } catch (IOException | CsvException  e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
     }
@@ -70,6 +71,10 @@ public class VenueDataLoader {
 
     public Map<String, VenueDetails> getActiveVenueDetailsMapByEpimsId() {
         return ImmutableMap.copyOf(activeVenueDetailsMapByEpimsId);
+    }
+
+    public Map<String, VenueDetails> getActiveVenueDetailsMapByPostcode() {
+        return ImmutableMap.copyOf(activeVenueDetailsMapByPostcode);
     }
 
     public String getGapVenueName(Venue venue, String venueId) {

@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
-
 @Service
 @RequiredArgsConstructor
 public class VenueService {
@@ -28,7 +27,16 @@ public class VenueService {
     public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {
 
         return venueDataLoader.getActiveVenueDetailsMapByEpimsId()
-                .get(epimsId);
+            .get(epimsId);
+    }
+
+    public Optional<String> getEpimsIdForActiveVenueByPostcode(String postcode) {
+
+        VenueDetails venueDetails = venueDataLoader.getActiveVenueDetailsMapByPostcode()
+            .get(postcode);
+
+        return Optional.ofNullable(venueDetails)
+            .map(VenueDetails::getEpimsId);
     }
 
 }
