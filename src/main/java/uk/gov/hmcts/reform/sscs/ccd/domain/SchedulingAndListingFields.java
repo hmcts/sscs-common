@@ -16,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
-    private OverrideSchedulingListingFields overrideSchedulingListingFields;
+    private Integer overrideDuration;
 }
