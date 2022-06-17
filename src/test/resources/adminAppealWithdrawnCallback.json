@@ -10,6 +10,7 @@
     "security_classification": "PUBLIC",
     "case_data": {
       "addedDocuments": null,
+      "overrideDuration": null,
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
       "hmctsDwpState": "sentToDwp",
@@ -799,6 +800,7 @@
     "last_modified": [2019, 9, 1, 13, 20, 23, 282000000],
     "security_classification": "PUBLIC",
     "case_data": {
+      "overrideDuration": null,
       "addedDocuments": null,
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
