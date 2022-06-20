@@ -617,11 +617,11 @@ public class SscsCaseDataTest {
     private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date, String controlNumber) {
         String docType = documentType == null ? null : documentType.getValue();
         return ScannedDocument.builder().value(
-                ScannedDocumentDetails.builder().type(docType)
-                        .url(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .scannedDate(date)
-                        .controlNumber(controlNumber)
-                        .build()).build();
+            ScannedDocumentDetails.builder().type(docType)
+            .url(DocumentLink.builder().documentUrl(documentUrl).build())
+            .scannedDate(date)
+            .controlNumber(controlNumber)
+            .build()).build();
     }
 
     @Test
