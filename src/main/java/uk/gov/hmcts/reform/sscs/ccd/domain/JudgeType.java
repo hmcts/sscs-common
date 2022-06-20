@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 public enum JudgeType {
 
-    PRESIDENT_OF_TRIBUNAL("58", "President of Tribunal"),
+    PRESIDENT_OF_TRIBUNAL("65", "President of Tribunal"),
     REGIONAL_TRIBUNAL_JUDGE("74", "Regional Tribunal Judge"),
     TRIBUNAL_JUDGE("84", "Tribunal Judge");
 
