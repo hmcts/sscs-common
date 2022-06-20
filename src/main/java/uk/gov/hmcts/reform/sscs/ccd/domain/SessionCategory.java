@@ -10,14 +10,14 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum SessionCategory {
-    CATEGORY_00(0, List.of(SALARIED_JUDGE), "Interlocutory"),
-    CATEGORY_01(1,List.of(JUDGE),"Judge Alone"),
-    CATEGORY_02(2,List.of(JUDGE, FQPM),"Judge & Financial Member"),
-    CATEGORY_03(3,List.of(JUDGE, DQPM),"Judge, Doctor & Disability Member"),
-    CATEGORY_04(4,List.of(JUDGE, DOCTOR),"Judge & Doctor"),
-    CATEGORY_05(5,List.of(JUDGE, MQPM1),"Judge & Specialist Doctor"),
-    CATEGORY_06(6,List.of(JUDGE, MQPM1, MQPM2),"Judge & Two Specialist Doctors"),
-    CATEGORY_07(7,List.of(JUDGE, SPECIALIST_MEMBER),"Judge and Specialist Member");
+    CATEGORY_00(0, List.of(), "Interlocutory"),
+    CATEGORY_01(1, List.of(), "Judge Alone"),
+    CATEGORY_02(2, List.of(FQPM), "Judge & Financial Member"),
+    CATEGORY_03(3, List.of(), "Judge, Doctor & Disability Member"),
+    CATEGORY_04(4, List.of(), "Judge & Doctor"),
+    CATEGORY_05(5, List.of(MQPM1), "Judge & Specialist Doctor"),
+    CATEGORY_06(6, List.of(MQPM1, MQPM2), "Judge & Two Specialist Doctors"),
+    CATEGORY_07(7, List.of(), "Judge and Specialist Member");
 
 
     private final int sessionCategoryCode;
