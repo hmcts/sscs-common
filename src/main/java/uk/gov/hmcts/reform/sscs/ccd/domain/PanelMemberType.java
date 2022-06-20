@@ -10,11 +10,8 @@ public enum PanelMemberType {
 
     TRIBUNALS_MEMBER_DISABILITY("44", "Tribunal Member Disability"),
     TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED("50", "Tribunal Member Financially Qualified"),
-    TRIBUNALS_MEMBER_LAY("55", "Tribunal Member Lay"),
     TRIBUNALS_MEMBER_MEDICAL("58", "Tribunal Member Medical"),
-    TRIBUNALS_MEMBER_OPTOMETRIST("60", "Tribunal Member Optometrist"),
-    TRIBUNALS_MEMBER_SERVICE("81", "Tribunal Member Service"),
-    TRIBUNALS_MEMBER("85", "Tribunal Member");
+    REGIONAL_MEDICAL_MEMBER("69", "Regional Medical Member");
 
     private final String reference;
     private final String en;
