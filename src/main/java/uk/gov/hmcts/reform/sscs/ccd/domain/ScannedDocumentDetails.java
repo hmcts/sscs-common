@@ -54,10 +54,10 @@ public class ScannedDocumentDetails {
 
     @JsonIgnore
     public LocalDateTime getScanDateTimeFormatted() {
+        if (StringUtils.isEmpty(scannedDate)) {
+            return null;
+        }
         try {
-            if (StringUtils.isEmpty(scannedDate)) {
-                return null;
-            }
             return LocalDateTime.of(LocalDate.parse(scannedDate), LocalTime.MIN);
         } catch (DateTimeParseException e) {
             return null;
@@ -66,9 +66,6 @@ public class ScannedDocumentDetails {
 
     @JsonIgnore
     public Long getLongControlNumber() {
-        if (StringUtils.isEmpty(controlNumber)) {
-            return null;
-        }
-        return NumberUtils.isCreatable(controlNumber) ? Long.parseLong(controlNumber) : null;
+            return (StringUtils.isNotEmpty(controlNumber) && NumberUtils.isCreatable(controlNumber)) ? Long.parseLong(controlNumber) : null;
     }
 }
