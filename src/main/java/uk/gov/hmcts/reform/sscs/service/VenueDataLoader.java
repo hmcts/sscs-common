@@ -25,6 +25,7 @@ public class VenueDataLoader {
     private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
+    private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
 
     @PostConstruct
@@ -56,6 +57,7 @@ public class VenueDataLoader {
                 venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
                 if (isYes(venueDetails.getActive())) {
                     activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
+                    activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
                 }
             });
         } catch (IOException | CsvException  e) {
@@ -65,6 +67,10 @@ public class VenueDataLoader {
 
     public Map<String, VenueDetails> getVenueDetailsMap() {
         return ImmutableMap.copyOf(venueDetailsMap);
+    }
+
+    public Map<String, VenueDetails> getActiveVenueDetailsMapByEpimsId() {
+        return ImmutableMap.copyOf(activeVenueDetailsMapByEpimsId);
     }
 
     public Map<String, VenueDetails> getActiveVenueDetailsMapByPostcode() {
