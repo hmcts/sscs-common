@@ -66,6 +66,6 @@ public class ScannedDocumentDetails {
 
     @JsonIgnore
     public Long getLongControlNumber() {
-            return (StringUtils.isNotEmpty(controlNumber) && NumberUtils.isCreatable(controlNumber)) ? Long.parseLong(controlNumber) : null;
+        return (StringUtils.isNotEmpty(controlNumber) && NumberUtils.isCreatable(controlNumber)) ? Long.parseLong(controlNumber) : null;
     }
 }
