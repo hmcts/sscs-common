@@ -50,7 +50,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
                                    @JsonProperty("originalPartySender") String originalPartySender,
                                    @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
-                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
+                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName,
+                                   @JsonProperty("controlNumber") String controlNumber) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -68,6 +69,7 @@ public class AbstractDocumentDetails {
         this.originalPartySender = originalPartySender;
         this.originalSenderOtherPartyId = originalSenderOtherPartyId;
         this.originalSenderOtherPartyName = originalSenderOtherPartyName;
+        this.controlNumber = controlNumber;
 
     }
 
@@ -97,10 +99,6 @@ public class AbstractDocumentDetails {
             return null;
         }
         return NumberUtils.isCreatable(bundleAddition.substring(1)) ? Integer.parseInt(bundleAddition.substring(1)) : 0;
-    }
-
-    public String getControlNumber() {
-        return controlNumber;
     }
 
 }
