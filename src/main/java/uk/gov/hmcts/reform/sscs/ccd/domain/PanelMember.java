@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Objects.nonNull;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberMedicallyQualified.getPanelMemberMedicallyQualified;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.*;
 
 import lombok.AllArgsConstructor;
