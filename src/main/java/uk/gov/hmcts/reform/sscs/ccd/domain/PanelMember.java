@@ -19,11 +19,4 @@ public enum PanelMember {
 
     private final String reference;
     private final PanelMemberType panelMemberType;
-
-    public String getReference(String panelMemberSubtypeCcdRef) {
-        PanelMemberMedicallyQualified subType = getPanelMemberMedicallyQualified(panelMemberSubtypeCcdRef);
-        return nonNull(subType)
-                ? String.format("%s-%s", reference, subType.getHmcReference())
-                : reference;
-    }
 }
