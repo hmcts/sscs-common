@@ -185,7 +185,8 @@
         ]
       },
       "generatedMobile": "07398785050",
-      "workBasketHearingDate": null
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -757,7 +758,8 @@
       "region": "NEWCASTLE",
       "generatedDOB": "1981-11-11",
       "generatedMobile": "07398785050",
-      "workBasketHearingDate": null
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
