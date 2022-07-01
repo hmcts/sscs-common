@@ -216,7 +216,9 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -980,7 +982,9 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

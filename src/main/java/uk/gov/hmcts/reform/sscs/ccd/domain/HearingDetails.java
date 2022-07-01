@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -45,9 +44,6 @@ public class HearingDetails {
 
     @JsonIgnore
     public LocalDateTime getHearingDateTime() {
-        if (nonNull(start)) {
-            return start;
-        }
         if (isNotBlank(hearingDate) && isNotBlank(time)) {
             return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
         }

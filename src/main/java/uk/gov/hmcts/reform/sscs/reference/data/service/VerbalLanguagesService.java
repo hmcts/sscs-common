@@ -18,7 +18,8 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 @Component
 public class VerbalLanguagesService {
     private static final String JSON_DATA_LOCATION = "reference-data/verbal-languages.json";
-    public static final String VERBAL_LANGUAGE_REFERENCE_TEMPLATE = "%s-%s";
+    public static final String VERBAL_LANGUAGE_REFERENCE_TEMPLATE = "%s%s";
+    public static final String VERBAL_LANGUAGE_DIALECT_TEMPLATE = "-%s";
 
     private List<Language> verbalLanguages;
     private Map<Language, Language> verbalLanguagesHashMap;
@@ -55,8 +56,8 @@ public class VerbalLanguagesService {
 
     private String getDialectReference(Language language) {
         if (isBlank(language.getDialectReference())) {
-            return language.getReference();
+            return "";
         }
-        return language.getDialectReference();
+        return String.format(VERBAL_LANGUAGE_DIALECT_TEMPLATE, language.getDialectReference());
     }
 }
