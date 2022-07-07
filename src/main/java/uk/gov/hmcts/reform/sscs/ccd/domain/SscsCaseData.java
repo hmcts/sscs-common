@@ -345,6 +345,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    private CaseOutcome caseOutcome;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private JointParty jointParty;
@@ -617,6 +621,14 @@ public class SscsCaseData implements CaseData {
             this.schedulingAndListingFields = new SchedulingAndListingFields();
         }
         return schedulingAndListingFields;
+    }
+
+    @JsonIgnore
+    public CaseOutcome getCaseOutcome() {
+        if (caseOutcome == null) {
+            this.caseOutcome = new CaseOutcome();
+        }
+        return caseOutcome;
     }
 
     @JsonIgnore
