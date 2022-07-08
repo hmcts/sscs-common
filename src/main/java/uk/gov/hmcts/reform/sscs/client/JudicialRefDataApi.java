@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataRequest;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataSearchRequest;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersResponse;
 
 @FeignClient(
         name = "judicial-ref-data-api",
@@ -28,6 +30,18 @@ public interface JudicialRefDataApi {
     ResponseEntity<Object> searchUsersBySearchString(
             @RequestHeader(AUTHORIZATION) String authorisation,
             @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-            @RequestBody JudicialRefDataRequest judicialRefDataRequest
+            @RequestBody JudicialRefDataSearchRequest judicialRefDataSearchRequest
     );
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "refdata/judicial/users",
+            headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+    )
+    JudicialRefDataUsersResponse getJudicialUsers(
+            @RequestHeader(AUTHORIZATION) String authorisation,
+            @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+            @RequestBody JudicialRefDataUsersRequest judicialRefDataUsersRequest
+    );
+
 }
