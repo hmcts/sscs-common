@@ -23,4 +23,7 @@ public class WorkBasketFields {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate hearingDate;
+
+    @JsonProperty("workBasketHearingEpimsId")
+    private String hearingEpimsId;
 }

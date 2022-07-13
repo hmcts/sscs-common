@@ -58,6 +58,6 @@ public class SignLanguagesService {
         if (isBlank(language.getDialectReference())) {
             return "";
         }
-        return String.format(SIGN_DIALECT_TEMPLATE,language.getDialectReference());
+        return String.format(SIGN_DIALECT_TEMPLATE, language.getDialectReference());
     }
 }
