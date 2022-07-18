@@ -22,6 +22,6 @@ public class OverrideFields {
     private HearingChannel appellantHearingChannel;
     private HearingWindow hearingWindow;
     private YesNo autoList;
-    private List<CcdValue<String>> hearingVenueEpimsIds;
+    private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
     private YesNo poToAttend;
 }
