@@ -12,7 +12,12 @@ public enum AmendReason {
     ADMIN_REQUEST("adminreq", "Admin requested change"),
     ADMIN_ERROR("adminerr", "Admin error");
 
-    @JsonValue
     private final String ccdDefinition;
     private final String descriptionEn;
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return ccdDefinition;
+    }
 }
