@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +14,7 @@ public enum HearingChannel {
     NOT_ATTENDING("NA", "Not Attending", null),
     PAPER("ONPPRS", "Paper", "Papur"),;
 
+    @JsonValue
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
