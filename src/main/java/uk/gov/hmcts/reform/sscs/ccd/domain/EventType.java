@@ -217,7 +217,8 @@ public enum EventType {
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
     UPDATE_OTHER_PARTY_DATA("updateOtherPartyData", 0, false),
     LISTING_ERROR("listingError", 0, false),
-    UPDATE_LISTING_REQUIREMENTS("updateListingRequirements", 0, false);
+    UPDATE_LISTING_REQUIREMENTS("updateListingRequirements", 0, false),
+    MIGRATE_CASE("migrateCase", 0, false);
 
     private final String type;
     private final String ccdType;
