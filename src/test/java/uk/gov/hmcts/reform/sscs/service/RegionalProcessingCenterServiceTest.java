@@ -99,7 +99,6 @@ public class RegionalProcessingCenterServiceTest {
         };
     }
 
-    @Test
     public void shouldReturnRegionalProcessingCenterForGivenAppealReferenceNumber() {
         //Given
         String referenceNumber = "SC274/13/00010";
