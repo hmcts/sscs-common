@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import static uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel.*;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +21,7 @@ public enum HearingSubChannel {
     VIDEO_VHS(VIDEO, "VIDBHS", "Video - Video Hearing Service", null);
 
     private final HearingChannel hearingChannel;
+    @JsonValue
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
