@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -19,6 +21,9 @@ public class VenueServiceTest {
     private static final String INVALID_EPIMS_ID = "abcdes";
     public static final String PROCESSING_VENUE_1 = "test_place";
     public static final String PROCESSING_VENUE_2 = "test_other_place";
+    private static final String RPC_LEEDS = "SSCS Leeds";
+    private static final String RPC_BIRMINGHAM = "SSCS Birmingham";
+    private static final String RPC_CARDIFF = "SSCS Cardiff";
 
     @Mock
     private VenueDataLoader venueDataLoader;
@@ -38,6 +43,27 @@ public class VenueServiceTest {
         assertThat(result).isPresent();
         String epimsId = result.get();
         assertThat(epimsId).isEqualTo("987632");
+    }
+
+    @Test
+    public void getRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
+        setupRegionalVenueMaps();
+
+        List<String> result = venueService.getRegionalEpimsIdsForRpc(RPC_LEEDS);
+
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(2);
+        assertThat(result.get(0)).containsAnyOf("112233", "332211");
+    }
+
+    @Test
+    public void getRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
+        setupRegionalVenueMaps();
+
+        List<String> result = venueService.getRegionalEpimsIdsForRpc(RPC_CARDIFF);
+
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(0);
     }
 
     @Test
@@ -75,9 +101,11 @@ public class VenueServiceTest {
 
         Map<String, VenueDetails> venueDetailsMap = Map.of(
             "68", VenueDetails.builder()
+                .venName("test_place")
                 .epimsId("987632")
                 .build(),
             "2", VenueDetails.builder()
+                .venName("test_place2")
                 .epimsId("111111")
                 .build());
 
@@ -102,6 +130,36 @@ public class VenueServiceTest {
         when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
         when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpims);
         when(venueDataLoader.getActiveVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
+    }
+
+    private void setupRegionalVenueMaps() {
+        Map<RegionalProcessingCenter, VenueDetails> venueDetailsMapByRpc = Map.of(
+                RegionalProcessingCenter.builder()
+                        .epimsId("112233")
+                        .name("SSCS Leeds")
+                        .build(),
+                        VenueDetails.builder()
+                                .epimsId("112233")
+                                .regionalProcessingCentre("SSCS Leeds")
+                                .build(),
+                RegionalProcessingCenter.builder()
+                        .epimsId("445566")
+                        .name("SSCS Birmingham")
+                        .build(),
+                        VenueDetails.builder()
+                                .epimsId("445566")
+                                .regionalProcessingCentre("SSCS Birmingham")
+                                .build(),
+                RegionalProcessingCenter.builder()
+                        .epimsId("332211")
+                        .name("SSCS Leeds")
+                        .build(),
+                        VenueDetails.builder()
+                                .epimsId("332211")
+                                .regionalProcessingCentre("SSCS Leeds")
+                                .build());
+
+        when(venueDataLoader.getVenueDetailsMapByRpc()).thenReturn(venueDetailsMapByRpc);
     }
 
 }
