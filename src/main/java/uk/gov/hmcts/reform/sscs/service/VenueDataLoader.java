@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
@@ -27,6 +28,7 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
+    private final Map<RegionalProcessingCenter, VenueDetails> venueDetailsMapByRpc = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -59,6 +61,10 @@ public class VenueDataLoader {
                     activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
                     activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
                 }
+                venueDetailsMapByRpc.put(RegionalProcessingCenter.builder()
+                        .name(line[2])
+                        .build(),
+                        venueDetails);
             });
         } catch (IOException | CsvException  e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
@@ -67,6 +73,10 @@ public class VenueDataLoader {
 
     public Map<String, VenueDetails> getVenueDetailsMap() {
         return ImmutableMap.copyOf(venueDetailsMap);
+    }
+
+    public Map<RegionalProcessingCenter, VenueDetails> getVenueDetailsMapByRpc() {
+        return ImmutableMap.copyOf(venueDetailsMapByRpc);
     }
 
     public Map<String, VenueDetails> getActiveVenueDetailsMapByEpimsId() {
