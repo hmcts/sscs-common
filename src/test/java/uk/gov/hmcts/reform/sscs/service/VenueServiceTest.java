@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -55,21 +55,22 @@ public class VenueServiceTest {
     }
 
     @Test
-    public void getRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
+    public void getActiveRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
         setupRegionalVenueMaps();
 
-        List<String> result = venueService.getRegionalEpimsIdsForRpc(RPC_LEEDS);
+        List<String> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_LEEDS);
 
         assertThat(result).isNotNull();
-        assertThat(result).hasSize(2);
-        assertThat(result.get(0)).containsAnyOf("112233", "332211");
+        assertThat(result).hasSize(4);
+        assertThat(result.get(0)).isEqualTo("112233");
+        assertThat(result.get(1)).isEqualTo("332211");
     }
 
     @Test
-    public void getRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
+    public void getActiveRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
         setupRegionalVenueMaps();
 
-        List<String> result = venueService.getRegionalEpimsIdsForRpc(RPC_CARDIFF);
+        List<String> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_CARDIFF);
 
         assertThat(result).isNotNull();
         assertThat(result).hasSize(0);
@@ -140,33 +141,10 @@ public class VenueServiceTest {
     }
 
     private void setupRegionalVenueMaps() {
-        Map<RegionalProcessingCenter, VenueDetails> venueDetailsMapByRpc = Map.of(
-                RegionalProcessingCenter.builder()
-                        .epimsId("112233")
-                        .name("SSCS Leeds")
-                        .build(),
-                        VenueDetails.builder()
-                                .epimsId("112233")
-                                .regionalProcessingCentre("SSCS Leeds")
-                                .build(),
-                RegionalProcessingCenter.builder()
-                        .epimsId("445566")
-                        .name("SSCS Birmingham")
-                        .build(),
-                        VenueDetails.builder()
-                                .epimsId("445566")
-                                .regionalProcessingCentre("SSCS Birmingham")
-                                .build(),
-                RegionalProcessingCenter.builder()
-                        .epimsId("332211")
-                        .name("SSCS Leeds")
-                        .build(),
-                        VenueDetails.builder()
-                                .epimsId("332211")
-                                .regionalProcessingCentre("SSCS Leeds")
-                                .build());
-
-        when(venueDataLoader.getVenueDetailsMapByRpc()).thenReturn(venueDetailsMapByRpc);
+        Map<String, List<String>> activeVenueEpimsIdsMapByRpc = Map.of(
+                RPC_LEEDS, Arrays.asList("112233", "332211", "123123", "321321"),
+                RPC_BIRMINGHAM, Arrays.asList("445566", "665544", "456456", "654654"));
+        when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
     }
 
 }
