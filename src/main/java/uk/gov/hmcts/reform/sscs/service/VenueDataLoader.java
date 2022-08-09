@@ -11,11 +11,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
@@ -28,7 +28,7 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
-    private final Map<RegionalProcessingCenter, VenueDetails> venueDetailsMapByRpc = newHashMap();
+    private final Map<String, List<String>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -61,11 +61,14 @@ public class VenueDataLoader {
                     activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
                     activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
                 }
-                venueDetailsMapByRpc.put(RegionalProcessingCenter.builder()
-                        .name(line[2])
-                        .build(),
-                        venueDetails);
             });
+            activeVenueEpimsIdsMapByRpc.putAll(
+                    activeVenueDetailsMapByEpimsId // use active otherwise closed epimsIds (000000) picked up
+                    .values()
+                    .stream()
+                    .collect(Collectors.groupingBy(VenueDetails::getRegionalProcessingCentre,
+                            Collectors.mapping(VenueDetails::getEpimsId, Collectors.toList()))));
+
         } catch (IOException | CsvException  e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
@@ -75,16 +78,16 @@ public class VenueDataLoader {
         return ImmutableMap.copyOf(venueDetailsMap);
     }
 
-    public Map<RegionalProcessingCenter, VenueDetails> getVenueDetailsMapByRpc() {
-        return ImmutableMap.copyOf(venueDetailsMapByRpc);
-    }
-
     public Map<String, VenueDetails> getActiveVenueDetailsMapByEpimsId() {
         return ImmutableMap.copyOf(activeVenueDetailsMapByEpimsId);
     }
 
     public Map<String, VenueDetails> getActiveVenueDetailsMapByPostcode() {
         return ImmutableMap.copyOf(activeVenueDetailsMapByPostcode);
+    }
+
+    public Map<String, List<String>> getActiveVenueEpimsIdsMapByRpc() {
+        return ImmutableMap.copyOf(activeVenueEpimsIdsMapByRpc);
     }
 
     public String getGapVenueName(Venue venue, String venueId) {

@@ -5,6 +5,9 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
@@ -121,5 +124,27 @@ public class VenueDataLoaderTest {
     public void shouldGetEpimsIdForGivenPostcode() {
         String result = venueDataLoader.getActiveVenueDetailsMapByPostcode().get("MK9 2AJ").getEpimsId();
         assertEquals("815997", result);
+    }
+
+    @Test
+    public void testActiveVenueEpimsIdsMapByRpcReturnsVenues() {
+        List<String> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
+
+        assertFalse(result.isEmpty());
+        assertEquals(20, result.size());
+        assertEquals(Arrays.asList("517400", "449358", "563156",
+                "45900", "744412", "572158",
+                "288691", "562808", "720624",
+                "427519", "366796", "999974",
+                "107581", "197852", "495952",
+                "852649", "491107", "195520",
+                "641199", "574546"), result);
+    }
+
+    @Test
+    public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
+        List<String> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
+
+        assertNull(result);
     }
 }
