@@ -23,6 +23,15 @@ public class VenueDataLoaderTest {
 
     private VenueDataLoader venueDataLoader;
 
+    private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
+            "517400", "449358", "563156",
+            "45900", "744412", "572158",
+            "288691", "562808", "720624",
+            "427519", "366796", "999974",
+            "107581", "197852", "495952",
+            "852649", "491107", "195520",
+            "641199", "574546");
+
     @Before
     public void setUp() {
         venueDataLoader = new VenueDataLoader();
@@ -128,23 +137,15 @@ public class VenueDataLoaderTest {
 
     @Test
     public void testActiveVenueEpimsIdsMapByRpcReturnsVenues() {
-        List<String> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
-
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
         assertFalse(result.isEmpty());
         assertEquals(20, result.size());
-        assertEquals(Arrays.asList("517400", "449358", "563156",
-                "45900", "744412", "572158",
-                "288691", "562808", "720624",
-                "427519", "366796", "999974",
-                "107581", "197852", "495952",
-                "852649", "491107", "195520",
-                "641199", "574546"), result);
+        result.forEach(vd -> assertTrue(venueDetailsByLeedsRpc.contains(vd.getEpimsId())));
     }
 
     @Test
     public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
-        List<String> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
-
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
     }
 }
