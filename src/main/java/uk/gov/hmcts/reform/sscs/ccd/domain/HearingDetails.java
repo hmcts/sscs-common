@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -41,6 +42,7 @@ public class HearingDetails {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime end;
     private String epimsId;
+    private HearingChannel hearingChannel;
 
     @JsonIgnore
     public LocalDateTime getHearingDateTime() {
