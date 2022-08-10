@@ -26,7 +26,7 @@ public class VenueServiceTest {
     public static final String PROCESSING_VENUE_2 = "test_other_place";
     private static final String RPC_LEEDS = "SSCS Leeds";
     private static final String RPC_BIRMINGHAM = "SSCS Birmingham";
-    private static final String RPC_CARDIFF = "SSCS Cardiff";
+    private static final String RPC_NEWCASTLE = "SSCS Newcastle";
 
     @Mock
     private VenueDataLoader venueDataLoader;
@@ -58,19 +58,19 @@ public class VenueServiceTest {
     public void getActiveRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
         setupRegionalVenueMaps();
 
-        List<String> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_LEEDS);
+        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_LEEDS);
 
         assertThat(result).isNotNull();
         assertThat(result).hasSize(4);
-        assertThat(result.get(0)).isEqualTo("112233");
-        assertThat(result.get(1)).isEqualTo("332211");
+        assertThat(result.get(0).getEpimsId()).isEqualTo("112233");
+        assertThat(result.get(1).getEpimsId()).isEqualTo("332211");
     }
 
     @Test
     public void getActiveRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
         setupRegionalVenueMaps();
 
-        List<String> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_CARDIFF);
+        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_NEWCASTLE);
 
         assertThat(result).isNotNull();
         assertThat(result).hasSize(0);
@@ -141,9 +141,17 @@ public class VenueServiceTest {
     }
 
     private void setupRegionalVenueMaps() {
-        Map<String, List<String>> activeVenueEpimsIdsMapByRpc = Map.of(
-                RPC_LEEDS, Arrays.asList("112233", "332211", "123123", "321321"),
-                RPC_BIRMINGHAM, Arrays.asList("445566", "665544", "456456", "654654"));
+        Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = Map.of(
+                RPC_LEEDS, Arrays.asList(
+                        VenueDetails.builder().epimsId("112233").build(),
+                        VenueDetails.builder().epimsId("332211").build(),
+                        VenueDetails.builder().epimsId("123123").build(),
+                        VenueDetails.builder().epimsId("321321").build()),
+                RPC_BIRMINGHAM, Arrays.asList(
+                        VenueDetails.builder().epimsId("445566").build(),
+                        VenueDetails.builder().epimsId("665544").build(),
+                        VenueDetails.builder().epimsId("456456").build(),
+                        VenueDetails.builder().epimsId("654654").build()));
         when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
     }
 

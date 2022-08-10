@@ -29,7 +29,7 @@ public class VenueService {
             });
     }
 
-    public List<String> getActiveRegionalEpimsIdsForRpc(String rpc) {
+    public List<VenueDetails> getActiveRegionalEpimsIdsForRpc(String rpc) {
 
         return venueDataLoader.getActiveVenueEpimsIdsMapByRpc()
                 .entrySet()
