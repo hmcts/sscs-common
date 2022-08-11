@@ -25,13 +25,8 @@ public enum CancellationReason {
     PARTY_DID_NOT_ATTEND("notatt", "Party Did Not Attend", null),
     LAPSED("lapsed", "Lapsed", DORMANT_APPEAL_STATE);
 
+    @JsonValue
     private final String hmcReference;
     private final String label;
     private final State caseStateUpdate;
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return hmcReference;
-    }
 }
