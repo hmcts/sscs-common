@@ -12,7 +12,12 @@ public enum JudicialMemberType {
     REGIONAL_TRIBUNAL_JUDGE("74","Regional Tribunal Judge"),
     TRIBUNAL_JUDGE("84","Tribunal Judge");
 
-    @JsonValue
     private final String hmcReference;
     private final String descriptionEn;
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return hmcReference;
+    }
 }
