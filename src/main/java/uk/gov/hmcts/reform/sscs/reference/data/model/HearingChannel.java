@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
