@@ -21,9 +21,14 @@ public enum HearingSubChannel {
     VIDEO_VHS(VIDEO, "VIDBHS", "Video - Video Hearing Service", null);
 
     private final HearingChannel hearingChannel;
-    @JsonValue
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return hmcReference;
+    }
 
 }
