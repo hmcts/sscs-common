@@ -3,8 +3,6 @@ package uk.gov.hmcts.reform.sscs.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.junit.Test;
@@ -21,9 +19,6 @@ public class VenueServiceTest {
     private static final String INVALID_EPIMS_ID = "abcdes";
     public static final String PROCESSING_VENUE_1 = "test_place";
     public static final String PROCESSING_VENUE_2 = "test_other_place";
-    private static final String RPC_LEEDS = "SSCS Leeds";
-    private static final String RPC_BIRMINGHAM = "SSCS Birmingham";
-    private static final String RPC_NEWCASTLE = "SSCS Newcastle";
 
     @Mock
     private VenueDataLoader venueDataLoader;
@@ -43,28 +38,6 @@ public class VenueServiceTest {
         assertThat(result).isPresent();
         String epimsId = result.get();
         assertThat(epimsId).isEqualTo("987632");
-    }
-
-    @Test
-    public void getActiveRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
-        setupRegionalVenueMaps();
-
-        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_LEEDS);
-
-        assertThat(result).isNotNull();
-        assertThat(result).hasSize(4);
-        assertThat(result.get(0).getEpimsId()).isEqualTo("112233");
-        assertThat(result.get(1).getEpimsId()).isEqualTo("332211");
-    }
-
-    @Test
-    public void getActiveRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
-        setupRegionalVenueMaps();
-
-        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_NEWCASTLE);
-
-        assertThat(result).isNotNull();
-        assertThat(result).hasSize(0);
     }
 
     @Test
@@ -102,11 +75,9 @@ public class VenueServiceTest {
 
         Map<String, VenueDetails> venueDetailsMap = Map.of(
             "68", VenueDetails.builder()
-                .venName("test_place")
                 .epimsId("987632")
                 .build(),
             "2", VenueDetails.builder()
-                .venName("test_place2")
                 .epimsId("111111")
                 .build());
 
@@ -131,21 +102,6 @@ public class VenueServiceTest {
         when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
         when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpims);
         when(venueDataLoader.getActiveVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
-    }
-
-    private void setupRegionalVenueMaps() {
-        Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = Map.of(
-                RPC_LEEDS, Arrays.asList(
-                        VenueDetails.builder().epimsId("112233").build(),
-                        VenueDetails.builder().epimsId("332211").build(),
-                        VenueDetails.builder().epimsId("123123").build(),
-                        VenueDetails.builder().epimsId("321321").build()),
-                RPC_BIRMINGHAM, Arrays.asList(
-                        VenueDetails.builder().epimsId("445566").build(),
-                        VenueDetails.builder().epimsId("665544").build(),
-                        VenueDetails.builder().epimsId("456456").build(),
-                        VenueDetails.builder().epimsId("654654").build()));
-        when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
     }
 
 }
