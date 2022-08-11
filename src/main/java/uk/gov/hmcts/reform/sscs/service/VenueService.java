@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
@@ -22,6 +24,16 @@ public class VenueService {
 
         return Optional.ofNullable(venueDetails)
             .map(VenueDetails::getEpimsId);
+    }
+
+    public List<VenueDetails> getActiveRegionalEpimsIdsForRpc(String rpc) {
+
+        return venueDataLoader.getActiveVenueEpimsIdsMapByRpc()
+                .entrySet()
+                .stream()
+                .filter(e -> rpc.equals(e.getKey()))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList()).stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
     }
 
     public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {
