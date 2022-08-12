@@ -11,8 +11,8 @@ public enum JudicialMemberType {
     TRIBUNAL_PRESIDENT("65","President of Tribunal"),
     REGIONAL_TRIBUNAL_JUDGE("74","Regional Tribunal Judge"),
     TRIBUNAL_JUDGE("84","Tribunal Judge");
-
     @JsonValue
     private final String hmcReference;
     private final String descriptionEn;
+
 }

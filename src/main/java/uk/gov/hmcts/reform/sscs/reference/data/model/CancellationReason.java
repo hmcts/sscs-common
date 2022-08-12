@@ -29,4 +29,5 @@ public enum CancellationReason {
     private final String hmcReference;
     private final String label;
     private final State caseStateUpdate;
+
 }
