@@ -13,7 +13,6 @@ import lombok.experimental.SuperBuilder;
 public class SscsDocumentDetails extends AbstractDocumentDetails {
 
     private String documentEmailContent;
-    private String controlNumber;
     private DocumentLink editedDocumentLink;
     private UploadParty partyUploaded;
     private String originalPartySender;
@@ -27,7 +26,6 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("documentLink") DocumentLink documentLink,
                                @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
                                @JsonProperty("documentComment") String documentComment,
-                               @JsonProperty("controlNumber") String controlNumber,
                                @JsonProperty("evidenceIssued") String evidenceIssued,
                                @JsonProperty("bundleAddition") String bundleAddition,
                                @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
@@ -37,10 +35,10 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
                                @JsonProperty("originalPartySender") String originalPartySender,
                                @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
-                               @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, originalPartySender, originalSenderOtherPartyId, originalSenderOtherPartyName);
+                               @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName,
+                               @JsonProperty("controlNumber") String controlNumber) {
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, originalPartySender, originalSenderOtherPartyId, originalSenderOtherPartyName, controlNumber);
         this.documentEmailContent = documentEmailContent;
-        this.controlNumber = controlNumber;
         this.editedDocumentLink = editedDocumentLink;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;

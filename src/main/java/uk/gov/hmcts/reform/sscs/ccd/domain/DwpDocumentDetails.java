@@ -29,7 +29,7 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("documentFileName") String documentFileName,
                               @Deprecated(since = "02/2021 - use documentDateTimeAdded") @JsonProperty("documentDateAdded") String documentDateAdded,
                               @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
-                                  @JsonSerialize(using = LocalDateTimeSerializer.class)
+                              @JsonSerialize(using = LocalDateTimeSerializer.class)
                               @JsonProperty("documentDateTimeAdded") LocalDateTime documentDateTimeAdded,
                               @JsonProperty("documentLink") DocumentLink documentLink,
                               @JsonProperty("editedDocumentLink") DocumentLink editedDocumentLink,
@@ -40,9 +40,10 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                               @JsonProperty("partyUploaded") UploadParty partyUploaded,
                               @JsonProperty("dateApproved") String dateApproved,
-                              @JsonProperty("avDocumentLink") DocumentLink avDocumentLink) {
+                              @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
+                              @JsonProperty("controlNumber") String controlNumber) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, null, null, null);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, null, null, null, controlNumber);
 
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;
