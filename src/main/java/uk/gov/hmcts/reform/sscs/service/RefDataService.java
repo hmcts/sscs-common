@@ -27,14 +27,25 @@ public class RefDataService {
         this.idamService = idamService;
     }
 
-    public CourtVenue getVenueRefData(@NonNull String venueName) {
-        log.info("Requesting venue ref data for venue name: {}", venueName);
+    public CourtVenue getCourtVenueRefDataByEpimsId(@NonNull String epimsId) {
+        log.info("Requesting venue ref data for epims Id: {}", epimsId);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
-        List<CourtVenue> venues = refDataApi.courtVenueByName(idamTokens.getIdamOauth2Token(),
-                idamTokens.getServiceAuthorization(), SSCS_COURT_TYPE_ID);
+        List<CourtVenue> venues = refDataApi.courtVenueByEpimsId(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), epimsId);
 
-        return venues != null ? venues.stream()
-                .filter(v -> venueName.equals(v.getVenueName())).findAny().orElse(null) : null;
+        if (venues == null || venues.size() != 1) {
+            throw new IllegalStateException("Exactly one court venue is required for epims ID: " + epimsId);
+        }
+
+        return venues.get(0);
+    }
+
+    public List<CourtVenue> getCourtVenues() {
+        log.info("Requesting court venues for SSCS");
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        return refDataApi.courtVenues(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), SSCS_COURT_TYPE_ID);
     }
 }

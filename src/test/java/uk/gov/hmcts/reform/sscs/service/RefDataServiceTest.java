@@ -2,60 +2,77 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.openMocks;
 
 import java.util.List;
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class RefDataServiceTest {
 
+    private static final String EPIMS_ID = "31";
     @Mock
     private IdamService idamService;
     @Mock
     private RefDataApi refDataApi;
 
+    @InjectMocks
     RefDataService refDataService;
 
-    @Before
-    public void setUp() throws Exception {
-        openMocks(this);
-        refDataService = new RefDataService(refDataApi, idamService);
-    }
-
     @Test
-    public void shouldReturnCourtVenue() {
+    public void getCourtVenueRefDataByEpimsId() {
         IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
 
-        List<CourtVenue> refData = List.of(CourtVenue.builder().epimsId("epims_id").venueName("venue_name").build(),
-                CourtVenue.builder().epimsId("epims_id").venueName("not_venue_name").build());
+        List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
+                .epimsId(EPIMS_ID)
+                .venueName("venue_name")
+                .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByName("auth2", "s2s", "31")).thenReturn(refData);
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+            .thenReturn(courtVenue);
 
-        CourtVenue venue = refDataService.getVenueRefData("venue_name");
+        CourtVenue venue = refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID);
 
-        verify(refDataApi, times(1)).courtVenueByName("auth2", "s2s", "31");
         assertNotNull(venue);
-        assertEquals(venue.getEpimsId(), "epims_id");
+        assertEquals(venue.getEpimsId(), EPIMS_ID);
     }
 
     @Test
-    public void shouldReturnNullReponseForEmptyRefDataResponse() {
+    public void getCourtVenueRefDataByEpimsIdWrongNumberOfReturnedCourtVenues() {
+        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+
+        List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
+                .epimsId(EPIMS_ID)
+                .venueName("venue_name")
+                .build(),
+            CourtVenue.builder()
+                .epimsId("epims_id")
+                .venueName("not_venue_name")
+                .build());
+
+        when(idamService.getIdamTokens()).thenReturn(idamTokens);
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+            .thenReturn(courtVenue);
+
+        assertThrows(IllegalStateException.class,
+            () -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID));
+    }
+
+    @Test
+    public void getCourtVenueRefDataByEpimsIdNoCourtVenue() {
         IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByName("auth2", "s2s", "31")).thenReturn(null);
 
-        CourtVenue venue = refDataService.getVenueRefData("venue_name");
-
-        verify(refDataApi, times(1)).courtVenueByName("auth2", "s2s", "31");
-        assertNull(venue);
+        assertThrows(IllegalStateException.class,
+            () -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID));
     }
 }
