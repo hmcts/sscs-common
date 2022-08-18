@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,15 @@ public class RefDataService {
         List<CourtVenue> venues = refDataApi.courtVenueByEpimsId(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), epimsId);
 
-        if (venues == null || venues.size() != 1) {
-            throw new IllegalStateException("Exactly one court venue is required for epims ID: " + epimsId);
+        List<CourtVenue> sscsCourtVenues =
+            venues.stream().filter(venue -> SSCS_COURT_TYPE_ID.equals(venue.getCourtTypeId()))
+                .collect(Collectors.toList());
+
+        if (sscsCourtVenues.size() != 1) {
+            throw new IllegalStateException("Exactly one SSCS court venue is required for epims ID: " + epimsId);
         }
 
-        return venues.get(0);
+        return sscsCourtVenues.get(0);
     }
 
     public List<CourtVenue> getCourtVenues() {
