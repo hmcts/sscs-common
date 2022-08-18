@@ -17,7 +17,8 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 @RunWith(MockitoJUnitRunner.class)
 public class RefDataServiceTest {
 
-    private static final String EPIMS_ID = "31";
+    private static final String SSCS_COURT_TYPE_ID = "31";
+    private static final String EPIMS_ID = "314125";
     @Mock
     private IdamService idamService;
     @Mock
@@ -32,7 +33,13 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .venueName("venue_name")
+                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .venueName("sscs_venue_name")
+                .build(),
+            CourtVenue.builder()
+                .epimsId("232341")
+                .courtTypeId("22")
+                .venueName("other_venue_name")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
@@ -51,9 +58,11 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .venueName("venue_name")
                 .build(),
             CourtVenue.builder()
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .epimsId("epims_id")
                 .venueName("not_venue_name")
                 .build());
