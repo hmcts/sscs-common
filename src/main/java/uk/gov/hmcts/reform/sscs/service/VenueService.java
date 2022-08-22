@@ -1,6 +1,12 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import java.util.*;
+import static java.util.Objects.nonNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -29,14 +35,17 @@ public class VenueService {
             });
     }
 
-    public List<VenueDetails> getActiveRegionalEpimsIdsForRpc(String rpc) {
-
-        return venueDataLoader.getActiveVenueEpimsIdsMapByRpc()
+    public List<VenueDetails> getActiveRegionalEpimsIdsForRpc(String epimsId) {
+        VenueDetails venueDetails = getVenueDetailsForActiveVenueByEpimsId(epimsId);
+        if (nonNull(venueDetails)) {
+            return venueDataLoader.getActiveVenueEpimsIdsMapByRpc()
                 .entrySet()
                 .stream()
-                .filter(e -> rpc.equals(e.getKey()))
+                .filter(e -> venueDetails.getRegionalProcessingCentre().equals(e.getKey()))
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList()).stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        }
+        return Collections.emptyList();
     }
 
     public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {

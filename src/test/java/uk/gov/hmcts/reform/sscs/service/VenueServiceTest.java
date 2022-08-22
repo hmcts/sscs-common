@@ -58,7 +58,7 @@ public class VenueServiceTest {
     public void getActiveRegionalEpimsIdsForRpc_shouldReturnCorrespondingRegionalEpimsIdsForVenue() {
         setupRegionalVenueMaps();
 
-        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_LEEDS);
+        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc("112233");
 
         assertThat(result).isNotNull();
         assertThat(result).hasSize(4);
@@ -70,7 +70,7 @@ public class VenueServiceTest {
     public void getActiveRegionalEpimsIdsForRpc_shouldReturnEmptyEpimsIdsList() {
         setupRegionalVenueMaps();
 
-        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(RPC_NEWCASTLE);
+        List<VenueDetails> result = venueService.getActiveRegionalEpimsIdsForRpc(INVALID_EPIMS_ID);
 
         assertThat(result).isNotNull();
         assertThat(result).hasSize(0);
@@ -141,6 +141,17 @@ public class VenueServiceTest {
     }
 
     private void setupRegionalVenueMaps() {
+        Map<String, VenueDetails> venueDetailsMapByEpimsId = Map.of(
+            "112233", VenueDetails.builder()
+                .regionalProcessingCentre(RPC_LEEDS)
+                .epimsId("112233")
+                .build(),
+            "445566", VenueDetails.builder()
+                .regionalProcessingCentre(RPC_BIRMINGHAM)
+                .epimsId("445566")
+                .build());
+
+
         Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = Map.of(
                 RPC_LEEDS, Arrays.asList(
                         VenueDetails.builder().epimsId("112233").build(),
@@ -152,6 +163,8 @@ public class VenueServiceTest {
                         VenueDetails.builder().epimsId("665544").build(),
                         VenueDetails.builder().epimsId("456456").build(),
                         VenueDetails.builder().epimsId("654654").build()));
+
+        when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpimsId);
         when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
     }
 
