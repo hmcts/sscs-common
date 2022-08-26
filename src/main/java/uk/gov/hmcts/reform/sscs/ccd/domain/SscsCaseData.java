@@ -357,6 +357,9 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private WorkBasketFields workBasketFields;
 
+    @Getter(AccessLevel.NONE)
+    private NotificationResponse notificationResponse;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -649,6 +652,14 @@ public class SscsCaseData implements CaseData {
             workBasketFields = new WorkBasketFields();
         }
         return workBasketFields;
+    }
+
+    @JsonIgnore
+    public NotificationResponse getNotificationResponse() {
+        if (isNull(notificationResponse)) {
+            notificationResponse = new NotificationResponse();
+        }
+        return notificationResponse;
     }
 
     @JsonIgnore
