@@ -12,7 +12,7 @@ public class VenueService {
     private final VenueDataLoader venueDataLoader;
     private final AirLookupService airLookupService;
 
-    public Optional<String> getEpimsIdForVenue(String processingVenue) {
+    public String getEpimsIdForVenue(String processingVenue) {
 
         String venueId = String.valueOf(airLookupService.getLookupVenueIdByAirVenueName()
             .get(processingVenue));
@@ -21,7 +21,10 @@ public class VenueService {
             .get(String.valueOf(venueId));
 
         return Optional.ofNullable(venueDetails)
-            .map(VenueDetails::getEpimsId);
+            .map(VenueDetails::getEpimsId)
+            .orElseThrow(() -> {
+                throw new IllegalStateException("Unable to find epims ID for processing venue: " + processingVenue);
+            });
     }
 
     public VenueDetails getVenueDetailsForActiveVenueByEpimsId(String epimsId) {
@@ -30,13 +33,15 @@ public class VenueService {
             .get(epimsId);
     }
 
-    public Optional<String> getEpimsIdForActiveVenueByPostcode(String postcode) {
+    public String getEpimsIdForActiveVenueByPostcode(String postcode) {
 
         VenueDetails venueDetails = venueDataLoader.getActiveVenueDetailsMapByPostcode()
             .get(postcode);
 
         return Optional.ofNullable(venueDetails)
-            .map(VenueDetails::getEpimsId);
+            .map(VenueDetails::getEpimsId).orElseThrow(() -> {
+                throw new IllegalStateException("Unable to find epims ID for postcode: " + postcode);
+            });
     }
 
 }
