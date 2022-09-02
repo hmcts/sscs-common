@@ -204,7 +204,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
-    private String adjournCaseTypeOfNextHearing;
+    private AdjournCaseTypeOfNextHearing adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
     private DynamicList adjournCaseNextHearingVenueSelected;
     private String adjournCasePanelMembersExcluded;
