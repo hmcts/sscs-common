@@ -32,6 +32,7 @@ public class AbstractDocumentDetails {
     private String originalPartySender;
     private String originalSenderOtherPartyId;
     private String originalSenderOtherPartyName;
+    private String controlNumber;
 
     @JsonCreator
     public AbstractDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -49,7 +50,8 @@ public class AbstractDocumentDetails {
                                    @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
                                    @JsonProperty("originalPartySender") String originalPartySender,
                                    @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
-                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
+                                   @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName,
+                                   @JsonProperty("controlNumber") String controlNumber) {
 
         this.documentType = documentType;
         this.documentFileName = documentFileName;
@@ -67,6 +69,8 @@ public class AbstractDocumentDetails {
         this.originalPartySender = originalPartySender;
         this.originalSenderOtherPartyId = originalSenderOtherPartyId;
         this.originalSenderOtherPartyName = originalSenderOtherPartyName;
+        this.controlNumber = controlNumber;
+
     }
 
     @JsonIgnore
@@ -96,4 +100,5 @@ public class AbstractDocumentDetails {
         }
         return NumberUtils.isCreatable(bundleAddition.substring(1)) ? Integer.parseInt(bundleAddition.substring(1)) : 0;
     }
+
 }

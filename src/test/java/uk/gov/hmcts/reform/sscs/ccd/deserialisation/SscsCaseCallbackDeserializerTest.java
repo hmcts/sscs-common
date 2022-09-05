@@ -193,15 +193,15 @@ public class SscsCaseCallbackDeserializerTest {
 
     private void assertDwpDocumentCollectionDates(Callback<SscsCaseData> actualSscsCaseCallback) {
         assertEquals(4, actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().size());
-        assertEquals("AT38-1", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(0).getValue().getDocumentFileName());
-        assertEquals("2021-02-08T13:30:29.123", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(0).getValue().getDocumentDateTimeAdded().toString());
-        assertEquals("AT38-2", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(1).getValue().getDocumentFileName());
-        assertEquals("2021-02-08T13:00", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(1).getValue().getDocumentDateTimeAdded().toString());
-        assertEquals("AT38-3", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(2).getValue().getDocumentFileName());
-        assertEquals("2021-02-08T12:00", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(2).getValue().getDocumentDateTimeAdded().toString());
-        assertEquals("AT38-4", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(3).getValue().getDocumentFileName());
-        assertNull(actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(3).getValue().getDocumentDateTimeAdded());
-        assertEquals("2021-02-08", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(3).getValue().getDocumentDateAdded());
+        assertEquals("AT38-1", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(3).getValue().getDocumentFileName());
+        assertEquals("2021-02-08T13:30:29.123", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(3).getValue().getDocumentDateTimeAdded().toString());
+        assertEquals("AT38-2", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(2).getValue().getDocumentFileName());
+        assertEquals("2021-02-08T13:00", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(2).getValue().getDocumentDateTimeAdded().toString());
+        assertEquals("AT38-3", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(1).getValue().getDocumentFileName());
+        assertEquals("2021-02-08T12:00", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(1).getValue().getDocumentDateTimeAdded().toString());
+        assertEquals("AT38-4", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(0).getValue().getDocumentFileName());
+        assertNull(actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(0).getValue().getDocumentDateTimeAdded());
+        assertEquals("2021-02-08", actualSscsCaseCallback.getCaseDetails().getCaseData().getDwpDocuments().get(0).getValue().getDocumentDateAdded());
     }
 
     @Test
