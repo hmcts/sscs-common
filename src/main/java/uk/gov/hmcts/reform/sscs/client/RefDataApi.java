@@ -18,23 +18,14 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 public interface RefDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
 
-    @GetMapping(
-        value = "refdata/location/court-venues",
-        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "refdata/location/court-venues",
+            headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
     )
-    List<CourtVenue> courtVenues(
-        @RequestHeader(AUTHORIZATION) String authorisation,
-        @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-        @RequestParam("court_type_id") String courtTypeId
-    );
-
-    @GetMapping(
-        value = "refdata/location/court-venues",
-        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
-    )
-    List<CourtVenue> courtVenueByEpimsId(
-        @RequestHeader(AUTHORIZATION) String authorisation,
-        @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-        @RequestParam("epimms_id") String epimsId
+    List<CourtVenue> courtVenueByName(
+            @RequestHeader(AUTHORIZATION) String authorisation,
+            @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+            @RequestParam("court_type_id") String courtTypeId
     );
 }
