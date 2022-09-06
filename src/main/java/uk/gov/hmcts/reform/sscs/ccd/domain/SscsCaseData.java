@@ -32,6 +32,7 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
+import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -204,7 +205,7 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseAreDirectionsBeingMadeToParties;
     private String adjournCaseDirectionsDueDateDaysOffset;
     private String adjournCaseDirectionsDueDate;
-    private AdjournCaseTypeOfNextHearing adjournCaseTypeOfNextHearing;
+    private HearingChannel adjournCaseTypeOfNextHearing;
     private String adjournCaseNextHearingVenue;
     private DynamicList adjournCaseNextHearingVenueSelected;
     private String adjournCasePanelMembersExcluded;
