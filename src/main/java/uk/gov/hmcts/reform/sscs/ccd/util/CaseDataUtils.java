@@ -23,7 +23,7 @@ public final class CaseDataUtils {
     public static SscsCaseData buildCaseData(final String surname) {
         return buildCaseData(surname, "PIP", "DWP PIP (1)");
     }
-    
+
     public static SscsCaseData buildCaseData(final String surname, String benefitTypeCode, String issuingOffice) {
         Name name = Name.builder()
                 .title("Mr")
