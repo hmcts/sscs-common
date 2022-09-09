@@ -6,8 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -21,6 +23,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 public class JointParty extends Party {
 
     @JsonProperty("jointPartyId")
+    @Getter(AccessLevel.NONE)
     private String id;
 
     @Valid
