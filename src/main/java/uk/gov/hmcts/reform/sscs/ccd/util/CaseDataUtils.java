@@ -269,6 +269,10 @@ public final class CaseDataUtils {
                 .email("Cardiff_SYA_Respon@justice.gov.uk")
                 .build();
 
+        JointParty jointParty = JointParty.builder()
+            .id("fef1f6be-8fe5-4eb2-8a00-54245d871422")
+            .build();
+
         return SscsCaseData.builder()
                 .caseReference("SC068/17/00013")
                 .caseCreated(LocalDate.now().toString())
@@ -280,6 +284,7 @@ public final class CaseDataUtils {
                 .subscriptions(subscriptions)
                 .region("CARDIFF")
                 .regionalProcessingCenter(rpc)
+                .jointParty(jointParty)
                 .build();
     }
 
