@@ -9,11 +9,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
-import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.*;
+import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
+import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseDataMap;
 
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +31,9 @@ import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
-import uk.gov.hmcts.reform.sscs.ccd.domain.*;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Subscriptions;
 import uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -69,7 +75,7 @@ public class CcdServiceTest {
         caseDetails = CaseDataUtils.buildCaseDetails();
         sscsCaseDetails = CaseDataUtils.convertCaseDetailsToSscsCaseDetails(caseDetails);
         ccdClient = mock(CcdClient.class);
-      
+
         SscsCcdConvertService sscsCcdConvertService = new SscsCcdConvertService();
         SearchCcdCaseService searchCcdCaseService = new SearchCcdCaseService(sscsCcdConvertService, ccdClient, readCcdCaseService);
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
@@ -86,7 +92,15 @@ public class CcdServiceTest {
         List<SscsCaseDetails> caseDetailsList = ccdService.findCaseBy(APPELLANT_SEARCH_FIELD, APPELLANT_APPEAL_NUMBER, idamTokens);
 
         assertThat(caseDetailsList.size(), is(1));
-        assertThat(caseDetailsList.get(0), is(sscsCaseDetails));
+
+        Assertions.assertThat(caseDetailsList.get(0))
+            .usingRecursiveComparison()
+            .ignoringFields(
+                "data.appeal.appellant.appointee.id",
+                "data.appeal.appellant.id",
+                "data.appeal.rep.id",
+                "data.jointParty.id")
+            .isEqualTo(sscsCaseDetails);
     }
 
     @Test
@@ -109,7 +123,14 @@ public class CcdServiceTest {
 
         SscsCaseDetails result = ccdService.createCase(sscsCaseData, "appealCreated", "Summary", "Description", idamTokens);
 
-        assertThat(result, is(sscsCaseDetails));
+        Assertions.assertThat(result)
+            .usingRecursiveComparison()
+            .ignoringFields(
+                "data.appeal.appellant.appointee.id",
+                "data.appeal.appellant.id",
+                "data.appeal.rep.id",
+                "data.jointParty.id")
+            .isEqualTo(sscsCaseDetails);
     }
 
     @Test
@@ -123,7 +144,14 @@ public class CcdServiceTest {
 
         SscsCaseDetails result = ccdService.updateCase(sscsCaseData, 1L, "appealReceived", "SSCS - update event", "Updated case", idamTokens);
 
-        assertThat(result, is(sscsCaseDetails));
+        Assertions.assertThat(result)
+            .usingRecursiveComparison()
+            .ignoringFields(
+                "data.appeal.appellant.appointee.id",
+                "data.appeal.appellant.id",
+                "data.appeal.rep.id",
+                "data.jointParty.id")
+            .isEqualTo(sscsCaseDetails);
     }
 
     @Test
@@ -137,7 +165,14 @@ public class CcdServiceTest {
 
         SscsCaseDetails result = ccdService.updateCaseWithoutRetry(sscsCaseData, 1L, "appealReceived", "SSCS - update event", "Updated case", idamTokens);
 
-        assertThat(result, is(sscsCaseDetails));
+        Assertions.assertThat(result)
+            .usingRecursiveComparison()
+            .ignoringFields(
+                "data.appeal.appellant.appointee.id",
+                "data.appeal.appellant.id",
+                "data.appeal.rep.id",
+                "data.jointParty.id")
+            .isEqualTo(sscsCaseDetails);
     }
 
     @Test
