@@ -6,7 +6,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id 'maven'
-    id "org.owasp.dependencycheck" version "6.5.3"
+    id "org.owasp.dependencycheck" version "7.2.0"
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
