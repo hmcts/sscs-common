@@ -866,4 +866,58 @@ public class SscsCaseDataTest {
         assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
     }
 
+    @Test
+    public void givenMultipleHearingsAvailable_ThenEnsureGetLatestHearingSortsByHearingIdThenHearingDateTimeThenHearingRequested() {
+        // given
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        ArrayList<Hearing> hearings = new ArrayList<>();
+
+        Hearing h1 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-05 10:30:00", pattern))
+                .hearingDate("2022-09-01").time("11:45:30")
+                .hearingId("3").build()).build();
+        Hearing h2 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-01 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing expectedValue = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-07 10:30:00", pattern))
+                .hearingDate("2022-09-09").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing h4 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-09").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing h5 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("2").build()).build();
+        Hearing h6 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("3").build()).build();
+        Hearing h7 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("1").build()).build();
+
+        hearings.add(h1);
+        hearings.add(h2);
+        hearings.add(expectedValue);
+        hearings.add(h4);
+        hearings.add(h5);
+        hearings.add(h6);
+        hearings.add(h7);
+
+        SscsCaseData caseData = SscsCaseData.builder().hearings(hearings).build();
+
+        // when
+        Hearing actualValue = caseData.getLatestHearing();
+
+        // then
+        assertEquals(actualValue, expectedValue);
+
+    }
+
 }
