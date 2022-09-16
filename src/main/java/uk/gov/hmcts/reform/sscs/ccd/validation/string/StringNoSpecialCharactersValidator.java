@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidatorContext;
 
 public class StringNoSpecialCharactersValidator implements ConstraintValidator<StringNoSpecialCharacters, String> {
 
-    public static String ALLOW_LIST = "^[a-zA-ZÀ-ž0-9 \\r\\n.\"“”,'?!\\[\\]()/£:\\\\_+\\-%&;]{2,}$";
+    public static String ALLOW_LIST = "";
 
     private String fieldName;
     private String message;
