@@ -14,5 +14,5 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude
 @EqualsAndHashCode(callSuper = true)
 public class Interpreter extends Entity {
-    private String hasInterpreter;
+    private YesNo hasInterpreter;
 }

@@ -32,7 +32,8 @@ public enum DwpState {
     PHE_REFUSED("phmeRefused", "PHE refused"),
     DECISION_ACTIONED("decisionActioned", "Decision actioned"),
     HEARING_RECORDING_PROCESSED("hearingRecordingProcessed","Hearing recording processed"),
-    HEARING_RECORDING_ACTIONED("hearingRecordingActioned","Hearing recording actioned");
+    HEARING_RECORDING_ACTIONED("hearingRecordingActioned","Hearing recording actioned"),
+    HEARING_DATE_ISSUED("hearingDateIssued", "Hearing date issued");
 
     private String id;
     private String label;

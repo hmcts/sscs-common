@@ -1,14 +1,22 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.groups.ConvertGroup;
-
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 
@@ -20,8 +28,11 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 @EqualsAndHashCode(callSuper = true)
 public class JointParty extends Party {
 
+    @Builder.Default
     @JsonProperty("jointPartyId")
-    private String id;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private String id = UUID.randomUUID().toString();
 
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
@@ -40,4 +51,24 @@ public class JointParty extends Party {
     private YesNo hasJointParty;
 
     private YesNo jointPartyAddressSameAsAppellant;
+
+    @Override
+    @JsonGetter
+    @JsonProperty("jointPartyId")
+    public String getId() {
+        if (isBlank(id)) {
+            id = UUID.randomUUID().toString();
+        }
+        return id;
+    }
+
+    @Override
+    @JsonSetter
+    @JsonProperty("jointPartyId")
+    public void setId(String id) {
+        this.id = id;
+        if (isBlank(this.id)) {
+            this.id = UUID.randomUUID().toString();
+        }
+    }
 }
