@@ -17,7 +17,6 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @JsonInclude
 public class OverrideFields {
     private Number duration;
-    private ReservedToMember reservedToJudge;
     private HearingInterpreter appellantInterpreter;
     private HearingChannel appellantHearingChannel;
     private HearingWindow hearingWindow;
