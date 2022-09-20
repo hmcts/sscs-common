@@ -366,11 +366,24 @@ public class SscsCaseData implements CaseData {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
     }
 
+    /**
+     * Returns the "latest" hearing.
+     * "Latest" in this case is defined as:
+     * - the one with the highest numerical value for hearingId (the string is converted into an integer)
+     * - if the hearingId is identical, the one with the highest hearingDateTime value (most recent date)
+     * - if the hearingDateTime is identical, the one with the highest hearingRequested value (most recent date)
+     * Remarks:
+     * - No caching is applied. The sorting is applied at every call of getLatestHearing.
+     * - The sorting criteria is defined in the Hearing class itself
+     *
+     * @return Hearing An Hearing object instance if there are hearings, null otherwise
+     */
     @JsonIgnore
     public Hearing getLatestHearing() {
         if (isNotEmpty(hearings)) {
-            getHearings().sort(Collections.reverseOrder());
-            return hearings.get(0);
+            List<Hearing> sortedHearings = new ArrayList<>(hearings);
+            sortedHearings.sort(Collections.reverseOrder());
+            return sortedHearings.get(0);
         }
         return null;
     }
