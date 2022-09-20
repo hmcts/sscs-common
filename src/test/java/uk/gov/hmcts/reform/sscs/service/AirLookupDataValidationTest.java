@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -36,10 +37,6 @@ public class AirLookupDataValidationTest {
     public static final int LOOKUP_NAME_CELL = 0;
 
     public static final int ID_CELL = 1;
-
-    private AirLookupService airLookupService;
-
-    private VenueDataLoader venueDataLoader;
 
     @BeforeClass
     public static void setup() throws IOException {
@@ -67,27 +64,25 @@ public class AirLookupDataValidationTest {
             .isNotNull()
             .isNotEmpty();
 
-        airLookupService = new AirLookupService();
-        venueDataLoader = new VenueDataLoader();
+        AirLookupService airLookupService = new AirLookupService();
+        VenueDataLoader venueDataLoader = new VenueDataLoader();
 
         airLookupService.init();
         venueDataLoader.init();
 
         Map<String, VenueDetails> venueDetailsMap = venueDataLoader.getVenueDetailsMap();
 
-        Set<String> postCodeVenueNames = new HashSet<>();
-
         Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode =
             airLookupService.getLookupAirVenueNameByPostcode();
 
-        List<String> missingVenues = new ArrayList<>();
+        List<String> missingPostcodeVenues = new ArrayList<>();
         List<String> inactiveVenuesInUse = new ArrayList<>();
 
-        buildUniqueVenueNames(postCodeVenueNames, lookupAirVenueNameByPostcode);
+        Set<String> postCodeVenueNames = buildUniqueVenueNames(lookupAirVenueNameByPostcode);
 
         for (String postCodeVenueName : postCodeVenueNames) {
             if (!venueIdNamesToIds.containsKey(postCodeVenueName)) {
-                missingVenues.add(postCodeVenueName);
+                missingPostcodeVenues.add(postCodeVenueName);
             } else {
                 VenueDetails venueDetails = venueDetailsMap.get(venueIdNamesToIds.get(postCodeVenueName));
                 if ("no".equalsIgnoreCase(venueDetails.getActive())) {
@@ -96,17 +91,34 @@ public class AirLookupDataValidationTest {
             }
         }
 
-        softly.assertThat(missingVenues)
+        softly.assertThat(missingPostcodeVenues)
             .as("Unique entries in the postcode lookup worksheet must have a corresponding venue Id lookup.")
             .isEmpty();
 
         softly.assertThat(inactiveVenuesInUse)
             .as("Entries in the postcode lookup worksheet must correspond to an active venue.")
             .isEmpty();
+
+        ensureAllAirLookupVenueIdEntriesAreInUse(postCodeVenueNames);
     }
 
-    private static void buildUniqueVenueNames(Set<String> postCodeVenueNames,
-                                  Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode) {
+    private void ensureAllAirLookupVenueIdEntriesAreInUse(Set<String> postCodeVenueNames) {
+        List<String> venuesWithNoPostcodeEntries = new ArrayList<>();
+
+        for (String venueNameToId : venueIdNamesToIds.keySet()) {
+            if (!postCodeVenueNames.contains(venueNameToId)) {
+                venuesWithNoPostcodeEntries.add(venueNameToId);
+            }
+        }
+
+        softly.assertThat(venuesWithNoPostcodeEntries)
+            .as("All entries in airLookupVenueIds should have at least one usage in the postcode lookup. ")
+            .isEmpty();
+    }
+
+    private Set<String> buildUniqueVenueNames(Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode) {
+        Set<String> postCodeVenueNames = new HashSet<>();
+
         for (AirlookupBenefitToVenue airlookupBenefitToVenue : lookupAirVenueNameByPostcode.values()) {
             postCodeVenueNames.add(airlookupBenefitToVenue.getPipVenue());
             postCodeVenueNames.add(airlookupBenefitToVenue.getEsaOrUcVenue());
@@ -114,8 +126,9 @@ public class AirLookupDataValidationTest {
             postCodeVenueNames.add(airlookupBenefitToVenue.getIidbVenue());
             postCodeVenueNames.add(airlookupBenefitToVenue.getCsaVenue());
         }
-    }
 
+        return postCodeVenueNames;
+    }
 
     @Test
     public void checkAirLookupIdsForDuplicateNames() throws IOException {
@@ -123,18 +136,35 @@ public class AirLookupDataValidationTest {
             .isNotNull()
             .isNotEmpty();
 
-        Set<String> duplicateSet = new HashSet<>();
+        List<String> duplicates = checkForDuplicates(venueIdNamesToIds.keySet());
 
-        List<String> results = new ArrayList<>();
+        assertThat(duplicates).isEmpty();
+    }
 
-        for (String venueName : venueIdNamesToIds.keySet()) {
-            if (duplicateSet.contains(venueName)) {
-                results.add(venueName);
+    @Test
+    public void checkAirLookupIdsForDuplicateGapsVenueIds() {
+        assertThat(airLookupVenueIdsSheet)
+            .isNotNull()
+            .isNotEmpty();
+
+        List<String> duplicates = checkForDuplicates(venueIdNamesToIds.values());
+
+        assertThat(duplicates).isEmpty();
+    }
+
+    private static List<String> checkForDuplicates(Iterable<String> collection) {
+        Set<String> uniqueEntries = new HashSet<>();
+
+        List<String> duplicates = new ArrayList<>();
+
+        for (String venueName : collection) {
+            if (uniqueEntries.contains(venueName)) {
+                duplicates.add(venueName);
             } else {
-                duplicateSet.add(venueName);
+                uniqueEntries.add(venueName);
             }
         }
 
-        assertThat(results).isEmpty();
+        return duplicates;
     }
 }
