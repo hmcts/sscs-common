@@ -1,5 +1,16 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.service.AirLookupService.AIR_LOOKUP_FILE;
+import static uk.gov.hmcts.reform.sscs.service.AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -12,18 +23,6 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.sscs.service.AirLookupService.AIR_LOOKUP_FILE;
-import static uk.gov.hmcts.reform.sscs.service.AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV;
 
 public class AirLookupDataValidationTest {
 
@@ -63,7 +62,7 @@ public class AirLookupDataValidationTest {
 
 
     @Test
-    public void testAirlookupPostcodesContainValidEntries(){
+    public void testAirlookupPostcodesContainValidEntries() {
         assertThat(airLookupVenueIdsSheet)
             .isNotNull()
             .isNotEmpty();
