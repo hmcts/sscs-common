@@ -24,6 +24,8 @@
     ],
     "security_classification": "PUBLIC",
     "case_data": {
+      "addedDocuments": null,
+      "overrideDuration": null,
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
       "sscsInterlocDirectionDocument": {
@@ -57,6 +59,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": "60c41fe0-64e5-4963-986d-0af6aebd64e5",
           "name": {},
           "address": {},
           "contact": {},
@@ -84,13 +88,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id": "4b5bbe30-d078-4d67-9f3b-8080ae912a62",
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": "7a71e956-ea31-4d1c-a6a8-5fda2557c6df",
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -120,6 +135,7 @@
           "wantsToAttend": "No"
         }
       },
+      "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
       "generatedEmail": "sscstest+notify@greencroftconsulting.com",
       "sscsDocument": [
         {
@@ -169,7 +185,9 @@
           }
         ]
       },
-      "generatedMobile": "07398785050"
+      "generatedMobile": "07398785050",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -602,6 +620,8 @@
     ],
     "security_classification": "PUBLIC",
     "case_data": {
+      "overrideDuration": null,
+      "addedDocuments": null,
       "evidencePresent": "No",
       "generatedNino": "AB555555B",
       "dwpDocuments": [],
@@ -630,6 +650,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": "fef1f6be-8fe5-4eb2-8a00-54245d871422",
           "name": {},
           "address": {},
           "contact": {},
@@ -657,13 +679,24 @@
             "phone": null,
             "mobile": "07398785050"
           },
+          "organisation":null,
+          "id": "f2cecda6-dca6-4c0f-8635-5eec5cb286dd",
           "identity": {
             "dob": "1981-11-11",
             "nino": "AB555555B"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": "29cca223-b8bc-4a8f-93c0-5055f91fb89b",
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": "No",
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -693,6 +726,7 @@
           "wantsToAttend": "No"
         }
       },
+      "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
       "generatedEmail": "sscstest+notify@greencroftconsulting.com",
       "sscsDocument": [
         {
@@ -725,7 +759,9 @@
       "interlocReviewState": "interlocutoryReview",
       "region": "NEWCASTLE",
       "generatedDOB": "1981-11-11",
-      "generatedMobile": "07398785050"
+      "generatedMobile": "07398785050",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

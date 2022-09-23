@@ -9,9 +9,11 @@
     "postcode" : "L2 5UZ",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 324 0109",
-    "email" : "Liverpool_SYA_Resp@justice.gov.uk"
+    "email" : "Liverpool_SYA_Resp@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "196538"
   },
-  "SSCS Cardiff":{
+  "SSCS Cardiff": {
     "name" : "CARDIFF",
     "address1" : "HM Courts & Tribunals Service",
     "address2" : "Social Security & Child Support Appeals",
@@ -21,7 +23,9 @@
     "postcode" : "CF24 0AB",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4438",
-    "email" : "Cardiff_SYA_Respon@justice.gov.uk"
+    "email" : "Cardiff_SYA_Respon@justice.gov.uk",
+    "hearingRoute" : "listAssist",
+    "epimsId": "372653"
   },
   "SSCS Leeds":{
     "name" : "LEEDS",
@@ -33,7 +37,9 @@
     "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
-    "email" : "Leeds_SYA_Response@justice.gov.uk"
+    "email" : "Leeds_SYA_Response@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "495952"
 
   },
   "SSCS Sutton":{
@@ -46,7 +52,9 @@
     "postcode" : "SM1 1DA",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4229",
-    "email" : "Sutton_SYA_Respons@justice.gov.uk"
+    "email" : "Sutton_SYA_Respons@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "37792"
   },
   "SSCS Birmingham":{
     "name" : "BIRMINGHAM",
@@ -58,7 +66,9 @@
     "postcode" : "B16 6FR",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0126 434 7983",
-    "email" : "Birmingham-SYA-Receipts@justice.gov.uk"
+    "email" : "Birmingham-SYA-Receipts@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "815833"
   },
   "SSCS Newcastle":{
     "name" : "LEEDS",
@@ -70,7 +80,9 @@
     "postcode" : "LS1 2ED",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
-    "email" : "Leeds_SYA_Response@justice.gov.uk"
+    "email" : "Leeds_SYA_Response@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "495952"
   },
   "SSCS Glasgow": {
     "name" : "GLASGOW",
@@ -82,7 +94,9 @@
     "postcode": "G2 8GT",
     "phoneNumber" : "0300 790 6234",
     "faxNumber" : "01264 347 981",
-    "email" : "GlasgowSYAresponse@justice.gov.uk"
+    "email" : "GlasgowSYAresponse@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "366559"
   },
   "SSCS Bradford":{
     "name" : "BRADFORD",
@@ -94,6 +108,8 @@
     "postcode": "BD3 7BH",
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0126 434 7983",
-    "email" : "SSCS_Bradford@justice.gov.uk"
+    "email" : "SSCS_Bradford@justice.gov.uk",
+    "hearingRoute" : "gaps",
+    "epimsId": "698118"
   }
 }

@@ -1,8 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
+import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
@@ -247,8 +249,6 @@ public class SscsCaseData implements CaseData {
     private List<ElementDisputed> elementsDisputedLimitedWork;
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
-    private String jointParty;
-    private JointPartyName jointPartyName;
     private List<CcdValue<OtherParty>> otherParties;
     @JsonProperty("otherPartyUCB")
     private String otherPartyUcb;
@@ -256,14 +256,6 @@ public class SscsCaseData implements CaseData {
     private String reasonableAdjustmentChoice;
     private YesNo doesOtherPersonKnowWhereYouLive;
     private YesNo keepHomeAddressConfidential;
-    @Valid
-    @ConvertGroup(to = UniversalCreditValidationGroup.class)
-    private Identity jointPartyIdentity;
-    @JsonProperty("jointPartyAddressSameAsAppellant")
-    private String jointPartyAddressSameAsAppellant;
-    @Valid
-    @ConvertGroup(to = UniversalCreditValidationGroup.class)
-    private Address jointPartyAddress;
     @JsonProperty("translationWorkOutstanding")
     private String translationWorkOutstanding;
     private List<SscsWelshDocument> sscsWelshDocuments;
@@ -324,7 +316,9 @@ public class SscsCaseData implements CaseData {
     private String noteDetailRemoveAudioVideo;
     private YesNo showWorkCapabilityAssessmentPage;
 
-    private String panelDoctorSpecialism;
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SscsIndustrialInjuriesData sscsIndustrialInjuriesData;
 
     private YesNo functionalTest;
 
@@ -340,16 +334,64 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    private Postponement postponement;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private CaseAccessManagementFields caseAccessManagementFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private WorkAllocationFields workAllocationFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private SchedulingAndListingFields schedulingAndListingFields;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private CaseOutcome caseOutcome;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    @Valid
+    @ConvertGroup(to = UniversalCreditValidationGroup.class)
+    private JointParty jointParty;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private WorkBasketFields workBasketFields;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
     }
 
+    /**
+     * Returns the "latest" hearing.
+     * "Latest" in this case is defined as:
+     * - the one with the highest numerical value for hearingId (the string is converted into an integer)
+     * - if the hearingId is identical, the one with the highest hearingDateTime value (most recent date)
+     * - if the hearingDateTime is identical, the one with the highest hearingRequested value (most recent date)
+     * Remarks:
+     * - No caching is applied. The sorting is applied at every call of getLatestHearing.
+     * - The sorting criteria is defined in the Hearing class itself
+     *
+     * @return Hearing An Hearing object instance if there are hearings, null otherwise
+     */
+    @JsonIgnore
+    public Hearing getLatestHearing() {
+        if (isNotEmpty(hearings)) {
+            List<Hearing> sortedHearings = new ArrayList<>(hearings);
+            sortedHearings.sort(Collections.reverseOrder());
+            return sortedHearings.get(0);
+        }
+        return null;
+    }
+
     @JsonIgnore
     public boolean isCorDecision() {
-        return isCorDecision != null && isCorDecision.toUpperCase().equals("YES");
+        return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
     @JsonIgnore
@@ -379,12 +421,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isThereAJointParty() {
-        return stringToBoolean(jointParty);
-    }
-
-    @JsonIgnore
-    public boolean isJointPartyAddressSameAsAppeallant() {
-        return stringToBoolean(jointPartyAddressSameAsAppellant);
+        return isYes(getJointParty().getHasJointParty());
     }
 
     @JsonIgnore
@@ -441,6 +478,10 @@ public class SscsCaseData implements CaseData {
 
         if (getSscsDocument() != null) {
             Collections.sort(getSscsDocument());
+        }
+
+        if (getScannedDocuments() != null) {
+            Collections.sort(getScannedDocuments());
         }
 
         if (getDwpDocuments() != null) {
@@ -581,11 +622,59 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public Postponement getPostponement() {
+        if (postponement == null) {
+            this.postponement = new Postponement();
+        }
+        return postponement;
+    }
+
+    @JsonIgnore
+    public CaseAccessManagementFields getCaseAccessManagementFields() {
+        if (caseAccessManagementFields == null) {
+            this.caseAccessManagementFields = new CaseAccessManagementFields();
+        }
+        return caseAccessManagementFields;
+    }
+
+    @JsonIgnore
     public WorkAllocationFields getWorkAllocationFields() {
         if (workAllocationFields == null) {
             this.workAllocationFields = new WorkAllocationFields();
         }
         return workAllocationFields;
+    }
+
+    @JsonIgnore
+    public SchedulingAndListingFields getSchedulingAndListingFields() {
+        if (schedulingAndListingFields == null) {
+            this.schedulingAndListingFields = new SchedulingAndListingFields();
+        }
+        return schedulingAndListingFields;
+    }
+
+    @JsonIgnore
+    public CaseOutcome getCaseOutcome() {
+        if (caseOutcome == null) {
+            this.caseOutcome = new CaseOutcome();
+        }
+        return caseOutcome;
+    }
+
+    @JsonIgnore
+    public JointParty getJointParty() {
+        if (isNull(jointParty)) {
+            this.jointParty = new JointParty();
+        }
+        return jointParty;
+    }
+
+    @JsonIgnore
+    public WorkBasketFields getWorkBasketFields() {
+        if (isNull(workBasketFields)) {
+            workBasketFields = new WorkBasketFields();
+        }
+        return workBasketFields;
     }
 
     @JsonIgnore
@@ -610,6 +699,14 @@ public class SscsCaseData implements CaseData {
             ldt = Optional.empty();
         }
         return ldt;
+    }
+
+    @JsonIgnore
+    public SscsIndustrialInjuriesData getSscsIndustrialInjuriesData() {
+        if (sscsIndustrialInjuriesData == null) {
+            this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
+        }
+        return sscsIndustrialInjuriesData;
     }
 
     public boolean isBenefitType(Benefit benefitType) {

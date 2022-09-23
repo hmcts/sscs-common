@@ -171,6 +171,7 @@ public class EventTypeTest {
             "eventsUpdates\n" +
             "updateHearingType\n" +
             "updateIncompleteApplication\n" +
+            "updateListingRequirements\n" +
             "updateNotListable\n" +
             "updateReasonableAdjustment\n" +
             "subscriptionUpdated\n" +

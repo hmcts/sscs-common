@@ -1,13 +1,17 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static com.google.common.collect.Maps.newHashMap;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
+import com.google.common.collect.ImmutableMap;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +26,9 @@ public class VenueDataLoader {
     private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
+    private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
+    private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
+    private final Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
     @PostConstruct
     protected void init() {
@@ -46,18 +53,42 @@ public class VenueDataLoader {
                         .active(line[12])
                         .gapsVenName(line[13])
                         .comments(line[14])
+                        .epimsId(line[15])
                         .build();
                 venueDetailsMap.put(line[0], venueDetails);
                 venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
+                if (isYes(venueDetails.getActive())) {
+                    activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
+                    activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
                 }
-            );
-        } catch (IOException e) {
+            });
+            activeVenueEpimsIdsMapByRpc.putAll(
+                    activeVenueDetailsMapByEpimsId // use active otherwise closed epimsIds (000000) picked up
+                    .values()
+                    .stream()
+                    .collect(Collectors.groupingBy(
+                            VenueDetails::getRegionalProcessingCentre,
+                            Collectors.toList())));
+
+        } catch (IOException | CsvException  e) {
             log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
     }
 
     public Map<String, VenueDetails> getVenueDetailsMap() {
-        return venueDetailsMap;
+        return ImmutableMap.copyOf(venueDetailsMap);
+    }
+
+    public Map<String, VenueDetails> getActiveVenueDetailsMapByEpimsId() {
+        return ImmutableMap.copyOf(activeVenueDetailsMapByEpimsId);
+    }
+
+    public Map<String, VenueDetails> getActiveVenueDetailsMapByPostcode() {
+        return ImmutableMap.copyOf(activeVenueDetailsMapByPostcode);
+    }
+
+    public Map<String, List<VenueDetails>> getActiveVenueEpimsIdsMapByRpc() {
+        return ImmutableMap.copyOf(activeVenueEpimsIdsMapByRpc);
     }
 
     public String getGapVenueName(Venue venue, String venueId) {

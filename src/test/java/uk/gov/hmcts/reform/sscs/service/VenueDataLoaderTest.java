@@ -5,19 +5,36 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
+import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
 
-    private static final VenueDataLoader venueDataLoader = new VenueDataLoader();
+    private VenueDataLoader venueDataLoader;
 
-    static {
+    private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
+            "517400", "449358", "563156",
+            "45900", "744412", "572158",
+            "288691", "562808", "720624",
+            "427519", "366796", "999974",
+            "107581", "197852", "495952",
+            "852649", "491107", "195520",
+            "641199", "574546");
+
+    @Before
+    public void setUp() {
+        venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
     }
 
@@ -93,6 +110,42 @@ public class VenueDataLoaderTest {
     @Test
     public void shouldGetExistingVenueNameIfBothVenueIdAndVenueAreBlank() {
         String result = venueDataLoader.getGapVenueName(null, null);
+        assertNull(result);
+    }
+
+    @DisplayName("When a valid epims ID is searched, getVenue return the correct venue details")
+    @Test
+    public void testGetVenue() {
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("45900");
+
+        assertNotNull(result);
+        assertEquals("1236", result.getVenueId());
+        assertEquals("SC287", result.getThreeDigitReference());
+        assertEquals("45900", result.getEpimsId());
+    }
+
+    public void shouldGetEpimsIdForGivenVenueId() {
+        String result = venueDataLoader.getVenueDetailsMap().get("68").getEpimsId();
+        assertEquals("196538", result);
+    }
+
+    @Test
+    public void shouldGetEpimsIdForGivenPostcode() {
+        String result = venueDataLoader.getActiveVenueDetailsMapByPostcode().get("MK9 2AJ").getEpimsId();
+        assertEquals("815997", result);
+    }
+
+    @Test
+    public void testActiveVenueEpimsIdsMapByRpcReturnsVenues() {
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
+        assertFalse(result.isEmpty());
+        assertEquals(20, result.size());
+        result.forEach(vd -> assertTrue(venueDetailsByLeedsRpc.contains(vd.getEpimsId())));
+    }
+
+    @Test
+    public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
     }
 }

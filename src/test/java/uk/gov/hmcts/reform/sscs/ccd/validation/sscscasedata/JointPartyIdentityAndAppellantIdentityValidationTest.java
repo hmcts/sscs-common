@@ -3,12 +3,11 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 import java.time.LocalDate;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
+
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class JointPartyIdentityAndAppellantIdentityValidationTest extends ValidatorTestBase {
@@ -22,10 +21,18 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
     }
 
     @Test
+    public void testWhenJointPartyHasEmptyId_IsValid() {
+
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().id(StringUtils.EMPTY).build()).build();
+        Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
+        Assert.assertTrue(violations.isEmpty());
+    }
+
+    @Test
     public void testWhenJointPartyHasEmptyIdentity_IsValid() {
 
         Identity jointPartyIdentity = Identity.builder().build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyIdentity(jointPartyIdentity).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         Assert.assertTrue(violations.isEmpty());
     }
@@ -34,7 +41,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
     public void testWhenJointPartyHasIdentityWithWithValidNinoAndDob_IsValid() {
 
         Identity jointPartyIdentity = Identity.builder().nino("BB000000B").dob(LocalDate.now().minusYears(2).toString()).build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyIdentity(jointPartyIdentity).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         Assert.assertTrue(violations.isEmpty());
     }
@@ -46,7 +53,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
     public void testWhenJointPartyHasIdentityWithInvalidNino_IsInValid() {
 
         Identity jointPartyIdentity = Identity.builder().nino("blah").build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyIdentity(jointPartyIdentity).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         assertSingleViolationWithMessage(violations, "Invalid National Insurance number");
     }
@@ -58,7 +65,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
     public void testWhenJointPartyHasIdentityWithInvalidDob_IsInValid() {
 
         Identity jointPartyIdentity = Identity.builder().dob(LocalDate.now().toString()).build();
-        SscsCaseData testBean = SscsCaseData.builder().jointPartyIdentity(jointPartyIdentity).build();
+        SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
         assertSingleViolationWithMessage(violations, "You’ve entered an invalid date of birth");
     }
@@ -88,7 +95,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
      * with the nested Identity validator annotations.
      */
     @Test
-    public void testWhenAppellantHasIdentityWithInvalidInvalidNinp_IsValid() {
+    public void testWhenAppellantHasIdentityWithInvalidInvalidNino_IsValid() {
 
         Identity identity = Identity.builder().nino("blah").build();
         Appellant appellant = Appellant.builder().identity(identity).build();

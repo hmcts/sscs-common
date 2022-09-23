@@ -9,6 +9,8 @@
     "last_modified": [2019, 9, 1, 13, 21, 24, 530000000],
     "security_classification": "PUBLIC",
     "case_data": {
+      "addedDocuments": null,
+      "overrideDuration": null,
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
       "hmctsDwpState": "sentToDwp",
@@ -51,6 +53,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": "60c41fe0-64e5-4963-986d-0af6aebd64e5",
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -90,13 +94,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id":"4b5bbe30-d078-4d67-9f3b-8080ae912a62",
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": "7a71e956-ea31-4d1c-a6a8-5fda2557c6df",
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -116,6 +131,7 @@
           "wantsToAttend": "No"
         }
       },
+      "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
       "generatedEmail": "mail@example.com",
       "dateSentToDwp": "2019-09-01",
       "sscsDocument": [{
@@ -201,7 +217,9 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -785,6 +803,8 @@
     "last_modified": [2019, 9, 1, 13, 20, 23, 282000000],
     "security_classification": "PUBLIC",
     "case_data": {
+      "overrideDuration": null,
+      "addedDocuments": null,
       "evidencePresent": "No",
       "generatedNino": "JT 12 34 56 D",
       "hmctsDwpState": "sentToDwp",
@@ -803,9 +823,6 @@
         "supporterSubscription": {},
         "representativeSubscription": {
           "tya": "",
-          "email": "",
-          "mobile": "",
-          "reason": null,
           "subscribeSms": "No",
           "subscribeEmail": "No",
           "wantSmsNotifications": null
@@ -818,6 +835,8 @@
       "generatedSurname": "Test",
       "appeal": {
         "rep": {
+          "identity": null,
+          "id": "fef1f6be-8fe5-4eb2-8a00-54245d871422",
           "name": {
             "title": "Mr",
             "lastName": "Potter",
@@ -857,13 +876,24 @@
             "phone": "01424 752419",
             "mobile": null
           },
+          "organisation":null,
+          "id": "f2cecda6-dca6-4c0f-8635-5eec5cb286dd",
           "identity": {
             "dob": "1900-01-01",
             "nino": "JT 12 34 56 D"
           },
-          "appointee": {},
+          "appointee": {
+            "address": null,
+            "contact": null,
+            "id": "29cca223-b8bc-4a8f-93c0-5055f91fb89b",
+            "identity": null,
+            "name": null,
+            "organisation": null
+          },
           "isAppointee": null,
-          "isAddressSameAsAppointee": null
+          "isAddressSameAsAppointee": null,
+          "confidentialityRequired": null,
+          "role": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -883,6 +913,7 @@
           "wantsToAttend": "No"
         }
       },
+      "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
       "generatedEmail": "mail@example.com",
       "dateSentToDwp": "2019-09-01",
       "dwpTimeExtension": [],
@@ -950,7 +981,9 @@
           "description": "Appeal received"
         }
       }],
-      "generatedMobile": "01234567890"
+      "generatedMobile": "01234567890",
+      "workBasketHearingDate": null,
+      "workBasketHearingEpimsId": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

@@ -215,7 +215,9 @@ public enum EventType {
     ACTION_POSTPONEMENT_REQUEST("actionPostponementRequest", 0, false),
     ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false),
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
-    UPDATE_OTHER_PARTY_DATA("updateOtherPartyData", 0, false);
+    UPDATE_OTHER_PARTY_DATA("updateOtherPartyData", 0, false),
+    LISTING_ERROR("listingError", 0, false),
+    UPDATE_LISTING_REQUIREMENTS("updateListingRequirements", 0, false);
 
     private final String type;
     private final String ccdType;

@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -32,7 +33,7 @@ public enum YesNo {
     }
 
     public static boolean isYes(String yesNo) {
-        return YES.getValue().equals(yesNo);
+        return nonNull(yesNo) && YES.getValue().equalsIgnoreCase(yesNo);
     }
 
     public static boolean isNoOrNull(YesNo yesNo) {
@@ -40,7 +41,7 @@ public enum YesNo {
     }
 
     public static boolean isNoOrNull(String yesNo) {
-        return isNull(yesNo) || NO.getValue().equals(yesNo);
+        return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
     }
 
     @Override

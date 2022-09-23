@@ -40,9 +40,10 @@ public class DwpDocumentDetails extends AbstractDocumentDetails {
                               @JsonProperty("documentTranslationStatus") SscsDocumentTranslationStatus documentTranslationStatus,
                               @JsonProperty("partyUploaded") UploadParty partyUploaded,
                               @JsonProperty("dateApproved") String dateApproved,
-                              @JsonProperty("avDocumentLink") DocumentLink avDocumentLink) {
+                              @JsonProperty("avDocumentLink") DocumentLink avDocumentLink,
+                              @JsonProperty("controlNumber") String controlNumber) {
 
-        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, null, null, null);
+        super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, null, avDocumentLink, null, null, null, controlNumber);
 
         this.dwpEditedEvidenceReason = dwpEditedEvidenceReason;
         this.documentDateTimeAdded = documentDateTimeAdded;

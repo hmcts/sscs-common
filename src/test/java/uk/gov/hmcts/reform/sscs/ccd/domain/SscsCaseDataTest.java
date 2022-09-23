@@ -211,9 +211,9 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(sscsDocuments).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
         assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded());
-        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded());
+        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded());
     }
 
     @Test
@@ -305,11 +305,11 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenAWithMultipleDocuments_thenSortByDateAdded() {
+    public void givenACaseWithMultipleDocuments_thenSortByDateAdded() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
-        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
-        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.toString(), null, null));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.minusDays(2).toString(), null, null));
         documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null, null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
@@ -325,8 +325,8 @@ public class SscsCaseDataTest {
     public void givenACaseWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenSortByDateAddedAndPutEmptyDocumentLast() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
-        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
-        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.toString(), null, null));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.minusDays(2).toString(), null, null));
         documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("emptyDateAddedDoc", DocumentType.OTHER_DOCUMENT, null, null, null));
 
@@ -367,6 +367,33 @@ public class SscsCaseDataTest {
         assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
     }
 
+    @Test
+    public void givenACaseHasScannedMultipleDocumentsOfSameDayWithControlNumber_thenSortByControlNumber() {
+        List<ScannedDocument> documents = new ArrayList<>();
+
+        documents.add(buildScannedDocument("2000", DocumentType.OTHER_EVIDENCE, now.toString(), "2000"));
+        documents.add(buildScannedDocument("3000", DocumentType.AUDIO_DOCUMENT, now.minusDays(1).toString(), "3000"));
+        documents.add(buildScannedDocument("1000", DocumentType.OTHER_EVIDENCE, now.toString(), "1000"));
+        documents.add(buildScannedDocument("4000", DocumentType.OTHER_EVIDENCE, now.toString(), "4000"));
+        documents.add(buildScannedDocument("6000", DocumentType.OTHER_EVIDENCE, now.toString(), "6000"));
+        documents.add(buildScannedDocument("8000", DocumentType.AUDIO_DOCUMENT, now.toString(), "8000"));
+        documents.add(buildScannedDocument("7000", DocumentType.AUDIO_DOCUMENT, now.toString(), "7000"));
+        documents.add(buildScannedDocument("5000", DocumentType.AUDIO_DOCUMENT, now.toString(), "5000"));
+        documents.add(buildScannedDocument("dummyString", DocumentType.AUDIO_DOCUMENT, now.toString(), "dummyString"));
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder().scannedDocuments(documents).build();
+        sscsCaseData.sortCollections();
+
+        assertEquals("3000", sscsCaseData.getScannedDocuments().get(0).getValue().getUrl().getDocumentUrl());
+        assertEquals("1000", sscsCaseData.getScannedDocuments().get(1).getValue().getUrl().getDocumentUrl());
+        assertEquals("2000", sscsCaseData.getScannedDocuments().get(2).getValue().getUrl().getDocumentUrl());
+        assertEquals("4000", sscsCaseData.getScannedDocuments().get(3).getValue().getUrl().getDocumentUrl());
+        assertEquals("5000", sscsCaseData.getScannedDocuments().get(4).getValue().getUrl().getDocumentUrl());
+        assertEquals("6000", sscsCaseData.getScannedDocuments().get(5).getValue().getUrl().getDocumentUrl());
+        assertEquals("7000", sscsCaseData.getScannedDocuments().get(6).getValue().getUrl().getDocumentUrl());
+        assertEquals("8000", sscsCaseData.getScannedDocuments().get(7).getValue().getUrl().getDocumentUrl());
+        assertEquals("dummyString", sscsCaseData.getScannedDocuments().get(8).getValue().getUrl().getDocumentUrl());
+    }
 
     @Test
     public void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
@@ -386,8 +413,8 @@ public class SscsCaseDataTest {
     public void givenACaseWithMultipleDwpDocuments_thenSortByDateAdded() {
         List<DwpDocument> documents = new ArrayList<>();
         documents.add(buildDwpDocument("testUrl", DwpDocumentType.UCB, now.minusDays(1).toString()));
-        documents.add(buildDwpDocument("anotherTestUrl", DwpDocumentType.UCB, now.minusDays(2).toString()));
-        documents.add(buildDwpDocument("otherDoc", DwpDocumentType.APPENDIX_12, now.toString()));
+        documents.add(buildDwpDocument("anotherTestUrl", DwpDocumentType.UCB, now.toString()));
+        documents.add(buildDwpDocument("otherDoc", DwpDocumentType.APPENDIX_12, now.minusDays(2).toString()));
         documents.add(buildDwpDocument("otherDoc2", DwpDocumentType.APPENDIX_12, now.minusDays(1).toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
@@ -425,17 +452,17 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenACaseHasMultipleWelshDocumentsOfSameType_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleWelshDocumentsOfSameType_thenSelectTheEarliestDocumentWhenDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
-        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
-        documents.add(buildWelshSscsDocument("oldTestUrl", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildWelshSscsDocument("earliestTestUrl", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildWelshSscsDocument("newTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
         assertTrue("Result has a value", result.isPresent());
-        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
@@ -463,21 +490,21 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
+    public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheEarliestDocumentForDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
-        documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
+        documents.add(buildWelshSscsDocument("earliestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
-        documents.add(buildWelshSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
-        documents.add(buildWelshSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString()));
+        documents.add(buildWelshSscsDocument("newUrl", DocumentType.DIRECTION_NOTICE, now.toString()));
+        documents.add(buildWelshSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
 
         assertTrue("Result has a value", result.isPresent());
-        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
 
@@ -585,6 +612,20 @@ public class SscsCaseDataTest {
                         .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                         .documentDateAdded(date)
                         .build()).build();
+    }
+
+    private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date, String controlNumber) {
+        String docType = documentType == null ? null : documentType.getValue();
+        return ScannedDocument.builder()
+                .value(ScannedDocumentDetails.builder()
+                        .type(docType)
+                        .url(DocumentLink.builder()
+                                .documentUrl(documentUrl)
+                                .build())
+                        .scannedDate(date)
+                        .controlNumber(controlNumber)
+                        .build())
+                .build();
     }
 
     @Test
@@ -823,6 +864,60 @@ public class SscsCaseDataTest {
         LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.toString()).build();
         assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
+    }
+
+    @Test
+    public void givenMultipleHearingsAvailable_ThenEnsureGetLatestHearingSortsByHearingIdThenHearingDateTimeThenHearingRequested() {
+        // given
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        ArrayList<Hearing> hearings = new ArrayList<>();
+
+        Hearing h1 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-05 10:30:00", pattern))
+                .hearingDate("2022-09-01").time("11:45:30")
+                .hearingId("3").build()).build();
+        Hearing h2 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-01 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing expectedValue = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-07 10:30:00", pattern))
+                .hearingDate("2022-09-09").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing h4 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-09").time("11:45:30")
+                .hearingId("4").build()).build();
+        Hearing h5 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("2").build()).build();
+        Hearing h6 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("3").build()).build();
+        Hearing h7 = Hearing.builder().value(HearingDetails.builder()
+                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                .hearingDate("2022-09-08").time("11:45:30")
+                .hearingId("1").build()).build();
+
+        hearings.add(h1);
+        hearings.add(h2);
+        hearings.add(expectedValue);
+        hearings.add(h4);
+        hearings.add(h5);
+        hearings.add(h6);
+        hearings.add(h7);
+
+        SscsCaseData caseData = SscsCaseData.builder().hearings(hearings).build();
+
+        // when
+        Hearing actualValue = caseData.getLatestHearing();
+
+        // then
+        assertEquals(actualValue, expectedValue);
+
     }
 
 }
