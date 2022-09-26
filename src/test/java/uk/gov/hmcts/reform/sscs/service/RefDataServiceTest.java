@@ -34,7 +34,14 @@ public class RefDataServiceTest {
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
                 .courtTypeId(SSCS_COURT_TYPE_ID)
+                .courtStatus("Open")
                 .venueName("sscs_venue_name")
+                .build(),
+            CourtVenue.builder()
+                .epimsId(EPIMS_ID)
+                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .courtStatus("Closed")
+                .venueName("sscs_venue_name_closed")
                 .build(),
             CourtVenue.builder()
                 .epimsId("232341")

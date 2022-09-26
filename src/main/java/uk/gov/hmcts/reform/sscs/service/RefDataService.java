@@ -20,6 +20,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 @ConditionalOnProperty(value = "location_ref.enabled", havingValue = "true")
 public class RefDataService {
     private static final String SSCS_COURT_TYPE_ID = "31";
+    public static final String OPEN = "Open";
     private final RefDataApi refDataApi;
     private final IdamService idamService;
 
@@ -37,7 +38,8 @@ public class RefDataService {
             idamTokens.getServiceAuthorization(), epimsId);
 
         List<CourtVenue> sscsCourtVenues =
-            venues.stream().filter(venue -> SSCS_COURT_TYPE_ID.equals(venue.getCourtTypeId()))
+            venues.stream().filter(venue -> SSCS_COURT_TYPE_ID.equals(venue.getCourtTypeId())
+                && OPEN.equalsIgnoreCase(venue.getCourtStatus()))
                 .collect(Collectors.toList());
 
         if (sscsCourtVenues.size() != 1) {
