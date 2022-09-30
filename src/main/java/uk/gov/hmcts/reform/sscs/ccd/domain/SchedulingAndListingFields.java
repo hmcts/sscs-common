@@ -18,6 +18,6 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private OverrideFields overrideFields;
-    private OverrideFields defaultOverrideFields;
+    private ListingValues defaultOverrideFields;
     private List<AmendReason> amendReasons;
 }
