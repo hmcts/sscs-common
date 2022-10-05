@@ -118,16 +118,6 @@ public class SscsCaseData implements CaseData {
     private String interlocReferralDate;
     private String interlocReferralReason;
     private String dwpRegionalCentre;
-    @JsonProperty("generateNotice")
-    private String generateNotice;
-    private DocumentLink previewDocument;
-    private String bodyContent;
-    private String directionNoticeContent;
-    private String signedBy;
-    private String signedRole;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate dateAdded;
     private String dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
@@ -361,6 +351,18 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private WorkBasketFields workBasketFields;
 
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private ActionPostHearingApplication actionPostHearingApplication;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private DocumentGeneration documentGeneration;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private DocumentStaging documentStaging;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
@@ -406,11 +408,6 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public boolean isAdjournCaseDirectionsMadeToParties() {
         return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
-    }
-
-    @JsonIgnore
-    public boolean isGenerateNotice() {
-        return stringToBoolean(generateNotice);
     }
 
     @JsonIgnore
@@ -674,6 +671,30 @@ public class SscsCaseData implements CaseData {
             workBasketFields = new WorkBasketFields();
         }
         return workBasketFields;
+    }
+
+    @JsonIgnore
+    public ActionPostHearingApplication getActionPostHearingApplication() {
+        if (isNull(actionPostHearingApplication)) {
+            actionPostHearingApplication = new ActionPostHearingApplication();
+        }
+        return actionPostHearingApplication;
+    }
+
+    @JsonIgnore
+    public DocumentGeneration getDocumentGeneration() {
+        if (isNull(documentGeneration)) {
+            documentGeneration = new DocumentGeneration();
+        }
+        return documentGeneration;
+    }
+
+    @JsonIgnore
+    public DocumentStaging getDocumentStaging() {
+        if (isNull(documentStaging)) {
+            documentStaging = new DocumentStaging();
+        }
+        return documentStaging;
     }
 
     @JsonIgnore

@@ -185,7 +185,8 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("2019-06-26", sscsInterlocDecisionDocument.getDocumentDateAdded().toString());
         assertEquals("DecisionNotice.pdf", sscsInterlocDecisionDocument.getDocumentFileName());
         assertEquals("Decision Notice", sscsInterlocDecisionDocument.getDocumentType());
-        assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDateAdded().toString());
+        assertEquals("2019-06-26",
+            actualSscsCaseCallback.getCaseDetails().getCaseData().getDocumentStaging().getDateAdded().toString());
         assertEquals(FormType.SSCS1PE, actualSscsCaseCallback.getCaseDetails().getCaseData().getFormType());
 
         assertDwpDocumentCollectionDates(actualSscsCaseCallback);
@@ -234,7 +235,7 @@ public class SscsCaseCallbackDeserializerTest {
         assertEquals("2019-06-26", sscsInterlocDirectionDocument.getDocumentDateAdded().toString());
         assertEquals("DirectionNotice.pdf", sscsInterlocDirectionDocument.getDocumentFileName());
         assertEquals("Direction Notice", sscsInterlocDirectionDocument.getDocumentType());
-        assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDateAdded().toString());
+        assertEquals("2019-06-26", actualSscsCaseCallback.getCaseDetails().getCaseData().getDocumentStaging().getDateAdded().toString());
 
     }
 
