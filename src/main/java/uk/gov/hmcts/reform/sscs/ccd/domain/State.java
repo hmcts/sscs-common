@@ -1,86 +1,52 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.isNull;
+
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@Getter
+@RequiredArgsConstructor
 public enum State {
-
-    @JsonProperty("appealCreated")
     APPEAL_CREATED("appealCreated"),
-
-    @JsonProperty("incompleteApplication")
-    INCOMPLETE_APPLICATION("incompleteApplication"),
-
-    @JsonProperty("interlocutoryReviewState")
-    INTERLOCUTORY_REVIEW_STATE("interlocutoryReviewState"),
-
-    @JsonProperty("incompleteApplicationInformationReqsted")
-    INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
-
-    @JsonProperty("voidState")
-    VOID_STATE("voidState"),
-
-    @JsonProperty("withdrawnRevisedStruckOutLapsedState")
-    WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
-
-    @JsonProperty("dormantAppealState")
-    DORMANT_APPEAL_STATE("dormantAppealState"),
-
-    @JsonProperty("validAppeal")
-    VALID_APPEAL("validAppeal"),
-
-    @JsonProperty("responseReceived")
-    RESPONSE_RECEIVED("responseReceived"),
-
-    @JsonProperty("readyToList")
-    READY_TO_LIST("readyToList"),
-
-    @JsonProperty("withDwp")
-    WITH_DWP("withDwp"),
-
-    @JsonProperty("closed")
     CLOSED("closed"),
-
-    @JsonProperty("draft")
+    DORMANT_APPEAL_STATE("dormantAppealState"),
     DRAFT("draft"),
-
-    @JsonProperty("draftArchived")
     DRAFT_ARCHIVED("draftArchived"),
-
-    @JsonProperty("hearing")
-    HEARING("hearing"),
-
-    @JsonProperty("handlingError")
     HANDLING_ERROR("handlingError"),
-
-    @JsonProperty("notListable")
+    HEARING("hearing"),
+    INCOMPLETE_APPLICATION("incompleteApplication"),
+    INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
+    INTERLOCUTORY_REVIEW_STATE("interlocutoryReviewState"),
     NOT_LISTABLE("notListable"),
-
-    @JsonProperty("unknown")
+    POST_HEARING("postHearing"),
+    READY_TO_LIST("readyToList"),
+    RESPONSE_RECEIVED("responseReceived"),
+    VALID_APPEAL("validAppeal"),
+    VOID_STATE("voidState"),
+    WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
+    WITH_DWP("withDwp"),
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
 
     private final String id;
 
-    State(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
+    @JsonValue
     @Override
     public String toString() {
         return id;
     }
 
     public static State getById(String id) {
-        for (State e : values()) {
-            if (e.id.equals(id)) {
-                return e;
-            }
+        if (isNull(id)) {
+            return UNKNOWN;
         }
-        return UNKNOWN;
+        return Arrays.stream(values())
+            .filter(state -> state.getId().equalsIgnoreCase(id))
+            .findFirst()
+            .orElse(UNKNOWN);
     }
 }
