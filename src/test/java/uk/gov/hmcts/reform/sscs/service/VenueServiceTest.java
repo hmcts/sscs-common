@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -19,6 +19,9 @@ public class VenueServiceTest {
 
     private static final String VALID_EPIMS_ID = "45900";
     private static final String INVALID_EPIMS_ID = "abcdes";
+
+    private static final String INVALID_POSTCODE = "123456";
+
     public static final String PROCESSING_VENUE_1 = "test_place";
     public static final String PROCESSING_VENUE_2 = "test_other_place";
     private static final String RPC_LEEDS = "SSCS Leeds";
@@ -35,14 +38,20 @@ public class VenueServiceTest {
     private VenueService venueService;
 
     @Test
-    public void getHearingLocations_shouldReturnCorrespondingEpimsIdForVenue() {
+    public void getEpimsIdForVenue_shouldReturnCorrespondingEpimsIdForVenue() {
         setupVenueMaps();
 
-        Optional<String> result = venueService.getEpimsIdForVenue(PROCESSING_VENUE_1);
+        String result = venueService.getEpimsIdForVenue(PROCESSING_VENUE_1);
 
-        assertThat(result).isPresent();
-        String epimsId = result.get();
-        assertThat(epimsId).isEqualTo("987632");
+        assertThat(result).isEqualTo("987632");
+    }
+
+    @Test
+    public void getEpimsIdForVenue_givenInvalidEpimsId_shouldThrowException() {
+        setupVenueMaps();
+
+        assertThatExceptionOfType(IllegalStateException.class)
+            .isThrownBy(() -> venueService.getEpimsIdForVenue(INVALID_POSTCODE));
     }
 
     @Test
@@ -89,11 +98,9 @@ public class VenueServiceTest {
     public void givenRpcPostcode_shouldReturnCorrespondingEpimsIdForVenue() {
         setupVenueMaps();
 
-        Optional<String> result = venueService.getEpimsIdForActiveVenueByPostcode("LN5 7PS");
+        String result = venueService.getEpimsIdForActiveVenueByPostcode("LN5 7PS");
 
-        assertThat(result).isPresent();
-        String epimsId = result.get();
-        assertThat(epimsId).isEqualTo("233333");
+        assertThat(result).isEqualTo("233333");
     }
 
     private void setupVenueMaps() {
