@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
+
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -14,6 +17,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude
 public class ListingValues {
-    private OverrideFields overrideFields;
+    private Number duration;
+    private HearingInterpreter appellantInterpreter;
+    private HearingChannel appellantHearingChannel;
+    private HearingWindow hearingWindow;
+    private YesNo autoList;
+    private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
     private YesNo poToAttend;
 }
