@@ -112,9 +112,10 @@ publishing {
 dependencies {
     api group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.5'
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.5'
-    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.12.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.14.0-rc1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.0-rc1'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.14.0-rc1'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.14.0-rc1'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     compile group: 'com.github.hmcts', name: 'java-logging', version: '5.1.9'
     compile group: 'com.github.hmcts', name: 'ccd-client', version: '4.8.6'
