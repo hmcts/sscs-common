@@ -6,15 +6,21 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.slf4j.LoggerFactory.getLogger;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.*;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_DOCTOR;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_ONE_OR_TWO_DOCTORS;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.SSCS1;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.SSCS2;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.SSCS5;
 import static uk.gov.hmcts.reform.sscs.exception.BenefitMappingException.createException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-
 import lombok.Getter;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
