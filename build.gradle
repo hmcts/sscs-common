@@ -31,7 +31,6 @@ repositories {
 
 checkstyle {
     maxWarnings = 0
-    toolVersion = '8.10.1'
     // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
     configDir = new File(rootDir, 'config/checkstyle')
 }
@@ -42,6 +41,25 @@ pmd {
     sourceSets = [sourceSets.main, sourceSets.test]
     reportsDir = file("$project.buildDir/reports/pmd")
     ruleSetFiles = files("config/pmd/ruleset.xml")
+}
+
+// https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
+dependencyCheck {
+    // Specifies if the build should be failed if a CVSS score above a specified level is identified.
+    // range of 7-10 fails the build, anything lower and it doesn't fail the build
+    failBuildOnCVSS = 7.0
+    suppressionFile = 'config/owasp/suppressions.xml'
+
+    cveValidForHours = 24
+
+    analyzers {
+        retirejs {
+            enabled = false
+        }
+        ossIndex {
+            enabled = false
+        }
+    }
 }
 
 // endregion
@@ -91,14 +109,10 @@ publishing {
     }
 }
 
-def versions = [
-    lombok          : '1.18.22',
-    spring          : '2.3.5.RELEASE'
-]
-
 dependencies {
-    api("com.google.guava:guava:31.0.1-jre")
-    api("org.apache.commons:commons-lang3:3.12.0")
+    api group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+    api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.5'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.5'
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.12.5'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
@@ -128,23 +142,25 @@ dependencies {
 
     compile group: "com.networknt", name: "json-schema-validator", version: "1.0.58"
 
-    compileOnly "org.projectlombok:lombok:$versions.lombok"
-    annotationProcessor "org.projectlombok:lombok:$versions.lombok"
+    compileOnly group: "org.projectlombok", name: "lombok", version: "1.18.22"
+    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.22"
 
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.spring
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.spring
-    testCompile group: 'junit', name: 'junit', version: 4.12
+    compile group: 'org.apache.commons', name: 'commons-text', version: '1.9'
+
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.33'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: "2.3.5.RELEASE"
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: "2.3.5.RELEASE"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
     testCompile group: 'org.springframework', name: 'spring-test', version: '5.3.12'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
     testCompile group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
-    testCompile 'pl.pragmatists:JUnitParams:1.1.1'
+    testCompile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
-    testRuntime 'org.glassfish:jakarta.el:3.0.3'
-    testRuntime 'org.hibernate.validator:hibernate-validator:6.1.7.Final'
-    testCompileOnly "org.projectlombok:lombok:$versions.lombok"
-    testAnnotationProcessor "org.projectlombok:lombok:$versions.lombok"
-
-    implementation 'org.apache.commons:commons-text:1.9'
+    testRuntime group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
+    testRuntime group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.7.Final'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 }
 
