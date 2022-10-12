@@ -25,13 +25,17 @@ public class VenueService {
         String venueId = String.valueOf(airLookupService.getLookupVenueIdByAirVenueName()
             .get(processingVenue));
 
+        return getEpimsIdForVenueId(venueId);
+    }
+
+    public String getEpimsIdForVenueId(String venueId) {
         VenueDetails venueDetails = venueDataLoader.getVenueDetailsMap()
             .get(String.valueOf(venueId));
 
         return Optional.ofNullable(venueDetails)
             .map(VenueDetails::getEpimsId)
             .orElseThrow(() -> {
-                throw new IllegalStateException("Unable to find epims ID for processing venue: " + processingVenue);
+                throw new IllegalStateException("Unable to find epims ID for venue ID: " + venueId);
             });
     }
 
