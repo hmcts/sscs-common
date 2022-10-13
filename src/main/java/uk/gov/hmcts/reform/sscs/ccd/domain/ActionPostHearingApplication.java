@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 public class ActionPostHearingApplication {
     @JsonProperty("actionPostHearingApplicationTypeSelected")
     private ActionPostHearingTypes typeSelected;
-
     @Getter(AccessLevel.NONE)
     @JsonProperty("actionSetAside")
     private ActionSetAside actionSetAside;
