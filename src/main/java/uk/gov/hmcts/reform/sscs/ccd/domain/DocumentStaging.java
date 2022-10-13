@@ -21,8 +21,6 @@ import lombok.NoArgsConstructor;
 public class DocumentStaging {
     @JsonProperty("previewDocument")
     private DocumentLink previewDocument;
-    @JsonProperty("filename")
-    private String filename;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty("dateAdded")
