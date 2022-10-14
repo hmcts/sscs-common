@@ -6,11 +6,14 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum LibertyToApplyActions {
-    REFUSE("refuse","Refuse Liberty to Apply Application");
+public enum LibertyToApplyActions implements CcdCallbackMap {
+    REFUSE("refuse","Refuse Liberty to Apply Application", null, "", "");
 
     private final String ccdDefinition;
     private final String descriptionEn;
+    private final EventType callbackEvent;
+    private final String callbackSummary;
+    private final String callbackDescription;
 
     @Override
     @JsonValue
