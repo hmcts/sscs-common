@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.lang3.StringUtils;

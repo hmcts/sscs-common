@@ -4,7 +4,6 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import java.util.Locale;
 import java.util.Optional;
-
 import org.apache.commons.lang3.ArrayUtils;
 
 public final class PhoneNumbersUtil {

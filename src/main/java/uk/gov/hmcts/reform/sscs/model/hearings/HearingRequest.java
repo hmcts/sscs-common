@@ -40,5 +40,7 @@ public class HearingRequest implements SessionAwareRequest {
         return ccdCaseId;
     }
 
-    public static class HearingRequestBuilder {}
+    public static class HearingRequestBuilder {
+
+    }
 }
