@@ -162,7 +162,7 @@ dependencies {
     testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.9.1'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
-    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.12'
+    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.23'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
     testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
