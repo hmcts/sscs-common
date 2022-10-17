@@ -3,11 +3,14 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 import java.time.LocalDate;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
-
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Test;
-import uk.gov.hmcts.reform.sscs.ccd.domain.*;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
+import uk.gov.hmcts.reform.sscs.ccd.domain.JointParty;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class JointPartyIdentityAndAppellantIdentityValidationTest extends ValidatorTestBase {
