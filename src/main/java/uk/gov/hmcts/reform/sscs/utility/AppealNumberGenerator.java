@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.utility;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
-
 import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;

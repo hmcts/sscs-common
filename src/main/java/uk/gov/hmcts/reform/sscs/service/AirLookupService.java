@@ -1,18 +1,28 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static java.util.Optional.*;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
-import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
+import static java.util.Optional.ofNullable;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
+import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.getFirstHalfOfPostcode;
 
 import com.google.common.collect.ImmutableMap;
 import java.io.IOException;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
-
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
