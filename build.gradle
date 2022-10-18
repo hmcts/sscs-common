@@ -5,7 +5,6 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'maven'
     id "org.owasp.dependencycheck" version "7.2.1"
 }
 
@@ -28,12 +27,6 @@ repositories {
 }
 
 // region static code analysis
-
-checkstyle {
-    maxWarnings = 0
-    // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
-    configDir = new File(rootDir, 'config/checkstyle')
-}
 
 pmd {
     toolVersion = "6.50.0"
@@ -141,7 +134,10 @@ dependencies {
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.2'
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.12.36'
 
-    implementation group: 'com.opencsv', name: 'opencsv', version: '5.6'
+    // https://mvnrepository.com/artifact/com.opencsv/opencsv
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.0'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
+
     implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
@@ -152,8 +148,6 @@ dependencies {
 
     implementation group: "org.projectlombok", name: "lombok", version: "1.18.22"
     annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.22"
-
-    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.9'
 
     implementation group: 'org.yaml', name: 'snakeyaml', version: '1.33'
 
