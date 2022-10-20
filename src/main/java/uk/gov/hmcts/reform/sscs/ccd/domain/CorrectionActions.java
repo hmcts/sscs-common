@@ -11,15 +11,16 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CorrectionActions implements CcdCallbackMap {
-    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted"),
-    REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused"),
-    SEND_TO_JUDGE("sendToJudge","Send Correction Application to Judge", CORRECTION_SEND_TO_JUDGE, "Correction application send to Judge (Admin)", "Correction application send to Judge (Admin)");
+    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", null),
+    REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused", null),
+    SEND_TO_JUDGE("sendToJudge","Send Correction Application to Judge", CORRECTION_SEND_TO_JUDGE, "Correction application send to Judge (Admin)", "Correction application send to Judge (Admin)", null);
 
     private final String ccdDefinition;
     private final String descriptionEn;
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
+    private final DwpState postCallbackDwpState;
 
     @Override
     @JsonValue

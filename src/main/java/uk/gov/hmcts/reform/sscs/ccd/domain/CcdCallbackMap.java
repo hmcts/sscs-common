@@ -8,4 +8,6 @@ public interface CcdCallbackMap {
     String getCallbackSummary();
 
     String getCallbackDescription();
+
+    DwpState getPostCallbackDwpState();
 }
