@@ -18,7 +18,8 @@
     {
       "matchPackagePrefixes": [
         "org.springframework",
-        "io.spring"
+        "io.spring",
+        "gradle-git-properties"
       ],
       "prPriority": 75,
       "groupName": "Spring All"
@@ -32,10 +33,21 @@
         "hmcts:idam",
         "hmcts:fortify",
         "uk.gov.hmcts.java",
-        "hmcts.rse-cft-lib"
+        "hmcts.rse-cft-lib",
+        "hmcts:service"
       ],
       "prPriority": 50,
-      "groupName": "HMCTS Non SSCS Core"
+      "groupName": "HMCTS Core"
+    },
+    {
+      "matchPackagePatterns": [
+        "hmcts:java-logging",
+        "log4j",
+        "slf4j",
+        "logback"
+      ],
+      "prPriority": 45,
+      "groupName": "Logging"
     },
     {
       "matchPackagePatterns": [
@@ -43,8 +55,25 @@
         "hmcts:doc",
         "hmcts:send"
       ],
-      "groupName": "HMCTS Non SSCS Non Core",
+      "groupName": "HMCTS Non Core",
       "prPriority": 45
+    },
+    {
+      "matchPackagePatterns": [
+        "hmctspublic.azurecr",
+        "hmcts.azurecr",
+        "hmctsprivate.azurecr"
+      ],
+      "prPriority": 40,
+      "groupName": "HMCTS Docker"
+    },
+    {
+      "matchPackagePatterns": [
+        "xmlsec",
+        "bouncycastle"
+      ],
+      "prPriority": 25,
+      "groupName": "Security"
     },
     {
       "matchPackagePatterns": [
@@ -66,45 +95,64 @@
         "powermock",
         "mockito",
         "json-unit",
-        "pact"
+        "pact",
+        "ben-manes.versions",
+        "wiremock"
       ],
       "prPriority": 15,
       "groupName": "Testing"
     },
     {
       "matchPackagePatterns": [
-        "commons-io",
-        "org.apache.commons",
         "lombok",
-        "json-schema-validator",
-        "com.opencsv",
-        "org.json",
+        "commons-io",
+        "jakarta",
+        "bytebuddy",
         "xml.bind",
-        "net.bytebuddy"
+        "guava",
+        "datecalc",
+        "launchdarkly",
+        "snakeyaml"
       ],
       "prPriority": 10,
-      "groupName": "Tools"
+      "groupName": "Tools - General"
     },
     {
       "matchPackagePatterns": [
-        "org.apache.tika",
-        "org.apache.pdfbox"
+        "fasterxml.jackson"
+        "apache.commons",
+        "json-schema-validator",
+        "opencsv",
+        "org.json",
+        "json:json",
+        "fuzzywuzzy"
+      ],
+      "prPriority": 10,
+      "groupName": "Tools - Data Processing"
+    },
+    {
+      "matchPackagePatterns": [
+        "apache.tika",
+        "apache.pdfbox",
+        "apache.poi",
+        "overviewproject"
       ],
       "prPriority": 5,
       "groupName": "Document Processing"
     },
     {
       "matchPackagePatterns": [
-        "io.github.openfeign",
+        "github.openfeign",
         "openfeign.form",
         "commons-fileupload",
         "okhttp",
         "springfox",
         "springdoc",
-        "com.azure",
-        "com.microsoft.azure",
+        "azure",
         "qpid",
-        "rest-assured"
+        "tomcat",
+        "rest-assured",
+        "projectreactor"
       ],
       "prPriority": 5,
       "groupName": "Networking"
@@ -116,6 +164,40 @@
       ],
       "prPriority": 5,
       "groupName": "Databases"
+    },
+    {
+      "matchDatasources": [
+        "terraform-module", 
+        "terraform-provider"
+      ],
+      "prPriority": 5,
+      "groupName": "Terraform"
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "prPriority": 35,
+      "groupName": "Docker"
+    },
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "prPriority": 5,
+    },
+    {
+      "matchDatasources": [
+        "git-refs", 
+        "git-tags", 
+        "github-releases", 
+        "github-tags", 
+        "gitlab-packages", 
+        "gitlab-releases", 
+        "gitlab-tags"
+      ],
+      "prPriority": 5,
+      "groupName": "Github"
     }
   ],
   "helm-requirements": {
