@@ -1,6 +1,5 @@
 {
   "extends": [
-    "config:base"
-  ],
-  "enabledManagers": ["gradle-wrapper"]
+    "github>hmcts/sscs-common//.github/sscs-renovate.json"
+  ]
 }
