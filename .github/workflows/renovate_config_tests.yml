@@ -1,0 +1,27 @@
+name: Renovate Config Tests
+
+on:
+  push:
+  pull_request:
+
+env:
+  LOG_LEVEL: debug
+
+jobs:
+  preset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    strategy:
+      matrix:
+        file:
+          - sscs-renovate
+          - renovate
+    env:
+      RENOVATE_CONFIG_FILE: .github/${{ matrix.file }}.json
+
+    steps:
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
+
+      - name: testing ${{ matrix.file }}
+        run: npx -p renovate renovate-config-validator
