@@ -119,7 +119,7 @@
     },
     {
       "matchPackagePatterns": [
-        "fasterxml.jackson"
+        "fasterxml.jackson",
         "apache.commons",
         "json-schema-validator",
         "opencsv",
