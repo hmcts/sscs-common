@@ -225,7 +225,8 @@ public class SscsCaseData implements CaseData {
     private String adjournCaseNextHearingListingDuration;
     private String adjournCaseNextHearingListingDurationUnits;
     private String adjournCaseInterpreterRequired;
-    private String adjournCaseInterpreterLanguage;
+    @JsonProperty("adjournCaseInterpreterLanguageList")
+    private DynamicList adjournCaseInterpreterLanguage;
     private String adjournCaseNextHearingDateType;
     private String adjournCaseNextHearingDateOrPeriod;
     private String adjournCaseNextHearingDateOrTime;
