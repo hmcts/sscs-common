@@ -1,0 +1,211 @@
+{
+  "extends": [
+    "config:base",
+    ":dependencyDashboard",
+    ":semanticPrefixChore",
+    ":rebaseStalePrs",
+    ":prConcurrentLimit10"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["com.github.hmcts:ccd-case-document-am-client"],
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/"
+    },
+    {
+      "matchPackageNames": ["com.github.hmcts:sscs-common"],
+      "prPriority": 100
+    },
+    {
+      "matchPackagePrefixes": [
+        "org.springframework",
+        "io.spring",
+        "gradle-git-properties"
+      ],
+      "prPriority": 75,
+      "groupName": "Spring All"
+    },
+    {
+      "matchPackagePatterns": [
+        "hmcts:ccd",
+        "hmcts:auth",
+        "hmcts:java",
+        "hmcts:properties",
+        "hmcts:idam",
+        "hmcts:fortify",
+        "uk.gov.hmcts.java",
+        "hmcts.rse-cft-lib",
+        "hmcts:service"
+      ],
+      "prPriority": 50,
+      "groupName": "HMCTS Core"
+    },
+    {
+      "matchPackagePatterns": [
+        "hmcts:java-logging",
+        "log4j",
+        "slf4j",
+        "logback"
+      ],
+      "prPriority": 45,
+      "groupName": "Logging"
+    },
+    {
+      "matchPackagePatterns": [
+        "hmcts:cmc",
+        "hmcts:doc",
+        "hmcts:send"
+      ],
+      "groupName": "HMCTS Non Core",
+      "prPriority": 45
+    },
+    {
+      "matchPackagePatterns": [
+        "hmctspublic.azurecr",
+        "hmcts.azurecr",
+        "hmctsprivate.azurecr"
+      ],
+      "prPriority": 40,
+      "groupName": "HMCTS Docker"
+    },
+    {
+      "matchPackagePatterns": [
+        "xmlsec",
+        "bouncycastle"
+      ],
+      "prPriority": 25,
+      "groupName": "Security"
+    },
+    {
+      "matchPackagePatterns": [
+        "dependencycheck",
+        "sonarqube",
+        "checkstyle",
+        "pitest",
+        "jacoco",
+        "serenity"
+      ],
+      "prPriority": 20,
+      "groupName": "Automated Checks"
+    },
+    {
+      "matchPackagePatterns": [
+        "assertj",
+        "junit",
+        "jupiter",
+        "powermock",
+        "mockito",
+        "json-unit",
+        "pact",
+        "ben-manes.versions",
+        "wiremock"
+      ],
+      "prPriority": 15,
+      "groupName": "Testing"
+    },
+    {
+      "matchPackagePatterns": [
+        "lombok",
+        "commons-io",
+        "jakarta",
+        "bytebuddy",
+        "xml.bind",
+        "guava",
+        "datecalc",
+        "launchdarkly",
+        "snakeyaml"
+      ],
+      "prPriority": 10,
+      "groupName": "Tools - General"
+    },
+    {
+      "matchPackagePatterns": [
+        "fasterxml.jackson",
+        "apache.commons",
+        "json-schema-validator",
+        "opencsv",
+        "org.json",
+        "json:json",
+        "fuzzywuzzy"
+      ],
+      "prPriority": 10,
+      "groupName": "Tools - Data Processing"
+    },
+    {
+      "matchPackagePatterns": [
+        "apache.tika",
+        "apache.pdfbox",
+        "apache.poi",
+        "overviewproject"
+      ],
+      "prPriority": 5,
+      "groupName": "Document Processing"
+    },
+    {
+      "matchPackagePatterns": [
+        "github.openfeign",
+        "openfeign.form",
+        "commons-fileupload",
+        "okhttp",
+        "springfox",
+        "springdoc",
+        "azure",
+        "qpid",
+        "tomcat",
+        "rest-assured",
+        "projectreactor"
+      ],
+      "prPriority": 5,
+      "groupName": "Networking"
+    },
+    {
+      "matchPackagePatterns": [
+        "org.postgresql",
+        "org.elasticsearch"
+      ],
+      "prPriority": 5,
+      "groupName": "Databases"
+    },
+    {
+      "matchDatasources": [
+        "terraform-module", 
+        "terraform-provider"
+      ],
+      "prPriority": 5,
+      "groupName": "Terraform"
+    },
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "prPriority": 35,
+      "groupName": "Docker"
+    },
+    {
+      "matchDatasources": [
+        "helm"
+      ],
+      "prPriority": 5,
+    },
+    {
+      "matchDatasources": [
+        "git-refs", 
+        "git-tags", 
+        "github-releases", 
+        "github-tags", 
+        "gitlab-packages", 
+        "gitlab-releases", 
+        "gitlab-tags"
+      ],
+      "prPriority": 5,
+      "groupName": "Github"
+    }
+  ],
+  "helm-requirements": {
+    "fileMatch": ["\\Chart.yaml$"],
+    "aliases": {
+      "hmctspublic": "https://hmctspublic.azurecr.io/helm/v1/repo/"
+    }
+  },
+  "labels": ["dependencies"],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json"
+}
