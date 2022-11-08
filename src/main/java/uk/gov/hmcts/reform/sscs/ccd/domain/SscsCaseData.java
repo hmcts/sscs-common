@@ -337,6 +337,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    private Adjournment adjournment;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private CaseAccessManagementFields caseAccessManagementFields;
 
     @JsonUnwrapped
@@ -633,6 +637,14 @@ public class SscsCaseData implements CaseData {
             this.postponement = new Postponement();
         }
         return postponement;
+    }
+
+    @JsonIgnore
+    public Adjournment getAdjournment() {
+        if (adjournment == null) {
+            this.adjournment = new Adjournment();
+        }
+        return adjournment;
     }
 
     @JsonIgnore
