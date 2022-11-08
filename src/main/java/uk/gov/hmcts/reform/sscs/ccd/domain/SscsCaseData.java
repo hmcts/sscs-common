@@ -227,6 +227,8 @@ public class SscsCaseData implements CaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
     private DocumentLink adjournCasePreviewDocument;
     private String adjournCaseGeneratedDate;
+    @JsonProperty("isAdjournmentInProgress")
+    private YesNo isAdjournmentInProgress;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
@@ -334,10 +336,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private Postponement postponement;
-
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
-    private Adjournment adjournment;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -637,14 +635,6 @@ public class SscsCaseData implements CaseData {
             this.postponement = new Postponement();
         }
         return postponement;
-    }
-
-    @JsonIgnore
-    public Adjournment getAdjournment() {
-        if (adjournment == null) {
-            this.adjournment = new Adjournment();
-        }
-        return adjournment;
     }
 
     @JsonIgnore
