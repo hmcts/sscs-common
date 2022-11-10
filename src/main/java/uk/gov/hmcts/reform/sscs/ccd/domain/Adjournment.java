@@ -54,7 +54,7 @@ public class Adjournment {
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
-    private int nextHearingListingDuration;
+    private Integer nextHearingListingDuration;
     @JsonProperty("adjournCaseNextHearingListingDurationUnits")
     private AdjournCaseNextHearingDurationUnits nextHearingListingDurationUnits;
     @JsonProperty("adjournCaseInterpreterRequired")
