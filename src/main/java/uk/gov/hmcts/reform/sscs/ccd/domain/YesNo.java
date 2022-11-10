@@ -44,6 +44,8 @@ public enum YesNo {
         return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
     }
 
+    public static YesNo getValue(String value) { return isYes(value) ? YES : NO; }
+
     @Override
     public String toString() {
         return value;
