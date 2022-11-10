@@ -31,11 +31,11 @@ public class Adjournment {
     @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
     private YesNo areDirectionsBeingMadeToParties;
     @JsonProperty("adjournCaseDirectionsDueDateDaysOffset")
-    private String directionsDueDateDaysOffset;
+    private AdjournCaseDaysOffset directionsDueDateDaysOffset;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonProperty("adjournCaseDirectionsDueDateDaysOffset")
+    @JsonProperty("adjournCaseDirectionsDueDate")
     private LocalDate directionsDueDate;
     @JsonProperty("adjournCaseTypeOfNextHearing")
     private AdjournCaseTypeOfHearing typeOfNextHearing;
