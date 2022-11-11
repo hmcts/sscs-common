@@ -65,14 +65,18 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
-        csv.enabled = false
+        xml.required = true
+        csv.required = false
     }
 }
 
 // endregion
 
 // region publishing
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
