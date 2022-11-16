@@ -44,7 +44,15 @@ public enum YesNo {
         return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
     }
 
-    public static YesNo getValue(String value) { return isYes(value) ? YES : NO; }
+    public static YesNo getYesNo(String value) {
+        if (isYes(value)) {
+            return YES;
+        }
+        if (isNoOrNull(value)) {
+            return NO;
+        }
+        throw new IllegalArgumentException(String.format("Unrecognised YesNo value: '%s'", value));
+    }
 
     @Override
     public String toString() {
