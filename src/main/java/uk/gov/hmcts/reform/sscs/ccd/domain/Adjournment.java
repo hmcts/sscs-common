@@ -59,7 +59,7 @@ public class Adjournment {
     private AdjournCaseNextHearingDurationUnits nextHearingListingDurationUnits;
     @JsonProperty("adjournCaseInterpreterRequired")
     private YesNo interpreterRequired;
-    @JsonProperty("adjournCaseInterpreterLanguageList")
+    @JsonProperty("adjournCaseInterpreterLanguage")
     private String interpreterLanguage;
     @JsonProperty("adjournCaseNextHearingDateType")
     private AdjournCaseNextHearingDateType nextHearingDateType;
@@ -89,7 +89,7 @@ public class Adjournment {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty("adjournCaseGeneratedDate")
     private LocalDate generatedDate;
-    @JsonProperty("isAdjournmentInProgress")
-    private YesNo isAdjournmentInProgress;
+    @JsonProperty("adjournmentInProgress")
+    private YesNo adjournmentInProgress;
 
 }
