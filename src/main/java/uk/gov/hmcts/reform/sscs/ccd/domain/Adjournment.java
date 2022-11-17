@@ -89,7 +89,7 @@ public class Adjournment {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty("adjournCaseGeneratedDate")
     private LocalDate generatedDate;
-    @JsonProperty("isAdjournmentInProgress")
-    private YesNo isAdjournmentInProgress;
+    @JsonProperty("adjournmentInProgress")
+    private YesNo adjournmentInProgress;
 
 }

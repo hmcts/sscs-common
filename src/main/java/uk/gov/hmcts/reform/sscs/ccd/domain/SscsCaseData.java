@@ -304,6 +304,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    @Valid
     private Adjournment adjournment;
 
     @JsonUnwrapped
