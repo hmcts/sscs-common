@@ -21,6 +21,7 @@ public enum State {
     INCOMPLETE_APPLICATION("incompleteApplication"),
     INCOMPLETE_APPLICATION_INFORMATION_REQUESTED("incompleteApplicationInformationReqsted"),
     INTERLOCUTORY_REVIEW_STATE("interlocutoryReviewState"),
+    LISTING_ERROR("listingError"),
     NOT_LISTABLE("notListable"),
     POST_HEARING("postHearing"),
     READY_TO_LIST("readyToList"),
@@ -44,6 +45,7 @@ public enum State {
         if (isNull(id)) {
             return UNKNOWN;
         }
+
         return Arrays.stream(values())
             .filter(state -> state.getId().equalsIgnoreCase(id))
             .findFirst()
