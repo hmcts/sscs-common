@@ -1,8 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +20,4 @@ public enum AdjournCaseNextHearingDateType {
         return ccdDefinition;
     }
 
-    public static AdjournCaseNextHearingDateType getDateTypeByCcdDefinition(String ccdDefinition) {
-        return Arrays.stream(AdjournCaseNextHearingDateType.values())
-            .filter(adjournCaseNextHearingDateType -> Objects.equals(adjournCaseNextHearingDateType.ccdDefinition, ccdDefinition))
-            .findFirst()
-            .orElse(null);
-    }
 }
