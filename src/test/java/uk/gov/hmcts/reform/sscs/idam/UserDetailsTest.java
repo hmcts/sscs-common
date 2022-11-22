@@ -17,8 +17,8 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-judge",
-            "caseworker-sscs-judge",
+        "caseworker-sscs,caseworker-sscs-judge",
+        "caseworker-sscs-judge"
     })
     public void userWithJudgeRoles_shouldReturnTrue(String... roleWithJudge) {
         userDetails.getRoles().addAll(asList(roleWithJudge));
@@ -27,10 +27,10 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-panelmember",
-            "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
-            "caseworker-sscs,caseworker-sscs-registrar",
-            "caseworker-sscs,caseworker-sscs-superuser"
+        "caseworker-sscs,caseworker-sscs-panelmember",
+        "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
+        "caseworker-sscs,caseworker-sscs-registrar",
+        "caseworker-sscs,caseworker-sscs-superuser"
     })
     public void userWithNoJudgeRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
@@ -39,10 +39,10 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-panelmember",
-            "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
-            "caseworker-sscs,caseworker-sscs-registrar",
-            "caseworker-sscs,caseworker-sscs-judge"
+        "caseworker-sscs,caseworker-sscs-panelmember",
+        "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
+        "caseworker-sscs,caseworker-sscs-registrar",
+        "caseworker-sscs,caseworker-sscs-judge"
     })
     public void userWithNoSuperUserRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
@@ -51,8 +51,8 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-superuser",
-            "caseworker-sscs-superuser",
+        "caseworker-sscs,caseworker-sscs-superuser",
+        "caseworker-sscs-superuser"
     })
     public void userWithSuperUserRoles_shouldReturnTrue(String... userWithSuperUserRole) {
         userDetails.getRoles().addAll(asList(userWithSuperUserRole));
@@ -61,9 +61,9 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-panelmember",
-            "caseworker-sscs,caseworker-sscs-registrar",
-            "caseworker-sscs,caseworker-sscs-judge"
+        "caseworker-sscs,caseworker-sscs-panelmember",
+        "caseworker-sscs,caseworker-sscs-registrar",
+        "caseworker-sscs,caseworker-sscs-judge"
     })
     public void userWithNoDwpRoles_shouldReturnFalse(String... roles) {
         userDetails.getRoles().addAll(asList(roles));
@@ -72,8 +72,8 @@ public class UserDetailsTest {
 
     @Test
     @Parameters({
-            "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
-            "caseworker-sscs-dwpresponsewriter",
+        "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
+        "caseworker-sscs-dwpresponsewriter"
     })
     public void userWithDwpRoles_shouldReturnTrue(String... userWithSuperUserRole) {
         userDetails.getRoles().addAll(asList(userWithSuperUserRole));
