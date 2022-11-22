@@ -12,8 +12,8 @@ class AdjournCaseNextHearingDateOrPeriodTest {
         "providePeriod,PROVIDE_PERIOD",
         "provideDate,PROVIDE_DATE"
     })
-    void shouldReturnCorrectDateOrPeriodValue(String expected, AdjournCaseNextHearingDateOrPeriod AdjournCaseNextHearingDateOrPeriod) {
-        assertThat(AdjournCaseNextHearingDateOrPeriod).hasToString(expected);
+    void shouldReturnCorrectDateOrPeriodValue(String expected, AdjournCaseNextHearingDateOrPeriod adjournCaseNextHearingDateOrPeriod) {
+        assertThat(adjournCaseNextHearingDateOrPeriod).hasToString(expected);
     }
 
 }

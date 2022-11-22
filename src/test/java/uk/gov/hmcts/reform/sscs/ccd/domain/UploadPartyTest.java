@@ -12,15 +12,15 @@ public class UploadPartyTest {
 
     @Test
     @Parameters({
-            "CTSC, ctsc",
-            "APPELLANT, appellant",
-            "APPOINTEE, appointee",
-            "REP, rep",
-            "JOINT_PARTY, jointParty",
-            "DWP, dwp",
-            "OTHER_PARTY, otherParty",
-            "OTHER_PARTY_REP, otherPartyRep",
-            "OTHER_PARTY_APPOINTEE, otherPartyAppointee",
+        "CTSC, ctsc",
+        "APPELLANT, appellant",
+        "APPOINTEE, appointee",
+        "REP, rep",
+        "JOINT_PARTY, jointParty",
+        "DWP, dwp",
+        "OTHER_PARTY, otherParty",
+        "OTHER_PARTY_REP, otherPartyRep",
+        "OTHER_PARTY_APPOINTEE, otherPartyAppointee",
     })
     public void shouldGetAudioVideoPartyFromText(UploadParty party, String text) {
         assertEquals(party, UploadParty.fromValue(text));
