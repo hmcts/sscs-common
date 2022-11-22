@@ -14,7 +14,7 @@ class AdjournCaseDaysOffsetTest {
         "28,TWENTY_EIGHT_DAYS",
         "0,OTHER"
     })
-    void shouldReturnCorrectDaysOffsetValue(Integer i, String expected, AdjournCaseDaysOffset adjournCaseDaysOffset) {
+    void shouldReturnCorrectDaysOffsetValue(String expected, AdjournCaseDaysOffset adjournCaseDaysOffset) {
         assertThat(adjournCaseDaysOffset).hasToString(expected);
     }
 
