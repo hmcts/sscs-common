@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -20,4 +23,12 @@ public class SchedulingAndListingFields {
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
+
+    public boolean isMissingListingRequirements() {
+        return isMissingListingRequirements(overrideFields) && isMissingListingRequirements(defaultListingValues);
+    }
+
+    private boolean isMissingListingRequirements(OverrideFields overrideFields) {
+        return isNull(overrideFields) || isEmpty(overrideFields.getDuration());
+    }
 }

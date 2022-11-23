@@ -26,7 +26,6 @@ public class VenueServiceTest {
     public static final String PROCESSING_VENUE_2 = "test_other_place";
     private static final String RPC_LEEDS = "SSCS Leeds";
     private static final String RPC_BIRMINGHAM = "SSCS Birmingham";
-    private static final String RPC_NEWCASTLE = "SSCS Newcastle";
 
     @Mock
     private VenueDataLoader venueDataLoader;
