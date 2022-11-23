@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.isNull;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
@@ -7,9 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import static java.util.Objects.isNull;
-import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
