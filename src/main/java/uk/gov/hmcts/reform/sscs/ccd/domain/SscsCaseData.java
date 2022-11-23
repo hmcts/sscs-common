@@ -335,7 +335,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
-    private ActionPostHearingApplication actionPostHearingApplication;
+    private PostHearing postHearing;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -668,11 +668,11 @@ public class SscsCaseData implements CaseData {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public ActionPostHearingApplication getActionPostHearingApplication() {
-        if (isNull(actionPostHearingApplication)) {
-            actionPostHearingApplication = new ActionPostHearingApplication();
+    public PostHearing getPostHearing() {
+        if (isNull(postHearing)) {
+            postHearing = new PostHearing();
         }
-        return actionPostHearingApplication;
+        return postHearing;
     }
 
     @SuppressWarnings("unused")
