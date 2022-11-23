@@ -12,7 +12,7 @@ public enum AdjournCaseDaysOffset {
     TWENTY_ONE_DAYS(21, "21 days"),
     FOURTEEN_DAYS(14, "14 days");
 
-    private final int ccdDefinition;
+    private final Integer ccdDefinition;
     private final String descriptionEn;
 
     @Override
@@ -20,4 +20,5 @@ public enum AdjournCaseDaysOffset {
     public String toString() {
         return String.valueOf(ccdDefinition);
     }
+
 }

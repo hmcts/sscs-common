@@ -18,4 +18,5 @@ public enum AdjournCaseNextHearingDurationType {
     public String toString() {
         return ccdDefinition;
     }
+
 }

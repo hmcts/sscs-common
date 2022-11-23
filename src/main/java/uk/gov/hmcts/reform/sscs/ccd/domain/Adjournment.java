@@ -1,14 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -59,8 +58,8 @@ public class Adjournment {
     private AdjournCaseNextHearingDurationUnits nextHearingListingDurationUnits;
     @JsonProperty("adjournCaseInterpreterRequired")
     private YesNo interpreterRequired;
-    @JsonProperty("adjournCaseInterpreterLanguageList")
-    private DynamicList interpreterLanguage;
+    @JsonProperty("adjournCaseInterpreterLanguage")
+    private String interpreterLanguage;
     @JsonProperty("adjournCaseNextHearingDateType")
     private AdjournCaseNextHearingDateType nextHearingDateType;
     @JsonProperty("adjournCaseNextHearingDateOrPeriod")
@@ -89,7 +88,7 @@ public class Adjournment {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty("adjournCaseGeneratedDate")
     private LocalDate generatedDate;
-    @JsonProperty("isAdjournmentInProgress")
-    private YesNo isAdjournmentInProgress;
+    @JsonProperty("adjournmentInProgress")
+    private YesNo adjournmentInProgress;
 
 }

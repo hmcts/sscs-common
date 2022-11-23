@@ -19,4 +19,5 @@ public enum AdjournCasePanelMembersExcluded {
     public String toString() {
         return ccdDefinition;
     }
+
 }

@@ -26,21 +26,21 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "BR3 8JK, Sutton",
-            "br3 8JK, Sutton",
-            "aa1 1aa, null",
-            "ze3 4gh, Glasgow",
-            "ab1 2gh, Glasgow",
-            "l2 1RT, Liverpool",
-            "HP27 1RT, Bradford",
-            "l21RT, Liverpool",
-            "HP271RT, Bradford",
-            "HP27, Bradford",
-            "bl11, Liverpool",
-            "bl78, Liverpool",
-            "s31, Leeds",
-            "s30, Leeds",
-            "br2, Sutton"
+        "BR3 8JK, Sutton",
+        "br3 8JK, Sutton",
+        "aa1 1aa, null",
+        "ze3 4gh, Glasgow",
+        "ab1 2gh, Glasgow",
+        "l2 1RT, Liverpool",
+        "HP27 1RT, Bradford",
+        "l21RT, Liverpool",
+        "HP271RT, Bradford",
+        "HP27, Bradford",
+        "bl11, Liverpool",
+        "bl78, Liverpool",
+        "s31, Leeds",
+        "s30, Leeds",
+        "br2, Sutton"
     })
     public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(postcode));
@@ -65,8 +65,8 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "b4, 1234",
-            "NN85, 1223",
+        "b4, 1234",
+        "NN85, 1223",
     })
     public void checkVenueIdForPostCodeWithNoPip(String postcode, int expectedPipVenue) {
         AirlookupBenefitToVenue venues = airLookupService.lookupAirVenueNameByPostCode(postcode);
@@ -76,31 +76,31 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "b4 1lal, Birmingham, PIP",
-            "CV9 1ss, Nuneaton, PIP",
-            "NN85 1ss, Northampton, DLA",
-            "NN85 1ss, Northampton, carersAllowance",
-            "NN85 1ss, Northampton, attendanceAllowance",
-            "DE4 1SS, Chesterfield, industrialInjuriesDisablement",
-            "b4 1lal, Birmingham, JSA",
-            "CV9 1ss, Birmingham CJC, bereavementBenefit",
-            "CV9 1ss, Birmingham CJC, maternityAllowance",
-            "b4 1lal, Birmingham, ESA",
-            "NN85 1ss, Northampton, UC",
-            "NN85 1ss, Northampton, HB",
-            "CV9 1ss, Birmingham CJC, bereavementSupportPaymentScheme",
-            "CV9 1ss, Birmingham CJC, industrialDeathBenefit",
-            "CV9 1ss, Birmingham CJC, pensionCredit",
-            "CV9 1ss, Birmingham CJC, retirementPension",
-            "CV8 1ss, Coventry (CMCB), childSupport",
-            "CV9 1ss, Birmingham CJC, taxCredit",
-            "CV9 1ss, Birmingham CJC, guardiansAllowance",
-            "CV9 1ss, Birmingham CJC, taxFreeChildcare",
-            "CV9 1ss, Birmingham CJC, homeResponsibilitiesProtection",
-            "CV9 1ss, Birmingham CJC, childBenefit",
-            "CV9 1ss, Birmingham CJC, thirtyHoursFreeChildcare",
-            "CV9 1ss, Birmingham CJC, guaranteedMinimumPension",
-            "CV9 1ss, Birmingham CJC, nationalInsuranceCredits"
+        "b4 1lal, Birmingham, PIP",
+        "CV9 1ss, Nuneaton, PIP",
+        "NN85 1ss, Northampton, DLA",
+        "NN85 1ss, Northampton, carersAllowance",
+        "NN85 1ss, Northampton, attendanceAllowance",
+        "DE4 1SS, Chesterfield, industrialInjuriesDisablement",
+        "b4 1lal, Birmingham, JSA",
+        "CV9 1ss, Birmingham CJC, bereavementBenefit",
+        "CV9 1ss, Birmingham CJC, maternityAllowance",
+        "b4 1lal, Birmingham, ESA",
+        "NN85 1ss, Northampton, UC",
+        "NN85 1ss, Northampton, HB",
+        "CV9 1ss, Birmingham CJC, bereavementSupportPaymentScheme",
+        "CV9 1ss, Birmingham CJC, industrialDeathBenefit",
+        "CV9 1ss, Birmingham CJC, pensionCredit",
+        "CV9 1ss, Birmingham CJC, retirementPension",
+        "CV8 1ss, Coventry (CMCB), childSupport",
+        "CV9 1ss, Birmingham CJC, taxCredit",
+        "CV9 1ss, Birmingham CJC, guardiansAllowance",
+        "CV9 1ss, Birmingham CJC, taxFreeChildcare",
+        "CV9 1ss, Birmingham CJC, homeResponsibilitiesProtection",
+        "CV9 1ss, Birmingham CJC, childBenefit",
+        "CV9 1ss, Birmingham CJC, thirtyHoursFreeChildcare",
+        "CV9 1ss, Birmingham CJC, guaranteedMinimumPension",
+        "CV9 1ss, Birmingham CJC, nationalInsuranceCredits"
 
     })
     public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {

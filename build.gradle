@@ -65,14 +65,18 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
-        csv.enabled = false
+        xml.required = true
+        csv.required = false
     }
 }
 
 // endregion
 
 // region publishing
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -115,7 +119,7 @@ dependencies {
         exclude group: 'junit', module: 'junit'
     }
 
-    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.15.2'
+    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.25.6'
 
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.4'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.4'
@@ -153,7 +157,7 @@ dependencies {
     implementation group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
-    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.12.36'
+    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.0'
 
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
     implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1', {
@@ -185,11 +189,11 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
     testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.12'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
-    testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.0'
+    testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.1'
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
     testRuntimeOnly group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
-    testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.7.Final'
+    testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
     testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
 }

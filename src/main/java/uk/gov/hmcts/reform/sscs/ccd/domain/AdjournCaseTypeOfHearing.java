@@ -22,4 +22,5 @@ public enum AdjournCaseTypeOfHearing {
     public String toString() {
         return ccdDefinition;
     }
+
 }

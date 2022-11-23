@@ -19,4 +19,5 @@ public enum AdjournCaseNextHearingDateType {
     public String toString() {
         return ccdDefinition;
     }
+
 }

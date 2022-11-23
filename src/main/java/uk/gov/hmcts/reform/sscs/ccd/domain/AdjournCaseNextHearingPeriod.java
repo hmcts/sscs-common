@@ -11,7 +11,7 @@ public enum AdjournCaseNextHearingPeriod {
     FORTY_TWO_DAYS(42, "42 days"),
     TWENTY_EIGHT_DAYS(28, "28 days");
 
-    private final int ccdDefinition;
+    private final Integer ccdDefinition;
     private final String descriptionEn;
 
     @Override
@@ -19,4 +19,5 @@ public enum AdjournCaseNextHearingPeriod {
     public String toString() {
         return String.valueOf(ccdDefinition);
     }
+
 }
