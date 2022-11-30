@@ -917,20 +917,4 @@ public class SscsCaseDataTest {
         assertEquals(actualValue, expectedValue);
 
     }
-
-    @Test
-    public void checkMissingListingRequirements() {
-        OverrideFields overrideFields = OverrideFields.builder().build();
-        SscsCaseData sscsCaseData = SscsCaseData.builder()
-            .schedulingAndListingFields(SchedulingAndListingFields.builder()
-                .overrideFields(overrideFields)
-                .build())
-            .build();
-
-        assertTrue(sscsCaseData.getSchedulingAndListingFields().isMissingListingRequirements());
-
-        overrideFields.setDuration(60);
-
-        assertFalse(sscsCaseData.getSchedulingAndListingFields().isMissingListingRequirements());
-    }
 }
