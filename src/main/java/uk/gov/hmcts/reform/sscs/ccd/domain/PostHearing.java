@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostHearing {
-    @JsonProperty("actionPostHearingApplicationTypeSelected")
-    private ActionPostHearingTypes actionTypeSelected;
-    @JsonProperty("requestPostHearingTypeSelected")
-    private RequestPostHearingTypes requestTypeSelected;
+    @JsonProperty("postHearingRequestType")
+    private PostHearingRequestType requestType;
+    @JsonProperty("postHearingReviewType")
+    private PostHearingReviewType reviewType;
     @Getter(AccessLevel.NONE)
     @JsonProperty("setAside")
     private SetAside setAside;

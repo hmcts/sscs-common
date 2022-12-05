@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ActionPostHearingTypes {
+public enum PostHearingReviewType {
     SET_ASIDE("setAside","Set Aside"),
     CORRECTION("correction","Correction"),
     STATEMENT_OF_REASONS("statementOfReasons","Statement of Reasons"),

@@ -46,8 +46,8 @@ class CcdCallbackMapServiceTest {
         idamTokens = IdamTokens.builder().build();
     }
 
-    @DisplayName("When callbackMap is null handleCcdCallbackMap returns the case data unmodified and doesn't call " +
-        "ccdService")
+    @DisplayName("When callbackMap is null handleCcdCallbackMap returns the case data unmodified and doesn't call "
+        + "ccdService")
     @Test
     void handleCcdCallbackNullCallbackMap() {
 
