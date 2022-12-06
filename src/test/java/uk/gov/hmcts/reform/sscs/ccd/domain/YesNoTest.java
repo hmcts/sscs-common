@@ -1,74 +1,77 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isNoOrNull;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class YesNoTest {
+class YesNoTest {
 
     @Test
-    public void isYes_shouldBeTrueForYes() {
-        assertTrue(isYes(YES));
+    void isYes_shouldBeTrueForYes() {
+        assertThat(isYes(YES)).isTrue();
     }
 
     @Test
-    public void isYes_shouldBeFalseForNo() {
-        assertFalse(isYes(NO));
+    void isYes_shouldBeFalseForNo() {
+        assertThat(isYes(NO)).isFalse();
     }
 
     @Test
-    public void isYes_shouldBeFalseForNull() {
+    void isYes_shouldBeFalseForNull() {
         YesNo yesNo = null;
-        assertFalse(isYes(yesNo));
+        assertThat(isYes(yesNo)).isFalse();
     }
 
     @Test
-    public void isYes_shouldBeTrueForYesString() {
-        assertTrue(isYes(YES.getValue()));
+    void isYes_shouldBeTrueForYesString() {
+        assertThat(isYes(YES.getValue())).isTrue();
     }
 
     @Test
-    public void isYes_shouldBeFalseForNoString() {
-        assertFalse(isYes(NO.getValue()));
+    void isYes_shouldBeFalseForNoString() {
+        assertThat(isYes(NO.getValue())).isFalse();
     }
 
     @Test
-    public void isYes_shouldBeFalseForNullString() {
+    void isYes_shouldBeFalseForNullString() {
         String yesNo = null;
-        assertFalse(isYes(yesNo));
+        assertThat(isYes(yesNo)).isFalse();
     }
 
     @Test
-    public void isNo_shouldBeTrueForNo() {
-        assertTrue(isNoOrNull(NO));
+    void isNo_shouldBeTrueForNo() {
+        assertThat(isNoOrNull(NO)).isTrue();
     }
 
     @Test
-    public void isNoOrNull_shouldBeFalseForYes() {
-        assertFalse(isNoOrNull(YES));
+    void isNoOrNull_shouldBeFalseForYes() {
+        assertThat(isNoOrNull(YES)).isFalse();
     }
 
     @Test
-    public void isNoOrNull_shouldBeTrueForNull() {
+    void isNoOrNull_shouldBeTrueForNull() {
         YesNo yesNo = null;
-        assertTrue(isNoOrNull(yesNo));
+        assertThat(isNoOrNull(yesNo)).isTrue();
     }
 
     @Test
-    public void isNo_shouldBeTrueForNoString() {
-        assertTrue(isNoOrNull(NO.getValue()));
+    void isNo_shouldBeTrueForNoString() {
+        assertThat(isNoOrNull(NO.getValue())).isTrue();
     }
 
     @Test
-    public void isNo_shouldBeFalseForYesString() {
-        assertFalse(isNoOrNull(YES.getValue()));
+    void isNo_shouldBeFalseForYesString() {
+        assertThat(isNoOrNull(YES.getValue())).isFalse();
     }
 
     @Test
-    public void isNo_shouldBeTrueForNullString() {
+    void isNo_shouldBeTrueForNullString() {
         String yesNo = null;
-        assertTrue(isNoOrNull(yesNo));
+        assertThat(isNoOrNull(yesNo)).isTrue();
     }
+
 }
