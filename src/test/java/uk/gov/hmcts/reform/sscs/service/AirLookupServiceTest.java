@@ -101,7 +101,6 @@ public class AirLookupServiceTest {
         "CV9 1ss, Birmingham CJC, thirtyHoursFreeChildcare",
         "CV9 1ss, Birmingham CJC, guaranteedMinimumPension",
         "CV9 1ss, Birmingham CJC, nationalInsuranceCredits"
-
     })
     public void checkVenueForPostCodeWithPipBenefitType(String postcode, String expectedPipVenue, String benefitTypeCode) {
         String pipVenue = airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code(benefitTypeCode).build());
