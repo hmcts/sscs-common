@@ -1,5 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum DwpState {
     ADJOURNMENT_NOTICE_ISSUED("adjournmentNoticeIssued", "Adjournment notice issued"),
     APPEAL_ABATED("appealAbated", "Appeal abated"),
@@ -37,19 +43,12 @@ public enum DwpState {
     WITHDRAWAL_RECEIVED("withdrawalReceived", "Withdrawal received"),
     WITHDRAWN("Withdrawn", "Withdrawn");
 
-    private String id;
-    private String label;
+    private final String ccdDefinition;
+    private final String description;
 
-    public String getId() {
-        return id;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    DwpState(String id, String label) {
-        this.id = id;
-        this.label = label;
+    @Override
+    @JsonValue
+    public String toString() {
+        return ccdDefinition;
     }
 }

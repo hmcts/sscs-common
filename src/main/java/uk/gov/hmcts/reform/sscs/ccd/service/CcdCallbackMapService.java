@@ -29,8 +29,18 @@ public class CcdCallbackMapService {
         Long caseId = Long.valueOf(caseData.getCcdCaseId());
 
         if (nonNull(callbackMap.getPostCallbackDwpState())) {
-            log.info("Setting DwpState to {} for case {}", callbackMap.getPostCallbackDwpState().getId(), caseId);
-            caseData.setDwpState(callbackMap.getPostCallbackDwpState().getId());
+            log.info("Setting DwpState to {} for case {}", callbackMap.getPostCallbackDwpState(), caseId);
+            caseData.setDwpState(callbackMap.getPostCallbackDwpState());
+        }
+
+        if (nonNull(callbackMap.getPostCallbackInterlocState())) {
+            log.info("Setting InterlocReviewState to {} for case {}", callbackMap.getPostCallbackInterlocState(), caseId);
+            caseData.setInterlocReviewState(callbackMap.getPostCallbackInterlocState());
+        }
+
+        if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
+            log.info("Setting InterlocReviewState to {} for case {}", callbackMap.getPostCallbackInterlocReason(), caseId);
+            caseData.setInterlocReferralReason(callbackMap.getPostCallbackInterlocReason());
         }
 
         if (nonNull(callbackMap.getCallbackEvent())) {

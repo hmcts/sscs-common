@@ -75,7 +75,7 @@ class CcdCallbackMapServiceTest {
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
 
-        assertThat(result.getDwpState()).isEqualTo(expected.getId());
+        assertThat(result.getDwpState()).isEqualTo(expected);
     }
 
     @DisplayName("When CallbackEvent is null handleCcdCallbackMap doesn't call ccdService")
