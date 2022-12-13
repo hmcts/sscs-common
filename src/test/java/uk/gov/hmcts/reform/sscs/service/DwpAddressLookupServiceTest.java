@@ -68,8 +68,8 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
-            "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
+        "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
+        "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
     })
     public void benefitTypeIsCaseInsensitive(final String benefitType, String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -93,9 +93,9 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
-            "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
-            "Norwich DRT", "Sheffield DRT", "Worthing DRT"
+        "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
+        "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
+        "Norwich DRT", "Sheffield DRT", "Worthing DRT"
     })
     public void esaAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -105,7 +105,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Disability Benefit Centre 4", "The Pension Service 11", "Recovery from Estates"
+        "Disability Benefit Centre 4", "The Pension Service 11", "Recovery from Estates"
     })
     public void dlaAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("DLA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
@@ -279,22 +279,22 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "PIP, 11",
-            "UC, 2",
-            "ESA, 14",
-            "DLA, 3",
-            "CARERS_ALLOWANCE, 1",
-            "BEREAVEMENT_BENEFIT, 1",
-            "ATTENDANCE_ALLOWANCE, 2",
-            "MATERNITY_ALLOWANCE, 1",
-            "JSA, 4",
-            "IIDB, 2",
-            "SOCIAL_FUND, 3",
-            "INCOME_SUPPORT, 4",
-            "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
-            "INDUSTRIAL_DEATH_BENEFIT, 2",
-            "PENSION_CREDIT, 2",
-            "RETIREMENT_PENSION, 2",
+        "PIP, 11",
+        "UC, 2",
+        "ESA, 14",
+        "DLA, 3",
+        "CARERS_ALLOWANCE, 1",
+        "BEREAVEMENT_BENEFIT, 1",
+        "ATTENDANCE_ALLOWANCE, 2",
+        "MATERNITY_ALLOWANCE, 1",
+        "JSA, 4",
+        "IIDB, 2",
+        "SOCIAL_FUND, 3",
+        "INCOME_SUPPORT, 4",
+        "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 1",
+        "INDUSTRIAL_DEATH_BENEFIT, 2",
+        "PENSION_CREDIT, 2",
+        "RETIREMENT_PENSION, 2",
     })
     public void getDwpOfficeMappings(Benefit benefit, int expectedNumberOfOffices) {
         OfficeMapping[] officeMappings = dwpAddressLookup.getDwpOfficeMappings(benefit.getShortName());
@@ -575,7 +575,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
+        "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
     public void givenADlaBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("dla", office);
@@ -601,7 +601,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
+        "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
     })
     public void givenAIidbBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("industrialInjuriesDisablement", office);
@@ -611,7 +611,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Barrow IIDB Centre, IDB Barrow", "Barnsley Benefit Centre, IDB Barnsley"
+        "Barrow IIDB Centre, IDB Barrow", "Barnsley Benefit Centre, IDB Barnsley"
     })
     public void givenAIndustrialDeathBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("industrialDeathBenefit", office);
@@ -621,7 +621,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
+        "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
     })
     public void givenAPensionCreditsBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("pensionCredit", office);
@@ -631,7 +631,7 @@ public class DwpAddressLookupServiceTest {
 
     @Test
     @Parameters({
-            "Pensions Dispute Resolution Team, Retirement Pension", "Recovery from Estates, RfE"
+        "Pensions Dispute Resolution Team, Retirement Pension", "Recovery from Estates, RfE"
     })
     public void givenARetirementPensionBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
         String result = dwpAddressLookup.getDwpRegionalCenterByBenefitTypeAndOffice("retirementPension", office);
