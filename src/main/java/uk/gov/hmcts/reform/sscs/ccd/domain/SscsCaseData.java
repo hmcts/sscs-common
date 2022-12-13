@@ -39,7 +39,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
-import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
@@ -195,38 +194,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
-    @JsonProperty("adjournCaseGenerateNotice")
-    private String adjournCaseGenerateNotice;
-    private String adjournCaseTypeOfHearing;
-    @JsonProperty("adjournCaseCanCaseBeListedRightAway")
-    private String adjournCaseCanCaseBeListedRightAway;
-    @JsonProperty("adjournCaseAreDirectionsBeingMadeToParties")
-    private String adjournCaseAreDirectionsBeingMadeToParties;
-    private String adjournCaseDirectionsDueDateDaysOffset;
-    private String adjournCaseDirectionsDueDate;
-    private String adjournCaseTypeOfNextHearing;
-    private String adjournCaseNextHearingVenue;
-    private DynamicList adjournCaseNextHearingVenueSelected;
-    private String adjournCasePanelMembersExcluded;
-    private String adjournCaseDisabilityQualifiedPanelMemberName;
-    private String adjournCaseMedicallyQualifiedPanelMemberName;
-    private String adjournCaseOtherPanelMemberName;
-    private String adjournCaseNextHearingListingDurationType;
-    private String adjournCaseNextHearingListingDuration;
-    private String adjournCaseNextHearingListingDurationUnits;
-    private String adjournCaseInterpreterRequired;
-    private String adjournCaseInterpreterLanguage;
-    private String adjournCaseNextHearingDateType;
-    private String adjournCaseNextHearingDateOrPeriod;
-    private String adjournCaseNextHearingDateOrTime;
-    private String adjournCaseNextHearingFirstAvailableDateAfterDate;
-    private String adjournCaseNextHearingFirstAvailableDateAfterPeriod;
-    private AdjournCaseTime adjournCaseTime;
-    private List<CollectionItem<String>> adjournCaseReasons;
-    private List<CollectionItem<String>> adjournCaseAdditionalDirections;
-    @DocumentLinkMustBePdf(message = "You need to upload PDF documents only")
-    private DocumentLink adjournCasePreviewDocument;
-    private String adjournCaseGeneratedDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
@@ -337,6 +304,11 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    @Valid
+    private Adjournment adjournment;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     private CaseAccessManagementFields caseAccessManagementFields;
 
     @JsonUnwrapped
@@ -400,36 +372,25 @@ public class SscsCaseData implements CaseData {
         return null;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isCorDecision() {
         return isCorDecision != null && isCorDecision.equalsIgnoreCase("YES");
     }
 
-    @JsonIgnore
-    public boolean isAdjournCaseGenerateNotice() {
-        return stringToBoolean(adjournCaseGenerateNotice);
-    }
-
-    @JsonIgnore
-    public boolean isAdjournCaseAbleToBeListedRightAway() {
-        return stringToBoolean(adjournCaseCanCaseBeListedRightAway);
-    }
-
-    @JsonIgnore
-    public boolean isAdjournCaseDirectionsMadeToParties() {
-        return stringToBoolean(adjournCaseAreDirectionsBeingMadeToParties);
-    }
-
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isSupportGroupOnlyAppeal() {
         return stringToBoolean(supportGroupOnlyAppeal);
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isThereAJointParty() {
         return isYes(getJointParty().getHasJointParty());
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
@@ -444,6 +405,7 @@ public class SscsCaseData implements CaseData {
         return reissueArtifactUi;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isWcaAppeal() {
         return isYes(wcaAppeal);
@@ -459,6 +421,7 @@ public class SscsCaseData implements CaseData {
         return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isTranslationWorkOutstanding() {
         return stringToBoolean(translationWorkOutstanding);
@@ -524,7 +487,7 @@ public class SscsCaseData implements CaseData {
                 return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
             }).collect(Collectors.toList());
 
-            if (filteredList.size() > 0) {
+            if (!filteredList.isEmpty()) {
                 return filteredList.get(0);
             }
         }
@@ -587,6 +550,7 @@ public class SscsCaseData implements CaseData {
         return sscsEsaCaseData;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SscsUcCaseData getSscsUcCaseData() {
         if (sscsUcCaseData == null) {
@@ -595,6 +559,7 @@ public class SscsCaseData implements CaseData {
         return sscsUcCaseData;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SscsPipCaseData getSscsPipCaseData() {
         if (pipSscsCaseData == null) {
@@ -603,6 +568,7 @@ public class SscsCaseData implements CaseData {
         return pipSscsCaseData;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SscsFinalDecisionCaseData getSscsFinalDecisionCaseData() {
         if (finalDecisionCaseData == null) {
@@ -611,6 +577,7 @@ public class SscsCaseData implements CaseData {
         return finalDecisionCaseData;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SscsHearingRecordingCaseData getSscsHearingRecordingCaseData() {
         if (sscsHearingRecordingCaseData == null) {
@@ -619,6 +586,7 @@ public class SscsCaseData implements CaseData {
         return sscsHearingRecordingCaseData;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public PostponementRequest getPostponementRequest() {
         if (postponementRequest == null) {
@@ -627,6 +595,7 @@ public class SscsCaseData implements CaseData {
         return postponementRequest;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public Postponement getPostponement() {
         if (postponement == null) {
@@ -635,6 +604,16 @@ public class SscsCaseData implements CaseData {
         return postponement;
     }
 
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public Adjournment getAdjournment() {
+        if (adjournment == null) {
+            this.adjournment = new Adjournment();
+        }
+        return adjournment;
+    }
+
+    @SuppressWarnings("unused")
     @JsonIgnore
     public CaseAccessManagementFields getCaseAccessManagementFields() {
         if (caseAccessManagementFields == null) {
@@ -643,6 +622,7 @@ public class SscsCaseData implements CaseData {
         return caseAccessManagementFields;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public WorkAllocationFields getWorkAllocationFields() {
         if (workAllocationFields == null) {
@@ -651,6 +631,7 @@ public class SscsCaseData implements CaseData {
         return workAllocationFields;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SchedulingAndListingFields getSchedulingAndListingFields() {
         if (schedulingAndListingFields == null) {
@@ -659,6 +640,7 @@ public class SscsCaseData implements CaseData {
         return schedulingAndListingFields;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public CaseOutcome getCaseOutcome() {
         if (caseOutcome == null) {
@@ -675,6 +657,7 @@ public class SscsCaseData implements CaseData {
         return jointParty;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public WorkBasketFields getWorkBasketFields() {
         if (isNull(workBasketFields)) {
@@ -683,6 +666,7 @@ public class SscsCaseData implements CaseData {
         return workBasketFields;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public ActionPostHearingApplication getActionPostHearingApplication() {
         if (isNull(actionPostHearingApplication)) {
@@ -691,6 +675,7 @@ public class SscsCaseData implements CaseData {
         return actionPostHearingApplication;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public DocumentGeneration getDocumentGeneration() {
         if (isNull(documentGeneration)) {
@@ -731,6 +716,7 @@ public class SscsCaseData implements CaseData {
         return ldt;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SscsIndustrialInjuriesData getSscsIndustrialInjuriesData() {
         if (sscsIndustrialInjuriesData == null) {
