@@ -280,6 +280,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("processAudioVideoReviewState")
     private ProcessAudioVideoReviewState processAudioVideoReviewState;
     private String tempNoteDetail;
+    private String noteDetailRemoveAudioVideo;
     private YesNo showWorkCapabilityAssessmentPage;
 
     @JsonUnwrapped
