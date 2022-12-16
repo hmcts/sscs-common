@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActionLibertyToApply {
-    private LibertyToApplyActions action;
+public class StatementOfReasons {
+    private StatementOfReasonsActions action;
 }
