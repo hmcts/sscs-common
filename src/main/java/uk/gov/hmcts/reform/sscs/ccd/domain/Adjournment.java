@@ -45,11 +45,11 @@ public class Adjournment {
     @JsonProperty("adjournCasePanelMembersExcluded")
     private AdjournCasePanelMembersExcluded panelMembersExcluded;
     @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName")
-    private String disabilityQualifiedPanelMemberName;
+    private DynamicList disabilityQualifiedPanelMemberName;
     @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName")
-    private String medicallyQualifiedPanelMemberName;
+    private DynamicList medicallyQualifiedPanelMemberName;
     @JsonProperty("adjournCaseOtherPanelMemberName")
-    private String otherPanelMemberName;
+    private DynamicList otherPanelMemberName;
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
