@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActionCorrection {
-    private CorrectionActions action;
+public class PermissionToAppeal {
+    private PermissionToAppealActions action;
 }
