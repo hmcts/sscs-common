@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -58,7 +59,8 @@ public class SscsCaseDataTest {
     @Test
     public void sortSscsDocuments() throws IOException {
 
-        String path = getClass().getClassLoader().getResource("sscsDocumentSorting.json").getFile();
+        String path = Objects.requireNonNull(
+            getClass().getClassLoader().getResource("sscsDocumentSorting.json")).getFile();
         String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
         List<SscsDocument> newSscsDocument  = mapper.readValue(json, new TypeReference<List<SscsDocument>>(){});
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(newSscsDocument).build();
@@ -916,6 +918,20 @@ public class SscsCaseDataTest {
         // then
         assertEquals(actualValue, expectedValue);
 
+    }
+
+    @Test
+    public void givenPanelMembers_theReturnThemInList() {
+        String name = "Person 1";
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+            .adjournment(Adjournment.builder()
+                .disabilityQualifiedPanelMemberName(new DynamicList(name))
+                .medicallyQualifiedPanelMemberName(new DynamicList("")).build()).build();
+
+        List<DynamicList> panelMembers = sscsCaseData.getAdjournment().getPanelMembers();
+
+        assertEquals(1, panelMembers.size());
+        assertEquals(panelMembers.get(0).getValue().getLabel(), name);
     }
 
 }
