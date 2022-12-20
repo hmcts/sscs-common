@@ -89,7 +89,7 @@ public class SscsCaseData implements CaseData {
     private String relistingReason;
     private String dateSentToDwp;
     private String dwpDueDate;
-    private String interlocReviewState;
+    private InterlocReviewState interlocReviewState;
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
     private DynamicList processAudioVideoAction;
@@ -124,10 +124,12 @@ public class SscsCaseData implements CaseData {
     private String dwpFurtherInfo;
     private List<Correspondence> correspondence;
     private ReasonableAdjustmentsLetters reasonableAdjustmentsLetters;
-    private String interlocReferralDate;
-    private String interlocReferralReason;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate interlocReferralDate;
+    private InterlocReferralReason interlocReferralReason;
     private String dwpRegionalCentre;
-    private String dwpState;
+    private DwpState dwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
@@ -335,7 +337,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
-    private ActionPostHearingApplication actionPostHearingApplication;
+    private PostHearing postHearing;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -668,11 +670,11 @@ public class SscsCaseData implements CaseData {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public ActionPostHearingApplication getActionPostHearingApplication() {
-        if (isNull(actionPostHearingApplication)) {
-            actionPostHearingApplication = new ActionPostHearingApplication();
+    public PostHearing getPostHearing() {
+        if (isNull(postHearing)) {
+            postHearing = new PostHearing();
         }
-        return actionPostHearingApplication;
+        return postHearing;
     }
 
     @SuppressWarnings("unused")
