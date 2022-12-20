@@ -106,6 +106,23 @@ public class SscsCaseData implements CaseData {
     private String outcome;
     private String evidenceHandled;
 
+    //SSCS-10007
+    private List<OtherPartySelection> otherPartySelection;
+
+    private List<DocumentSelection> documentSelection;
+
+    private DynamicList letterAttachedDocuments;
+    private String genericLetterText;
+
+    private YesNo sendToApellant;
+    private YesNo sendToRepresentative;
+    private YesNo sendToJointParty;
+    private YesNo sendToOtherParties;
+
+    private YesNo hasJointParty;
+    private YesNo hasRepresentative;
+    private YesNo hasOtherParties;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private ReissueArtifactUi reissueArtifactUi;
