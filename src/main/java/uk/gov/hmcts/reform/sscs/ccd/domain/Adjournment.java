@@ -98,7 +98,7 @@ public class Adjournment {
     private YesNo adjournmentInProgress;
 
     @JsonIgnore
-    public List<DynamicList> getPanelMembers() {
+    public List<DynamicList> getSelectedPanelMembers() {
         List<DynamicList> panelMembers = Arrays.asList(this.disabilityQualifiedPanelMemberName,
             this.medicallyQualifiedPanelMemberName,
             this.otherPanelMemberName);

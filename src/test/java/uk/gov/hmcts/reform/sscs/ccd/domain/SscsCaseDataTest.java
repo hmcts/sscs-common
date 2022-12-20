@@ -928,7 +928,7 @@ public class SscsCaseDataTest {
                 .disabilityQualifiedPanelMemberName(new DynamicList(name))
                 .medicallyQualifiedPanelMemberName(new DynamicList("")).build()).build();
 
-        List<DynamicList> panelMembers = sscsCaseData.getAdjournment().getPanelMembers();
+        List<DynamicList> panelMembers = sscsCaseData.getAdjournment().getSelectedPanelMembers();
 
         assertEquals(1, panelMembers.size());
         assertEquals(panelMembers.get(0).getValue().getLabel(), name);
