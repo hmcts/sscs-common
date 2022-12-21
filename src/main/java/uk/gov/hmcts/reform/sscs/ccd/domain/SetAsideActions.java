@@ -23,8 +23,6 @@ public enum SetAsideActions implements CcdCallbackMap {
     private final String callbackSummary;
     private final String callbackDescription;
     private final DwpState postCallbackDwpState;
-    private final InterlocReviewState postCallbackInterlocState = null;
-    private final InterlocReferralReason postCallbackInterlocReason = null;
 
     @Override
     @JsonValue

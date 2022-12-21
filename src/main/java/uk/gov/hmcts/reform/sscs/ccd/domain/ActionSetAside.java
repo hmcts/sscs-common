@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SetAside {
+public class ActionSetAside {
     private SetAsideActions action;
     private YesNo requestStatementOfReasons;
-    private RequestFormat requestFormat;
 }

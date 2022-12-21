@@ -10,8 +10,4 @@ public interface CcdCallbackMap {
     String getCallbackDescription();
 
     DwpState getPostCallbackDwpState();
-
-    InterlocReviewState getPostCallbackInterlocState();
-
-    InterlocReferralReason getPostCallbackInterlocReason();
 }

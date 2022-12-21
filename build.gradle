@@ -70,17 +70,13 @@ jacocoTestReport {
     }
 }
 
-tasks.withType(Test) {
-    useJUnitPlatform()
-
-    testLogging {
-        exceptionFormat = 'full'
-    }
-}
-
 // endregion
 
 // region publishing
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
