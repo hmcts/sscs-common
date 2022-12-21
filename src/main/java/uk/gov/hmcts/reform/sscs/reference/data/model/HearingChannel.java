@@ -8,15 +8,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum HearingChannel {
 
-    TELEPHONE("TEL", "Telephone", "Ffôn"),
-    VIDEO("VID", "Video", "Fideo"),
-    FACE_TO_FACE("INTER", "Face To Face", "Wyneb yn wyneb"),
-    NOT_ATTENDING("NA", "Not Attending", null),
-    PAPER("ONPPRS", "Paper", "Papur"),;
+    TELEPHONE("TEL", "Telephone", "Ffôn", "telephone"),
+    VIDEO("VID", "Video", "Fideo", "video"),
+    FACE_TO_FACE("INTER", "Face To Face", "Wyneb yn wyneb", "faceToFace"),
+    NOT_ATTENDING("NA", "Not Attending", null, "notAttending"),
+    PAPER("ONPPRS", "Paper", "Papur", "paper"),;
 
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
+    private final String valueTribunals;
 
     @Override
     @JsonValue
