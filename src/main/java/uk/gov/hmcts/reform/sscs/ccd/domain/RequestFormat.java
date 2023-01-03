@@ -6,12 +6,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ActionPostHearingTypes {
-    SET_ASIDE("setAside","Set Aside"),
-    CORRECTION("correction","Correction"),
-    STATEMENT_OF_REASONS("statementOfReasons","Statement of Reasons"),
-    PERMISSION_TO_APPEAL("permissionToAppeal","Permission to Appeal"),
-    LIBERTY_TO_APPLY("libertyToApply","Liberty to Apply");
+public enum RequestFormat {
+    GENERATE("generate","Enter request details"),
+    UPLOAD("upload","Upload request");
 
     private final String ccdDefinition;
     private final String descriptionEn;

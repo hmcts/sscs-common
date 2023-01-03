@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id "org.owasp.dependencycheck" version "7.3.2"
+    id "org.owasp.dependencycheck" version "7.4.1"
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -29,7 +29,7 @@ repositories {
 // region static code analysis
 
 pmd {
-    toolVersion = "6.50.0"
+    toolVersion = "6.52.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
     reportsDir = file("$project.buildDir/reports/pmd")
@@ -60,7 +60,7 @@ dependencyCheck {
 // region test coverage
 
 jacoco {
-    toolVersion = "0.8.5"
+    toolVersion = "0.8.8"
 }
 
 jacocoTestReport {
@@ -70,13 +70,17 @@ jacocoTestReport {
     }
 }
 
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
 // endregion
 
 // region publishing
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-}
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -104,6 +108,23 @@ publishing {
             version project.version
         }
     }
+}
+
+task installLocalGitHook(type: Copy) {
+    from new File(rootProject.rootDir, 'config/git/pre-commit')
+    into { new File(rootProject.rootDir, '.git/hooks')}
+    fileMode 0775
+}
+
+compileJava.dependsOn installLocalGitHook
+
+task runGitPreCommitTasks {
+    dependsOn 'test'
+    dependsOn 'pmdMain'
+    dependsOn 'pmdTest'
+    dependsOn 'dependencyCheckAggregate'
+    dependsOn 'checkstyleMain'
+    dependsOn 'checkstyleTest'
 }
 
 dependencies {
@@ -157,7 +178,7 @@ dependencies {
     implementation group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
-    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.1'
+    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.2'
 
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
     implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1', {
@@ -169,7 +190,7 @@ dependencies {
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.74"
+    implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.75"
 
     implementation group: "org.projectlombok", name: "lombok", version: "1.18.24"
     annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.24"
