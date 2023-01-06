@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -52,5 +53,15 @@ public class RefDataService {
 
         return refDataApi.courtVenues(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), SSCS_COURT_TYPE_ID);
+    }
+
+    public List<String> getPanelMembers(PanelMemberType panelMemberType) {
+        String panelMemberTypeName = panelMemberType != null ? panelMemberType.toString() : "Other Panel Member";
+
+        log.info("Requesting {} for SSCS", panelMemberTypeName);
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        return refDataApi.panelMembers(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), "");
     }
 }

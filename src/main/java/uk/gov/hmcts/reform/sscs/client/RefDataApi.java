@@ -37,4 +37,14 @@ public interface RefDataApi {
         @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
         @RequestParam("epimms_id") String epimsId
     );
+
+    @PostMapping(
+        value = "refdata/judicial/users/search\n",
+        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+    )
+    List<String> panelMembers(
+        @RequestHeader(AUTHORIZATION) String authorisation,
+        @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+        @RequestParam("search_string") String searchString
+    );
 }

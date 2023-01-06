@@ -22,4 +22,9 @@ public enum PanelMemberType {
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    public String toString() {
+        return en;
+    }
 }
