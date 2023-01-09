@@ -919,7 +919,7 @@ public class SscsCaseDataTest {
         assertEquals(actualValue, expectedValue);
 
     }
-
+    
     @Test
     public void givenPanelMembers_theReturnThemInList() {
         String name = "Person 1";
@@ -933,5 +933,4 @@ public class SscsCaseDataTest {
         assertEquals(1, panelMembers.size());
         assertEquals(panelMembers.get(0).getValue().getLabel(), name);
     }
-
 }
