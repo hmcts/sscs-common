@@ -7,10 +7,12 @@
     <packageUrl regex="true">^pkg:maven/org\.springframework/spring\-.*@.*$</packageUrl>
     <cve>CVE-2016-1000027</cve>
   </suppress>
-  <suppress until = "2023-02-01">
+  <suppress  until = "2023-02-01">
     <notes><![CDATA[
-   file name: spring-*-5.3.18.jar
+   file name: snakeyaml-1.33.jar
    ]]></notes>
-    <cve>CVE-2020-36569</cve>
+    <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
+    <cve>CVE-2022-3064</cve>
+    <cve>CVE-2021-4235</cve>
   </suppress>
 </suppressions>
