@@ -917,5 +917,4 @@ public class SscsCaseDataTest {
         assertEquals(actualValue, expectedValue);
 
     }
-
 }
