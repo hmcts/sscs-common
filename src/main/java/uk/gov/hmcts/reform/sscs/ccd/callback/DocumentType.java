@@ -33,6 +33,7 @@ public enum DocumentType {
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
+    SET_ASIDE_APPLICATION("seaAsideApplication", "Set Aside application"),
     OTHER_PARTY_HEARING_PREFERENCES("otherPartyHearingPreferences", "Other party hearing preferences"),
     RIP1("rip1Document", "RIP 1 document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request"),
