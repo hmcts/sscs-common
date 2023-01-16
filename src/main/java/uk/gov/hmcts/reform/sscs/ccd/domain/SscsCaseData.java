@@ -107,13 +107,12 @@ public class SscsCaseData implements CaseData {
     private String evidenceHandled;
 
     //SSCS-10007
-    private List<OtherPartySelection> otherPartySelection;
-
-    private List<DocumentSelection> documentSelection;
-
+    private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
+    private List<CcdValue<DocumentSelectionDetails>> documentSelection;
     private DynamicList letterAttachedDocuments;
     private String genericLetterText;
 
+    private YesNo sendToAllParties;
     private YesNo sendToApellant;
     private YesNo sendToRepresentative;
     private YesNo sendToJointParty;

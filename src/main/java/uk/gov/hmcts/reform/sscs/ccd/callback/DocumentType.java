@@ -22,6 +22,7 @@ public enum DocumentType {
     FINAL_DECISION_NOTICE("finalDecisionNotice", "Final Decision Notice"),
     DRAFT_ADJOURNMENT_NOTICE("draftAdjournmentNotice", "Draft Adjournment Notice"),
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
+    GENERIC_NOTICE("genericNotice", "Generic Notice"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence"),
