@@ -117,6 +117,7 @@ public class SscsCaseData implements CaseData {
     private YesNo sendToRepresentative;
     private YesNo sendToJointParty;
     private YesNo sendToOtherParties;
+    private YesNo addDocuments;
 
     private YesNo hasJointParty;
     private YesNo hasRepresentative;
