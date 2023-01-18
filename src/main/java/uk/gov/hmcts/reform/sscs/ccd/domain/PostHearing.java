@@ -39,9 +39,9 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("libertyToApply")
     private LibertyToApply libertyToApply;
-    @JsonProperty("bodyContent")
+    @JsonProperty("postHearingRequestReason")
     private String requestReason;
-    @JsonProperty("previewDocument")
+    @JsonProperty("postHearingPreviewDocument")
     private DocumentLink previewDocument;
 
     @JsonIgnore
