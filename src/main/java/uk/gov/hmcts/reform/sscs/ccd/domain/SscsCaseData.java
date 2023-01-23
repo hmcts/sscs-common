@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -432,8 +433,8 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public void sortCollections() {
 
-        if (getCorrespondence() != null) {
-            getCorrespondence().sort(Collections.reverseOrder());
+        if (correspondence != null) {
+            correspondence.sort(Collections.reverseOrder());
         }
         if (getEvents() != null) {
             getEvents().sort(Collections.reverseOrder());
@@ -725,6 +726,14 @@ public class SscsCaseData implements CaseData {
             this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
         }
         return sscsIndustrialInjuriesData;
+    }
+
+    @JsonIgnore
+    public List<Correspondence> getCorrespondence() {
+        if (correspondence == null) {
+            this.correspondence = List.of();
+        }
+        return correspondence;
     }
 
     public boolean isBenefitType(Benefit benefitType) {
