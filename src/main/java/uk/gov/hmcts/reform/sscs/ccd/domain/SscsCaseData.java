@@ -730,7 +730,7 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public List<Correspondence> getCorrespondence() {
         if (correspondence == null) {
-            this.correspondence = List.of();
+            this.correspondence = new ArrayList<>();
         }
         return correspondence;
     }
