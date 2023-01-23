@@ -411,6 +411,13 @@ public class SscsCaseData implements CaseData {
 
     @SuppressWarnings("unused")
     @JsonIgnore
+    public boolean isThereARepresentative() {
+        return isNotEmpty(getAppeal().getRep()) && isYes(getAppeal().getRep().getHasRepresentative());
+    }
+
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
     public String getLatestEventType() {
         EventDetails latestEvent = getLatestEvent();
         return latestEvent != null ? latestEvent.getType() : null;
