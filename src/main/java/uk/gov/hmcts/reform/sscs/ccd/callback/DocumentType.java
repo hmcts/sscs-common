@@ -33,7 +33,7 @@ public enum DocumentType {
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     RIP1("rip1Document", "RIP 1 document"),
-    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application"),
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     TL1_FORM("tl1Form", "TL1 Form"),
