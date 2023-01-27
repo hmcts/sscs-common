@@ -114,6 +114,7 @@ public enum EventType {
     FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
     GENERATE_COVERSHEET("generateCoversheet", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
+    HANDLING_ERROR("handlingError", 0, false),
     HEARING("hearing", "hearing", 4, false),
     HEARING_BOOKED("hearingBooked", "hearingBooked", 3, true),
     HEARING_REMINDER("hearingReminder", 0, true),
