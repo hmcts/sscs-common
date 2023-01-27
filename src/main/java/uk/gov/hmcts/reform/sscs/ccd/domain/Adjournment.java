@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -45,11 +46,11 @@ public class Adjournment {
     @JsonProperty("adjournCasePanelMembersExcluded")
     private AdjournCasePanelMembersExcluded panelMembersExcluded;
     @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName")
-    private String disabilityQualifiedPanelMemberName;
+    private JudicialUser disabilityQualifiedPanelMemberName;
     @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName")
-    private String medicallyQualifiedPanelMemberName;
+    private JudicialUser medicallyQualifiedPanelMemberName;
     @JsonProperty("adjournCaseOtherPanelMemberName")
-    private String otherPanelMemberName;
+    private JudicialUser otherPanelMemberName;
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
