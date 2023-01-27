@@ -41,6 +41,7 @@ import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -171,6 +172,7 @@ public class SscsCaseData implements CaseData {
     private String documentSentToDwp;
     private String directionDueDate;
     private String reservedToJudge;
+    private JudicialUser reservedJudge;
     private List<CaseLink> linkedCase;
     private String isWaiverNeeded;
     private List<String> waiverDeclaration;
