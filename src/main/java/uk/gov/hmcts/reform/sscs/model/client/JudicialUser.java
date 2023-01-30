@@ -27,7 +27,7 @@ public class JudicialUser {
     private String postNominals;
     @JsonProperty("object_Id")
     private String objectId;
-    @JsonProperty("sidam_Id")
+    @JsonProperty("idamId")
     private String sidamId;
     private String surname;
     @JsonProperty("personal_Code")
