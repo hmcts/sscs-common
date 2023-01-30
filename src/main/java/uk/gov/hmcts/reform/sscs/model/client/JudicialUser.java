@@ -21,15 +21,15 @@ public class JudicialUser {
     private String emailId;
     @JsonProperty("full_name")
     private String fullName;
-    @JsonProperty("known_as")
+    @JsonProperty("known_As")
     private String knownAs;
     @JsonProperty("post_nominals")
     private String postNominals;
-    @JsonProperty("object_id")
+    @JsonProperty("object_Id")
     private String objectId;
-    @JsonProperty("sidam_id")
+    @JsonProperty("sidam_Id")
     private String sidamId;
     private String surname;
-    @JsonProperty("personal_code")
+    @JsonProperty("personal_Code")
     private String personalCode;
 }
