@@ -287,6 +287,8 @@ public class SscsCaseData implements CaseData {
 
     //Issue direction new fields
     private String confidentialityType;
+    private String confidentialityPartyMembers;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsIndustrialInjuriesData sscsIndustrialInjuriesData;
