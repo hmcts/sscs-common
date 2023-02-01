@@ -13,7 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.ccd.validation.documentlink.DocumentLinkMustBePdf;
-import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -46,11 +46,11 @@ public class Adjournment {
     @JsonProperty("adjournCasePanelMembersExcluded")
     private AdjournCasePanelMembersExcluded panelMembersExcluded;
     @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName")
-    private JudicialUser disabilityQualifiedPanelMemberName;
+    private JudicialUserBase disabilityQualifiedPanelMemberName;
     @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName")
-    private JudicialUser medicallyQualifiedPanelMemberName;
+    private JudicialUserBase medicallyQualifiedPanelMemberName;
     @JsonProperty("adjournCaseOtherPanelMemberName")
-    private JudicialUser otherPanelMemberName;
+    private JudicialUserBase otherPanelMemberName;
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
@@ -59,8 +59,8 @@ public class Adjournment {
     private AdjournCaseNextHearingDurationUnits nextHearingListingDurationUnits;
     @JsonProperty("adjournCaseInterpreterRequired")
     private YesNo interpreterRequired;
-    @JsonProperty("adjournCaseInterpreterLanguage")
-    private String interpreterLanguage;
+    @JsonProperty("adjournCaseInterpreterLanguageList")
+    private DynamicList interpreterLanguage;
     @JsonProperty("adjournCaseNextHearingDateType")
     private AdjournCaseNextHearingDateType nextHearingDateType;
     @JsonProperty("adjournCaseNextHearingDateOrPeriod")
