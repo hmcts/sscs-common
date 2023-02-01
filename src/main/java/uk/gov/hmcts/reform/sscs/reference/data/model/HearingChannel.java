@@ -12,7 +12,7 @@ public enum HearingChannel {
     VIDEO("VID", "Video", "Fideo", "video"),
     FACE_TO_FACE("INTER", "Face To Face", "Wyneb yn wyneb", "faceToFace"),
     NOT_ATTENDING("NA", "Not Attending", null, "notAttending"),
-    PAPER("ONPPRS", "Paper", "Papur", "paper");
+    PAPER("ONPPRS", "Paper", "Papur", "paper"),;
 
     private final String hmcReference;
     private final String valueEn;
@@ -25,3 +25,4 @@ public enum HearingChannel {
         return hmcReference;
     }
 }
+
