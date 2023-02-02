@@ -10,7 +10,6 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,7 +19,7 @@ public class JudicialRefDataService {
     private final JudicialRefDataApi judicialRefDataApi;
     private final IdamService idamService;
 
-    public List<String> getJudicialUserFullName(String personalCode) {
+    public String getJudicialUserFullName(String personalCode) {
         log.info("Requesting Judicial User with personal code {}", personalCode);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
@@ -28,6 +27,6 @@ public class JudicialRefDataService {
             idamTokens.getServiceAuthorization(), JudicialRefDataUsersRequest.builder()
                 .personalCodes(List.of(personalCode)).build());
 
-        return judicialUsers.stream().map(JudicialUser::getFullName).collect(Collectors.toList());
+        return judicialUsers.get(0).getFullName();
     }
 }
