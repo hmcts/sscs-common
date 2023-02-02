@@ -24,7 +24,8 @@ public enum InterlocReferralReason {
     REJECT_HEARING_RECORDING_REQUEST("rejectHearingRecordingRequest", "Reject hearing recording request"),
     REVIEW_AUDIO_VIDEO_EVIDENCE("reviewAudioVideoEvidence", "Review Audio Video Evidence"),
     REVIEW_POSTPONEMENT_REQUEST("reviewPostponementRequest", "Review hearing postponement request"),
-    TIME_EXTENSION("timeExtension","Time extension");
+    TIME_EXTENSION("timeExtension","Time extension"),
+    CONFIRM_PANEL_COMPOSITION("confirmPanelComposition","Confirm panel composition");
 
     private final String ccdDefinition;
     private final String description;
