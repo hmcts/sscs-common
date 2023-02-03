@@ -19,6 +19,7 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
+    private YesNo reservedDistrictTribunalJudge;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;

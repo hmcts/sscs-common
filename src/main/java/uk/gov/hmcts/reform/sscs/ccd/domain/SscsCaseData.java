@@ -171,7 +171,6 @@ public class SscsCaseData implements CaseData {
     private String documentSentToDwp;
     private String directionDueDate;
     private String reservedToJudge;
-    private YesNo reservedDistrictTribunalJudge;
     private List<CaseLink> linkedCase;
     private String isWaiverNeeded;
     private List<String> waiverDeclaration;
