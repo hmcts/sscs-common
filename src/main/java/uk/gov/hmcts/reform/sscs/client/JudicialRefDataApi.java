@@ -21,7 +21,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 )
 public interface JudicialRefDataApi {
 
-    String SERVICE_AUTHORIZATION = "serviceAuthorization";
+    String SERVICE_AUTHORIZATION = "ServiceAuthorization";
 
     @RequestMapping(
             method = RequestMethod.POST,
