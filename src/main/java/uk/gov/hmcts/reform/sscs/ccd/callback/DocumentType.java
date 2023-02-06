@@ -37,7 +37,8 @@ public enum DocumentType {
     RIP1("rip1Document", "RIP 1 document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request"),
     OTHER_PARTY_EVIDENCE("otherPartyEvidence", "Other party evidence"),
-    OTHER_PARTY_REPRESENTATIVE_EVIDENCE("otherPartyRepEvidence", "Other party representative evidence");
+    OTHER_PARTY_REPRESENTATIVE_EVIDENCE("otherPartyRepEvidence", "Other party representative evidence"),
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application");
 
     private final String value;
     private String label;

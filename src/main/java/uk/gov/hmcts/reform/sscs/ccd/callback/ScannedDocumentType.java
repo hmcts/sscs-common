@@ -12,7 +12,8 @@ public enum ScannedDocumentType {
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
-    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request");
+    POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application");
 
     private String value;
     private String label;
