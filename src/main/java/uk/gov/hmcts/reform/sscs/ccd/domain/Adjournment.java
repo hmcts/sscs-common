@@ -45,12 +45,12 @@ public class Adjournment {
     private DynamicList nextHearingVenueSelected;
     @JsonProperty("adjournCasePanelMembersExcluded")
     private AdjournCasePanelMembersExcluded panelMembersExcluded;
-    @JsonProperty("adjournCaseDisabilityQualifiedPanelMemberName")
-    private JudicialUserBase disabilityQualifiedPanelMemberName;
-    @JsonProperty("adjournCaseMedicallyQualifiedPanelMemberName")
-    private JudicialUserBase medicallyQualifiedPanelMemberName;
-    @JsonProperty("adjournCaseOtherPanelMemberName")
-    private JudicialUserBase otherPanelMemberName;
+    @JsonProperty("adjournCasePanelMember1")
+    private JudicialUserBase panelMember1;
+    @JsonProperty("adjournCasePanelMember2")
+    private JudicialUserBase panelMember2;
+    @JsonProperty("adjournCasePanelMember3")
+    private JudicialUserBase panelMember3;
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
