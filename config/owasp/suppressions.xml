@@ -12,7 +12,7 @@
    file name: LatencyUtils-2.0.3.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org.latencyutils/LatencyUtils@2.0.3</packageUrl>
-    <cve> CVE-2021-4277</cve>
+    <cve>CVE-2021-4277</cve>
   </suppress>
   <suppress until = "2023-03-01">
     <notes><![CDATA[
