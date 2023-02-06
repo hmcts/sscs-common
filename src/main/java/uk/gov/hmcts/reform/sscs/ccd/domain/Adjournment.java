@@ -60,7 +60,7 @@ public class Adjournment {
     @JsonProperty("adjournCaseInterpreterRequired")
     private YesNo interpreterRequired;
     @JsonProperty("adjournCaseInterpreterLanguageList")
-    private DynamicList  interpreterLanguage;
+    private DynamicList interpreterLanguage;
     @JsonProperty("adjournCaseNextHearingDateType")
     private AdjournCaseNextHearingDateType nextHearingDateType;
     @JsonProperty("adjournCaseNextHearingDateOrPeriod")
