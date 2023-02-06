@@ -59,10 +59,6 @@ public class Adjournment {
     private AdjournCaseNextHearingDurationUnits nextHearingListingDurationUnits;
     @JsonProperty("adjournCaseInterpreterRequired")
     private YesNo interpreterRequired;
-    //REVERT THIS CHANGE
-    @JsonProperty("adjournCaseInterpreterLanguage")
-    private String interpreterLanguage;
-    //REVERT THIS CHANGE
     @JsonProperty("adjournCaseNextHearingDateType")
     private AdjournCaseNextHearingDateType nextHearingDateType;
     @JsonProperty("adjournCaseNextHearingDateOrPeriod")
