@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
+    private JudicialUserBase reservedJudge;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
