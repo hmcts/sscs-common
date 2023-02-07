@@ -15,10 +15,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataSearchRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 
-@FeignClient(
-        name = "judicial-ref-data-api",
-        url = "${judicial-ref.api.url}"
-)
+@FeignClient(name = "judicial-client", url = "${judicial.api.baseUrl}")
 public interface JudicialRefDataApi {
 
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
