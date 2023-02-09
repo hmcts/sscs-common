@@ -20,19 +20,10 @@ public class JudicialUserBase {
 
     @Override
     public boolean equals(Object object) {
-        System.out.println(object instanceof JudicialUserBase);
-        System.out.println(object.getClass());
-        System.out.println(object);
         if (object instanceof JudicialUserBase) {
             return this.idamId.equals(((JudicialUserBase) object).getIdamId());
         }
 
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        System.out.println("test2");
-        return 1;
     }
 }
