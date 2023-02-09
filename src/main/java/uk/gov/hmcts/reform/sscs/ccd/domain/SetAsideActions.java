@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum SetAsideActions implements CcdCallbackMap {
-    GRANT("grant","Grant Set Aside Application", SET_ASIDE_GRANTED, "Set aside application granted", "Set aside application granted", null),
+    GRANT("grant","Grant Set Aside Application", SET_ASIDE_GRANTED, "Set aside application granted", "Set aside application granted", DwpState.SET_ASIDE_GRANTED),
     REFUSE("refuse","Refuse Set Aside Application", SET_ASIDE_REFUSED, "Set aside application refused", "Set aside application refused", DwpState.SET_ASIDE_REFUSED),
     ISSUE_DIRECTIONS("issueDirections","IssueDirections", SET_ASIDE_ISSUE_DIRECTIONS, "Set aside application issue directions", "Set aside application issue directions", null),
     REFUSE_SOR("issueDirections","IssueDirections", SET_ASIDE_REFUSED_SOR, "Set aside application refused & request statement of reasons", "Set aside application refused & request statement of reasons", null);
