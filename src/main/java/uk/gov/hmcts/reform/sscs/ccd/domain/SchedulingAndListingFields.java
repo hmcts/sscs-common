@@ -18,6 +18,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
+    private Exclusions exclusions;
     private JudicialUserBase reservedJudge;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
