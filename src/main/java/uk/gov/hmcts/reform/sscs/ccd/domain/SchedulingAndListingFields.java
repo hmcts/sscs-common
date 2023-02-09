@@ -21,7 +21,6 @@ public class SchedulingAndListingFields {
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
     private PanelMemberExclusions panelMemberExclusions;
-    private PanelMemberReservations panelMemberReservations;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
@@ -34,15 +33,5 @@ public class SchedulingAndListingFields {
         }
 
         return panelMemberExclusions;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public PanelMemberReservations getPanelMemberReservations() {
-        if (panelMemberReservations == null) {
-            this.panelMemberReservations = PanelMemberReservations.builder().build();
-        }
-
-        return panelMemberReservations;
     }
 }
