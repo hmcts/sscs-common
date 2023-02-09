@@ -1,13 +1,18 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -91,5 +96,14 @@ public class Adjournment {
     private LocalDate generatedDate;
     @JsonProperty("adjournmentInProgress")
     private YesNo adjournmentInProgress;
+
+    @JsonIgnore
+    public List<JudicialUserBase> getPanelMembers() {
+        List<JudicialUserBase> panelMembers = Arrays.asList(this.panelMember1,
+            this.panelMember2,
+            this.panelMember3);
+
+        return panelMembers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+    }
 
 }
