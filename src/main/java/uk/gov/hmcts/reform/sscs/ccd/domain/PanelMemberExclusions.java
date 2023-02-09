@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude
-public class Exclusions {
+public class PanelMemberExclusions {
     private YesNo arePanelMembersExcluded;
     private DynamicList excludedPanelMembers;
 }
