@@ -20,6 +20,7 @@ public class JudicialUserBase {
 
     @Override
     public boolean equals(Object object) {
+        System.out.println("test");
         if (object instanceof JudicialUserBase) {
             return this.idamId.equals(((JudicialUserBase) object).getIdamId());
         }
@@ -29,6 +30,7 @@ public class JudicialUserBase {
 
     @Override
     public int hashCode() {
+        System.out.println("test2");
         return 1;
     }
 }
