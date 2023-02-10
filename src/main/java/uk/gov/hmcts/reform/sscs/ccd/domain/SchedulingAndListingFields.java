@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,18 +22,9 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
-    private PanelMemberExclusions panelMemberExclusions;
+    private YesNo arePanelMembersExcluded;
+    private List<JudicialUserBase> excludedPanelMembers;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public PanelMemberExclusions getPanelMemberExclusions() {
-        if (panelMemberExclusions == null) {
-            this.panelMemberExclusions = PanelMemberExclusions.builder().build();
-        }
-
-        return panelMemberExclusions;
-    }
 }
