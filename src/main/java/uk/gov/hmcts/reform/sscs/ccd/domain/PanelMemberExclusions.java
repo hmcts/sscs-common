@@ -15,4 +15,5 @@ import lombok.NoArgsConstructor;
 @JsonInclude
 public class PanelMemberExclusions {
     private YesNo arePanelMembersExclusions;
+    private YesNo testghj;
 }
