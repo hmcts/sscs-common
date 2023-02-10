@@ -23,7 +23,6 @@ public class SchedulingAndListingFields {
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
     private YesNo panelMembersExcluded;
-    private List<JudicialUserBase> excludedPanelMembers;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
