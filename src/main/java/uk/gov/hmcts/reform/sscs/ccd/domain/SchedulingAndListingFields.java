@@ -22,7 +22,7 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
-    private YesNo arePanelMembersExcluded;
+    private YesNo panelMembersExcluded;
     private List<JudicialUserBase> excludedPanelMembers;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
