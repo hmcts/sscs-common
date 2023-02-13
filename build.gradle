@@ -207,7 +207,7 @@ dependencies {
     testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.9.1'
     testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.9.1'
 
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.12.4'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.1.1'
     testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.12'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.23.1'
     testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.1'
