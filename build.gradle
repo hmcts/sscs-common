@@ -192,8 +192,8 @@ dependencies {
 
     implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.75"
 
-    implementation group: "org.projectlombok", name: "lombok", version: "1.18.24"
-    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.24"
+    implementation group: "org.projectlombok", name: "lombok", version: "1.18.26"
+    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.26"
 
     implementation group: 'org.yaml', name: 'snakeyaml', version: '1.33'
 
@@ -215,7 +215,7 @@ dependencies {
 
     testRuntimeOnly group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
     testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
-    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
-    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 }
 
