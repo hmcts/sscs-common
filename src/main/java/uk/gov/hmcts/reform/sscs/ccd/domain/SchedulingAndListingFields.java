@@ -27,7 +27,7 @@ public class SchedulingAndListingFields {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public PanelMemberExclusions getPanelMemberExclusions() {
+    public PanelMemberExclusions getPanelMembersExcluded() {
         if (panelMemberExclusions == null) {
             this.panelMemberExclusions = PanelMemberExclusions.builder().build();
         }
