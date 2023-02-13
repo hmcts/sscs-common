@@ -18,4 +18,5 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 public class PanelMemberExclusions {
     private YesNo arePanelMembersExclusions;
     private List<JudicialUserBase> excludedPanelMembers;
+    private YesNo arePanelMembersReserved;
 }
