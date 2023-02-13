@@ -20,17 +20,17 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
-    private PanelMemberExclusions panelMemberExclusions;
+    private PanelMembersExclusions panelMembersExclusions;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public PanelMemberExclusions getPanelMemberExclusions() {
-        if (panelMemberExclusions == null) {
-            this.panelMemberExclusions = PanelMemberExclusions.builder().build();
+    public PanelMembersExclusions getPanelMemberExclusions() {
+        if (panelMembersExclusions == null) {
+            this.panelMembersExclusions = PanelMembersExclusions.builder().build();
         }
-        return panelMemberExclusions;
+        return panelMembersExclusions;
     }
 }
