@@ -15,7 +15,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude
-public class PanelMembersExclusions {
+public class PanelMemberExclusions {
     private YesNo arePanelMembersExclusions;
     private List<JudicialUserBase> excludedPanelMembers;
     private YesNo arePanelMembersReserved;
