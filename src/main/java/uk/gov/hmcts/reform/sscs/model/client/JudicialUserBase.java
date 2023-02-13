@@ -17,4 +17,13 @@ public class JudicialUserBase {
     private String idamId;
     @JsonProperty("personalCode")
     private String personalCode;
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JudicialUserBase) {
+            return this.idamId.equals(((JudicialUserBase) object).getIdamId());
+        }
+
+        return false;
+    }
 }
