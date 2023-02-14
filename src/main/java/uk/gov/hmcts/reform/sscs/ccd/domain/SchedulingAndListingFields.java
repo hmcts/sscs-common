@@ -8,10 +8,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class SchedulingAndListingFields {
     private HearingRoute hearingRoute;
     private HearingState hearingState;
     private JudicialUserBase reservedJudge;
-    @JsonProperty
+    @JsonProperty("panelMemberExclusions")
     private PanelMemberExclusions panelMemberExclusions;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
