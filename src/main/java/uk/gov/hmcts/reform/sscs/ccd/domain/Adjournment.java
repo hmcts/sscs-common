@@ -106,7 +106,7 @@ public class Adjournment {
             this.panelMember3);
 
         return panelMembers.stream().filter(Objects::nonNull)
-            .filter(panelMember -> nonNull(panelMember.getIdamId()) && nonNull(panelMember.getPersonalCode()))
+            .filter(panelMember -> nonNull(panelMember.getIdamId()) || nonNull(panelMember.getPersonalCode()))
             .collect(Collectors.toList());
     }
 
