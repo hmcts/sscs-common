@@ -28,6 +28,7 @@ public class BundleDetails {
     private String fileName;
     private String paginationStyle;
     private String coverpageTemplate;
+    private CoverPageData coverPageData;
     private String pageNumberFormat;
 
 
@@ -48,6 +49,7 @@ public class BundleDetails {
                          @JsonProperty("fileName") String fileName,
                          @JsonProperty("paginationStyle") String paginationStyle,
                          @JsonProperty("coverpageTemplate") String coverpageTemplate,
+                         @JsonProperty("coverpageTemplate") CoverPageData coverPageData,
                          @JsonProperty("pageNumberFormat") String pageNumberFormat) {
         this.id = id;
         this.title = title;
@@ -65,6 +67,7 @@ public class BundleDetails {
         this.fileName = fileName;
         this.paginationStyle = paginationStyle;
         this.coverpageTemplate = coverpageTemplate;
+        this.coverPageData = coverPageData;
         this.pageNumberFormat = pageNumberFormat;
     }
 }
