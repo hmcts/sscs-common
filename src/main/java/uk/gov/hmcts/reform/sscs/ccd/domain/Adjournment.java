@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.nonNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -12,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -97,13 +98,15 @@ public class Adjournment {
     @JsonProperty("adjournmentInProgress")
     private YesNo adjournmentInProgress;
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public List<JudicialUserBase> getPanelMembers() {
         List<JudicialUserBase> panelMembers = Arrays.asList(this.panelMember1,
             this.panelMember2,
             this.panelMember3);
 
-        return panelMembers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        return panelMembers.stream().filter(Objects::nonNull)
+            .filter(panelMember -> nonNull(panelMember.getIdamId())).collect(Collectors.toList());
     }
 
 }
