@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +17,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 @NoArgsConstructor
 @JsonInclude
 public class PanelMemberExclusions {
-    @JsonProperty("arePanelMembersExcluded")
     private YesNo arePanelMembersExcluded;
-    @JsonProperty("excludedPanelMembers")
     private List<JudicialUserBase> excludedPanelMembers;
-    @JsonProperty("arePanelMembersReserved")
     private YesNo arePanelMembersReserved;
 }
