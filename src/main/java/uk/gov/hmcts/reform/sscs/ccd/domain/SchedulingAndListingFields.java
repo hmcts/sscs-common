@@ -38,80 +38,8 @@ public class SchedulingAndListingFields {
     }
 
     @SuppressWarnings("unused")
-    @JsonIgnore
-    public HearingRoute getHearingRoute() {
-        return hearingRoute;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setHearingRoute(HearingRoute hearingRoute) {
-        this.hearingRoute = hearingRoute;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public HearingState getHearingState() {
-        return hearingState;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setHearingState(HearingState hearingState) {
-        this.hearingState = hearingState;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public JudicialUserBase getReservedJudge() {
-        return reservedJudge;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setReservedJudge(JudicialUserBase reservedJudge) {
-        this.reservedJudge = reservedJudge;
-    }
-
-    @SuppressWarnings("unused")
     @JsonProperty
     public void setPanelMemberExclusions(PanelMemberExclusions panelMemberExclusions) {
         this.panelMemberExclusions = panelMemberExclusions;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public OverrideFields getOverrideFields() {
-        return overrideFields;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setOverrideFields(OverrideFields overrideFields) {
-        this.overrideFields = overrideFields;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public OverrideFields getDefaultListingValues() {
-        return defaultListingValues;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setDefaultListingValues(OverrideFields defaultListingValues) {
-        this.defaultListingValues = defaultListingValues;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public List<AmendReason> getAmendReasons() {
-        return amendReasons;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public void setAmendReasons(List<AmendReason> amendReasons) {
-        this.amendReasons = amendReasons;
     }
 }
