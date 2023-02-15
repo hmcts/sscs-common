@@ -170,7 +170,6 @@ public class SscsCaseData implements CaseData {
     private String urgentHearingOutcome;
     private String documentSentToDwp;
     private String directionDueDate;
-    private String reservedToJudge;
     private List<CaseLink> linkedCase;
     private String isWaiverNeeded;
     private List<String> waiverDeclaration;
