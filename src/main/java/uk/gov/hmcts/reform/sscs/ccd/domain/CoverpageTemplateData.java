@@ -9,14 +9,14 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
-public class CoverPageData {
+public class CoverpageTemplateData {
 
     private String firstTierAgencyFullName;
     private String firstTierAgencyGroup;
 
     @JsonCreator
-    public CoverPageData(@JsonProperty("firstTierAgencyFullName") String firstTierAgencyFullName,
-                         @JsonProperty("firstTierAgencyGroup") String firstTierAgencyGroup) {
+    public CoverpageTemplateData(@JsonProperty("firstTierAgencyFullName") String firstTierAgencyFullName,
+                                 @JsonProperty("firstTierAgencyGroup") String firstTierAgencyGroup) {
         this.firstTierAgencyFullName = firstTierAgencyFullName;
         this.firstTierAgencyGroup = firstTierAgencyGroup;
     }
