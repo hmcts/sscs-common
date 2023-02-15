@@ -14,7 +14,6 @@ public class CoverPageData {
     private String firstTierAgencyFullName;
     private String firstTierAgencyGroup;
 
-
     @JsonCreator
     public CoverPageData(@JsonProperty("firstTierAgencyFullName") String firstTierAgencyFullName,
                          @JsonProperty("firstTierAgencyGroup") String firstTierAgencyGroup) {

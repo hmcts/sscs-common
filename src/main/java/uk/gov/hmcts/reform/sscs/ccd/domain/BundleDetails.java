@@ -49,7 +49,7 @@ public class BundleDetails {
                          @JsonProperty("fileName") String fileName,
                          @JsonProperty("paginationStyle") String paginationStyle,
                          @JsonProperty("coverpageTemplate") String coverpageTemplate,
-                         @JsonProperty("coverpageTemplate") CoverPageData coverPageData,
+                         @JsonProperty("coverPageData") CoverPageData coverPageData,
                          @JsonProperty("pageNumberFormat") String pageNumberFormat) {
         this.id = id;
         this.title = title;
