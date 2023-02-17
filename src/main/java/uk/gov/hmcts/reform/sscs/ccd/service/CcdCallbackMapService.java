@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
+import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -44,12 +46,23 @@ public class CcdCallbackMapService {
         }
 
         if (nonNull(callbackMap.getCallbackEvent())) {
+            if (isRefuseSor(callbackMap.getPostCallbackInterlocState())) {
+                caseData = ccdService.updateCase(caseData, caseId,
+                    EventType.SOR_REQUEST.getCcdType(), "Send to hearing Judge for statement of reasons", "",
+                    idamService.getIdamTokens()).getData();
+            }
+
             SscsCaseDetails updatedCaseDetails = ccdService.updateCase(caseData, caseId,
                 callbackMap.getCallbackEvent().getCcdType(), callbackMap.getCallbackSummary(),
                 callbackMap.getCallbackDescription(), idamService.getIdamTokens());
             return updatedCaseDetails.getData();
         }
         return caseData;
+    }
+
+    private static boolean isRefuseSor(InterlocReviewState postCallbackInterlocState) {
+        return nonNull(postCallbackInterlocState)
+            && InterlocReviewState.REVIEW_BY_JUDGE.equals(postCallbackInterlocState);
     }
 
 }
