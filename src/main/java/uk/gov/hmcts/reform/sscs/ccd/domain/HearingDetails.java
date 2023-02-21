@@ -29,6 +29,8 @@ public class HearingDetails {
     private String eventDate;
     private Venue venue;
     private String venueId;
+    private String panelMemberId;
+    private String judgeId;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
