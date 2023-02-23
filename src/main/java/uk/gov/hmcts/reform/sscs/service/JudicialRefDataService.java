@@ -23,9 +23,11 @@ public class JudicialRefDataService {
         log.info("Requesting Judicial User with personal code {}", personalCode);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
+        JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
+            .personalCodes(List.of(personalCode)).build();
+
         List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), JudicialRefDataUsersRequest.builder()
-                .personalCodes(List.of(personalCode)).build());
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
         return judicialUsers.get(0).getFullName();
     }

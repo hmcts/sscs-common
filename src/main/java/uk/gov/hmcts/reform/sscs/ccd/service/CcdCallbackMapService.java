@@ -39,7 +39,7 @@ public class CcdCallbackMapService {
         }
 
         if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
-            log.info("Setting InterlocReviewState to {} for case {}", callbackMap.getPostCallbackInterlocReason(), caseId);
+            log.info("Setting InterlocReferralReason to {} for case {}", callbackMap.getPostCallbackInterlocReason(), caseId);
             caseData.setInterlocReferralReason(callbackMap.getPostCallbackInterlocReason());
         }
 
