@@ -32,7 +32,7 @@ public class SchedulingAndListingFields {
     @JsonIgnore
     public PanelMemberExclusions getPanelMemberExclusions() {
         if (panelMemberExclusions == null) {
-            this.panelMemberExclusions = PanelMemberExclusions.builder().build();
+            panelMemberExclusions = PanelMemberExclusions.builder().build();
         }
         return panelMemberExclusions;
     }
