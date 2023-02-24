@@ -79,4 +79,21 @@ public class PostHearing {
         }
         return libertyToApply;
     }
+
+    @JsonIgnore
+    public RequestFormat getRequestFormat() {
+        switch (requestType) {
+            case SET_ASIDE:
+                return setAside.getRequestFormat();
+            case CORRECTION:
+                break;
+            case STATEMENT_OF_REASONS:
+                break;
+            case PERMISSION_TO_APPEAL:
+                break;
+            case LIBERTY_TO_APPLY:
+                break;
+        }
+        return null;
+    }
 }
