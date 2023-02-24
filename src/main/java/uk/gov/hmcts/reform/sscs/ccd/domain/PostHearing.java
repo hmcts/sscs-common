@@ -84,7 +84,7 @@ public class PostHearing {
     public RequestFormat getRequestFormat() {
         switch (requestType) {
             case SET_ASIDE:
-                return setAside.getRequestFormat();
+                return getSetAside().getRequestFormat();
             case CORRECTION:
                 break;
             case STATEMENT_OF_REASONS:
