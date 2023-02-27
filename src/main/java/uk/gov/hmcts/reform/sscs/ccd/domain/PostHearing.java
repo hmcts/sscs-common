@@ -79,4 +79,13 @@ public class PostHearing {
         }
         return libertyToApply;
     }
+
+    @JsonIgnore
+    public boolean isRefused() {
+        return SetAsideActions.REFUSE.equals(getSetAside().getAction())
+            || CorrectionActions.REFUSE.equals(getCorrection().getAction())
+            || StatementOfReasonsActions.REFUSE.equals(getStatementOfReasons().getAction())
+            || PermissionToAppealActions.REFUSE.equals(getPermissionToAppeal().getAction())
+            || LibertyToApplyActions.REFUSE.equals(getLibertyToApply().getAction());
+    }
 }
