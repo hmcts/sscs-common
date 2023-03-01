@@ -34,7 +34,7 @@ public enum ScannedDocumentType {
       return Stream.of(ScannedDocumentType.values())
             .filter(type -> type.getValue() != null && type.getValue().equalsIgnoreCase(text))
             .findFirst()
-            .orElse(null);  
+            .orElse(null);
     }
 
 }
