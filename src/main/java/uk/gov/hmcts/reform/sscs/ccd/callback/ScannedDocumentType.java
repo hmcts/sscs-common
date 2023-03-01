@@ -14,7 +14,7 @@ public enum ScannedDocumentType {
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application"),
-    CORRECTION_REQUEST("correctionRequest", "Correction request");
+    CORRECTION_APPLICATION("correctionApplication", "Correction application");
 
     private String value;
     private String label;
@@ -26,6 +26,15 @@ public enum ScannedDocumentType {
     ScannedDocumentType(String value, String label) {
         this.value = value;
         this.label = label;
+    }
+
+    public static ScannedDocumentType fromValue(String text) {
+        for (ScannedDocumentType scannedDocumentType : ScannedDocumentType.values()) {
+            if (scannedDocumentType.getValue() != null && scannedDocumentType.getValue().equalsIgnoreCase(text)) {
+                return scannedDocumentType;
+            }
+        }
+        return null;
     }
 
 }
