@@ -23,6 +23,15 @@ public class JudicialUserItem implements Comparable<JudicialUserItem> {
     }
 
     @Override
+    public boolean equals(Object object) {
+        if (object instanceof JudicialUserItem) {
+            return this.value.equals(((JudicialUserItem) object).getValue());
+        }
+
+        return false;
+    }
+
+    @Override
     public int compareTo(JudicialUserItem o) {
         return new CompareToBuilder()
             .append(this.value.getPersonalCode(), o.getValue().getPersonalCode())
