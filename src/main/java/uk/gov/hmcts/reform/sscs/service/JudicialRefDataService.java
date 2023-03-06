@@ -35,7 +35,9 @@ public class JudicialRefDataService {
         return judicialUsers.get(0).getFullName();
     }
 
-    public String getJudicialUserTitleWithInitialsAndLastName(String name, String personalCode) {
+    public String getJudicialUserTitleWithInitialsAndLastName(String personalCode) {
+        String name = getJudicialUserFullName(personalCode);
+
         log.info("Requesting Judicial User with name {} and personal code {}", name, personalCode);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
