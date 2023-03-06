@@ -60,7 +60,7 @@ public class JudicialRefDataServiceTest {
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
 
         JudicialRefDataSearchRequest judicialRefDataSearchRequest = JudicialRefDataSearchRequest.builder()
-            .searchString(personalCode).build();
+            .searchString(fullName).build();
         when(judicialRefDataApi.searchUsersBySearchString(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataSearchRequest)).thenReturn(
                 List.of(JudicialUserSearch.builder().personalCode("324123").build(),
