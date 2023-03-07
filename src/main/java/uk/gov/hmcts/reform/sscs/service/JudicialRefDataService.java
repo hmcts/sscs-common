@@ -47,6 +47,8 @@ public class JudicialRefDataService {
         List<JudicialUserSearch> judicialUsers = judicialRefDataApi.searchUsersBySearchString(
             idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
+        log.info(judicialUsers.toString());
+
         for (JudicialUserSearch judicialUser : judicialUsers) {
             if (judicialUser.getPersonalCode().equals(personalCode)) {
                 return StringUtils.convertNameToTitleInitalsAndSurname(judicialUser);
