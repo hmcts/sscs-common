@@ -14,6 +14,8 @@ import uk.gov.hmcts.reform.sscs.utility.StringUtils;
 
 import java.util.List;
 
+import static java.util.Objects.nonNull;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -47,10 +49,8 @@ public class JudicialRefDataService {
         List<JudicialUserSearch> judicialUsers = judicialRefDataApi.searchUsersBySearchString(
             idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        log.info(judicialUsers.toString());
-
         for (JudicialUserSearch judicialUser : judicialUsers) {
-            if (judicialUser.getPersonalCode().equals(personalCode)) {
+            if (nonNull(judicialUser.getPersonalCode()) && judicialUser.getPersonalCode().equals(personalCode)) {
                 return StringUtils.convertNameToTitleInitalsAndSurname(judicialUser);
             }
         }
