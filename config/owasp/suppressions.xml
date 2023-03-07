@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-  <suppress until = "2023-03-01">
-    <notes><![CDATA[
-   file name: LatencyUtils-2.0.3.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.latencyutils/LatencyUtils@.*$</packageUrl>
-    <cve>CVE-2021-4277</cve>
+  <suppress until="2023-04-01">
+    <cve>CVE-2023-24998</cve>
   </suppress>
-  <suppress until = "2023-03-01">
+  <suppress until = "2023-03-15">
     <notes><![CDATA[
-   file name: launchdarkly-java-server-sdk-5.10.3.jar (shaded: org.yaml:snakeyaml:1.32)
+   file name: json-20220924.jar
    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
-    <cve>CVE-2022-3064</cve>
-    <cve>CVE-2021-4235</cve>
-  </suppress>
-  <suppress  until = "2023-03-01">
-    <notes><![CDATA[
-   file name: snakeyaml-1.33.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.yaml/snakeyaml@.*$</packageUrl>
-    <cve>CVE-2022-3064</cve>
-    <cve>CVE-2021-4235</cve>
-  </suppress>
-  <suppress until = "2023-03-01">
-    <notes><![CDATA[
-   file name: LatencyUtils-2.0.3.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.latencyutils/LatencyUtils@.*$</packageUrl>
-    <cve>CVE-2021-4277</cve>
+    <packageUrl regex="true">^pkg:maven/org\.json/json@.*$</packageUrl>
+    <cve>CVE-2022-45688</cve>
   </suppress>
 </suppressions>
