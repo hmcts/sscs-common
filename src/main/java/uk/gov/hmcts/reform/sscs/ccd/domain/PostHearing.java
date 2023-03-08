@@ -86,7 +86,7 @@ public class PostHearing {
             case SET_ASIDE:
                 return getSetAside().getRequestFormat();
             case CORRECTION:
-                break;
+                return getCorrection().getRequestFormat();
             case STATEMENT_OF_REASONS:
                 break;
             case PERMISSION_TO_APPEAL:
