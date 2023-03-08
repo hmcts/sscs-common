@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -25,8 +26,8 @@ public class CollectionItem<V> {
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof JudicialUserItem) {
-            return value.equals(((JudicialUserItem) object).getValue());
+        if (object instanceof JudicialUserBase) {
+            return value.equals(((JudicialUserBase) object));
         } else {
             return object == this;
         }
