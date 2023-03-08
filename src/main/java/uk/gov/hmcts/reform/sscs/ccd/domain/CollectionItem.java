@@ -13,13 +13,22 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CollectionItem<V> {
 
-    private String id;
-    private V value;
+    String id;
+    V value;
 
     @JsonCreator
     public CollectionItem(@JsonProperty("id") String id,
         @JsonProperty("value") V value) {
         this.id = id;
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JudicialUserItem) {
+            return value.equals(((JudicialUserItem) object).getValue());
+        } else {
+            return object == this;
+        }
     }
 }
