@@ -13,8 +13,8 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CollectionItem<V> {
 
-    private String id;
-    private V value;
+    String id;
+    V value;
 
     @JsonCreator
     public CollectionItem(@JsonProperty("id") String id,
