@@ -27,7 +27,7 @@ public class CollectionItem<V> {
     @Override
     public boolean equals(Object object) {
         if (object instanceof JudicialUserBase) {
-            return value.equals(((JudicialUserBase) object));
+            return value.equals(object);
         } else {
             return object == this;
         }
