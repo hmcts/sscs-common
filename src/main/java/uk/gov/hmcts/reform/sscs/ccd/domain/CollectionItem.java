@@ -26,10 +26,10 @@ public class CollectionItem<V> {
 
     @Override
     public boolean equals(Object object) {
-        if (object instanceof JudicialUserBase) {
-            return value.equals(object);
-        } else {
-            return object == this;
+        if (object instanceof CollectionItem) {
+            return this == object;
         }
+
+        return value.equals(object);
     }
 }
