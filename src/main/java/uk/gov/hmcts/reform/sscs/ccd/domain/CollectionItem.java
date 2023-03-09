@@ -6,11 +6,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Slf4j
 public class CollectionItem<V> {
 
     String id;
@@ -25,8 +28,12 @@ public class CollectionItem<V> {
 
     @Override
     public boolean equals(Object object) {
+        log.info("hit {}", object);
         if (object instanceof CollectionItem) {
             return this == object;
+        } else if (object instanceof JudicialUserBase) {
+            JudicialUserBase jub = ((JudicialUserBase) object);
+            return jub.equals(value);
         }
 
         return value.equals(object);
