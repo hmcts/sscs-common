@@ -30,10 +30,7 @@ public class CollectionItem<V> {
     public boolean equals(Object object) {
         log.info("hit {}           {}       {}", this, object, object.getClass());
         if (object instanceof CollectionItem) {
-            return this == object;
-        } else if (object instanceof JudicialUserBase) {
-            JudicialUserBase jub = ((JudicialUserBase) object);
-            return jub.equals(value);
+            return value == ((CollectionItem<?>) object).getValue();
         }
 
         return value.equals(object);
