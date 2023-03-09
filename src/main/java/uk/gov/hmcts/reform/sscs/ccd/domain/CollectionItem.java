@@ -28,7 +28,6 @@ public class CollectionItem<V> {
 
     @Override
     public boolean equals(Object object) {
-        log.info("hit {}           {}       {}", this, object, object.getClass());
         if (object instanceof CollectionItem) {
             return value.equals(((CollectionItem<?>) object).getValue());
         }

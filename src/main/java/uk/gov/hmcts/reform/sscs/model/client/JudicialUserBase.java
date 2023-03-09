@@ -22,7 +22,6 @@ public class JudicialUserBase {
 
     @Override
     public boolean equals(Object object) {
-        log.info("hit2 {}               {}", this, object);
         if (object instanceof JudicialUserBase) {
             return this.idamId.equals(((JudicialUserBase) object).getIdamId());
         }
