@@ -196,6 +196,7 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
+    private LocalDate issueFinalDecisionDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
