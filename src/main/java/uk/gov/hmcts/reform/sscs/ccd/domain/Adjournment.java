@@ -97,6 +97,7 @@ public class Adjournment {
     @JsonProperty("adjournmentInProgress")
     private YesNo adjournmentInProgress;
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public List<JudicialUserBase> getPanelMembers() {
         List<JudicialUserBase> panelMembers = Arrays.asList(this.panelMember1,
