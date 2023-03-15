@@ -3,7 +3,7 @@
   <suppress until="2023-04-01">
     <cve>CVE-2023-24998</cve>
   </suppress>
-  <suppress until = "2023-03-15">
+  <suppress until = "2023-04-01">
     <notes><![CDATA[
    file name: json-20220924.jar
    ]]></notes>
