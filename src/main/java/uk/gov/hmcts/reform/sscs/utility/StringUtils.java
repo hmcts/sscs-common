@@ -31,7 +31,7 @@ public final class StringUtils {
     public static String getInitalsAndSurnameFromName(String fullName) {
         StringBuilder result = new StringBuilder();
 
-        String[] splitName = fullName.split(" ");
+        String[] splitName = fullName.split("\\s+");
         Iterator<String> iterator = Arrays.stream(splitName).iterator();
 
         while (iterator.hasNext()) {
