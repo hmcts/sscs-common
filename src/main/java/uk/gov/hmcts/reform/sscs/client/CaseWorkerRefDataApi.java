@@ -17,6 +17,8 @@ import uk.gov.hmcts.reform.sscs.model.CaseWorkersProfileCreationRequest;
 import uk.gov.hmcts.reform.sscs.model.ServiceRoleMapping;
 import uk.gov.hmcts.reform.sscs.model.UserRequest;
 
+import javax.validation.constraints.Size;
+
 
 @FeignClient(
     name = "caseworker-ref-data-api",
@@ -33,7 +35,7 @@ public interface CaseWorkerRefDataApi {
     ResponseEntity<Object> caseWorkerFileUpload(
         @RequestHeader(AUTHORIZATION) String authorisation,
         @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-        @RequestParam("file") MultipartFile file
+        @RequestParam("file") @Size(max = 1) MultipartFile file
     );
 
 

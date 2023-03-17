@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -18,11 +18,16 @@ import static java.util.Objects.nonNull;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class JudicialRefDataService {
 
     private final JudicialRefDataApi judicialRefDataApi;
     private final IdamService idamService;
+
+    @Autowired
+    public JudicialRefDataService(JudicialRefDataApi judicialRefDataApi, IdamService idamService) {
+        this.judicialRefDataApi = judicialRefDataApi;
+        this.idamService = idamService;
+    }
 
     public String getJudicialUserFullName(String personalCode) {
         log.info("Requesting Judicial User with personal code {}", personalCode);
