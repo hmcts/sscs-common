@@ -40,7 +40,6 @@ public class JudicialRefDataService {
     public String getJudicialUserTitleWithInitialsAndLastName(String personalCode) {
         String name = getJudicialUserFullName(personalCode);
 
-        log.info("Requesting Judicial User with name {} and personal code {}", name, personalCode);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         JudicialRefDataSearchRequest judicialRefDataUsersRequest = JudicialRefDataSearchRequest.builder()
@@ -54,8 +53,6 @@ public class JudicialRefDataService {
                 return StringUtils.convertNameToTitleInitalsAndSurname(judicialUser);
             }
         }
-
-        log.error("Unable to get {}'s title", name);
 
         return StringUtils.getInitalsAndSurnameFromName(name);
     }
