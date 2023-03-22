@@ -6,12 +6,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum AdminCorrectionType {
-    BODY("bodyCorrection", "Body correction - Send to judge"),
-    HEADER("headerCorrection", "Header correction");
+public enum HeaderCorrectionType {
+    GENERATE("generate", "Generate"),
+    UPLOAD("upload", "Upload");
 
-    final String ccdDefinition;
-    final String descriptionEn;
+    private final String ccdDefinition;
+    private final String descriptionEn;
 
     @Override
     @JsonValue
