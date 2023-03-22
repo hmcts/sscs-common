@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Correction {
+    private AdminCorrectionType adminCorrectionType;
     private CorrectionActions action;
     private RequestFormat requestFormat;
 }
