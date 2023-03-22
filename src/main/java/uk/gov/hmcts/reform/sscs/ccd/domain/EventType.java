@@ -18,7 +18,6 @@ public enum EventType {
     ADD_SC_NUMBER("addSCnumber", 0, false),
     ADJOURNED("adjourned", "hearingAdjourned", 5, true),
     ADJOURN_CASE("adjournCase", 0, false),
-    ADMIN_ACTION_CORRECTION("adminActionCorrection", 0, false),
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
     ADMIN_RESTORE_CASES("adminRestoreCases", 0, false),
     ADMIN_SEND_TOR_RSPONSE_RECEIVED("adminSendTorRsponseReceived", 0, false),
