@@ -23,6 +23,7 @@ public enum InterlocReferralReason {
     POST_HEARING_REQUEST("postHearingRequest", "Post Hearing Request"),
     REJECT_HEARING_RECORDING_REQUEST("rejectHearingRecordingRequest", "Reject hearing recording request"),
     REVIEW_AUDIO_VIDEO_EVIDENCE("reviewAudioVideoEvidence", "Review Audio Video Evidence"),
+    REVIEW_CORRECTION_REQUEST("reviewCorrectionRequest", "Review correction request"),
     REVIEW_POSTPONEMENT_REQUEST("reviewPostponementRequest", "Review hearing postponement request"),
     TIME_EXTENSION("timeExtension","Time extension");
 
