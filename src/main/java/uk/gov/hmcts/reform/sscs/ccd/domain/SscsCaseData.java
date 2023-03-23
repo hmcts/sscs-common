@@ -731,4 +731,13 @@ public class SscsCaseData implements CaseData {
     public boolean isBenefitType(Benefit benefitType) {
         return getBenefitType().filter(benefitType::equals).isPresent();
     }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public String getRespondent() {
+        if (getBenefitType().filter(benefit -> SscsType.SSCS5.equals(benefit.getSscsType())).isPresent()) {
+            return "Secretary of State for Work and Pensions";
+        }
+        return "HM Revenue & Customs";
+    }
 }
