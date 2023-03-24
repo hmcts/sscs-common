@@ -28,6 +28,11 @@ public class CcdCallbackMapService {
 
         Long caseId = Long.valueOf(caseData.getCcdCaseId());
 
+        if (nonNull(callbackMap.getPostCallbackState())) {
+            log.info("Setting State to {} for case {}", callbackMap.getPostCallbackState(), caseId);
+            caseData.setState(callbackMap.getPostCallbackState());
+        }
+
         if (nonNull(callbackMap.getPostCallbackDwpState())) {
             log.info("Setting DwpState to {} for case {}", callbackMap.getPostCallbackDwpState(), caseId);
             caseData.setDwpState(callbackMap.getPostCallbackDwpState());

@@ -7,14 +7,15 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum LibertyToApplyActions implements CcdCallbackMap {
-    REFUSE("refuse","Refuse Liberty to Apply Application", null, "", "", null);
+    REFUSE("refuse","Refuse Liberty to Apply Application", null, "", "");
 
     private final String ccdDefinition;
     private final String descriptionEn;
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpState postCallbackDwpState;
+    private final State postCallbackState = null;
+    private final DwpState postCallbackDwpState = null;
     private final InterlocReviewState postCallbackInterlocState = null;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 
