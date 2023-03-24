@@ -11,9 +11,9 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CorrectionActions implements CcdCallbackMap {
-    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", State.DORMANT_APPEAL_STATE, DwpState.CORRECTED_DECISION_NOTICE_ISSUED),
-    REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused", null, null),
-    SEND_TO_JUDGE("sendToJudge","Send Correction Application to Judge", CORRECTION_SEND_TO_JUDGE, "Correction application send to Judge (Admin)", "Correction application send to Judge (Admin)", null, null);
+    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", State.DORMANT_APPEAL_STATE, DwpState.CORRECTED_DECISION_NOTICE_ISSUED, InterlocReviewState.NONE),
+    REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused", null, null, null),
+    SEND_TO_JUDGE("sendToJudge","Send Correction Application to Judge", CORRECTION_SEND_TO_JUDGE, "Correction application send to Judge (Admin)", "Correction application send to Judge (Admin)", null, null, null);
 
     private final String ccdDefinition;
     private final String descriptionEn;
@@ -22,7 +22,7 @@ public enum CorrectionActions implements CcdCallbackMap {
     private final String callbackDescription;
     private final State postCallbackState;
     private final DwpState postCallbackDwpState;
-    private final InterlocReviewState postCallbackInterlocState = null;
+    private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 
     @Override
