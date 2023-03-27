@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,9 +30,8 @@ public class PostHearing {
     private SetAside setAside;
     @Getter(AccessLevel.NONE)
     @JsonProperty("correction")
+    @JsonUnwrapped
     private Correction correction;
-    @JsonProperty("adminCorrectionType")
-    private AdminCorrectionType adminCorrectionType;
     @Getter(AccessLevel.NONE)
     @JsonProperty("statementOfReasons")
     private StatementOfReasons statementOfReasons;
