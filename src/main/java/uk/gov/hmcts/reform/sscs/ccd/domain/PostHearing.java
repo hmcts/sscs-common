@@ -30,6 +30,8 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("correction")
     private Correction correction;
+    @JsonProperty("adminCorrectionType")
+    private AdminCorrectionType adminCorrectionType;
     @Getter(AccessLevel.NONE)
     @JsonProperty("statementOfReasons")
     private StatementOfReasons statementOfReasons;
