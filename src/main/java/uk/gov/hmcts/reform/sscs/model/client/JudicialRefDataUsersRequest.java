@@ -18,5 +18,6 @@ public class JudicialRefDataUsersRequest {
     List<String> objectIds;
     @JsonProperty("sidam_ids")
     List<String> sidamIds;
-
+    @JsonProperty("personal_code")
+    List<String> personalCodes;
 }
