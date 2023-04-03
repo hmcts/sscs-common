@@ -64,7 +64,6 @@ public enum EventType {
     CORRECTION_GRANTED("correctionGranted", 0, true),
     CORRECTION_REFUSED("correctionRefused", 0, true),
     CORRECTION_REQUEST("correctionRequest", 0, false),
-    CORRECTION_SEND_TO_JUDGE("correctionSendToJudge", 0, true),
     CREATE_APPEAL_PDF("createAppealPDF", 0, false),
     CREATE_BUNDLE("createBundle", 0, false),
     CREATE_DRAFT("createDraft", "createDraft", 0, false),

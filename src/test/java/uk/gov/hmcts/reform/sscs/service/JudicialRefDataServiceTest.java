@@ -1,5 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,11 +16,6 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataSearchRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
-
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JudicialRefDataServiceTest {

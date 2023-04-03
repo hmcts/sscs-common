@@ -1,10 +1,9 @@
 package uk.gov.hmcts.reform.sscs.utility;
 
-import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
-
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 
 public final class StringUtils {
 
