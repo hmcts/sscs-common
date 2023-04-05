@@ -13,6 +13,7 @@
     },
     {
       "matchPackageNames": ["com.github.hmcts:sscs-common"],
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/",
       "prPriority": 100
     },
     {
