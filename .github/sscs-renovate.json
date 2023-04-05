@@ -184,7 +184,7 @@
       "matchDatasources": [
         "helm"
       ],
-      "prPriority": 5,
+      "prPriority": 5
     },
     {
       "matchDatasources": [
@@ -198,6 +198,11 @@
       ],
       "prPriority": 5,
       "groupName": "Github"
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
     }
   ],
   "helm-requirements": {
