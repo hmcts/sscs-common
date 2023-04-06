@@ -8,6 +8,11 @@
   ],
   "packageRules": [
     {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
       "matchPackageNames": ["com.github.hmcts:ccd-case-document-am-client"],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/"
     },
@@ -23,6 +28,7 @@
         "gradle-git-properties"
       ],
       "prPriority": 75,
+      "automerge": false,
       "groupName": "Spring All"
     },
     {
@@ -172,6 +178,7 @@
         "terraform-provider"
       ],
       "prPriority": 5,
+      "automerge": false,
       "groupName": "Terraform"
     },
     {
@@ -199,11 +206,6 @@
       ],
       "prPriority": 5,
       "groupName": "Github"
-    },
-    {
-      "matchUpdateTypes": ["minor", "patch"],
-      "automerge": true,
-      "automergeType": "pr"
     }
   ],
   "helm-requirements": {
