@@ -81,6 +81,15 @@ public class PostHearing {
     }
 
     @JsonIgnore
+    public boolean isRefused() {
+        return SetAsideActions.REFUSE.equals(getSetAside().getAction())
+            || CorrectionActions.REFUSE.equals(getCorrection().getAction())
+            || StatementOfReasonsActions.REFUSE.equals(getStatementOfReasons().getAction())
+            || PermissionToAppealActions.REFUSE.equals(getPermissionToAppeal().getAction())
+            || LibertyToApplyActions.REFUSE.equals(getLibertyToApply().getAction());
+    }
+
+    @JsonIgnore
     public RequestFormat getRequestFormat() {
         switch (requestType) {
             case SET_ASIDE:
