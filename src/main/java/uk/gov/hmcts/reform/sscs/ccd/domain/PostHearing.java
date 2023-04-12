@@ -81,21 +81,12 @@ public class PostHearing {
     }
 
     @JsonIgnore
-    public boolean isRefused() {
-        return SetAsideActions.REFUSE.equals(getSetAside().getAction())
-            || CorrectionActions.REFUSE.equals(getCorrection().getAction())
-            || StatementOfReasonsActions.REFUSE.equals(getStatementOfReasons().getAction())
-            || PermissionToAppealActions.REFUSE.equals(getPermissionToAppeal().getAction())
-            || LibertyToApplyActions.REFUSE.equals(getLibertyToApply().getAction());
-    }
-
-    @JsonIgnore
     public RequestFormat getRequestFormat() {
         switch (requestType) {
             case SET_ASIDE:
                 return getSetAside().getRequestFormat();
             case CORRECTION:
-                break;
+                return getCorrection().getRequestFormat();
             case STATEMENT_OF_REASONS:
                 break;
             case PERMISSION_TO_APPEAL:
@@ -104,5 +95,14 @@ public class PostHearing {
                 break;
         }
         return null;
+    }
+
+    @JsonIgnore
+    public boolean isRefused() {
+        return SetAsideActions.REFUSE.equals(getSetAside().getAction())
+            || CorrectionActions.REFUSE.equals(getCorrection().getAction())
+            || StatementOfReasonsActions.REFUSE.equals(getStatementOfReasons().getAction())
+            || PermissionToAppealActions.REFUSE.equals(getPermissionToAppeal().getAction())
+            || LibertyToApplyActions.REFUSE.equals(getLibertyToApply().getAction());
     }
 }
