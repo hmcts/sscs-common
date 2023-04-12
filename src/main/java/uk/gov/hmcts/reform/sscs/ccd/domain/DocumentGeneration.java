@@ -25,4 +25,8 @@ public class DocumentGeneration {
     private String signedBy;
     @JsonProperty("signedRole")
     private String signedRole;
+    @JsonProperty("correctionGenerateNotice")
+    private YesNo correctionGenerateNotice;
+    @JsonProperty("correctionBodyContent")
+    private String correctionBodyContent;
 }
