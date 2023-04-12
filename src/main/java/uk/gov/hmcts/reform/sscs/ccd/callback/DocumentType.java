@@ -38,7 +38,9 @@ public enum DocumentType {
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request"),
     OTHER_PARTY_EVIDENCE("otherPartyEvidence", "Other party evidence"),
     OTHER_PARTY_REPRESENTATIVE_EVIDENCE("otherPartyRepEvidence", "Other party representative evidence"),
-    SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application");
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
+    SET_ASIDE_REFUSED("setAsideRefused", "Set aside refused decision notice"),
+    CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice");
 
     private final String value;
     private String label;
