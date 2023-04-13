@@ -19,6 +19,8 @@ public class DocumentGeneration {
     private YesNo generateNotice;
     @JsonProperty("bodyContent")
     private String bodyContent;
+    @JsonProperty("bodyContentCorrection")
+    private String bodyContentCorrection;
     @JsonProperty("directionNoticeContent")
     private String directionNoticeContent;
     @JsonProperty("signedBy")

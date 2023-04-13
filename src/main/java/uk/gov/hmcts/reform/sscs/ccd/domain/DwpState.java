@@ -11,6 +11,7 @@ public enum DwpState {
     APPEAL_ABATED("appealAbated", "Appeal abated"),
     APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed"),
     CORRECTION_REFUSED("correctionRefused", "Correction Refused"),
+    CORRECTION_REQUESTED("correctionRequested", "Correction requested"),
     DECISION_ACTIONED("decisionActioned", "Decision actioned"),
     DIRECTION_ACTION_REQUIRED("directionActionRequired", "Direction - action req'd"),
     DIRECTION_RESPONDED("directionResponded", "Direction - responded"),
