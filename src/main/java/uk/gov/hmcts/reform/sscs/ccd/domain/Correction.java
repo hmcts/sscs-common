@@ -16,6 +16,5 @@ import lombok.NoArgsConstructor;
 public class Correction {
     private AdminCorrectionType adminCorrectionType;
     private CorrectionActions action;
-    private HeaderCorrectionType headerCorrectionType;
     private RequestFormat requestFormat;
 }
