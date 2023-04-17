@@ -1,10 +1,5 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-@Getter
-@RequiredArgsConstructor
 public enum UserRole {
     TCW("caseworker-sscs-registrar", "Registrar"),
     CTSC_CLERK("caseworker-sscs-clerk", "Clerk"),
@@ -16,4 +11,17 @@ public enum UserRole {
 
     private final String value;
     private final String label;
+
+    UserRole(String value, String label) {
+        this.value = value;
+        this.label = label;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getLabel() {
+        return label;
+    }
 }
