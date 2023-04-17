@@ -17,18 +17,16 @@ import lombok.NoArgsConstructor;
 public class DocumentGeneration {
     @JsonProperty("generateNotice")
     private YesNo generateNotice;
+    @JsonProperty("correctionGenerateNotice")
+    private YesNo correctionGenerateNotice;
     @JsonProperty("bodyContent")
     private String bodyContent;
-    @JsonProperty("bodyContentCorrection")
-    private String bodyContentCorrection;
+    @JsonProperty("correctionBodyContent")
+    private String correctionBodyContent;
     @JsonProperty("directionNoticeContent")
     private String directionNoticeContent;
     @JsonProperty("signedBy")
     private String signedBy;
     @JsonProperty("signedRole")
     private String signedRole;
-    @JsonProperty("correctionGenerateNotice")
-    private YesNo correctionGenerateNotice;
-    @JsonProperty("correctionBodyContent")
-    private String correctionBodyContent;
 }
