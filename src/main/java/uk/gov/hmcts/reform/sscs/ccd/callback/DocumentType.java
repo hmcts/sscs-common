@@ -40,6 +40,7 @@ public enum DocumentType {
     CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
+    STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted decision notice"),
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR refused decision notice"),
     TL1_FORM("tl1Form", "TL1 Form"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
