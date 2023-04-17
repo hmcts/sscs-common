@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -16,4 +17,16 @@ public enum UserRole {
 
     private final String value;
     private final String label;
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public static UserRole getUserRoleByValue(String value) {
+        for (UserRole event : UserRole.values()) {
+            if (event.getValue().equals(value)) {
+                return event;
+            }
+        }
+
+        return null;
+    }
 }
