@@ -80,6 +80,7 @@ public class PostHearing {
         return libertyToApply;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public RequestFormat getRequestFormat() {
         switch (requestType) {
@@ -97,6 +98,7 @@ public class PostHearing {
         return null;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isRefused() {
         return SetAsideActions.REFUSE.equals(getSetAside().getAction())
