@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import java.util.stream.Stream;
-
 import lombok.Getter;
 
 @Getter

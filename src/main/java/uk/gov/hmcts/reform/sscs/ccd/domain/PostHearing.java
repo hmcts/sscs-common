@@ -56,6 +56,7 @@ public class PostHearing {
         return correction;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public StatementOfReasons getStatementOfReasons() {
         if (isNull(statementOfReasons)) {
@@ -64,6 +65,7 @@ public class PostHearing {
         return statementOfReasons;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public PermissionToAppeal getPermissionToAppeal() {
         if (isNull(permissionToAppeal)) {
@@ -72,6 +74,7 @@ public class PostHearing {
         return permissionToAppeal;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public LibertyToApply getLibertyToApply() {
         if (isNull(libertyToApply)) {
@@ -91,6 +94,7 @@ public class PostHearing {
             case STATEMENT_OF_REASONS:
             case PERMISSION_TO_APPEAL:
             case LIBERTY_TO_APPLY:
+            default:
                 break;
         }
         return null;
