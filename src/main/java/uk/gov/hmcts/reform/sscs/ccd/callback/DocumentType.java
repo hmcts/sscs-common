@@ -38,6 +38,7 @@ public enum DocumentType {
     SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
+    STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     TL1_FORM("tl1Form", "TL1 Form"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
