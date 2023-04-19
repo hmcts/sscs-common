@@ -41,6 +41,7 @@ public enum DocumentType {
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted decision notice"),
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR refused decision notice"),
+    STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     TL1_FORM("tl1Form", "TL1 Form"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
