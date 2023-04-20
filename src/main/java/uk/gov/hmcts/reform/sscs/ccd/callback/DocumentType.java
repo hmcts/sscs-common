@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import java.util.stream.Stream;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum DocumentType {
 
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
@@ -52,11 +55,6 @@ public enum DocumentType {
 
     DocumentType(String value) {
         this.value = value;
-    }
-
-    DocumentType(String value, String label) {
-        this.value = value;
-        this.label = label;
     }
 
     public static DocumentType fromValue(String text) {
