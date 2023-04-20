@@ -24,8 +24,6 @@ public enum DocumentType {
     DWP_RESPONSE("DWP response", "FTA response"),
     FINAL_DECISION_NOTICE("finalDecisionNotice", "Final Decision Notice"),
     GENERIC_NOTICE("genericNotice", "Generic Notice"),
-    REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
-    CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     HMCTS_EVIDENCE("hmctsEvidence", "HMCTS evidence"),
     JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence"),
     OTHER_DOCUMENT("Other document"),
