@@ -1,19 +1,22 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
+import java.util.stream.Stream;
+
 import lombok.Getter;
 
 @Getter
 public enum ScannedDocumentType {
 
     CHERISHED("cherished", "Cherished"),
-    OTHER("other", "Other"),
-    FORM("form", "Form"),
-    COVERSHEET("coversheet", "Coversheet"),
-    REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
-    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
+    CORRECTION_APPLICATION("correctionApplication", "Correction application"),
+    COVERSHEET("coversheet", "Coversheet"),
+    FORM("form", "Form"),
+    OTHER("other", "Other"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
-    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application");
+    REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application"),
+    URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request");
 
     private String value;
     private String label;
@@ -25,6 +28,13 @@ public enum ScannedDocumentType {
     ScannedDocumentType(String value, String label) {
         this.value = value;
         this.label = label;
+    }
+
+    public static ScannedDocumentType fromValue(String text) {
+      return Stream.of(ScannedDocumentType.values())
+            .filter(type -> type.getValue() != null && type.getValue().equalsIgnoreCase(text))
+            .findFirst()
+            .orElse(null);  
     }
 
 }
