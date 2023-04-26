@@ -147,7 +147,7 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.6'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.6'
 
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.15'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
     implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.1', {
         exclude group: 'commons-collections', module: 'commons-collections'
