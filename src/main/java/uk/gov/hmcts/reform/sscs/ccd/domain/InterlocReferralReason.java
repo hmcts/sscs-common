@@ -10,6 +10,7 @@ public enum InterlocReferralReason {
 
     ADVICE_ON_HOW_TO_PROCEED("adviceOnHowToProceed", "Advice on how to proceed"),
     COMPLEX_CASE("complexCase", "Complex Case"),
+    CONFIRM_PANEL_AND_LISTING_DIRECTIONS("ConfirmPanelAndListingDirections","Confirm panel and listing directions"),
     CONFIRM_PANEL_COMPOSITION_AND_LISTING_DIRECTIONS("confirmPanelCompositionAndListingDirections","Confirm panel composition and listing directions"),
     LISTING_DIRECTIONS("listingDirections", "Listing directions"),
     NONE("none", "N/A"),
