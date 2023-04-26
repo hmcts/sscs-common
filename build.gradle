@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id "org.owasp.dependencycheck" version "8.2.0"
+    id "org.owasp.dependencycheck" version "8.2.1"
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -62,7 +62,7 @@ dependencyCheck {
 // region test coverage
 
 jacoco {
-    toolVersion = "0.8.8"
+    toolVersion = "0.8.10"
 }
 
 jacocoTestReport {
