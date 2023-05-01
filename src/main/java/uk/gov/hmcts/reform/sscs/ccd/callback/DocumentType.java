@@ -23,6 +23,7 @@ public enum DocumentType {
     DWP_EVIDENCE("dwpEvidence", "FTA evidence"),
     DWP_RESPONSE("DWP response", "FTA response"),
     FINAL_DECISION_NOTICE("finalDecisionNotice", "Final Decision Notice"),
+    GENERIC_NOTICE("genericNotice", "Generic Notice"),
     HMCTS_EVIDENCE("hmctsEvidence", "HMCTS evidence"),
     JOINT_PARTY_EVIDENCE("jointPartyEvidence", "Joint party evidence"),
     OTHER_DOCUMENT("Other document"),
