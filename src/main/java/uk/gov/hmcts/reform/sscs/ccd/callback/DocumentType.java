@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import java.util.stream.Stream;
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum DocumentType {
 
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
@@ -14,6 +15,7 @@ public enum DocumentType {
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     CORRECTION_APPLICATION("correctionApplication", "Correction application"),
+    CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
     DL16("dl16", "DL16"),
@@ -37,8 +39,12 @@ public enum DocumentType {
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     RIP1("rip1Document", "RIP 1 document"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
+    SET_ASIDE_REFUSED("setAsideRefused", "Set aside refused decision notice"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
+    STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted decision notice"),
+    STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR refused decision notice"),
+    STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     TL1_FORM("tl1Form", "TL1 Form"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
@@ -49,11 +55,6 @@ public enum DocumentType {
 
     DocumentType(String value) {
         this.value = value;
-    }
-
-    DocumentType(String value, String label) {
-        this.value = value;
-        this.label = label;
     }
 
     public static DocumentType fromValue(String text) {

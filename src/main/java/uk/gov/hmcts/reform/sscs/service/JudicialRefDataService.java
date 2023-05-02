@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Objects.nonNull;
+
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,10 +14,6 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 import uk.gov.hmcts.reform.sscs.utility.StringUtils;
-
-import java.util.List;
-
-import static java.util.Objects.nonNull;
 
 @Service
 @Slf4j
