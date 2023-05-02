@@ -915,6 +915,47 @@ public class SscsCaseDataTest {
 
         // then
         assertEquals(actualValue, expectedValue);
+    }
 
+    @Test
+    public void givenRepresentative_thenIsThereARepresentativeIsTrue() {
+        var representative = Representative.builder().hasRepresentative(YES.getValue()).build();
+        var appeal = Appeal.builder().rep(representative).build();
+        var caseData = SscsCaseData.builder().appeal(appeal).build();
+
+        assertTrue(caseData.isThereARepresentative());
+    }
+
+    @Test
+    public void givenNoRepresentative_thenIsThereARepresentativeIsFalse() {
+        var appeal = Appeal.builder().build();
+        var caseData = SscsCaseData.builder().appeal(appeal).build();
+
+        assertFalse(caseData.isThereARepresentative());
+    }
+
+    @Test
+    public void givenHasRepresentativeIsNo_thenIsThereARepresentativeIsFalse() {
+        var representative = Representative.builder().hasRepresentative(NO.getValue()).build();
+        var appeal = Appeal.builder().rep(representative).build();
+        var caseData = SscsCaseData.builder().appeal(appeal).build();
+
+        assertFalse(caseData.isThereARepresentative());
+    }
+
+    @Test
+    public void givenHasJointPartyIsYes_thenIsThereAJointPartyIsTrue() {
+        var jointParty = JointParty.builder().hasJointParty(YES).build();
+        var caseData = SscsCaseData.builder().jointParty(jointParty).build();
+
+        assertTrue(caseData.isThereAJointParty());
+    }
+
+    @Test
+    public void givenHasJointPartyIsNo_thenIsThereAJointPartyIsFalse() {
+        var jointParty = JointParty.builder().hasJointParty(NO).build();
+        var caseData = SscsCaseData.builder().jointParty(jointParty).build();
+
+        assertFalse(caseData.isThereAJointParty());
     }
 }

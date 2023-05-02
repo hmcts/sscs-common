@@ -1,21 +1,19 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public enum UserRole {
-    TCW("caseworker-sscs-registrar"),
-    CTSC_CLERK("caseworker-sscs-clerk"),
-    DWP("caseworker-sscs-dwpresponsewriter"),
-    JUDGE("caseworker-sscs-judge"),
-    SUPER_USER("caseworker-sscs-superuser"),
-    SYSTEM_USER("caseworker-sscs-systemupdate"),
-    CITIZEN("citizen");
+    SUPER_USER("caseworker-sscs-superuser", "Super User"),
+    SYSTEM_USER("caseworker-sscs-systemupdate", "System User"),
+    JUDGE("caseworker-sscs-judge", "Judge"),
+    TCW("caseworker-sscs-registrar", "Registrar"),
+    CTSC_CLERK("caseworker-sscs-clerk", "Clerk"),
+    DWP("caseworker-sscs-dwpresponsewriter", "FTA"),
+    CITIZEN("citizen", "Citizen");
 
     private final String value;
-
-    UserRole(String value) {
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
-    }
+    private final String label;
 }
