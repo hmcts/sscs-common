@@ -132,6 +132,7 @@ public enum EventType {
     ISSUE_FINAL_DECISION("issueFinalDecision", 0, false),
     ISSUE_FINAL_DECISION_WELSH("issueFinalDecisionWelsh", 0, false),
     ISSUE_FURTHER_EVIDENCE("issueFurtherEvidence", 0, false),
+    ISSUE_GENERIC_LETTER("issueGenericLetter", 0, false),
     JOINT_PARTY_ADDED("jointPartyAdded", 0, false),
     JUDGE_DECISION_ADMIT_APPEAL("judgeDecisionAdmitAppeal", 0, false),
     JUDGE_DECISION_APPEAL_TO_PROCEED("judgeDecisionAppealToProceed", 0, false),
