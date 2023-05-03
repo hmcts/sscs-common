@@ -56,6 +56,7 @@ public class PostHearing {
         return correction;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public StatementOfReasons getStatementOfReasons() {
         if (isNull(statementOfReasons)) {
@@ -64,6 +65,7 @@ public class PostHearing {
         return statementOfReasons;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public PermissionToAppeal getPermissionToAppeal() {
         if (isNull(permissionToAppeal)) {
@@ -72,6 +74,7 @@ public class PostHearing {
         return permissionToAppeal;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public LibertyToApply getLibertyToApply() {
         if (isNull(libertyToApply)) {
@@ -80,6 +83,7 @@ public class PostHearing {
         return libertyToApply;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public RequestFormat getRequestFormat() {
         switch (requestType) {
@@ -88,21 +92,12 @@ public class PostHearing {
             case CORRECTION:
                 return getCorrection().getRequestFormat();
             case STATEMENT_OF_REASONS:
-                break;
+                return getStatementOfReasons().getRequestFormat();
             case PERMISSION_TO_APPEAL:
-                break;
             case LIBERTY_TO_APPLY:
+            default:
                 break;
         }
         return null;
-    }
-
-    @JsonIgnore
-    public boolean isRefused() {
-        return SetAsideActions.REFUSE.equals(getSetAside().getAction())
-            || CorrectionActions.REFUSE.equals(getCorrection().getAction())
-            || StatementOfReasonsActions.REFUSE.equals(getStatementOfReasons().getAction())
-            || PermissionToAppealActions.REFUSE.equals(getPermissionToAppeal().getAction())
-            || LibertyToApplyActions.REFUSE.equals(getLibertyToApply().getAction());
     }
 }
