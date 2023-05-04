@@ -93,8 +93,9 @@ public class PostHearing {
                 return getCorrection().getRequestFormat();
             case STATEMENT_OF_REASONS:
                 return getStatementOfReasons().getRequestFormat();
-            case PERMISSION_TO_APPEAL:
             case LIBERTY_TO_APPLY:
+                return getLibertyToApply().getRequestFormat();
+            case PERMISSION_TO_APPEAL:
             default:
                 break;
         }
