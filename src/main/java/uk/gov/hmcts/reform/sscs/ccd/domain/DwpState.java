@@ -40,6 +40,7 @@ public enum DwpState {
     SET_ASIDE_GRANTED("setAsideGranted", "Set Aside Granted"),
     SET_ASIDE_REQUESTED("setAsideRequested", "Set Aside Requested"),
     STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted"),
+    STATEMENT_OF_REASONS_ISSUED("statementOfReasonsIssued", "SOR Issued"),
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR Refused"),
     STATEMENT_OF_REASONS_REQUESTED("statementOfReasonsRequested", "SOR Requested"),
     STRIKE_OUT_ACTIONED("strikeOutActioned", "Strike-out actioned"),
