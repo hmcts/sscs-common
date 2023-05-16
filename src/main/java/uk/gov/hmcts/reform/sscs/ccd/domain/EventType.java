@@ -234,7 +234,8 @@ public enum EventType {
     VOID_CASE("voidCase", 0, false),
     VOID_INCOMPLETE_APPLICATION("voidIncompleteApplication", 0, false),
     WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
-    WRITE_FINAL_DECISION("writeFinalDecision", 0, false);
+    WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
+    WRITE_STATEMENT_OF_REASONS("writeStatementOfReasons", 0, false);
 
     private final String type;
     private final String ccdType;
