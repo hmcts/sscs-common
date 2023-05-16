@@ -27,6 +27,8 @@ public class DocumentGeneration {
     private String correctionBodyContent;
     @JsonProperty("statementOfReasonsBodyContent")
     private String statementOfReasonsBodyContent;
+    @JsonProperty("writeStatementOfReasonsBodyContent")
+    private String writeStatementOfReasonsBodyContent;
     @JsonProperty("directionNoticeContent")
     private String directionNoticeContent;
     @JsonProperty("signedBy")
