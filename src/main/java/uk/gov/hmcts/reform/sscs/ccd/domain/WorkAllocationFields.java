@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -17,4 +19,10 @@ public class WorkAllocationFields {
 
     @JsonInclude
     private String addedDocuments;
+
+    @JsonInclude
+    private List<String> scannedDocumentTypes;
+
+    @JsonInclude
+    private List<String> uploadedWelshDocumentTypes;
 }
