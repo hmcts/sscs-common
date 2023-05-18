@@ -21,6 +21,8 @@ public class DocumentGeneration {
     private YesNo correctionGenerateNotice;
     @JsonProperty("statementOfReasonsGenerateNotice")
     private YesNo statementOfReasonsGenerateNotice;
+    @JsonProperty("writeStatementOfReasonsGenerateNotice")
+    private YesNo writeStatementOfReasonsGenerateNotice;
     @JsonProperty("bodyContent")
     private String bodyContent;
     @JsonProperty("correctionBodyContent")
