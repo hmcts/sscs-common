@@ -160,7 +160,7 @@ public class RoboticsJsonMapper {
         if (hearingOptions.getArrangements() != null) {
 
             if (hearingOptions.getLanguageInterpreter() != null && hearingOptions.getLanguageInterpreter().equals(YES) && hearingOptions.getLanguages() != null) {
-                hearingArrangements.put("languageInterpreter", hearingOptions.getLanguages());
+                hearingArrangements.put("languageInterpreter", hearingOptions.getLanguages().getValue().getLabel());
             }
 
             if (Boolean.TRUE.equals(hearingOptions.wantsSignLanguageInterpreter()) && hearingOptions.getSignLanguageType() != null) {

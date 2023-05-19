@@ -126,7 +126,7 @@ public final class CaseDataUtils {
         HearingOptions hearingOptions = HearingOptions.builder()
                 .wantsToAttend(YES)
                 .languageInterpreter(YES)
-                .languages("Spanish")
+                .languages(new DynamicList("Spanish"))
                 .signLanguageType("A sign language")
                 .arrangements(Arrays.asList("hearingLoop", "signLanguageInterpreter"))
                 .other("Yes, this...")

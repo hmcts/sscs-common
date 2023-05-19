@@ -273,7 +273,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenLanguageInterpreterIsTrue_thenSetToLanguageInterpreterType() {
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages("My Language");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages(new DynamicList("My Language"));
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter("Yes");
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -331,7 +331,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenLanguageInterpreterIsFalse_thenDoNotSetLanguageInterpreter() {
-        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages("My Language");
+        roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguages(new DynamicList("My Language"));
         roboticsWrapper.getSscsCaseData().getAppeal().getHearingOptions().setLanguageInterpreter("No");
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
