@@ -20,4 +20,5 @@ public class PanelMemberExclusions {
     private YesNo arePanelMembersReserved;
     private YesNo arePanelMembersExcluded;
     private List<CcdValue<JudicialUserBase>> excludedPanelMembers;
+    private List<CcdValue<JudicialUserBase>> reservedPanelMembers;
 }
