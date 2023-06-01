@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CorrectionActions implements CcdCallbackMap {
-    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", DwpState.CORRECTED_DECISION_NOTICE_ISSUED, InterlocReviewState.NONE),
+    GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", DwpState.CORRECTION_GRANTED, InterlocReviewState.NONE),
     REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused", DwpState.CORRECTION_REFUSED, InterlocReviewState.NONE);
 
     private final String ccdDefinition;

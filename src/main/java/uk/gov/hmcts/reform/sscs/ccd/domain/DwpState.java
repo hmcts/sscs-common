@@ -10,7 +10,6 @@ public enum DwpState {
     ADJOURNMENT_NOTICE_ISSUED("adjournmentNoticeIssued", "Adjournment notice issued"),
     APPEAL_ABATED("appealAbated", "Appeal abated"),
     APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed"),
-    CORRECTED_DECISION_NOTICE_ISSUED("correctedDecisionNoticeIssued", "Corrected decision notice issued"),
     CORRECTION_GRANTED("correctionGranted", "Correction Granted"),
     CORRECTION_REFUSED("correctionRefused", "Correction Refused"),
     CORRECTION_REQUESTED("correctionRequested", "Correction requested"),
