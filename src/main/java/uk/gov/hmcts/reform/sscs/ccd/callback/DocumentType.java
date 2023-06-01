@@ -14,7 +14,7 @@ public enum DocumentType {
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     CORRECTION_APPLICATION("correctionApplication", "Correction application"),
-    DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft corrected final decision notice"),
+    DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft Corrected Final Decision Notice"),
     CORRECTION_GRANTED("correctionGranted", "Corrected final decision notice"),
     CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
