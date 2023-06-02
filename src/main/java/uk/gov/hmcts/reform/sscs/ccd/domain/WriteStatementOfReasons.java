@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.STATEMENT_OF_REASONS_ISSUED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SOR_WRITE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POST_HEARING_APP_SOR_WRITTEN;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.NONE;
 
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum WriteStatementOfReasons implements CcdCallbackMap {
-    IN_TIME("inTime","In time", SOR_WRITE, "Post hearing application - SOR written", "Post hearing application - SOR written", STATEMENT_OF_REASONS_ISSUED, NONE);
+    IN_TIME("inTime","In time", POST_HEARING_APP_SOR_WRITTEN, "Post hearing application - SOR written", "Post hearing application - SOR written", STATEMENT_OF_REASONS_ISSUED, NONE);
 
     private final String ccdDefinition;
     private final String descriptionEn;
