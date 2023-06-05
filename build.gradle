@@ -14,8 +14,11 @@ group 'com.github.hmcts'
 // Do not change this version number
 version buildNumber
 
-sourceCompatibility = 11
-targetCompatibility = 11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 repositories {
     mavenLocal()
