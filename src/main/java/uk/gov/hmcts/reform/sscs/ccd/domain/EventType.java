@@ -138,6 +138,8 @@ public enum EventType {
     JUDGE_DECISION_STRIKEOUT("judgeDecisionStrikeout", 0, false),
     JUDGE_DIRECTION_ISSUED("judgeDirectionIssued", 0, false),
     LAPSED_REVISED("lapsedRevised", "appealLapsed", 6, true),
+    LIBERTY_TO_APPLY_GRANTED("libertyToApplyGranted", 0, true),
+    LIBERTY_TO_APPLY_REFUSED("libertyToApplyRefused", 0, true),
     LIBERTY_TO_APPLY_REQUEST("libertyToApplyRequest", 0, false),
     LINK_A_CASE("linkACase", 0, false),
     LISTING_ERROR("listingError", 0, false),
