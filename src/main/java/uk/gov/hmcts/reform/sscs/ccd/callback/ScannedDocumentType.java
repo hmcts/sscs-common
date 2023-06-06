@@ -13,6 +13,7 @@ public enum ScannedDocumentType {
     CORRECTION_APPLICATION("correctionApplication", "Correction application"),
     COVERSHEET("coversheet", "Coversheet"),
     FORM("form", "Form"),
+    LIBERTY_TO_APPLY_APPLICATION("libertyToApplyApplication", "Liberty to Apply application"),
     OTHER("other", "Other"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
