@@ -21,16 +21,12 @@ public class DocumentGeneration {
     private YesNo correctionGenerateNotice;
     @JsonProperty("statementOfReasonsGenerateNotice")
     private YesNo statementOfReasonsGenerateNotice;
-    @JsonProperty("writeStatementOfReasonsGenerateNotice")
-    private YesNo writeStatementOfReasonsGenerateNotice;
     @JsonProperty("bodyContent")
     private String bodyContent;
     @JsonProperty("correctionBodyContent")
     private String correctionBodyContent;
     @JsonProperty("statementOfReasonsBodyContent")
     private String statementOfReasonsBodyContent;
-    @JsonProperty("writeStatementOfReasonsBodyContent")
-    private String writeStatementOfReasonsBodyContent;
     @JsonProperty("directionNoticeContent")
     private String directionNoticeContent;
     @JsonProperty("signedBy")
