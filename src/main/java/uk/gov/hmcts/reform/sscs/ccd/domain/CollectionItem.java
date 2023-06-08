@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -24,6 +23,11 @@ public class CollectionItem<V> {
         @JsonProperty("value") V value) {
         this.id = id;
         this.value = value;
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
     @Override
