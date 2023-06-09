@@ -26,19 +26,4 @@ public class SchedulingAndListingFields {
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
     private List<AmendReason> amendReasons;
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public PanelMemberExclusions getPanelMemberExclusions() {
-        if (panelMemberExclusions == null) {
-            panelMemberExclusions = PanelMemberExclusions.builder().build();
-        }
-        return panelMemberExclusions;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonProperty
-    public void setPanelMemberExclusions(PanelMemberExclusions panelMemberExclusions) {
-        this.panelMemberExclusions = panelMemberExclusions;
-    }
 }
