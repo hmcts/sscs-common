@@ -156,6 +156,8 @@ public enum EventType {
     NOT_LISTABLE("notListable", 0, false),
     PANEL_UPDATE("panelUpdate", 0, false),
     PAST_HEARING_BOOKED("pastHearingBooked", "pastHearingBooked", 10, true),
+    PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", 0, true),
+    PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", 0, true),
     PERMISSION_TO_APPEAL_REQUEST("permissionToAppealRequest", 0, false),
     POSTPONED("postponed", "hearingPostponed", 8, true),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
