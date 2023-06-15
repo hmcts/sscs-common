@@ -10,4 +10,10 @@
     <packageUrl regex="true">^pkg:maven/org\.json/json@.*$</packageUrl>
     <cve>CVE-2022-45688</cve>
   </suppress>
+  <suppress until = "2023-07-01">
+    <notes><![CDATA[
+   until Java 17 update
+   ]]></notes>
+    <cve>CVE-2023-20883</cve>
+  </suppress>
 </suppressions>
