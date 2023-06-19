@@ -16,6 +16,7 @@ public class HearingOptions {
     private String wantsSupport;
     private String languageInterpreter;
     private String languages;
+    private DynamicList languagesList;
     private String signLanguageType;
     private List<String> arrangements;
     private String scheduleHearing;
@@ -28,6 +29,7 @@ public class HearingOptions {
                           @JsonProperty("wantsSupport") String wantsSupport,
                           @JsonProperty("languageInterpreter") String languageInterpreter,
                           @JsonProperty("languages") String languages,
+                          @JsonProperty("languagesList") DynamicList languagesList,
                           @JsonProperty("signLanguageType") String signLanguageType,
                           @JsonProperty("arrangements") List<String> arrangements,
                           @JsonProperty("scheduleHearing") String scheduleHearing,
@@ -38,6 +40,7 @@ public class HearingOptions {
         this.wantsSupport = wantsSupport;
         this.languageInterpreter = languageInterpreter;
         this.languages = languages;
+        this.languagesList = languagesList;
         this.signLanguageType = signLanguageType;
         this.arrangements = arrangements;
         this.scheduleHearing = scheduleHearing;
