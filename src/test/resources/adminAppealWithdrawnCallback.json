@@ -220,9 +220,32 @@
       "generatedMobile": "01234567890",
       "workBasketHearingDate": null,
       "workBasketHearingEpimsId": null,
-      "postHearing":  null,
-      "documentGeneration": null,
-      "documentStaging":  null
+      "postHearing": {
+        "requestType": null,
+        "reviewType": null,
+        "setAside": null,
+        "correction": null,
+        "statementOfReasons": null,
+        "libertyToApply": null,
+        "permissionToAppeal": null
+      },
+      "documentGeneration": {
+        "generateNotice": null,
+        "correctionGenerateNotice": null,
+        "statementOfReasonsGenerateNotice": null,
+        "libertyToApplyGenerateNotice": null,
+        "bodyContent": null,
+        "correctionBodyContent": null,
+        "statementOfReasonsBodyContent": null,
+        "libertyToApplyBodyContent": null,
+        "directionNoticeContent": null,
+        "signedBy": null,
+        "signedRole": null
+      },
+      "documentStaging":  {
+        "documentLink": null,
+        "dateAdded": null
+      }
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -987,9 +1010,32 @@
       "generatedMobile": "01234567890",
       "workBasketHearingDate": null,
       "workBasketHearingEpimsId": null,
-      "postHearing":  null,
-      "documentGeneration": null,
-      "documentStaging":  null
+      "postHearing": {
+        "requestType": null,
+        "reviewType": null,
+        "setAside": null,
+        "correction": null,
+        "statementOfReasons": null,
+        "libertyToApply": null,
+        "permissionToAppeal": null
+      },
+      "documentGeneration": {
+        "generateNotice": null,
+        "correctionGenerateNotice": null,
+        "statementOfReasonsGenerateNotice": null,
+        "libertyToApplyGenerateNotice": null,
+        "bodyContent": null,
+        "correctionBodyContent": null,
+        "statementOfReasonsBodyContent": null,
+        "libertyToApplyBodyContent": null,
+        "directionNoticeContent": null,
+        "signedBy": null,
+        "signedRole": null
+      },
+      "documentStaging":  {
+        "documentLink": null,
+        "dateAdded": null
+      }
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
