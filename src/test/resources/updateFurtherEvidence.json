@@ -187,7 +187,10 @@
       },
       "generatedMobile": "07398785050",
       "workBasketHearingDate": null,
-      "workBasketHearingEpimsId": null
+      "workBasketHearingEpimsId": null,
+      "postHearing":  null,
+      "documentGeneration": null,
+      "documentStaging":  null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -761,7 +764,10 @@
       "generatedDOB": "1981-11-11",
       "generatedMobile": "07398785050",
       "workBasketHearingDate": null,
-      "workBasketHearingEpimsId": null
+      "workBasketHearingEpimsId": null,
+      "postHearing":  null,
+      "documentGeneration": null,
+      "documentStaging":  null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

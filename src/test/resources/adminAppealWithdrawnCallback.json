@@ -219,7 +219,10 @@
       }],
       "generatedMobile": "01234567890",
       "workBasketHearingDate": null,
-      "workBasketHearingEpimsId": null
+      "workBasketHearingEpimsId": null,
+      "postHearing":  null,
+      "documentGeneration": null,
+      "documentStaging":  null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -983,7 +986,10 @@
       }],
       "generatedMobile": "01234567890",
       "workBasketHearingDate": null,
-      "workBasketHearingEpimsId": null
+      "workBasketHearingEpimsId": null,
+      "postHearing":  null,
+      "documentGeneration": null,
+      "documentStaging":  null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
