@@ -1,12 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Objects.isNull;
-
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Arrays;
+
+import static java.util.Objects.isNull;
 
 @Getter
 @RequiredArgsConstructor
@@ -30,6 +31,7 @@ public enum State {
     VOID_STATE("voidState"),
     WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
     WITH_DWP("withDwp"),
+    WITH_UPPER_TRIBUNAL("withUpperTribunal"),
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
 
