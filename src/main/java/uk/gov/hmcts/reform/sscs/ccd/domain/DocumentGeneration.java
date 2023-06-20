@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude
 public class DocumentGeneration {
     @JsonProperty("generateNotice")
     private YesNo generateNotice;

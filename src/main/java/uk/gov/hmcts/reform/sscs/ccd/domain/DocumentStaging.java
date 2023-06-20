@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude
 public class DocumentStaging {
     @JsonProperty("previewDocument")
     private DocumentLink previewDocument;
