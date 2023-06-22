@@ -14,12 +14,6 @@ group 'com.github.hmcts'
 // Do not change this version number
 version buildNumber
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
-}
-
 repositories {
     mavenLocal()
     mavenCentral()
