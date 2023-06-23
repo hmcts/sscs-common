@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum LibertyToApplyActions implements CcdCallbackMap {
-    GRANT("grant","Grant Liberty to Apply Application", LIBERTY_TO_APPLY_GRANTED, "Liberty to apply application granted", "Liberty to apply application granted", DwpState.LIBERTY_TO_APPLY_GRANTED, InterlocReviewState.NONE),
+    GRANT("grant","Grant Liberty to Apply Application", LIBERTY_TO_APPLY_GRANTED, "Liberty to apply application granted", "Liberty to apply application granted", DwpState.LIBERTY_TO_APPLY_GRANTED, InterlocReviewState.AWAITING_ADMIN_ACTION),
     REFUSE("refuse","Refuse Liberty to Apply Application", LIBERTY_TO_APPLY_REFUSED, "Liberty to apply application Refused", "Liberty to apply application Refused", DwpState.LIBERTY_TO_APPLY_REFUSED, InterlocReviewState.NONE);
 
     private final String ccdDefinition;
