@@ -62,8 +62,6 @@ public class CcdClient {
     }
 
     public CaseDetails submitEventForCaseworker(IdamTokens idamTokens, Long caseId, CaseDataContent caseDataContent) {
-        log.info("Submitting CCD event for caseworker: {}", caseDataContent.getEvent().getDescription());
-
         return coreCaseDataApi.submitEventForCaseWorker(
                 idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(),
