@@ -15,6 +15,7 @@ public enum ScannedDocumentType {
     FORM("form", "Form"),
     LIBERTY_TO_APPLY_APPLICATION("libertyToApplyApplication", "Liberty to Apply application"),
     OTHER("other", "Other"),
+    PERMISSION_TO_APPEAL_APPLICATION("permissionToAppealApplication", "Permission to Appeal application"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application"),
