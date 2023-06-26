@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.util.Objects.nonNull;
 
 import java.util.List;
-
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
