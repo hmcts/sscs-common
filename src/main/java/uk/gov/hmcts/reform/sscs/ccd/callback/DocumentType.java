@@ -37,6 +37,7 @@ public enum DocumentType {
     OTHER_PARTY_EVIDENCE("otherPartyEvidence", "Other party evidence"),
     OTHER_PARTY_HEARING_PREFERENCES("otherPartyHearingPreferences", "Other party hearing preferences"),
     OTHER_PARTY_REPRESENTATIVE_EVIDENCE("otherPartyRepEvidence", "Other party representative evidence"),
+    PERMISSION_TO_APPEAL_APPLICATION("permissionToAppealApplication", "Permission to Appeal application"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),

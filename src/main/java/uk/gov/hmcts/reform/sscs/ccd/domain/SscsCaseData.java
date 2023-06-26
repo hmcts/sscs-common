@@ -174,6 +174,18 @@ public class SscsCaseData implements CaseData {
     @Deprecated
     private DirectionType directionType;
     private DynamicList directionTypeDl;
+
+    private String confidentialityType;
+    private YesNo sendDirectionNoticeToFTA;
+    private YesNo sendDirectionNoticeToRepresentative;
+    private YesNo sendDirectionNoticeToOtherPartyRep;
+    private YesNo sendDirectionNoticeToOtherPartyAppointee;
+    private YesNo sendDirectionNoticeToOtherParty;
+    private YesNo sendDirectionNoticeToJointParty;
+    private YesNo sendDirectionNoticeToAppellantOrAppointee;
+    private YesNo hasOtherPartyRep;
+    private YesNo hasOtherPartyAppointee;
+
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
