@@ -23,7 +23,5 @@ public class WorkAllocationFields {
 
     private List<String> uploadedWelshDocumentTypes;
 
-    private Integer panelCount;
-
-    private Integer sessionCategory;
+    private List<String> assignedCaseRoles;
 }
