@@ -103,4 +103,12 @@ public class HearingDurationsServiceTest {
 
         assertThat(result).isEqualTo(45);
     }
+
+    @DisplayName("When the list contains a non-existent elements Disputed is given to getDurationFaceToFace"
+            + "the valid duration is returned")
+    @Test
+    public void testAddExtraTimeIncorrectIssueCode() {
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("TEST"));
+        assertThat(result).isEqualTo(30);
+    }
 }
