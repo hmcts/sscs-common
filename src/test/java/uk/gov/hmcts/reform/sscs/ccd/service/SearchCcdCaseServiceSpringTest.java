@@ -110,7 +110,7 @@ public class SearchCcdCaseServiceSpringTest {
     @Test
     public void shouldRetryFindCaseForGivenCaseReferenceNumberUntilItSucceeds() {
 
-        SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
+        SearchSourceBuilder query = findCaseBySingleField("reference", CASE_REF);
         when(ccdClient.searchCases(idamTokens, query.toString()))
                 .thenThrow(new RuntimeException("connect exception"))
                 .thenThrow(new RuntimeException("connect exception"))
