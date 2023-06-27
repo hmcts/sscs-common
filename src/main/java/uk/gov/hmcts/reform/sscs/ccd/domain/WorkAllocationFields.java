@@ -25,5 +25,7 @@ public class WorkAllocationFields {
 
     private List<String> assignedCaseRoles;
 
+    private List<String> previouslyAssignedCaseRoles;
+
     private Integer daysToHearing;
 }

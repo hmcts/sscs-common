@@ -246,7 +246,8 @@ public enum EventType {
     WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
-    BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false);
+    BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false),
+    NEW_CASE_ROLES_ASSIGNED("newCaseRolesAssigned",0,false);
 
     private final String type;
     private final String ccdType;
