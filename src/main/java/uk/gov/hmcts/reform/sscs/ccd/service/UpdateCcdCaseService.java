@@ -43,8 +43,8 @@ public class UpdateCcdCaseService {
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary, 
                                         String description, IdamTokens idamTokens) {
-        log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventType, eventToken);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventId, eventToken, caseData, summary, description);
+        log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData, summary, description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
