@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 
 @FeignClient(
         name = "ccd-callback-orchestrator-api",
@@ -26,6 +28,6 @@ public interface CallbackOrchestratorApi {
     ResponseEntity<String> sendMessageToCallbackOrchestrator(
             @RequestHeader(AUTHORIZATION) String authorisation,
             @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-            @RequestBody String body
+            @RequestBody Callback<SscsCaseData> body
     );
 }
