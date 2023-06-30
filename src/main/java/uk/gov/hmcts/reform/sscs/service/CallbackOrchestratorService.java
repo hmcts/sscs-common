@@ -26,8 +26,8 @@ public class CallbackOrchestratorService {
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         try {
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String body = ow.writeValueAsString(callback);
+            ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String body = objectWriter.writeValueAsString(callback);
 
             ResponseEntity<String> response = callbackOrchestratorApi.sendMessageToCallbackOrchestrator(
                     idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), body);
