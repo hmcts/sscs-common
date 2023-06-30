@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(
         name = "ccd-callback-orchestrator-api",
-        url = "${ccd-callback-orchestrator-api}"
+        url = "${ccd-callback-orchestrator.api.url}"
 )
 public interface CallbackOrchestratorApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
