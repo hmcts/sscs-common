@@ -130,6 +130,7 @@ task runGitPreCommitTasks {
 }
 
 dependencies {
+
     api group: 'com.google.guava', name: 'guava', version: '32.1.0-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
