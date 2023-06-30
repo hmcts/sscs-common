@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,9 +25,16 @@ public class CallbackOrchestratorService {
         log.info("Sending message to the callback orchestrator for the event {}", callback.getEvent());
         IdamTokens idamTokens = idamService.getIdamTokens();
 
-        ResponseEntity<String> response = callbackOrchestratorApi.sendMessageToCallbackOrchestrator(
-                idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), callback.toString());
+        try {
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String body = ow.writeValueAsString(callback);
 
-        return response.getStatusCode();
+            ResponseEntity<String> response = callbackOrchestratorApi.sendMessageToCallbackOrchestrator(
+                    idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), body);
+
+            return response.getStatusCode();
+        } catch (JsonProcessingException e) {
+            return HttpStatus.BAD_REQUEST;
+        }
     }
 }
