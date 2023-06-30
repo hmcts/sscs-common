@@ -22,18 +22,20 @@ public class CallbackOrchestratorService {
     private final IdamService idamService;
 
     public HttpStatus sendMessageToCallbackOrchestrator(Callback<SscsCaseData> callback) {
-        log.info("Sending message to the callback orchestrator for the event {}", callback.getEvent());
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         try {
             ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String body = objectWriter.writeValueAsString(callback);
 
+            log.info("Sending message to the callback orchestrator for the event {}", callback.getEvent());
+
             ResponseEntity<String> response = callbackOrchestratorApi.sendMessageToCallbackOrchestrator(
                     idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), body);
 
             return response.getStatusCode();
         } catch (JsonProcessingException e) {
+            log.error("Error thrown when converting callback to JSON: ", e);
             return HttpStatus.BAD_REQUEST;
         }
     }
