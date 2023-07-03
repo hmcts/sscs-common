@@ -155,8 +155,8 @@ dependencies {
 
     implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.31'
 
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.7'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.7'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.8'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.8'
 
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
