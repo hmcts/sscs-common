@@ -173,7 +173,7 @@ public enum EventType {
     REISSUE_DOCUMENT("reissueDocument", 0, false),
     REISSUE_FURTHER_EVIDENCE("reissueFurtherEvidence", 0, false),
     REMOVE_LINK_FOR_CASE("removeLinkForCase", 0, false),
-    REQUEST_INFO_INCOMPLETE("requestInfoIncompleteApplication", 0, false),
+    REQUEST_FOR_INFORMATION("requestForInformation", 0, false),
     REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false),
     RESEND_APPEAL_CREATED("resendAppealCreated", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
