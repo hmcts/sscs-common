@@ -131,7 +131,7 @@ task runGitPreCommitTasks {
 
 dependencies {
 
-    api group: 'com.google.guava', name: 'guava', version: '32.1.0-jre'
+    api group: 'com.google.guava', name: 'guava', version: '32.1.1-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
     implementation group: 'org.springframework', name: 'spring-aop', version: '5.3.27'
@@ -199,14 +199,14 @@ dependencies {
     }
     implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
 
-    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.13.0'
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
     implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.80"
 
-    implementation group: "org.projectlombok", name: "lombok", version: "1.18.26"
-    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.26"
+    implementation group: "org.projectlombok", name: "lombok", version: "1.18.28"
+    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.28"
 
     implementation group: 'org.yaml', name: 'snakeyaml', version: '2.0'
 
@@ -229,7 +229,7 @@ dependencies {
 
     testRuntimeOnly group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
     testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
-    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
-    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
+    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 }
 
