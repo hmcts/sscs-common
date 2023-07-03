@@ -107,6 +107,23 @@ public class SscsCaseData implements CaseData {
     private String outcome;
     private String evidenceHandled;
 
+    //SSCS-10007
+    private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
+    private List<CcdValue<DocumentSelectionDetails>> documentSelection;
+    private DynamicList letterAttachedDocuments;
+    private String genericLetterText;
+
+    private YesNo sendToAllParties;
+    private YesNo sendToApellant;
+    private YesNo sendToRepresentative;
+    private YesNo sendToJointParty;
+    private YesNo sendToOtherParties;
+    private YesNo addDocuments;
+
+    private YesNo hasJointParty;
+    private YesNo hasRepresentative;
+    private YesNo hasOtherParties;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private ReissueArtifactUi reissueArtifactUi;
@@ -158,6 +175,18 @@ public class SscsCaseData implements CaseData {
     @Deprecated
     private DirectionType directionType;
     private DynamicList directionTypeDl;
+
+    private String confidentialityType;
+    private YesNo sendDirectionNoticeToFTA;
+    private YesNo sendDirectionNoticeToRepresentative;
+    private YesNo sendDirectionNoticeToOtherPartyRep;
+    private YesNo sendDirectionNoticeToOtherPartyAppointee;
+    private YesNo sendDirectionNoticeToOtherParty;
+    private YesNo sendDirectionNoticeToJointParty;
+    private YesNo sendDirectionNoticeToAppellantOrAppointee;
+    private YesNo hasOtherPartyRep;
+    private YesNo hasOtherPartyAppointee;
+
     @Deprecated
     private ExtensionNextEvent extensionNextEvent;
     private DynamicList extensionNextEventDl;
@@ -198,6 +227,7 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
+    private LocalDate issueFinalDecisionDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
@@ -393,6 +423,13 @@ public class SscsCaseData implements CaseData {
     public boolean isThereAJointParty() {
         return isYes(getJointParty().getHasJointParty());
     }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public boolean isThereARepresentative() {
+        return isNotEmpty(getAppeal().getRep()) && isYes(getAppeal().getRep().getHasRepresentative());
+    }
+
 
     @SuppressWarnings("unused")
     @JsonIgnore

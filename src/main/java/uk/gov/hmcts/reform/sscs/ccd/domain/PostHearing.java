@@ -56,6 +56,7 @@ public class PostHearing {
         return correction;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public StatementOfReasons getStatementOfReasons() {
         if (isNull(statementOfReasons)) {
@@ -64,6 +65,7 @@ public class PostHearing {
         return statementOfReasons;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public PermissionToAppeal getPermissionToAppeal() {
         if (isNull(permissionToAppeal)) {
@@ -72,11 +74,31 @@ public class PostHearing {
         return permissionToAppeal;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public LibertyToApply getLibertyToApply() {
         if (isNull(libertyToApply)) {
             libertyToApply = new LibertyToApply();
         }
         return libertyToApply;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public RequestFormat getRequestFormat() {
+        switch (requestType) {
+            case SET_ASIDE:
+                return getSetAside().getRequestFormat();
+            case CORRECTION:
+                return getCorrection().getRequestFormat();
+            case STATEMENT_OF_REASONS:
+                return getStatementOfReasons().getRequestFormat();
+            case LIBERTY_TO_APPLY:
+                return getLibertyToApply().getRequestFormat();
+            case PERMISSION_TO_APPEAL:
+            default:
+                break;
+        }
+        return null;
     }
 }

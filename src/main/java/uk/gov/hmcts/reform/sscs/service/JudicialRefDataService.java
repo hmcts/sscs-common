@@ -1,15 +1,20 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static java.util.Objects.nonNull;
+
+import java.util.List;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataSearchRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
-
-import java.util.List;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
+import uk.gov.hmcts.reform.sscs.utility.StringUtils;
 
 @Service
 @Slf4j
@@ -30,5 +35,41 @@ public class JudicialRefDataService {
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
         return judicialUsers.get(0).getFullName();
+    }
+
+    public String getJudicialUserTitleWithInitialsAndLastName(String personalCode) {
+        String name = getJudicialUserFullName(personalCode);
+
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        JudicialRefDataSearchRequest judicialRefDataUsersRequest = JudicialRefDataSearchRequest.builder()
+            .searchString(name).build();
+
+        List<JudicialUserSearch> judicialUsers = judicialRefDataApi.searchUsersBySearchString(
+            idamTokens.getIdamOauth2Token(), idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
+
+        for (JudicialUserSearch judicialUser : judicialUsers) {
+            if (nonNull(judicialUser.getPersonalCode()) && judicialUser.getPersonalCode().equals(personalCode)) {
+                return StringUtils.convertNameToTitleInitalsAndSurname(judicialUser);
+            }
+        }
+
+        return StringUtils.getInitalsAndSurnameFromName(name);
+    }
+
+    public String getPersonalCode(@NonNull String idamId) {
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
+            .sidamIds(List.of(idamId)).build();
+
+        List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
+
+        if (judicialUsers.size() > 0) {
+            return judicialUsers.get(0).getPersonalCode();
+        }
+
+        return null;
     }
 }

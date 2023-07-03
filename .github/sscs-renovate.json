@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "local>hmcts/.github:renovate-config",
     ":dependencyDashboard",
     ":semanticPrefixChore",
     ":rebaseStalePrs",
@@ -8,11 +8,17 @@
   ],
   "packageRules": [
     {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
       "matchPackageNames": ["com.github.hmcts:ccd-case-document-am-client"],
       "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/"
     },
     {
       "matchPackageNames": ["com.github.hmcts:sscs-common"],
+      "allowedVersions": "/^\\d+\\.\\d+\\.\\d+$/",
       "prPriority": 100
     },
     {
@@ -22,6 +28,7 @@
         "gradle-git-properties"
       ],
       "prPriority": 75,
+      "automerge": false,
       "groupName": "Spring All"
     },
     {
@@ -171,6 +178,7 @@
         "terraform-provider"
       ],
       "prPriority": 5,
+      "automerge": false,
       "groupName": "Terraform"
     },
     {
@@ -184,7 +192,7 @@
       "matchDatasources": [
         "helm"
       ],
-      "prPriority": 5,
+      "prPriority": 5
     },
     {
       "matchDatasources": [

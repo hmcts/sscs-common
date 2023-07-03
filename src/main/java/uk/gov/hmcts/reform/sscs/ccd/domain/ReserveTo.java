@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,9 +14,7 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude
-public class PanelMemberExclusions {
-    private YesNo arePanelMembersReserved;
-    private YesNo arePanelMembersExcluded;
-    private List<CollectionItem<JudicialUserBase>> excludedPanelMembers;
-    private List<CollectionItem<JudicialUserBase>> reservedPanelMembers;
+public class ReserveTo {
+    private JudicialUserBase reservedJudge;
+    private YesNo reservedDistrictTribunalJudge;
 }

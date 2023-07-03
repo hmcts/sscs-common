@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum HearingState {
-
+    ADJOURN_CREATE_HEARING("adjournCreateHearing"),
     CREATE_HEARING("createHearing"),
     UPDATED_CASE("updatedCase"),
     UPDATE_HEARING("updateHearing"),

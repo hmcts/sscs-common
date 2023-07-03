@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StatementOfReasons {
     private StatementOfReasonsActions action;
+    private RequestFormat requestFormat;
 }
