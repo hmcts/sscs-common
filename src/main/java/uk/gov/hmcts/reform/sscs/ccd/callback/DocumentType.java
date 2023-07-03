@@ -7,7 +7,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum DocumentType {
-
     ADJOURNMENT_NOTICE("adjournmentNotice", "Adjournment Notice"),
     APPELLANT_EVIDENCE("appellantEvidence", "Appellant evidence"),
     AT38("at38", "AT38"),
@@ -15,6 +14,8 @@ public enum DocumentType {
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     CORRECTION_APPLICATION("correctionApplication", "Correction Application"),
+    DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft Corrected Final Decision Notice"),
+    CORRECTION_GRANTED("correctionGranted", "Corrected Final Decision Notice"),
     CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),

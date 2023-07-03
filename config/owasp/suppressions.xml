@@ -2,7 +2,6 @@
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
   <suppress until="2023-09-01">
     <cve>CVE-2023-24998</cve>
-    <cve>CVE-2023-20883</cve>
   </suppress>
   <suppress until = "2023-09-01">
     <notes><![CDATA[
@@ -13,5 +12,7 @@
   </suppress>
   <suppress until = "2023-09-01">
     <cve>CVE-2023-20883</cve>
+    <cve>CVE-2023-35116</cve>
+    <cve>CVE-2023-2976</cve>
   </suppress>
 </suppressions>
