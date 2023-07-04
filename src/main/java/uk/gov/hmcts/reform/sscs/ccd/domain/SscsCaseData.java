@@ -314,6 +314,11 @@ public class SscsCaseData implements CaseData {
     private String tempNoteDetail;
     private YesNo showWorkCapabilityAssessmentPage;
 
+    // bulk scan OCR data screen error message
+    private String excludeStartDateAndEndDateMessage;
+    private String excludeStartDateMissingMessage;
+    private String excludeEndDateMissingMessage;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsIndustrialInjuriesData sscsIndustrialInjuriesData;
