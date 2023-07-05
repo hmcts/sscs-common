@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class Correction {
     private CorrectionActions action;
     private RequestFormat requestFormat;
+    private YesNo correctionFinalDecisionInProgress;
 }
