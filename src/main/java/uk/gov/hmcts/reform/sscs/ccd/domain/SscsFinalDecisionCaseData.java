@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +47,9 @@ public class SscsFinalDecisionCaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only", groups = UniversalCreditValidationGroup.class)
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String writeFinalDecisionIdamSurname;
+    private LocalDate finalDecisionGeneratedDate;
+    private YesNo finalDecisionNoticeGenerated;
 
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
