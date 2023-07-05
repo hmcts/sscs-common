@@ -45,6 +45,7 @@ public class SscsFinalDecisionCaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only", groups = UniversalCreditValidationGroup.class)
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String writeFinalDecisionIdamSurname;
 
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
