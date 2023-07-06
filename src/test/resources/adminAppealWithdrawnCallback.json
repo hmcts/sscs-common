@@ -110,7 +110,7 @@
           },
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
-          "confidentialityRequired": null,
+          "confidentialityRequired": "No",
           "role": null
         },
         "mrnDetails": {
@@ -892,7 +892,7 @@
           },
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
-          "confidentialityRequired": null,
+          "confidentialityRequired": "No",
           "role": null
         },
         "mrnDetails": {
