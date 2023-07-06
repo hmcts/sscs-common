@@ -48,6 +48,7 @@ public class SscsFinalDecisionCaseData {
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
     private String writeFinalDecisionIdamSurname;
+    private LocalDate finalDecisionIssuedDate;
     private LocalDate finalDecisionGeneratedDate;
     private YesNo finalDecisionNoticeGenerated;
 
