@@ -47,6 +47,7 @@ public enum DocumentType {
     RIP1("rip1Document", "RIP 1 document"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
     SET_ASIDE_REFUSED("setAsideRefused", "Set aside refused decision notice"),
+    SET_ASIDE_REVIEW("setAsideReview", "Permission to appeal - Decision set aside"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted decision notice"),

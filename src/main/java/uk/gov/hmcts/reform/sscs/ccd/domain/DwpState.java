@@ -13,6 +13,7 @@ public enum DwpState {
     CORRECTION_GRANTED("correctionGranted", "Correction Granted"),
     CORRECTION_REFUSED("correctionRefused", "Correction Refused"),
     CORRECTION_REQUESTED("correctionRequested", "Correction requested"),
+    DECISION_REMADE("decisionRemade", "Decision remade"),
     DECISION_ACTIONED("decisionActioned", "Decision actioned"),
     DIRECTION_ACTION_REQUIRED("directionActionRequired", "Direction - action req'd"),
     DIRECTION_RESPONDED("directionResponded", "Direction - responded"),
