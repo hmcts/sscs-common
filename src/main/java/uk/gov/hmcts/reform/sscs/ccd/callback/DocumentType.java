@@ -15,7 +15,7 @@ public enum DocumentType {
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
     CORRECTION_APPLICATION("correctionApplication", "Correction Application"),
     DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft Corrected Final Decision Notice"),
-    CORRECTION_GRANTED("correctionGranted", "Corrected Final Decision Notice"),
+    CORRECTION_GRANTED("correctionGranted", "Correction Final Decision Notice"),
     CORRECTION_REFUSED("correctionRefused", "Correction refused decision notice"),
     DECISION_NOTICE("Decision Notice", "Decision Notice"),
     DIRECTION_NOTICE("Direction Notice", "Directions Notice"),
