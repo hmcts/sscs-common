@@ -9,9 +9,9 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
 @Getter
 @AllArgsConstructor
 public enum PermissionToAppealActions implements CcdCallbackMap {
-    REVIEW("reviewSetAside", "Review and set aside application", SET_ASIDE_REVIEW, "Permission to appeal decision remade", "Permission to appeal decision remade", DwpState.DECISION_REMADE, InterlocReviewState.NONE),
     GRANT("grant","Grant Permission to Appeal Application", PERMISSION_TO_APPEAL_GRANTED, "Permission to Appeal Granted", "Permission to Appeal Granted", DwpState.PERMISSION_TO_APPEAL_GRANTED, InterlocReviewState.NONE),
-    REFUSE("refuse","Refuse Permission to Appeal Application", PERMISSION_TO_APPEAL_REFUSED, "Permission to Appeal Refused", "Permission to Appeal Refused", DwpState.PERMISSION_TO_APPEAL_REFUSED, InterlocReviewState.NONE);
+    REFUSE("refuse","Refuse Permission to Appeal Application", PERMISSION_TO_APPEAL_REFUSED, "Permission to Appeal Refused", "Permission to Appeal Refused", DwpState.PERMISSION_TO_APPEAL_REFUSED, InterlocReviewState.NONE),
+    REVIEW("reviewSetAside", "Review and set aside application", SET_ASIDE_REVIEW, "Permission to appeal decision remade", "Permission to appeal decision remade", DwpState.DECISION_REMADE, InterlocReviewState.NONE);
 
     private final String ccdDefinition;
     private final String descriptionEn;
