@@ -20,6 +20,8 @@ public class SchedulingAndListingFields {
     private HearingState hearingState;
     @JsonProperty("panelMemberExclusions")
     private PanelMemberExclusions panelMemberExclusions;
+    @JsonProperty("mockPanelMemberExclusions")
+    private MockPanelMemberExclusions mockPanelMemberExclusions;
     private ReserveTo reserveTo;
     private OverrideFields overrideFields;
     private OverrideFields defaultListingValues;
