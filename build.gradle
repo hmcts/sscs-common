@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id "org.owasp.dependencycheck" version "8.2.1"
+    id "org.owasp.dependencycheck" version "8.3.1"
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -133,7 +133,8 @@ task runGitPreCommitTasks {
 }
 
 dependencies {
-    api group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+
+    api group: 'com.google.guava', name: 'guava', version: '32.1.0-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
     implementation group: 'org.springframework', name: 'spring-aop', version: '5.3.27'
