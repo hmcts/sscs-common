@@ -37,4 +37,16 @@ public class DocumentGeneration {
     private String signedBy;
     @JsonProperty("signedRole")
     private String signedRole;
+    @JsonProperty("correctionSignedBy")
+    private String correctionSignedBy;
+    @JsonProperty("correctionSignedRole")
+    private String correctionSignedRole;
+    @JsonProperty("statementOfReasonsSignedBy")
+    private String statementOfReasonsSignedBy;
+    @JsonProperty("statementOfReasonsSignedRole")
+    private String statementOfReasonsSignedRole;
+    @JsonProperty("libertyToApplySignedBy")
+    private String libertyToApplySignedBy;
+    @JsonProperty("libertyToApplySignedRole")
+    private String libertyToApplySignedRole;
 }
