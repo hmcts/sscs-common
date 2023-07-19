@@ -15,7 +15,7 @@ public enum PostHearingReviewType {
 
     private final String ccdDefinition;
     private final String descriptionEn;
-    private final String shortenedDescriptionEn;
+    private final String shortDescriptionEn;
 
     @Override
     @JsonValue
