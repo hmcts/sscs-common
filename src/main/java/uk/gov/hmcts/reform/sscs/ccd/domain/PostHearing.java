@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostHearing {
     @JsonProperty("postHearingRequestType")
     private PostHearingRequestType requestType;
