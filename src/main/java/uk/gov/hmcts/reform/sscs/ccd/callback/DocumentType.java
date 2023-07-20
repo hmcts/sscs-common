@@ -48,7 +48,7 @@ public enum DocumentType {
     SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
     SET_ASIDE_GRANTED("setAsideGranted", "Set Aside Granted Decision Notice"),
     SET_ASIDE_REFUSED("setAsideRefused", "Set Aside Refused Decision Notice"),
-    SET_ASIDE_REVIEW("reviewAndSetAside", "Permission to Appeal - Decision Set Aside"),
+    REVIEW_AND_SET_ASIDE("reviewAndSetAside", "Permission to Appeal - Decision Set Aside"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted Decision Notice"),
