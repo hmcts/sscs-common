@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
+
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
 
 @Getter
 @AllArgsConstructor
