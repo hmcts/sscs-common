@@ -195,7 +195,7 @@ public enum EventType {
     SET_ASIDE_REFUSED("setAsideRefused", 0, true),
     SET_ASIDE_REFUSED_SOR("setAsideRefusedSOR", 0, true),
     SET_ASIDE_REQUEST("setAsideRequest", 0, false),
-    SET_ASIDE_REVIEW("setAsideReview", 0, true),
+    SET_ASIDE_REVIEW("reviewAndSetAside", 0, true),
     SOR_EXTEND_TIME("sORExtendTime", 0, true),
     SOR_ISSUE_DIRECTIONS("sORIssueDirections", 0, true),
     SOR_REFUSED("sORRefused", 0, true),
