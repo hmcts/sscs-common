@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum UserRole {
     SUPER_USER("caseworker-sscs-superuser", "Super User"),
     SYSTEM_USER("caseworker-sscs-systemupdate", "System User"),
+    FEE_PAID_JUDGE("caseworker-sscs-judge-feepaid", "Judge"),
     JUDGE("caseworker-sscs-judge", "Judge"),
     TCW("caseworker-sscs-registrar", "Registrar"),
     CTSC_CLERK("caseworker-sscs-clerk", "Clerk"),
