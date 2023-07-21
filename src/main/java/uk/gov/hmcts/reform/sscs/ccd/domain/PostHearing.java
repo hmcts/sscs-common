@@ -39,6 +39,10 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("libertyToApply")
     private LibertyToApply libertyToApply;
+    // add upper tribunal decision object
+    @Getter(AccessLevel.NONE)
+    @JsonProperty("upperTribunalDecision")
+    private UpperTribunalDecision upperTribunalDecision;
 
     @JsonIgnore
     public SetAside getSetAside() {
@@ -81,6 +85,14 @@ public class PostHearing {
             libertyToApply = new LibertyToApply();
         }
         return libertyToApply;
+    }
+
+    @JsonIgnore
+    public UpperTribunalDecision getUpperTribunalDecision() {
+        if (isNull(upperTribunalDecision)) {
+            upperTribunalDecision = new UpperTribunalDecision();
+        }
+        return upperTribunalDecision;
     }
 
     @SuppressWarnings("unused")

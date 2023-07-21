@@ -230,6 +230,7 @@ public enum EventType {
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false),
     UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),
+    UPPER_TRIBUNAL_DECISION("upperTribunalDecision", 0, false),
     VALID_APPEAL("validAppeal", 0, false),
     VALID_APPEAL_CREATED("validAppealCreated", 0, false),
     VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false),
