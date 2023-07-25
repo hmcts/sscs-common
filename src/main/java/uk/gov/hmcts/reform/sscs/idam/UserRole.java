@@ -9,7 +9,7 @@ public enum UserRole {
     SUPER_USER("caseworker-sscs-superuser", "Super User"),
     SYSTEM_USER("caseworker-sscs-systemupdate", "System User"),
     JUDGE("caseworker-sscs-judge", "Judge"),
-    FEE_PAID_JUDGE("caseworker-sscs-judge-feepaid", "Judge"),
+    SALARIED_JUDGE("caseworker-sscs-judge-salaried", "Judge"),
     TCW("caseworker-sscs-registrar", "Registrar"),
     CTSC_CLERK("caseworker-sscs-clerk", "Clerk"),
     DWP("caseworker-sscs-dwpresponsewriter", "FTA"),
