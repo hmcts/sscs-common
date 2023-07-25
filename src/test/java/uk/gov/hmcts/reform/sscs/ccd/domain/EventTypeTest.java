@@ -109,6 +109,7 @@ public class EventTypeTest {
             "interlocInformationReceived\n" +
             "issueAdjournmentNotice\n" +
             "decisionIssued\n" +
+            "decisionRemade\n" +
             "judgeDirectionIssued\n" +
             "tcwDirectionIssued\n" +
             "directionIssued\n" +

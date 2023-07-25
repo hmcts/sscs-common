@@ -75,6 +75,7 @@ public enum EventType {
     DEATH_OF_APPELLANT("deathOfAppellant", 0, false),
     DEATH_OF_APPELLANT_ACTIONED("deathOfAppellantActioned", 0, false),
     DECISION_ISSUED("decisionIssued", 0, false),
+    DECISION_REMADE("decisionRemade", 0, false),
     DECISION_ISSUED_WELSH("decisionIssuedWelsh", 0, false),
     DIRECTION_ISSUED("directionIssued", 0, false),
     DIRECTION_ISSUED_WELSH("directionIssuedWelsh", 0, false),

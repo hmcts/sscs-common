@@ -1,19 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
-@Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
-public enum DecisionRemade {
-    REMADE("Remade");
-
-    private final String state;
-
-    @Override
-    @JsonValue
-    public String toString() {
-        return state;
-    }
+@NoArgsConstructor
+public class DecisionRemade {
+    private UpperTribunalDecision upperTribunalDecision;
 }
