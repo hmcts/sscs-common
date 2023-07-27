@@ -86,13 +86,6 @@ public class PostHearing {
         return libertyToApply;
     }
 
-//    @JsonIgnore
-//    public UpperTribunalDecision getUpperTribunalDecision() {
-//        if (isNull(upperTribunalDecision)) {
-//            upperTribunalDecision = new UpperTribunalDecision();
-//        }
-//        return upperTribunalDecision;
-//    }
     @JsonIgnore
     public SendToFirstTier getSendToFirstTier() {
         if (isNull(sendToFirstTier)) {
