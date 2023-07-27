@@ -109,7 +109,6 @@ public class EventTypeTest {
             "interlocInformationReceived\n" +
             "issueAdjournmentNotice\n" +
             "decisionIssued\n" +
-            "decisionRemade\n" +
             "judgeDirectionIssued\n" +
             "tcwDirectionIssued\n" +
             "directionIssued\n" +
@@ -213,7 +212,8 @@ public class EventTypeTest {
             "citizenRequestHearingRecording\n" +
             "postponementRequest\n" +
             "dwpRequestHearingRecording\n" +
-                    "upperTribunalDecision";
+            "sendToFirstTier\n" +
+            "upperTribunalDecision";
 
 
     @Test

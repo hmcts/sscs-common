@@ -6,8 +6,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum UpperTribunalDecision implements CcdCallbackMap {
-    UPPER_TRIBUNAL_DECISION("upperTribunalDecision","Upper Tribunal Decision",EventType.UPPER_TRIBUNAL_DECISION, "Decision remade by UT", "", null);
+public enum SendToFirstTierActions implements CcdCallbackMap {
+
+    DECISION_REMADE("remade", "Decision remade by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision remade by UT", "Decision remade by UT", null),
+    DECISION_REFUSED("refused", "Decision refused by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision refused by UT", "Decision refused by UT", null);
 
     private final String ccdDefinition;
     private final String descriptionEn;

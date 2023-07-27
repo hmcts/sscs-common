@@ -8,6 +8,6 @@ import lombok.*;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class DecisionRemade {
-    private UpperTribunalDecision upperTribunalDecision;
+public class SendToFirstTier {
+    private SendToFirstTierActions action;
 }
