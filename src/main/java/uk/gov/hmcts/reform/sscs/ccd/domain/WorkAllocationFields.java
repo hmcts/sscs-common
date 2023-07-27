@@ -17,4 +17,6 @@ public class WorkAllocationFields {
 
     @JsonInclude
     private String addedDocuments;
+
+    private Integer daysToHearing;
 }
