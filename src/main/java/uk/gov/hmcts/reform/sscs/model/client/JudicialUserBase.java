@@ -33,4 +33,5 @@ public class JudicialUserBase {
     public int hashCode() {
         return 1;
     }
+
 }
