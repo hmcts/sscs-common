@@ -32,6 +32,11 @@ public class JudicialUserItem implements Comparable<JudicialUserItem> {
     }
 
     @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+    @Override
     public int compareTo(JudicialUserItem o) {
         return new CompareToBuilder()
             .append(this.value.getPersonalCode(), o.getValue().getPersonalCode())

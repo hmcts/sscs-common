@@ -28,4 +28,9 @@ public class JudicialUserBase {
 
         return false;
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }

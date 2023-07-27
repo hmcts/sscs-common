@@ -31,4 +31,9 @@ public class CcdValue<T> {
         return value.equals(object);
     }
 
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
 }
