@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.util.Objects.nonNull;
 
 import java.util.List;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,21 @@ public class JudicialRefDataService {
         }
 
         return StringUtils.getInitalsAndSurnameFromName(name);
+    }
+
+    public String getPersonalCode(@NonNull String idamId) {
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
+            .sidamIds(List.of(idamId)).build();
+
+        List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
+
+        if (judicialUsers.size() > 0) {
+            return judicialUsers.get(0).getPersonalCode();
+        }
+
+        return null;
     }
 }

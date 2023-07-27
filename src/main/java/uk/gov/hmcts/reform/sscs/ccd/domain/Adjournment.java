@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.nonNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -109,7 +111,9 @@ public class Adjournment {
             this.panelMember2,
             this.panelMember3);
 
-        return panelMembers.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        return panelMembers.stream().filter(Objects::nonNull)
+            .filter(panelMember -> nonNull(panelMember.getIdamId()) || nonNull(panelMember.getPersonalCode()))
+            .collect(Collectors.toList());
     }
 
 }
