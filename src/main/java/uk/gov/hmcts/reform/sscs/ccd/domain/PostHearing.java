@@ -86,6 +86,7 @@ public class PostHearing {
         return libertyToApply;
     }
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public SendToFirstTier getSendToFirstTier() {
         if (isNull(sendToFirstTier)) {

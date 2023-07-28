@@ -10,4 +10,5 @@ import lombok.*;
 @NoArgsConstructor
 public class SendToFirstTier {
     private SendToFirstTierActions action;
+    private DocumentLink decisionDocument;
 }
