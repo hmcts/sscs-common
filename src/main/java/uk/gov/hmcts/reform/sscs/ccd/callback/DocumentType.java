@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import java.util.stream.Stream;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -51,8 +52,8 @@ public enum DocumentType {
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR refused decision notice"),
     STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     TL1_FORM("tl1Form", "TL1 Form"),
-    UPPER_TRIBUNALS_DECISION_REMADE("upperTribunalsDecisionRemade", "Upper Tribunals decision remade"),
-    UPPER_TRIBUNALS_DECISION_REFUSED("upperTribunalsDecisionRefused", "Upper Tribunals decision refused"),
+    UPPER_TRIBUNALS_DECISION_REMADE("upperTribunalsDecisionRemade", "Upper Tribunals Decision Remade"),
+    UPPER_TRIBUNALS_DECISION_REFUSED("upperTribunalsDecisionRefused", "Upper Tribunals Decision Refused"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");

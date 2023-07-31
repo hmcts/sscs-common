@@ -8,15 +8,15 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum SendToFirstTierActions implements CcdCallbackMap {
 
-    DECISION_REMADE("remade", "Decision remade by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision remade by UT", "Decision remade by UT", null),
-    DECISION_REFUSED("refused", "Decision refused by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision refused by UT", "Decision refused by UT", null);
+    DECISION_REMADE("remade", "Decision remade by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision remade by UT", "Decision remade by UT"),
+    DECISION_REFUSED("refused", "Decision refused by UT", EventType.UPPER_TRIBUNAL_DECISION, "Decision refused by UT", "Decision refused by UT");
 
     private final String ccdDefinition;
     private final String descriptionEn;
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpState postCallbackDwpState;
+    private final DwpState postCallbackDwpState = null;
     private final InterlocReviewState postCallbackInterlocState = null;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 
