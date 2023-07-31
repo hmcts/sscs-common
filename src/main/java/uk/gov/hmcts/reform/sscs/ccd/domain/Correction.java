@@ -17,5 +17,4 @@ public class Correction {
     private AdminCorrectionType adminCorrectionType;
     private CorrectionActions action;
     private RequestFormat requestFormat;
-    private YesNo correctionFinalDecisionInProgress;
 }
