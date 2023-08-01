@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
@@ -18,7 +18,7 @@ public class CallbackOrchestratorService {
     private final CallbackOrchestratorApi callbackOrchestratorApi;
     private final IdamService idamService;
 
-    public HttpStatus sendMessageToCallbackOrchestrator(Callback<SscsCaseData> callback) {
+    public HttpStatusCode sendMessageToCallbackOrchestrator(Callback<SscsCaseData> callback) {
         IdamTokens idamTokens = idamService.getIdamTokens();
 
         log.info("Sending message to the callback orchestrator for the event {}", callback.getEvent());
