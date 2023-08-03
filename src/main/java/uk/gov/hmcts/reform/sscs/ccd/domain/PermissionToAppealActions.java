@@ -13,6 +13,7 @@ public enum PermissionToAppealActions implements CcdCallbackMap {
     GRANT("grant","Grant Permission to Appeal Application", PERMISSION_TO_APPEAL_GRANTED, "Permission to appeal application granted", "Permission to appeal application granted", DwpState.PERMISSION_TO_APPEAL_GRANTED, null),
     REFUSE("refuse","Refuse Permission to Appeal Application", PERMISSION_TO_APPEAL_REFUSED, "Permission to appeal application refused", "Permission to appeal application refused", DwpState.PERMISSION_TO_APPEAL_REFUSED, InterlocReviewState.NONE);
 
+
     private final String ccdDefinition;
     private final String descriptionEn;
     private final EventType callbackEvent;
