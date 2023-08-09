@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum WriteStatementOfReasons implements CcdCallbackMap {
-    IN_TIME("inTime","In time", POST_HEARING_APP_SOR_WRITTEN, "Post hearing application - SOR written", "Post hearing application - SOR written", STATEMENT_OF_REASONS_ISSUED, NONE);
+    IN_TIME("inTime","In time", POST_HEARING_APP_SOR_WRITTEN, "Post hearing application - SOR Issued", "Post hearing application - SOR Issued", STATEMENT_OF_REASONS_ISSUED, NONE);
 
     private final String ccdDefinition;
     private final String descriptionEn;

@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PermissionToAppeal {
     private PermissionToAppealActions action;
+    private RequestFormat requestFormat;
 }
