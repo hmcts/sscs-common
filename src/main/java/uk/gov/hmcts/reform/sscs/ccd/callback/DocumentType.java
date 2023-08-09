@@ -52,6 +52,8 @@ public enum DocumentType {
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR refused decision notice"),
     STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     TL1_FORM("tl1Form", "TL1 Form"),
+    UPPER_TRIBUNALS_DECISION_REMADE("upperTribunalsDecisionRemade", "Upper Tribunals Decision Remade Notice"),
+    UPPER_TRIBUNALS_DECISION_REFUSED("upperTribunalsDecisionRefused", "Upper Tribunals Decision Refused Notice"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");

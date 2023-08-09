@@ -39,6 +39,9 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("libertyToApply")
     private LibertyToApply libertyToApply;
+    @Getter(AccessLevel.NONE)
+    @JsonProperty("sendToFirstTier")
+    private SendToFirstTier sendToFirstTier;
 
     @JsonIgnore
     public SetAside getSetAside() {
@@ -81,6 +84,15 @@ public class PostHearing {
             libertyToApply = new LibertyToApply();
         }
         return libertyToApply;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public SendToFirstTier getSendToFirstTier() {
+        if (isNull(sendToFirstTier)) {
+            sendToFirstTier = new SendToFirstTier();
+        }
+        return sendToFirstTier;
     }
 
     @SuppressWarnings("unused")
