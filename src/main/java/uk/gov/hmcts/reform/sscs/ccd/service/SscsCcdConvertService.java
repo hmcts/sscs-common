@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.exception.CcdDeserializationException;
 
 @Service
+@Slf4j
 public class SscsCcdConvertService {
 
     private static final Logger LOG = getLogger(SscsCcdConvertService.class);
@@ -37,6 +39,7 @@ public class SscsCcdConvertService {
 
     public CaseDataContent getCaseDataContent(SscsCaseData caseData, StartEventResponse startEventResponse,
                                                String summary, String description) {
+        log.info("getCaseDataContent for case id {}", caseData.getCcdCaseId());
         return CaseDataContent.builder()
                 .eventToken(startEventResponse.getToken())
                 .event(Event.builder()
@@ -50,6 +53,7 @@ public class SscsCcdConvertService {
     }
 
     public SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
+        log.info("getCaseDetails for id {}", caseDetails.getId());
         if (caseDetails.getId() != null) {
             if (caseDetails.getData() == null) {
                 caseDetails = caseDetails.toBuilder().data(new HashMap<>()).build();

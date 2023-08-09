@@ -211,7 +211,9 @@ public class EventTypeTest {
             "actionHearingRecordingRequest\n" +
             "citizenRequestHearingRecording\n" +
             "postponementRequest\n" +
-            "dwpRequestHearingRecording";
+            "dwpRequestHearingRecording\n" +
+            "sendToFirstTier\n" +
+            "upperTribunalDecision";
 
 
     @Test
