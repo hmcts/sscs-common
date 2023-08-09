@@ -108,6 +108,7 @@ public class PostHearing {
             case LIBERTY_TO_APPLY:
                 return getLibertyToApply().getRequestFormat();
             case PERMISSION_TO_APPEAL:
+                return getPermissionToAppeal().getRequestFormat();
             default:
                 break;
         }
