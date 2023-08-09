@@ -46,6 +46,7 @@ public enum DocumentType {
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     RIP1("rip1Document", "RIP 1 document"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set Aside Application"),
+    SET_ASIDE_GRANTED("setAsideGranted", "Set aside application granted"),
     SET_ASIDE_REFUSED("setAsideRefused", "Set aside refused decision notice"),
     SSCS1("sscs1", "SSCS1"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
