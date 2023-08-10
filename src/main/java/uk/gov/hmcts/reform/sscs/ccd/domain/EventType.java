@@ -159,8 +159,6 @@ public enum EventType {
     PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", 0, true),
     PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", 0, true),
     PERMISSION_TO_APPEAL_REQUEST("permissionToAppealRequest", 0, false),
-    PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", 0, true),
-    PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", 0, true),
     POSTPONED("postponed", "hearingPostponed", 8, true),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
     POST_HEARING_APP_SOR_WRITTEN("postHearingAppSorWritten", 0, true),
