@@ -1,13 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Objects.isNull;
+
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
-
-import static java.util.Objects.isNull;
 
 @Getter
 @RequiredArgsConstructor
