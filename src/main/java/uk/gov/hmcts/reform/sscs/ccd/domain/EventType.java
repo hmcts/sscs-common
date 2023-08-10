@@ -159,9 +159,12 @@ public enum EventType {
     NOT_LISTABLE("notListable", 0, false),
     PANEL_UPDATE("panelUpdate", 0, false),
     PAST_HEARING_BOOKED("pastHearingBooked", "pastHearingBooked", 10, true),
+    PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", 0, true),
+    PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", 0, true),
     PERMISSION_TO_APPEAL_REQUEST("permissionToAppealRequest", 0, false),
     POSTPONED("postponed", "hearingPostponed", 8, true),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
+    POST_HEARING_APP_SOR_WRITTEN("postHearingAppSorWritten", 0, true),
     POST_HEARING_REQUEST("postHearingRequest", 0, false),
     POST_HEARING_REVIEW("postHearingReview", 0, false),
     PROCESS_AUDIO_VIDEO("processAudioVideo", 0, false),
@@ -186,6 +189,7 @@ public enum EventType {
     SEND_TO_ADMIN("sendToAdmin", 0, false),
     SEND_TO_DWP("sendToDwp", 0, false),
     SEND_TO_DWP_OFFLINE("sendToDwpOffline", 0, false),
+    SEND_TO_FIRST_TIER("sendToFirstTier", 0, false),
     SEND_TO_ROBOTICS_ERROR("sendToRoboticsError", 0, false),
     SEND_VALID_CASE_TO_INTERLOC("sendValidCaseToInterloc", 0, false),
     SENT_TO_DWP("sentToDwp", 0, false),
@@ -233,13 +237,16 @@ public enum EventType {
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false),
     UPLOAD_HEARING_RECORDING("uploadHearingRecording", 0, false),
     UPLOAD_WELSH_DOCUMENT("uploadWelshDocument", 0, false),
+    UPPER_TRIBUNAL_DECISION("upperTribunalDecision", 0, false),
     VALID_APPEAL("validAppeal", 0, false),
     VALID_APPEAL_CREATED("validAppealCreated", 0, false),
     VALID_SEND_TO_INTERLOC("validSendToInterloc", 0, false),
     VOID_CASE("voidCase", 0, false),
     VOID_INCOMPLETE_APPLICATION("voidIncompleteApplication", 0, false),
     WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
-    WRITE_FINAL_DECISION("writeFinalDecision", 0, false);
+    WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
+    GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
+    BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false);
 
     private final String type;
     private final String ccdType;
