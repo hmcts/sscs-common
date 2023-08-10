@@ -10,15 +10,15 @@ public enum ScannedDocumentType {
 
     CHERISHED("cherished", "Cherished"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
-    CORRECTION_APPLICATION("correctionApplication", "Correction application"),
+    CORRECTION_APPLICATION("correctionApplication", "Correction Application"),
     COVERSHEET("coversheet", "Coversheet"),
     FORM("form", "Form"),
-    LIBERTY_TO_APPLY_APPLICATION("libertyToApplyApplication", "Liberty to Apply application"),
+    LIBERTY_TO_APPLY_APPLICATION("libertyToApplyApplication", "Liberty to Apply Application"),
     OTHER("other", "Other"),
-    PERMISSION_TO_APPEAL_APPLICATION("permissionToAppealApplication", "Permission to Appeal application"),
+    PERMISSION_TO_APPEAL_APPLICATION("permissionToAppealApplication", "Permission to Appeal Application"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
-    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside application"),
+    SET_ASIDE_APPLICATION("setAsideApplication", "Set aside Application"),
     STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request");
 
