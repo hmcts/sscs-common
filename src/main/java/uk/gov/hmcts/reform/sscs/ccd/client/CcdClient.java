@@ -62,7 +62,6 @@ public class CcdClient {
     }
 
     public CaseDetails submitEventForCaseworker(IdamTokens idamTokens, Long caseId, CaseDataContent caseDataContent) {
-
         return coreCaseDataApi.submitEventForCaseWorker(
                 idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(),
