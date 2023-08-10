@@ -39,6 +39,9 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("libertyToApply")
     private LibertyToApply libertyToApply;
+    @Getter(AccessLevel.NONE)
+    @JsonProperty("sendToFirstTier")
+    private SendToFirstTier sendToFirstTier;
 
     @JsonIgnore
     public SetAside getSetAside() {
@@ -85,6 +88,15 @@ public class PostHearing {
 
     @SuppressWarnings("unused")
     @JsonIgnore
+    public SendToFirstTier getSendToFirstTier() {
+        if (isNull(sendToFirstTier)) {
+            sendToFirstTier = new SendToFirstTier();
+        }
+        return sendToFirstTier;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
     public RequestFormat getRequestFormat() {
         switch (requestType) {
             case SET_ASIDE:
@@ -96,6 +108,7 @@ public class PostHearing {
             case LIBERTY_TO_APPLY:
                 return getLibertyToApply().getRequestFormat();
             case PERMISSION_TO_APPEAL:
+                return getPermissionToAppeal().getRequestFormat();
             default:
                 break;
         }
