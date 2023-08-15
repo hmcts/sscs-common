@@ -20,11 +20,16 @@ public enum InterlocReferralReason {
     OVER_13_MONTHS_AND_GROUNDS_MISSING("over13MonthsAndGroundsMissing", "Grounds for appeal missing"),
     OVER_300_PAGES("over300Pages", "Over 300 pages"),
     PHE_REQUEST("phmeRequest", "PHE request"),
-    POST_HEARING_REQUEST("postHearingRequest", "Post Hearing Request"),
     REJECT_HEARING_RECORDING_REQUEST("rejectHearingRecordingRequest", "Reject hearing recording request"),
     REVIEW_AUDIO_VIDEO_EVIDENCE("reviewAudioVideoEvidence", "Review Audio Video Evidence"),
     REVIEW_POSTPONEMENT_REQUEST("reviewPostponementRequest", "Review hearing postponement request"),
-    TIME_EXTENSION("timeExtension","Time extension");
+    TIME_EXTENSION("timeExtension","Time extension"),
+    REVIEW_SET_ASIDE_APPLICATION("reviewSetAsideApplication", "Review set aside application"),
+    REVIEW_CORRECTION_APPLICATION("reviewCorrectionApplication", "Review correction application"),
+    REVIEW_STATEMENT_OF_REASONS_APPLICATION("reviewStatementOfReasonsApplication", "Review statement of reasons application"),
+    REVIEW_PERMISSION_TO_APPEAL_APPLICATION("reviewPermissionToAppealApplication", "Review permission to appeal application"),
+    REVIEW_LIBERTY_TO_APPLY_APPLICATION("reviewLibertyToApplyApplication", "Review liberty to apply application"),
+    REVIEW_UPPER_TRIBUNAL_DECISION("reviewUpperTribunalDecision", "Review upper tribunal decision");
 
     private final String ccdDefinition;
     private final String description;
