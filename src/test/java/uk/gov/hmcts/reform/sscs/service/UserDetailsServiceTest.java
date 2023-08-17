@@ -17,6 +17,7 @@ import uk.gov.hmcts.reform.idam.client.IdamClient;
 import uk.gov.hmcts.reform.idam.client.models.UserDetails;
 import uk.gov.hmcts.reform.idam.client.models.UserInfo;
 import uk.gov.hmcts.reform.sscs.idam.UserRole;
+import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceTest {
@@ -88,5 +89,14 @@ class UserDetailsServiceTest {
         when(idamClient.getUserInfo(USER_AUTHORISATION)).thenReturn(userInfo);
 
         assertThat(userDetailsService.getUserRole(USER_AUTHORISATION)).isNull();
+    }
+
+    @Test
+    void givenUserAuthorisation_thenReturnLoggedInUser() {
+        UserDetails userDetails = UserDetails.builder().id("123").build();
+        when(idamClient.getUserDetails(USER_AUTHORISATION)).thenReturn(userDetails);
+        when(judicialRefDataService.getPersonalCode("123")).thenReturn("456");
+
+        assertThat(userDetailsService.getLoggedInUserAsJudicialUser(USER_AUTHORISATION)).isEqualTo(new JudicialUserBase("123", "456"));
     }
 }
