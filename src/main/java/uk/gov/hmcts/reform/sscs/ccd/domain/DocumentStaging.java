@@ -23,6 +23,7 @@ public class DocumentStaging {
     private DocumentLink previewDocument;
     @JsonProperty("postHearingPreviewDocument")
     private DocumentLink postHearingPreviewDocument;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonProperty("dateAdded")
