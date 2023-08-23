@@ -23,6 +23,8 @@ public class DocumentGeneration {
     private YesNo statementOfReasonsGenerateNotice;
     @JsonProperty("libertyToApplyGenerateNotice")
     private YesNo libertyToApplyGenerateNotice;
+    @JsonProperty("permissionToAppealGenerateNotice")
+    private YesNo permissionToAppealGenerateNotice;
     @JsonProperty("bodyContent")
     private String bodyContent;
     @JsonProperty("correctionBodyContent")
@@ -31,10 +33,24 @@ public class DocumentGeneration {
     private String statementOfReasonsBodyContent;
     @JsonProperty("libertyToApplyBodyContent")
     private String libertyToApplyBodyContent;
+    @JsonProperty("permissionToAppealBodyContent")
+    private String permissionToAppealBodyContent;
     @JsonProperty("directionNoticeContent")
     private String directionNoticeContent;
     @JsonProperty("signedBy")
     private String signedBy;
     @JsonProperty("signedRole")
     private String signedRole;
+    @JsonProperty("correctionSignedBy")
+    private String correctionSignedBy;
+    @JsonProperty("correctionSignedRole")
+    private String correctionSignedRole;
+    @JsonProperty("statementOfReasonsSignedBy")
+    private String statementOfReasonsSignedBy;
+    @JsonProperty("statementOfReasonsSignedRole")
+    private String statementOfReasonsSignedRole;
+    @JsonProperty("libertyToApplySignedBy")
+    private String libertyToApplySignedBy;
+    @JsonProperty("libertyToApplySignedRole")
+    private String libertyToApplySignedRole;
 }
