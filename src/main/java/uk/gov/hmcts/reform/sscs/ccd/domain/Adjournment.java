@@ -63,6 +63,8 @@ public class Adjournment {
     private JudicialUserBase panelMember2;
     @JsonProperty("adjournCasePanelMember3")
     private JudicialUserBase panelMember3;
+    @JsonProperty("adjournCaseSignedInUser")
+    private JudicialUserBase signedInUser;
     @JsonProperty("adjournCaseNextHearingListingDurationType")
     private AdjournCaseNextHearingDurationType nextHearingListingDurationType;
     @JsonProperty("adjournCaseNextHearingListingDuration")
