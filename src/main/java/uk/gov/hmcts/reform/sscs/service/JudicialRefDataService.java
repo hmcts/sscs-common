@@ -67,14 +67,8 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        //TODO: REMOVE THIS LOGGING
-        log.info(judicialUsers.toString());
-
         if (judicialUsers.size() > 0) {
             JudicialUser judicialUser = judicialUsers.get(0);
-
-            //TODO: REMOVE THIS LOGGING
-            log.info("got judicial user with name {} and idamId {}", judicialUser.getFullName(), judicialUser.getSidamId());
 
             return new JudicialUserBase(judicialUser.getSidamId(), judicialUser.getPersonalCode());
         }
