@@ -58,6 +58,7 @@ public enum DocumentType {
     TL1_FORM("tl1Form", "TL1 Form"),
     UPPER_TRIBUNALS_DECISION_REMADE("upperTribunalsDecisionRemade", "Upper Tribunals Decision Remade Notice"),
     UPPER_TRIBUNALS_DECISION_REFUSED("upperTribunalsDecisionRefused", "Upper Tribunals Decision Refused Notice"),
+    UPPER_TRIBUNALS_DECISION_REMITTED("upperTribunalsDecisionRemitted", "Upper Tribunals Decision Remitted Notice"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");
