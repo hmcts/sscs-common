@@ -6,6 +6,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id "org.owasp.dependencycheck" version "8.3.1"
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -188,7 +189,7 @@ dependencies {
         exclude group: 'org.springframework.cloud', module: 'spring-cloud-starter-openfeign'
     }
 
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.0.3', {
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.0.4', {
         exclude group: 'org.springframework.cloud', module: 'spring-cloud-starter'
         exclude group: 'org.springframework.cloud', module: 'spring-cloud-commons'
     }
@@ -238,5 +239,11 @@ dependencies {
     testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
     testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+}
+
+dependencyManagement {
+    dependencies {
+        dependency group: 'com.google.guava', name: 'guava', version: '32.0.0-jre'
+    }
 }
 
