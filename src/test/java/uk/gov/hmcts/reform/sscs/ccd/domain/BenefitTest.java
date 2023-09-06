@@ -3,9 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 
 import java.util.Optional;
 import junitparams.JUnitParamsRunner;
@@ -36,6 +35,12 @@ public class BenefitTest {
     @Test(expected = BenefitMappingException.class)
     public void getBenefitByCodeOrThrowExceptionThrowsExceptionForInvalidBenefit() {
         Benefit.getBenefitByCodeOrThrowException("invalid");
+    }
+
+    @Test
+    public void getBenefitByCodeOrThrowException_DontThrowsExceptionForValidBenefit() {
+        Benefit benefit = Benefit.getBenefitByCodeOrThrowException("ESA");
+        assertThat(benefit, is(Benefit.ESA));
     }
 
     @Test
@@ -197,4 +202,15 @@ public class BenefitTest {
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
     }
+
+    @Test
+    public void getBenefitFromBenefitCode002_thenReturnPip() {
+        assertThat(Benefit.getBenefitFromBenefitCode("002"), is(PIP));
+    }
+
+    @Test
+    public void getBenefitFromBenefitCode12345_thenReturnNull() {
+        assertNull(Benefit.getBenefitFromBenefitCode("12345"));
+    }
+
 }
