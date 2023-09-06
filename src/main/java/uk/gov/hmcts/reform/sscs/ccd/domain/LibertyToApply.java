@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LibertyToApply {
     private LibertyToApplyActions action;
+    private RequestFormat requestFormat;
 }

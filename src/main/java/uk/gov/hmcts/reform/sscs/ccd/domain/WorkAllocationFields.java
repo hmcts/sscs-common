@@ -24,4 +24,6 @@ public class WorkAllocationFields {
 
     @JsonInclude
     private List<String> uploadedWelshDocumentTypes;
+
+    private Integer daysToHearing;
 }
