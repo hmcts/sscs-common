@@ -19,10 +19,8 @@ public class WorkAllocationFields {
     @JsonInclude
     private String addedDocuments;
 
-    @JsonInclude
     private List<String> scannedDocumentTypes;
 
-    @JsonInclude
     private List<String> uploadedWelshDocumentTypes;
 
     private Integer daysToHearing;
