@@ -43,8 +43,8 @@ public class PostHearing {
     @JsonProperty("sendToFirstTier")
     private SendToFirstTier sendToFirstTier;
     @Getter(AccessLevel.NONE)
-    @JsonProperty("remitToFirstTier")
-    private RemitToFirstTier remitToFirstTier;
+    @JsonProperty("remitFromUpperTribunal")
+    private RemitFromUpperTribunal remitFromUpperTribunal;
 
     @JsonIgnore
     public SetAside getSetAside() {
@@ -100,11 +100,11 @@ public class PostHearing {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public RemitToFirstTier getRemitToFirstTier() {
-        if (isNull(remitToFirstTier)) {
-            remitToFirstTier = new RemitToFirstTier();
+    public RemitFromUpperTribunal getRemitFromUpperTribunal() {
+        if (isNull(remitFromUpperTribunal)) {
+            remitFromUpperTribunal = new RemitFromUpperTribunal();
         }
-        return remitToFirstTier;
+        return remitFromUpperTribunal;
     }
 
     @SuppressWarnings("unused")

@@ -173,7 +173,7 @@ public enum EventType {
     REINSTATE_VOID_APPEAL("reinstateVoidAppeal", 0, false),
     REISSUE_DOCUMENT("reissueDocument", 0, false),
     REISSUE_FURTHER_EVIDENCE("reissueFurtherEvidence", 0, false),
-    REMIT_TO_FIRST_TIER("remitToFirstTier", 0, false),
+    REMIT_FROM_UPPER_TRIBUNAL("remitFromUpperTribunal", 0, false),
     REMOVE_LINK_FOR_CASE("removeLinkForCase", 0, false),
     REQUEST_FOR_INFORMATION("requestForInformation", 0, false),
     REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false),

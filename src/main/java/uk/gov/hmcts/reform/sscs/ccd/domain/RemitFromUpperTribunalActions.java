@@ -6,9 +6,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RemitToFirstTierActions implements CcdCallbackMap {
+public enum RemitFromUpperTribunalActions implements CcdCallbackMap {
 
-    REMITTED_TO_FIRST_TIER("remitted", "Remitted to first tier", EventType.UPPER_TRIBUNAL_DECISION_REMITTED, "Remitted to first tier", "Remitted to first tier");
+    REMITTED_FROM_UPPER_TRIBUNAL("remitted", "Remitted from UT", EventType.UPPER_TRIBUNAL_DECISION_REMITTED, "Remitted from UT", "Remitted from UT");
 
     private final String ccdDefinition;
     private final String descriptionEn;

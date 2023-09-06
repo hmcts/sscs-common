@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class RemitToFirstTier {
+public class RemitFromUpperTribunal {
     private DocumentLink remittanceDocument;
 }
