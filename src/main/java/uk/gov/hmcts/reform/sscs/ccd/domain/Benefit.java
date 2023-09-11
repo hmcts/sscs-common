@@ -114,40 +114,23 @@ public enum Benefit {
                 .orElse(EMPTY);
     }
 
+    public static Benefit getBenefitFromBenefitCode(String benefitCode) {
+        return stream(Benefit.values())
+                .filter(benefit -> benefit.getCaseLoaderKeyId().contains(benefitCode))
+                .findFirst().orElse(null);
+    }
+
     public PanelComposition getPanelComposition() {
-        switch (this) {
-            case PIP:
-            case DLA:
-            case ATTENDANCE_ALLOWANCE:
-                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
-            case ESA:
-                return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE:
-            case BEREAVEMENT_BENEFIT:
-            case JSA:
-            case MATERNITY_ALLOWANCE:
-            case SOCIAL_FUND:
-            case INCOME_SUPPORT:
-            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME:
-            case PENSION_CREDIT:
-            case RETIREMENT_PENSION:
-                return JUDGE;
-            case IIDB:
-            case INDUSTRIAL_DEATH_BENEFIT:
-                return JUDGE_AND_ONE_OR_TWO_DOCTORS;
-            case CHILD_SUPPORT:
-            case TAX_CREDIT:
-            case GUARDIANS_ALLOWANCE:
-            case TAX_FREE_CHILDCARE:
-            case HOME_RESPONSIBILITIES_PROTECTION:
-            case CHILD_BENEFIT:
-            case THIRTY_HOURS_FREE_CHILDCARE:
-            case GUARANTEED_MINIMUM_PENSION:
-            case NATIONAL_INSURANCE_CREDITS:
-                return JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
-            default:
-                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
-        }
+        return switch (this) {
+            case PIP, DLA, ATTENDANCE_ALLOWANCE -> JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+            case ESA -> JUDGE_AND_A_DOCTOR;
+            case CARERS_ALLOWANCE, BEREAVEMENT_BENEFIT, JSA, MATERNITY_ALLOWANCE, SOCIAL_FUND, INCOME_SUPPORT, BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, PENSION_CREDIT, RETIREMENT_PENSION ->
+                    JUDGE;
+            case IIDB, INDUSTRIAL_DEATH_BENEFIT -> JUDGE_AND_ONE_OR_TWO_DOCTORS;
+            case CHILD_SUPPORT, TAX_CREDIT, GUARDIANS_ALLOWANCE, TAX_FREE_CHILDCARE, HOME_RESPONSIBILITIES_PROTECTION, CHILD_BENEFIT, THIRTY_HOURS_FREE_CHILDCARE, GUARANTEED_MINIMUM_PENSION, NATIONAL_INSURANCE_CREDITS ->
+                    JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
+            default -> JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+        };
     }
 
     public String getBenefitNameDescriptionWithAcronym(boolean isEnglish) {
@@ -158,5 +141,4 @@ public enum Benefit {
     private Optional<String> getShortNameOptional() {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
-
 }
