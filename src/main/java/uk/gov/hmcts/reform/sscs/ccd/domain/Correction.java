@@ -16,5 +16,6 @@ import lombok.NoArgsConstructor;
 public class Correction {
     private AdminCorrectionType adminCorrectionType;
     private CorrectionActions action;
+    private YesNo correctionFinalDecisionInProgress;
     private RequestFormat requestFormat;
 }
