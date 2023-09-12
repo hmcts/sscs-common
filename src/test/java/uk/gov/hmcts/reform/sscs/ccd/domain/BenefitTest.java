@@ -40,7 +40,6 @@ public class BenefitTest {
 
     public void getBenefitOptionalByCodeReturnsEmptyIfInvalidBenefit() {
         assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
-
     }
 
     @Test(expected = BenefitMappingException.class)
