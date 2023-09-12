@@ -22,4 +22,13 @@ public class CcdValue<T> {
         this.value = value;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof CcdValue) {
+            return value.equals(((CcdValue<?>) object).getValue());
+        }
+
+        return value.equals(object);
+    }
+
 }
