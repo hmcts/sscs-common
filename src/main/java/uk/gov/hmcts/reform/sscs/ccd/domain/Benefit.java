@@ -104,6 +104,10 @@ public enum Benefit {
                 .findFirst();
     }
 
+    public static Optional<Benefit> findBenefitOptionalByBenefitCode(String code) {
+        return stream(values()).filter(benefit -> benefit.getBenefitCode().equals(code)).findFirst();
+    }
+
     public static Boolean isBenefitTypeValid(String field) {
         return stream(values()).anyMatch(benefit -> benefit.toString().equalsIgnoreCase(field));
     }
