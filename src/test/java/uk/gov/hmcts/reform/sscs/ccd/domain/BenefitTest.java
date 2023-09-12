@@ -163,7 +163,7 @@ public class BenefitTest {
         "ESA, 051",
         "BEREAVEMENT_BENEFIT, 094",
         "MATERNITY_ALLOWANCE, 079",
-        "SOCIAL_FUND, 088, 089, 061",
+        "SOCIAL_FUND, 088, 089",
         "INCOME_SUPPORT, 061",
         "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 095",
         "INDUSTRIAL_DEATH_BENEFIT, 064",
