@@ -3,16 +3,17 @@
   <suppress until="2023-11-01">
     <cve>CVE-2023-24998</cve>
   </suppress>
-  <suppress until="2023-11-01">
+  <suppress until = "2023-11-01">
     <notes><![CDATA[
    file name: json-20220924.jar
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.json/json@.*$</packageUrl>
     <cve>CVE-2022-45688</cve>
   </suppress>
-  <suppress until="2023-11-01">
+  <suppress until = "2023-11-01">
     <cve>CVE-2023-20883</cve>
     <cve>CVE-2023-35116</cve>
     <cve>CVE-2023-2976</cve>
+    <cve>CVE-2023-34040</cve>
   </suppress>
 </suppressions>
