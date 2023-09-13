@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
 
-    private AudioVideoEvidenceDetails value;
+    AudioVideoEvidenceDetails value;
 
     @JsonCreator
     public AudioVideoEvidence(@JsonProperty("value") AudioVideoEvidenceDetails value) {

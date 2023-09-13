@@ -36,7 +36,7 @@ public enum DwpState {
     NO_ACTION("noAction", "No action"),
     PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", "Permission to Appeal Granted"),
     PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", "Permission to Appeal Refused"),
-    PERMISSION_TO_APPEAL_REQUESTED("permissionToAppealRequested", "Permission to appeal Requested"),
+    PERMISSION_TO_APPEAL_REQUESTED("permissionToAppealRequested", "Permission to Appeal Requested"),
     PHE_GRANTED("phmeGranted", "PHE granted"),
     PHE_REFUSED("phmeRefused", "PHE refused"),
     REGISTERED("Registered", "Appeal registered (FTA)"),
