@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
@@ -8,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
+
+import static java.util.Objects.isNull;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -22,4 +25,15 @@ public class OverrideFields {
     private HearingWindow hearingWindow;
     private YesNo autoList;
     private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public boolean isAllNull() {
+        return isNull(duration)
+            && isNull(appellantInterpreter)
+            && isNull(appellantHearingChannel)
+            && isNull(hearingWindow)
+            && isNull(autoList)
+            && isNull(hearingVenueEpimsIds);
+    }
 }
