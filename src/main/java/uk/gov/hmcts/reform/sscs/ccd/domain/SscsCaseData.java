@@ -765,6 +765,15 @@ public class SscsCaseData implements CaseData {
         return sscsIndustrialInjuriesData;
     }
 
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public JudicialUserPanel getJudicialUserPanel() {
+        if (judicialUserPanel == null) {
+            this.judicialUserPanel = new JudicialUserPanel();
+        }
+        return judicialUserPanel;
+    }
+
     public boolean isBenefitType(Benefit benefitType) {
         return getBenefitType().filter(benefitType::equals).isPresent();
     }
