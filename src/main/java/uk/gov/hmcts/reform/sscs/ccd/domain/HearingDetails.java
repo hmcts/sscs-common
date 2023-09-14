@@ -29,6 +29,7 @@ public class HearingDetails {
     private String eventDate;
     private Venue venue;
     private String venueId;
+    private JudicialUserPanel panel;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -50,5 +51,14 @@ public class HearingDetails {
             return LocalDateTime.of(LocalDate.parse(hearingDate), LocalTime.parse(time));
         }
         return null;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public JudicialUserPanel getPanel() {
+        if (panel == null) {
+            this.panel = new JudicialUserPanel();
+        }
+        return panel;
     }
 }

@@ -192,7 +192,6 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument tl1Form;
     private String isInterlocRequired;
     private Panel panel;
-    private JudicialUserPanel judicialUserPanel;
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
     private String urgentCase;
@@ -763,15 +762,6 @@ public class SscsCaseData implements CaseData {
             this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
         }
         return sscsIndustrialInjuriesData;
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public JudicialUserPanel getJudicialUserPanel() {
-        if (judicialUserPanel == null) {
-            this.judicialUserPanel = new JudicialUserPanel();
-        }
-        return judicialUserPanel;
     }
 
     public boolean isBenefitType(Benefit benefitType) {
