@@ -11,6 +11,8 @@ import uk.gov.hmcts.reform.ccd.client.model.Classification;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SscsCaseDetails {
     private Long id;
+    private String eventId;
+    private String eventToken;
     private String jurisdiction;
     private String caseTypeId;
     private LocalDateTime createdDate;

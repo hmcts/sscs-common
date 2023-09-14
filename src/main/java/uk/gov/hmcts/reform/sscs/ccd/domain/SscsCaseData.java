@@ -175,7 +175,7 @@ public class SscsCaseData implements CaseData {
     @Deprecated
     private DirectionType directionType;
     private DynamicList directionTypeDl;
-
+    private PrePostHearing prePostHearing;
     private String confidentialityType;
     private YesNo sendDirectionNoticeToFTA;
     private YesNo sendDirectionNoticeToRepresentative;
