@@ -192,6 +192,7 @@ public class SscsCaseData implements CaseData {
     private DwpResponseDocument tl1Form;
     private String isInterlocRequired;
     private Panel panel;
+    private JudicialUserPanel judicialUserPanel;
     @JsonProperty("evidenceReceivedCF")
     private EvidenceReceived evidenceReceived;
     private String urgentCase;
