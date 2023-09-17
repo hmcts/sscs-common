@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,12 +20,14 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 @JsonInclude
 public class JudicialUserPanel {
     JudicialUserBase assignedTo;
-    JudicialUserBase medicalMember;
-    JudicialUserBase disabilityQualifiedMember;
+    List<CollectionItem<JudicialUserBase>> panelMembers;
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public List<JudicialUserBase> getPanelMembers() {
-        return List.of(assignedTo, medicalMember, disabilityQualifiedMember);
+    public List<JudicialUserBase> getAllPanelMembers() {
+        List<JudicialUserBase> allPanelMembers = panelMembers.stream().map(CollectionItem::getValue).collect(Collectors.toList());
+        allPanelMembers.add(0, assignedTo);
+
+        return allPanelMembers;
     }
 }
