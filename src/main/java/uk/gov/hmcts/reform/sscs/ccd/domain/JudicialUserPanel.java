@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -28,12 +30,13 @@ public class JudicialUserPanel {
     @SuppressWarnings("unused")
     @JsonIgnore
     public List<JudicialUserBase> getAllPanelMembers() {
-        List<JudicialUserBase> allPanelMembers;
+        List<JudicialUserBase> allPanelMembers = new LinkedList<>();
         if (nonNull(panelMembers)) {
-            allPanelMembers = panelMembers.stream().map(CollectionItem::getValue).toList();
+            allPanelMembers = panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList();
+        }
+
+        if (nonNull(assignedTo)) {
             allPanelMembers.add(0, assignedTo);
-        } else {
-            allPanelMembers = List.of(assignedTo);
         }
 
         return allPanelMembers.stream().filter(Objects::nonNull).toList();
