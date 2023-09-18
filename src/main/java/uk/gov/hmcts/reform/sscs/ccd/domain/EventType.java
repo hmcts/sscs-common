@@ -21,7 +21,7 @@ public enum EventType {
     ADMIN_ACTION_CORRECTION("adminActionCorrection", 0, false),
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
     ADMIN_CORRECTION_BODY("adminCorrectionBody", 0, false),
-    ADMIN_CORRECTION_HEADER("adminCorrectionHeader", 0, false),
+    ADMIN_CORRECTION_HEADER("adminCorrectionHeader", 0, true),
     ADMIN_RESTORE_CASES("adminRestoreCases", 0, false),
     ADMIN_SEND_TOR_RSPONSE_RECEIVED("adminSendTorRsponseReceived", 0, false),
     ADMIN_SEND_TO_APPEAL_CREATED("adminSendToAppealCreated", 0, false),
