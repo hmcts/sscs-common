@@ -90,7 +90,7 @@ public class BenefitTest {
         "homeResponsibilitiesProtection, Home Responsibilities Protection",
         "childBenefit, Child Benefit",
         "thirtyHoursFreeChildcare, 30 Hours Free Childcare",
-        "guaranteedMinimumPension, Guaranteed Minimum Pension",
+        "guaranteedMinimumPension, Guaranteed Minimum Pension (COEG)",
         "nationalInsuranceCredits, National Insurance Credits",
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
@@ -140,7 +140,7 @@ public class BenefitTest {
         "Home Responsibilities Protection, Diogelu Cyfrifoldebau Cartref",
         "Child Benefit, Budd-dal Plant",
         "30 Hours Free Childcare, Gofal Plant am ddim - 30 awr",
-        "Guaranteed Minimum Pension, Isafswm Pensiwn Gwarantedig",
+        "Guaranteed Minimum Pension (COEG), Isafswm Pensiwn Gwarantedig",
         "National Insurance Credits, Credydau Yswiriant Gwladol"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
