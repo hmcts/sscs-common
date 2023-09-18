@@ -22,6 +22,7 @@ public class HearingOptions {
     private String scheduleHearing;
     private List<ExcludeDate> excludeDates;
     private String agreeLessNotice;
+    private HearingRoute hearingRoute;
     private String other;
 
     @JsonCreator
@@ -35,6 +36,7 @@ public class HearingOptions {
                           @JsonProperty("scheduleHearing") String scheduleHearing,
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
                           @JsonProperty("agreeLessNotice") String agreeLessNotice,
+                          @JsonProperty("hearingRoute") HearingRoute hearingRoute,
                           @JsonProperty("other") String other) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
@@ -46,6 +48,7 @@ public class HearingOptions {
         this.scheduleHearing = scheduleHearing;
         this.excludeDates = excludeDates;
         this.agreeLessNotice = agreeLessNotice;
+        this.hearingRoute = hearingRoute;
         this.other = other;
     }
 
