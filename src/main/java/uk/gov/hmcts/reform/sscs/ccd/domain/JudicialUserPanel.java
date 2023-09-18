@@ -12,6 +12,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
+import static java.util.Objects.nonNull;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -25,9 +27,13 @@ public class JudicialUserPanel {
     @SuppressWarnings("unused")
     @JsonIgnore
     public List<JudicialUserBase> getAllPanelMembers() {
-        List<JudicialUserBase> allPanelMembers = panelMembers.stream().map(CollectionItem::getValue).collect(Collectors.toList());
-        allPanelMembers.add(0, assignedTo);
+        if (nonNull(panelMembers)) {
+            List<JudicialUserBase> allPanelMembers = panelMembers.stream().map(CollectionItem::getValue).collect(Collectors.toList());
+            allPanelMembers.add(0, assignedTo);
 
-        return allPanelMembers;
+            return allPanelMembers;
+        }
+
+        return List.of(assignedTo);
     }
 }
