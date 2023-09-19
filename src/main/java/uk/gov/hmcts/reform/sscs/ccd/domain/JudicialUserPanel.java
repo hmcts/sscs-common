@@ -30,12 +30,12 @@ public class JudicialUserPanel {
     @JsonIgnore
     public List<JudicialUserBase> getAllPanelMembers() {
         List<JudicialUserBase> allPanelMembers = new LinkedList<>();
-        if (nonNull(panelMembers)) {
-            allPanelMembers = panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList();
+        if (nonNull(assignedTo)) {
+            allPanelMembers.add(assignedTo);
         }
 
-        if (nonNull(assignedTo)) {
-            allPanelMembers.add(0, assignedTo);
+        if (nonNull(panelMembers)) {
+            allPanelMembers = panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList();
         }
 
         return allPanelMembers.stream().filter(Objects::nonNull).toList();
