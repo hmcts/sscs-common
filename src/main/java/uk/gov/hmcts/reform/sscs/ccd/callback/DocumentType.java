@@ -42,6 +42,7 @@ public enum DocumentType {
     PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", "Permission to Appeal Refused Decision Notice"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
+    POST_HEARING_OTHER("postHearingOther", "Post hearing other"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     RIP1("rip1Document", "RIP 1 document"),
