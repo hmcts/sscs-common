@@ -14,7 +14,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.REVIEW_
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.REVIEW_LIBERTY_TO_APPLY_APPLICATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.REVIEW_PERMISSION_TO_APPEAL_APPLICATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.REVIEW_SET_ASIDE_APPLICATION;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.REVIEW_STATEMENT_OF_REASONS_APPLICATION;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.STATEMENT_OF_REASONS_APPLICATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.AWAITING_ADMIN_ACTION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.REVIEW_BY_JUDGE;
 
@@ -29,7 +29,7 @@ public enum PostHearingRequestType implements CcdCallbackMap {
     LIBERTY_TO_APPLY("libertyToApply","Liberty to Apply", LIBERTY_TO_APPLY_REQUEST, "Liberty to Apply Request Made", "Liberty to Apply Request Made", LIBERTY_TO_APPLY_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_LIBERTY_TO_APPLY_APPLICATION),
     PERMISSION_TO_APPEAL("permissionToAppeal","Permission to Appeal", PERMISSION_TO_APPEAL_REQUEST, "Permission to Appeal Request Made", "Permission to Appeal Request Made", PERMISSION_TO_APPEAL_REQUESTED, REVIEW_BY_JUDGE, REVIEW_PERMISSION_TO_APPEAL_APPLICATION),
     SET_ASIDE("setAside","Set Aside", SET_ASIDE_REQUEST, "Set Aside Request Made", "Set Aside Request Made", SET_ASIDE_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_SET_ASIDE_APPLICATION),
-    STATEMENT_OF_REASONS("statementOfReasons","Statement of Reasons", SOR_REQUEST, "Statement of Reasons Request Made", "Statement of Reasons Request Made", STATEMENT_OF_REASONS_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_STATEMENT_OF_REASONS_APPLICATION);
+    STATEMENT_OF_REASONS("statementOfReasons","Statement of Reasons", SOR_REQUEST, "Statement of Reasons Request Made", "Statement of Reasons Request Made", STATEMENT_OF_REASONS_REQUESTED, AWAITING_ADMIN_ACTION, STATEMENT_OF_REASONS_APPLICATION);
 
     private final String ccdDefinition;
     private final String descriptionEn;
