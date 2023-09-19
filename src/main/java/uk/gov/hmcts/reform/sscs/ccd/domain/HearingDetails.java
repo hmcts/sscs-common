@@ -74,13 +74,4 @@ public class HearingDetails {
         }
         return null;
     }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public JudicialUserPanel getPanel() {
-        if (panel == null) {
-            this.panel = new JudicialUserPanel();
-        }
-        return panel;
-    }
 }
