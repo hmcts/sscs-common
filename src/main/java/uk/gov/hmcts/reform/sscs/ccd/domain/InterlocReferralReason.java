@@ -21,6 +21,7 @@ public enum InterlocReferralReason {
     PHE_REQUEST("phmeRequest", "PHE request"),
     REJECT_HEARING_RECORDING_REQUEST("rejectHearingRecordingRequest", "Reject hearing recording request"),
     REVIEW_AUDIO_VIDEO_EVIDENCE("reviewAudioVideoEvidence", "Review Audio Video Evidence"),
+    REVIEW_CORRECTION_REQUEST("reviewCorrectionRequest", "Review correction request"),
     REVIEW_POSTPONEMENT_REQUEST("reviewPostponementRequest", "Review hearing postponement request"),
     TIME_EXTENSION("timeExtension","Time extension"),
     REVIEW_SET_ASIDE_APPLICATION("reviewSetAsideApplication", "Review set aside application"),
