@@ -33,10 +33,10 @@ public class JudicialUserPanel {
     @JsonIgnore
     public List<JudicialUserBase> getAllPanelMembers() {
         List<JudicialUserBase> allPanelMembers = new LinkedList<>();
+
         if (nonNull(assignedTo)) {
             allPanelMembers.add(assignedTo);
         }
-
         if (nonNull(panelMembers)) {
             allPanelMembers.addAll(panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList());
         }
