@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,8 +24,10 @@ import static java.util.Objects.nonNull;
 @NoArgsConstructor
 @JsonInclude
 public class JudicialUserPanel {
-    JudicialUserBase assignedTo;
-    List<CollectionItem<JudicialUserBase>> panelMembers;
+    @JsonProperty("assignedTo")
+    private JudicialUserBase assignedTo;
+    @JsonProperty("panelMembers")
+    private List<CollectionItem<JudicialUserBase>> panelMembers;
 
     @SuppressWarnings("unused")
     @JsonIgnore
@@ -35,7 +38,7 @@ public class JudicialUserPanel {
         }
 
         if (nonNull(panelMembers)) {
-            allPanelMembers = panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList();
+            allPanelMembers.addAll(panelMembers.stream().filter(Objects::nonNull).map(CollectionItem::getValue).toList());
         }
 
         return allPanelMembers.stream().filter(Objects::nonNull).toList();
