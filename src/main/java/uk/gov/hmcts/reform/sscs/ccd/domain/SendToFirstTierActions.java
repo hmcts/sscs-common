@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.REVIEW_BY_JUDGE;
+
 @Getter
 @AllArgsConstructor
 public enum SendToFirstTierActions implements CcdCallbackMap {
@@ -16,8 +18,8 @@ public enum SendToFirstTierActions implements CcdCallbackMap {
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpState postCallbackDwpState = null;
-    private final InterlocReviewState postCallbackInterlocState = null;
+    private final DwpState postCallbackDwpState;
+    private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 
     @Override
