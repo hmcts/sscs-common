@@ -13,6 +13,7 @@ public enum DocumentType {
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
+    CORRECTED_DECISION_NOTICE("correctedDecisionNotice", "Corrected decision notice"),
     CORRECTION_APPLICATION("correctionApplication", "Correction Application"),
     DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft Corrected Final Decision Notice"),
     CORRECTION_GRANTED("correctionGranted", "Corrected Final Decision Notice"),

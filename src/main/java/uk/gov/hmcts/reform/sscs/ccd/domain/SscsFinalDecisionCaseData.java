@@ -56,5 +56,4 @@ public class SscsFinalDecisionCaseData {
     public boolean isDailyLivingAndOrMobilityDecision() {
         return StringUtils.equalsIgnoreCase("yes", writeFinalDecisionIsDescriptorFlow);
     }
-
 }
