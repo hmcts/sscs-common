@@ -30,8 +30,6 @@ public class HearingDetails {
     private String eventDate;
     private Venue venue;
     private String venueId;
-    @JsonProperty("panel")
-    private JudicialUserPanel panel;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
