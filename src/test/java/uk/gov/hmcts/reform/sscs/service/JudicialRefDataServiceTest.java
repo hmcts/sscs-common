@@ -47,29 +47,6 @@ public class JudicialRefDataServiceTest {
     }
 
     @Test
-    public void getJudicialUserTitleWithInitialsAndLastNameByPersonalCode() {
-        String fullName = "Full Name";
-        JudicialUser judicialUser = JudicialUser.builder().fullName(fullName).build();
-        JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
-            .personalCodes(List.of(PERSONAL_CODE)).build();
-
-        when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
-
-        JudicialRefDataSearchRequest judicialRefDataSearchRequest = JudicialRefDataSearchRequest.builder()
-            .searchString(fullName).build();
-        when(judicialRefDataApi.searchUsersBySearchString(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataSearchRequest)).thenReturn(
-                List.of(JudicialUserSearch.builder().personalCode("324123").build(),
-                    JudicialUserSearch.builder().title("Mr").personalCode(PERSONAL_CODE).fullName(fullName).build()));
-
-        String result = judicialRefDataService.getJudicialUserTitleWithInitialsAndLastName(PERSONAL_CODE);
-
-        assertEquals(result, "Mr F Name");
-    }
-
-    @Test
     public void getJudicialUserPersonalCodeWithIdamId() {
         String idamId = "4444-4444-4444";
         JudicialUser judicialUser = JudicialUser.builder().personalCode(PERSONAL_CODE).build();

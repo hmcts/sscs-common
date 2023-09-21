@@ -10,9 +10,9 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class Panel {
-    private String assignedTo;
-    private String medicalMember;
-    private String disabilityQualifiedMember;
+    String assignedTo;
+    String medicalMember;
+    String disabilityQualifiedMember;
 
     @JsonCreator
     public Panel(@JsonProperty("assignedTo") String assignedTo,

@@ -13,6 +13,7 @@ public enum DocumentType {
     AUDIO_DOCUMENT("audioDocument", "Audio document"),
     AUDIO_VIDEO_EVIDENCE_DIRECTION_NOTICE("audioVideoEvidenceDirectionNotice", "Audio/Video evidence direction notice"),
     CONFIDENTIALITY_REQUEST("confidentialityRequest", "Confidentiality request"),
+    CORRECTED_DECISION_NOTICE("correctedDecisionNotice", "Corrected decision notice"),
     CORRECTION_APPLICATION("correctionApplication", "Correction Application"),
     DRAFT_CORRECTED_NOTICE("draftCorrectedNotice", "Draft Corrected Final Decision Notice"),
     CORRECTION_GRANTED("correctionGranted", "Corrected Final Decision Notice"),
@@ -42,6 +43,7 @@ public enum DocumentType {
     PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", "Permission to Appeal Refused Decision Notice"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
     POSTPONEMENT_REQUEST_DIRECTION_NOTICE("postponementRequestDirectionNotice", "Postponement Request direction notice"),
+    POST_HEARING_OTHER("postHearingOther", "Post hearing other"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     REPRESENTATIVE_EVIDENCE("representativeEvidence", "Representative evidence"),
     RIP1("rip1Document", "RIP 1 document"),
@@ -58,6 +60,7 @@ public enum DocumentType {
     TL1_FORM("tl1Form", "TL1 Form"),
     UPPER_TRIBUNALS_DECISION_REMADE("upperTribunalsDecisionRemade", "Upper Tribunals Decision Remade Notice"),
     UPPER_TRIBUNALS_DECISION_REFUSED("upperTribunalsDecisionRefused", "Upper Tribunals Decision Refused Notice"),
+    UPPER_TRIBUNALS_DECISION_REMITTED("upperTribunalsDecisionRemitted", "Upper Tribunals Decision Remitted Notice"),
     URGENT_HEARING_REQUEST("urgentHearingRequest", "Urgent hearing request"),
     VIDEO_DOCUMENT("videoDocument", "Video document"),
     WITHDRAWAL_REQUEST("withdrawalRequest", "Withdrawal Request");
