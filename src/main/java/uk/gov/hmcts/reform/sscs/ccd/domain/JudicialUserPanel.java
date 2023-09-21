@@ -22,7 +22,7 @@ import static java.util.Objects.nonNull;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class JudicialUserPanel {
     @JsonProperty("assignedTo")
     private JudicialUserBase assignedTo;
