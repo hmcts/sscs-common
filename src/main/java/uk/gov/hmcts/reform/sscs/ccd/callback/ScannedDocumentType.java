@@ -17,6 +17,7 @@ public enum ScannedDocumentType {
     OTHER("other", "Other"),
     PERMISSION_TO_APPEAL_APPLICATION("permissionToAppealApplication", "Permission to Appeal Application"),
     POSTPONEMENT_REQUEST("postponementRequest", "Postponement request"),
+    POST_HEARING_OTHER("postHearingOther", "Post hearing other"),
     REINSTATEMENT_REQUEST("reinstatementRequest", "Reinstatement request"),
     SET_ASIDE_APPLICATION("setAsideApplication", "Set aside Application"),
     STATEMENT_OF_REASONS_APPLICATION("statementOfReasonsApplication", "Statement of Reasons Application"),
