@@ -228,6 +228,7 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
     private LocalDate issueFinalDecisionDate;
+    private LocalDate issueInterlocDecisionDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
