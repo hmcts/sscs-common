@@ -28,6 +28,17 @@ public class BenefitTest {
         assertThat(Benefit.getBenefitOptionalByCode(code), is(Optional.of(expectedBenefit)));
     }
 
+    @Test
+    @Parameters({
+        "051, ESA",
+        "073, JSA",
+        "002, PIP",
+        "045, PENSION_CREDIT"
+    })
+    public void test(String benefitCode, Benefit expectedBenefit) {
+        assertThat(Benefit.findBenefitOptionalByBenefitCode(benefitCode), is(Optional.of(expectedBenefit)));
+    }
+
     public void getBenefitOptionalByCodeReturnsEmptyIfInvalidBenefit() {
         assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
 
