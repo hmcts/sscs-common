@@ -21,12 +21,12 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 public interface JudicialRefDataApi {
 
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
-    String acceptHeaderString = "application/vnd.jrd.api+json;Version=2.0";
+    String ACCEPT_HEADER_STRING = "application/vnd.jrd.api+json;Version=2.0";
 
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users/search",
-            headers = "{" + ACCEPT + "=" + acceptHeaderString + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE + "}"
+            headers = "{" + ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE + "}"
     )
     List<JudicialUserSearch> searchUsersBySearchString(
             @RequestHeader(AUTHORIZATION) String authorisation,
@@ -37,7 +37,7 @@ public interface JudicialRefDataApi {
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users",
-            headers = "{" + ACCEPT + "=" + acceptHeaderString + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE + "}"
+            headers = "{" + ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE + "}"
     )
     List<JudicialUser> getJudicialUsers(
             @RequestHeader(AUTHORIZATION) String authorisation,
