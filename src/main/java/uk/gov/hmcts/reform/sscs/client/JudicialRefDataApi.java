@@ -23,6 +23,7 @@ public interface JudicialRefDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
     String ACCEPT_HEADER_STRING = "application/vnd.jrd.api+json;Version=2.0";
 
+
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users/search",
