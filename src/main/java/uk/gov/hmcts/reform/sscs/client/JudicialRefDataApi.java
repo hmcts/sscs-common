@@ -26,7 +26,7 @@ public interface JudicialRefDataApi {
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users/search",
-            headers = ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+            headers = {ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE}
     )
     List<JudicialUserSearch> searchUsersBySearchString(
             @RequestHeader(AUTHORIZATION) String authorisation,
@@ -37,7 +37,7 @@ public interface JudicialRefDataApi {
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users",
-            headers = ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+           headers = {ACCEPT + "=" + ACCEPT_HEADER_STRING + "," + CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE}
     )
     List<JudicialUser> getJudicialUsers(
             @RequestHeader(AUTHORIZATION) String authorisation,
