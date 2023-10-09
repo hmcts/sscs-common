@@ -53,4 +53,8 @@ public class DocumentGeneration {
     private String libertyToApplySignedBy;
     @JsonProperty("libertyToApplySignedRole")
     private String libertyToApplySignedRole;
+    @JsonProperty("permissionToAppealSignedBy")
+    private String permissionToAppealSignedBy;
+    @JsonProperty("permissionToAppealSignedRole")
+    private String permissionToAppealSignedRole;
 }

@@ -6,15 +6,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Slf4j
 public class JudicialUserBase {
     @JsonProperty("idamId")
     private String idamId;
     @JsonProperty("personalCode")
     private String personalCode;
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof JudicialUserBase) {
+            return this.idamId.equals(((JudicialUserBase) object).getIdamId());
+        }
+
+        return false;
+    }
 }

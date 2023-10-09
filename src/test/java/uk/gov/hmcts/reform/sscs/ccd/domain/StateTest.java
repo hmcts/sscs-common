@@ -46,7 +46,7 @@ public class StateTest {
     }
 
     @Test
-    public void getwithUTId() {
+    public void getwithUtId() {
         assertEquals(WITH_UT, State.getById("withUT"));
     }
 

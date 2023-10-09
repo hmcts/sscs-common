@@ -12,6 +12,8 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
+import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CcdException;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -25,6 +27,8 @@ public class CcdService {
     private final SearchCcdCaseService searchCcdCaseService;
     private final UpdateCcdCaseService updateCcdCaseService;
     private final ReadCcdCaseService readCcdCaseService;
+    private final CcdClient ccdClient;
+    private final SscsCcdConvertService sscsCcdConvertService;
     private static final String YES = "yes";
     private static final String NO = "no";
     private final boolean sscs2Enabled;
@@ -34,11 +38,15 @@ public class CcdService {
                       SearchCcdCaseService searchCcdCaseService,
                       UpdateCcdCaseService updateCcdCaseService,
                       ReadCcdCaseService readCcdCaseService,
+                      CcdClient ccdClient,
+                      SscsCcdConvertService sscsCcdConvertService,
                       @Value("${feature.sscs2.enabled:false}") boolean sscs2Enabled) {
         this.createCcdCaseService = createCcdCaseService;
         this.searchCcdCaseService = searchCcdCaseService;
         this.updateCcdCaseService = updateCcdCaseService;
         this.readCcdCaseService = readCcdCaseService;
+        this.ccdClient = ccdClient;
+        this.sscsCcdConvertService = sscsCcdConvertService;
         this.sscs2Enabled = sscs2Enabled;
     }
 
@@ -64,6 +72,11 @@ public class CcdService {
         }
     }
 
+    public SscsCaseDetails getCaseForModification(Long caseId, IdamTokens idamTokens, String eventType) {
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        return sscsCcdConvertService.getCaseDetails(startEventResponse);
+    }
+
     public SscsCaseDetails getByCaseId(Long caseId, IdamTokens idamTokens) {
         return readCcdCaseService.getByCaseId(caseId, idamTokens);
     }
@@ -74,6 +87,11 @@ public class CcdService {
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCcdCaseService.updateCase(caseData, caseId, eventType, summary, description, idamTokens);
+    }
+
+    public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, 
+                                        String summary, String description, IdamTokens idamTokens) {
+        return updateCcdCaseService.updateCase(caseData, caseId, eventId, eventToken, eventType, summary, description, idamTokens); 
     }
 
     public SscsCaseDetails updateCaseWithoutRetry(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {

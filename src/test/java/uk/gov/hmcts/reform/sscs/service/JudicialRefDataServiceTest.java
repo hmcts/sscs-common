@@ -19,54 +19,46 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JudicialRefDataServiceTest {
-
     @Mock
     private IdamService idamService;
     @Mock
     private JudicialRefDataApi judicialRefDataApi;
 
     @InjectMocks
-    JudicialRefDataService judicialRefDataService;
+    private JudicialRefDataService judicialRefDataService;
+
+    private final IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+
+    private static final String PERSONAL_CODE = "1234";
 
     @Test
     public void getJudicalUserByPersonalCode() {
-        String personalCode = "1234";
         JudicialUser judicialUser = JudicialUser.builder().fullName("Full Name").build();
-        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
-            .personalCodes(List.of(personalCode)).build();
+            .personalCodes(List.of(PERSONAL_CODE)).build();
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
 
-        String result = judicialRefDataService.getJudicialUserFullName(personalCode);
+        String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
 
         assertEquals(result, judicialUser.getFullName());
     }
 
     @Test
-    public void getJudicialUserTitleWithInitialsAndLastNameByPersonalCode() {
-        String personalCode = "1234";
-        String fullName = "Full Name";
-        JudicialUser judicialUser = JudicialUser.builder().fullName(fullName).build();
-        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+    public void getJudicialUserPersonalCodeWithIdamId() {
+        String idamId = "4444-4444-4444";
+        JudicialUser judicialUser = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
-            .personalCodes(List.of(personalCode)).build();
+            .sidamIds(List.of(idamId)).build();
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
 
-        JudicialRefDataSearchRequest judicialRefDataSearchRequest = JudicialRefDataSearchRequest.builder()
-            .searchString(fullName).build();
-        when(judicialRefDataApi.searchUsersBySearchString(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataSearchRequest)).thenReturn(
-                List.of(JudicialUserSearch.builder().personalCode("324123").build(),
-                    JudicialUserSearch.builder().title("Mr").personalCode(personalCode).fullName(fullName).build()));
+        String result = judicialRefDataService.getPersonalCode(idamId);
 
-        String result = judicialRefDataService.getJudicialUserTitleWithInitialsAndLastName(personalCode);
-
-        assertEquals(result, "Mr F Name");
+        assertEquals(result, judicialUser.getPersonalCode());
     }
 }
