@@ -39,7 +39,7 @@ public class JudicialMemberAppointments {
     @JsonProperty("service_code")
     private String serviceCode;
     @JsonProperty("start_date")
-    private String startDate;
+    private LocalDate startDate;
     @JsonProperty("end_date")
-    private String endDate;
+    private LocalDate endDate;
 }
