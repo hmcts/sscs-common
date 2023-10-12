@@ -16,11 +16,13 @@ public class HearingOptions {
     private String wantsSupport;
     private String languageInterpreter;
     private String languages;
+    private DynamicList languagesList;
     private String signLanguageType;
     private List<String> arrangements;
     private String scheduleHearing;
     private List<ExcludeDate> excludeDates;
     private String agreeLessNotice;
+    private HearingRoute hearingRoute;
     private String other;
 
     @JsonCreator
@@ -28,21 +30,25 @@ public class HearingOptions {
                           @JsonProperty("wantsSupport") String wantsSupport,
                           @JsonProperty("languageInterpreter") String languageInterpreter,
                           @JsonProperty("languages") String languages,
+                          @JsonProperty("languagesList") DynamicList languagesList,
                           @JsonProperty("signLanguageType") String signLanguageType,
                           @JsonProperty("arrangements") List<String> arrangements,
                           @JsonProperty("scheduleHearing") String scheduleHearing,
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
                           @JsonProperty("agreeLessNotice") String agreeLessNotice,
+                          @JsonProperty("hearingRoute") HearingRoute hearingRoute,
                           @JsonProperty("other") String other) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
         this.languageInterpreter = languageInterpreter;
         this.languages = languages;
+        this.languagesList = languagesList;
         this.signLanguageType = signLanguageType;
         this.arrangements = arrangements;
         this.scheduleHearing = scheduleHearing;
         this.excludeDates = excludeDates;
         this.agreeLessNotice = agreeLessNotice;
+        this.hearingRoute = hearingRoute;
         this.other = other;
     }
 
