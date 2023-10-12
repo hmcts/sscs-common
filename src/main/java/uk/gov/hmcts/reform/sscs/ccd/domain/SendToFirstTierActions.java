@@ -16,7 +16,7 @@ public enum SendToFirstTierActions implements CcdCallbackMap {
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpStates postCallbackDwpState = null;
+    private final DwpState postCallbackDwpState = null;
     private final InterlocReviewState postCallbackInterlocState = null;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 

@@ -5,7 +5,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.DIRECTION_ACTION_REQUIRED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.DIRECTION_ACTION_REQUIRED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.READY_TO_LIST;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DwpState;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -70,7 +70,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMap correctly sets the Dwp State")
     @Test
     void handleCcdCallbackPostCallbackDwpState() {
-        DwpStates expected = DIRECTION_ACTION_REQUIRED;
+        DwpState expected = DIRECTION_ACTION_REQUIRED;
         given(callbackMap.getPostCallbackDwpState()).willReturn(expected);
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);

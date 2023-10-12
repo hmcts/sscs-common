@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.CORRECTION_REQUESTED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.LIBERTY_TO_APPLY_REQUESTED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.PERMISSION_TO_APPEAL_REQUESTED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.SET_ASIDE_REQUESTED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.STATEMENT_OF_REASONS_REQUESTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.CORRECTION_REQUESTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.LIBERTY_TO_APPLY_REQUESTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.PERMISSION_TO_APPEAL_REQUESTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.SET_ASIDE_REQUESTED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.STATEMENT_OF_REASONS_REQUESTED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CORRECTION_REQUEST;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.LIBERTY_TO_APPLY_REQUEST;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.PERMISSION_TO_APPEAL_REQUEST;
@@ -36,7 +36,7 @@ public enum PostHearingRequestType implements CcdCallbackMap {
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpStates postCallbackDwpState;
+    private final DwpState postCallbackDwpState;
     private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason;
 
