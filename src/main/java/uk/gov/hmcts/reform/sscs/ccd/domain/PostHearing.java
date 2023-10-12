@@ -29,7 +29,7 @@ public class PostHearing {
     @JsonProperty("setAside")
     private SetAside setAside;
     @Getter(AccessLevel.NONE)
-    @JsonUnwrapped
+    @JsonProperty("correction")
     private Correction correction;
     @Getter(AccessLevel.NONE)
     @JsonProperty("statementOfReasons")
