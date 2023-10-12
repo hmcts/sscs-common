@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.STATEMENT_OF_REASONS_ISSUED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpStates.STATEMENT_OF_REASONS_ISSUED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.POST_HEARING_APP_SOR_WRITTEN;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.NONE;
 
@@ -18,7 +18,7 @@ public enum WriteStatementOfReasons implements CcdCallbackMap {
     private final EventType callbackEvent;
     private final String callbackSummary;
     private final String callbackDescription;
-    private final DwpState postCallbackDwpState;
+    private final DwpStates postCallbackDwpState;
     private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason = null;
 

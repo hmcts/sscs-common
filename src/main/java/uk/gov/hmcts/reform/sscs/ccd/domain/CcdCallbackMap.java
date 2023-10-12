@@ -9,7 +9,7 @@ public interface CcdCallbackMap {
 
     String getCallbackDescription();
 
-    DwpState getPostCallbackDwpState();
+    DwpStates getPostCallbackDwpState();
 
     InterlocReviewState getPostCallbackInterlocState();
 

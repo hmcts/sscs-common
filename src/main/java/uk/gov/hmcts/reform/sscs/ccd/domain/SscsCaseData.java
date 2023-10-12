@@ -147,8 +147,8 @@ public class SscsCaseData implements CaseData {
     private LocalDate interlocReferralDate;
     private InterlocReferralReason interlocReferralReason;
     private String dwpRegionalCentre;
-    private DwpStates dwpState;
-    private DwpStates dwpStateWithoutPostHearing;
+    private DwpState dwpState;
+    private DwpState dwpStateWithoutPostHearing;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
