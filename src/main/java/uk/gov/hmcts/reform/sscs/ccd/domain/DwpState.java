@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum DwpState implements DwpStates {
+public enum DwpState {
     ADJOURNMENT_NOTICE_ISSUED("adjournmentNoticeIssued", "Adjournment notice issued"),
     APPEAL_ABATED("appealAbated", "Appeal abated"),
     APPOINTEE_DETAILS_NEEDED("appointeeDetailsNeeded", "Appointee details needed"),
