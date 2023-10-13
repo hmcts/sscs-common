@@ -73,7 +73,7 @@ public enum DwpState {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public List<DwpState> getPostHearingDwpStates() {
+    public static List<DwpState> getPostHearingDwpStates() {
         return List.of(CORRECTED_DECISION_NOTICE_ISSUED, CORRECTION_GRANTED, CORRECTION_REFUSED, CORRECTION_REQUESTED,
                 DECISION_REMADE, LIBERTY_TO_APPLY_GRANTED, LIBERTY_TO_APPLY_REFUSED, LIBERTY_TO_APPLY_REQUESTED,
                 PERMISSION_TO_APPEAL_GRANTED, PERMISSION_TO_APPEAL_REFUSED, PERMISSION_TO_APPEAL_REQUESTED,
