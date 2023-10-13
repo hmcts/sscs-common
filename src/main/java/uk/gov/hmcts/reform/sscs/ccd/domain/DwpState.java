@@ -7,6 +7,8 @@ import lombok.Getter;
 
 import java.util.List;
 
+import static java.util.Arrays.stream;
+
 @Getter
 @AllArgsConstructor
 public enum DwpState {
@@ -69,6 +71,15 @@ public enum DwpState {
     @JsonValue
     public String toString() {
         return ccdDefinition;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public static DwpState fromValue(String ccdDefinition) {
+        return stream(values())
+                .filter(dwpState -> dwpState.getCcdDefinition().equals(ccdDefinition))
+                .findFirst()
+                .orElse(null);
     }
 
     @SuppressWarnings("unused")
