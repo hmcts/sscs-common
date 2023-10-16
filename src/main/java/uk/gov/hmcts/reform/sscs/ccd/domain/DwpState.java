@@ -1,13 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Arrays.stream;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
-import java.util.List;
-
-import static java.util.Arrays.stream;
 
 @Getter
 @AllArgsConstructor
