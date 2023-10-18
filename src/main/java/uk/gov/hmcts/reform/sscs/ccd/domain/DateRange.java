@@ -48,6 +48,8 @@ public class DateRange {
             if (isNull(parsedDate2)) {
                 return null;
             }
+
+            return parsedDate2;
         }
 
         return parsedDate1;
