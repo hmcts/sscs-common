@@ -46,12 +46,13 @@ public class SscsFinalDecisionCaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only", groups = UniversalCreditValidationGroup.class)
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
-    private String finalDecisionHeldBefore;
+    private String finalDecisionJudge;
     private String finalDecisionHeldAt;
     private String finalDecisionIdamSurname;
     private LocalDate finalDecisionIssuedDate;
     private LocalDate finalDecisionGeneratedDate;
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
         return StringUtils.equalsIgnoreCase("yes", writeFinalDecisionIsDescriptorFlow);
