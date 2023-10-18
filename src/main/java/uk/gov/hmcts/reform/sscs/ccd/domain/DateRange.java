@@ -8,8 +8,10 @@ import lombok.Builder;
 import lombok.Value;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -44,9 +46,22 @@ public class DateRange {
                 return null;
             }
 
-            return LocalDate.parse(date2);
+            LocalDate parsedDate = parseLocalDate(date2);
+
+            if (nonNull(parsedDate)) {
+                return LocalDate.parse(date2);
+            }
         }
 
-        return LocalDate.parse(date1);
+        return parseLocalDate(date1);
+    }
+
+    @JsonIgnore
+    private LocalDate parseLocalDate(String date) {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            return null;
+        }
     }
 }
