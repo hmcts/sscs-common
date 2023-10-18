@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -41,26 +40,24 @@ public class DateRange {
 
     @JsonIgnore
     private LocalDate getLocalDate(String date1, String date2) {
-        if (isNull(date1)) {
-            if (isNull(date2)) {
+        LocalDate parsedDate1 = parseLocalDate(date1);
+
+        if (isNull(parsedDate1)) {
+            LocalDate parsedDate2 = parseLocalDate(date2);
+
+            if (isNull(parsedDate2)) {
                 return null;
-            }
-
-            LocalDate parsedDate = parseLocalDate(date2);
-
-            if (nonNull(parsedDate)) {
-                return LocalDate.parse(date2);
             }
         }
 
-        return parseLocalDate(date1);
+        return parsedDate1;
     }
 
     @JsonIgnore
     private LocalDate parseLocalDate(String date) {
         try {
             return LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             return null;
         }
     }
