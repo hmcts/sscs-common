@@ -12,7 +12,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -113,8 +112,8 @@ public class Adjournment {
             this.panelMember2,
             this.panelMember3);
 
-        return panelMembers.stream().filter(Objects::nonNull)
-            .filter(panelMember -> nonNull(panelMember.getIdamId()) || nonNull(panelMember.getPersonalCode()))
+        return panelMembers.stream()
+            .filter(panelMember -> nonNull(panelMember) && nonNull(panelMember.getPersonalCode()))
             .collect(Collectors.toList());
     }
 
