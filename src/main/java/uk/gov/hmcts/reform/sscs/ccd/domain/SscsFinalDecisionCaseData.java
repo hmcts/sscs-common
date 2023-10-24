@@ -23,7 +23,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 public class SscsFinalDecisionCaseData {
 
     private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
+    private YesNo writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
