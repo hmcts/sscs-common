@@ -51,7 +51,7 @@ public class SscsFinalDecisionCaseData {
     private String finalDecisionIdamSurname;
     private LocalDate finalDecisionIssuedDate;
     private LocalDate finalDecisionGeneratedDate;
-    private YesNo finalDecisionWasOriginalDecisionGenerated;
+    private YesNo finalDecisionWasOriginalDecisionUploaded;
 
     @SuppressWarnings("unused")
     @JsonIgnore
