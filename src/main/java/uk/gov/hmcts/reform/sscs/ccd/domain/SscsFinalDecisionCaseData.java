@@ -23,7 +23,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 public class SscsFinalDecisionCaseData {
 
     private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
+    private YesNo writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
@@ -46,12 +46,14 @@ public class SscsFinalDecisionCaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only", groups = UniversalCreditValidationGroup.class)
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
-    private String finalDecisionHeldBefore;
+    private String finalDecisionJudge;
     private String finalDecisionHeldAt;
     private String finalDecisionIdamSurname;
     private LocalDate finalDecisionIssuedDate;
     private LocalDate finalDecisionGeneratedDate;
+    private YesNo finalDecisionWasOriginalDecisionUploaded;
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
         return StringUtils.equalsIgnoreCase("yes", writeFinalDecisionIsDescriptorFlow);
