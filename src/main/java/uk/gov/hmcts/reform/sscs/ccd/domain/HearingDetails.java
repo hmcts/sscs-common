@@ -2,10 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.time.LocalDate;
@@ -22,6 +19,7 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingDetails {
     private String hearingId;
     private String hearingDate;

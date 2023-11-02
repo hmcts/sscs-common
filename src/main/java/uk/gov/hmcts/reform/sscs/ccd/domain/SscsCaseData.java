@@ -148,6 +148,7 @@ public class SscsCaseData implements CaseData {
     private InterlocReferralReason interlocReferralReason;
     private String dwpRegionalCentre;
     private DwpState dwpState;
+    private DynamicList dynamicDwpState;
     private NotePad appealNotePad;
     private DynamicList dwpStateFeNoAction;
     private String createdInGapsFrom;
@@ -227,6 +228,8 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate issueFinalDecisionDate;
     private String notListableProvideReasons;
     private String notListableDueDate;

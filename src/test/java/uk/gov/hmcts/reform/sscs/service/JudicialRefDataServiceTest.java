@@ -12,10 +12,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
-import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataSearchRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialRefDataUsersRequest;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUser;
-import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 
 @RunWith(MockitoJUnitRunner.class)
 public class JudicialRefDataServiceTest {
