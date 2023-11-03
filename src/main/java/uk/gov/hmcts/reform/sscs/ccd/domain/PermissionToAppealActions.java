@@ -11,7 +11,7 @@ import lombok.Getter;
 public enum PermissionToAppealActions implements CcdCallbackMap {
     GRANT("grant","Grant Permission to Appeal Application", PERMISSION_TO_APPEAL_GRANTED, "Permission to Appeal Granted", "Permission to Appeal Granted", DwpState.PERMISSION_TO_APPEAL_GRANTED),
     REFUSE("refuse","Refuse Permission to Appeal Application", PERMISSION_TO_APPEAL_REFUSED, "Permission to Appeal Refused", "Permission to Appeal Refused", DwpState.PERMISSION_TO_APPEAL_REFUSED),
-    REVIEW("review", "Review decision", REVIEW_AND_SET_ASIDE, "Permission to Appeal Review decision", "Permission to Appeal Review decision", DwpState.DECISION_REMADE);
+    REVIEW("review", "Review decision", REVIEW_AND_SET_ASIDE, "", "Permission to Appeal Review granted", DwpState.DECISION_REMADE);
 
     private final String ccdDefinition;
     private final String descriptionEn;
