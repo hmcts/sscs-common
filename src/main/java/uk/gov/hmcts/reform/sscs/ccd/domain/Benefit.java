@@ -53,7 +53,7 @@ public enum Benefit {
     HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "Diogelu Cyfrifoldebau Cartref", "050", "homeResponsibilitiesProtection", List.of("050"), false, DwpAddressLookupService::homeResponsibilitiesProtectionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     CHILD_BENEFIT("Child Benefit", "Budd-dal Plant", "016", "childBenefit", List.of("016"), false, DwpAddressLookupService::childBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "Gofal Plant am ddim - 30 awr", "058", "thirtyHoursFreeChildcare", List.of("058"), false, DwpAddressLookupService::thirtyHoursFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
-    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension (COEG)", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "Credydau Yswiriant Gwladol", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5);
 
 
@@ -145,5 +145,4 @@ public enum Benefit {
     private Optional<String> getShortNameOptional() {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
-
 }
