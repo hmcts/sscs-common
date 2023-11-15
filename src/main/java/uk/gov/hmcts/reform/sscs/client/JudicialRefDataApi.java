@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.client;
 
-import static org.springframework.http.HttpHeaders.*;
+import static org.springframework.http.HttpHeaders.ACCEPT;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
@@ -21,11 +23,15 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 public interface JudicialRefDataApi {
 
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
+    String ACCEPT_HEADER_STRING = "application/vnd.jrd.api+json;Version=2.0";
 
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users/search",
-            headers = {CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE}
+            headers = {
+                    CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
+                    ACCEPT + "=" + ACCEPT_HEADER_STRING
+            }
     )
     List<JudicialUserSearch> searchUsersBySearchString(
             @RequestHeader(AUTHORIZATION) String authorisation,
@@ -36,12 +42,14 @@ public interface JudicialRefDataApi {
     @RequestMapping(
             method = RequestMethod.POST,
             value = "refdata/judicial/users",
-            headers = {CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE}
+            headers = {
+                    CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
+                    ACCEPT + "=" + ACCEPT_HEADER_STRING
+            }
     )
     List<JudicialUser> getJudicialUsers(
             @RequestHeader(AUTHORIZATION) String authorisation,
             @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
             @RequestBody JudicialRefDataUsersRequest judicialRefDataUsersRequest
     );
-
 }
