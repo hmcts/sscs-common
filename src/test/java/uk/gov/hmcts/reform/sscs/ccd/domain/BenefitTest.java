@@ -3,9 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 
 import java.util.Optional;
 import junitparams.JUnitParamsRunner;
@@ -41,12 +40,17 @@ public class BenefitTest {
 
     public void getBenefitOptionalByCodeReturnsEmptyIfInvalidBenefit() {
         assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
-
     }
 
     @Test(expected = BenefitMappingException.class)
     public void getBenefitByCodeOrThrowExceptionThrowsExceptionForInvalidBenefit() {
         Benefit.getBenefitByCodeOrThrowException("invalid");
+    }
+
+    @Test
+    public void getBenefitByCodeOrThrowException_DontThrowsExceptionForValidBenefit() {
+        Benefit benefit = Benefit.getBenefitByCodeOrThrowException("ESA");
+        assertThat(benefit, is(Benefit.ESA));
     }
 
     @Test
@@ -90,7 +94,7 @@ public class BenefitTest {
         "homeResponsibilitiesProtection, Home Responsibilities Protection",
         "childBenefit, Child Benefit",
         "thirtyHoursFreeChildcare, 30 Hours Free Childcare",
-        "guaranteedMinimumPension, Guaranteed Minimum Pension",
+        "guaranteedMinimumPension, Guaranteed Minimum Pension (COEG)",
         "nationalInsuranceCredits, National Insurance Credits",
     })
     public void givenABenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
@@ -140,7 +144,7 @@ public class BenefitTest {
         "Home Responsibilities Protection, Diogelu Cyfrifoldebau Cartref",
         "Child Benefit, Budd-dal Plant",
         "30 Hours Free Childcare, Gofal Plant am ddim - 30 awr",
-        "Guaranteed Minimum Pension, Isafswm Pensiwn Gwarantedig",
+        "Guaranteed Minimum Pension (COEG), Isafswm Pensiwn Gwarantedig",
         "National Insurance Credits, Credydau Yswiriant Gwladol"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
@@ -158,7 +162,7 @@ public class BenefitTest {
         "ESA, 051",
         "BEREAVEMENT_BENEFIT, 094",
         "MATERNITY_ALLOWANCE, 079",
-        "SOCIAL_FUND, 088, 089, 061",
+        "SOCIAL_FUND, 088, 089",
         "INCOME_SUPPORT, 061",
         "BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, 095",
         "INDUSTRIAL_DEATH_BENEFIT, 064",
@@ -208,4 +212,15 @@ public class BenefitTest {
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
     }
+
+    @Test
+    public void getBenefitFromBenefitCode002_thenReturnPip() {
+        assertThat(Benefit.getBenefitFromBenefitCode("002"), is(PIP));
+    }
+
+    @Test
+    public void getBenefitFromBenefitCode12345_thenReturnNull() {
+        assertNull(Benefit.getBenefitFromBenefitCode("12345"));
+    }
+
 }
