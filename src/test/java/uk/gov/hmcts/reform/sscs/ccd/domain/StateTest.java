@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_DWP;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_UT;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -25,7 +26,8 @@ public class StateTest {
             "responseReceived\n" +
             "validAppeal\n" +
             "voidState\n" +
-            "withDwp";
+            "withDwp\n" +
+            "withUT";
 
     @Test
     public void hasAllStatesDefinedInCcdDefinitionFile() {
@@ -41,6 +43,11 @@ public class StateTest {
     @Test
     public void getStateById() {
         assertEquals(WITH_DWP, State.getById("withDwp"));
+    }
+
+    @Test
+    public void getwithUtId() {
+        assertEquals(WITH_UT, State.getById("withUT"));
     }
 
 }

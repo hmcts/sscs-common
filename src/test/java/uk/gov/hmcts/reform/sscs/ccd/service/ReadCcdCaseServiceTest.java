@@ -32,7 +32,7 @@ public class ReadCcdCaseServiceTest {
 
     @Test
     public void shouldReturnSscsCaseDetailsForGivenCaseId() {
-        Long caseId = new Long(1);
+        Long caseId = 1L;
         IdamTokens idamTokens = IdamTokens.builder().build();
         CaseDetails caseDetails = CaseDetails.builder().id(caseId).build();
         SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(caseId).build();
@@ -49,7 +49,7 @@ public class ReadCcdCaseServiceTest {
 
     @Test
     public void shouldReturnSscsCaseDetailsForGivenCaseIdByGettingNewIdamToken() {
-        Long caseId = new Long(1);
+        Long caseId = 1L;
         IdamTokens idamTokens = IdamTokens.builder().build();
         CaseDetails caseDetails = CaseDetails.builder().id(caseId).build();
         SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(caseId).build();
@@ -68,7 +68,7 @@ public class ReadCcdCaseServiceTest {
 
     @Test
     public void shouldReturnNullForGivenCaseId() {
-        Long caseId = new Long(1);
+        Long caseId = 1L;
         IdamTokens idamTokens = IdamTokens.builder().build();
 
         when(ccdClient.readForCaseworker(idamTokens, caseId)).thenReturn(null);

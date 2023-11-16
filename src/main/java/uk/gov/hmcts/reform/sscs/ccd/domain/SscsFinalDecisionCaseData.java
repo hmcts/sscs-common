@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFut
 public class SscsFinalDecisionCaseData {
 
     private String writeFinalDecisionIsDescriptorFlow;
-    private String writeFinalDecisionGenerateNotice;
+    private YesNo writeFinalDecisionGenerateNotice;
     private String writeFinalDecisionAllowedOrRefused;
     private String writeFinalDecisionTypeOfHearing;
     private String writeFinalDecisionPresentingOfficerAttendedQuestion;
@@ -45,10 +46,16 @@ public class SscsFinalDecisionCaseData {
     @DocumentLinkMustBePdf(message = "You need to upload PDF documents only", groups = UniversalCreditValidationGroup.class)
     private DocumentLink writeFinalDecisionPreviewDocument;
     private String writeFinalDecisionGeneratedDate;
+    private String finalDecisionJudge;
+    private String finalDecisionHeldAt;
+    private String finalDecisionIdamSurname;
+    private LocalDate finalDecisionIssuedDate;
+    private LocalDate finalDecisionGeneratedDate;
+    private YesNo finalDecisionWasOriginalDecisionUploaded;
 
+    @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isDailyLivingAndOrMobilityDecision() {
         return StringUtils.equalsIgnoreCase("yes", writeFinalDecisionIsDescriptorFlow);
     }
-
 }
