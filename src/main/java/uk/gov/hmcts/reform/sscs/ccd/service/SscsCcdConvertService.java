@@ -52,6 +52,27 @@ public class SscsCcdConvertService {
                 .build();
     }
 
+    public CaseDataContent getCaseDataContent(String eventToken, String eventId, SscsCaseData caseData, String summary, 
+                                               String description) {
+        return CaseDataContent.builder()
+                .eventToken(eventToken)
+                .event(Event.builder()
+                        .id(eventId)
+                        .summary(summary)
+                        .description(description)
+                        .build())
+                .data(caseData)
+                .supplementaryDataRequest(supplementaryDataRequestMap)
+                .build();
+    }
+
+    public SscsCaseDetails getCaseDetails(StartEventResponse startEventResponse) {
+        SscsCaseDetails sscsCaseDetails = getCaseDetails(startEventResponse.getCaseDetails());
+        sscsCaseDetails.setEventToken(startEventResponse.getToken());
+        sscsCaseDetails.setEventId(startEventResponse.getEventId());
+        return sscsCaseDetails;
+    }
+
     public SscsCaseDetails getCaseDetails(CaseDetails caseDetails) {
         log.info("getCaseDetails for id {}", caseDetails.getId());
         if (caseDetails.getId() != null) {

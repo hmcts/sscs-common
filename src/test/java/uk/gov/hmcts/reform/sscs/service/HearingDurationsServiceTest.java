@@ -9,18 +9,47 @@ import java.util.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
+import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.reference.data.model.HearingDuration;
 import uk.gov.hmcts.reform.sscs.reference.data.service.HearingDurationsService;
 
+@ExtendWith(MockitoExtension.class)
 public class HearingDurationsServiceTest {
+    private static final String BENEFIT_CODE = "002";
 
-    HearingDurationsService hearingDurations;
+    private static final String ISSUE_CODE = "DD";
+
+    private static final int DURATION_FACE_TO_FACE = 60;
+
+    private static final int DURATION_INTERPRETER = 75;
+
+    private static final int DURATION_PAPER = 40;
+
+    private HearingDurationsService hearingDurations;
+
+    private SscsCaseData caseData;
 
     @Before
     public void setup() {
         hearingDurations = new HearingDurationsService();
+
+        caseData = SscsCaseData.builder()
+            .benefitCode(BENEFIT_CODE)
+            .issueCode(ISSUE_CODE)
+            .appeal(Appeal.builder()
+                .hearingOptions(HearingOptions.builder()
+                    .build())
+                .build())
+            .schedulingAndListingFields(SchedulingAndListingFields.builder()
+                .overrideFields(OverrideFields.builder()
+                    .build())
+                .build())
+            .build();
     }
 
     @DisplayName("There should be no duplicate hearing durations")
@@ -110,5 +139,155 @@ public class HearingDurationsServiceTest {
     public void testAddExtraTimeIncorrectIssueCode() {
         int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("TEST"));
         assertThat(result).isEqualTo(30);
+    }
+  
+    @DisplayName("When the benefit or issue code is null "
+            + "getHearingDurationBenefitIssueCodes returns null Parameterized Tests")
+    @ParameterizedTest
+    @CsvSource(value = {
+        "null,null",
+        "002,null",
+        "null,DD",
+    }, nullValues = {"null"})
+    void getHearingDurationBenefitIssueCodesPaperWithNullSources(String benefitCode, String issueCode) {
+        hearingDurations = new HearingDurationsService();
+        caseData = SscsCaseData.builder()
+            .benefitCode(benefitCode)
+            .issueCode(issueCode)
+            .appeal(Appeal.builder()
+                .hearingSubtype(HearingSubtype.builder().build())
+                .hearingOptions(HearingOptions.builder().build())
+                .build())
+            .build();
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isNull();
+    }
+
+    @DisplayName("When wantsToAttend for the Appeal is Yes and languageInterpreter is null "
+            + "getHearingDurationBenefitIssueCodes return the correct face to face durations")
+    @Test
+    public void getHearingDurationBenefitIssueCodesFaceToFace() {
+        setupHearingDurationMap();
+        caseData.getAppeal().getHearingOptions().setWantsToAttend("Yes");
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isEqualTo(DURATION_FACE_TO_FACE);
+    }
+
+    @DisplayName("When wantsToAttend for the Appeal is no and the hearing type is not paper "
+            + "getHearingDurationBenefitIssueCodes returns null")
+    @Test
+    public void getHearingDurationBenefitIssueCodesNotPaper() {
+        setupHearingDurationMap();
+        List<CcdValue<OtherParty>> otherParties = List.of(new CcdValue<>(
+            OtherParty.builder()
+                .hearingOptions(HearingOptions.builder()
+                    .wantsToAttend("yes")
+                    .build())
+                .hearingSubtype(HearingSubtype.builder()
+                    .wantsHearingTypeTelephone("yes")
+                    .hearingTelephoneNumber("123123")
+                    .build())
+                    .build())
+        );
+
+        caseData.setOtherParties(otherParties);
+        caseData.getAppeal().getHearingOptions().setWantsToAttend("No");
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isEqualTo(60);
+    }
+
+    @DisplayName("When wantsToAttend for the Appeal is No and the hearing type is paper "
+            + "getHearingDurationBenefitIssueCodes return the correct paper durations")
+    @Test
+    public void getHearingDurationBenefitIssueCodesNotAttendNotPaper() {
+        setupHearingDurationMap();
+        caseData.getAppeal().getHearingOptions().setWantsToAttend("No");
+        caseData.setDwpIsOfficerAttending("Yes");
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isEqualTo(DURATION_PAPER);
+    }
+
+    @DisplayName("When wantsToAttend for the Appeal is no and the hearing type is paper "
+            + "getHearingDurationBenefitIssueCodes return the correct paper durations")
+    @Test
+    public void getHearingDurationBenefitIssueCodesPaper() {
+        setupHearingDurationMap();
+        caseData.getAppeal().getHearingOptions().setWantsToAttend("No");
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isEqualTo(DURATION_PAPER);
+    }
+
+    @DisplayName("getElementsDisputed returns empty list when elementDisputed is Null")
+    @Test
+    public void getElementsDisputedNull() {
+        SscsCaseData caseData = SscsCaseData.builder().build();
+
+        List<String> result = hearingDurations.getElementsDisputed(caseData);
+
+        assertThat(result).isEmpty();
+    }
+
+    @DisplayName("getElementsDisputed returns a List of elements of all elements in "
+            + "each of the elementDisputed fields in SscsCaseData")
+    @Test
+    public void getElementsDisputed() {
+        ElementDisputed elementDisputed = ElementDisputed.builder()
+                .value(ElementDisputedDetails.builder()
+                        .issueCode("WC")
+                        .outcome("Test")
+                        .build())
+                .build();
+        SscsCaseData caseData = SscsCaseData.builder()
+                .elementsDisputedGeneral(List.of(elementDisputed))
+                .elementsDisputedSanctions(List.of(elementDisputed))
+                .elementsDisputedOverpayment(List.of(elementDisputed))
+                .elementsDisputedHousing(List.of(elementDisputed))
+                .elementsDisputedChildCare(List.of(elementDisputed))
+                .elementsDisputedCare(List.of(elementDisputed))
+                .elementsDisputedChildElement(List.of(elementDisputed))
+                .elementsDisputedChildDisabled(List.of(elementDisputed))
+                .elementsDisputedLimitedWork(List.of(elementDisputed))
+                .build();
+        List<String> result = hearingDurations.getElementsDisputed(caseData);
+
+        assertThat(result)
+                .hasSize(9)
+                .containsOnly("WC");
+    }
+
+    @DisplayName("When wantsToAttend for the Appeal is Yes "
+            + "getHearingDurationBenefitIssueCodes return the correct interpreter durations")
+    @Test
+    public void getHearingDurationBenefitIssueCodesInterpreter() {
+        setupHearingDurationMap();
+        caseData.getAppeal().getHearingOptions().setWantsToAttend("Yes");
+        caseData.getAppeal().getHearingOptions().setLanguageInterpreter("Yes");
+
+        Integer result = hearingDurations.getHearingDurationBenefitIssueCodes(caseData);
+
+        assertThat(result).isEqualTo(DURATION_INTERPRETER);
+    }
+
+    private void setupHearingDurationMap() {
+        HashMap<HearingDuration, HearingDuration> hearingDurationsMap = new HashMap<>();
+        hearingDurationsMap.put(new HearingDuration(BenefitCode.getBenefitCode(BENEFIT_CODE), Issue.getIssue(ISSUE_CODE)),
+                new HearingDuration(
+                        BenefitCode.PIP_NEW_CLAIM,
+                        Issue.DD,
+                        DURATION_FACE_TO_FACE,
+                        DURATION_INTERPRETER,
+                        DURATION_PAPER
+                ));
+        ReflectionTestUtils.setField(hearingDurations, "hearingDurationsHashMap", hearingDurationsMap);
     }
 }
