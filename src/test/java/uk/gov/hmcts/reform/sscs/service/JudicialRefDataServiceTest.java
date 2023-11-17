@@ -31,11 +31,11 @@ public class JudicialRefDataServiceTest {
     private static final String PERSONAL_CODE = "1234";
 
     private static final String idamId = "4444-4444-4444";
-    private final JudicialUser judicialUser = JudicialUser.builder().fullName("Full Name").build();
-    private final JudicialUser judicialUser2 = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
-    private final JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
+    private final JudicialUser judicialUserCode = JudicialUser.builder().fullName("Full Name").build();
+    private final JudicialUser judicialUserIdam = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
+    private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(PERSONAL_CODE)).build();
-    private final JudicialRefDataUsersRequest judicialRefDataUsersRequest2 = JudicialRefDataUsersRequest.builder()
+    private final JudicialRefDataUsersRequest judicialRefDataUsersRequestIdam = JudicialRefDataUsersRequest.builder()
             .sidamIds(List.of(idamId)).build();
 
     @Test
@@ -43,11 +43,11 @@ public class JudicialRefDataServiceTest {
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", false);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserCode));
 
         String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
 
-        assertEquals(result, judicialUser.getFullName());
+        assertEquals(result, judicialUserCode.getFullName());
     }
 
     @Test
@@ -55,11 +55,11 @@ public class JudicialRefDataServiceTest {
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", true);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsersV2(idamTokens.getIdamOauth2Token(),
-                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest)).thenReturn(List.of(judicialUser));
+                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserCode));
 
         String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
 
-        assertEquals(result, judicialUser.getFullName());
+        assertEquals(result, judicialUserCode.getFullName());
     }
 
     @Test
@@ -67,11 +67,11 @@ public class JudicialRefDataServiceTest {
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", false);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest2)).thenReturn(List.of(judicialUser2));
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestIdam)).thenReturn(List.of(judicialUserIdam));
 
         String result = judicialRefDataService.getPersonalCode(idamId);
 
-        assertEquals(result, judicialUser2.getPersonalCode());
+        assertEquals(result, judicialUserIdam.getPersonalCode());
     }
 
     @Test
@@ -79,10 +79,10 @@ public class JudicialRefDataServiceTest {
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", true);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsersV2(idamTokens.getIdamOauth2Token(),
-                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest2)).thenReturn(List.of(judicialUser2));
+                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestIdam)).thenReturn(List.of(judicialUserIdam));
 
         String result = judicialRefDataService.getPersonalCode(idamId);
 
-        assertEquals(result, judicialUser2.getPersonalCode());
+        assertEquals(result, judicialUserIdam.getPersonalCode());
     }
 }
