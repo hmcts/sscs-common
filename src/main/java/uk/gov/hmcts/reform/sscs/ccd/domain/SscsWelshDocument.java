@@ -12,8 +12,12 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails> {
 
+    private String id;
+
     @JsonCreator
-    public SscsWelshDocument(@JsonProperty("value") SscsWelshDocumentDetails value) {
+    public SscsWelshDocument(@JsonProperty("id") String id, @JsonProperty("value") SscsWelshDocumentDetails value) {
         super(value);
+        this.id = id;
     }
+
 }
