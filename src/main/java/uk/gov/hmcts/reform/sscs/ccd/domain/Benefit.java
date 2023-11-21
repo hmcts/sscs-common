@@ -40,7 +40,7 @@ public enum Benefit {
     BEREAVEMENT_BENEFIT("Bereavement Benefit", "Budd-dal Profedigaeth", "094", "bereavementBenefit", List.of("094"), false, DwpAddressLookupService::bereavementBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     IIDB("Industrial Injuries Disablement Benefit", "Budd-dal Anabledd Anafiadau Diwydiannol", "067", "industrialInjuriesDisablement", List.of("067"), false, DwpAddressLookupService::iidbOfficeMappings, AirLookupService::getIidbVenue, SSCS1),
     MATERNITY_ALLOWANCE("Maternity Allowance", "Lwfans Mamolaeth", "079", "maternityAllowance", List.of("079"), false, DwpAddressLookupService::maternityAllowanceOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
-    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088", "089", "061"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
+    SOCIAL_FUND("Social Fund", "Cronfa Gymdeithasol", "088", "socialFund", List.of("088", "089"), false, DwpAddressLookupService::socialFundOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     INCOME_SUPPORT("Income Support", "Cymhorthdal Incwm", "061", "incomeSupport", List.of("061"), false, DwpAddressLookupService::incomeSupportOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     BEREAVEMENT_SUPPORT_PAYMENT_SCHEME("Bereavement Support Payment Scheme", "Cynllun Taliad Cymorth Profedigaeth", "095", "bereavementSupportPaymentScheme", List.of("095"), false, DwpAddressLookupService::bereavementSupportPaymentSchemeOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS1),
     INDUSTRIAL_DEATH_BENEFIT("Industrial Death Benefit", "Budd Marwolaeth Ddiwydiannol", "064", "industrialDeathBenefit", List.of("064"), false, DwpAddressLookupService::industrialDeathBenefitOfficeMappings, AirLookupService::getIidbVenue, SSCS1),
@@ -53,7 +53,7 @@ public enum Benefit {
     HOME_RESPONSIBILITIES_PROTECTION("Home Responsibilities Protection", "Diogelu Cyfrifoldebau Cartref", "050", "homeResponsibilitiesProtection", List.of("050"), false, DwpAddressLookupService::homeResponsibilitiesProtectionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     CHILD_BENEFIT("Child Benefit", "Budd-dal Plant", "016", "childBenefit", List.of("016"), false, DwpAddressLookupService::childBenefitOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "Gofal Plant am ddim - 30 awr", "058", "thirtyHoursFreeChildcare", List.of("058"), false, DwpAddressLookupService::thirtyHoursFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
-    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
+    GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension (COEG)", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "Credydau Yswiriant Gwladol", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5);
 
 
@@ -118,40 +118,23 @@ public enum Benefit {
                 .orElse(EMPTY);
     }
 
+    public static Benefit getBenefitFromBenefitCode(String benefitCode) {
+        return stream(Benefit.values())
+                .filter(benefit -> benefit.getCaseLoaderKeyId().contains(benefitCode))
+                .findFirst().orElse(null);
+    }
+
     public PanelComposition getPanelComposition() {
-        switch (this) {
-            case PIP:
-            case DLA:
-            case ATTENDANCE_ALLOWANCE:
-                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
-            case ESA:
-                return JUDGE_AND_A_DOCTOR;
-            case CARERS_ALLOWANCE:
-            case BEREAVEMENT_BENEFIT:
-            case JSA:
-            case MATERNITY_ALLOWANCE:
-            case SOCIAL_FUND:
-            case INCOME_SUPPORT:
-            case BEREAVEMENT_SUPPORT_PAYMENT_SCHEME:
-            case PENSION_CREDIT:
-            case RETIREMENT_PENSION:
-                return JUDGE;
-            case IIDB:
-            case INDUSTRIAL_DEATH_BENEFIT:
-                return JUDGE_AND_ONE_OR_TWO_DOCTORS;
-            case CHILD_SUPPORT:
-            case TAX_CREDIT:
-            case GUARDIANS_ALLOWANCE:
-            case TAX_FREE_CHILDCARE:
-            case HOME_RESPONSIBILITIES_PROTECTION:
-            case CHILD_BENEFIT:
-            case THIRTY_HOURS_FREE_CHILDCARE:
-            case GUARANTEED_MINIMUM_PENSION:
-            case NATIONAL_INSURANCE_CREDITS:
-                return JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
-            default:
-                return JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
-        }
+        return switch (this) {
+            case PIP, DLA, ATTENDANCE_ALLOWANCE -> JUDGE_DOCTOR_AND_DISABILITY_EXPERT;
+            case ESA -> JUDGE_AND_A_DOCTOR;
+            case CARERS_ALLOWANCE, BEREAVEMENT_BENEFIT, JSA, MATERNITY_ALLOWANCE, SOCIAL_FUND, INCOME_SUPPORT, BEREAVEMENT_SUPPORT_PAYMENT_SCHEME, PENSION_CREDIT, RETIREMENT_PENSION ->
+                    JUDGE;
+            case IIDB, INDUSTRIAL_DEATH_BENEFIT -> JUDGE_AND_ONE_OR_TWO_DOCTORS;
+            case CHILD_SUPPORT, TAX_CREDIT, GUARDIANS_ALLOWANCE, TAX_FREE_CHILDCARE, HOME_RESPONSIBILITIES_PROTECTION, CHILD_BENEFIT, THIRTY_HOURS_FREE_CHILDCARE, GUARANTEED_MINIMUM_PENSION, NATIONAL_INSURANCE_CREDITS ->
+                    JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
+            default -> JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
+        };
     }
 
     public String getBenefitNameDescriptionWithAcronym(boolean isEnglish) {
@@ -162,5 +145,4 @@ public enum Benefit {
     private Optional<String> getShortNameOptional() {
         return isHasAcronym() ? of(getShortName()) : empty();
     }
-
 }
