@@ -1,6 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static java.util.Arrays.stream;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -66,5 +70,24 @@ public enum DwpState {
     @JsonValue
     public String toString() {
         return ccdDefinition;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public static DwpState fromValue(String ccdDefinition) {
+        return stream(values())
+                .filter(dwpState -> dwpState.getCcdDefinition().equals(ccdDefinition))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public static List<DwpState> getPostHearingDwpStates() {
+        return List.of(CORRECTED_DECISION_NOTICE_ISSUED, CORRECTION_GRANTED, CORRECTION_REFUSED, CORRECTION_REQUESTED,
+                DECISION_REMADE, LIBERTY_TO_APPLY_GRANTED, LIBERTY_TO_APPLY_REFUSED, LIBERTY_TO_APPLY_REQUESTED,
+                PERMISSION_TO_APPEAL_GRANTED, PERMISSION_TO_APPEAL_REFUSED, PERMISSION_TO_APPEAL_REQUESTED,
+                SET_ASIDE_REFUSED, SET_ASIDE_GRANTED, SET_ASIDE_REQUESTED, STATEMENT_OF_REASONS_GRANTED,
+                STATEMENT_OF_REASONS_ISSUED, STATEMENT_OF_REASONS_REFUSED, STATEMENT_OF_REASONS_REQUESTED);
     }
 }
