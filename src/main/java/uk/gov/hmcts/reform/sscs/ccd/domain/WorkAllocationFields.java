@@ -23,5 +23,7 @@ public class WorkAllocationFields {
 
     private List<String> uploadedWelshDocumentTypes;
 
+    private List<String> assignedCaseRoles;
+
     private Integer daysToHearing;
 }
