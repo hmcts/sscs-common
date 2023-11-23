@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
@@ -17,6 +18,8 @@ public class JudicialRefDataService {
 
     private final JudicialRefDataApi judicialRefDataApi;
     private final IdamService idamService;
+    @Value("${feature.elinksV2.enabled}")
+    private boolean elinksV2Feature;
 
     public String getJudicialUserFullName(@NonNull String personalCode) {
         log.info("Requesting Judicial User with personal code {}", personalCode);
@@ -25,7 +28,7 @@ public class JudicialRefDataService {
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(personalCode)).build();
 
-        List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
+        List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
         return judicialUsers.get(0).getFullName();
@@ -37,7 +40,7 @@ public class JudicialRefDataService {
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
                 .personalCodes(List.of(personalCode)).build();
 
-        List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
+        List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
         if (judicialUsers.size() > 0) {
@@ -59,7 +62,7 @@ public class JudicialRefDataService {
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
                 .sidamIds(List.of(idamId)).build();
 
-        List<JudicialUser> judicialUsers = judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
+        List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
         if (judicialUsers.size() > 0) {
@@ -70,4 +73,16 @@ public class JudicialRefDataService {
 
         return null;
     }
+
+
+    private List<JudicialUser> getJudicialUsersUsingSetElinksAPIVerion(String authorisation, String serviceAuthorization,
+                                                            JudicialRefDataUsersRequest judicialRefDataUsersRequest){
+        if (elinksV2Feature) {
+            return judicialRefDataApi.getJudicialUsersV2(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
+        }
+        else {
+            return judicialRefDataApi.getJudicialUsers(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
+        }
+    }
+
 }
