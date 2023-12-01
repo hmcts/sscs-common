@@ -45,4 +45,20 @@ public final class StringUtils {
 
         return result.toString();
     }
+
+    public String getReducedEmailforLogs(String email){
+        String shortenedEmail = "";
+        if(email!=null && email.contains("@")){
+            shortenedEmail = org.apache.commons.lang3.StringUtils.left(email,3) + "..." + email.substring(email.indexOf("@"),email.indexOf("@")+3) + "...";
+        }
+        return shortenedEmail;
+    }
+
+    public String getReducedMobileforLogs(String mobile){
+        String shortenedMobile = "";
+        if(mobile!=null){
+            shortenedMobile = org.apache.commons.lang3.StringUtils.right(mobile,4);
+        }
+        return shortenedMobile;
+    }
 }
