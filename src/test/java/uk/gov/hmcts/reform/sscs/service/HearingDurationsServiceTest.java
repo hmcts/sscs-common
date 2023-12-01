@@ -101,7 +101,7 @@ public class HearingDurationsServiceTest {
             + "the valid duration is returned")
     @Test
     public void testAddExtraTimeNoElement() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of());
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of());
 
         assertThat(result).isEqualTo(30);
     }
@@ -110,7 +110,7 @@ public class HearingDurationsServiceTest {
             + "the valid duration is returned")
     @Test
     public void testAddExtraTimeCorrectElement() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("RY"));
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("RY"));
 
         assertThat(result).isEqualTo(30);
     }
@@ -119,7 +119,7 @@ public class HearingDurationsServiceTest {
             + "the valid duration with extra time is returned")
     @Test
     public void testAddExtraTimeCorrectWc() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("WC"));
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("WC"));
 
         assertThat(result).isEqualTo(45);
     }
@@ -128,11 +128,19 @@ public class HearingDurationsServiceTest {
             + "the valid duration with extra time is returned")
     @Test
     public void testAddExtraTimeCorrectSg() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US,List.of("SG"));
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("SG"));
 
         assertThat(result).isEqualTo(45);
     }
 
+    @DisplayName("When the list contains a non-existent elements Disputed is given to getDurationFaceToFace"
+            + "the valid duration is returned")
+    @Test
+    public void testAddExtraTimeIncorrectIssueCode() {
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("TEST"));
+        assertThat(result).isEqualTo(30);
+    }
+  
     @DisplayName("When the benefit or issue code is null "
             + "getHearingDurationBenefitIssueCodes returns null Parameterized Tests")
     @ParameterizedTest
