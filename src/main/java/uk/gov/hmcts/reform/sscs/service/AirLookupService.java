@@ -234,6 +234,16 @@ public class AirLookupService {
     }
 
     /**
+     * Return the venue ID in the AirLookup spreadsheet for the given venueName.
+     *
+     * @param venueName airLookupVenueName (short venue name)
+     * @return venueId
+     */
+    public Integer lookupVenueIdByAirVenueName(String venueName) {
+        return lookupVenueIdByAirVenueName.get(venueName);
+    }
+
+    /**
      * Return the venue names in the AirLookup spreadsheet for the given post code.
      *
      * @param postcode The first half of a post code
