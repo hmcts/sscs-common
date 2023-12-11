@@ -39,13 +39,13 @@ public class StringUtilsTest {
 
     @Test
     public void testEmailIsMasked(){
-        String result = StringUtils.getMaskedEmailforLogs("Joe.Bloggs@gmail.com");
+        String result = StringUtils.getMaskedEmail("Joe.Bloggs@gmail.com");
         Assert.assertEquals("Joe***@gm***", result);
     }
 
     @Test
     public void testMobileIsMasked(){
-        String result = StringUtils.getMaskedMobileforLogs("+447113653982");
+        String result = StringUtils.getMaskedMobile("+447113653982");
         Assert.assertEquals("***3982", result);
     }
 
