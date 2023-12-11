@@ -37,4 +37,16 @@ public class StringUtilsTest {
         Assert.assertEquals("one, two, three and four", result);
     }
 
+    @Test
+    public void testEmailIsMasked(){
+        String result = StringUtils.getMaskedEmailforLogs("Joe.Bloggs@gmail.com");
+        Assert.assertEquals("Joe***@gm***", result);
+    }
+
+    @Test
+    public void testMobileIsMasked(){
+        String result = StringUtils.getMaskedMobileforLogs("+447113653982");
+        Assert.assertEquals("***3982", result);
+    }
+
 }

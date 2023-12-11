@@ -46,18 +46,18 @@ public final class StringUtils {
         return result.toString();
     }
 
-    public static String getReducedEmailforLogs(String email){
+    public static String getMaskedEmailforLogs(String email){
         String shortenedEmail = "";
         if(email!=null && email.contains("@")){
-            shortenedEmail = org.apache.commons.lang3.StringUtils.left(email,3) + "..." + email.substring(email.indexOf("@"),email.indexOf("@")+3) + "...";
+            shortenedEmail = org.apache.commons.lang3.StringUtils.left(email,3) + "***" + email.substring(email.indexOf("@"),email.indexOf("@")+3) + "***";
         }
         return shortenedEmail;
     }
 
-    public static String getReducedMobileforLogs(String mobile){
+    public static String getMaskedMobileforLogs(String mobile){
         String shortenedMobile = "";
         if(mobile!=null){
-            shortenedMobile = org.apache.commons.lang3.StringUtils.right(mobile,4);
+            shortenedMobile = "***" + org.apache.commons.lang3.StringUtils.right(mobile,4);
         }
         return shortenedMobile;
     }
