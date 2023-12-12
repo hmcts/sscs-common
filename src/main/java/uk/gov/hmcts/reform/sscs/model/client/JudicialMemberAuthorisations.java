@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.sscs.model.client;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ public class JudicialMemberAuthorisations {
     @JsonProperty("ticket_description")
     private String ticketDescription;
     @JsonProperty("start_date")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     @JsonProperty("end_date")
     private LocalDateTime endDate;
 }
