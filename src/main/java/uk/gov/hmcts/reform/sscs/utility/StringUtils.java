@@ -5,6 +5,10 @@ import java.util.Iterator;
 import java.util.List;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 
+import static org.apache.commons.lang3.StringUtils.left;
+import static org.apache.commons.lang3.StringUtils.right;
+
+
 public final class StringUtils {
 
     private StringUtils() {
@@ -49,7 +53,7 @@ public final class StringUtils {
     public static String getMaskedEmail(String email){
         String shortenedEmail = "";
         if(email!=null && email.contains("@")){
-            shortenedEmail = org.apache.commons.lang3.StringUtils.left(email,3) + "***" + email.substring(email.indexOf("@"),email.indexOf("@")+3) + "***";
+            shortenedEmail = left(email,3) + "***" + email.substring(email.indexOf("@"),email.indexOf("@")+3) + "***";
         }
         return shortenedEmail;
     }
@@ -57,7 +61,7 @@ public final class StringUtils {
     public static String getMaskedMobile(String mobile){
         String shortenedMobile = "";
         if(mobile!=null){
-            shortenedMobile = "***" + org.apache.commons.lang3.StringUtils.right(mobile,4);
+            shortenedMobile = "***" + right(mobile,4);
         }
         return shortenedMobile;
     }
