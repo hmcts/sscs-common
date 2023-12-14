@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import java.util.List;
+import java.util.Objects;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,8 @@ import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 import uk.gov.hmcts.reform.sscs.model.client.*;
+
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Service
 @Slf4j
@@ -21,9 +25,23 @@ public class JudicialRefDataService {
     @Value("${feature.elinksV2.enabled}")
     private boolean elinksV2Feature;
 
-    public String getJudicialUserFullName(@NonNull String personalCode) {
-        log.info("Requesting Judicial User with personal code {}", personalCode);
+    public List<String> getAllJudicialUsersFullNames(@NonNull List<JudicialUserBase> judicialUsers) {
         IdamTokens idamTokens = idamService.getIdamTokens();
+
+        return judicialUsers.stream()
+                .filter(panelMember -> isNotBlank(panelMember.getPersonalCode()))
+                .map(panelMember ->
+                        getJudicialUserFullName(panelMember.getPersonalCode(), idamTokens))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    public String getJudicialUserFullName(@NonNull String personalCode) {
+        return getJudicialUserFullName(personalCode, idamService.getIdamTokens());
+    }
+
+    private String getJudicialUserFullName(@NonNull String personalCode, IdamTokens idamTokens) {
+        log.info("Requesting Judicial User with personal code {}", personalCode);
 
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(personalCode)).build();

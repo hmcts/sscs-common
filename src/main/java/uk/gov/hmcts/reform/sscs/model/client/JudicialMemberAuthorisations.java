@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,5 +27,5 @@ public class JudicialMemberAuthorisations {
     @JsonProperty("start_date")
     private LocalDate startDate;
     @JsonProperty("end_date")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 }
