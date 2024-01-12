@@ -14,6 +14,8 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
+import java.util.Optional;
+
 @RunWith(JUnitParamsRunner.class)
 public class AirLookupServiceTest {
 
@@ -61,6 +63,11 @@ public class AirLookupServiceTest {
     public void lookupAirVenueNameByPostCodeReturnsNonNullValuesForAllBenefits() {
         stream(Benefit.values())
                 .forEach(benefit -> assertNotNull(airLookupService.lookupAirVenueNameByPostCode("n1w1 wal", BenefitType.builder().code(benefit.getShortName()).build())));
+    }
+
+    @Test
+    public void lookupAirVenueIdByVenueNameReturnsCorrectVenueId() {
+        assertEquals(Optional.of(1127), Optional.ofNullable(airLookupService.lookupVenueIdByAirVenueName("Worcester Mags")));
     }
 
     @Test
