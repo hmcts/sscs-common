@@ -1,8 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
 import java.util.List;
 import java.util.Objects;
-
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,6 @@ import uk.gov.hmcts.reform.sscs.client.JudicialRefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 import uk.gov.hmcts.reform.sscs.model.client.*;
-
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 @Service
 @Slf4j
@@ -49,7 +48,9 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        return judicialUsers.get(0).getFullName();
+        JudicialUser judicialUser = judicialUsers.get(0);
+
+        return String.format("%s %s %s", judicialUser.getTitle(), judicialUser.getInitials(), judicialUser.getSurname());
     }
 
     public JudicialUserBase getJudicialUserFromPersonalCode(@NonNull String personalCode) {
@@ -61,7 +62,7 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        if (judicialUsers.size() > 0) {
+        if (!judicialUsers.isEmpty()) {
             JudicialUser judicialUser = judicialUsers.get(0);
 
             return new JudicialUserBase(judicialUser.getSidamId(), judicialUser.getPersonalCode());
@@ -83,7 +84,7 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        if (judicialUsers.size() > 0) {
+        if (!judicialUsers.isEmpty()) {
             JudicialUser judicialUser = judicialUsers.get(0);
 
             return new JudicialUserBase(judicialUser.getSidamId(), judicialUser.getPersonalCode());
@@ -94,11 +95,10 @@ public class JudicialRefDataService {
 
 
     private List<JudicialUser> getJudicialUsersUsingSetElinksAPIVerion(String authorisation, String serviceAuthorization,
-                                                            JudicialRefDataUsersRequest judicialRefDataUsersRequest){
+                                                            JudicialRefDataUsersRequest judicialRefDataUsersRequest) {
         if (elinksV2Feature) {
             return judicialRefDataApi.getJudicialUsersV2(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
-        }
-        else {
+        } else {
             return judicialRefDataApi.getJudicialUsers(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
         }
     }

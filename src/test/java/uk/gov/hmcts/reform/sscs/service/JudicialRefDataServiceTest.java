@@ -31,7 +31,16 @@ public class JudicialRefDataServiceTest {
     private static final String PERSONAL_CODE = "1234";
 
     private static final String idamId = "4444-4444-4444";
-    private final JudicialUser judicialUserName = JudicialUser.builder().fullName("Full Name").build();
+    private final JudicialUser judicialUserName =
+            JudicialUser.builder()
+                    .fullName("Full Name")
+                    .title("Title")
+                    .initials("IT")
+                    .surname("Surname")
+                    .build();
+
+    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(),
+            judicialUserName.getInitials(), judicialUserName.getSurname());
     private final JudicialUser judicialUserCode = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(PERSONAL_CODE)).build();
@@ -47,7 +56,7 @@ public class JudicialRefDataServiceTest {
 
         String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
 
-        assertEquals(result, judicialUserName.getFullName());
+        assertEquals(result, judicalNoticeName);
     }
 
     @Test
@@ -59,7 +68,7 @@ public class JudicialRefDataServiceTest {
 
         String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
 
-        assertEquals(result, judicialUserName.getFullName());
+        assertEquals(result, judicalNoticeName);
     }
 
     @Test
