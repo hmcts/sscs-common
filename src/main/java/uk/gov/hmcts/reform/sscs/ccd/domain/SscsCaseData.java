@@ -109,6 +109,7 @@ public class SscsCaseData implements CaseData {
     private String evidenceHandled;
     private PoDetails presentingOfficersDetails;
     private String presentingOfficersHearingLink;
+    private YesNo poAttendanceConfirmed;
 
     //SSCS-10007
     private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
