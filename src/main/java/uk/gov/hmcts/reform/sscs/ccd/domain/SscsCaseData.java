@@ -775,7 +775,7 @@ public class SscsCaseData implements CaseData {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public void clearPoDetails(SscsCaseData caseData) {
+    public void clearPoDetails() {
         setPoAttendanceConfirmed(NO);
         setPresentingOfficersDetails(null);
         setPresentingOfficersHearingLink(null);
