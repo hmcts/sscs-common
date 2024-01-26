@@ -773,6 +773,14 @@ public class SscsCaseData implements CaseData {
         return sscsIndustrialInjuriesData;
     }
 
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public void clearPoDetails(SscsCaseData caseData) {
+        setPoAttendanceConfirmed(NO);
+        setPresentingOfficersDetails(null);
+        setPresentingOfficersHearingLink(null);
+    }
+
     public boolean isBenefitType(Benefit benefitType) {
         return getBenefitType().filter(benefitType::equals).isPresent();
     }
