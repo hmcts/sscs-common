@@ -50,7 +50,22 @@ public class JudicialRefDataService {
 
         JudicialUser judicialUser = judicialUsers.get(0);
 
-        return String.format("%s %s %s", judicialUser.getTitle(), judicialUser.getInitials(), judicialUser.getSurname());
+        return String.format("%s %s %s", judicialUser.getTitle(), splitInitials(judicialUser), judicialUser.getSurname());
+    }
+
+    private static String splitInitials(JudicialUser judicialUser) {
+        String initials = judicialUser.getInitials();
+
+        if (isNotBlank(initials)) {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < initials.length(); i++) {
+                result.append(initials.charAt(i));
+                result.append(" ");
+            }
+            return result.toString().trim();
+        }
+
+        return "";
     }
 
     public JudicialUserBase getJudicialUserFromPersonalCode(@NonNull String personalCode) {
