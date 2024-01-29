@@ -775,6 +775,15 @@ public class SscsCaseData implements CaseData {
 
     @SuppressWarnings("unused")
     @JsonIgnore
+    public PoDetails getPresentingOfficersDetails() {
+        if (presentingOfficersDetails == null) {
+            this.presentingOfficersDetails = new PoDetails();
+        }
+        return presentingOfficersDetails;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
     public void clearPoDetails() {
         setPoAttendanceConfirmed(NO);
         setPresentingOfficersDetails(null);
