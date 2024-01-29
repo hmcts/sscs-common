@@ -96,7 +96,8 @@ public class AirLookRcSpreadSheetTest {
             "sk44", "sk47", "sk46", "sk74", "sk73", "sk76", "sk75", "sk70", "sk72", "sk71", "sk78", "sk77",
             "sk79", "sk63", "sk62", "sk65", "sk64", "sk61", "sk60", "sk67", "sk66", "sk69", "sk68", "sk96",
             "sk95", "sk98", "sk97", "sk92", "sk91", "sk94", "sk93", "sk99", "sk90", "sk85", "sk84", "sk87",
-            "sk86", "sk81", "sk80", "sk83", "sk82", "sk89", "sk88"));
+            "sk86", "sk81", "sk80", "sk83", "sk82", "sk89", "sk88",
+            "sk17", "sk22", "sk23"));
 
     @Test
     public void testAllPostcodesHavePip() {
