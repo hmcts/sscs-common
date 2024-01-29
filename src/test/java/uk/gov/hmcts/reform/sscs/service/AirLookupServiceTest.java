@@ -38,8 +38,8 @@ public class AirLookupServiceTest {
         "l21RT, Liverpool",
         "HP271RT, Bradford",
         "HP27, Bradford",
-        "bl11, Liverpool",
-        "bl78, Liverpool",
+        "bl1, Liverpool",
+        "bl7, Liverpool",
         "s3, Leeds",
         "s35, Leeds",
         "br2, Sutton"
