@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -21,4 +22,22 @@ public class PoDetails {
     private Name name;
     @JsonProperty("contact")
     private Contact contact;
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public Name getName() {
+        if (name == null) {
+            this.name = new Name();
+        }
+        return name;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public Contact getContact() {
+        if (contact == null) {
+            this.contact = new Contact();
+        }
+        return contact;
+    }
 }
