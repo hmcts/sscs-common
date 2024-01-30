@@ -107,6 +107,7 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
+    @JsonProperty("presentingOfficersDetails")
     private PoDetails presentingOfficersDetails;
     private String presentingOfficersHearingLink;
     private YesNo poAttendanceConfirmed;
