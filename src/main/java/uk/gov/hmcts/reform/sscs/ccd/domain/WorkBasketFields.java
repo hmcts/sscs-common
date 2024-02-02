@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +28,8 @@ public class WorkBasketFields {
     private LocalDate hearingDate;
 
     @JsonProperty("workBasketHearingDateIssued")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @JsonSerialize(using = LocalDateSerializer.class)
-    private LocalDate hearingDateIssued;
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime hearingDateIssued;
 
     @JsonProperty("workBasketHearingEpimsId")
     private String hearingEpimsId;
