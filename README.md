@@ -1,6 +1,6 @@
 ## Sscs-common
 
-This is the common code library for sscs. Currently it contains:
+This is the common code library for sscs. Currently, it contains:
 
 - CCD domain objects
 - Create, Update and Search for cases in CCD
