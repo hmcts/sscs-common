@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id "org.owasp.dependencycheck" version "8.3.1"
+    id 'org.owasp.dependencycheck' version '9.0.6'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -46,7 +46,7 @@ dependencyCheck {
     failBuildOnCVSS = 7.0
     suppressionFile = 'config/owasp/suppressions.xml'
 
-    cveValidForHours = 24
+    nvd.validForHours = 24
 
     analyzers {
         retirejs {
