@@ -15,6 +15,7 @@ public class HearingOptions {
     private String wantsToAttend;
     private String wantsSupport;
     private String languageInterpreter;
+    @JsonInclude
     private String languages;
     private DynamicList languagesList;
     private String signLanguageType;
