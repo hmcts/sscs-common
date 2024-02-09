@@ -128,7 +128,8 @@
         "appealReasons": {},
         "hearingOptions": {
           "other": "No",
-          "wantsToAttend": "No"
+          "wantsToAttend": "No",
+          "languages" : null
         }
       },
       "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
@@ -415,7 +416,8 @@
             "classification": "PUBLIC",
             "value": {
               "other": "PUBLIC",
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             }
           }
         }
@@ -703,7 +705,8 @@
             "classification": "PUBLIC",
             "value": {
               "other": "PUBLIC",
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             }
           }
         }
@@ -930,7 +933,8 @@
         "appealReasons": {},
         "hearingOptions": {
           "other": "No",
-          "wantsToAttend": "No"
+          "wantsToAttend": "No",
+          "languages" : null
         }
       },
       "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
@@ -1182,7 +1186,8 @@
           "hearingOptions": {
             "value": {
               "other": "PUBLIC",
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             },
             "classification": "PUBLIC"
           }
@@ -1438,7 +1443,8 @@
           "hearingOptions": {
             "value": {
               "other": "PUBLIC",
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             },
             "classification": "PUBLIC"
           }
