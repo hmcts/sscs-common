@@ -111,6 +111,7 @@ public class SscsCaseData implements CaseData {
     private PoDetails presentingOfficersDetails;
     private String presentingOfficersHearingLink;
     private YesNo poAttendanceConfirmed;
+    private YesNo tribunalDirectPoToAttend;
 
     //SSCS-10007
     private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
