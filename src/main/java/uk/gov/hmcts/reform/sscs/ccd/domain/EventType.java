@@ -186,6 +186,7 @@ public enum EventType {
     RESEND_APPEAL_CREATED("resendAppealCreated", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
     RESEND_TO_DWP("resendToDwp", 0, false),
+    RESERVE_TO_INTERLOC_JUDGE("reserveToInterlocJudge", 0, false),
     REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", 0, false),
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
     SECOND_HEARING_HOLDING_REMINDER("secondHearingHoldingReminder", 0, true),

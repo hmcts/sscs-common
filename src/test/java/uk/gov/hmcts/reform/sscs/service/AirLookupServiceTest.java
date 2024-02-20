@@ -38,10 +38,10 @@ public class AirLookupServiceTest {
         "l21RT, Liverpool",
         "HP271RT, Bradford",
         "HP27, Bradford",
-        "bl11, Liverpool",
-        "bl78, Liverpool",
-        "s31, Leeds",
-        "s30, Leeds",
+        "bl1, Liverpool",
+        "bl7, Liverpool",
+        "s3, Leeds",
+        "s35, Leeds",
         "br2, Sutton"
     })
     public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
