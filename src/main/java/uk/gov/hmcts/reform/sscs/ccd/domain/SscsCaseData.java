@@ -776,7 +776,7 @@ public class SscsCaseData implements CaseData {
     public void setDwpState(DwpState newDwpState) {
         List<DwpState> statesToRefuse = List.of(DwpState.HEARING_POSTPONED, DwpState.HEARING_DATE_ISSUED);
 
-        if (!FINAL_DECISION_ISSUED.equals(dwpState) && !statesToRefuse.contains(newDwpState)) {
+        if (!(FINAL_DECISION_ISSUED.equals(dwpState) && statesToRefuse.contains(newDwpState))) {
             this.dwpState = newDwpState;
         }
     }
