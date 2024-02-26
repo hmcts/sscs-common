@@ -6,6 +6,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -83,6 +84,15 @@ public class CcdService {
 
     public SscsCaseDetails createCase(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens) {
         return createCcdCaseService.createCase(caseData, eventType, summary, description, idamTokens);
+    }
+
+    /**
+     * Update a case while making correct use of CCD's optimistic locking.
+     * Changes can be made to case data by the provided consumer which will always be provided
+     * the current version of case data from CCD's start event.
+     */
+    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
+        return updateCcdCaseService.updateCaseV2(caseId, eventType, summary, description, idamTokens, mutator);
     }
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
