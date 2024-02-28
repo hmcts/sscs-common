@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,16 @@ public class UpdateCcdCaseService {
     }
 
     @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+    public SscsCaseData updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Function<SscsCaseData, Result> mutator) {
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
-        mutator.accept(data);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, summary, description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        var result = mutator.apply(data);
+        log.info("UpdateCaseV2 for caseId {} and eventType {} result", caseId, eventType, result);
+        if (Result.Commit == result) {
+            var caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, summary, description);
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent);
+        }
+        return data;
     }
 
 
@@ -90,4 +93,8 @@ public class UpdateCcdCaseService {
         ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 
+    public static enum Result {
+        Commit,
+        Rollback
+    }
 }

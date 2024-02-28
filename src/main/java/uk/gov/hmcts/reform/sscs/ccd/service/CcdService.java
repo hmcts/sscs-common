@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -91,7 +92,7 @@ public class CcdService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
+    public SscsCaseData updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Function<SscsCaseData, UpdateCcdCaseService.Result> mutator) {
         return updateCcdCaseService.updateCaseV2(caseId, eventType, summary, description, idamTokens, mutator);
     }
 
