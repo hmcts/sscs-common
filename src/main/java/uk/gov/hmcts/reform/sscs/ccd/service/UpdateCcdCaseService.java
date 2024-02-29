@@ -36,20 +36,17 @@ public class UpdateCcdCaseService {
 
     @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
-        mutator.accept(data);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, summary, description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        return updateCaseV2(caseId, eventType, idamTokens, data -> {
+            mutator.accept(data);
+            return new UpdateResult(summary, description);
+        });
     }
 
-
-    record UpdateResult(String summary, String description) { }
+    public record UpdateResult(String summary, String description) { }
 
     @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
         var result = mutator.apply(data);
