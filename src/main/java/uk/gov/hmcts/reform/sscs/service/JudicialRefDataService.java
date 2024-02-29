@@ -117,5 +117,4 @@ public class JudicialRefDataService {
             return judicialRefDataApi.getJudicialUsers(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
         }
     }
-
 }
