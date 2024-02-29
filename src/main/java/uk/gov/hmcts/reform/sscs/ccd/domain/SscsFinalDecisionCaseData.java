@@ -1,8 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -49,7 +52,11 @@ public class SscsFinalDecisionCaseData {
     private String finalDecisionJudge;
     private String finalDecisionHeldAt;
     private String finalDecisionIdamSurname;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate finalDecisionIssuedDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate finalDecisionGeneratedDate;
     private YesNo finalDecisionWasOriginalDecisionUploaded;
 

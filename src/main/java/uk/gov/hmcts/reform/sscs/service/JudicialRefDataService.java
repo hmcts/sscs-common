@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
 import java.util.List;
+import java.util.Objects;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +24,23 @@ public class JudicialRefDataService {
     @Value("${feature.elinksV2.enabled}")
     private boolean elinksV2Feature;
 
-    public String getJudicialUserFullName(@NonNull String personalCode) {
-        log.info("Requesting Judicial User with personal code {}", personalCode);
+    public List<String> getAllJudicialUsersFullNames(@NonNull List<JudicialUserBase> judicialUsers) {
         IdamTokens idamTokens = idamService.getIdamTokens();
+
+        return judicialUsers.stream()
+                .filter(panelMember -> isNotBlank(panelMember.getPersonalCode()))
+                .map(panelMember ->
+                        getJudicialUserFullName(panelMember.getPersonalCode(), idamTokens))
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    public String getJudicialUserFullName(@NonNull String personalCode) {
+        return getJudicialUserFullName(personalCode, idamService.getIdamTokens());
+    }
+
+    private String getJudicialUserFullName(@NonNull String personalCode, IdamTokens idamTokens) {
+        log.info("Requesting Judicial User with personal code {}", personalCode);
 
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(personalCode)).build();
@@ -31,7 +48,24 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        return judicialUsers.get(0).getFullName();
+        JudicialUser judicialUser = judicialUsers.get(0);
+
+        return String.format("%s %s %s", judicialUser.getTitle(), splitInitials(judicialUser), judicialUser.getSurname());
+    }
+
+    private static String splitInitials(JudicialUser judicialUser) {
+        String initials = judicialUser.getInitials();
+
+        if (isNotBlank(initials)) {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < initials.length(); i++) {
+                result.append(initials.charAt(i));
+                result.append(" ");
+            }
+            return result.toString().trim();
+        }
+
+        return "";
     }
 
     public JudicialUserBase getJudicialUserFromPersonalCode(@NonNull String personalCode) {
@@ -43,7 +77,7 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        if (judicialUsers.size() > 0) {
+        if (!judicialUsers.isEmpty()) {
             JudicialUser judicialUser = judicialUsers.get(0);
 
             return new JudicialUserBase(judicialUser.getSidamId(), judicialUser.getPersonalCode());
@@ -65,7 +99,7 @@ public class JudicialRefDataService {
         List<JudicialUser> judicialUsers = getJudicialUsersUsingSetElinksAPIVerion(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequest);
 
-        if (judicialUsers.size() > 0) {
+        if (!judicialUsers.isEmpty()) {
             JudicialUser judicialUser = judicialUsers.get(0);
 
             return new JudicialUserBase(judicialUser.getSidamId(), judicialUser.getPersonalCode());
@@ -76,11 +110,10 @@ public class JudicialRefDataService {
 
 
     private List<JudicialUser> getJudicialUsersUsingSetElinksAPIVerion(String authorisation, String serviceAuthorization,
-                                                            JudicialRefDataUsersRequest judicialRefDataUsersRequest){
+                                                            JudicialRefDataUsersRequest judicialRefDataUsersRequest) {
         if (elinksV2Feature) {
             return judicialRefDataApi.getJudicialUsersV2(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
-        }
-        else {
+        } else {
             return judicialRefDataApi.getJudicialUsers(authorisation, serviceAuthorization, judicialRefDataUsersRequest);
         }
     }
