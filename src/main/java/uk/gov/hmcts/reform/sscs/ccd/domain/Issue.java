@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.apache.commons.lang3.StringUtils.isNotBlank;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.commons.lang3.EnumUtils;
 
 @AllArgsConstructor
 @Getter
@@ -151,7 +150,7 @@ public enum Issue {
     private final String name;
 
     public static Issue getIssue(String issueCode) {
-        if (isNotBlank(issueCode)) {
+        if (EnumUtils.isValidEnum(Issue.class, issueCode)) {
             return Issue.valueOf(issueCode);
         }
         return null;
