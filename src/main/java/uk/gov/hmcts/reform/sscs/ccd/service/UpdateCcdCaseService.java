@@ -44,6 +44,11 @@ public class UpdateCcdCaseService {
 
     public record UpdateResult(String summary, String description) { }
 
+    /**
+     * Update a case while making correct use of CCD's optimistic locking.
+     * Changes can be made to case data by the provided consumer which will always be provided
+     * the current version of case data from CCD's start event.
+     */
     @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);

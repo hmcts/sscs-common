@@ -87,19 +87,6 @@ public class CcdService {
         return createCcdCaseService.createCase(caseData, eventType, summary, description, idamTokens);
     }
 
-    /**
-     * Update a case while making correct use of CCD's optimistic locking.
-     * Changes can be made to case data by the provided consumer which will always be provided
-     * the current version of case data from CCD's start event.
-     */
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCcdCaseService.updateCaseV2(caseId, eventType, summary, description, idamTokens, mutator);
-    }
-
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateCcdCaseService.UpdateResult> mutator) {
-        return updateCcdCaseService.updateCaseV2(caseId, eventType, idamTokens, mutator);
-    }
-
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCcdCaseService.updateCase(caseData, caseId, eventType, summary, description, idamTokens);
     }
