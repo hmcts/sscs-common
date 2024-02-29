@@ -96,7 +96,7 @@ public class CcdService {
         return updateCcdCaseService.updateCaseV2(caseId, eventType, summary, description, idamTokens, mutator);
     }
 
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, String[]> mutator) {
+    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateCcdCaseService.UpdateResult> mutator) {
         return updateCcdCaseService.updateCaseV2(caseId, eventType, idamTokens, mutator);
     }
 
