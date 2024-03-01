@@ -163,7 +163,7 @@ dependencies {
 
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
-    implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.2', {
+    implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.3', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
 
@@ -240,6 +240,9 @@ dependencies {
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 
     // CVE-2023-24998
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+
+    // CVE-2023-5072
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
 }
 
