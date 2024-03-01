@@ -28,8 +28,7 @@ public class WorkBasketFields {
     private LocalDate hearingDate;
 
     @JsonProperty("workBasketHearingDateIssued")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime hearingDateIssued;
+    private String hearingDateIssued;
 
     @JsonProperty("workBasketHearingEpimsId")
     private String hearingEpimsId;
