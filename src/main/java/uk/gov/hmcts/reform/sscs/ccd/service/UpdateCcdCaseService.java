@@ -68,12 +68,16 @@ public class UpdateCcdCaseService {
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
         try {
+            log.info("pre mutator changes in sscs-common - {}", caseId);
             var result = mutator.apply(data);
+            log.info("post mutator changes in sscs-common - {}", caseId);
             CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
             return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
 
         } catch (IssueFurtherEvidenceException e) {
+            log.error("Caught IssueFurtherEvidenceException exception in sscs-common - {}", caseId);
+            log.info("HmctsDwpState: {}", data.getHmctsDwpState());
             throw new IssueFurtherEvidenceException(e.getMessage(), e);
         }
     }
