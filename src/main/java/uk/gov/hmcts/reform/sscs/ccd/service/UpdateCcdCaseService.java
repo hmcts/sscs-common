@@ -14,6 +14,7 @@ import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.exception.IssueFurtherEvidenceException;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
@@ -58,6 +59,23 @@ public class UpdateCcdCaseService {
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+    }
+
+
+    @Retryable
+    public SscsCaseDetails updateCaseV2IssueFurtherEvidence(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
+        try {
+            var result = mutator.apply(data);
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
+
+            return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+
+        } catch (IssueFurtherEvidenceException e) {
+            throw new IssueFurtherEvidenceException(e.getMessage(), e);
+        }
     }
 
 
