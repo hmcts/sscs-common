@@ -55,33 +55,12 @@ public class UpdateCcdCaseService {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
+        data.setCcdCaseId(caseId.toString());
         var result = mutator.apply(data);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
-
-
-    @Retryable
-    public SscsCaseDetails updateCaseV2IssueFurtherEvidence(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
-        try {
-            log.info("pre mutator changes in sscs-common - {}", caseId);
-            var result = mutator.apply(data);
-            log.info("post mutator changes in sscs-common - {}", caseId);
-            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
-
-            return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
-
-        } catch (IssueFurtherEvidenceException e) {
-            log.error("Caught IssueFurtherEvidenceException exception in sscs-common - {}", caseId);
-            log.info("HmctsDwpState: {}", data.getHmctsDwpState());
-            throw new IssueFurtherEvidenceException(e.getMessage(), e);
-        }
-    }
-
 
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
