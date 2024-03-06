@@ -55,7 +55,12 @@ public class UpdateCcdCaseService {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
+
+//        setCcdCaseId & sortCollections are called in the deserializer, so this functionality has been replicated here
+//        preserving existing logic
         data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
         var result = mutator.apply(data);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
