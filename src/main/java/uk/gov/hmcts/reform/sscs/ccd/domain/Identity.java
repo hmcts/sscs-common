@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class Identity {
 
     @LocalDateYearMustBeInPast(message = "You’ve entered an invalid date of birth", groups = UniversalCreditValidationGroup.class)
     private String dob;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @NationalInsuranceNumber(groups = UniversalCreditValidationGroup.class)
     private String nino;
 
