@@ -10,11 +10,26 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocument<D extends AbstractDocumentDetails> implements Comparable<AbstractDocument> {
 
+    private String id;
+
     private D value;
 
-    @JsonCreator
     public AbstractDocument(@JsonProperty("value") D value) {
         this.value = value;
+    }
+
+    @JsonCreator
+    public AbstractDocument(@JsonProperty("value") String id, @JsonProperty("value") D value) {
+        this.id = id;
+        this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public D getValue() {
