@@ -64,6 +64,7 @@ public enum EventType {
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
     CONFIRM_LAPSED("confirmLapsed", 0, false),
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
+    CONFIRM_PO_ATTENDANCE("confirmPoAttendance", 0, false),
     CORRECTION_GRANTED("correctionGranted", 0, true),
     CORRECTION_REFUSED("correctionRefused", 0, true),
     CORRECTION_REQUEST("correctionRequest", 0, false),
