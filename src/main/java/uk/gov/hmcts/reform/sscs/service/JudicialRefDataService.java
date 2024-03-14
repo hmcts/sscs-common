@@ -58,7 +58,7 @@ public class JudicialRefDataService {
 
         if (isNotBlank(initials)) {
             StringBuilder result = new StringBuilder();
-            for (int i = 0; i < initials.length(); i++) {
+            for (int i = 0; i < initials.length()-1 && i < 2; i++) {
                 result.append(initials.charAt(i));
                 result.append(" ");
             }
