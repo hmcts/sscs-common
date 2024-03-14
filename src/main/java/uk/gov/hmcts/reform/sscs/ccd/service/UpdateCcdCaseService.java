@@ -35,14 +35,19 @@ public class UpdateCcdCaseService {
     }
 
     @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, data -> {
+    public void updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
+        updateCaseV2(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
             return new UpdateResult(summary, description);
         });
     }
 
-    public record UpdateResult(String summary, String description) { }
+    public record UpdateResult(String summary, String description, Boolean shouldCommit) {
+        public UpdateResult(String summary, String description) {
+            this(summary, description, true);
+        }
+    }
+
 
     /**
      * Update a case while making correct use of CCD's optimistic locking.
@@ -50,8 +55,7 @@ public class UpdateCcdCaseService {
      * the current version of case data from CCD's start event.
      */
     @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+    public void updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
 
@@ -63,9 +67,12 @@ public class UpdateCcdCaseService {
         data.sortCollections();
 
         var result = mutator.apply(data);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
+        log.info("UpdateCaseV2 for caseId {} and eventType {}, will commit {}", caseId, eventType, result.shouldCommit);
+        if (result.shouldCommit) {
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)
+        }
     }
 
     @Retryable
