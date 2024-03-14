@@ -39,7 +39,7 @@ public class JudicialRefDataServiceTest {
                     .surname("Surname")
                     .build();
 
-    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "A B C",
+    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "A B",
             judicialUserName.getSurname());
     private final JudicialUser judicialUserCode = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
