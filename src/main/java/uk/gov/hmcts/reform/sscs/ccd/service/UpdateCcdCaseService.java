@@ -71,7 +71,7 @@ public class UpdateCcdCaseService {
         if (result.shouldCommit) {
             CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
-            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent);
         }
     }
 
