@@ -4,6 +4,8 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,15 +56,17 @@ public class JudicialRefDataService {
     }
 
     private static String splitInitials(JudicialUser judicialUser) {
-        String initials = judicialUser.getInitials();
+        String fullName = judicialUser.getFullName();
+        String surname = judicialUser.getSurname();
 
-        if (isNotBlank(initials)) {
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < initials.length()-1 && i < 2; i++) {
-                result.append(initials.charAt(i));
-                result.append(" ");
+        if (isNotBlank(fullName) && isNotBlank(surname)) {
+            String givenName = fullName.substring(0, fullName.length() - surname.length()-1);
+            String givenNameInitials = givenName.substring(0,1);
+            int extraNameInitialIndex = givenName.indexOf(" ") + 1;
+            if (extraNameInitialIndex != 0) {
+                givenNameInitials += " " + givenName.charAt(givenName.indexOf(" ") + 1);
             }
-            return result.toString().trim();
+            return givenNameInitials.toUpperCase().trim();
         }
 
         return "";
