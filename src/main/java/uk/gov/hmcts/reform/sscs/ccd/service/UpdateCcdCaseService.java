@@ -54,12 +54,19 @@ public class UpdateCcdCaseService {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
+
+        /**
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
+        data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
         var result = mutator.apply(data);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
-
 
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
