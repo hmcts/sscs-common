@@ -35,6 +35,13 @@ public class UpdateCcdCaseService {
     }
 
     @Retryable
+    public void updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+        updateCaseV2(caseId, eventType, idamTokens, data -> {
+            return new UpdateResult(summary, description);
+        });
+    }
+
+    @Retryable
     public void updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
         updateCaseV2(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
