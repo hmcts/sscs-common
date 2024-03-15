@@ -24,7 +24,10 @@ public class GlobalSearchOtherReferencesTest {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
                 new Jackson2ObjectMapperBuilder()
-                        .featuresToEnable(WRITE_ENUMS_USING_TO_STRING);
+                        .featuresToEnable(READ_ENUMS_USING_TO_STRING)
+                        .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
+                        .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
+                        .serializationInclusion(JsonInclude.Include.NON_ABSENT);
 
         mapper = objectMapperBuilder.createXmlMapper(false).build();
         mapper.registerModule(new JavaTimeModule());
