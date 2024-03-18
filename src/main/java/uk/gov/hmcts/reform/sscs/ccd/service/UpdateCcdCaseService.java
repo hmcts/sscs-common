@@ -42,6 +42,11 @@ public class UpdateCcdCaseService {
         });
     }
 
+    @Retryable
+    public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+        return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
+    }
+
     public record UpdateResult(String summary, String description) { }
 
     /**
