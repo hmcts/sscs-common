@@ -33,8 +33,8 @@ public class JudicialRefDataServiceTest {
     private static final String idamId = "4444-4444-4444";
     private final JudicialUser judicialUserName =
             JudicialUser.builder()
-                    .fullName("Verity-Gill Amelia Patricia Bloggs Smith")
-                    .title("Title")
+                    .fullName("Dr Verity-Gill Amelia Patricia Bloggs Smith")
+                    .title("Dr")
                     .initials("VGABS")
                     .surname("Bloggs Smith")
                     .build();

@@ -58,9 +58,10 @@ public class JudicialRefDataService {
     private static String splitInitials(JudicialUser judicialUser) {
         String fullName = judicialUser.getFullName();
         String surname = judicialUser.getSurname();
+        String title = judicialUser.getTitle();
 
-        if (isNotBlank(fullName) && isNotBlank(surname)) {
-            String givenName = fullName.substring(0, fullName.length() - surname.length()-1);
+        if (isNotBlank(fullName) && isNotBlank(surname) && isNotBlank(title)) {
+            String givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim();
             String givenNameInitials = givenName.substring(0,1);
             int extraNameInitialIndex = givenName.indexOf(" ") + 1;
             if (extraNameInitialIndex != 0) {
