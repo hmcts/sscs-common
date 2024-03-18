@@ -4,7 +4,6 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +64,7 @@ public class JudicialRefDataService {
             String givenNameInitials = givenName.substring(0,1);
             int extraNameInitialIndex = givenName.indexOf(" ") + 1;
             if (extraNameInitialIndex != 0) {
-                givenNameInitials += " " + givenName.charAt(givenName.indexOf(" ") + 1);
+                givenNameInitials += " " + givenName.charAt(extraNameInitialIndex);
             }
             return givenNameInitials.toUpperCase().trim();
         }

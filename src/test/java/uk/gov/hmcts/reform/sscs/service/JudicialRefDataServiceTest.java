@@ -35,7 +35,7 @@ public class JudicialRefDataServiceTest {
             JudicialUser.builder()
                     .fullName("Dr Verity-Gill Amelia Patricia Bloggs Smith")
                     .title("Dr")
-                    .initials("VGABS")
+                    .initials("VGAPBS")
                     .surname("Bloggs Smith")
                     .build();
 
