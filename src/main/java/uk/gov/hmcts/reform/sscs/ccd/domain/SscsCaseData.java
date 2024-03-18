@@ -309,6 +309,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("phmeGranted")
     private YesNo phmeGranted;
     private DwpResponseDocument appendix12Doc;
+    private YesNo preWorkAllocation;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
