@@ -60,7 +60,7 @@ public class JudicialRefDataService {
         String title = judicialUser.getTitle();
 
         if (isNotBlank(fullName) && isNotBlank(surname) && isNotBlank(title)) {
-            String[] givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim().split(" ");
+            String[] givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim().split("\s");
             return givenName[0].charAt(0) + (givenName.length > 1 ? " " + givenName[1].charAt(0) : "");
         }
 
