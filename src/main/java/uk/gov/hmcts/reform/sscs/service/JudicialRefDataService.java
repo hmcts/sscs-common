@@ -60,13 +60,8 @@ public class JudicialRefDataService {
         String title = judicialUser.getTitle();
 
         if (isNotBlank(fullName) && isNotBlank(surname) && isNotBlank(title)) {
-            String givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim();
-            String givenNameInitials = givenName.substring(0,1);
-            int extraNameInitialIndex = givenName.indexOf(" ") + 1;
-            if (extraNameInitialIndex != 0) {
-                givenNameInitials += " " + givenName.charAt(extraNameInitialIndex);
-            }
-            return givenNameInitials.toUpperCase().trim();
+            String[] givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim().split(" ");
+            return givenName[0].charAt(0) + (givenName.length > 1 ? " " + givenName[1].charAt(0) : "");
         }
 
         return "";
