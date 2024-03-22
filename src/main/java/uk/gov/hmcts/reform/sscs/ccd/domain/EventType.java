@@ -64,6 +64,7 @@ public enum EventType {
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
     CONFIRM_LAPSED("confirmLapsed", 0, false),
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
+    CONFIRM_PO_ATTENDANCE("confirmPoAttendance", 0, false),
     CORRECTION_GRANTED("correctionGranted", 0, true),
     CORRECTION_REFUSED("correctionRefused", 0, true),
     CORRECTION_REQUEST("correctionRequest", 0, false),
@@ -252,6 +253,7 @@ public enum EventType {
     GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
     BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false),
     NEW_CASE_ROLES_ASSIGNED("newCaseRolesAssigned",0,false);
+    WA_CASE_MIGRATION("waCaseMigration", 0, false);
 
     private final String type;
     private final String ccdType;

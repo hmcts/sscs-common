@@ -6,6 +6,8 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -89,9 +91,9 @@ public class CcdService {
         return updateCcdCaseService.updateCase(caseData, caseId, eventType, summary, description, idamTokens);
     }
 
-    public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, 
+    public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType,
                                         String summary, String description, IdamTokens idamTokens) {
-        return updateCcdCaseService.updateCase(caseData, caseId, eventId, eventToken, eventType, summary, description, idamTokens); 
+        return updateCcdCaseService.updateCase(caseData, caseId, eventId, eventToken, eventType, summary, description, idamTokens);
     }
 
     public SscsCaseDetails updateCaseWithoutRetry(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
