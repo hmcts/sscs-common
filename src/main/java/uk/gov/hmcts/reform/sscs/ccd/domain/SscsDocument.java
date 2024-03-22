@@ -12,8 +12,12 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
 
-    @JsonCreator
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         super(value);
+    }
+
+    @JsonCreator
+    public SscsDocument(@JsonProperty("id") String id, @JsonProperty("value") SscsDocumentDetails value) {
+        super(id, value);
     }
 }

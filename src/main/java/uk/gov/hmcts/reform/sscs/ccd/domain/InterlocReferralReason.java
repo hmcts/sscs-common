@@ -30,7 +30,9 @@ public enum InterlocReferralReason {
     LATE_STATEMENT_OF_REASONS_APPLICATION("lateStatementOfReasonsApplication", "Late statement of reasons application"),
     REVIEW_PERMISSION_TO_APPEAL_APPLICATION("reviewPermissionToAppealApplication", "Review permission to appeal application"),
     REVIEW_LIBERTY_TO_APPLY_APPLICATION("reviewLibertyToApplyApplication", "Review liberty to apply application"),
-    REVIEW_UPPER_TRIBUNAL_DECISION("reviewUpperTribunalDecision", "Review upper tribunal decision");
+    REVIEW_UPPER_TRIBUNAL_DECISION("reviewUpperTribunalDecision", "Review upper tribunal decision"),
+    REVIEW_REINSTATEMENT_REQUEST("reviewReinstatementRequest", "Review reinstatement request"),
+    REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", "Review confidentiality request");
 
     private final String ccdDefinition;
     private final String description;

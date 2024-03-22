@@ -165,6 +165,9 @@ public enum EventType {
     PERMISSION_TO_APPEAL_REQUEST("permissionToAppealRequest", 0, false),
     POSTPONED("postponed", "hearingPostponed", 8, true),
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
+    POSTPONEMENT_GRANTED("postponementGranted", 0, false),
+    POSTPONEMENT_REFUSED("postponementRefused", 0, false),
+    POSTPONEMENT_SEND_TO_JUDGE("postponementSendToJudge", 0, false),
     POST_HEARING_APP_SOR_WRITTEN("postHearingAppSorWritten", 0, true),
     POST_HEARING_OTHER("postHearingOther", 0, false),
     POST_HEARING_REQUEST("postHearingRequest", 0, false),
@@ -249,6 +252,7 @@ public enum EventType {
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
     BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false),
+    NEW_CASE_ROLES_ASSIGNED("newCaseRolesAssigned",0,false),
     WA_CASE_MIGRATION("waCaseMigration", 0, false);
 
     private final String type;
