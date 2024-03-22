@@ -41,6 +41,7 @@ import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
+import uk.gov.hmcts.reform.sscs.model.PoDetails;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -106,6 +107,11 @@ public class SscsCaseData implements CaseData {
     private DynamicList informationFromPartySelected;
     private String outcome;
     private String evidenceHandled;
+    @JsonProperty("presentingOfficersDetails")
+    private PoDetails presentingOfficersDetails;
+    private String presentingOfficersHearingLink;
+    private YesNo poAttendanceConfirmed;
+    private YesNo tribunalDirectPoToAttend;
 
     //SSCS-10007
     private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
@@ -769,6 +775,23 @@ public class SscsCaseData implements CaseData {
             this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
         }
         return sscsIndustrialInjuriesData;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public PoDetails getPresentingOfficersDetails() {
+        if (presentingOfficersDetails == null) {
+            this.presentingOfficersDetails = new PoDetails();
+        }
+        return presentingOfficersDetails;
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public void clearPoDetails() {
+        setPoAttendanceConfirmed(NO);
+        setPresentingOfficersDetails(null);
+        setPresentingOfficersHearingLink(null);
     }
 
     public boolean isBenefitType(Benefit benefitType) {

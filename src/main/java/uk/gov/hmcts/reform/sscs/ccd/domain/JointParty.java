@@ -50,6 +50,9 @@ public class JointParty extends Party {
     @JsonProperty("jointParty")
     private YesNo hasJointParty;
 
+    @JsonProperty("jointPartyContact")
+    private Contact contact;
+
     private YesNo jointPartyAddressSameAsAppellant;
 
     @Override
