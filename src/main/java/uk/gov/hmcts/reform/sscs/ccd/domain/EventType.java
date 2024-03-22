@@ -64,6 +64,7 @@ public enum EventType {
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
     CONFIRM_LAPSED("confirmLapsed", 0, false),
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
+    CONFIRM_PO_ATTENDANCE("confirmPoAttendance", 0, false),
     CORRECTION_GRANTED("correctionGranted", 0, true),
     CORRECTION_REFUSED("correctionRefused", 0, true),
     CORRECTION_REQUEST("correctionRequest", 0, false),
@@ -183,6 +184,7 @@ public enum EventType {
     RESEND_APPEAL_CREATED("resendAppealCreated", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
     RESEND_TO_DWP("resendToDwp", 0, false),
+    RESERVE_TO_INTERLOC_JUDGE("reserveToInterlocJudge", 0, false),
     REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", 0, false),
     REVIEW_PHME_REQUEST("reviewPhmeRequest", 0, false),
     SECOND_HEARING_HOLDING_REMINDER("secondHearingHoldingReminder", 0, true),
@@ -246,7 +248,8 @@ public enum EventType {
     WITHDRAWN("withdrawn", "appealWithdrawn", 7, true),
     WRITE_FINAL_DECISION("writeFinalDecision", 0, false),
     GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
-    BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false);
+    BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false),
+    WA_CASE_MIGRATION("waCaseMigration", 0, false);
 
     private final String type;
     private final String ccdType;

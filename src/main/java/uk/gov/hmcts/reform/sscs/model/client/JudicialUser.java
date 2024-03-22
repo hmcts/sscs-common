@@ -32,4 +32,10 @@ public class JudicialUser {
     private String surname;
     @JsonProperty("personal_code")
     private String personalCode;
+    private String title;
+    private String initials;
+    @JsonProperty("retirement_date")
+    private String retirementDate;
+    @JsonProperty("active_flag")
+    private String active_flag;
 }

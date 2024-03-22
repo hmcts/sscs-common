@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
+import java.util.Optional;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
@@ -13,8 +14,6 @@ import org.junit.runner.RunWith;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
-
-import java.util.Optional;
 
 @RunWith(JUnitParamsRunner.class)
 public class AirLookupServiceTest {
@@ -38,10 +37,10 @@ public class AirLookupServiceTest {
         "l21RT, Liverpool",
         "HP271RT, Bradford",
         "HP27, Bradford",
-        "bl11, Liverpool",
-        "bl78, Liverpool",
-        "s31, Leeds",
-        "s30, Leeds",
+        "bl1, Liverpool",
+        "bl7, Liverpool",
+        "s3, Leeds",
+        "s35, Leeds",
         "br2, Sutton"
     })
     public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
