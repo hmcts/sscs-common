@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class Language implements ReferenceList {
     private String reference;
     private String nameEn;
+    private String mrdReference;
     private String dialectReference;
     private String dialectEn;
     @JsonProperty("ccdReferences")
@@ -40,7 +41,18 @@ public class Language implements ReferenceList {
             return false;
         }
         Language language = (Language) o;
-        return reference.equals(language.reference) && dialectReference.equals(language.dialectReference);
+
+        boolean referenceMatched = reference.equals(language.reference);
+        String languageDialectReference = language.dialectReference;
+        String languageMrdReference = language.mrdReference;
+
+        if (languageDialectReference != null) {
+            return referenceMatched && dialectReference.equals(languageDialectReference);
+        } else if (languageMrdReference != null) {
+            return referenceMatched && mrdReference.equals(languageMrdReference);
+        }
+
+        return false;
     }
 
     @Override
