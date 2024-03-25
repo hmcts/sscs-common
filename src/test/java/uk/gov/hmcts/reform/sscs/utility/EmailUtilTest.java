@@ -47,4 +47,5 @@ public class EmailUtilTest {
             new Object[]{"null", "false"}
         };
     }
+
 }

@@ -15,4 +15,5 @@ public final class EmailUtil {
         String cleanEmail = Optional.ofNullable(value).orElse("");
         return EMAIL_REGEX.matcher(cleanEmail).matches();
     }
+
 }
