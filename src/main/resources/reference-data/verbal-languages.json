@@ -81,6 +81,7 @@
  {
    "reference": "arm",
    "nameEn": "Armenian",
+   "mrdReference": "hye",
    "ccdReferences": ["armenian"]
  },
  {
@@ -168,6 +169,7 @@
  {
    "reference": "bur",
    "nameEn": "Burmese",
+   "mrdReference": "mya",
    "ccdReferences": ["Burmese"]
  },
  {
@@ -253,6 +255,7 @@
  {
    "reference": "dut",
    "nameEn": "Dutch",
+   "mrdReference": "nld",
    "ccdReferences": ["Dutch"]
  },
  {
@@ -327,6 +330,7 @@
  {
    "reference": "geo",
    "nameEn": "Georgian",
+   "mrdReference": "kat",
    "ccdReferences": ["Georgian"]
  },
  {
@@ -347,6 +351,7 @@
  {
    "reference": "gre",
    "nameEn": "Greek",
+   "mrdReference": "ell",
    "ccdReferences": ["Greek"]
  },
  {
@@ -604,6 +609,7 @@
  {
    "reference": "mac",
    "nameEn": "Macedonian",
+   "mrdReference": "mkd",
    "ccdReferences": ["Macedonian"]
  },
  {
@@ -674,7 +680,14 @@
  {
    "reference": "nld",
    "nameEn": "Flemish",
+   "mrdReference": "nld-nfl",
    "ccdReferences": ["Flemish"]
+ },
+ {
+    "reference": "nld",
+    "nameEn": "West Flemish",
+    "mrdReference": "nld-nwf",
+    "ccdReferences": ["West Flemish"]
  },
  {
    "reference": "nor",
@@ -723,7 +736,6 @@
  },
  {
    "reference": "pan",
-   "nameEn": "Punjabi",
    "nameEn": "Punjabi",
    "dialectReference": "pji",
    "dialectEn": "Indian",
@@ -784,11 +796,13 @@
  {
    "reference": "ron",
    "nameEn": "Moldovan",
+   "mrdReference": "ron-fmo",
    "ccdReferences": ["Moldovan"]
  },
  {
    "reference": "rum",
    "nameEn": "Romanian",
+   "mrdReference": "ron",
    "ccdReferences": ["Romanian"]
  },
  {
@@ -829,6 +843,7 @@
  {
    "reference": "slo",
    "nameEn": "Slovak",
+   "mrdReference": "slk",
    "ccdReferences": ["Slovak"]
  },
  {
@@ -943,6 +958,7 @@
  {
    "reference": "tib",
    "nameEn": "Tibetan",
+   "mrdReference": "bod",
    "ccdReferences": ["Tibetan"]
  },
  {
@@ -1018,6 +1034,7 @@
  {
    "reference": "wel",
    "nameEn": "Welsh",
+   "mrdReference": "cym",
    "ccdReferences": ["Welsh"]
  },
  {
