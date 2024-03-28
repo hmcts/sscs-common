@@ -33,13 +33,13 @@ public class JudicialRefDataServiceTest {
     private static final String idamId = "4444-4444-4444";
     private final JudicialUser judicialUserName =
             JudicialUser.builder()
-                    .fullName("Full Name")
-                    .title("Title")
-                    .initials("ABC")
-                    .surname("Surname")
+                    .fullName("Dr Verity-Gill Amelia Patricia Bloggs Smith")
+                    .title("Dr")
+                    .initials("VGAPBS")
+                    .surname("Bloggs Smith")
                     .build();
 
-    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "A B C",
+    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "V A",
             judicialUserName.getSurname());
     private final JudicialUser judicialUserCode = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
