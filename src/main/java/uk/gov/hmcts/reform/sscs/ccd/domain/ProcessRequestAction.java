@@ -4,7 +4,8 @@ public enum ProcessRequestAction {
 
     SEND_TO_JUDGE("sendToJudge"),
     REFUSE("refuse"),
-    GRANT("grant");
+    GRANT("grant"),
+    REFUSE_ON_THE_DAY("refuseOnTheDay");;
 
     private String value;
 
