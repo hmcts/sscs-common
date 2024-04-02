@@ -34,16 +34,6 @@ public class JudicialRefDataServiceTest {
     private static final String PERSONAL_CODE = "1234";
 
     private static final String idamId = "4444-4444-4444";
-    private final JudicialUser judicialUserName =
-            JudicialUser.builder()
-                    .fullName("Dr Verity-Gill Amelia Patricia Bloggs Smith")
-                    .title("Dr")
-                    .initials("VGAPBS")
-                    .surname("Bloggs Smith")
-                    .build();
-
-    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "M ",
-            judicialUserName.getSurname());
     private final JudicialUser judicialUserCode = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(PERSONAL_CODE)).build();
