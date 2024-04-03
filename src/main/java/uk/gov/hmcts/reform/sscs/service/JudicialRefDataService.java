@@ -30,16 +30,16 @@ public class JudicialRefDataService {
         return judicialUsers.stream()
                 .filter(panelMember -> isNotBlank(panelMember.getPersonalCode()))
                 .map(panelMember ->
-                        getJudicialUserFullName(panelMember.getPersonalCode(), idamTokens))
+                        getJudicialUserDisplayName(panelMember.getPersonalCode(), idamTokens))
                 .filter(Objects::nonNull)
                 .toList();
     }
 
-    public String getJudicialUserFullName(@NonNull String personalCode) {
-        return getJudicialUserFullName(personalCode, idamService.getIdamTokens());
+    public String getJudicialUserDisplayName(@NonNull String personalCode) {
+        return getJudicialUserDisplayName(personalCode, idamService.getIdamTokens());
     }
 
-    private String getJudicialUserFullName(@NonNull String personalCode, IdamTokens idamTokens) {
+    private String getJudicialUserDisplayName(@NonNull String personalCode, IdamTokens idamTokens) {
         log.info("Requesting Judicial User with personal code {}", personalCode);
 
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()

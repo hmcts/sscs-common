@@ -40,7 +40,6 @@ public class JudicialRefDataServiceTest {
             .sidamIds(List.of(idamId)).build();
 
     @ParameterizedTest
-//    value source string order: fullname, title, initals, surname, expected initials for notices
     @ValueSource( strings = {"Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
             "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
             "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
@@ -64,13 +63,12 @@ public class JudicialRefDataServiceTest {
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName1));
 
-        String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
+        String result = judicialRefDataService.getJudicialUserDisplayName(PERSONAL_CODE);
 
         assertEquals(judicalNoticeName1, result);
     }
 
     @ParameterizedTest
-//    value source string order: fullname, title, initals, surname, expected initials for notices
     @ValueSource( strings = {
                     "Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
                     "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
@@ -95,7 +93,7 @@ public class JudicialRefDataServiceTest {
         when(judicialRefDataApi.getJudicialUsersV2(idamTokens.getIdamOauth2Token(),
                 idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName1));
 
-        String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
+        String result = judicialRefDataService.getJudicialUserDisplayName(PERSONAL_CODE);
 
         assertEquals(judicalNoticeName1, result);
     }
