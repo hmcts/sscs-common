@@ -778,8 +778,6 @@ public class SscsCaseData implements CaseData {
         return sscsIndustrialInjuriesData;
     }
 
-    @SuppressWarnings("unused")
-    @JsonIgnore
     public void setDwpState(DwpState newDwpState) {
         List<DwpState> statesToRefuse = List.of(DwpState.HEARING_POSTPONED, DwpState.HEARING_DATE_ISSUED);
 
