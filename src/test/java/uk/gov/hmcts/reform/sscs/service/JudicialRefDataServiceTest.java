@@ -6,6 +6,8 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -31,44 +33,69 @@ public class JudicialRefDataServiceTest {
     private static final String PERSONAL_CODE = "1234";
 
     private static final String idamId = "4444-4444-4444";
-    private final JudicialUser judicialUserName =
-            JudicialUser.builder()
-                    .fullName("Full Name")
-                    .title("Title")
-                    .initials("ABC")
-                    .surname("Surname")
-                    .build();
-
-    private final String judicalNoticeName = String.format("%s %s %s", judicialUserName.getTitle(), "A B C",
-            judicialUserName.getSurname());
     private final JudicialUser judicialUserCode = JudicialUser.builder().personalCode(PERSONAL_CODE).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestCode = JudicialRefDataUsersRequest.builder()
             .personalCodes(List.of(PERSONAL_CODE)).build();
     private final JudicialRefDataUsersRequest judicialRefDataUsersRequestIdam = JudicialRefDataUsersRequest.builder()
             .sidamIds(List.of(idamId)).build();
 
-    @Test
-    void getJudicialUserByPersonalCodeElinksV1() {
+    @ParameterizedTest
+    @ValueSource( strings = {"Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
+            "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
+            "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
+            "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
+            "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
+    void getJudicialUserByPersonalCodeElinksV1(String judicialUserDataString) {
+        String[] judicalUserDataArray = judicialUserDataString.split("\\s*,\\s*");
+
+        JudicialUser judicialUserName1 = JudicialUser.builder()
+                .fullName(judicalUserDataArray[0])
+                .title(judicalUserDataArray[1])
+                .initials(judicalUserDataArray[2])
+                .surname(judicalUserDataArray[3])
+                .build();
+
+        String judicalNoticeName1 = String.format("%s %s %s", judicialUserName1.getTitle(), judicalUserDataArray[4],
+                judicialUserName1.getSurname());
+
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", false);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsers(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName));
+            idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName1));
 
-        String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
+        String result = judicialRefDataService.getJudicialUserDisplayName(PERSONAL_CODE);
 
-        assertEquals(result, judicalNoticeName);
+        assertEquals(judicalNoticeName1, result);
     }
 
-    @Test
-    void getJudicialUserByPersonalCodeElinksV2() {
+    @ParameterizedTest
+    @ValueSource( strings = {
+                    "Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
+                    "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
+                    "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
+                    "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
+                    "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
+    void getJudicialUserByPersonalCodeElinksV2(String judicialUserDataString) {
+        String[] judicalUserDataArray = judicialUserDataString.split("\\s*,\\s*");
+
+        JudicialUser judicialUserName1 = JudicialUser.builder()
+                .fullName(judicalUserDataArray[0])
+                .title(judicalUserDataArray[1])
+                .initials(judicalUserDataArray[2])
+                .surname(judicalUserDataArray[3])
+                .build();
+
+        String judicalNoticeName1 = String.format("%s %s %s", judicialUserName1.getTitle(), judicalUserDataArray[4],
+                judicialUserName1.getSurname());
+
         ReflectionTestUtils.setField(judicialRefDataService, "elinksV2Feature", true);
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
         when(judicialRefDataApi.getJudicialUsersV2(idamTokens.getIdamOauth2Token(),
-                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName));
+                idamTokens.getServiceAuthorization(), judicialRefDataUsersRequestCode)).thenReturn(List.of(judicialUserName1));
 
-        String result = judicialRefDataService.getJudicialUserFullName(PERSONAL_CODE);
+        String result = judicialRefDataService.getJudicialUserDisplayName(PERSONAL_CODE);
 
-        assertEquals(result, judicalNoticeName);
+        assertEquals(judicalNoticeName1, result);
     }
 
     @Test
@@ -80,7 +107,7 @@ public class JudicialRefDataServiceTest {
 
         String result = judicialRefDataService.getPersonalCode(idamId);
 
-        assertEquals(result, judicialUserCode.getPersonalCode());
+        assertEquals(judicialUserCode.getPersonalCode(), result);
     }
 
     @Test
@@ -92,6 +119,6 @@ public class JudicialRefDataServiceTest {
 
         String result = judicialRefDataService.getPersonalCode(idamId);
 
-        assertEquals(result, judicialUserCode.getPersonalCode());
+        assertEquals(judicialUserCode.getPersonalCode(), result);
     }
 }
