@@ -30,16 +30,16 @@ public class JudicialRefDataService {
         return judicialUsers.stream()
                 .filter(panelMember -> isNotBlank(panelMember.getPersonalCode()))
                 .map(panelMember ->
-                        getJudicialUserFullName(panelMember.getPersonalCode(), idamTokens))
+                        getJudicialUserDisplayName(panelMember.getPersonalCode(), idamTokens))
                 .filter(Objects::nonNull)
                 .toList();
     }
 
-    public String getJudicialUserFullName(@NonNull String personalCode) {
-        return getJudicialUserFullName(personalCode, idamService.getIdamTokens());
+    public String getJudicialUserDisplayName(@NonNull String personalCode) {
+        return getJudicialUserDisplayName(personalCode, idamService.getIdamTokens());
     }
 
-    private String getJudicialUserFullName(@NonNull String personalCode, IdamTokens idamTokens) {
+    private String getJudicialUserDisplayName(@NonNull String personalCode, IdamTokens idamTokens) {
         log.info("Requesting Judicial User with personal code {}", personalCode);
 
         JudicialRefDataUsersRequest judicialRefDataUsersRequest = JudicialRefDataUsersRequest.builder()
@@ -54,15 +54,13 @@ public class JudicialRefDataService {
     }
 
     private static String splitInitials(JudicialUser judicialUser) {
-        String initials = judicialUser.getInitials();
+        String fullName = judicialUser.getFullName();
+        String surname = judicialUser.getSurname();
+        String title = judicialUser.getTitle();
 
-        if (isNotBlank(initials)) {
-            StringBuilder result = new StringBuilder();
-            for (int i = 0; i < initials.length(); i++) {
-                result.append(initials.charAt(i));
-                result.append(" ");
-            }
-            return result.toString().trim();
+        if (isNotBlank(fullName) && isNotBlank(surname) && isNotBlank(title)) {
+            String[] givenName = fullName.substring(title.length(), fullName.length() - surname.length()-1).trim().split("\s");
+            return givenName[0].charAt(0) + (givenName.length > 1 ? " " + givenName[1].charAt(0) : "");
         }
 
         return "";

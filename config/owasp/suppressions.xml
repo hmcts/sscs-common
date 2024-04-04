@@ -3,11 +3,7 @@
   <suppress until="2025-02-12">
     <cve>CVE-2023-24998</cve>
     <cve>CVE-2023-2976</cve>
-    <cve>CVE-2023-5072</cve>
-    <cve>CVE-2023-34053</cve>
-    <cve>CVE-2023-6378</cve>
     <cve>CVE-2020-8908</cve>
     <cve>CVE-2023-35116</cve>
-    <cve>CVE-2023-34055</cve>
   </suppress>
 </suppressions>

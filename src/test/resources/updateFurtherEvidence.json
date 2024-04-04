@@ -132,7 +132,8 @@
           "otherReasons": ""
         },
         "hearingOptions": {
-          "wantsToAttend": "No"
+          "wantsToAttend": "No",
+          "languages" : null
         }
       },
       "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
@@ -187,6 +188,7 @@
       },
       "generatedMobile": "07398785050",
       "workBasketHearingDate": null,
+      "workBasketHearingDateIssued": null,
       "workBasketHearingEpimsId": null,
       "postHearingRequestType": null,
       "postHearingReviewType": null,
@@ -367,7 +369,8 @@
           "hearingOptions": {
             "classification": "PUBLIC",
             "value": {
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             }
           }
         }
@@ -572,7 +575,8 @@
           "hearingOptions": {
             "classification": "PUBLIC",
             "value": {
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             }
           }
         }
@@ -743,7 +747,8 @@
           "otherReasons": ""
         },
         "hearingOptions": {
-          "wantsToAttend": "No"
+          "wantsToAttend": "No",
+          "languages" : null
         }
       },
       "jointPartyId": "baf7ea04-973f-4de9-83d6-9cb80fa846cb",
@@ -781,6 +786,7 @@
       "generatedDOB": "1981-11-11",
       "generatedMobile": "07398785050",
       "workBasketHearingDate": null,
+      "workBasketHearingDateIssued": null,
       "workBasketHearingEpimsId": null,
       "postHearingRequestType": null,
       "postHearingReviewType": null,
@@ -950,7 +956,8 @@
           },
           "hearingOptions": {
             "value": {
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             },
             "classification": "PUBLIC"
           }
@@ -1145,7 +1152,8 @@
           },
           "hearingOptions": {
             "value": {
-              "wantsToAttend": "PUBLIC"
+              "wantsToAttend": "PUBLIC",
+              "languages" : "PUBLIC"
             },
             "classification": "PUBLIC"
           }
