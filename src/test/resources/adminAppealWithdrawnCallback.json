@@ -242,7 +242,7 @@
       "directionNoticeContent": null,
       "signedBy": null,
       "signedRole": null,
-      "presentingOfficerDetails": null
+      "presentingOfficersDetails": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -1031,7 +1031,7 @@
       "directionNoticeContent": null,
       "signedBy": null,
       "signedRole": null,
-      "presentingOfficerDetails": null
+      "presentingOfficersDetails": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
