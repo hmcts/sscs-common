@@ -786,6 +786,7 @@ public class SscsCaseData implements CaseData {
         if (!(FINAL_DECISION_ISSUED.equals(dwpState) && statesToRefuse.contains(newDwpState))) {
             this.dwpState = newDwpState;
         }
+    }
 
     public PoDetails getPresentingOfficersDetails() {
         if (presentingOfficersDetails == null) {
