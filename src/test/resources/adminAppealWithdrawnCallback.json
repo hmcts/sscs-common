@@ -241,8 +241,7 @@
       "libertyToApplyBodyContent": null,
       "directionNoticeContent": null,
       "signedBy": null,
-      "signedRole": null,
-      "presentingOfficersDetails": null
+      "signedRole": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -1030,8 +1029,7 @@
       "libertyToApplyBodyContent": null,
       "directionNoticeContent": null,
       "signedBy": null,
-      "signedRole": null,
-      "presentingOfficersDetails": null
+      "signedRole": null
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

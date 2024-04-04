@@ -788,6 +788,8 @@ public class SscsCaseData implements CaseData {
         }
     }
 
+    @SuppressWarnings("unused")
+    @JsonIgnore
     public PoDetails getPresentingOfficersDetails() {
         if (presentingOfficersDetails == null) {
             this.presentingOfficersDetails = new PoDetails();
