@@ -6,6 +6,7 @@ import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
@@ -775,6 +776,14 @@ public class SscsCaseData implements CaseData {
             this.sscsIndustrialInjuriesData = new SscsIndustrialInjuriesData();
         }
         return sscsIndustrialInjuriesData;
+    }
+
+    public void setDwpState(DwpState newDwpState) {
+        List<DwpState> statesToRefuse = List.of(DwpState.HEARING_POSTPONED, DwpState.HEARING_DATE_ISSUED);
+
+        if (!(FINAL_DECISION_ISSUED.equals(dwpState) && statesToRefuse.contains(newDwpState))) {
+            this.dwpState = newDwpState;
+        }
     }
 
     @SuppressWarnings("unused")
