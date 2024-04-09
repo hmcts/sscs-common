@@ -77,7 +77,7 @@ public class UpdateCcdCaseService {
     public record ConditionalUpdateResult(String summary, String description, Boolean willCommit) { }
 
     /**
-     * Conditionall update a case, by passing a boolean parameter as part of the mutator
+     * Conditionally update a case, by passing a boolean parameter as part of the mutator
      * If true it will update data while making correct use of CCD's optimistic locking.
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
