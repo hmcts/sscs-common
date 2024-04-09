@@ -36,7 +36,7 @@ public class UpdateCcdCaseService {
 
     @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, (Function<SscsCaseData, UpdateResult>) data -> {
+        return updateCaseV2(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
             return new UpdateResult(summary, description);
         });
@@ -47,7 +47,11 @@ public class UpdateCcdCaseService {
         return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
 
-    public record UpdateResult(String summary, String description) { }
+    public record UpdateResult(String summary, String description, Boolean willCommit) {
+        public UpdateResult(String summary, String description) {
+            this(summary, description, true);
+        }
+    }
 
     /**
      * Update a case while making correct use of CCD's optimistic locking.
@@ -68,42 +72,12 @@ public class UpdateCcdCaseService {
         data.sortCollections();
 
         var result = mutator.apply(data);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
-    }
-
-    @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, (Function<SscsCaseDetails, UpdateResult>) caseDetails -> {
-            mutator.accept(caseDetails);
-            return new UpdateResult(summary, description);
-        });
-    }
-
-    /**
-     * Update a case while making correct use of CCD's optimistic locking.
-     * Changes can be made to case data by the provided consumer which will always be provided
-     * the current version of case data from CCD's start event.
-     */
-    @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
-        SscsCaseData data = caseDetails.getData();
-
-        /**
-         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
-         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
-         */
-        data.setCcdCaseId(caseId.toString());
-        data.sortCollections();
-
-        var result = mutator.apply(caseDetails);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        if (result.willCommit()) {
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
+            return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        } else {
+            return sscsCcdConvertService.getCaseDetails(startEventResponse);
+        }
     }
 
     @Retryable
@@ -117,7 +91,7 @@ public class UpdateCcdCaseService {
     }
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
-                                        String description, IdamTokens idamTokens) {
+                                      String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData, summary, description);
 
