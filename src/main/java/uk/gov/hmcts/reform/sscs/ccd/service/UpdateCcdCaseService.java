@@ -35,6 +35,7 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
@@ -42,6 +43,7 @@ public class UpdateCcdCaseService {
         });
     }
 
+    @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
@@ -53,6 +55,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
