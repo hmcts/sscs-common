@@ -36,7 +36,7 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable
+    @Retryable(recover = "recoverUpdateCaseV2Consumer")
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
@@ -44,7 +44,7 @@ public class UpdateCcdCaseService {
         });
     }
 
-    @Retryable
+    @Retryable(recover = "recoverTriggerCaseEventV2")
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
@@ -56,7 +56,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    @Retryable
+    @Retryable(recover = "recoverUpdateCaseV2UpdateResult")
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
@@ -84,6 +84,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
+    @Retryable(recover = "recoverUpdateCaseV2Conditional")
     public Optional<SscsCaseDetails> updateCaseV2Conditional(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ConditionalUpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
@@ -155,20 +156,26 @@ public class UpdateCcdCaseService {
      * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
      */
     @Recover
-    public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
+    public int recoverUpdateCaseV2Consumer(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         log.error("In recover method(updateCaseV2 - Consumer) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 
     @Recover
-    public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+    public int recoverTriggerCaseEventV2(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.error("In recover method(triggerCaseEventV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 
     @Recover
-    public int recover(RuntimeException exception, Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ?> mutator) {
-        log.error("In recover method(updateCaseV2Conditional/updateCaseV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+    public int recoverUpdateCaseV2UpdateResult(RuntimeException exception, Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
+        log.error("In recover method recoverUpdateCaseV2 for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        throw exception;
+    }
+
+    @Recover
+    public int recoverUpdateCaseV2Conditional(RuntimeException exception, Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ConditionalUpdateResult> mutator) {
+        log.error("In recover method recoverUpdateCaseV2Conditional for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 }
