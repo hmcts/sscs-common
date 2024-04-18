@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable
+    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
@@ -43,7 +44,7 @@ public class UpdateCcdCaseService {
         });
     }
 
-    @Retryable
+    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
@@ -55,7 +56,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    @Retryable
+    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
@@ -83,7 +84,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    @Retryable
+    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
     public Optional<SscsCaseDetails> updateCaseV2Conditional(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ConditionalUpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
@@ -151,4 +152,24 @@ public class UpdateCcdCaseService {
         ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 
+    /**
+     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
+     */
+    @Recover
+    public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
+        log.info("In recover method(updateCaseV2 - Consumer) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        throw exception;
+    }
+
+    @Recover
+    public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+        log.info("In recover method(triggerCaseEventV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        throw exception;
+    }
+
+    @Recover
+    public int recover(RuntimeException exception, Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ?> mutator) {
+        log.info("In recover method(updateCaseV2Conditional/updateCaseV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        throw exception;
+    }
 }
