@@ -84,7 +84,6 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
     public Optional<SscsCaseDetails> updateCaseV2Conditional(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ConditionalUpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
