@@ -36,7 +36,7 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
@@ -44,7 +44,7 @@ public class UpdateCcdCaseService {
         });
     }
 
-    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
+    @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
@@ -56,7 +56,7 @@ public class UpdateCcdCaseService {
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
      */
-    @Retryable(maxAttempts = 2, backoff = @Backoff(maxDelay = 100L)) //100L = 100 ms
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
@@ -157,19 +157,19 @@ public class UpdateCcdCaseService {
      */
     @Recover
     public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
-        log.info("In recover method(updateCaseV2 - Consumer) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        log.error("In recover method(updateCaseV2 - Consumer) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 
     @Recover
     public int recover(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        log.info("In recover method(triggerCaseEventV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        log.error("In recover method(triggerCaseEventV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 
     @Recover
     public int recover(RuntimeException exception, Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ?> mutator) {
-        log.info("In recover method(updateCaseV2Conditional/updateCaseV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
+        log.error("In recover method(updateCaseV2Conditional/updateCaseV2) for caseId {} and eventType {} with exception {} ", caseId, eventType, exception.getMessage());
         throw exception;
     }
 }
