@@ -34,6 +34,9 @@ public class PostHearing {
     @JsonProperty("statementOfReasons")
     private StatementOfReasons statementOfReasons;
     @Getter(AccessLevel.NONE)
+    @JsonProperty("sorRequestInTime")
+    private YesNo sorRequestInTime;
+    @Getter(AccessLevel.NONE)
     @JsonProperty("permissionToAppeal")
     private PermissionToAppeal permissionToAppeal;
     @Getter(AccessLevel.NONE)
@@ -98,20 +101,12 @@ public class PostHearing {
     @SuppressWarnings("unused")
     @JsonIgnore
     public RequestFormat getRequestFormat() {
-        switch (requestType) {
-            case SET_ASIDE:
-                return getSetAside().getRequestFormat();
-            case CORRECTION:
-                return getCorrection().getRequestFormat();
-            case STATEMENT_OF_REASONS:
-                return getStatementOfReasons().getRequestFormat();
-            case LIBERTY_TO_APPLY:
-                return getLibertyToApply().getRequestFormat();
-            case PERMISSION_TO_APPEAL:
-                return getPermissionToAppeal().getRequestFormat();
-            default:
-                break;
-        }
-        return null;
+        return switch (requestType) {
+            case SET_ASIDE -> getSetAside().getRequestFormat();
+            case CORRECTION -> getCorrection().getRequestFormat();
+            case STATEMENT_OF_REASONS -> getStatementOfReasons().getRequestFormat();
+            case LIBERTY_TO_APPLY -> getLibertyToApply().getRequestFormat();
+            case PERMISSION_TO_APPEAL -> getPermissionToAppeal().getRequestFormat();
+        };
     }
 }
