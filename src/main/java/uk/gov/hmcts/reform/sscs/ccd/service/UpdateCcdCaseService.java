@@ -34,7 +34,7 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable(maxAttempts = 2)
+    @Retryable(maxAttempts = 2, recover = "recoverUpdateCaseV2WithConsumer")
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
@@ -42,9 +42,9 @@ public class UpdateCcdCaseService {
         });
     }
 
-    @Retryable(maxAttempts = 2)
+    @Retryable(maxAttempts = 2, recover = "recoverTriggerCaseEventV2")
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
 
     public record UpdateResult(String summary, String description) { }
@@ -53,8 +53,14 @@ public class UpdateCcdCaseService {
      * Update a case while making correct use of CCD's optimistic locking.
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
+     * Retry max attempt is set to 2 as it will retry for 3rd time in recover method
      */
+    @Retryable(maxAttempts = 2, recover = "recoverUpdateCaseV2WithFunction")
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, mutator);
+    }
+
+    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
         log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
         var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
@@ -121,12 +127,32 @@ public class UpdateCcdCaseService {
      * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
      */
     @Recover
-    public SscsCaseDetails recoverUpdateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
+    public SscsCaseDetails recoverUpdateCaseV2WithConsumer(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
+        log.error("In recover method(recoverUpdateCaseV2 with Consumer<SscsCaseData>) for caseId {} and eventType {}", caseId, eventType);
 
-        return updateCaseV2(caseId, eventType, idamTokens, data -> {
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
             return new UpdateResult(summary, description);
         });
+    }
+
+    /**
+     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
+     */
+    @Recover
+    public SscsCaseDetails recoverUpdateCaseV2WithFunction(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
+        log.error("In recover method(recoverUpdateCaseV2 with Function<SscsCaseData, UpdateResult>) for caseId {} and eventType {}", caseId, eventType);
+
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, mutator);
+    }
+
+    /**
+     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
+     */
+    @Recover
+    public SscsCaseDetails recoverTriggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+        log.error("In recover method(recoverTriggerCaseEventV2) for caseId {} and eventType {}", caseId, eventType);
+
+        return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
 }
