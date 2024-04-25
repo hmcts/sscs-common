@@ -73,24 +73,6 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
-    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
-
-        /**
-         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
-         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
-         */
-        data.setCcdCaseId(caseId.toString());
-        data.sortCollections();
-
-        var result = mutator.apply(data);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
-    }
-
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
@@ -140,32 +122,9 @@ public class UpdateCcdCaseService {
      * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
      */
     @Recover
-    public SscsCaseDetails recoverUpdateCaseV2WithConsumer(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2 with Consumer<SscsCaseData>) for caseId {} and eventType {}", caseId, eventType);
-
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> {
-            mutator.accept(data);
-            return new UpdateResult(summary, description);
-        });
+    public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
+        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
+       throw exception;
     }
 
-    /**
-     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
-     */
-    @Recover
-    public SscsCaseDetails recoverUpdateCaseV2WithFunction(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2 with Function<SscsCaseData, UpdateResult>) for caseId {} and eventType {}", caseId, eventType);
-
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, mutator);
-    }
-
-    /**
-     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
-     */
-    @Recover
-    public SscsCaseDetails recoverTriggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        log.error("In recover method(recoverTriggerCaseEventV2) for caseId {} and eventType {}", caseId, eventType);
-
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
-    }
 }
