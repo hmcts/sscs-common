@@ -34,17 +34,17 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable(maxAttempts = 2)
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> {
+        return updateCaseV2(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
             return new UpdateResult(summary, description);
         });
     }
 
-    @Retryable(maxAttempts = 2)
+    @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
+        return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
 
     public record UpdateResult(String summary, String description) { }
@@ -53,11 +53,24 @@ public class UpdateCcdCaseService {
      * Update a case while making correct use of CCD's optimistic locking.
      * Changes can be made to case data by the provided consumer which will always be provided
      * the current version of case data from CCD's start event.
-     * Retry max attempt is set to 2 as it will retry for 3rd time in recover method
      */
-    @Retryable(maxAttempts = 2)
+    @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
-        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, mutator);
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        var data = sscsCcdConvertService.getCaseData(startEventResponse.getCaseDetails().getData());
+
+        /**
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
+        data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
+        var result = mutator.apply(data);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(data, startEventResponse, result.summary, result.description);
+
+        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
     public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
@@ -89,7 +102,7 @@ public class UpdateCcdCaseService {
     }
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
-                                        String description, IdamTokens idamTokens) {
+                                      String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData, summary, description);
 
@@ -153,6 +166,6 @@ public class UpdateCcdCaseService {
     public SscsCaseDetails recoverTriggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.error("In recover method(recoverTriggerCaseEventV2) for caseId {} and eventType {}", caseId, eventType);
 
-        return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
 }
