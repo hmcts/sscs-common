@@ -34,15 +34,15 @@ public class UpdateCcdCaseService {
         this.ccdClient = ccdClient;
     }
 
-    @Retryable(maxAttempts = 2, recover = "recoverUpdateCaseV2WithConsumer")
+    @Retryable(maxAttempts = 2)
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, data -> {
+        return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> {
             mutator.accept(data);
             return new UpdateResult(summary, description);
         });
     }
 
-    @Retryable(maxAttempts = 2, recover = "recoverTriggerCaseEventV2")
+    @Retryable(maxAttempts = 2)
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
     }
@@ -55,7 +55,7 @@ public class UpdateCcdCaseService {
      * the current version of case data from CCD's start event.
      * Retry max attempt is set to 2 as it will retry for 3rd time in recover method
      */
-    @Retryable(maxAttempts = 2, recover = "recoverUpdateCaseV2WithFunction")
+    @Retryable(maxAttempts = 2)
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseData, UpdateResult> mutator) {
         return updateCaseV2WithoutRetry(caseId, eventType, idamTokens, mutator);
     }
