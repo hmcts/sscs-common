@@ -73,6 +73,9 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    /**
+     * @deprecated  Use UpdateCaseV2 methods as this could cause potential data issues.
+     * */
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
@@ -83,6 +86,9 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    /**
+     * @deprecated  Use UpdateCaseV2 methods as this could cause potential data issues.
+     * */
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
                                         String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);

@@ -88,7 +88,7 @@ public class CcdService {
     }
 
     /**
-     * @deprecated  Use UpdateCaseV2 methods as this could cause potential data issues.
+     * @deprecated  Use UpdateCcdCaseService.UpdateCaseV2 methods as this could cause potential data issues.
      * */
     @Deprecated
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
@@ -96,7 +96,7 @@ public class CcdService {
     }
 
     /**
-     * @deprecated  Use UpdateCaseV2 methods as this could cause potential data issues.
+     * @deprecated  Use UpdateCcdCaseService.UpdateCaseV2 methods as this could cause potential data issues.
      * */
     @Deprecated
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType,
