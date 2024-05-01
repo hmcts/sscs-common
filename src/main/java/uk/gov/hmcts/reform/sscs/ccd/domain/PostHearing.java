@@ -33,7 +33,6 @@ public class PostHearing {
     @Getter(AccessLevel.NONE)
     @JsonProperty("statementOfReasons")
     private StatementOfReasons statementOfReasons;
-    @Getter(AccessLevel.NONE)
     @JsonProperty("sorRequestInTime")
     private YesNo sorRequestInTime;
     @Getter(AccessLevel.NONE)
