@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -98,6 +99,37 @@ public class UpdateCcdCaseService {
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+    }
+
+    public record ConditionalUpdateResult(String summary, String description, Boolean willCommit) { }
+
+    /**
+     * Conditionally update a case, by passing a boolean parameter as part of the mutator
+     * If true it will update data while making correct use of CCD's optimistic locking.
+     * Changes can be made to case data by the provided consumer which will always be provided
+     * the current version of case data from CCD's start event.
+     */
+    @Retryable
+    public Optional<SscsCaseDetails> updateCaseV2Conditional(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, ConditionalUpdateResult> mutator) {
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+        SscsCaseData data = caseDetails.getData();
+
+        /**
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
+        data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
+        var result = mutator.apply(caseDetails);
+        if (result.willCommit()) {
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
+            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+        } else {
+            return Optional.empty();
+        }
     }
 
     @Recover
