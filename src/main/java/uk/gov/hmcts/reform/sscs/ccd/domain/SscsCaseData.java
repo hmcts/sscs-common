@@ -377,7 +377,6 @@ public class SscsCaseData implements CaseData {
     private JointParty jointParty;
 
     @JsonUnwrapped
-    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Getter(AccessLevel.NONE)
     private WorkBasketFields workBasketFields;
 
