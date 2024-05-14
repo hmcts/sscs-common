@@ -380,6 +380,9 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private WorkBasketFields workBasketFields;
 
+    @JsonIgnore
+    private boolean ignoreCaseworkerOnlyFields;
+
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private PostHearing postHearing;
@@ -714,7 +717,7 @@ public class SscsCaseData implements CaseData {
     @SuppressWarnings("unused")
     @JsonIgnore
     public WorkBasketFields getWorkBasketFields() {
-        if (isNull(workBasketFields)) {
+        if (isNull(workBasketFields) && !ignoreCaseworkerOnlyFields) {
             workBasketFields = new WorkBasketFields();
         }
         return workBasketFields;
