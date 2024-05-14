@@ -21,13 +21,16 @@ import lombok.NoArgsConstructor;
 @JsonInclude
 public class WorkBasketFields {
     @JsonProperty("workBasketHearingDate")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate hearingDate;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("workBasketHearingDateIssued")
     private String hearingDateIssued;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("workBasketHearingEpimsId")
     private String hearingEpimsId;
 }
