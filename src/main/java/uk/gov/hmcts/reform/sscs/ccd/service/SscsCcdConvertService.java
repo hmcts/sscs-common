@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -101,7 +100,6 @@ public class SscsCcdConvertService {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
         mapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         mapper.registerModule(new JavaTimeModule());
         try {
             SscsCaseData sscsCaseData = mapper.convertValue(dataMap, SscsCaseData.class);
