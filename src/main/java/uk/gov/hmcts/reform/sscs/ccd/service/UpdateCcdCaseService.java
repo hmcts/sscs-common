@@ -42,6 +42,13 @@ public class UpdateCcdCaseService {
         });
     }
 
+    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
+        return updateCaseV2(caseId, eventType, idamTokens, data -> {
+            mutator.accept(data);
+            return new UpdateResult(summary, description);
+        });
+    }
+
     @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
