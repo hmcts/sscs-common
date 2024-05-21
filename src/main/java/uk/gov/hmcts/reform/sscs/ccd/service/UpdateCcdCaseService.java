@@ -42,13 +42,12 @@ public class UpdateCcdCaseService {
         });
     }
 
-    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, data -> {
-            mutator.accept(data);
+    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
+        return updateCaseDetailsV2(caseId, eventType, idamTokens, caseDetails -> {
+            mutator.accept(caseDetails);
             return new UpdateResult(summary, description);
         });
     }
-
     @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCaseV2(caseId, eventType, idamTokens, data -> new UpdateResult(summary, description));
@@ -80,6 +79,29 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    /**
+     * Temporarily added to test will be removed once SSCSSI-161 is merged to master
+     */
+    @Retryable
+    public SscsCaseDetails updateCaseDetailsV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+        SscsCaseData data = caseDetails.getData();
+
+        /**
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
+        data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
+        var result = mutator.apply(caseDetails);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
+
+        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+    }
+
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
@@ -91,7 +113,7 @@ public class UpdateCcdCaseService {
     }
 
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
-                                        String description, IdamTokens idamTokens) {
+                                      String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData, summary, description);
 
@@ -124,5 +146,4 @@ public class UpdateCcdCaseService {
 
         ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
-
 }
