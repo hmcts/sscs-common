@@ -239,6 +239,7 @@ public class SscsCaseData implements CaseData {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate issueFinalDecisionDate;
+    private LocalDate issueInterlocDecisionDate;
     private String notListableProvideReasons;
     private String notListableDueDate;
     private String updateNotListableDirectionsFulfilled;
