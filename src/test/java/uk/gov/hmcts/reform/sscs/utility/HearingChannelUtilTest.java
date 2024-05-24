@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.utility;
 
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingOptions;
 import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
 
 import java.util.List;
@@ -16,5 +17,17 @@ public class HearingChannelUtilTest {
                 .value(OtherParty.builder().hearingOptions(null).build()).build();
         boolean result = HearingChannelUtil.isInterpreterRequiredOtherParties(List.of(otherPartyList));
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void testOtherPartyHearingOptions(){
+        CcdValue otherPartyList = CcdValue.builder()
+                .value(OtherParty.builder()
+                        .hearingOptions(HearingOptions.builder()
+                                .languageInterpreter("Yes")
+                                .arrangements(List.of("signLanguageInterpreter"))
+                                .build()).build()).build();
+        boolean result = HearingChannelUtil.isInterpreterRequiredOtherParties(List.of(otherPartyList));
+        assertThat(result).isTrue();
     }
 }
