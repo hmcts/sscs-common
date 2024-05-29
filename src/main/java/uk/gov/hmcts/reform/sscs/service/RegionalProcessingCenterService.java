@@ -132,7 +132,7 @@ public class RegionalProcessingCenterService {
         return "";
     }
 
-    public HearingRoute getHearingRoute(String region) {
+    public HearingRoute getHearingRoute(String region, Map<String, RegionalProcessingCenter>  regionalProcessingCenterMap ) {
         return regionalProcessingCenterMap.values().stream()
             .filter(rpc -> rpc.getName().equalsIgnoreCase(region))
             .map(RegionalProcessingCenter::getHearingRoute)

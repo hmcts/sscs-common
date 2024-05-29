@@ -204,7 +204,9 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void givenHearingRouteIsNull_HearingRouteShouldBeGaps() {
-        assertEquals(regionalProcessingCenterService.getHearingRoute(null), HearingRoute.GAPS);
+        Map<String, RegionalProcessingCenter> regionalProcessingCenterMap
+                = regionalProcessingCenterService.getRegionalProcessingCenterMap();
+        assertEquals(regionalProcessingCenterService.getHearingRoute(null, regionalProcessingCenterMap), HearingRoute.GAPS);
 
     }
 }
