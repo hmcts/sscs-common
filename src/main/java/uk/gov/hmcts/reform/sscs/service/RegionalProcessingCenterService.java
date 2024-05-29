@@ -137,7 +137,7 @@ public class RegionalProcessingCenterService {
             .filter(rpc -> rpc.getName().equalsIgnoreCase(region))
             .map(RegionalProcessingCenter::getHearingRoute)
             .filter(Objects::nonNull)
-            .findFirst().orElse(HearingRoute.LIST_ASSIST);
+            .findFirst().orElse(HearingRoute.GAPS);
     }
 
 }
