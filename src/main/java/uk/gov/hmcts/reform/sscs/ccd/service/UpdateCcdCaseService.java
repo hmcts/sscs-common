@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -25,14 +26,16 @@ public class UpdateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
+    private final ReadCcdCaseService readCcdCaseService;
 
     @Autowired
     public UpdateCcdCaseService(IdamService idamService,
                                 SscsCcdConvertService sscsCcdConvertService,
-                                CcdClient ccdClient) {
+                                CcdClient ccdClient, ReadCcdCaseService readCcdCaseService) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
+        this.readCcdCaseService = readCcdCaseService;
     }
 
     @Retryable
@@ -100,6 +103,54 @@ public class UpdateCcdCaseService {
         var result = mutator.apply(caseDetails);
         if (result.willCommit()) {
             CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
+            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
+
+//    TODO: Update the description here!!!
+    @Retryable
+    public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, Optional<DynamicEventUpdateResult>> mutator) {
+        LocalDateTime initialLastModified;
+        LocalDateTime latestLastModified;
+
+        SscsCaseDetails initialCaseDetails = readCcdCaseService.getByCaseId(caseId, idamTokens);
+        SscsCaseData caseData = initialCaseDetails.getData();
+
+        /**
+          * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+          * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+        */
+        caseData.setCcdCaseId(caseId.toString());
+        caseData.sortCollections();
+
+        initialLastModified = initialCaseDetails.getLastModified();
+
+        Optional<DynamicEventUpdateResult> optionalDynamicEventUpdateResult = mutator.apply(initialCaseDetails);
+
+        if (optionalDynamicEventUpdateResult.isEmpty()){
+            return Optional.empty();
+        }
+
+        DynamicEventUpdateResult dynamicEventUpdateResult = optionalDynamicEventUpdateResult.get();
+
+        String eventType = dynamicEventUpdateResult.eventType;
+
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        SscsCaseDetails latestCaseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+
+        latestLastModified = latestCaseDetails.getLastModified();
+
+        if (!initialLastModified.isEqual(latestLastModified)){
+            throw new RuntimeException();
+        }
+
+        if (dynamicEventUpdateResult.willCommit()) {
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, dynamicEventUpdateResult.summary, dynamicEventUpdateResult.description);
             return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
         } else {
             return Optional.empty();
