@@ -14,10 +14,13 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
 
+    String id;
+
     AudioVideoEvidenceDetails value;
 
     @JsonCreator
-    public AudioVideoEvidence(@JsonProperty("value") AudioVideoEvidenceDetails value) {
+    public AudioVideoEvidence(@JsonProperty("id") String id, @JsonProperty("value") AudioVideoEvidenceDetails value) {
+        this.id = id;
         this.value = value;
     }
 
