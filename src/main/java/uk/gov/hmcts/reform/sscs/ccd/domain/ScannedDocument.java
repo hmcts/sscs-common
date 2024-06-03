@@ -13,12 +13,15 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ScannedDocument implements Comparable<ScannedDocument> {
+public class ScannedDocument implements Comparable<ScannedDocument>, TypedDocument {
+
+    private String id;
 
     private ScannedDocumentDetails value;
 
     @JsonCreator
-    public ScannedDocument(@JsonProperty("value") ScannedDocumentDetails value) {
+    public ScannedDocument(@JsonProperty("id") String id, @JsonProperty("value") ScannedDocumentDetails value) {
+        this.id = id;
         this.value = value;
     }
 
@@ -34,5 +37,10 @@ public class ScannedDocument implements Comparable<ScannedDocument> {
                 .comparing(ScannedDocumentDetails::getScanDateTimeFormatted, nullSafeDateTimeComparator)
                 .thenComparing(ScannedDocumentDetails::getLongControlNumber, nullSafeLongComparator)
                 .compare(this.value, doc2.getValue());
+    }
+
+    @Override
+    public String getDocumentType() {
+        return getValue() != null ? getValue().getType() : null;
     }
 }
