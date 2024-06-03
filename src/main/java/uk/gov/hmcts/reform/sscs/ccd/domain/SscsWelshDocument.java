@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
-public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails> {
+public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails> implements TypedDocument {
 
     public SscsWelshDocument(@JsonProperty("value") SscsWelshDocumentDetails value) {
         super(value);
@@ -20,4 +20,9 @@ public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails
         super(id, value);
     }
 
+    @Override
+    @JsonIgnore
+    public String getDocumentType() {
+        return getValue() != null ? getValue().getDocumentType() : null;
+    }
 }
