@@ -22,6 +22,7 @@ public class SscsDocument extends AbstractDocument<SscsDocumentDetails> implemen
     }
 
     @Override
+    @JsonIgnore
     public String getDocumentType() {
         return getValue() != null ? getValue().getDocumentType() : null;
     }
