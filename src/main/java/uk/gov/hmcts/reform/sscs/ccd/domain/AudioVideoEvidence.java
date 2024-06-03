@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
+public class AudioVideoEvidence implements Comparable<AudioVideoEvidence>, TypedDocument {
 
     String id;
 
@@ -31,4 +31,8 @@ public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
                 .toComparison();
     }
 
+    @Override
+    public String getDocumentType() {
+        return getValue() != null ? getValue().getDocumentType() : null;
+    }
 }
