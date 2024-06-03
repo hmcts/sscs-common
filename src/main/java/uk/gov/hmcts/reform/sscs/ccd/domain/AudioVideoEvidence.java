@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,6 +33,7 @@ public class AudioVideoEvidence implements Comparable<AudioVideoEvidence>, Typed
     }
 
     @Override
+    @JsonIgnore
     public String getDocumentType() {
         return getValue() != null ? getValue().getDocumentType() : null;
     }
