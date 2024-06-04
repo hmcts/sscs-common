@@ -27,7 +27,7 @@ public class CcdCallbackMapService {
     /**
      * Updates CCD with stale case data hence use handleCcdCallbackMapV2 which retrieves latest data from DB
      *
-     * @deprecated use {@link #handleCcdCallbackMapV2()} instead.
+     * @deprecated use {@link #handleCcdCallbackMapV2(CcdCallbackMap, long)} instead.
      */
     @Deprecated
     public SscsCaseData handleCcdCallbackMap(@Nullable CcdCallbackMap callbackMap, @Valid SscsCaseData caseData) {
