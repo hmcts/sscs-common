@@ -112,6 +112,7 @@ public class UpdateCcdCaseService {
     public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
 
 //    TODO: Update the description here!!!
+//    TODO: WHAT HAPPENS IF IT RUNS OUT OF RETRIES?
     @Retryable
     public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, Optional<DynamicEventUpdateResult>> mutator) {
         LocalDateTime initialLastModified;
@@ -133,6 +134,7 @@ public class UpdateCcdCaseService {
 
         if (optionalDynamicEventUpdateResult.isEmpty()){
             return Optional.empty();
+//            Throw an exception here
         }
 
         DynamicEventUpdateResult dynamicEventUpdateResult = optionalDynamicEventUpdateResult.get();
