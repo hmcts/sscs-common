@@ -24,12 +24,6 @@ public class CcdCallbackMapService {
     private final UpdateCcdCaseService updateCcdCaseService;
     private final IdamService idamService;
 
-    /**
-     * Updates CCD with stale case data hence use handleCcdCallbackMapV2 which retrieves latest data from DB
-     *
-     * @deprecated use {@link #handleCcdCallbackMapV2(CcdCallbackMap, long)} instead.
-     */
-    @Deprecated
     public SscsCaseData handleCcdCallbackMap(@Nullable CcdCallbackMap callbackMap, @Valid SscsCaseData caseData) {
         if (isNull(callbackMap)) {
             return caseData;
