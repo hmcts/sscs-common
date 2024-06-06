@@ -111,10 +111,11 @@ public class UpdateCcdCaseService {
 
     public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
 
+    // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
+
 //    TODO: Update the description here!!!
-//    TODO: WHAT HAPPENS IF IT RUNS OUT OF RETRIES?
     @Retryable
-    public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, Optional<DynamicEventUpdateResult>> mutator) {
+    public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, DynamicEventUpdateResult> mutator) {
         LocalDateTime initialLastModified;
         LocalDateTime latestLastModified;
 
@@ -130,28 +131,22 @@ public class UpdateCcdCaseService {
 
         initialLastModified = initialCaseDetails.getLastModified();
 
-        Optional<DynamicEventUpdateResult> optionalDynamicEventUpdateResult = mutator.apply(initialCaseDetails);
-
-        if (optionalDynamicEventUpdateResult.isEmpty()){
-            return Optional.empty();
-//            Throw an exception here
-        }
-
-        DynamicEventUpdateResult dynamicEventUpdateResult = optionalDynamicEventUpdateResult.get();
-
-        String eventType = dynamicEventUpdateResult.eventType;
-
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        SscsCaseDetails latestCaseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
-
-        latestLastModified = latestCaseDetails.getLastModified();
-
-        if (!initialLastModified.isEqual(latestLastModified)){
-            throw new RuntimeException();
-        }
+        DynamicEventUpdateResult dynamicEventUpdateResult = mutator.apply(initialCaseDetails);
 
         if (dynamicEventUpdateResult.willCommit()) {
+
+            String eventType = dynamicEventUpdateResult.eventType;
+
+            log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+            StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+            SscsCaseDetails latestCaseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+
+            latestLastModified = latestCaseDetails.getLastModified();
+
+            if (!initialLastModified.isEqual(latestLastModified)){
+                throw new RuntimeException();
+            }
+
             CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, dynamicEventUpdateResult.summary, dynamicEventUpdateResult.description);
             return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
         } else {
