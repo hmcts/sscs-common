@@ -21,7 +21,7 @@ public class JudicialRefDataService {
 
     private final JudicialRefDataApi judicialRefDataApi;
     private final IdamService idamService;
-    @Value("${feature.elinksV2.enabled}")
+    @Value("${feature.elinksV2.enabled:false}")
     private boolean elinksV2Feature;
 
     public List<String> getAllJudicialUsersFullNames(@NonNull List<JudicialUserBase> judicialUsers) {
