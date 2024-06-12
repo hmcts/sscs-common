@@ -21,6 +21,7 @@ public enum WriteStatementOfReasons implements CcdCallbackMap {
     private final DwpState postCallbackDwpState;
     private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason = null;
+    private final Boolean clearPostHearingFields = false;
 
     @Override
     @JsonValue

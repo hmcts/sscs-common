@@ -1,16 +1,17 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.DIRECTION_ACTION_REQUIRED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.READY_TO_LIST;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReferralReason.ADVICE_ON_HOW_TO_PROCEED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.AWAITING_ADMIN_ACTION;
 
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,18 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Correction;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CorrectionActions;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DocumentGeneration;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DocumentStaging;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DwpState;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PostHearing;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -39,8 +46,6 @@ class CcdCallbackMapServiceTest {
     private UpdateCcdCaseService updateCcdCaseService;
     @Mock
     private IdamService idamService;
-    @Captor
-    private ArgumentCaptor<Consumer<SscsCaseData>>  sscsCaseDataArgumentCaptor;
 
     @InjectMocks
     private CcdCallbackMapService ccdCallbackMapService;
@@ -74,7 +79,7 @@ class CcdCallbackMapServiceTest {
     @Test
     void handleCcdCallbackNullCallbackMapV2() {
 
-        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(null, CASE_ID);
+        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(null, null, CASE_ID);
 
         assertThat(result).isEmpty();
         verifyNoInteractions(ccdService, idamService);
@@ -101,30 +106,6 @@ class CcdCallbackMapServiceTest {
         assertThat(result.getDwpState()).isEqualTo(expected);
     }
 
-    @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMapV2 correctly sets the Dwp State")
-    @Test
-    void handleCcdCallbackV2PostCallbackDwpState() {
-        given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
-        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
-        given(callbackMap.getCallbackSummary()).willReturn("summary");
-        given(callbackMap.getCallbackDescription()).willReturn("description");
-        given(idamService.getIdamTokens()).willReturn(idamTokens);
-        given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
-                .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
-
-        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
-
-        assertThat(result).isNotEmpty();
-
-        verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
-
-        sscsCaseDataArgumentCaptor.getValue().accept(caseData);
-
-        assertThat(result.get().getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
-    }
-
     @DisplayName("When CallbackEvent is null handleCcdCallbackMap doesn't call ccdService")
     @Test
     void handleCcdCallbackNullCallbackEvent() {
@@ -140,7 +121,7 @@ class CcdCallbackMapServiceTest {
     void handleCcdCallbackV2NullCallbackEvent() {
         given(callbackMap.getCallbackEvent()).willReturn(null);
 
-        ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+        ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, null, CASE_ID);
 
         verifyNoInteractions(ccdService, idamService);
     }
@@ -170,30 +151,73 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isEqualTo(expected);
     }
 
-    @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
+    @DisplayName("When handleCcdCallbackMapV2 gets called, caseUPdateV2 called with the correct params")
     @Test
-    void handleCcdCallbackEventV2() {
+    void handleCcdCallbackV2WithNoCaseMutation() {
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
-
         given(idamService.getIdamTokens()).willReturn(idamTokens);
-
-        SscsCaseData expected = SscsCaseData.builder().ccdCaseId(String.valueOf(CASE_ID)).build();
-
         given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), isNull()))
                 .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
 
-        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, null, CASE_ID);
 
         assertThat(result).isNotEmpty();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
-        verify(idamService, times(1)).getIdamTokens();
-
-        sscsCaseDataArgumentCaptor.getValue().accept(caseData);
-        assertThat(caseData).usingRecursiveComparison().ignoringFields("jointParty.id").isEqualTo(expected);
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), isNull());
     }
+
+    @DisplayName("When PostHearing enabled get the standard CcdCallbackMutator mutator")
+    @Test
+    void handleCcdCallbackV2WithCaseMutationForPostHearingEnabled() {
+        PostHearing postHearing = PostHearing.builder().correction(Correction.builder().action(CorrectionActions.GRANT).build()).build();
+        caseData.setPostHearing(postHearing);
+        caseData.setDocumentGeneration(DocumentGeneration.builder().bodyContent("AAAA").build());
+        caseData.setDocumentStaging(DocumentStaging.builder().dateAdded(LocalDate.now()).build());
+
+        given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
+        given(callbackMap.getClearPostHearingFields()).willReturn(true);
+        given(callbackMap.getPostCallbackInterlocState()).willReturn(AWAITING_ADMIN_ACTION);
+        given(callbackMap.getPostCallbackInterlocReason()).willReturn(ADVICE_ON_HOW_TO_PROCEED);
+
+
+        Consumer<SscsCaseData> mutator  = ccdCallbackMapService.getCcdCallbackMutator(callbackMap, String.valueOf(CASE_ID), true);
+        mutator.accept(caseData);
+
+        assertThat(caseData.getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
+        assertThat(caseData.getInterlocReviewState()).isEqualTo(AWAITING_ADMIN_ACTION);
+        assertThat(caseData.getInterlocReferralReason()).isEqualTo(ADVICE_ON_HOW_TO_PROCEED);
+        assertThat(caseData.getPostHearing().getCorrection().getAction()).isNotEqualTo(postHearing.getCorrection().getAction());
+        assertThat(caseData.getDocumentGeneration().getBodyContent()).isNull();
+        assertThat(caseData.getDocumentStaging().getDateAdded()).isNull();
+    }
+
+    @DisplayName("When PostHearing disabled get the standard CcdCallbackMutator mutator")
+    @Test
+    void handleCcdCallbackV2WithCaseMutationForPostHearingDisabled() {
+        PostHearing postHearing = PostHearing.builder().correction(Correction.builder().action(CorrectionActions.GRANT).build()).build();
+        caseData.setPostHearing(postHearing);
+        caseData.setDocumentGeneration(DocumentGeneration.builder().bodyContent("AAAA").build());
+        caseData.setDocumentStaging(DocumentStaging.builder().dateAdded(LocalDate.now()).build());
+
+        given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
+        given(callbackMap.getClearPostHearingFields()).willReturn(true);
+        given(callbackMap.getPostCallbackInterlocState()).willReturn(AWAITING_ADMIN_ACTION);
+        given(callbackMap.getPostCallbackInterlocReason()).willReturn(ADVICE_ON_HOW_TO_PROCEED);
+
+
+        Consumer<SscsCaseData> mutator  = ccdCallbackMapService.getCcdCallbackMutator(callbackMap, String.valueOf(CASE_ID), false);
+        mutator.accept(caseData);
+
+        assertThat(caseData.getDocumentGeneration().getBodyContent()).isNull();
+        assertThat(caseData.getDocumentStaging().getDateAdded()).isNull();
+        assertThat(caseData.getPostHearing().getCorrection().getAction()).isEqualTo(postHearing.getCorrection().getAction());
+        assertThat(caseData.getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
+        assertThat(caseData.getInterlocReviewState()).isEqualTo(AWAITING_ADMIN_ACTION);
+        assertThat(caseData.getInterlocReferralReason()).isEqualTo(ADVICE_ON_HOW_TO_PROCEED);
+    }
+
 }
