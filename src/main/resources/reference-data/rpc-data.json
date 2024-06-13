@@ -27,7 +27,7 @@
     "hearingRoute" : "listAssist",
     "epimsId": "372653"
   },
-  "SSCS Leeds":{
+  "SSCS Leeds": {
     "name" : "LEEDS",
     "address1" : "HM Courts & Tribunals Service",
     "address2" : "Social Security & Child Support Appeals",
@@ -38,7 +38,7 @@
     "phoneNumber" : "0300 123 1142",
     "faxNumber" : "0870 739 4331",
     "email" : "Leeds_SYA_Response@justice.gov.uk",
-    "hearingRoute" : "gaps",
+    "hearingRoute" : "listAssist",
     "epimsId": "495952"
 
   },
