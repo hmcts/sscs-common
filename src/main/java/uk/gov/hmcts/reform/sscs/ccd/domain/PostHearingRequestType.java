@@ -39,7 +39,6 @@ public enum PostHearingRequestType implements CcdCallbackMap {
     private final DwpState postCallbackDwpState;
     private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason;
-    private final Boolean clearPostHearingFields = false;
 
     @Override
     @JsonValue

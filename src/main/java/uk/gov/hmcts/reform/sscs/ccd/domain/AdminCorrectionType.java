@@ -19,11 +19,7 @@ public enum AdminCorrectionType implements CcdCallbackMap {
     private final InterlocReviewState postCallbackInterlocState;
     private final InterlocReferralReason postCallbackInterlocReason;
 
-    private Boolean clearPostHearingFields = false;
-
-    public void setClearPostHearingFields(Boolean clearPostHearingFields) {
-        this.clearPostHearingFields = clearPostHearingFields;
-    }
+    private final Boolean clearPostHearingFields;
 
     @Override
     @JsonValue

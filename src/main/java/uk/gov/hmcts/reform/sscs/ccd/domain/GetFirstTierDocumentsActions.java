@@ -20,7 +20,6 @@ public enum GetFirstTierDocumentsActions implements CcdCallbackMap {
     private final DwpState postCallbackDwpState = null;
     private final InterlocReviewState postCallbackInterlocState = null;
     private final InterlocReferralReason postCallbackInterlocReason = null;
-    private final Boolean clearPostHearingFields = false;
 
     @Override
     @JsonValue

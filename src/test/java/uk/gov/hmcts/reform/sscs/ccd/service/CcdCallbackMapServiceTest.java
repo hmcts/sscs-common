@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
@@ -17,8 +16,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -47,8 +44,6 @@ class CcdCallbackMapServiceTest {
     private UpdateCcdCaseService updateCcdCaseService;
     @Mock
     private IdamService idamService;
-    @Captor
-    private ArgumentCaptor<Consumer<SscsCaseData>>  sscsCaseDataArgumentCaptor;
 
     @InjectMocks
     private CcdCallbackMapService ccdCallbackMapService;
@@ -217,6 +212,31 @@ class CcdCallbackMapServiceTest {
 
         assertThat(caseData.getDocumentGeneration().getBodyContent()).isNull();
         assertThat(caseData.getDocumentStaging().getDateAdded()).isNull();
+        assertThat(caseData.getPostHearing().getCorrection().getAction()).isEqualTo(postHearing.getCorrection().getAction());
+        assertThat(caseData.getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
+        assertThat(caseData.getInterlocReviewState()).isEqualTo(AWAITING_ADMIN_ACTION);
+        assertThat(caseData.getInterlocReferralReason()).isEqualTo(ADVICE_ON_HOW_TO_PROCEED);
+    }
+
+    @DisplayName("When PostHearing disabled get the standard CcdCallbackMutator mutator and do not clear post hearing fields")
+    @Test
+    void handleCcdCallbackV2WithCaseMutationForPostHearingDisabledNotCLearingPostHearingFields() {
+        PostHearing postHearing = PostHearing.builder().correction(Correction.builder().action(CorrectionActions.GRANT).build()).build();
+        caseData.setPostHearing(postHearing);
+        caseData.setDocumentGeneration(DocumentGeneration.builder().bodyContent("AAAA").build());
+        LocalDate stagingDate = LocalDate.now();
+        caseData.setDocumentStaging(DocumentStaging.builder().dateAdded(stagingDate).build());
+
+        given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
+        given(callbackMap.getPostCallbackInterlocState()).willReturn(AWAITING_ADMIN_ACTION);
+        given(callbackMap.getPostCallbackInterlocReason()).willReturn(ADVICE_ON_HOW_TO_PROCEED);
+
+
+        Consumer<SscsCaseData> mutator  = ccdCallbackMapService.getCcdCallbackMutator(callbackMap, String.valueOf(CASE_ID), false);
+        mutator.accept(caseData);
+
+        assertThat(caseData.getDocumentGeneration().getBodyContent()).isEqualTo("AAAA");
+        assertThat(caseData.getDocumentStaging().getDateAdded()).isEqualTo(stagingDate);
         assertThat(caseData.getPostHearing().getCorrection().getAction()).isEqualTo(postHearing.getCorrection().getAction());
         assertThat(caseData.getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
         assertThat(caseData.getInterlocReviewState()).isEqualTo(AWAITING_ADMIN_ACTION);

@@ -15,5 +15,7 @@ public interface CcdCallbackMap {
 
     InterlocReferralReason getPostCallbackInterlocReason();
 
-    Boolean getClearPostHearingFields();
+    default Boolean getClearPostHearingFields() {
+        return false;
+    }
 }
