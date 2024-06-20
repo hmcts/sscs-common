@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -56,7 +57,7 @@ public class CcdCallbackMapService {
         return caseData;
     }
 
-    public Optional<SscsCaseData> handleCcdCallbackMapV2(@Nullable CcdCallbackMap callbackMap, @Nullable Consumer<SscsCaseData> mutator, long caseId) {
+    public Optional<SscsCaseData> handleCcdCallbackMapV2(@Nullable CcdCallbackMap callbackMap, @Nonnull Consumer<SscsCaseData> mutator, long caseId) {
 
         if (isNull(callbackMap)) {
             return Optional.empty();
