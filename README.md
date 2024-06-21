@@ -59,6 +59,7 @@ idam:
     redirectUrl: ${IDAM_SSCS_URL:https://localhost:9000/poc}
 core_case_data:
   api:
+
     url: ${CORE_CASE_DATA_URL:http://localhost:4452}
   caseTypeId: Benefit
   jurisdictionId: SSCS
