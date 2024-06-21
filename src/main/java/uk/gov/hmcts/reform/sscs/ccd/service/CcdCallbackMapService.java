@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,9 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 
+import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 
 @Slf4j
@@ -54,6 +57,11 @@ public class CcdCallbackMapService {
 
     public Optional<SscsCaseData> handleCcdCallbackMapV2(@Nullable CcdCallbackMap callbackMap, long caseId) {
 
+        return handleCcdCallbackMapV2(callbackMap, caseId, sscsCaseData -> {});
+    }
+
+    public Optional<SscsCaseData> handleCcdCallbackMapV2(@Nullable CcdCallbackMap callbackMap, long caseId, @Nonnull Consumer<SscsCaseData> handlerMutator) {
+
         if (isNull(callbackMap)) {
             return Optional.empty();
         }
@@ -78,9 +86,11 @@ public class CcdCallbackMapService {
                         if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
                             setInterlocReferralReason(callbackMap, sscsCaseData, caseId);
                         }
+                        if (Objects.nonNull(handlerMutator)) {
+                            handlerMutator.accept(sscsCaseData);
+                        }
                     }
             );
-
             return Optional.of(updatedCaseDetails.getData());
         }
         return Optional.empty();
