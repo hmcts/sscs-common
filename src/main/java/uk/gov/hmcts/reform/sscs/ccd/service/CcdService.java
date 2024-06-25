@@ -87,10 +87,20 @@ public class CcdService {
         return createCcdCaseService.createCase(caseData, eventType, summary, description, idamTokens);
     }
 
+    /**
+     * @deprecated  as this could cause potential data issues.
+     * Use UpdateCcdCaseService.UpdateCaseV2 for case updates or UpdateCcdCaseService.triggerCaseEventV2 for event triggers.
+     * */
+    @Deprecated
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         return updateCcdCaseService.updateCase(caseData, caseId, eventType, summary, description, idamTokens);
     }
 
+    /**
+     * @deprecated  as this could cause potential data issues.
+     * Use UpdateCcdCaseService.UpdateCaseV2 for case updates or UpdateCcdCaseService.triggerCaseEventV2 for event triggers.
+     * */
+    @Deprecated
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType,
                                         String summary, String description, IdamTokens idamTokens) {
         return updateCcdCaseService.updateCase(caseData, caseId, eventId, eventToken, eventType, summary, description, idamTokens);
