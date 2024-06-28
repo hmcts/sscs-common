@@ -3,6 +3,9 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.Valid;
@@ -13,10 +16,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
-
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Consumer;
 
 
 @Slf4j
