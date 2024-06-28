@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,12 +13,15 @@ import org.apache.commons.lang3.builder.CompareToBuilder;
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
+public class AudioVideoEvidence implements Comparable<AudioVideoEvidence>, TypedDocument {
+
+    String id;
 
     AudioVideoEvidenceDetails value;
 
     @JsonCreator
-    public AudioVideoEvidence(@JsonProperty("value") AudioVideoEvidenceDetails value) {
+    public AudioVideoEvidence(@JsonProperty("id") String id, @JsonProperty("value") AudioVideoEvidenceDetails value) {
+        this.id = id;
         this.value = value;
     }
 
@@ -28,4 +32,9 @@ public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
                 .toComparison();
     }
 
+    @Override
+    @JsonIgnore
+    public String getDocumentType() {
+        return getValue() != null ? getValue().getDocumentType() : null;
+    }
 }
