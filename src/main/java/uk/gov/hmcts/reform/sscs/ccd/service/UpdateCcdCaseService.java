@@ -16,6 +16,7 @@ import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.exception.ExitRetryableException;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
@@ -114,7 +115,7 @@ public class UpdateCcdCaseService {
     // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
 
 //    TODO: Update the description here!!!
-    @Retryable
+    @Retryable(exclude = ExitRetryableException.class)
     public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, DynamicEventUpdateResult> mutator) {
         LocalDateTime initialLastModified;
         LocalDateTime latestLastModified;
