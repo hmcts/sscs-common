@@ -21,4 +21,5 @@ jobs:
           java-version: 11
       - uses: eskatos/gradle-command-action@v1
         with:
+          super_secret: ${{ secrets.NVD_API_KEY }}
           arguments: dependencyCheckAnalyze
