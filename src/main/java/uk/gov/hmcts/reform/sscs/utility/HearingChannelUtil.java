@@ -113,7 +113,6 @@ public class HearingChannelUtil {
 
     public static boolean isInterpreterRequiredOtherParties(List<CcdValue<OtherParty>> otherParties) {
         return nonNull(otherParties) && otherParties.stream().map(CcdValue::getValue)
-                .filter(o -> o.getHearingOptions() != null)
                 .anyMatch(o -> isInterpreterRequiredHearingOptions(o.getHearingOptions()));
     }
 
