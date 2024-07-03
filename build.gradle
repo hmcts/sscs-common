@@ -46,19 +46,8 @@ dependencyCheck {
     failBuildOnCVSS = 7.0
     suppressionFile = 'config/owasp/suppressions.xml'
 
-    exec {
-      commandLine 'az', 'login'
-    }
-
-    new ByteArrayOutputStream().withStream { os ->
-        exec {
-          commandLine 'az', 'keyvault', 'secret', 'show', '--vault-name', 'sscs-aat', '-o', 'tsv', '--query', 'value', '--name', 'nvd-api-key'
-          standardOutput = os
-        }
-        nvd.apiKey =  new String(os.toString().replace('\n', '').decodeBase64(), java.nio.charset.StandardCharsets.UTF_8)
-    }
-
     nvd.validForHours = 24
+    nvd.apiKey = "${System.env.NVD_API_KEY}"
 
     analyzers {
         retirejs {
