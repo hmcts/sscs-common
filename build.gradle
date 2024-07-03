@@ -46,6 +46,10 @@ dependencyCheck {
     failBuildOnCVSS = 7.0
     suppressionFile = 'config/owasp/suppressions.xml'
 
+    exec {
+      commandLine 'az', 'login'
+    }
+
     new ByteArrayOutputStream().withStream { os ->
         exec {
           commandLine 'az', 'keyvault', 'secret', 'show', '--vault-name', 'sscs-aat', '-o', 'tsv', '--query', 'value', '--name', 'nvd-api-key'
