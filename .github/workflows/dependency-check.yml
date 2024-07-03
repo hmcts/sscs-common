@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Set env
+        run: echo "NVD_API_KEY=${{ secrets.NVD_API_KEY }}" >> $GITHUB_ENV
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: dependencyCheckAnalyze
