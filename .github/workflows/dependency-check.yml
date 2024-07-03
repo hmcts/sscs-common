@@ -1,5 +1,8 @@
 name: 'Dependency Check'
 
+env:
+  NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
 on:
   pull_request:
     branches:
@@ -21,5 +24,4 @@ jobs:
           java-version: 11
       - uses: eskatos/gradle-command-action@v1
         with:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           arguments: dependencyCheckAnalyze
