@@ -11,8 +11,6 @@ on:
 
 jobs:
   depCheck:
-    env:
-      NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +19,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: dependencyCheckAnalyze
-        run: ./gradlew :dependencyCheckAnalyze -DNVD_API_KEY=${{ env.NVD_API_KEY }}
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          arguments: dependencyCheckAnalyze
