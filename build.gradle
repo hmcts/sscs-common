@@ -47,7 +47,7 @@ dependencyCheck {
     suppressionFile = 'config/owasp/suppressions.xml'
 
     nvd.validForHours = 24
-    nvd.apiKey = "${System.env.NVD_API_KEY}"
+    nvd.apiKey = System.getenv("NVD_API_KEY")
 
     analyzers {
         retirejs {
