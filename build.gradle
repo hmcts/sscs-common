@@ -47,6 +47,7 @@ dependencyCheck {
     suppressionFile = 'config/owasp/suppressions.xml'
 
     nvd.validForHours = 24
+    nvd.delay = 16000
 
     analyzers {
         retirejs {
@@ -75,7 +76,7 @@ jacocoTestReport {
     }
 }
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 
     testLogging {
@@ -87,12 +88,14 @@ tasks.withType(Test) {
 
 // region publishing
 
-task sourcesJar(type: Jar, dependsOn: classes) {
+tasks.register('sourcesJar', Jar) {
+    dependsOn classes
     archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
     archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
@@ -115,15 +118,15 @@ publishing {
     }
 }
 
-task installLocalGitHook(type: Copy) {
+tasks.register('installLocalGitHook', Copy) {
     from new File(rootProject.rootDir, 'config/git/pre-commit')
-    into { new File(rootProject.rootDir, '.git/hooks')}
+    into { new File(rootProject.rootDir, '.git/hooks') }
     fileMode 0775
 }
 
 compileJava.dependsOn installLocalGitHook
 
-task runGitPreCommitTasks {
+tasks.register('runGitPreCommitTasks') {
     dependsOn 'test'
     dependsOn 'pmdMain'
     dependsOn 'pmdTest'
