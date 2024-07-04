@@ -22,8 +22,10 @@ jobs:
         with:
           java-version: 11
       - name: Check if key exists
-        if: ${{ secrets.NVD_API_KEY != "" }}
-        run: echo secret is not present
+        shell: bash
+        run: |
+          if [ "$NVD_API_KEY" == "" ]; then
+            echo "secretspresent=NO"
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: dependencyCheckAnalyze
