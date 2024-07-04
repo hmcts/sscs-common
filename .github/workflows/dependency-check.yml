@@ -21,6 +21,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Check if key exists
+        if: ${{ secrets.NVD_API_KEY != "" }}
+        run: echo secret is not present
       - uses: eskatos/gradle-command-action@v1
         with:
           arguments: dependencyCheckAnalyze
