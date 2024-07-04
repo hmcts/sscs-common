@@ -47,7 +47,6 @@ dependencyCheck {
     suppressionFile = 'config/owasp/suppressions.xml'
 
     nvd.validForHours = 24
-    nvd.apiKey = '3d55dfee-a3cc-4fd6-9845-ed0f81affcda'
 
     analyzers {
         retirejs {
