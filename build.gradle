@@ -48,7 +48,7 @@ dependencyCheck {
 
     nvd {
         validForHours = 24
-        // delay = 16000
+        delay = 16000
         apiKey = System.getenv("NVD_API_KEY")
     }
 
@@ -210,8 +210,8 @@ dependencies {
 
     implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.86"
 
-    implementation group: "org.projectlombok", name: "lombok", version: "1.18.28"
-    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.28"
+    implementation group: "org.projectlombok", name: "lombok", version: "1.18.34"
+    annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.34"
 
     implementation group: 'org.yaml', name: 'snakeyaml', version: '2.0'
 
@@ -234,8 +234,8 @@ dependencies {
 
     testRuntimeOnly group: 'org.glassfish', name: 'jakarta.el', version: '3.0.4'
     testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
-    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
-    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
+    testImplementation group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
 
     // CVE-2023-24998
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
