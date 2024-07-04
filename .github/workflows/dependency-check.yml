@@ -25,7 +25,9 @@ jobs:
         shell: bash
         run: |
           if [ "$NVD_API_KEY" == "" ]; then
-            echo "secretspresent=NO"
+            echo "key not present"
+          else
+            echo "key present"
           fi
       - uses: eskatos/gradle-command-action@v1
         with:
