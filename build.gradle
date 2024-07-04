@@ -35,7 +35,7 @@ pmd {
     toolVersion = "6.55.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
-    reportsDir = file("$project.buildDir/reports/pmd")
+    reportsDir = file("$project.layout.buildDirectory/reports/pmd")
     ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
