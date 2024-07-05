@@ -48,7 +48,7 @@ dependencyCheck {
 
     nvd {
         validForHours = 24
-        delay = 12000
+        delay = 8000
         apiKey = System.getenv("NVD_API_KEY")
     }
 
