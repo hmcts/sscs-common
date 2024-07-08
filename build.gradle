@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '9.0.6'
+    id 'org.owasp.dependencycheck' version '10.0.1'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -35,7 +35,7 @@ pmd {
     toolVersion = "6.55.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
-    reportsDir = file("$project.buildDir/reports/pmd")
+    reportsDir = file("$project.layout.buildDirectory/reports/pmd")
     ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
@@ -46,7 +46,11 @@ dependencyCheck {
     failBuildOnCVSS = 7.0
     suppressionFile = 'config/owasp/suppressions.xml'
 
-    nvd.validForHours = 24
+    nvd {
+        validForHours = 24
+        delay = 8000
+        apiKey = System.getenv("NVD_API_KEY")
+    }
 
     analyzers {
         retirejs {
@@ -75,7 +79,7 @@ jacocoTestReport {
     }
 }
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     useJUnitPlatform()
 
     testLogging {
@@ -87,13 +91,15 @@ tasks.withType(Test) {
 
 // region publishing
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
+tasks.register('sourcesJar', Jar) {
+    dependsOn classes
+    archiveClassifier = 'sources'
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+tasks.register('javadocJar', Jar) {
+    dependsOn javadoc
+    archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 
@@ -115,15 +121,15 @@ publishing {
     }
 }
 
-task installLocalGitHook(type: Copy) {
+tasks.register('installLocalGitHook', Copy) {
     from new File(rootProject.rootDir, 'config/git/pre-commit')
-    into { new File(rootProject.rootDir, '.git/hooks')}
+    into { new File(rootProject.rootDir, '.git/hooks') }
     fileMode 0775
 }
 
 compileJava.dependsOn installLocalGitHook
 
-task runGitPreCommitTasks {
+tasks.register('runGitPreCommitTasks') {
     dependsOn 'test'
     dependsOn 'pmdMain'
     dependsOn 'pmdTest'
