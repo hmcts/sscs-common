@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '10.0.1'
+    id 'org.owasp.dependencycheck' version '9.0.6'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -35,7 +35,7 @@ pmd {
     toolVersion = "6.55.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
-    reportsDir = file("$project.layout.buildDirectory/reports/pmd")
+    reportsDir = file("$project.buildDir/reports/pmd")
     ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
@@ -46,11 +46,7 @@ dependencyCheck {
     failBuildOnCVSS = 7.0
     suppressionFile = 'config/owasp/suppressions.xml'
 
-    nvd {
-        validForHours = 24
-        delay = 8000
-        apiKey = System.getenv("NVD_API_KEY")
-    }
+    nvd.validForHours = 24
 
     analyzers {
         retirejs {
@@ -79,7 +75,7 @@ jacocoTestReport {
     }
 }
 
-tasks.withType(Test).configureEach {
+tasks.withType(Test) {
     useJUnitPlatform()
 
     testLogging {
@@ -91,15 +87,13 @@ tasks.withType(Test).configureEach {
 
 // region publishing
 
-tasks.register('sourcesJar', Jar) {
-    dependsOn classes
-    archiveClassifier = 'sources'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
     from sourceSets.main.allSource
 }
 
-tasks.register('javadocJar', Jar) {
-    dependsOn javadoc
-    archiveClassifier = 'javadoc'
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
@@ -121,15 +115,15 @@ publishing {
     }
 }
 
-tasks.register('installLocalGitHook', Copy) {
+task installLocalGitHook(type: Copy) {
     from new File(rootProject.rootDir, 'config/git/pre-commit')
-    into { new File(rootProject.rootDir, '.git/hooks') }
+    into { new File(rootProject.rootDir, '.git/hooks')}
     fileMode 0775
 }
 
 compileJava.dependsOn installLocalGitHook
 
-tasks.register('runGitPreCommitTasks') {
+task runGitPreCommitTasks {
     dependsOn 'test'
     dependsOn 'pmdMain'
     dependsOn 'pmdTest'
