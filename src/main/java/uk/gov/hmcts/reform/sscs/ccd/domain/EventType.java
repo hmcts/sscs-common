@@ -167,6 +167,7 @@ public enum EventType {
     POSTPONEMENT_REQUEST("postponementRequest", 0, false),
     POSTPONEMENT_GRANTED("postponementGranted", 0, false),
     POSTPONEMENT_REFUSED("postponementRefused", 0, false),
+    POSTPONEMENT_REFUSED_ON_THE_DAY("postponementRefusedOnTheDay", 0, false),
     POSTPONEMENT_SEND_TO_JUDGE("postponementSendToJudge", 0, false),
     POST_HEARING_APP_SOR_WRITTEN("postHearingAppSorWritten", 0, true),
     POST_HEARING_OTHER("postHearingOther", 0, false),
