@@ -87,7 +87,9 @@ public class SearchCcdCaseService {
         SscsCaseDetails sscsCaseDetails = null;
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
             sscsCaseDetails = this.findCaseByCaseRef(caseData.getCaseReference(), idamTokens);
-            sscsCaseDetails = readCcdCaseService.getByCaseId(sscsCaseDetails.getId(), idamTokens);
+            if (sscsCaseDetails != null){
+                sscsCaseDetails = readCcdCaseService.getByCaseId(sscsCaseDetails.getId(), idamTokens);
+            }
         }
         if (null == sscsCaseDetails && StringUtils.isNotBlank(caseData.getCcdCaseId())) {
             sscsCaseDetails = readCcdCaseService.getByCaseId(Long.parseLong(caseData.getCcdCaseId()), idamTokens);

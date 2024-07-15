@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static java.util.Collections.singletonList;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normaliseNino;
@@ -105,7 +106,7 @@ public class SearchCcdCaseServiceTest {
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
-
+        when(readCcdCaseService.getByCaseId(1L,idamTokens)).thenReturn(sscsCaseDetails);
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRefOrCaseId(sscsCaseData, idamTokens);
 
         assertNotNull(caseByCaseRef);
