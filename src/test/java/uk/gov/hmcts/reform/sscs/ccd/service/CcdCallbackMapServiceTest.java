@@ -33,7 +33,6 @@ import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DwpState;
-import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
@@ -213,16 +212,16 @@ class CcdCallbackMapServiceTest {
         given(idamService.getIdamTokens()).willReturn(idamTokens);
 
         SscsCaseData expected = SscsCaseData.builder()
-                .caseReference("changed")
-                .build();
+            .caseReference("changed")
+            .build();
         given(ccdService
-                .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens))
-                .willReturn(SscsCaseDetails.builder().data(expected).build());
+            .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens))
+            .willReturn(SscsCaseDetails.builder().data(expected).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
 
         verify(ccdService, times(1))
-                .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens);
+            .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens);
         verify(idamService, times(1)).getIdamTokens();
 
         assertThat(result).isEqualTo(expected);
