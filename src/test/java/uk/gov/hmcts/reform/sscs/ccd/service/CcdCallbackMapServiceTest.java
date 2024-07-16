@@ -15,6 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.DIRECTION_ACTION_REQUIRED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.RESPONSE_SUBMITTED_DWP;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.READY_TO_LIST;
 
 import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,13 +71,13 @@ class CcdCallbackMapServiceTest {
     @BeforeEach
     public void setUp() {
         caseData = SscsCaseData.builder()
-                .ccdCaseId(String.valueOf(CASE_ID))
-                .build();
+            .ccdCaseId(String.valueOf(CASE_ID))
+            .build();
         idamTokens = IdamTokens.builder().build();
     }
 
     @DisplayName("When callbackMap is null handleCcdCallbackMap returns the case data unmodified and doesn't call "
-            + "ccdService")
+        + "ccdService")
     @Test
     void handleCcdCallbackNullCallbackMap() {
 
@@ -126,12 +127,12 @@ class CcdCallbackMapServiceTest {
     @Test
     void handleCcdCallbackV2PostCallbackDwpState() {
         given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
         given(idamService.getIdamTokens()).willReturn(idamTokens);
         given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
                 .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
@@ -139,7 +140,7 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isNotNull();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
 
         sscsCaseDataArgumentCaptor.getValue().accept(caseData);
 
@@ -150,12 +151,12 @@ class CcdCallbackMapServiceTest {
     @Test
     void handleCcdCallbackV2PostCallbackDwpStateWithHandlerConsumer() {
         given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
         given(idamService.getIdamTokens()).willReturn(idamTokens);
         given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
                 .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID, caseData -> {
@@ -164,7 +165,7 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isNotNull();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
 
         sscsCaseDataArgumentCaptor.getValue().accept(caseData);
 
@@ -205,7 +206,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When CallbackEvent is not null handleCcdCallbackMap will call ccdService")
     @Test
     void handleCcdCallbackCallbackEvent() {
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
 
@@ -215,13 +216,13 @@ class CcdCallbackMapServiceTest {
                 .caseReference("changed")
                 .build();
         given(ccdService
-                .updateCase(caseData, CASE_ID, EventType.READY_TO_LIST.getCcdType(), "summary", "description", idamTokens))
+                .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens))
                 .willReturn(SscsCaseDetails.builder().data(expected).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
 
         verify(ccdService, times(1))
-                .updateCase(caseData, CASE_ID, EventType.READY_TO_LIST.getCcdType(), "summary", "description", idamTokens);
+                .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens);
         verify(idamService, times(1)).getIdamTokens();
 
         assertThat(result).isEqualTo(expected);
@@ -230,7 +231,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
     @Test
     void handleCcdCallbackEventV2() {
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
 
@@ -239,7 +240,7 @@ class CcdCallbackMapServiceTest {
         SscsCaseData expected = SscsCaseData.builder().ccdCaseId(String.valueOf(CASE_ID)).build();
 
         given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
                 .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
@@ -247,7 +248,7 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isNotNull();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
         verify(idamService, times(1)).getIdamTokens();
 
         sscsCaseDataArgumentCaptor.getValue().accept(caseData);
@@ -257,7 +258,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
     @Test
     void handleCcdCallbackEventV2WithHandlerConsumer() {
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
 
@@ -266,7 +267,7 @@ class CcdCallbackMapServiceTest {
         SscsCaseData expected = SscsCaseData.builder().ccdCaseId(String.valueOf(CASE_ID)).build();
 
         given(updateCcdCaseService
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
                 .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
 
         SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID, caseData -> {
@@ -275,7 +276,7 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isNotNull();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(EventType.READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
         verify(idamService, times(1)).getIdamTokens();
 
         sscsCaseDataArgumentCaptor.getValue().accept(caseData);
@@ -315,7 +316,7 @@ class CcdCallbackMapServiceTest {
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
 
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
 
@@ -380,7 +381,7 @@ class CcdCallbackMapServiceTest {
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
 
-        given(callbackMap.getCallbackEvent()).willReturn(EventType.READY_TO_LIST);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
 
