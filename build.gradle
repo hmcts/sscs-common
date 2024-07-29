@@ -141,16 +141,16 @@ tasks.register('runGitPreCommitTasks') {
 dependencies {
 
     api group: 'com.google.guava', name: 'guava', version: '32.1.1-jre'
-    api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    api group: 'org.apache.commons', name: 'commons-lang3', version: '3.15.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: '2.7.18'
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.32'
 
 
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.15.2'
-    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.15.2'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.15.2'
-    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.15.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.17.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.17.2'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.17.2'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.17.2'
 
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1', {
         exclude group: 'junit', module: 'junit'
@@ -163,7 +163,7 @@ dependencies {
 
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
 
-    implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.3', {
+    implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.4', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
 
@@ -199,16 +199,16 @@ dependencies {
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.17'
 
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
-    implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1', {
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.9', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
-    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.12.0'
 
     implementation group: 'commons-io', name: 'commons-io', version: '2.13.0'
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation group: "com.networknt", name: "json-schema-validator", version: "1.0.86"
+    implementation group: "com.networknt", name: "json-schema-validator", version: "1.5.1"
 
     implementation group: "org.projectlombok", name: "lombok", version: "1.18.28"
     annotationProcessor group: "org.projectlombok", name: "lombok", version: "1.18.28"
@@ -241,6 +241,6 @@ dependencies {
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
 
     // CVE-2024-25710
-    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.26.0'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.26.2'
 }
 
