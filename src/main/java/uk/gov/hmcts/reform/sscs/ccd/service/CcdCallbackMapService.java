@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
+import java.util.function.Consumer;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +14,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.CcdCallbackMap;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
-
-import java.util.Optional;
 
 
 @Slf4j
@@ -52,38 +52,34 @@ public class CcdCallbackMapService {
         return caseData;
     }
 
-    public Optional<SscsCaseData> handleCcdCallbackMapV2(@Nullable CcdCallbackMap callbackMap, long caseId) {
+    public SscsCaseData handleCcdCallbackMapV2(@Nonnull CcdCallbackMap callbackMap, long caseId) {
+        return handleCcdCallbackMapV2(callbackMap, caseId, sscsCaseData -> { });
+    }
 
-        if (isNull(callbackMap)) {
-            return Optional.empty();
-        }
-
-        if (nonNull(callbackMap.getCallbackEvent())) {
-            log.info("Triggering update case v2 for event type {} and case {}", callbackMap.getCallbackEvent().getCcdType(), caseId);
-            SscsCaseDetails updatedCaseDetails = updateCcdCaseService.updateCaseV2(
-                    caseId,
-                    callbackMap.getCallbackEvent().getCcdType(),
-                    callbackMap.getCallbackSummary(),
-                    callbackMap.getCallbackDescription(),
-                    idamService.getIdamTokens(),
-                    sscsCaseData -> {
-                        if (nonNull(callbackMap.getPostCallbackDwpState())) {
-                            setDwpState(callbackMap, caseId, sscsCaseData);
-                        }
-
-                        if (nonNull(callbackMap.getPostCallbackInterlocState())) {
-                            setInterlocReviewState(callbackMap, sscsCaseData, caseId);
-                        }
-
-                        if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
-                            setInterlocReferralReason(callbackMap, sscsCaseData, caseId);
-                        }
+    public SscsCaseData handleCcdCallbackMapV2(@Nonnull CcdCallbackMap callbackMap, long caseId, @Nonnull Consumer<SscsCaseData> handlerMutator) {
+        log.info("Triggering update case v2 for event type {} and case {}", callbackMap.getCallbackEvent().getCcdType(), caseId);
+        SscsCaseDetails updatedCaseDetails = updateCcdCaseService.updateCaseV2(
+                caseId,
+                callbackMap.getCallbackEvent().getCcdType(),
+                callbackMap.getCallbackSummary(),
+                callbackMap.getCallbackDescription(),
+                idamService.getIdamTokens(),
+                sscsCaseData -> {
+                    if (nonNull(callbackMap.getPostCallbackDwpState())) {
+                        setDwpState(callbackMap, caseId, sscsCaseData);
                     }
-            );
 
-            return Optional.of(updatedCaseDetails.getData());
-        }
-        return Optional.empty();
+                    if (nonNull(callbackMap.getPostCallbackInterlocState())) {
+                        setInterlocReviewState(callbackMap, sscsCaseData, caseId);
+                    }
+
+                    if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
+                        setInterlocReferralReason(callbackMap, sscsCaseData, caseId);
+                    }
+                    handlerMutator.accept(sscsCaseData);
+                }
+        );
+        return updatedCaseDetails.getData();
     }
 
     private static void setDwpState(CcdCallbackMap callbackMap, long caseId, SscsCaseData sscsCaseData) {
