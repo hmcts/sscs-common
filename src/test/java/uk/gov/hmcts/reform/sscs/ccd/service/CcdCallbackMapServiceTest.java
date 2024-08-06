@@ -40,7 +40,7 @@ class CcdCallbackMapServiceTest {
     @Mock
     private IdamService idamService;
     @Captor
-    private ArgumentCaptor<Consumer<SscsCaseData>>  sscsCaseDataArgumentCaptor;
+    private ArgumentCaptor<Consumer<SscsCaseDetails>>  sscsCaseDetailsArgumentCaptor;
 
     @InjectMocks
     private CcdCallbackMapService ccdCallbackMapService;
@@ -104,6 +104,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMapV2 correctly sets the Dwp State")
     @Test
     void handleCcdCallbackV2PostCallbackDwpState() {
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(CASE_ID).data(caseData).build();
         given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
@@ -111,16 +112,16 @@ class CcdCallbackMapServiceTest {
         given(idamService.getIdamTokens()).willReturn(idamTokens);
         given(updateCcdCaseService
                 .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
-                .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
+                .willReturn(sscsCaseDetails);
 
         Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
 
         assertThat(result).isNotEmpty();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDetailsArgumentCaptor.capture());
 
-        sscsCaseDataArgumentCaptor.getValue().accept(caseData);
+        sscsCaseDetailsArgumentCaptor.getValue().accept(sscsCaseDetails);
 
         assertThat(result.get().getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
     }
@@ -173,6 +174,7 @@ class CcdCallbackMapServiceTest {
     @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
     @Test
     void handleCcdCallbackEventV2() {
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(CASE_ID).data(caseData).build();
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
         given(callbackMap.getCallbackDescription()).willReturn("description");
@@ -190,10 +192,10 @@ class CcdCallbackMapServiceTest {
         assertThat(result).isNotEmpty();
 
         verify(updateCcdCaseService, times(1))
-                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDataArgumentCaptor.capture());
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDetailsArgumentCaptor.capture());
         verify(idamService, times(1)).getIdamTokens();
 
-        sscsCaseDataArgumentCaptor.getValue().accept(caseData);
+        sscsCaseDetailsArgumentCaptor.getValue().accept(sscsCaseDetails);
         assertThat(caseData).usingRecursiveComparison().ignoringFields("jointParty.id").isEqualTo(expected);
     }
 }
