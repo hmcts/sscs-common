@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -8,10 +10,13 @@ import static org.mockito.Mockito.verifyNoInteractions;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.DIRECTION_ACTION_REQUIRED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.READY_TO_LIST;
 
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -22,13 +27,20 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
+import java.util.Optional;
+import java.util.function.Consumer;
+
 @ExtendWith(MockitoExtension.class)
 class CcdCallbackMapServiceTest {
     private static final long CASE_ID = 1234;
     @Mock
     private CcdService ccdService;
     @Mock
+    private UpdateCcdCaseService updateCcdCaseService;
+    @Mock
     private IdamService idamService;
+    @Captor
+    private ArgumentCaptor<Consumer<SscsCaseDetails>>  sscsCaseDetailsArgumentCaptor;
 
     @InjectMocks
     private CcdCallbackMapService ccdCallbackMapService;
@@ -57,6 +69,17 @@ class CcdCallbackMapServiceTest {
         verifyNoInteractions(ccdService, idamService);
     }
 
+    @DisplayName("When callbackMap is null handleCcdCallbackMapV2 returns empty optional and doesn't call "
+            + "ccdService")
+    @Test
+    void handleCcdCallbackNullCallbackMapV2() {
+
+        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(null, CASE_ID);
+
+        assertThat(result).isEmpty();
+        verifyNoInteractions(ccdService, idamService);
+    }
+
     @DisplayName("When PostCallbackDwpState is null handleCcdCallbackMap leaves the Dwp State unmodified")
     @Test
     void handleCcdCallbackNullPostCallbackDwpState() {
@@ -78,6 +101,31 @@ class CcdCallbackMapServiceTest {
         assertThat(result.getDwpState()).isEqualTo(expected);
     }
 
+    @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMapV2 correctly sets the Dwp State")
+    @Test
+    void handleCcdCallbackV2PostCallbackDwpState() {
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(CASE_ID).data(caseData).build();
+        given(callbackMap.getPostCallbackDwpState()).willReturn(DIRECTION_ACTION_REQUIRED);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
+        given(callbackMap.getCallbackSummary()).willReturn("summary");
+        given(callbackMap.getCallbackDescription()).willReturn("description");
+        given(idamService.getIdamTokens()).willReturn(idamTokens);
+        given(updateCcdCaseService
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .willReturn(sscsCaseDetails);
+
+        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+
+        assertThat(result).isNotEmpty();
+
+        verify(updateCcdCaseService, times(1))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDetailsArgumentCaptor.capture());
+
+        sscsCaseDetailsArgumentCaptor.getValue().accept(sscsCaseDetails);
+
+        assertThat(result.get().getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
+    }
+
     @DisplayName("When CallbackEvent is null handleCcdCallbackMap doesn't call ccdService")
     @Test
     void handleCcdCallbackNullCallbackEvent() {
@@ -88,7 +136,17 @@ class CcdCallbackMapServiceTest {
         verifyNoInteractions(ccdService, idamService);
     }
 
-    @DisplayName("When CallbackEvent is null handleCcdCallbackMap doesn't call ccdService")
+    @DisplayName("When CallbackEvent is null handleCcdCallbackMapV2 doesn't call ccdService")
+    @Test
+    void handleCcdCallbackV2NullCallbackEvent() {
+        given(callbackMap.getCallbackEvent()).willReturn(null);
+
+        ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+
+        verifyNoInteractions(ccdService, idamService);
+    }
+
+    @DisplayName("When CallbackEvent is not null handleCcdCallbackMap will call ccdService")
     @Test
     void handleCcdCallbackCallbackEvent() {
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
@@ -111,5 +169,33 @@ class CcdCallbackMapServiceTest {
         verify(idamService, times(1)).getIdamTokens();
 
         assertThat(result).isEqualTo(expected);
+    }
+
+    @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
+    @Test
+    void handleCcdCallbackEventV2() {
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(CASE_ID).data(caseData).build();
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
+        given(callbackMap.getCallbackSummary()).willReturn("summary");
+        given(callbackMap.getCallbackDescription()).willReturn("description");
+
+        given(idamService.getIdamTokens()).willReturn(idamTokens);
+
+        SscsCaseData expected = SscsCaseData.builder().ccdCaseId(String.valueOf(CASE_ID)).build();
+
+        given(updateCcdCaseService
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .willReturn(SscsCaseDetails.builder().id(CASE_ID).data(caseData).build());
+
+        Optional<SscsCaseData> result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+
+        assertThat(result).isNotEmpty();
+
+        verify(updateCcdCaseService, times(1))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDetailsArgumentCaptor.capture());
+        verify(idamService, times(1)).getIdamTokens();
+
+        sscsCaseDetailsArgumentCaptor.getValue().accept(sscsCaseDetails);
+        assertThat(caseData).usingRecursiveComparison().ignoringFields("jointParty.id").isEqualTo(expected);
     }
 }
