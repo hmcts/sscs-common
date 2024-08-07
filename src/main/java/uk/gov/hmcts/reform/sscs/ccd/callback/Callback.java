@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import static java.util.Objects.requireNonNull;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -23,7 +22,6 @@ public class Callback<T extends CaseData> {
     private String pageId = null;
 
     @JsonProperty("ignore_warning")
-    @JsonAlias("ignore-warning")
     private boolean ignoreWarnings;
 
     private Callback() {
