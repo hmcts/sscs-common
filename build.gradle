@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '10.0.2'
+    id 'org.owasp.dependencycheck' version '10.0.3'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -35,7 +35,7 @@ pmd {
     toolVersion = "6.55.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
-    reportsDir = file("$project.layout.buildDirectory/reports/pmd")
+    reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
     ruleSetFiles = files("config/pmd/ruleset.xml")
 }
 
