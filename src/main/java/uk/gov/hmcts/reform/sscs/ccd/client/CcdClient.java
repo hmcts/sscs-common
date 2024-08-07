@@ -48,6 +48,20 @@ public class CcdClient {
         );
     }
 
+    public StartEventResponse startEventIgnoreWarning(IdamTokens idamTokens, Long caseId, String eventType) {
+        log.info("Starting CCD event ignore warning for caseworker");
+
+        return coreCaseDataApi.startEventForCaseWorker(
+                idamTokens.getIdamOauth2Token(),
+                idamTokens.getServiceAuthorization(),
+                idamTokens.getUserId(),
+                ccdRequestDetails.getJurisdictionId(),
+                ccdRequestDetails.getCaseTypeId(),
+                caseId.toString(),
+                eventType,
+                true);
+    }
+
     public StartEventResponse startEvent(IdamTokens idamTokens, Long caseId, String eventType) {
         log.info("Starting CCD event for caseworker");
 
@@ -60,6 +74,7 @@ public class CcdClient {
                 caseId.toString(),
                 eventType);
     }
+
 
     public CaseDetails submitEventForCaseworker(IdamTokens idamTokens, Long caseId, CaseDataContent caseDataContent) {
         return coreCaseDataApi.submitEventForCaseWorker(
