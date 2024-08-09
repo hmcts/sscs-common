@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import javax.annotation.PostConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 import uk.gov.hmcts.reform.sscs.exception.RegionalProcessingCenterServiceException;
 
@@ -130,14 +128,6 @@ public class RegionalProcessingCenterService {
             return postcode.substring(0, postcode.length() - 3).trim();
         }
         return "";
-    }
-
-    public HearingRoute getHearingRoute(String region) {
-        return regionalProcessingCenterMap.values().stream()
-            .filter(rpc -> rpc.getName().equalsIgnoreCase(region))
-            .map(RegionalProcessingCenter::getHearingRoute)
-            .filter(Objects::nonNull)
-            .findFirst().orElse(HearingRoute.LIST_ASSIST);
     }
 
 }

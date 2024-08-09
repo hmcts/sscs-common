@@ -64,19 +64,19 @@ public class CcdCallbackMapService {
                 callbackMap.getCallbackSummary(),
                 callbackMap.getCallbackDescription(),
                 idamService.getIdamTokens(),
-                sscsCaseData -> {
+                sscsCaseDetails -> {
                     if (nonNull(callbackMap.getPostCallbackDwpState())) {
-                        setDwpState(callbackMap, caseId, sscsCaseData);
+                        setDwpState(callbackMap, caseId, sscsCaseDetails.getData());
                     }
 
                     if (nonNull(callbackMap.getPostCallbackInterlocState())) {
-                        setInterlocReviewState(callbackMap, sscsCaseData, caseId);
+                        setInterlocReviewState(callbackMap, sscsCaseDetails.getData(), caseId);
                     }
 
                     if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
-                        setInterlocReferralReason(callbackMap, sscsCaseData, caseId);
+                        setInterlocReferralReason(callbackMap, sscsCaseDetails.getData(), caseId);
                     }
-                    handlerMutator.accept(sscsCaseData);
+                    handlerMutator.accept(sscsCaseDetails.getData());
                 }
         );
         return updatedCaseDetails.getData();
