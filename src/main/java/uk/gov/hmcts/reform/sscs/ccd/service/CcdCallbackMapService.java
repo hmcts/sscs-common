@@ -71,6 +71,7 @@ public class CcdCallbackMapService {
 
                     if (nonNull(callbackMap.getPostCallbackInterlocState())) {
                         setInterlocReviewState(callbackMap, sscsCaseDetails.getData(), caseId);
+
                     }
 
                     if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
