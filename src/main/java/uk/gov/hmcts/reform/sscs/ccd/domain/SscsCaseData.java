@@ -392,6 +392,8 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private DocumentStaging documentStaging;
 
+    private YesNo ignoreCallbackWarnings;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
