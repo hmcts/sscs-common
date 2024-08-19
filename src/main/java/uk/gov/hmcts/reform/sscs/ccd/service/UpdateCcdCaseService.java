@@ -151,4 +151,13 @@ public class UpdateCcdCaseService {
         ccdClient.setSupplementaryData(idamTokens, caseId, supplementaryData);
     }
 
+    /**
+     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
+     */
+    @Recover
+    public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
+        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
+       throw exception;
+    }
+
 }
