@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.casedetails;
+package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,19 +64,19 @@ public class AppealValidator {
     private List<String> titles;
 
     //TODO: Remove when uc-office-feature switched on
-    private final boolean ucOfficeFeatureActive;
+    private boolean ucOfficeFeatureActive;
 
     public AppealValidator(RegionalProcessingCenterService regionalProcessingCenterService,
                              DwpAddressLookupService dwpAddressLookupService,
                              PostcodeValidator postcodeValidator,
-                             @Value("${feature.uc-office-feature.enabled}") boolean ucOfficeFeatureActive) {
+                           @Value("${feature.uc-office-feature.enabled}") boolean ucOfficeFeatureActive) {
         this.regionalProcessingCenterService = regionalProcessingCenterService;
         this.dwpAddressLookupService = dwpAddressLookupService;
         this.postcodeValidator = postcodeValidator;
         this.ucOfficeFeatureActive = ucOfficeFeatureActive;
     }
 
-    private List<String> validateAppeal(Map<String, Object> ocrCaseData, Map<String, Object> caseData,
+    public List<String> validateAppeal(Map<String, Object> ocrCaseData, Map<String, Object> caseData,
                                         boolean ignoreMrnValidation, boolean ignoreWarnings, boolean ignorePartyRoleValidation) {
 
         FormType formType = (FormType) caseData.get("formType");
@@ -345,7 +345,7 @@ public class AppealValidator {
     private Boolean isAddressPostcodeValid(Address address, String personType, Appellant appellant) {
         if (address != null && address.getPostcode() != null) {
             if (postcodeValidator.isValid(address.getPostcode(), context)) {
-                boolean isValidPostcode = postcodeValidator.isValid(address.getPostcode(), context);
+                boolean isValidPostcode = postcodeValidator.isValidPostcodeFormat(address.getPostcode());
                 if (!isValidPostcode) {
                     warnings.add(getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_NOT_A_VALID_POSTCODE));
                 }
