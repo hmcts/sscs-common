@@ -105,7 +105,7 @@ public class SearchCcdCaseServiceTest {
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
         when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(singletonList(caseDetails)).build());
-
+        when(readCcdCaseService.getByCaseId(1L,idamTokens)).thenReturn(sscsCaseDetails);
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRefOrCaseId(sscsCaseData, idamTokens);
 
         assertNotNull(caseByCaseRef);
