@@ -343,13 +343,94 @@ public class SscsCaseDataTest {
     public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
         List<SscsDocument> documents = new ArrayList<>();
 
-        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
-        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, now.toString(), "C", null));
-        documents.add(buildSscsDocument("A", DocumentType.DECISION_NOTICE, now.toString(), "A", null));
-        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, now.toString(), "D", null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-10-09", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-10-09", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-22", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-22", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-21", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-21", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-21", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-20", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-20", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-20", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-15", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-15", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-15", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-13", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-13", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-10", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-06", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-03", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-09-02", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-07-07", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-07-07", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-04-13", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-04-09", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-04-09", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-04-09", null, null));
+        documents.add(buildSscsDocument(null, DocumentType.DECISION_NOTICE, "2021-03-16", null, null));
+        documents.add(buildSscsDocument("A", DocumentType.DECISION_NOTICE, "2021-03-25", "A", null));
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-04-08", "B", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-04-08", "C", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-08", "D", null));
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-04-09", "E", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-04-09", "F", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-09", "G", null));
+
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-04-09", "H", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-04-09", "I", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-09", "J", null));
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-04-09", "K", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-04-09", "L", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-09", "M", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-09", "N", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-04-14", "O", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-14", "P", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-04-14", "Q", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-05-10", "R", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-05-28", "S", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-06-08", "T", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-06-08", "U", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-06-17", "V", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-08-20", "W", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-09-28", "X", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-06", "Y", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-14", "Z", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-19", "Z1", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z10", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z11", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z12", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z13", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z14", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-04", "Z15", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-02", "Z16", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-02", "Z17", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-15", "Z18", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-16", "Z19", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-19", "Z2", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-18", "Z20", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-19", "Z3", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-19", "Z4", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-21", "Z5", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-02", "Z6", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z7", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z8", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-11-03", "Z9", null));
+
+        documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-10-09", "B", null));
+        documents.add(buildSscsDocument("C", DocumentType.DECISION_NOTICE, "2021-10-09", "C", null));
+        documents.add(buildSscsDocument("A", DocumentType.DECISION_NOTICE, "2021-10-09", "A", null));
+        documents.add(buildSscsDocument("D", DocumentType.DECISION_NOTICE, "2021-10-09", "D", null));
         documents.add(buildSscsDocument("Z1", DocumentType.DECISION_NOTICE, now.toString(), "Z1", null));
         documents.add(buildSscsDocument("Z11", DocumentType.DECISION_NOTICE, now.toString(), "Z11", null));
         documents.add(buildSscsDocument("Z2", DocumentType.DECISION_NOTICE, now.toString(), "Z2", null));
+        documents.add(buildSscsDocument("Z19", DocumentType.DECISION_NOTICE, now.toString(), "Z19", null));
+        documents.add(buildSscsDocument("Z20", DocumentType.DECISION_NOTICE, now.toString(), "Z20", null));
         documents.add(buildSscsDocument("Z", DocumentType.DECISION_NOTICE, now.toString(), "Z", null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
@@ -363,6 +444,8 @@ public class SscsCaseDataTest {
         assertEquals("Z1", sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("Z2", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z19", sscsCaseData.getSscsDocument().get(8).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z20", sscsCaseData.getSscsDocument().get(9).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
