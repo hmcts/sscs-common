@@ -95,7 +95,7 @@ public class VenueDataLoaderTest {
 
         long adjustForDuplicateSc238 = 2;
 
-        assertTrue(maxSize ==distinctSize + adjustForDuplicateSc238);
+        assertTrue(maxSize == distinctSize + adjustForDuplicateSc238);
     }
 
     @Test
