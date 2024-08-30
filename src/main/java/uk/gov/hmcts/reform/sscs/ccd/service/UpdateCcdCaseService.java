@@ -43,9 +43,9 @@ public class UpdateCcdCaseService {
         });
     }
 
-    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseData> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, data -> {
-            mutator.accept(data);
+    public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
+        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
+            mutator.accept(caseDetails);
             return new UpdateResult(summary, description);
         });
     }
