@@ -25,16 +25,14 @@ public class UpdateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
-    private final ReadCcdCaseService readCcdCaseService;
 
     @Autowired
     public UpdateCcdCaseService(IdamService idamService,
                                 SscsCcdConvertService sscsCcdConvertService,
-                                CcdClient ccdClient, ReadCcdCaseService readCcdCaseService) {
+                                CcdClient ccdClient) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
-        this.readCcdCaseService = readCcdCaseService;
     }
 
     @Retryable
