@@ -27,16 +27,16 @@ public class UpdateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
-    private final CcdService ccdService;
+    private final ReadCcdCaseService readCcdCaseService;
 
     @Autowired
     public UpdateCcdCaseService(IdamService idamService,
                                 SscsCcdConvertService sscsCcdConvertService,
-                                CcdClient ccdClient, CcdService ccdService) {
+                                CcdClient ccdClient, ReadCcdCaseService readCcdCaseService) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
-        this.ccdService = ccdService;
+        this.readCcdCaseService = readCcdCaseService;
     }
 
     @Retryable
@@ -119,7 +119,7 @@ public class UpdateCcdCaseService {
         LocalDateTime initialLastModified;
         LocalDateTime latestLastModified;
 
-        SscsCaseDetails initialCaseDetails = ccdService.getByCaseId(caseId, idamTokens);
+        SscsCaseDetails initialCaseDetails = readCcdCaseService.getByCaseId(caseId, idamTokens);
         SscsCaseData caseData = initialCaseDetails.getData();
 
         /**

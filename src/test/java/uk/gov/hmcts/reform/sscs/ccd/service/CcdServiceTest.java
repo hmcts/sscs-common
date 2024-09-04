@@ -82,7 +82,7 @@ public class CcdServiceTest {
 
         SscsCcdConvertService sscsCcdConvertService = new SscsCcdConvertService();
         SearchCcdCaseService searchCcdCaseService = new SearchCcdCaseService(sscsCcdConvertService, ccdClient, readCcdCaseService);
-        UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient, ccdService);
+        UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(idamService, sscsCcdConvertService, ccdClient, readCcdCaseService);
         CreateCcdCaseService createCcdCaseService = new CreateCcdCaseService(idamService, sscsCcdConvertService, ccdClient);
         ccdService = new CcdService(createCcdCaseService, searchCcdCaseService, updateCcdCaseService, readCcdCaseService, ccdClient, ccdConvertService, false);
     }
