@@ -310,7 +310,8 @@ class CcdCallbackMapServiceTest {
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(
                 idamService,
                 sscsCcdConvertService,
-                ccdClient
+                ccdClient,
+                ccdService
         );
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
@@ -377,7 +378,8 @@ class CcdCallbackMapServiceTest {
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(
                 idamService,
                 sscsCcdConvertService,
-                ccdClient
+                ccdClient,
+                ccdService
         );
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);

@@ -27,16 +27,16 @@ public class UpdateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
-    private final ReadCcdCaseService readCcdCaseService;
+    private final CcdService ccdService;
 
     @Autowired
     public UpdateCcdCaseService(IdamService idamService,
                                 SscsCcdConvertService sscsCcdConvertService,
-                                CcdClient ccdClient, ReadCcdCaseService readCcdCaseService) {
+                                CcdClient ccdClient, CcdService ccdService) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
-        this.readCcdCaseService = readCcdCaseService;
+        this.ccdService = ccdService;
     }
 
     @Retryable
@@ -114,13 +114,12 @@ public class UpdateCcdCaseService {
 
     // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
 
-//    TODO: Update the description here!!!
     @Retryable(exclude = ExitRetryableException.class)
     public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, DynamicEventUpdateResult> mutator) {
         LocalDateTime initialLastModified;
         LocalDateTime latestLastModified;
 
-        SscsCaseDetails initialCaseDetails = readCcdCaseService.getByCaseId(caseId, idamTokens);
+        SscsCaseDetails initialCaseDetails = ccdService.getByCaseId(caseId, idamTokens);
         SscsCaseData caseData = initialCaseDetails.getData();
 
         /**
