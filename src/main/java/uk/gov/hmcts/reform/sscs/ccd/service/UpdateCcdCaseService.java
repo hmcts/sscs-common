@@ -106,6 +106,35 @@ public class UpdateCcdCaseService {
         }
     }
 
+    public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
+
+    // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
+
+    @Retryable
+    public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, String eventType, boolean willCommit, IdamTokens idamTokens, Function<SscsCaseDetails, DynamicEventUpdateResult> mutator) {
+        if (willCommit) {
+
+            log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+            StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+            SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+            SscsCaseData data = caseDetails.getData();
+
+            /**
+             * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+             * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+             */
+            data.setCcdCaseId(caseId.toString());
+            data.sortCollections();
+
+            var result = mutator.apply(caseDetails);
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
+
+            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+        } else {
+            return Optional.empty();
+        }
+    }
+
     @Retryable
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);

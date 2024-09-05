@@ -78,6 +78,7 @@ public class CcdServiceTest {
         caseDetails = CaseDataUtils.buildCaseDetails();
         sscsCaseDetails = CaseDataUtils.convertCaseDetailsToSscsCaseDetails(caseDetails);
         ccdClient = mock(CcdClient.class);
+        readCcdCaseService = mock(ReadCcdCaseService.class);
 
         SscsCcdConvertService sscsCcdConvertService = new SscsCcdConvertService();
         SearchCcdCaseService searchCcdCaseService = new SearchCcdCaseService(sscsCcdConvertService, ccdClient, readCcdCaseService);
