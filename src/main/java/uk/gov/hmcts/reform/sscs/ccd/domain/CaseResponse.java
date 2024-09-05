@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.ValidationStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

@@ -40,6 +40,7 @@ public class SscsConstants {
     public static final String HEARING_TYPE_TELEPHONE_LITERAL = "hearing_type_telephone";
     public static final String HEARING_TELEPHONE_NUMBER_MULTIPLE_LITERAL = "hearing_telephone_number_multiple";
     public static final String HEARING_TYPE_VIDEO_LITERAL = "hearing_type_video";
+    public static final String HEARING_TYPE_FACE_TO_FACE_LITERAL = "hearing_type_face_to_face";
     public static final String HEARING_SUB_TYPE_TELEPHONE_OR_VIDEO_FACE_TO_FACE_DESCRIPTION = "hearing_sub_type_telephone_or_video_face_to_face";
     public static final String PHONE_SELECTED_NOT_PROVIDED = "has not been provided but data indicates hearing telephone is required";
     public static final String EMAIL_SELECTED_NOT_PROVIDED = "has not been provided but data indicates hearing video is required";

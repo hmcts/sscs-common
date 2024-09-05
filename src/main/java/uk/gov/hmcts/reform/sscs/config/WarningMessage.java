@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.config;
 
 import uk.gov.hmcts.reform.sscs.ccd.callback.CallbackType;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.FIRST_NAME;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.TITLE;
-import static uk.gov.hmcts.reform.sscs.ccd.callback.CallbackType.EXCEPTION_CALLBACK;
+
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.*;
 
 public enum WarningMessage {
 
@@ -12,6 +11,7 @@ public enum WarningMessage {
     REPRESENTATIVE_TITLE(TITLE, "Representative title"),
     OTHER_PARTY_TITLE(TITLE, "Other party title"),
     APPELLANT_FIRST_NAME(FIRST_NAME, "Appellant first name"),
+    APPELLANT_POSTCODE(ADDRESS_POSTCODE, "Appellant postcode"),
     APPOINTEE_FIRST_NAME(FIRST_NAME, "Appointee first name"),
     REPRESENTATIVE_FIRST_NAME(FIRST_NAME, "Representative first name"),
     OTHER_PARTY_FIRST_NAME(FIRST_NAME, "Other party first name"),
@@ -35,9 +35,7 @@ public enum WarningMessage {
     }
 
     public static String getMessageByCallbackType(CallbackType callbackType, String personType, String name, String endMessage) {
-        String startMessage =  callbackType == EXCEPTION_CALLBACK
-                ? personType + valueOf(name.toUpperCase()).exceptionRecordMessage
-                : valueOf(name.toUpperCase()).validationRecordMessage;
+        String startMessage =  valueOf(name.toUpperCase()).validationRecordMessage;
 
         return endMessage != null ? startMessage + " " + endMessage : startMessage;
     }
