@@ -10,8 +10,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appointee;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
 
-import javax.validation.ConstraintValidatorContext;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -23,12 +21,11 @@ public class AppealPostcodeHelperTest {
 
     @InjectMocks
     private AppealPostcodeHelper appealPostcodeHelper;
-    @Mock
-    private ConstraintValidatorContext context;
 
     @Test
     public void shouldReturnAppointeePostcode_givenAppointeeAddressExists_andAppointeePostcodeIsValid() {
         when(postcodeValidator.isValidPostcodeFormat("CR2 8YY")).thenReturn(true);
+        when(postcodeValidator.isValid("CR2 8YY", null)).thenReturn(true);
 
         Appellant testAppellant = Appellant.builder()
             .address(Address.builder()
@@ -48,6 +45,7 @@ public class AppealPostcodeHelperTest {
     @Test
     public void shouldReturnAppellantPostcode_givenInvalidAppointeePostcode_andAppellantPostcodeIsValid() {
         when(postcodeValidator.isValidPostcodeFormat("TS3 6NM")).thenReturn(true);
+        when(postcodeValidator.isValid("TS3 6NM", null)).thenReturn(true);
 
         Appellant testAppellant = Appellant.builder()
             .address(Address.builder()
@@ -67,6 +65,7 @@ public class AppealPostcodeHelperTest {
     @Test
     public void shouldReturnAppellantPostcode_givenAppointeeAddressDoesNotExist_andAppellantPostcodeIsValid() {
         when(postcodeValidator.isValidPostcodeFormat("TS3 6NM")).thenReturn(true);
+        when(postcodeValidator.isValid("TS3 6NM", null)).thenReturn(true);
 
         Appellant testAppellant = Appellant.builder()
             .address(Address.builder()

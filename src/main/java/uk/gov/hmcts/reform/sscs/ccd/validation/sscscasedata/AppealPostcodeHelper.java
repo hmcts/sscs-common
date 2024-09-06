@@ -7,6 +7,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appointee;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class AppealPostcodeHelper {
 
     private final PostcodeValidator postcodeValidator;
+    private static ConstraintValidatorContext context;
 
     public String resolvePostcode(Appellant appellant) {
 
@@ -33,7 +35,7 @@ public class AppealPostcodeHelper {
     }
 
     private boolean isValidPostcode(String postcode) {
-        return postcodeValidator.isValidPostcodeFormat(postcode)
+        return postcodeValidator.isValid(postcode, context)
             && postcodeValidator.isValidPostcodeFormat(postcode);
     }
 
