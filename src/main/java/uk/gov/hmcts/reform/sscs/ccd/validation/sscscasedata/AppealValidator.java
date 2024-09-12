@@ -55,7 +55,6 @@ public class AppealValidator {
     private final RegionalProcessingCenterService regionalProcessingCenterService;
     private final DwpAddressLookupService dwpAddressLookupService;
     List<String> warnings;
-    List<String> errors;
     public static final String PERSON1_VALUE = "person1";
     public static final String PERSON2_VALUE = "person2";
     private static ConstraintValidatorContext context;
@@ -76,15 +75,17 @@ public class AppealValidator {
         this.ucOfficeFeatureActive = ucOfficeFeatureActive;
     }
 
-    public List<String> validateAppeal(Map<String, Object> ocrCaseData, Map<String, Object> caseData,
+    public Map<String, List<String>> validateAppeal(Map<String, Object> ocrCaseData, Map<String, Object> caseData,
                                         boolean ignoreMrnValidation, boolean ignoreWarnings, boolean ignorePartyRoleValidation) {
+        List<String> errors = new ArrayList<>();
+        List<String> warnings = new ArrayList<>();
 
         FormType formType = (FormType) caseData.get("formType");
         Appeal appeal = (Appeal) caseData.get("appeal");
         String appellantPersonType = getPerson1OrPerson2(appeal.getAppellant());
 
         checkAppellant(appeal, ocrCaseData, caseData, appellantPersonType, formType, ignorePartyRoleValidation, ignoreWarnings);
-        checkRepresentative(appeal, ocrCaseData, caseData);
+        errors.add(checkRepresentative(appeal, ocrCaseData, caseData).toString());
         checkMrnDetails(appeal, ocrCaseData, ignoreMrnValidation, formType);
 
         if (formType != null && formType.equals(FormType.SSCS2)) {
@@ -107,7 +108,7 @@ public class AppealValidator {
             checkAdditionalEvidence(lists);
         }
 
-        return warnings;
+        return Map.of("errors", errors, "warnings", warnings);
     }
 
     private String getPerson1OrPerson2(Appellant appellant) {
@@ -155,8 +156,10 @@ public class AppealValidator {
                 && name.getTitle() == null);
     }
 
-    private void checkAppellant(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData,
-                                String personType, FormType formType, boolean ignorePartyRoleValidation, boolean ignoreWarnings) {
+    private Optional<Map<String, List<String>>> checkAppellant(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData,
+                                                               String personType, FormType formType, boolean ignorePartyRoleValidation, boolean ignoreWarnings) {
+        List<String> warnings = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
         Appellant appellant = appeal.getAppellant();
 
         if (appellant == null) {
@@ -186,14 +189,14 @@ public class AppealValidator {
             checkPersonAddressAndDob(appellant.getAddress(), appellant.getIdentity(), personType, ocrCaseData, caseData,
                     appellant);
             checkAppellantNino(appellant, personType);
-            checkMobileNumber(appellant.getContact(), personType);
+            errors.addAll(checkMobileNumber(appellant.getContact(), personType));
 
             checkHearingSubtypeDetails(appeal.getHearingSubtype());
             if (!ignorePartyRoleValidation && formType != null && formType.equals(FormType.SSCS2)) {
                 checkAppellantRole(appellant.getRole(), ignoreWarnings);
             }
         }
-
+        return Optional.of(Map.of("warnings", warnings, "errors", errors));
     }
 
     private String getWarningMessageName(String personType, Appellant appellant) {
@@ -210,15 +213,17 @@ public class AppealValidator {
     }
 
     private void checkAppointee(Appellant appellant, Map<String, Object> ocrCaseData, Map<String, Object> caseData) {
+        List<String> warnings = new ArrayList<>();
         if (appellant != null && !isAppointeeDetailsEmpty(appellant.getAppointee())) {
-            checkPersonName(appellant.getAppointee().getName(), PERSON1_VALUE, appellant);
+            warnings.addAll(checkPersonName(appellant.getAppointee().getName(), PERSON1_VALUE, appellant));
             checkPersonAddressAndDob(appellant.getAppointee().getAddress(), appellant.getAppointee().getIdentity(),
                     PERSON1_VALUE, ocrCaseData, caseData, appellant);
             checkMobileNumber(appellant.getAppointee().getContact(), PERSON1_VALUE);
         }
     }
 
-    private void checkPersonName(Name name, String personType, Appellant appellant) {
+    private List<String> checkPersonName(Name name, String personType, Appellant appellant) {
+        List<String> warnings = new ArrayList<>();
 
         if (!doesTitleExist(name)) {
             warnings.add(
@@ -238,6 +243,7 @@ public class AppealValidator {
             warnings.add(getMessageByCallbackType(callbackType, personType,
                     getWarningMessageName(personType, appellant) + LAST_NAME, IS_EMPTY));
         }
+        return warnings;
     }
 
     private Boolean doesTitleExist(Name name) {
@@ -269,9 +275,11 @@ public class AppealValidator {
         return false;
     }
 
-    private void checkPersonAddressAndDob(Address address, Identity identity, String personType,
+    private Map<String, List<String>> checkPersonAddressAndDob(Address address, Identity identity, String personType,
                                           Map<String, Object> ocrCaseData, Map<String, Object> caseData,
                                           Appellant appellant) {
+        List<String> warnings = new ArrayList<>();
+        List<String> errors = new ArrayList<>();
 
         boolean isAddressLine4Present = findBooleanExists(getField(ocrCaseData, personType + "_address_line4"));
 
@@ -302,23 +310,31 @@ public class AppealValidator {
                     getWarningMessageName(personType, appellant) + countyLine, HAS_INVALID_ADDRESS));
         }
 
-        if (isAddressPostcodeValid(address, personType, appellant) && address != null) {
-            if (personType.equals(getPerson1OrPerson2(appellant))) {
-                RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(address.getPostcode());
+        getAddressPostcodeValidationErrsWarns(address, personType, appellant)
+                .ifPresentOrElse(errsWarns -> {
+                    warnings.addAll(errsWarns.get("warnings"));
+                    errors.addAll(errsWarns.get("errors"));
+                }, () -> {
+                    if (address != null) {
+                        if (personType.equals(getPerson1OrPerson2(appellant))) {
+                            RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(address.getPostcode());
 
-                if (rpc != null) {
-                    caseData.put("region", rpc.getName());
-                    caseData.put("regionalProcessingCenter", rpc);
-                } else {
-                    warnings.add(getMessageByCallbackType(callbackType, personType,
-                            getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE,
-                            "is not a postcode that maps to a regional processing center"));
-                }
-            }
-        }
+                            if (rpc != null) {
+                                caseData.put("region", rpc.getName());
+                                caseData.put("regionalProcessingCenter", rpc);
+                            } else {
+                                warnings.add(getMessageByCallbackType(callbackType, personType,
+                                        getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE,
+                                        "is not a postcode that maps to a regional processing center"));
+                            }
+                        }
+                    }
+                });
+
         if (identity != null) {
-            checkDateValidDate(identity.getDob(), getWarningMessageName(personType, appellant) + DOB, personType, true);
+            warnings.addAll(checkDateValidDate(identity.getDob(), getWarningMessageName(personType, appellant) + DOB, personType, true));
         }
+        return Map.of("errors", errors, "warnings", warnings);
     }
 
     private Boolean doesAddressLine1Exist(Address address) {
@@ -342,24 +358,29 @@ public class AppealValidator {
         return false;
     }
 
-    private Boolean isAddressPostcodeValid(Address address, String personType, Appellant appellant) {
+    //errors
+    private Optional<Map<String, List<String>>> getAddressPostcodeValidationErrsWarns(Address address, String personType, Appellant appellant) {
+        List<String> errors = new ArrayList<>();
+        List<String> warnings = new ArrayList<>();
+
         if (address != null && address.getPostcode() != null) {
             if (postcodeValidator.isValid(address.getPostcode(), context)) {
-                boolean isValidPostcode = postcodeValidator.isValidPostcodeFormat(address.getPostcode());
-                if (!isValidPostcode) {
+                boolean isValidPostcodeFormat = postcodeValidator.isValidPostcodeFormat(address.getPostcode());
+                if (!isValidPostcodeFormat) {
                     warnings.add(getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_NOT_A_VALID_POSTCODE));
                 }
-                return isValidPostcode;
+                return isValidPostcodeFormat ? Optional.empty() : Optional.of(Map.of("warnings", warnings));
             }
             errors.add(getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, "is not in a valid format"));
-            return false;
+            return Optional.of(Map.of("errors", errors));
         }
         warnings.add(getMessageByCallbackType(callbackType, personType,
                 getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_EMPTY));
-        return false;
+        return Optional.of(Map.of("warnings", warnings));
     }
 
-    private void checkDateValidDate(String dateField, String fieldName, String personType, Boolean isInFutureCheck) {
+    private List<String> checkDateValidDate(String dateField, String fieldName, String personType, Boolean isInFutureCheck) {
+        List<String> warnings = new ArrayList<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (!StringUtils.isEmpty(dateField)) {
@@ -376,14 +397,18 @@ public class AppealValidator {
                 log.error("Date time error", ex);
             }
         }
+        return warnings;
     }
 
-    private void checkMobileNumber(Contact contact, String personType) {
+    //errors
+    private List<String> checkMobileNumber(Contact contact, String personType) {
+        List<String> errors = new ArrayList<>();
         if (contact != null && contact.getMobile() != null && !isMobileNumberValid(contact.getMobile())) {
             errors.add(
                     getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, null) + MOBILE,
                             IS_INVALID));
         }
+        return errors;
     }
 
     private boolean isMobileNumberValid(String number) {
@@ -393,7 +418,9 @@ public class AppealValidator {
         return true;
     }
 
-    private void checkAppellantNino(Appellant appellant, String personType) {
+    private List<String> checkAppellantNino(Appellant appellant, String personType) {
+        List<String> warnings = new ArrayList<>();
+
         if (appellant != null && appellant.getIdentity() != null && appellant.getIdentity().getNino() != null) {
             if (!appellant.getIdentity().getNino().matches(
                     "^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)\\s?(?:[A-CEGHJ-PR-TW-Z]\\s?[A-CEGHJ-NPR-TW-Z])\\s?(?:\\d\\s?){6}([A-D]|\\s)\\s?$")) {
@@ -405,9 +432,12 @@ public class AppealValidator {
                     getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + NINO,
                             IS_EMPTY));
         }
+        return warnings;
     }
 
-    private void checkHearingSubtypeDetails(HearingSubtype hearingSubtype) {
+    private List<String> checkHearingSubtypeDetails(HearingSubtype hearingSubtype) {
+        List<String> warnings = new ArrayList<>();
+
         if (hearingSubtype != null) {
             if (YES_LITERAL.equals(hearingSubtype.getWantsHearingTypeTelephone())
                     && hearingSubtype.getHearingTelephoneNumber() == null) {
@@ -429,6 +459,7 @@ public class AppealValidator {
                         EMAIL_SELECTED_NOT_PROVIDED));
             }
         }
+        return warnings;
     }
 
     private boolean isUkNumberValid(String number) {
@@ -455,7 +486,8 @@ public class AppealValidator {
         }
     }
 
-    private void checkRepresentative(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData) {
+    private List<String> checkRepresentative(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData) {
+        List<String> errors = new ArrayList<>();
         if (appeal.getRep() == null || StringUtils.isBlank(appeal.getRep().getHasRepresentative())) {
             errors.add(HAS_REPRESENTATIVE_FIELD_MISSING);
         }
@@ -476,8 +508,9 @@ public class AppealValidator {
                         ARE_EMPTY));
             }
 
-            checkMobileNumber(repsContact, REPRESENTATIVE_VALUE);
+            errors.addAll(checkMobileNumber(repsContact, REPRESENTATIVE_VALUE));
         }
+        return errors;
     }
 
     private void checkMrnDetails(Appeal appeal, Map<String, Object> ocrCaseData, boolean ignoreMrnValidation, FormType formType) {
@@ -635,7 +668,10 @@ public class AppealValidator {
         }
     }
 
-    private void isBenefitTypeValid(Appeal appeal, FormType formType) {
+    private Optional<Map<String, List<String>>> isBenefitTypeValid(Appeal appeal, FormType formType) {
+        List<String> errors = new ArrayList<>();
+        List<String> warnings = new ArrayList<>();
+
         BenefitType benefitType = appeal.getBenefitType();
         if (benefitType != null && benefitType.getCode() != null) {
             final Optional<Benefit> benefitOptional = Benefit.findBenefitByShortName(benefitType.getCode());
@@ -646,6 +682,7 @@ public class AppealValidator {
                 }
                 errors.add(getMessageByCallbackType(callbackType, "", BENEFIT_TYPE_DESCRIPTION,
                         "invalid. Should be one of: " + String.join(", ", benefitNameList)));
+                return Optional.of(Map.of("errors", errors));
             } else {
                 Benefit benefit = benefitOptional.get();
                 appeal.setBenefitType(BenefitType.builder()
@@ -656,8 +693,10 @@ public class AppealValidator {
         } else {
             if (formType == null || (!formType.equals(FormType.SSCS1U) && !formType.equals(FormType.SSCS5))) {
                 warnings.add(getMessageByCallbackType(callbackType, "", BENEFIT_TYPE_DESCRIPTION, IS_EMPTY));
+                return Optional.of(Map.of("warnings", warnings));
             }
         }
+        return Optional.empty();
     }
 
     private void isHearingTypeValid(Appeal appeal) {
@@ -693,7 +732,8 @@ public class AppealValidator {
         return isValid;
     }
 
-    private void checkAdditionalEvidence(List<SscsDocument> sscsDocuments) {
+    private List<String> checkAdditionalEvidence(List<SscsDocument> sscsDocuments) {
+        List<String> errors = new ArrayList<>();
         sscsDocuments.stream().filter(sscsDocument -> sscsDocument.getValue().getDocumentFileName() == null)
                 .forEach(sscsDocument -> {
                     errors.add(
@@ -708,6 +748,7 @@ public class AppealValidator {
                             + sscsDocument.getValue().getDocumentLink().getDocumentFilename()
                             + ", filenames must have extension, e.g. filename.pdf");
                 });
+        return errors;
     }
 
 }
