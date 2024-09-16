@@ -1,677 +1,145 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.CallbackType;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
-import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
-import uk.gov.hmcts.reform.sscs.config.WarningMessage;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
-import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
-import javax.validation.ConstraintValidatorContext;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.*;
-import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByCallbackType;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.findBooleanExists;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.appendErrorsAndWarnings;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.doesMrnDateExist;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.getDwpIssuingOffice;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.isValidHearingSubType;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.validateDate;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ARE_EMPTY;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.BENEFIT_TYPE_DESCRIPTION;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_OPTIONS_EXCLUDE_DATES_LITERAL;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_SUB_TYPE_TELEPHONE_OR_VIDEO_FACE_TO_FACE_DESCRIPTION;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_DESCRIPTION;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_ORAL;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_PAPER;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ISSUING_OFFICE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_EMPTY;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MRN_DATE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON_1_CHILD_MAINTENANCE_NUMBER;
+import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
 
 @Component
 @Slf4j
 public class AppealValidator {
-    public static final String IS_NOT_A_VALID_POSTCODE = "is not a valid postcode";
 
-    @SuppressWarnings("squid:S5843")
-    private static final String PHONE_REGEX =
-            "^((?:(?:\\(?(?:0(?:0|11)\\)?[\\s-]?\\(?|\\+)\\d{1,4}\\)?[\\s-]?(?:\\(?0\\)?[\\s-]?)?)|(?:\\(?0))(?:"
-                    + "(?:\\d{5}\\)?[\\s-]?\\d{4,5})|(?:\\d{4}\\)?[\\s-]?(?:\\d{5}|\\d{3}[\\s-]?\\d{3}))|(?:\\d{3}\\)"
-                    + "?[\\s-]?\\d{3}[\\s-]?\\d{3,4})|(?:\\d{2}\\)?[\\s-]?\\d{4}[\\s-]?\\d{4}))(?:[\\s-]?(?:x|ext\\.?|\\#)"
-                    + "\\d{3,4})?)?$";
-
-    @SuppressWarnings("squid:S5843")
-    private static final String UK_NUMBER_REGEX =
-            "^\\(?(?:(?:0(?:0|11)\\)?[\\s-]?\\(?|\\+)44\\)?[\\s-]?\\(?(?:0\\)?[\\s-]?\\(?)?|0)(?:\\d{2}\\)?[\\s-]?\\d{4}"
-                    + "[\\s-]?\\d{4}|\\d{3}\\)?[\\s-]?\\d{3}[\\s-]?\\d{3,4}|\\d{4}\\)?[\\s-]?(?:\\d{5}|\\d{3}[\\s-]?\\d{3})|"
-                    +
-                    "\\d{5}\\)?[\\s-]?\\d{4,5}|8(?:00[\\s-]?11[\\s-]?11|45[\\s-]?46[\\s-]?4\\d))(?:(?:[\\s-]?(?:x|ext\\.?\\s?|"
-                    + "\\#)\\d+)?)$";
-
-    @SuppressWarnings("squid:S5843")
-    private static final String ADDRESS_REGEX =
-            "^[a-zA-ZÀ-ž0-9]{1}[a-zA-ZÀ-ž0-9 \\r\\n\\.“”\",’\\?\\!\\[\\]\\(\\)/£:\\\\_+\\-%&;]{1,}$";
-    @SuppressWarnings("squid:S5843")
-    private static final String COUNTY_REGEX =
-            "^\\.$|^[a-zA-ZÀ-ž0-9]{1}[a-zA-ZÀ-ž0-9 \\r\\n\\.“”\",’\\?\\!\\[\\]\\(\\)/£:\\\\_+\\-%&;]{1,}$";
-    private final PostcodeValidator postcodeValidator;
-    private final RegionalProcessingCenterService regionalProcessingCenterService;
+    private final AppellantValidator appellantValidator;
+    private final RepresentativeValidator repValidator;
+    private final OtherPartyValidator otherPartyValidator;
     private final DwpAddressLookupService dwpAddressLookupService;
-    List<String> warnings;
-    public static final String PERSON1_VALUE = "person1";
-    public static final String PERSON2_VALUE = "person2";
-    private static ConstraintValidatorContext context;
-    private CallbackType callbackType;
-    @Value("#{'${validation.titles}'.split(',')}")
-    private List<String> titles;
+    private final ValidationType validationType;
 
-    //TODO: Remove when uc-office-feature switched on
-    private boolean ucOfficeFeatureActive;
-
-    public AppealValidator(RegionalProcessingCenterService regionalProcessingCenterService,
-                             DwpAddressLookupService dwpAddressLookupService,
-                             PostcodeValidator postcodeValidator,
-                           @Value("${feature.uc-office-feature.enabled}") boolean ucOfficeFeatureActive) {
-        this.regionalProcessingCenterService = regionalProcessingCenterService;
+    public AppealValidator(DwpAddressLookupService dwpAddressLookupService,
+                           AddressValidator addressValidator,
+                           ValidationType validationType,
+                           @Value("#{'${validation.titles}'.split(',')}") List<String> titles) {
         this.dwpAddressLookupService = dwpAddressLookupService;
-        this.postcodeValidator = postcodeValidator;
-        this.ucOfficeFeatureActive = ucOfficeFeatureActive;
+        this.appellantValidator = new AppellantValidator(addressValidator, validationType, titles);
+        this.repValidator = new RepresentativeValidator(addressValidator, validationType, titles);
+        this.otherPartyValidator = new OtherPartyValidator(validationType, titles);
+        this.validationType = validationType;
     }
 
     public Map<String, List<String>> validateAppeal(Map<String, Object> ocrCaseData, Map<String, Object> caseData,
-                                        boolean ignoreMrnValidation, boolean ignoreWarnings, boolean ignorePartyRoleValidation) {
+                                                    boolean ignoreMrnValidation, boolean ignoreWarnings,
+                                                    boolean ignorePartyRoleValidation) {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
-        FormType formType = (FormType) caseData.get("formType");
-        Appeal appeal = (Appeal) caseData.get("appeal");
-        String appellantPersonType = getPerson1OrPerson2(appeal.getAppellant());
+        appendErrorsAndWarnings(errors, warnings,
+                appellantValidator.checkAppellant(ocrCaseData, caseData, ignorePartyRoleValidation, ignoreWarnings));
 
-        checkAppellant(appeal, ocrCaseData, caseData, appellantPersonType, formType, ignorePartyRoleValidation, ignoreWarnings);
-        errors.add(checkRepresentative(appeal, ocrCaseData, caseData).toString());
-        checkMrnDetails(appeal, ocrCaseData, ignoreMrnValidation, formType);
+        Appeal appeal = (Appeal) caseData.get("appeal");
+        appendErrorsAndWarnings(errors, warnings, repValidator.checkRepresentative(appeal, ocrCaseData, caseData));
+
+        FormType formType = (FormType) caseData.get("formType");
+        warnings.addAll(checkMrnDetails(appeal, ocrCaseData, ignoreMrnValidation, formType));
 
         if (formType != null && formType.equals(FormType.SSCS2)) {
-            checkChildMaintenance(caseData, ignoreWarnings);
-
-            checkOtherParty(caseData, ignoreWarnings);
+            warnings.addAll(checkChildMaintenance(caseData, ignoreWarnings));
+            warnings.addAll(otherPartyValidator.checkOtherParty(caseData, ignoreWarnings));
         }
 
-        checkExcludedDates(appeal);
+        warnings.addAll(checkExcludedDates(appeal));
 
-        isBenefitTypeValid(appeal, formType);
+        appendErrorsAndWarnings(errors, warnings, checkBenefitType(appeal, formType));
 
-        isHearingTypeValid(appeal);
-
-        checkHearingSubTypeIfHearingIsOral(appeal, caseData);
+        warnings.addAll(validateHearing(appeal, caseData));
 
         if (caseData.get("sscsDocument") != null) {
             @SuppressWarnings("unchecked")
             List<SscsDocument> lists = ((List<SscsDocument>) caseData.get("sscsDocument"));
-            checkAdditionalEvidence(lists);
+            errors.addAll(checkAdditionalEvidence(lists));
         }
 
         return Map.of("errors", errors, "warnings", warnings);
     }
 
-    private String getPerson1OrPerson2(Appellant appellant) {
-        if (appellant == null || isAppointeeDetailsEmpty(appellant.getAppointee())) {
-            return PERSON1_VALUE;
-        } else {
-            return PERSON2_VALUE;
-        }
-    }
-
-    private Boolean isAppointeeDetailsEmpty(Appointee appointee) {
-        return appointee == null
-                || (isAddressEmpty(appointee.getAddress())
-                && isContactEmpty(appointee.getContact())
-                && isIdentityEmpty(appointee.getIdentity())
-                && isNameEmpty(appointee.getName()));
-    }
-
-    private Boolean isAddressEmpty(Address address) {
-        return address == null
-                || (address.getLine1() == null
-                && address.getLine2() == null
-                && address.getTown() == null
-                && address.getCounty() == null
-                && address.getPostcode() == null);
-    }
-
-    private Boolean isContactEmpty(Contact contact) {
-        return contact == null
-                || (contact.getEmail() == null
-                && contact.getPhone() == null
-                && contact.getMobile() == null);
-    }
-
-    private Boolean isIdentityEmpty(Identity identity) {
-        return identity == null
-                || (identity.getDob() == null
-                && identity.getNino() == null);
-    }
-
-    private Boolean isNameEmpty(Name name) {
-        return name == null
-                || (name.getFirstName() == null
-                && name.getLastName() == null
-                && name.getTitle() == null);
-    }
-
-    private Optional<Map<String, List<String>>> checkAppellant(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData,
-                                                               String personType, FormType formType, boolean ignorePartyRoleValidation, boolean ignoreWarnings) {
+    private List<String> checkMrnDetails(Appeal appeal, Map<String, Object> ocrCaseData, boolean ignoreMrnValidation, FormType formType) {
         List<String> warnings = new ArrayList<>();
-        List<String> errors = new ArrayList<>();
-        Appellant appellant = appeal.getAppellant();
-
-        if (appellant == null) {
-            warnings.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + TITLE,
-                            IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + FIRST_NAME, IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + LAST_NAME, IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_LINE1, IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_LINE3, IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_LINE4, IS_EMPTY));
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_EMPTY));
-            warnings.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + NINO,
-                            IS_EMPTY));
-        } else {
-
-            checkAppointee(appellant, ocrCaseData, caseData);
-
-            checkPersonName(appellant.getName(), personType, appellant);
-            checkPersonAddressAndDob(appellant.getAddress(), appellant.getIdentity(), personType, ocrCaseData, caseData,
-                    appellant);
-            checkAppellantNino(appellant, personType);
-            errors.addAll(checkMobileNumber(appellant.getContact(), personType));
-
-            checkHearingSubtypeDetails(appeal.getHearingSubtype());
-            if (!ignorePartyRoleValidation && formType != null && formType.equals(FormType.SSCS2)) {
-                checkAppellantRole(appellant.getRole(), ignoreWarnings);
-            }
-        }
-        return Optional.of(Map.of("warnings", warnings, "errors", errors));
-    }
-
-    private String getWarningMessageName(String personType, Appellant appellant) {
-        if (personType.equals(REPRESENTATIVE_VALUE)) {
-            return "REPRESENTATIVE";
-        } else if (personType.equals(OTHER_PARTY_VALUE)) {
-            return "OTHER_PARTY";
-        } else if (personType.equals(PERSON2_VALUE) || appellant == null
-                || isAppointeeDetailsEmpty(appellant.getAppointee())) {
-            return "APPELLANT";
-        } else {
-            return "APPOINTEE";
-        }
-    }
-
-    private void checkAppointee(Appellant appellant, Map<String, Object> ocrCaseData, Map<String, Object> caseData) {
-        List<String> warnings = new ArrayList<>();
-        if (appellant != null && !isAppointeeDetailsEmpty(appellant.getAppointee())) {
-            warnings.addAll(checkPersonName(appellant.getAppointee().getName(), PERSON1_VALUE, appellant));
-            checkPersonAddressAndDob(appellant.getAppointee().getAddress(), appellant.getAppointee().getIdentity(),
-                    PERSON1_VALUE, ocrCaseData, caseData, appellant);
-            checkMobileNumber(appellant.getAppointee().getContact(), PERSON1_VALUE);
-        }
-    }
-
-    private List<String> checkPersonName(Name name, String personType, Appellant appellant) {
-        List<String> warnings = new ArrayList<>();
-
-        if (!doesTitleExist(name)) {
-            warnings.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + TITLE,
-                            IS_EMPTY));
-        } else if (name != null && !isTitleValid(name.getTitle())) {
-            warnings.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + TITLE,
-                            IS_INVALID));
-        }
-
-        if (!doesFirstNameExist(name)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + FIRST_NAME, IS_EMPTY));
-        }
-        if (!doesLastNameExist(name)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + LAST_NAME, IS_EMPTY));
-        }
-        return warnings;
-    }
-
-    private Boolean doesTitleExist(Name name) {
-        if (name != null) {
-            return StringUtils.isNotEmpty(name.getTitle());
-        }
-        return false;
-    }
-
-    private boolean isTitleValid(String title) {
-        if (StringUtils.isNotBlank(title)) {
-            String strippedTitle = title.replaceAll("[-+.^:,'_]", "");
-            return titles.stream().anyMatch(strippedTitle::equalsIgnoreCase);
-        }
-        return true;
-    }
-
-    private Boolean doesFirstNameExist(Name name) {
-        if (name != null) {
-            return StringUtils.isNotEmpty(name.getFirstName());
-        }
-        return false;
-    }
-
-    private Boolean doesLastNameExist(Name name) {
-        if (name != null) {
-            return StringUtils.isNotEmpty(name.getLastName());
-        }
-        return false;
-    }
-
-    private Map<String, List<String>> checkPersonAddressAndDob(Address address, Identity identity, String personType,
-                                          Map<String, Object> ocrCaseData, Map<String, Object> caseData,
-                                          Appellant appellant) {
-        List<String> warnings = new ArrayList<>();
-        List<String> errors = new ArrayList<>();
-
-        boolean isAddressLine4Present = findBooleanExists(getField(ocrCaseData, personType + "_address_line4"));
-
-        if (!doesAddressLine1Exist(address)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_LINE1, IS_EMPTY));
-        } else if (!address.getLine1().matches(ADDRESS_REGEX)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + ADDRESS_LINE1, HAS_INVALID_ADDRESS));
-        }
-
-        String townLine = (isAddressLine4Present) ? ADDRESS_LINE3 : ADDRESS_LINE2;
-        if (!doesAddressTownExist(address)) {
-
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + townLine, IS_EMPTY));
-        } else if (!address.getTown().matches(ADDRESS_REGEX)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + townLine, HAS_INVALID_ADDRESS));
-        }
-
-        String countyLine = (isAddressLine4Present) ? ADDRESS_LINE4 : "_ADDRESS_LINE3_COUNTY";
-        if (!doesAddressCountyExist(address)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + countyLine, IS_EMPTY));
-        } else if (!address.getCounty().matches(COUNTY_REGEX)) {
-            warnings.add(getMessageByCallbackType(callbackType, personType,
-                    getWarningMessageName(personType, appellant) + countyLine, HAS_INVALID_ADDRESS));
-        }
-
-        getAddressPostcodeValidationErrsWarns(address, personType, appellant)
-                .ifPresentOrElse(errsWarns -> {
-                    warnings.addAll(errsWarns.get("warnings"));
-                    errors.addAll(errsWarns.get("errors"));
-                }, () -> {
-                    if (address != null) {
-                        if (personType.equals(getPerson1OrPerson2(appellant))) {
-                            RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(address.getPostcode());
-
-                            if (rpc != null) {
-                                caseData.put("region", rpc.getName());
-                                caseData.put("regionalProcessingCenter", rpc);
-                            } else {
-                                warnings.add(getMessageByCallbackType(callbackType, personType,
-                                        getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE,
-                                        "is not a postcode that maps to a regional processing center"));
-                            }
-                        }
-                    }
-                });
-
-        if (identity != null) {
-            warnings.addAll(checkDateValidDate(identity.getDob(), getWarningMessageName(personType, appellant) + DOB, personType, true));
-        }
-        return Map.of("errors", errors, "warnings", warnings);
-    }
-
-    private Boolean doesAddressLine1Exist(Address address) {
-        if (address != null) {
-            return StringUtils.isNotEmpty(address.getLine1());
-        }
-        return false;
-    }
-
-    private Boolean doesAddressTownExist(Address address) {
-        if (address != null) {
-            return StringUtils.isNotEmpty(address.getTown());
-        }
-        return false;
-    }
-
-    private Boolean doesAddressCountyExist(Address address) {
-        if (address != null) {
-            return StringUtils.isNotEmpty(address.getCounty());
-        }
-        return false;
-    }
-
-    //errors
-    private Optional<Map<String, List<String>>> getAddressPostcodeValidationErrsWarns(Address address, String personType, Appellant appellant) {
-        List<String> errors = new ArrayList<>();
-        List<String> warnings = new ArrayList<>();
-
-        if (address != null && address.getPostcode() != null) {
-            if (postcodeValidator.isValid(address.getPostcode(), context)) {
-                boolean isValidPostcodeFormat = postcodeValidator.isValidPostcodeFormat(address.getPostcode());
-                if (!isValidPostcodeFormat) {
-                    warnings.add(getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_NOT_A_VALID_POSTCODE));
-                }
-                return isValidPostcodeFormat ? Optional.empty() : Optional.of(Map.of("warnings", warnings));
-            }
-            errors.add(getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, "is not in a valid format"));
-            return Optional.of(Map.of("errors", errors));
-        }
-        warnings.add(getMessageByCallbackType(callbackType, personType,
-                getWarningMessageName(personType, appellant) + ADDRESS_POSTCODE, IS_EMPTY));
-        return Optional.of(Map.of("warnings", warnings));
-    }
-
-    private List<String> checkDateValidDate(String dateField, String fieldName, String personType, Boolean isInFutureCheck) {
-        List<String> warnings = new ArrayList<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        if (!StringUtils.isEmpty(dateField)) {
-            try {
-                LocalDate date = LocalDate.parse(dateField, formatter);
-
-                if (isInFutureCheck && date.isAfter(LocalDate.now())) {
-                    warnings.add(getMessageByCallbackType(callbackType, personType, fieldName, IS_IN_FUTURE));
-                } else if (!isInFutureCheck && date.isBefore(LocalDate.now())) {
-                    warnings.add(getMessageByCallbackType(callbackType, personType, fieldName, IS_IN_PAST));
-
-                }
-            } catch (DateTimeParseException ex) {
-                log.error("Date time error", ex);
-            }
-        }
-        return warnings;
-    }
-
-    //errors
-    private List<String> checkMobileNumber(Contact contact, String personType) {
-        List<String> errors = new ArrayList<>();
-        if (contact != null && contact.getMobile() != null && !isMobileNumberValid(contact.getMobile())) {
-            errors.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, null) + MOBILE,
-                            IS_INVALID));
-        }
-        return errors;
-    }
-
-    private boolean isMobileNumberValid(String number) {
-        if (number != null) {
-            return number.matches(PHONE_REGEX);
-        }
-        return true;
-    }
-
-    private List<String> checkAppellantNino(Appellant appellant, String personType) {
-        List<String> warnings = new ArrayList<>();
-
-        if (appellant != null && appellant.getIdentity() != null && appellant.getIdentity().getNino() != null) {
-            if (!appellant.getIdentity().getNino().matches(
-                    "^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)\\s?(?:[A-CEGHJ-PR-TW-Z]\\s?[A-CEGHJ-NPR-TW-Z])\\s?(?:\\d\\s?){6}([A-D]|\\s)\\s?$")) {
-                warnings.add(getMessageByCallbackType(callbackType, personType,
-                        getWarningMessageName(personType, appellant) + NINO, IS_INVALID));
-            }
-        } else {
-            warnings.add(
-                    getMessageByCallbackType(callbackType, personType, getWarningMessageName(personType, appellant) + NINO,
-                            IS_EMPTY));
-        }
-        return warnings;
-    }
-
-    private List<String> checkHearingSubtypeDetails(HearingSubtype hearingSubtype) {
-        List<String> warnings = new ArrayList<>();
-
-        if (hearingSubtype != null) {
-            if (YES_LITERAL.equals(hearingSubtype.getWantsHearingTypeTelephone())
-                    && hearingSubtype.getHearingTelephoneNumber() == null) {
-
-                warnings.add(getMessageByCallbackType(callbackType, "", HEARING_TYPE_TELEPHONE_LITERAL,
-                        PHONE_SELECTED_NOT_PROVIDED));
-
-            } else if (hearingSubtype.getHearingTelephoneNumber() != null
-                    && !isUkNumberValid(hearingSubtype.getHearingTelephoneNumber())) {
-
-                warnings
-                        .add(getMessageByCallbackType(callbackType, "", HEARING_TELEPHONE_NUMBER_MULTIPLE_LITERAL, null));
-            }
-
-            if (YES_LITERAL.equals(hearingSubtype.getWantsHearingTypeVideo())
-                    && hearingSubtype.getHearingVideoEmail() == null) {
-
-                warnings.add(getMessageByCallbackType(callbackType, "", HEARING_TYPE_VIDEO_LITERAL,
-                        EMAIL_SELECTED_NOT_PROVIDED));
-            }
-        }
-        return warnings;
-    }
-
-    private boolean isUkNumberValid(String number) {
-        if (number != null) {
-            return number.matches(UK_NUMBER_REGEX);
-        }
-        return true;
-    }
-
-    private void checkAppellantRole(Role role, boolean ignoreWarnings) {
-        if (role == null && !ignoreWarnings) {
-            warnings.add(getMessageByCallbackType(callbackType, "", WarningMessage.APPELLANT_PARTY_NAME.toString(),
-                    IS_MISSING));
-        } else if (!ignoreWarnings) {
-            String name = role.getName();
-            String description = role.getDescription();
-            if (StringUtils.isEmpty(name)) {
-                warnings.add(getMessageByCallbackType(callbackType, "", WarningMessage.APPELLANT_PARTY_NAME.toString(),
-                        IS_MISSING));
-            } else if (AppellantRole.OTHER.getName().equalsIgnoreCase(name) && StringUtils.isEmpty(description)) {
-                warnings.add(getMessageByCallbackType(callbackType, "", WarningMessage.APPELLANT_PARTY_DESCRIPTION.toString(),
-                        IS_MISSING));
-            }
-        }
-    }
-
-    private List<String> checkRepresentative(Appeal appeal, Map<String, Object> ocrCaseData, Map<String, Object> caseData) {
-        List<String> errors = new ArrayList<>();
-        if (appeal.getRep() == null || StringUtils.isBlank(appeal.getRep().getHasRepresentative())) {
-            errors.add(HAS_REPRESENTATIVE_FIELD_MISSING);
-        }
-        if (appeal.getRep() != null && StringUtils.equals(appeal.getRep().getHasRepresentative(), YES_LITERAL)) {
-            final Contact repsContact = appeal.getRep().getContact();
-            checkPersonAddressAndDob(appeal.getRep().getAddress(), null, REPRESENTATIVE_VALUE, ocrCaseData, caseData,
-                    appeal.getAppellant());
-
-            Name name = appeal.getRep().getName();
-
-            if (!isTitleValid(name.getTitle())) {
-                warnings.add(getMessageByCallbackType(callbackType, REPRESENTATIVE_VALUE,
-                        getWarningMessageName(REPRESENTATIVE_VALUE, null) + TITLE, IS_INVALID));
-            }
-
-            if (!doesFirstNameExist(name) && !doesLastNameExist(name) && appeal.getRep().getOrganisation() == null) {
-                warnings.add(getMessageByCallbackType(callbackType, "", REPRESENTATIVE_NAME_OR_ORGANISATION_DESCRIPTION,
-                        ARE_EMPTY));
-            }
-
-            errors.addAll(checkMobileNumber(repsContact, REPRESENTATIVE_VALUE));
-        }
-        return errors;
-    }
-
-    private void checkMrnDetails(Appeal appeal, Map<String, Object> ocrCaseData, boolean ignoreMrnValidation, FormType formType) {
-
-        String dwpIssuingOffice = getDwpIssuingOffice(appeal, ocrCaseData);
 
         // if Appeal to Proceed direction type for direction Issue event and mrn date is blank then ignore mrn date validation
         if (!ignoreMrnValidation && !doesMrnDateExist(appeal)) {
-            warnings.add(getMessageByCallbackType(callbackType, "", MRN_DATE, IS_EMPTY));
+            warnings.add(getMessageByValidationType(validationType,"", MRN_DATE, IS_EMPTY));
         } else if (!ignoreMrnValidation) {
-            checkDateValidDate(appeal.getMrnDetails().getMrnDate(), MRN_DATE, "", true);
+            warnings.addAll(validateDate(validationType, "", appeal.getMrnDetails().getMrnDate(), MRN_DATE, true));
         }
 
+        String dwpIssuingOffice = getDwpIssuingOffice(appeal, ocrCaseData);
         if (dwpIssuingOffice != null && appeal.getBenefitType() != null && appeal.getBenefitType().getCode() != null) {
 
-            Optional<OfficeMapping> officeMapping = Optional.empty();
-            //TODO: remove when ucOfficeFeatureActive fully enabled.
-            if (!ucOfficeFeatureActive && Benefit.UC.getShortName().equals(appeal.getBenefitType().getCode())) {
-                officeMapping = dwpAddressLookupService.getDefaultDwpMappingByBenefitType(Benefit.UC.getShortName());
-            } else {
-                officeMapping =
-                        dwpAddressLookupService.getDwpMappingByOffice(appeal.getBenefitType().getCode(), dwpIssuingOffice);
-            }
+            Optional<OfficeMapping> officeMapping =
+                    dwpAddressLookupService.getDwpMappingByOffice(appeal.getBenefitType().getCode(), dwpIssuingOffice);
 
             if (!officeMapping.isPresent()) {
                 log.info("DwpHandling handling office is not valid");
-                warnings.add(getMessageByCallbackType(callbackType, "", ISSUING_OFFICE, IS_INVALID));
+                warnings.add(getMessageByValidationType(validationType,"",ISSUING_OFFICE, IS_INVALID));
             }
         } else if (dwpIssuingOffice == null && !FormType.SSCS2.equals(formType) && !FormType.SSCS5.equals(formType)) {
-            warnings.add(getMessageByCallbackType(callbackType, "", ISSUING_OFFICE, IS_EMPTY));
+            warnings.add(getMessageByValidationType(validationType,"",ISSUING_OFFICE, IS_EMPTY));
         }
+        return warnings;
     }
 
-    private String getDwpIssuingOffice(Appeal appeal, Map<String, Object> ocrCaseData) {
-        if (Boolean.TRUE.equals(doesIssuingOfficeExist(appeal))) {
-            return appeal.getMrnDetails().getDwpIssuingOffice();
-        } else if (!ocrCaseData.isEmpty()) {
-            return getField(ocrCaseData, "office");
-        } else {
-            return null;
-        }
-    }
-
-    private Boolean doesIssuingOfficeExist(Appeal appeal) {
-        if (appeal.getMrnDetails() != null) {
-            return StringUtils.isNotEmpty(appeal.getMrnDetails().getDwpIssuingOffice());
-        }
-        return false;
-    }
-
-    private Boolean doesMrnDateExist(Appeal appeal) {
-        if (appeal.getMrnDetails() != null) {
-            return appeal.getMrnDetails().getMrnDate() != null;
-        }
-        return false;
-    }
-
-    private void checkChildMaintenance(Map<String, Object> caseData, boolean ignoreWarnings) {
+    private List<String> checkChildMaintenance(Map<String, Object> caseData, boolean ignoreWarnings) {
+        List<String> warnings = new ArrayList<>();
         String childMaintenanceNumber = (String) caseData.get("childMaintenanceNumber");
         if (!ignoreWarnings && StringUtils.isBlank(childMaintenanceNumber)) {
-            warnings.add(getMessageByCallbackType(callbackType, "", PERSON_1_CHILD_MAINTENANCE_NUMBER, IS_EMPTY));
+            warnings.add(getMessageByValidationType(validationType, "", PERSON_1_CHILD_MAINTENANCE_NUMBER, IS_EMPTY));
         } else if (ignoreWarnings) {
             caseData.remove("childMaintenanceNumber");
         }
+        return warnings;
     }
 
-    private void checkOtherParty(Map<String, Object> caseData, boolean ignoreWarnings) {
-        @SuppressWarnings("unchecked")
-        List<CcdValue<OtherParty>> otherParties = ((List<CcdValue<OtherParty>>) caseData.get("otherParties"));
-
-        OtherParty otherParty;
-        if (otherParties != null && !otherParties.isEmpty()) {
-            otherParty = otherParties.get(0).getValue();
-
-            Name name = otherParty.getName();
-            Address address = otherParty.getAddress();
-
-            if (!ignoreWarnings) {
-                checkOtherPartyDataValid(name, address);
-            } else {
-                if (!doesFirstNameExist(name) || !doesLastNameExist(name)) {
-                    caseData.remove("otherParties");
-                } else if (!doesAddressLine1Exist(address) || !doesAddressTownExist(address)
-                        || !doesAddressPostcodeExist(address)) {
-                    otherParty.setAddress(null);
-                }
-            }
-        }
-    }
-
-    private void checkOtherPartyDataValid(Name name, Address address) {
-        if (name != null && !isTitleValid(name.getTitle())) {
-            warnings.add(
-                    getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                            getWarningMessageName(OTHER_PARTY_VALUE, null) + TITLE,
-                            IS_INVALID));
-        }
-
-        boolean hasNoName = ! doesFirstNameExist(name) && !doesLastNameExist(name);
-
-        if (!hasNoName) {
-            otherPartyNameValidation(name);
-        }
-
-        boolean hasNoAddress = !doesAddressLine1Exist(address)
-                && !doesAddressTownExist(address)
-                && !doesAddressPostcodeExist(address);
-
-        if (!hasNoAddress) {
-            otherPartyAddressValidation(address);
-        }
-    }
-
-    private void otherPartyNameValidation(Name name) {
-        if (!doesFirstNameExist(name)) {
-            warnings.add(getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                    getWarningMessageName(OTHER_PARTY_VALUE, null) + FIRST_NAME, IS_EMPTY));
-        }
-
-        if (!doesLastNameExist(name)) {
-            warnings.add(getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                    getWarningMessageName(OTHER_PARTY_VALUE, null) + LAST_NAME, IS_EMPTY));
-        }
-    }
-
-    private Boolean doesAddressPostcodeExist(Address address) {
-        if (address != null) {
-            return StringUtils.isNotEmpty(address.getPostcode());
-        }
-        return false;
-    }
-
-    private void otherPartyAddressValidation(Address address) {
-        if (!doesAddressLine1Exist(address)) {
-            warnings.add(getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                    getWarningMessageName(OTHER_PARTY_VALUE, null) + ADDRESS_LINE1, IS_EMPTY));
-        }
-
-        if (!doesAddressTownExist(address)) {
-            warnings.add(getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                    getWarningMessageName(OTHER_PARTY_VALUE, null) + ADDRESS_LINE2, IS_EMPTY));
-        }
-
-        if (!doesAddressPostcodeExist(address)) {
-            warnings.add(getMessageByCallbackType(callbackType, OTHER_PARTY_VALUE,
-                    getWarningMessageName(OTHER_PARTY_VALUE, null) + ADDRESS_POSTCODE, IS_EMPTY));
-        }
-    }
-
-    private void checkExcludedDates(Appeal appeal) {
+    private List<String> checkExcludedDates(Appeal appeal) {
+        List<String> warnings = new ArrayList<>();
         if (appeal.getHearingOptions() != null && appeal.getHearingOptions().getExcludeDates() != null) {
             for (ExcludeDate excludeDate : appeal.getHearingOptions().getExcludeDates()) {
-                checkDateValidDate(excludeDate.getValue().getStart(), HEARING_OPTIONS_EXCLUDE_DATES_LITERAL, "", false);
+                warnings.addAll(
+                        validateDate(validationType, "", excludeDate.getValue().getStart(), HEARING_OPTIONS_EXCLUDE_DATES_LITERAL, false));
             }
         }
+        return warnings;
     }
 
-    private Optional<Map<String, List<String>>> isBenefitTypeValid(Appeal appeal, FormType formType) {
+    private Map<String, List<String>> checkBenefitType(Appeal appeal, FormType formType) {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
-
         BenefitType benefitType = appeal.getBenefitType();
         if (benefitType != null && benefitType.getCode() != null) {
             final Optional<Benefit> benefitOptional = Benefit.findBenefitByShortName(benefitType.getCode());
@@ -680,9 +148,8 @@ public class AppealValidator {
                 for (Benefit be : Benefit.values()) {
                     benefitNameList.add(be.getShortName());
                 }
-                errors.add(getMessageByCallbackType(callbackType, "", BENEFIT_TYPE_DESCRIPTION,
+                errors.add(getMessageByValidationType(validationType, "", BENEFIT_TYPE_DESCRIPTION,
                         "invalid. Should be one of: " + String.join(", ", benefitNameList)));
-                return Optional.of(Map.of("errors", errors));
             } else {
                 Benefit benefit = benefitOptional.get();
                 appeal.setBenefitType(BenefitType.builder()
@@ -692,63 +159,51 @@ public class AppealValidator {
             }
         } else {
             if (formType == null || (!formType.equals(FormType.SSCS1U) && !formType.equals(FormType.SSCS5))) {
-                warnings.add(getMessageByCallbackType(callbackType, "", BENEFIT_TYPE_DESCRIPTION, IS_EMPTY));
-                return Optional.of(Map.of("warnings", warnings));
+                warnings.add(getMessageByValidationType(validationType, "", BENEFIT_TYPE_DESCRIPTION, IS_EMPTY));
             }
         }
-        return Optional.empty();
+        return Map.of("errors", errors, "warnings", warnings);
     }
 
-    private void isHearingTypeValid(Appeal appeal) {
+    private List<String> validateHearing(Appeal appeal, Map<String, Object> caseData) {
+        List<String> warnings = new ArrayList<>();
         String hearingType = appeal.getHearingType();
 
         if (hearingType == null
                 || (!hearingType.equals(HEARING_TYPE_ORAL) && !hearingType.equals(HEARING_TYPE_PAPER))) {
-            warnings.add(getMessageByCallbackType(callbackType, "", HEARING_TYPE_DESCRIPTION, IS_INVALID));
+            warnings.add(getMessageByValidationType(validationType, "", HEARING_TYPE_DESCRIPTION, IS_INVALID));
         }
-    }
 
-    private void checkHearingSubTypeIfHearingIsOral(Appeal appeal, Map<String, Object> caseData) {
-        String hearingType = appeal.getHearingType();
         FormType formType = (FormType) caseData.get("formType");
         log.info("Bulk-scan form type: {}", formType != null ? formType.toString() : null);
         if ((FormType.SSCS1PEU.equals(formType) || FormType.SSCS2.equals(formType) || FormType.SSCS5.equals(formType))
                 && hearingType != null && hearingType.equals(HEARING_TYPE_ORAL)
                 && !isValidHearingSubType(appeal)) {
             warnings.add(
-                    getMessageByCallbackType(callbackType, "", HEARING_SUB_TYPE_TELEPHONE_OR_VIDEO_FACE_TO_FACE_DESCRIPTION,
+                    getMessageByValidationType(validationType, "", HEARING_SUB_TYPE_TELEPHONE_OR_VIDEO_FACE_TO_FACE_DESCRIPTION,
                             ARE_EMPTY));
         }
-    }
-
-    private boolean isValidHearingSubType(Appeal appeal) {
-        boolean isValid = true;
-        HearingSubtype hearingSubType = appeal.getHearingSubtype();
-        if (hearingSubType == null
-                || !(hearingSubType.isWantsHearingTypeTelephone() || hearingSubType.isWantsHearingTypeVideo()
-                || hearingSubType.isWantsHearingTypeFaceToFace())) {
-            isValid = false;
-        }
-        return isValid;
+        return warnings;
     }
 
     private List<String> checkAdditionalEvidence(List<SscsDocument> sscsDocuments) {
         List<String> errors = new ArrayList<>();
-        sscsDocuments.stream().filter(sscsDocument -> sscsDocument.getValue().getDocumentFileName() == null)
+        sscsDocuments.stream()
+                .filter(sscsDocument -> sscsDocument.getValue().getDocumentFileName() == null)
                 .forEach(sscsDocument -> {
                     errors.add(
                             "There is a file attached to the case that does not have a filename, add a filename, e.g. filename.pdf");
                 });
 
-        sscsDocuments.stream().filter(sscsDocument -> sscsDocument.getValue().getDocumentLink() != null
+        sscsDocuments.stream()
+                .filter(sscsDocument -> sscsDocument.getValue().getDocumentLink() != null
                         && sscsDocument.getValue().getDocumentLink().getDocumentFilename() != null
                         && sscsDocument.getValue().getDocumentLink().getDocumentFilename().indexOf('.') == -1)
-                .forEach(sscsDocument -> {
-                    errors.add("There is a file attached to the case called "
-                            + sscsDocument.getValue().getDocumentLink().getDocumentFilename()
-                            + ", filenames must have extension, e.g. filename.pdf");
-                });
+                .forEach(sscsDocument ->
+                        errors.add("There is a file attached to the case called "
+                                + sscsDocument.getValue().getDocumentLink().getDocumentFilename()
+                                + ", filenames must have extension, e.g. filename.pdf")
+                );
         return errors;
     }
-
 }

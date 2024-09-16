@@ -38,5 +38,4 @@ public class AppealPostcodeHelper {
         return postcodeValidator.isValid(postcode, context)
             && postcodeValidator.isValidPostcodeFormat(postcode);
     }
-
 }

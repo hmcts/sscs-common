@@ -1,58 +1,82 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 
-import junitparams.JUnitParamsRunner;
+import static java.util.Collections.emptyMap;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.MockitoAnnotations.openMocks;
+import static uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType.EXCEPTION_RECORD;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_ORAL;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_PAPER;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON_1_CHILD_MAINTENANCE_NUMBER;
 
+import java.util.*;
+import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
+import uk.gov.hmcts.reform.sscs.model.dwp.DwpMappings;
+import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
+import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
-
-import java.util.*;
-
-import static java.util.Collections.emptyMap;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class AppealValidatorTest {
 
     private static final String VALID_MOBILE = "07832882849";
     private static final String VALID_POSTCODE = "CM13 0GD";
-    public static final String NO_LITERAL = "No";
-    private final List<String> titles = new ArrayList<>();
+    private final List<String> titles = List.of("Mr", "Mrs", "Ms");
     private final Map<String, Object> ocrCaseData = new HashMap<>();
-    private final List<OcrDataField> ocrList = new ArrayList<>();
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
-    @Mock
-    RegionalProcessingCenterService regionalProcessingCenterService;
+
     DwpAddressLookupService dwpAddressLookupService;
     @Mock
+    RegionalProcessingCenterService regionalProcessingCenterService;
+    @Mock
     private PostcodeValidator postcodeValidator;
+    private AddressValidator addressValidator;
+    private AppellantValidator appellantValidator;
+    private RepresentativeValidator repValidator;
+    private OtherPartyValidator otherPartyValidator;
     private AppealValidator validator;
     private MrnDetails defaultMrnDetails;
-    private CaseDetails caseDetails;
+
+    private ExceptionRecord exceptionRecordSscs1U;
+    private ExceptionRecord exceptionRecordSscs2;
+    private ExceptionRecord exceptionRecordSscs5;
 
     @Before
     public void setup() {
+        openMocks(this);
+        addressValidator = new AddressValidator(regionalProcessingCenterService, postcodeValidator);
+        appellantValidator = new AppellantValidator(addressValidator, EXCEPTION_RECORD, titles);
+        repValidator = new RepresentativeValidator(addressValidator, EXCEPTION_RECORD, titles);
+        otherPartyValidator = new OtherPartyValidator(EXCEPTION_RECORD, titles);
+        ReflectionTestUtils.setField(appellantValidator, "titles", List.of("Mr", "Mrs", "Ms"));
         dwpAddressLookupService = new DwpAddressLookupService();
-        caseDetails = mock(CaseDetails.class);
-        validator = new AppealValidator(regionalProcessingCenterService, dwpAddressLookupService, postcodeValidator, false);
+        validator = new AppealValidator(dwpAddressLookupService, addressValidator, EXCEPTION_RECORD, titles);
 
         defaultMrnDetails = MrnDetails.builder().dwpIssuingOffice("2").mrnDate("2018-12-09").build();
 
@@ -64,27 +88,37 @@ public class AppealValidatorTest {
         ocrCaseData.put("representative_address_line4", "county");
         ocrCaseData.put("office", "2");
 
-        given(regionalProcessingCenterService.getByPostcode(VALID_POSTCODE))
-            .willReturn(RegionalProcessingCenter.builder().address1("Address 1").name("Liverpool").build());
-
+        given(postcodeValidator.isValid(anyString(), isNull())).willReturn(true);
         given(postcodeValidator.isValidPostcodeFormat(anyString())).willReturn(true);
+        given(regionalProcessingCenterService.getByPostcode(VALID_POSTCODE))
+                .willReturn(RegionalProcessingCenter.builder().address1("Address 1").name("Liverpool").build());
 
+//        exceptionRecordSscs1U =
+//                ExceptionRecord.builder().ocrDataFields(ocrList).formType(FormType.SSCS1U.getId()).build();
+//
+//        exceptionRecordSscs2 =
+//                ExceptionRecord.builder().ocrDataFields(ocrList).formType(FormType.SSCS2.getId()).build();
+//        ocrCaseData.put("person1_child_maintenance_number", PERSON_1_CHILD_MAINTENANCE_NUMBER);
+//
+//        exceptionRecordSscs5 =
+//                ExceptionRecord.builder().ocrDataFields(ocrList).formType(FormType.SSCS5.getId()).build();
     }
 
-//    @Test
-//    @Parameters({"ESA", "JSA", "PIP", "DLA", "attendanceAllowance", "industrialInjuriesDisablement",
-//        "socialFund", "incomeSupport", "industrialDeathBenefit", "pensionCredit", "retirementPension"})
-//    public void givenAnAppealContainsAnInvalidOfficeForBenefitTypeOtherNotAutoOffice_thenAddAWarning(
-//        String benefitShortName) {
-//        defaultMrnDetails.setDwpIssuingOffice("Invalid Test Office");
-//
-//        List<String> warnings = validator.validateAppeal(ocrCaseData,
-//                buildMinimumAppealDataWithBenefitTypeAndFormType(benefitShortName, buildAppellant(false), true,
-//                        FormType.SSCS1U),
-//                false, false, false);
-//
-//        assertEquals("office is invalid", warnings.get(0));
-//    }
+    @Test
+    @Parameters({"ESA", "JSA", "PIP", "DLA", "attendanceAllowance", "industrialInjuriesDisablement",
+            "socialFund", "incomeSupport", "industrialDeathBenefit", "pensionCredit", "retirementPension"})
+    public void givenAnAppealContainsAnInvalidOfficeForBenefitTypeOtherNotAutoOffice_thenAddAWarning(
+            String benefitShortName) {
+        defaultMrnDetails.setDwpIssuingOffice("Invalid Test Office");
+
+        var errsWarns = validator.validateAppeal(
+                ocrCaseData,
+                buildMinimumAppealDataWithBenefitTypeAndFormType(benefitShortName, buildAppellant(false), true,
+                        FormType.SSCS1U),
+                false, false, false);
+
+        assertEquals("office is invalid", errsWarns.get("warnings").get(0));
+    }
 //
 //    @Test
 //    @Parameters({"carersAllowance", "bereavementBenefit", "maternityAllowance", "bereavementSupportPaymentScheme"})
@@ -2055,7 +2089,7 @@ public class AppealValidatorTest {
     }
 
     private Representative buildMinimumRep() {
-        return Representative.builder().hasRepresentative(NO_LITERAL).build();
+        return Representative.builder().hasRepresentative("No").build();
     }
 
     private Map<String, Object> buildMinimumAppealDataWithBenefitTypeAndFormType(String benefitCode,

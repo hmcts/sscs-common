@@ -61,18 +61,14 @@ public class PostcodeValidator implements ConstraintValidator<Postcode, String> 
         HttpEntity<byte[]> requestEntity = new HttpEntity<>(headers);
         try {
             ResponseEntity<byte[]> response = restTemplate
-                    .exchange(
-                            url,
-                            HttpMethod.GET,
-                            requestEntity,
-                            byte[].class,
-                            postcode
-                    );
-            logIfNotValidPostCode(postcode, response.getStatusCodeValue());
-            return response.getStatusCodeValue() == 200 && nonNull(response.getBody()) && contains(new String(response.getBody()), POSTCODE_RESULT);
+                    .exchange(url, HttpMethod.GET, requestEntity, byte[].class, postcode);
+
+            logIfNotValidPostCode(postcode, response.getStatusCode().value());
+            return response.getStatusCode().value() == 200
+                    && nonNull(response.getBody()) && contains(new String(response.getBody()), POSTCODE_RESULT);
 
         } catch (RestClientResponseException e) {
-            if (e.getRawStatusCode() != 200) {
+            if (e.getStatusCode().value() != 200) {
                 log.info("Post code search returned statusCode {} for postcode {}", e.getRawStatusCode(), postcode);
             }
             return false;
