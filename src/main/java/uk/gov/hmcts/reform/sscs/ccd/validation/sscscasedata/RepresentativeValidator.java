@@ -42,7 +42,7 @@ public class RepresentativeValidator extends PartyValidator {
         if (appeal.getRep() != null && StringUtils.equals(appeal.getRep().getHasRepresentative(), YES_LITERAL)) {
             final Contact repsContact = appeal.getRep().getContact();
             appendErrorsAndWarnings(errors, warnings,
-                    addressValidator.checkPersonAddress(appeal.getRep().getAddress(), null, validationType, ocrCaseData, caseData, appeal.getAppellant()));
+                    addressValidator.checkPersonAddress(appeal.getRep().getAddress(), REPRESENTATIVE_VALUE, validationType, ocrCaseData, caseData, appeal.getAppellant()));
 
             warnings.addAll(checkPersonDob(null, validationType, REPRESENTATIVE_VALUE, appeal.getAppellant()));
 

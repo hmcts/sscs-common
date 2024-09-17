@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.emptyList;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.DOB;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_FUTURE;
@@ -201,7 +202,7 @@ public class PartyValidator {
         if (identity != null) {
             return validateDate(validationType, personType, identity.getDob(), getWarningMessageName(personType, appellant) + DOB, true);
         }
-        return null;
+        return emptyList();
     }
 
     public static List<String> validateDate(ValidationType validationType, String personType,

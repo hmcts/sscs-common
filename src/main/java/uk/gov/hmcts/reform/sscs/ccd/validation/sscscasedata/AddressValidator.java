@@ -101,18 +101,18 @@ public class AddressValidator {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
         if (address != null && address.getPostcode() != null) {
-            if (postcodeValidator.isValid(address.getPostcode(), null)) {
-                boolean isValidPostcode = postcodeValidator.isValidPostcodeFormat(address.getPostcode());
+            if (postcodeValidator.isValidPostcodeFormat(address.getPostcode())) {
+                boolean isValidPostcode = postcodeValidator.isValid(address.getPostcode(), null);
                 if (!isValidPostcode) {
                     warnings.add(getMessageByValidationType(validationType, personType, getWarningMessageName(appellant) + ADDRESS_POSTCODE, IS_NOT_A_VALID_POSTCODE));
                 }
-                return isValidPostcode ? null : Map.of("warnings", warnings);
+                return isValidPostcode ? null : Map.of("errors", errors, "warnings", warnings);
             }
             errors.add(getMessageByValidationType(validationType, personType, getWarningMessageName(appellant) + ADDRESS_POSTCODE, "is not in a valid format"));
-            return Map.of("errors", errors);
+            return Map.of("errors", errors, "warnings", warnings);
         }
         warnings.add(getMessageByValidationType(validationType, personType, getWarningMessageName(appellant) + ADDRESS_POSTCODE, IS_EMPTY));
-        return Map.of("warnings", warnings);
+        return Map.of("errors", errors, "warnings", warnings);
     }
 
     public static Boolean doesAddressLine1Exist(Address address) {

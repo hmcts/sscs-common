@@ -37,6 +37,9 @@ import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidat
 @Slf4j
 public class AppealValidator {
 
+    static final String ERRORS = "errors";
+    static final String WARNINGS = "warnings";
+
     private final AppellantValidator appellantValidator;
     private final RepresentativeValidator repValidator;
     private final OtherPartyValidator otherPartyValidator;
@@ -86,7 +89,7 @@ public class AppealValidator {
             errors.addAll(checkAdditionalEvidence(lists));
         }
 
-        return Map.of("errors", errors, "warnings", warnings);
+        return Map.of(ERRORS, errors, WARNINGS, warnings);
     }
 
     private List<String> checkMrnDetails(Appeal appeal, Map<String, Object> ocrCaseData, boolean ignoreMrnValidation, FormType formType) {
