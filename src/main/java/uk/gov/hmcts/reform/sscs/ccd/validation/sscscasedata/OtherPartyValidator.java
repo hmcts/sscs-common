@@ -64,7 +64,7 @@ public class OtherPartyValidator extends PartyValidator {
         List<String> warnings = new ArrayList<>();
         if (name != null && !isTitleValid(name.getTitle())) {
             warnings.add(
-                    getMessageByValidationType(validationType, "", getWarningMessageName(OTHER_PARTY_VALUE, null) + TITLE, IS_INVALID));
+                    getMessageByValidationType(validationType, OTHER_PARTY_VALUE, getWarningMessageName(OTHER_PARTY_VALUE, null) + TITLE, IS_INVALID));
         }
 
         if (doesFirstNameExist(name) || doesLastNameExist(name)) {
@@ -77,7 +77,7 @@ public class OtherPartyValidator extends PartyValidator {
         return warnings;
     }
 
-    private List validateOtherPartyName(Name name) {
+    private List<String> validateOtherPartyName(Name name) {
         List<String> warnings = new ArrayList<>();
         if (!doesFirstNameExist(name)) {
             warnings.add(getMessageByValidationType(validationType, OTHER_PARTY_VALUE, getWarningMessageName(OTHER_PARTY_VALUE, null) + FIRST_NAME, IS_EMPTY));
