@@ -5,6 +5,8 @@ public class SscsConstants {
     private SscsConstants() {
         //
     }
+
+    public static final String ZONE_ID = "Europe/London";
     public static final String KEEP_HOME_ADDRESS_CONFIDENTIAL = "keep_home_address_confidential";
     public static final String AGREE_LESS_HEARING_NOTICE_LITERAL = "agree_less_hearing_notice";
     public static final String APPEAL_GROUNDS = "appeal_grounds";

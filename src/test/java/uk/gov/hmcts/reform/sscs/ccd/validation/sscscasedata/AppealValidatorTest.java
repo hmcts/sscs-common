@@ -419,7 +419,7 @@ public class AppealValidatorTest {
                 .hearingType(HEARING_TYPE_ORAL).build());
         pairs.put("bulkScanCaseReference", 123);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData, pairs, false, false, true);
+        var errsWarns = validator.validateAppeal(ocrCaseData, pairs, false, false, true);
 
         assertThat(errsWarns.get(WARNINGS))
                 .containsOnly("person1_title is empty",
@@ -446,7 +446,7 @@ public class AppealValidatorTest {
         ocrCaseData.put(HEARING_TYPE_VIDEO_LITERAL, "");
         ocrCaseData.put(HEARING_TYPE_FACE_TO_FACE_LITERAL, "");
 
-        var errsWarns = validator.validateAppeal( ocrCaseData, pairs, false, false, true);
+        var errsWarns = validator.validateAppeal(ocrCaseData, pairs, false, false, true);
 
         assertThat(errsWarns.get(WARNINGS))
                 .containsOnly("person1_title is empty",
@@ -474,7 +474,7 @@ public class AppealValidatorTest {
                 .hearingType(HEARING_TYPE_ORAL).build());
         pairs.put("bulkScanCaseReference", 123);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData, pairs, false, false, true);
+        var errsWarns = validator.validateAppeal(ocrCaseData, pairs, false, false, true);
 
         assertThat(errsWarns.get(WARNINGS))
                 .containsOnly(
@@ -513,7 +513,7 @@ public class AppealValidatorTest {
         appellant.getName().setTitle(null);
 
         var errsWarns =
-                validator.validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                validator.validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_title is empty", errsWarns.get(WARNINGS).get(0));
@@ -524,7 +524,7 @@ public class AppealValidatorTest {
         Appellant appellant = buildAppellant(false);
         appellant.getName().setTitle("Bla");
 
-        var errsWarns = validator.validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+        var errsWarns = validator.validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_title is invalid", errsWarns.get(WARNINGS).get(0));
@@ -536,7 +536,7 @@ public class AppealValidatorTest {
         appellant.getName().setTitle("Mr.");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -549,7 +549,7 @@ public class AppealValidatorTest {
         appellant.getName().setTitle("mr");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -562,7 +562,7 @@ public class AppealValidatorTest {
         appellant.getName().setTitle("Mr");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -575,7 +575,7 @@ public class AppealValidatorTest {
         appellant.getName().setFirstName(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_first_name is empty", errsWarns.get(WARNINGS).get(0));
@@ -587,7 +587,7 @@ public class AppealValidatorTest {
         appellant.getName().setLastName(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_last_name is empty", errsWarns.get(WARNINGS).get(0));
@@ -599,7 +599,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setLine1(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line1 is empty", errsWarns.get(WARNINGS).get(0));
@@ -611,7 +611,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setLine1("[my house");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line1 has invalid characters at the beginning", errsWarns.get(WARNINGS).get(0));
@@ -624,7 +624,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setTown(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -637,7 +637,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setTown("@invalid");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 has invalid characters at the beginning", errsWarns.get(WARNINGS).get(0));
@@ -652,7 +652,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setTown(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line2 is empty", errsWarns.get(WARNINGS).get(0));
@@ -667,7 +667,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setTown("@invalid");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line2 has invalid characters at the beginning", errsWarns.get(WARNINGS).get(0));
@@ -680,7 +680,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setCounty(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line4 is empty", errsWarns.get(WARNINGS).get(0));
@@ -693,7 +693,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setCounty("(Bad County");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line4 has invalid characters at the beginning", errsWarns.get(WARNINGS).get(0));
@@ -708,7 +708,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setCounty(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -723,7 +723,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setCounty("£bad County");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 has invalid characters at the beginning", errsWarns.get(WARNINGS).get(0));
@@ -738,7 +738,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setCounty(".");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -750,7 +750,7 @@ public class AppealValidatorTest {
         appellant.getAddress().setPostcode(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_postcode is empty", errsWarns.get(WARNINGS).get(0));
@@ -763,7 +763,7 @@ public class AppealValidatorTest {
         given(regionalProcessingCenterService.getByPostcode(VALID_POSTCODE)).willReturn(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_postcode is not a postcode that maps to a regional processing center",
@@ -777,7 +777,7 @@ public class AppealValidatorTest {
         given(regionalProcessingCenterService.getByPostcode(appellant.getAddress().getPostcode())).willReturn(rpc);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         Assert.assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -789,7 +789,7 @@ public class AppealValidatorTest {
         appellant.getIdentity().setNino(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_nino is empty", errsWarns.get(WARNINGS).get(0));
@@ -801,7 +801,7 @@ public class AppealValidatorTest {
         appellant.getIdentity().setNino("Bla");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_nino is invalid", errsWarns.get(WARNINGS).get(0));
@@ -813,7 +813,7 @@ public class AppealValidatorTest {
         appellant.getIdentity().setNino("BB000000B");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -826,7 +826,7 @@ public class AppealValidatorTest {
         appellant.getIdentity().setNino(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person2_nino is empty", errsWarns.get(WARNINGS).get(0));
@@ -842,7 +842,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().setIdentity(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_nino is empty", errsWarns.get(WARNINGS).get(0));
@@ -850,7 +850,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealDoesNotContainAnMrnDate_thenAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithMrn(MrnDetails.builder().dwpIssuingOffice("2").build(), buildAppellant(false),
                         true, FormType.SSCS1PE), false, false, true);
 
@@ -859,7 +859,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAnMrnDateInFuture_thenAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithMrn(MrnDetails.builder().dwpIssuingOffice("2").mrnDate("2148-10-10").build(),
                         buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
@@ -950,7 +950,7 @@ public class AppealValidatorTest {
         appellant.getIdentity().setDob("2148-10-10");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_dob is in future", errsWarns.get(WARNINGS).get(0));
@@ -962,7 +962,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getIdentity().setDob("2148-10-10");
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_dob is in future", errsWarns.get(WARNINGS).get(0));
@@ -972,7 +972,7 @@ public class AppealValidatorTest {
     public void givenAnAppealContainsAHearingExcludedDateInPast_thenAddAWarning() {
         Appellant appellant = buildAppellant(true);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithExcludedDate("2018-10-10", appellant, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("hearing_options_exclude_dates is in past", errsWarns.get(WARNINGS).get(0));
@@ -980,7 +980,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealDoesNotContainABenefitTypeDescription_thenAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType(null, buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(BENEFIT_TYPE_DESCRIPTION + " is empty", errsWarns.get(WARNINGS).get(0));
@@ -992,14 +992,14 @@ public class AppealValidatorTest {
         Map<String, Object> caseData = buildMinimumAppealDataWithBenefitType(null, buildAppellant(false), true, formType);
         caseData.put("formType", formType);
         var errsWarns =
-                validator.validateAppeal( ocrCaseData, caseData, false, false, true);
+                validator.validateAppeal(ocrCaseData, caseData, false, false, true);
 
         assertTrue(errsWarns.get(WARNINGS).isEmpty());
     }
 
     @Test
     public void givenAnAppealContainsAnInvalidBenefitTypeDescription_thenAddAnError() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         List<String> benefitNameList = new ArrayList<>();
@@ -1012,7 +1012,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAValidLowercaseBenefitTypeDescription_thenDoNotAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType(PIP.name().toLowerCase(), buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         List<String> benefitNameList = new ArrayList<>();
@@ -1026,7 +1026,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAValidBenefitTypeDescription_thenDoNotAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType(PIP.name(), buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1035,7 +1035,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAnInvalidAppellantMobileNumberLessThan10Digits_thenAddAnError() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", buildAppellantWithMobileNumber("07776156"), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1047,7 +1047,7 @@ public class AppealValidatorTest {
         representative.setContact(Contact.builder().build());
         representative.getContact().setMobile("0123456");
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1058,7 +1058,7 @@ public class AppealValidatorTest {
         Appellant appellant = buildAppellant(true);
         appellant.getContact().setMobile(VALID_MOBILE);
         appellant.setAppointee(buildAppointeeWithMobileNumber("07776156"));
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", appellant, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1069,7 +1069,7 @@ public class AppealValidatorTest {
         Appellant appellant = buildAppellant(true);
         appellant.getContact().setMobile("07776157");
         appellant.setAppointee(buildAppointeeWithMobileNumber("07776156"));
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", appellant, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1078,7 +1078,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAnInvalidAppellantMobileNumberGreaterThan11Digits_thenAddAnError() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", buildAppellantWithMobileNumber("077761560000"), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1090,7 +1090,7 @@ public class AppealValidatorTest {
         representative.setContact(Contact.builder().build());
         representative.getContact().setMobile("0123456789000");
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1102,7 +1102,7 @@ public class AppealValidatorTest {
         representative.setContact(Contact.builder().build());
         representative.getName().setTitle("%54 3434 ^7*");
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_title is invalid", errsWarns.get(WARNINGS).get(0));
@@ -1115,7 +1115,7 @@ public class AppealValidatorTest {
         representative.setContact(Contact.builder().build());
         representative.getName().setTitle(title);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1127,7 +1127,7 @@ public class AppealValidatorTest {
         Appellant appellant = buildAppellant(true);
         appellant.getContact().setMobile(VALID_MOBILE);
         appellant.setAppointee(buildAppointeeWithMobileNumber("077761560000"));
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", appellant, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1138,7 +1138,7 @@ public class AppealValidatorTest {
         Appellant appellant = buildAppellant(true);
         appellant.getContact().setMobile("077761560000");
         appellant.setAppointee(buildAppointeeWithMobileNumber("077761560000"));
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", appellant, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_mobile is invalid", errsWarns.get(ERRORS).get(0));
@@ -1147,7 +1147,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAValidAppellantMobileNumber_thenDoNotAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType(PIP.name(), buildAppellantWithMobileNumber(VALID_MOBILE), true, FormType.SSCS1PE),
                 false, false, true);
 
@@ -1158,7 +1158,7 @@ public class AppealValidatorTest {
     @Test
     public void givenAnAppealContainsAnInvalidPostcode_thenAddAnError() {
         given(postcodeValidator.isValidPostcodeFormat(anyString())).willReturn(false);
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType("Bla", buildAppellantWithPostcode("Bla Bla"), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("person1_postcode is not in a valid format", errsWarns.get(ERRORS).get(0));
@@ -1180,7 +1180,7 @@ public class AppealValidatorTest {
         given(postcodeValidator.isValidPostcodeFormat(anyString())).willReturn(true);
         given(postcodeValidator.isValid(anyString(), isNull())).willReturn(true);
         given(regionalProcessingCenterService.getByPostcode(anyString())).willReturn(RegionalProcessingCenter.builder().address1("Address 1").name("Liverpool").build());
-        var errsWarns = validator.validateAppeal( ocrCaseData, buildMinimumAppealDataWithBenefitType(PIP.name(), buildAppellantWithPostcode("W1 1LA"), true, FormType.SSCS1PE), false, false, true);
+        var errsWarns = validator.validateAppeal(ocrCaseData, buildMinimumAppealDataWithBenefitType(PIP.name(), buildAppellantWithPostcode("W1 1LA"), true, FormType.SSCS1PE), false, false, true);
 
         assertThat(errsWarns.get(WARNINGS).size()).isEqualTo(0);
         assertThat(errsWarns.get(ERRORS).size()).isEqualTo(0);
@@ -1188,7 +1188,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealContainsAValidPostcode_thenDoNotAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithBenefitType(PIP.name(), buildAppellantWithPostcode(VALID_POSTCODE), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1203,7 +1203,7 @@ public class AppealValidatorTest {
         representative.getName().setTitle(null);
         representative.setOrganisation(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(
@@ -1218,7 +1218,7 @@ public class AppealValidatorTest {
         representative.getName().setTitle(null);
         representative.setOrganisation(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1232,7 +1232,7 @@ public class AppealValidatorTest {
         representative.getName().setTitle(null);
         representative.setOrganisation(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1246,7 +1246,7 @@ public class AppealValidatorTest {
         representative.getName().setLastName(null);
         representative.setOrganisation(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(
@@ -1261,7 +1261,7 @@ public class AppealValidatorTest {
         representative.getName().setLastName(null);
         representative.getName().setTitle(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
@@ -1273,7 +1273,7 @@ public class AppealValidatorTest {
         Representative representative = buildRepresentative();
         representative.getAddress().setLine1(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_address_line1 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1285,7 +1285,7 @@ public class AppealValidatorTest {
         representative.getAddress().setLine2("101 Street");
         representative.getAddress().setTown(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1297,7 +1297,7 @@ public class AppealValidatorTest {
         representative.getAddress().setLine2("101 Street");
         representative.getAddress().setCounty(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_address_line4 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1310,7 +1310,7 @@ public class AppealValidatorTest {
         representative.getAddress().setLine2(null);
         representative.getAddress().setCounty(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1321,7 +1321,7 @@ public class AppealValidatorTest {
         Representative representative = buildRepresentative();
         representative.getAddress().setPostcode(null);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("representative_postcode is empty", errsWarns.get(WARNINGS).get(0));
@@ -1330,7 +1330,7 @@ public class AppealValidatorTest {
     @Test
     public void givenANullRepresentative_thenAddAnError() {
         Representative representative = null;
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(1, errsWarns.get(ERRORS).size());
@@ -1342,7 +1342,7 @@ public class AppealValidatorTest {
     public void givenARepresentativeWithHasRepresentativeFieldNotSet_thenAddAnError() {
         Representative representative = buildRepresentative();
         representative.setHasRepresentative(null);
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithRepresentative(buildAppellant(false), representative, true, FormType.SSCS1PE), false, false, true);
 
         assertEquals(1, errsWarns.get(ERRORS).size());
@@ -1355,7 +1355,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getName().setTitle(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_title is empty", errsWarns.get(WARNINGS).get(0));
@@ -1367,7 +1367,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getName().setFirstName(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_first_name is empty", errsWarns.get(WARNINGS).get(0));
@@ -1379,7 +1379,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getName().setLastName(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_last_name is empty", errsWarns.get(WARNINGS).get(0));
@@ -1391,7 +1391,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setLine1(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line1 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1404,7 +1404,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setTown(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1419,7 +1419,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setTown(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line2 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1432,7 +1432,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setCounty(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line4 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1447,7 +1447,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setCounty(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_address_line3 is empty", errsWarns.get(WARNINGS).get(0));
@@ -1459,7 +1459,7 @@ public class AppealValidatorTest {
         appellant.getAppointee().getAddress().setPostcode(null);
 
         var errsWarns = validator
-                .validateAppeal( ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
+                .validateAppeal(ocrCaseData, buildMinimumAppealData(appellant, true, FormType.SSCS1PE),
                         false, false, true);
 
         assertEquals("person1_postcode is empty", errsWarns.get(WARNINGS).get(0));
@@ -1467,7 +1467,7 @@ public class AppealValidatorTest {
 
     @Test
     public void givenAnAppealWithNoHearingType_thenAddAWarning() {
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithHearingType(null, buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("is_hearing_type_oral and/or is_hearing_type_paper is invalid", errsWarns.get(WARNINGS).get(0));
@@ -1477,7 +1477,7 @@ public class AppealValidatorTest {
     public void givenAllMandatoryFieldsForAnAppellantExists_thenDoNotAddAWarning() {
         Map<String, Object> pairs = buildMinimumAppealData(buildAppellant(false), true, FormType.SSCS1PE);
 
-        var errsWarns = validator.validateAppeal( ocrCaseData, pairs, false, false, true);
+        var errsWarns = validator.validateAppeal(ocrCaseData, pairs, false, false, true);
 
         assertEquals(0, errsWarns.get(WARNINGS).size());
     }
@@ -1583,7 +1583,7 @@ public class AppealValidatorTest {
     public void givenAnAppealWithValidHearingPhoneNumber_thenDoNotAddWarning(String number) {
         HearingSubtype hearingSubtype = HearingSubtype.builder().hearingTelephoneNumber(number).build();
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithHearingSubtype(hearingSubtype, buildAppellant(false),
                         true, FormType.SSCS1PE), false, false, true);
 
@@ -1595,7 +1595,7 @@ public class AppealValidatorTest {
     public void givenAnAppealWithAnInvalidHearingPhoneNumber_thenAddWarning() {
         HearingSubtype hearingSubtype = HearingSubtype.builder().hearingTelephoneNumber("01222").build();
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithHearingSubtype(hearingSubtype, buildAppellant(false), true, FormType.SSCS1PE),
                 false, false, true);
 
@@ -1625,7 +1625,7 @@ public class AppealValidatorTest {
         HearingSubtype hearingSubtype =
                 HearingSubtype.builder().wantsHearingTypeTelephone("Yes").hearingTelephoneNumber(null).build();
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithHearingSubtype(hearingSubtype, buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("hearing_telephone_number has not been provided but data indicates hearing telephone is required",
@@ -1652,7 +1652,7 @@ public class AppealValidatorTest {
         HearingSubtype hearingSubtype =
                 HearingSubtype.builder().wantsHearingTypeVideo("Yes").hearingVideoEmail(null).build();
 
-        var errsWarns = validator.validateAppeal( ocrCaseData,
+        var errsWarns = validator.validateAppeal(ocrCaseData,
                 buildMinimumAppealDataWithHearingSubtype(hearingSubtype, buildAppellant(false), true, FormType.SSCS1PE), false, false, true);
 
         assertEquals("hearing_video_email has not been provided but data indicates hearing video is required",
