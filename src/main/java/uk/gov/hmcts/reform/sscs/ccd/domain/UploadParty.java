@@ -11,7 +11,7 @@ public enum UploadParty {
     CTSC("ctsc", "CTSC clerk"),
     @JsonProperty("appellant")
     APPELLANT("appellant", "Appellant"),
-    @JsonProperty("appointee")
+    @JsonProperty("appellant")
     APPOINTEE("appointee", "Appointee"),
     @JsonProperty("rep")
     REP("rep", "Representative"),
