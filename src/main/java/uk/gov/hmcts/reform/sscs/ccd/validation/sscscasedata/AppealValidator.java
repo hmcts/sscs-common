@@ -5,7 +5,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.*;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
+import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ExcludeDate;
+import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
@@ -108,7 +113,7 @@ public class AppealValidator {
             Optional<OfficeMapping> officeMapping =
                     dwpAddressLookupService.getDwpMappingByOffice(appeal.getBenefitType().getCode(), dwpIssuingOffice);
 
-            if (!officeMapping.isPresent()) {
+            if (officeMapping.isEmpty()) {
                 log.info("DwpHandling handling office is not valid");
                 warnings.add(getMessageByValidationType(validationType,"",ISSUING_OFFICE, IS_INVALID));
             }
@@ -193,10 +198,8 @@ public class AppealValidator {
         List<String> errors = new ArrayList<>();
         sscsDocuments.stream()
                 .filter(sscsDocument -> sscsDocument.getValue().getDocumentFileName() == null)
-                .forEach(sscsDocument -> {
-                    errors.add(
-                            "There is a file attached to the case that does not have a filename, add a filename, e.g. filename.pdf");
-                });
+                .forEach(sscsDocument -> errors.add(
+                        "There is a file attached to the case that does not have a filename, add a filename, e.g. filename.pdf"));
 
         sscsDocuments.stream()
                 .filter(sscsDocument -> sscsDocument.getValue().getDocumentLink() != null

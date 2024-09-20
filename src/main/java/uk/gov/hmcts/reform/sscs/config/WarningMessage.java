@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.config;
 
 import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
 
+import static uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType.EXCEPTION_RECORD;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.*;
 
 public enum WarningMessage {
@@ -60,8 +61,8 @@ public enum WarningMessage {
     PERSON1_CHILD_MAINTENANCE_NUMBER("person1_child_maintenance_number", "Child maintenance number"),
     APPELLANT_PARTY_NAME("is_paying_parent, is_receiving_parent, is_another_party and other_party_details", "Appellant role and/or description"),
     APPELLANT_PARTY_DESCRIPTION("other_party_details", "Appellant role and/or description");
-    private String exceptionRecordMessage;
-    private String syaAppealMessage;
+    private final String exceptionRecordMessage;
+    private final String syaAppealMessage;
 
     WarningMessage(String exceptionRecordMessage, String syaAppealMessage) {
         this.exceptionRecordMessage = exceptionRecordMessage;
@@ -69,7 +70,7 @@ public enum WarningMessage {
     }
 
     public static String getMessageByValidationType(ValidationType validationType, String personType, String name, String endMessage) {
-        String startMessage =  validationType == ValidationType.EXCEPTION_RECORD
+        String startMessage =  validationType == EXCEPTION_RECORD
                 ? personType + valueOf(name.toUpperCase()).exceptionRecordMessage
                 : valueOf(name.toUpperCase()).syaAppealMessage;
         return endMessage != null ? startMessage + " " + endMessage : startMessage;

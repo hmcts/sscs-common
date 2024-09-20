@@ -23,6 +23,11 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_PAPER;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_TELEPHONE_LITERAL;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_VIDEO_LITERAL;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import junitparams.converters.Nullable;
@@ -60,12 +65,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocumentDetails;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RunWith(JUnitParamsRunner.class)
 public class AppealValidatorTest {
