@@ -4,6 +4,8 @@ import static java.util.Optional.ofNullable;
 import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.appendErrorsAndWarnings;
 import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.getPerson1OrPerson2;
 import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.getWarningMessageName;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.helper.SscsDataHelper.findBooleanExists;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.helper.SscsDataHelper.getField;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE1;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE2;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE3;
@@ -12,8 +14,6 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_POSTCODE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HAS_INVALID_ADDRESS;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_EMPTY;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.findBooleanExists;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
 
 import java.util.ArrayList;
 import java.util.List;

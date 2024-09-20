@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import static java.util.Collections.emptyList;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.helper.SscsDataHelper.getField;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.DOB;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_FUTURE;
@@ -9,7 +10,6 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MOBILE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.OTHER_PARTY_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.REPRESENTATIVE_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
