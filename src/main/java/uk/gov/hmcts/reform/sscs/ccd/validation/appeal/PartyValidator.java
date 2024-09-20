@@ -1,5 +1,22 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
+import static java.util.Collections.emptyList;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.DOB;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_FUTURE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_PAST;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MOBILE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.OTHER_PARTY_VALUE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.REPRESENTATIVE_VALUE;
+import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
+import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -12,24 +29,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Contact;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingSubtype;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static java.util.Collections.emptyList;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.DOB;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_FUTURE;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_PAST;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MOBILE;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.OTHER_PARTY_VALUE;
-import static uk.gov.hmcts.reform.sscs.config.SscsConstants.REPRESENTATIVE_VALUE;
-import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
-import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
 
 @Component
 @Slf4j

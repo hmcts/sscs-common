@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import static java.util.Collections.emptyMap;
 import static junit.framework.TestCase.assertFalse;
@@ -13,8 +13,8 @@ import static org.mockito.MockitoAnnotations.openMocks;
 import static uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType.EXCEPTION_RECORD;
 import static uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType.SYA_APPEAL;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.AppealValidator.ERRORS;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.AppealValidator.WARNINGS;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.AppealValidator.ERRORS;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.AppealValidator.WARNINGS;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.BENEFIT_TYPE_DESCRIPTION;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HAS_REPRESENTATIVE_FIELD_MISSING;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_TYPE_FACE_TO_FACE_LITERAL;
@@ -62,6 +62,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Representative;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Role;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocumentDetails;
+import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;

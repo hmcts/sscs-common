@@ -1,5 +1,6 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.helper;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -8,8 +9,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appointee;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

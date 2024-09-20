@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +9,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appointee;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
+import uk.gov.hmcts.reform.sscs.ccd.validation.helper.AppealPostcodeHelper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;

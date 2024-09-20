@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import java.time.LocalDate;
 import java.util.Set;

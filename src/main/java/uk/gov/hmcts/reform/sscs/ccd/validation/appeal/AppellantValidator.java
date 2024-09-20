@@ -1,20 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
-
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
-import uk.gov.hmcts.reform.sscs.ccd.domain.AppellantRole;
-import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingSubtype;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Role;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE1;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE3;
@@ -36,6 +20,22 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.YES_LITERAL;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.APPELLANT_PARTY_DESCRIPTION;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.APPELLANT_PARTY_NAME;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
+import uk.gov.hmcts.reform.sscs.ccd.domain.AppellantRole;
+import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingSubtype;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Role;
+import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 
 @Component
 @Slf4j

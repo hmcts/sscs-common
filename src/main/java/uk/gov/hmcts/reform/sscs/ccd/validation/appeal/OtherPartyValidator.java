@@ -1,20 +1,8 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
-import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.AddressValidator.doesAddressLine1Exist;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.AddressValidator.doesAddressPostcodeExist;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.AddressValidator.doesAddressTownExist;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator.doesAddressLine1Exist;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator.doesAddressPostcodeExist;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator.doesAddressTownExist;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE1;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE2;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_POSTCODE;
@@ -25,6 +13,17 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.LAST_NAME;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.OTHER_PARTY_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.TITLE;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
+import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
 
 @Component
 @Slf4j

@@ -1,29 +1,10 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
-import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ExcludeDate;
-import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument;
-import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
-import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.appendErrorsAndWarnings;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.doesMrnDateExist;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.getDwpIssuingOffice;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.isValidHearingSubType;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.validateDate;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.appendErrorsAndWarnings;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.doesMrnDateExist;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.getDwpIssuingOffice;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.isValidHearingSubType;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.validateDate;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ARE_EMPTY;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.BENEFIT_TYPE_DESCRIPTION;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HEARING_OPTIONS_EXCLUDE_DATES_LITERAL;
@@ -37,6 +18,25 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MRN_DATE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON_1_CHILD_MAINTENANCE_NUMBER;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
+import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ExcludeDate;
+import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument;
+import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
+import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
+import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
 @Component
 @Slf4j

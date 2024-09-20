@@ -1,22 +1,9 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
-import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
-import uk.gov.hmcts.reform.sscs.ccd.validation.address.PostcodeValidator;
-import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
 import static java.util.Optional.ofNullable;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.appendErrorsAndWarnings;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.getPerson1OrPerson2;
-import static uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata.PartyValidator.getWarningMessageName;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.appendErrorsAndWarnings;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.getPerson1OrPerson2;
+import static uk.gov.hmcts.reform.sscs.ccd.validation.appeal.PartyValidator.getWarningMessageName;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE1;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE2;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ADDRESS_LINE3;
@@ -27,6 +14,17 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_EMPTY;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
 import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.findBooleanExists;
 import static uk.gov.hmcts.reform.sscs.utility.SscsOcrDataUtil.getField;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
+import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
+import uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService;
 
 @Component
 public class AddressValidator {

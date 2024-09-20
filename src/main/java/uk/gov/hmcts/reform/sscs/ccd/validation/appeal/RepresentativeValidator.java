@@ -1,16 +1,4 @@
-package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
-
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Contact;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package uk.gov.hmcts.reform.sscs.ccd.validation.appeal;
 
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.ARE_EMPTY;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.HAS_REPRESENTATIVE_FIELD_MISSING;
@@ -20,6 +8,18 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.REPRESENTATIVE_VALUE
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.TITLE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.YES_LITERAL;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Contact;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
+import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 
 @Component
 @Slf4j
