@@ -8,6 +8,8 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_FUTURE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_IN_PAST;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.MOBILE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.OTHER_PARTY_VALUE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON1_VALUE;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON2_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.REPRESENTATIVE_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.WarningMessage.getMessageByValidationType;
 
@@ -47,9 +49,6 @@ public class PartyValidator {
                     +
                     "\\d{5}\\)?[\\s-]?\\d{4,5}|8(?:00[\\s-]?11[\\s-]?11|45[\\s-]?46[\\s-]?4\\d))(?:(?:[\\s-]?(?:x|ext\\.?\\s?|"
                     + "\\#)\\d+)?)$";
-    private static final String PERSON1_VALUE = "person1";
-    private static final String PERSON2_VALUE = "person2";
-
     ValidationType validationType;
     List<String> titles;
 

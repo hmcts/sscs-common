@@ -14,6 +14,7 @@ import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_INVALID;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.IS_MISSING;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.LAST_NAME;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.NINO;
+import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PERSON1_VALUE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.PHONE_SELECTED_NOT_PROVIDED;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.TITLE;
 import static uk.gov.hmcts.reform.sscs.config.SscsConstants.YES_LITERAL;
@@ -43,8 +44,6 @@ public class AppellantValidator extends PartyValidator {
     
     private static final String NINO_REGEX =
             "^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)\\s?(?:[A-CEGHJ-PR-TW-Z]\\s?[A-CEGHJ-NPR-TW-Z])\\s?(?:\\d\\s?){6}([A-D]|\\s)\\s?$";
-    public static final String PERSON1_VALUE = "person1";
-
     private final AddressValidator addressValidator;
 
     public AppellantValidator(AddressValidator addressValidator,
