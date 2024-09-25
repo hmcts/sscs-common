@@ -38,9 +38,12 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Service
 @Slf4j
 public class AirLookupService {
-    protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham").build();
-    public static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup22.xlsx";
-    public static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
+    protected static final AirlookupBenefitToVenue DEFAULT_VENUE =
+            AirlookupBenefitToVenue.builder()
+                    .pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham")
+                    .build();
+    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.1.xlsx";
+    static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 7;
     private static final int ESA_UC_COLUMN = 3;
@@ -257,8 +260,7 @@ public class AirLookupService {
         AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        String retorno = benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
-        return retorno;
+        return benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
     }
 
     public List<String> lookupAirVenueNamesByBenefitCode(@NonNull Benefit benefit) {
