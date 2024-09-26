@@ -1,13 +1,10 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.lang.String.format;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -28,13 +25,8 @@ public class VenueDataLoaderTest {
     private VenueDataLoader venueDataLoader;
 
     private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
-        "517400", "449358", "563156",
-        "45900", "744412", "572158",
-        "288691", "562808", "720624",
-        "427519", "366796", "999974",
-        "107581", "197852", "495952",
-        "852649", "491107", "195520",
-        "641199", "574546");
+            "517400", "449358", "563156", "45900", "744412", "572158", "288691", "562808", "720624", "427519",
+            "366796", "999974", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
     @Before
     public void setUp() {
@@ -53,7 +45,7 @@ public class VenueDataLoaderTest {
         "1196", "1197", "1198", "1199", "1200", "1201", "1202", "1203", "1207", "1208", "1212", "1214", "1217",
         "1218", "1220", "1224", "1232", "1239", "1253", "1261"})
     public void venuesShouldNotBeActive(String id) {
-        assertThat(venueDataLoader.getVenueDetailsMap().get(id).getActive(), is("No"));
+        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("No"));
     }
 
     @Test
@@ -69,24 +61,31 @@ public class VenueDataLoaderTest {
         "1229", "1230", "1233", "1234", "1235", "1236", "1237", "1238", "1240", "1241", "1248", "1249",
         "1254", "1250", "1256", "1257", "1259"})
     public void venuesShouldBeActiveAndHaveAGoogleLink(String id) {
-        assertThat(venueDataLoader.getVenueDetailsMap().get(id).getActive(), is("Yes"));
-        assertThat(venueDataLoader.getVenueDetailsMap().get(id).getUrl(), containsString("https://"));
-        assertThat(venueDataLoader.getVenueDetailsMap().get(id).getUrl(), containsString("goo"));
+        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("Yes"));
+        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getUrl().contains("https://"));
+        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getUrl().contains("goo"));
     }
 
     @Test
     public void venuesShouldEitherBeActiveOrNotActive() {
-        venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails -> {
-            assertThat(format("%s is incorrect", venueDetails.getVenueId()), venueDetails.getActive(), containsString(venueDetails.getComments().isEmpty() ? "Yes" : "No"));
-        });
+        venueDataLoader.getVenueDetailsMap().values()
+                .forEach(venueDetails ->
+                        assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
+                                venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"))
+                );
     }
 
     @Test
     public void venuesActiveShouldHaveAGoogleLink() {
-        venueDataLoader.getVenueDetailsMap().values().stream().filter(venueDetails -> venueDetails.getActive().equals("Yes")).forEach(venueDetails -> {
-            assertThat(format("%s is incorrect", venueDetails.getVenueId()), venueDetails.getUrl(), containsString("https://"));
-            assertThat(format("%s is incorrect", venueDetails.getVenueId()), venueDetails.getUrl(), containsString("goo"));
-        });
+        venueDataLoader.getVenueDetailsMap().values()
+                .stream()
+                .filter(venueDetails -> venueDetails.getActive().equals("Yes"))
+                .forEach(venueDetails -> {
+                    assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
+                            venueDetails.getUrl().contains("https://"));
+                    assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
+                            venueDetails.getUrl().contains("goo"));
+                });
     }
 
     @Test
@@ -96,7 +95,7 @@ public class VenueDataLoaderTest {
 
         long adjustForDuplicateSc238 = 2;
 
-        assertThat(maxSize, is(distinctSize + adjustForDuplicateSc238));
+        assertTrue(maxSize == distinctSize + adjustForDuplicateSc238);
     }
 
     @Test
