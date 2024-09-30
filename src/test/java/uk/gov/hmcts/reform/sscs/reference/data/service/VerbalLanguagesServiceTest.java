@@ -12,17 +12,17 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 
 public class VerbalLanguagesServiceTest {
 
-    VerbalLanguagesService verbalLanguages;
+    VerbalLanguagesService languagesService;
 
     @Before
     public void setup() {
-        verbalLanguages = new VerbalLanguagesService();
+        languagesService = new VerbalLanguagesService();
     }
 
     @DisplayName("There should be no duplicate Verbal Languages")
     @Test
     public void testVerbalLanguagesDuplicates() {
-        List<Language> languagesList = verbalLanguages.getVerbalLanguages();
+        List<Language> languagesList = languagesService.getVerbalLanguages();
         Set<Language> result = new HashSet<>(languagesList);
 
         assertThat(result)
@@ -34,7 +34,7 @@ public class VerbalLanguagesServiceTest {
     @DisplayName("There should be no duplicates in the reference lists")
     @Test
     public void testVerbalLanguagesReferenceListDuplicates() {
-        List<String> referencesList = verbalLanguages.getVerbalLanguages()
+        List<String> referencesList = languagesService.getVerbalLanguages()
                 .stream()
                 .map(Language::getReferenceList)
                 .flatMap(Collection::stream)

@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static java.util.Objects.nonNull;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +32,24 @@ public class Language implements ReferenceList {
     public Language(String reference, String dialectReference) {
         this.reference = reference;
         this.dialectReference = dialectReference;
+    }
+
+    public String getFullReference() {
+        if (nonNull(dialectReference)) {
+            reference = String.format("%s-%s", reference, dialectReference);
+        }
+
+        if (nonNull(mrdReference)) {
+            reference = mrdReference;
+        }
+        return reference;
+    }
+
+    public String getName() {
+        if (nonNull(dialectReference)) {
+            return dialectEn;
+        }
+        return nameEn;
     }
 
     @Override
