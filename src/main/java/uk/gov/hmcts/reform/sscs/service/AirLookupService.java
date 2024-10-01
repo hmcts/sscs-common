@@ -40,7 +40,12 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 public class AirLookupService {
     protected static final AirlookupBenefitToVenue DEFAULT_VENUE =
             AirlookupBenefitToVenue.builder()
-                    .pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham")
+                    .pipVenue("Birmingham")
+                    .jsaVenue("Birmingham")
+                    .esaOrUcVenue("Birmingham")
+                    .iidbVenue("Birmingham")
+                    .csaVenue("Birmingham")
+                    .ibcVenue("Birmingham")
                     .build();
     static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.2.xlsx";
     static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
@@ -161,7 +166,6 @@ public class AirLookupService {
         Cell iidbCell = row.getCell(IIDB_COLUMN);
         Cell csaCell = row.getCell(CSA_COLUMN);
         Cell ibcCell = row.getCell(IBC_COLUMN);
-        //TODO: do we need another column for overseas port of entry
         AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
                 .esaOrUcVenue(getStringValue(esaOrUcCell))
                 .jsaVenue(getStringValue(jsaCell))
