@@ -37,6 +37,6 @@ public class DwpMappings {
     private OfficeMapping thirtyHoursFreeChildcare;
     private OfficeMapping guaranteedMinimumPension;
     private OfficeMapping nationalInsuranceCredits;
-
+    private OfficeMapping infectedBloodAppeal;
 }
 

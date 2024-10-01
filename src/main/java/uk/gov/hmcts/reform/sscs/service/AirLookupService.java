@@ -42,15 +42,16 @@ public class AirLookupService {
             AirlookupBenefitToVenue.builder()
                     .pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham")
                     .build();
-    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.1.xlsx";
+    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.2.xlsx";
     static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
-    private static final int REGIONAL_CENTRE_COLUMN = 7;
+    private static final int REGIONAL_CENTRE_COLUMN = 8;
     private static final int ESA_UC_COLUMN = 3;
     private static final int JSA_COLUMN = 5;
     private static final int PIP_COLUMN = 6;
     private static final int IIDB_COLUMN = 1;
     private static final int CSA_COLUMN = 2;
+    private static final int IBC_COLUMN = 7;
     private Map<String, String> lookupRegionalCentreByPostcode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
@@ -159,12 +160,15 @@ public class AirLookupService {
         Cell pipCell = row.getCell(PIP_COLUMN);
         Cell iidbCell = row.getCell(IIDB_COLUMN);
         Cell csaCell = row.getCell(CSA_COLUMN);
+        Cell ibcCell = row.getCell(IBC_COLUMN);
+        //TODO: do we need another column for overseas port of entry
         AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
                 .esaOrUcVenue(getStringValue(esaOrUcCell))
                 .jsaVenue(getStringValue(jsaCell))
                 .pipVenue(getStringValue(pipCell))
                 .iidbVenue(getStringValue(iidbCell))
                 .csaVenue(getStringValue(csaCell))
+                .ibcVenue(getStringValue(ibcCell))
                 .build();
         lookupAirVenueNameByPostcode.put(postcode, airlookupBenefitToVenue);
     }
@@ -288,5 +292,9 @@ public class AirLookupService {
 
     public String getCsaVenue(AirlookupBenefitToVenue venue) {
         return venue.getCsaVenue();
+    }
+
+    public String getInfectedBloodCompensationVenue(AirlookupBenefitToVenue venue) {
+        return venue.getIbcVenue();
     }
 }

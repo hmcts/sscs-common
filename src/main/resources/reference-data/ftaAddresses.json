@@ -1004,5 +1004,21 @@
       "line4": "Preston",
       "postCode": "PR1 4AT"
     }
+  },
+  "infectedBloodAppeal": {
+    "code": "IBCA",
+    "isDefault": true,
+    "mapping": {
+      "ccd": "IBCA",
+      "gaps": "IBCA",
+      "dwpRegionCentre": "TCO Preston Appeals Team"
+    },
+    "address": {
+      "line1": "IBCA",
+      "line2": "Floor 3, Block 2",
+      "line3": "Benton Park View",
+      "line4": "Newcastle upon Tyne",
+      "postCode": "NE98 1ZZ"
+    }
   }
 }

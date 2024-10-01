@@ -12,6 +12,7 @@ public class AirlookupBenefitToVenue {
     private String jsaVenue;
     private String iidbVenue;
     private String csaVenue;
+    private String ibcVenue;
 
 
     public String getPipVenue() {
@@ -32,5 +33,9 @@ public class AirlookupBenefitToVenue {
 
     public String getCsaVenue() {
         return csaVenue.trim();
+    }
+
+    public String getIbcVenue() {
+        return ibcVenue.trim();
     }
 }
