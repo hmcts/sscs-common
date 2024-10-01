@@ -18,7 +18,7 @@ public enum SessionCategory {
     CATEGORY_05(5, List.of(MQPM1), "Judge & Specialist Doctor"),
     CATEGORY_06(6, List.of(MQPM1, MQPM2), "Judge & Two Specialist Doctors"),
     CATEGORY_07(7, List.of(), "Judge and Specialist Member"),
-    CATEGORY_08(8, List.of(), "");
+    CATEGORY_08(8, List.of(), ""); //TODO - await name from PO
 
 
     private final int sessionCategoryCode;
