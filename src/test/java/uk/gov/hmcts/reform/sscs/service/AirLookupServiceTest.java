@@ -48,6 +48,20 @@ public class AirLookupServiceTest {
     }
 
     @Test
+    @Parameters({
+            "GB000434, Scotland",
+            "GB000411, Scotland",
+            "GB000033, Bradford",
+            " GB000052, Bradford",
+            "GB000244 , Bradford",
+            "GB003060 , Bradford",
+            "Gb000500, Bradford"
+    })
+    public void lookupPortOfEntryCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
+        assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(portOfEntryCode));
+    }
+
+    @Test
     public void checkAirPostcodeWithNoPipReturnsBirmingham() {
         //n1w1 is a sorting office
         assertEquals(DEFAULT_VENUE, airLookupService.lookupAirVenueNameByPostCode("n1w1"));
@@ -62,6 +76,12 @@ public class AirLookupServiceTest {
     public void lookupAirVenueNameByPostCodeReturnsNonNullValuesForAllBenefits() {
         stream(Benefit.values())
                 .forEach(benefit -> assertNotNull(airLookupService.lookupAirVenueNameByPostCode("n1w1 wal", BenefitType.builder().code(benefit.getShortName()).build())));
+    }
+
+    @Test
+    public void lookupAirVenueNameByPortOfEntryCodeReturnsNonNullValuesForAllBenefits() {
+        stream(Benefit.values())
+                .forEach(benefit -> assertNotNull(airLookupService.lookupAirVenueNameByPostCode("GB000150", BenefitType.builder().code(benefit.getShortName()).build())));
     }
 
     @Test

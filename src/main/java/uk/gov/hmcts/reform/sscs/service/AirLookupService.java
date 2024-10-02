@@ -62,7 +62,9 @@ public class AirLookupService {
     private Map<String, Integer> lookupVenueIdByAirVenueName;
 
     public String lookupRegionalCentre(String postcode) {
-        if (isFullPostCodeGiven(postcode)) {
+        if (isPortOfEntryCode(postcode)) {
+            return lookupRegionalCentreByOutcode(postcode.toLowerCase().trim());
+        } else if (isFullPostCodeGiven(postcode)) {
             String outcode = trimLastThreeCharsForOutcode(postcode);
             return lookupRegionalCentreByOutcode(outcode);
         }
@@ -80,6 +82,10 @@ public class AirLookupService {
 
     private boolean isFullPostCodeGiven(String postcode) {
         return postcode.length() >= 5;
+    }
+
+    private boolean isPortOfEntryCode(String postcode) {
+        return postcode.toLowerCase().startsWith("gb");
     }
 
     /**
