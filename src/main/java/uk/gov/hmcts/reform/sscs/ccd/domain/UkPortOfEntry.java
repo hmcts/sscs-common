@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum UkPortOfEntry {
 
     ABERDEEN("Aberdeen", "Sea traffic", "GB000434"),
@@ -101,17 +104,5 @@ public enum UkPortOfEntry {
         this.label = label;
         this.trafficType = trafficType;
         this.locationCode = locationCode;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public String getTrafficType() {
-        return trafficType;
-    }
-
-    public String getLocationCode() {
-        return locationCode;
     }
 }
