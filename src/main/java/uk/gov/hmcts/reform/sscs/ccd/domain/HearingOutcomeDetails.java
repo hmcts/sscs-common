@@ -15,6 +15,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOutcomeDetails {
     private String completedHearingId;
-    private String caseOutcome;
+    private String hearingOutcome;
     private YesNo didPoAttend;
 }
