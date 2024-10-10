@@ -64,6 +64,7 @@ public class SscsCaseData implements CaseData {
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
+    private List<HearingOutcome> hearingOutcomes;
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
@@ -495,6 +496,10 @@ public class SscsCaseData implements CaseData {
 
         if (getHearings() != null) {
             getHearings().sort(Collections.reverseOrder());
+        }
+
+        if (getHearingOutcomes() != null) {
+            getHearingOutcomes().sort(Collections.reverseOrder());
         }
 
         if (getEvidence() != null && getEvidence().getDocuments() != null) {
