@@ -35,14 +35,15 @@ public class Language implements ReferenceList {
     }
 
     public String getFullReference() {
+        String fullReference = reference;
         if (nonNull(dialectReference)) {
-            reference = String.format("%s-%s", reference, dialectReference);
+            fullReference = String.format("%s-%s", reference, dialectReference);
         }
 
         if (nonNull(mrdReference)) {
-            reference = mrdReference;
+            fullReference = mrdReference;
         }
-        return reference;
+        return fullReference;
     }
 
     public String getName() {
