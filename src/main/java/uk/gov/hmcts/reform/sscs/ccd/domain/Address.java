@@ -36,9 +36,8 @@ public class Address {
     private String postcodeLookup;
     private String postcodeAddress;
     private UkPortOfEntry portOfEntry;
-    @StringNoSpecialCharacters(fieldName = "Country", groups = {UniversalCreditValidationGroup.class})
     private String country;
-    private YesNo isLivingInUk;
+    private YesNo isInUk;
 
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
@@ -50,7 +49,7 @@ public class Address {
                    @JsonProperty("postcodeAddress") String postcodeAddress,
                    @JsonProperty("ukPortOfEntry") UkPortOfEntry portOfEntry,
                    @JsonProperty("country") String country,
-                   @JsonProperty("inUk") YesNo isLivingInUk) {
+                   @JsonProperty("inUk") YesNo isInUk) {
         this.line1 = line1;
         this.line2 = line2;
         this.town = town;
@@ -60,12 +59,12 @@ public class Address {
         this.postcodeAddress = postcodeAddress;
         this.portOfEntry = portOfEntry;
         this.country = country;
-        this.isLivingInUk = isLivingInUk;
+        this.isInUk = isInUk;
     }
 
     @JsonIgnore
     public String getFullAddress() {
-        if (isYes(isLivingInUk) || isLivingInUk == null) {
+        if (isYes(isInUk) || isInUk == null) {
             // Original code for addresses in the UK or unspecified
             return Stream.of(
                             line1,
@@ -89,7 +88,7 @@ public class Address {
 
     @JsonIgnore
     public boolean isAddressEmpty() {
-        if (isYes(isLivingInUk) || isLivingInUk == null) {
+        if (isYes(isInUk) || isInUk == null) {
             return Stream.of(
                     line1,
                     line2,
