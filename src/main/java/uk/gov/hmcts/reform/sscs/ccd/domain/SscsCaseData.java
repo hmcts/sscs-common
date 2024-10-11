@@ -373,6 +373,10 @@ public class SscsCaseData implements CaseData {
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
+    private HearingOutcomeDetails tempHearingOutcomeDetails;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     private JointParty jointParty;
