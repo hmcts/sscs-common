@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -14,8 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOutcomeDetails {
+    private DynamicList completedHearing;
     private String completedHearingId;
     private String hearingOutcome;
     private YesNo didPoAttend;
-    private DynamicList completedHearing;
+    private HearingChannel hearingChannel;
 }
