@@ -16,5 +16,6 @@ import lombok.NoArgsConstructor;
 public class HearingOutcomeDetails {
     private String completedHearingId;
     private String hearingOutcome;
-    private YesNo didPoAttendHearing;
+    private YesNo didPoAttend;
+    private DynamicList completedHearing;
 }

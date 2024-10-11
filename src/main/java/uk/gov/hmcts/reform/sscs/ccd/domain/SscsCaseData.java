@@ -370,10 +370,6 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private CaseOutcome caseOutcome;
-    private DynamicList completedHearings;
-    private String tempHearingOutcome;
-    private YesNo tempDidPoAttend;
-    private String tempCompletedHearingId;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
