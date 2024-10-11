@@ -18,6 +18,6 @@ public class HearingOutcomeDetails {
     private DynamicList completedHearing;
     private String completedHearingId;
     private String hearingOutcome;
-    private YesNo didPoAttend;
+    private YesNo didPoAttendHearing;
     private HearingChannel hearingChannel;
 }
