@@ -14,6 +14,9 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.address.Postcode;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.string.StringNoSpecialCharacters;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isNoOrNull;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -32,6 +35,9 @@ public class Address {
     private String postcode;
     private String postcodeLookup;
     private String postcodeAddress;
+    @StringNoSpecialCharacters(fieldName = "Country", groups = {UniversalCreditValidationGroup.class})
+    private String country;
+    private YesNo isLivingInUk;
 
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
@@ -40,7 +46,9 @@ public class Address {
                    @JsonProperty("county") String county,
                    @JsonProperty("postcode") String postcode,
                    @JsonProperty("postcodeLookup") String postcodeLookup,
-                   @JsonProperty("postcodeAddress") String postcodeAddress) {
+                   @JsonProperty("postcodeAddress") String postcodeAddress,
+                   @JsonProperty("country") String country,
+                   @JsonProperty("inUk") YesNo isLivingInUk) {
         this.line1 = line1;
         this.line2 = line2;
         this.town = town;
@@ -48,18 +56,33 @@ public class Address {
         this.postcode = postcode;
         this.postcodeLookup = postcodeLookup;
         this.postcodeAddress = postcodeAddress;
+        this.country = country;
+        this.isLivingInUk = isLivingInUk;
     }
 
     @JsonIgnore
     public String getFullAddress() {
-        return Stream.of(
-                line1,
-                line2,
-                town,
-                county,
-                postcode)
-                .filter(StringUtils::isNotBlank)
-                .collect(Collectors.joining(", "));
+        if (isYes(isLivingInUk) || isLivingInUk == null) {
+            // Original code for addresses in the UK or unspecified
+            return Stream.of(
+                            line1,
+                            line2,
+                            town,
+                            county,
+                            postcode)
+                    .filter(StringUtils::isNotBlank)
+                    .collect(Collectors.joining(", "));
+        } else {
+            // Addresses outside the UK
+            return Stream.of(
+                            line1,
+                            line2,
+                            town,
+                            county,
+                            country)
+                    .filter(StringUtils::isNotBlank)
+                    .collect(Collectors.joining(", "));
+        }
     }
 
     @JsonIgnore
