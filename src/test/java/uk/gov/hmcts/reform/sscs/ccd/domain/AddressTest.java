@@ -31,6 +31,35 @@ public class AddressTest {
     }
 
     @Test
+    public void givenAnNonUKAddressWithNoValuesEntered_thenReturnTrueForEmptyAddress() {
+        Address address = Address.builder().isLivingInUk(NO).build();
+
+        assertEquals(true, address.isAddressEmpty());
+    }
+
+    @Test
+    public void givenNonAddressIsPartiallyPopulated_thenReturnFalseForEmptyAddress() {
+        Address address = Address.builder().country("Sweden").isLivingInUk(NO).build();
+
+        assertEquals(false, address.isAddressEmpty());
+    }
+
+    @Test
+    public void givenNonAddressIsFullyPopulated_thenReturnFalseForEmptyAddress() {
+        Address address = Address.builder()
+                .line1("123 Outside London")
+                .line2("Ikea")
+                .town("Away")
+                .country("Oslo")
+                .isLivingInUk(NO)
+                .build();
+
+        assertEquals(false, address.isAddressEmpty());
+    }
+
+
+
+    @Test
     public void givenIsLivingInTheUk_thenIsAppellantLivingInTheUkTrue() {
         Address address = Address.builder()
                 .line1("My road")
@@ -83,5 +112,19 @@ public class AddressTest {
                 .build();
 
         assertEquals(expectedAddress, address.getFullAddress());
+    }
+
+    @Test
+    public void givenIsLivingInTheUk_thenIsAppellantHasPortOfEntry() {
+        Address address = Address.builder()
+                .line1("My road")
+                .line2("My road")
+                .town("Brentwood")
+                .county("Essex")
+                .portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT)
+                .isLivingInUk(YES)
+                .build();
+
+        assertEquals(UkPortOfEntry.LONDON_GATEWAY_PORT, address.getPortOfEntry());
     }
 }

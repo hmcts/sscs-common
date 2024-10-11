@@ -35,6 +35,7 @@ public class Address {
     private String postcode;
     private String postcodeLookup;
     private String postcodeAddress;
+    private UkPortOfEntry portOfEntry;
     @StringNoSpecialCharacters(fieldName = "Country", groups = {UniversalCreditValidationGroup.class})
     private String country;
     private YesNo isLivingInUk;
@@ -47,6 +48,7 @@ public class Address {
                    @JsonProperty("postcode") String postcode,
                    @JsonProperty("postcodeLookup") String postcodeLookup,
                    @JsonProperty("postcodeAddress") String postcodeAddress,
+                   @JsonProperty("ukPortOfEntry") UkPortOfEntry portOfEntry,
                    @JsonProperty("country") String country,
                    @JsonProperty("inUk") YesNo isLivingInUk) {
         this.line1 = line1;
@@ -56,6 +58,7 @@ public class Address {
         this.postcode = postcode;
         this.postcodeLookup = postcodeLookup;
         this.postcodeAddress = postcodeAddress;
+        this.portOfEntry = portOfEntry;
         this.country = country;
         this.isLivingInUk = isLivingInUk;
     }
@@ -78,7 +81,6 @@ public class Address {
                             line1,
                             line2,
                             town,
-                            county,
                             country)
                     .filter(StringUtils::isNotBlank)
                     .collect(Collectors.joining(", "));
@@ -87,11 +89,20 @@ public class Address {
 
     @JsonIgnore
     public boolean isAddressEmpty() {
-        return Stream.of(
-                line1,
-                line2,
-                town,
-                county,
-                postcode).allMatch(StringUtils::isEmpty);
+        if (isYes(isLivingInUk) || isLivingInUk == null) {
+            return Stream.of(
+                    line1,
+                    line2,
+                    town,
+                    county,
+                    postcode).allMatch(StringUtils::isEmpty);
+        } else {
+            return Stream.of(
+                    line1,
+                    line2,
+                    town,
+                    country).allMatch(StringUtils::isEmpty);
+        }
+
     }
 }
