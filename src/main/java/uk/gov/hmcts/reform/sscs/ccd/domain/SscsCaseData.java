@@ -719,6 +719,14 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public HearingOutcome getHearingOutcomes() {
+        if (hearingOutcomes == null) {
+            this.hearingOutcomes = new HearingOutcome(new ArrayList<>());
+        }
+        return hearingOutcomes;
+    }
+
+    @JsonIgnore
     public JointParty getJointParty() {
         if (isNull(jointParty)) {
             this.jointParty = new JointParty();
