@@ -19,5 +19,4 @@ public class HearingOutcomeDetails {
     private String completedHearingId;
     private String hearingOutcome;
     private YesNo didPoAttendHearing;
-    private HearingChannel hearingChannel;
 }
