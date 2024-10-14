@@ -72,18 +72,6 @@ public class AddressTest {
     }
 
     @Test
-    public void givenIsLivingInTheUk_thenIsLivingInTheUkTrueByDefault() {
-        Address address = Address.builder()
-                .line1("My road")
-                .line2("My road")
-                .town("Brentwood")
-                .county("Essex")
-                .build();
-
-        assertTrue(isYes(address.getIsInUk()));
-    }
-
-    @Test
     public void givenIsNotLivingInTheUk_thenIsLivingInTheUkFalse() {
         Address address = Address.builder()
                 .line1("123 New Forest Drive")

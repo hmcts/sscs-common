@@ -36,8 +36,7 @@ public class Address {
     private String postcodeAddress;
     private UkPortOfEntry portOfEntry;
     private String country;
-    @Builder.Default
-    private YesNo isInUk = YES;
+    private YesNo isInUk;
 
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
