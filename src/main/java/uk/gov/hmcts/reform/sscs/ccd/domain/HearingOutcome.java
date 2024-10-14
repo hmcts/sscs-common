@@ -12,9 +12,9 @@ import lombok.Value;
 @Value
 @Builder(toBuilder = true)
 public class HearingOutcome {
-    private List<HearingOutcomeDetails> value;
+    private HearingOutcomeDetails value;
 
     @JsonCreator
-    public HearingOutcome(@JsonProperty("value") List<HearingOutcomeDetails> value) {this.value = value; }
+    public HearingOutcome(@JsonProperty("value") HearingOutcomeDetails value) {this.value = value; }
 
 }
