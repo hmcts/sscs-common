@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.junit.Assert.*;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 import org.junit.Test;
 
@@ -31,15 +30,15 @@ public class AddressTest {
     }
 
     @Test
-    public void givenAnNonUKAddressWithNoValuesEntered_thenReturnTrueForEmptyAddress() {
-        Address address = Address.builder().isInUk(NO).build();
+    public void givenAnNonUKAddressWithNoValuesEntered_thenReturnFalseForEmptyAddress() {
+        Address address = Address.builder().portOfEntry(UkPortOfEntry.ST_PETER_PORT_GUERNSEY).isInUk(NO).build();
 
-        assertEquals(true, address.isAddressEmpty());
+        assertEquals(false, address.isAddressEmpty());
     }
 
     @Test
     public void givenNonAddressIsPartiallyPopulated_thenReturnFalseForEmptyAddress() {
-        Address address = Address.builder().country("Sweden").isInUk(NO).build();
+        Address address = Address.builder().country("Sweden").portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT).isInUk(NO).build();
 
         assertEquals(false, address.isAddressEmpty());
     }
@@ -51,6 +50,7 @@ public class AddressTest {
                 .line2("Ikea")
                 .town("Away")
                 .country("Oslo")
+                .portOfEntry(UkPortOfEntry.LONDON_CITY_AIRPORT)
                 .isInUk(NO)
                 .build();
 
@@ -58,9 +58,8 @@ public class AddressTest {
     }
 
 
-
     @Test
-    public void givenIsLivingInTheUk_thenIsAppellantLivingInTheUkTrue() {
+    public void givenIsLivingInTheUk_thenIsLivingInTheUkTrue() {
         Address address = Address.builder()
                 .line1("My road")
                 .line2("My road")
@@ -69,15 +68,28 @@ public class AddressTest {
                 .isInUk(YES)
                 .build();
 
-        assertTrue(YesNo.isYes(address.getIsInUk()));
+        assertTrue(isYes(address.getIsInUk()));
     }
 
     @Test
-    public void givenIsNotLivingInTheUk_thenIsAppellantLivingInTheUkFalse() {
+    public void givenIsLivingInTheUk_thenIsLivingInTheUkTrueByDefault() {
+        Address address = Address.builder()
+                .line1("My road")
+                .line2("My road")
+                .town("Brentwood")
+                .county("Essex")
+                .build();
+
+        assertTrue(isYes(address.getIsInUk()));
+    }
+
+    @Test
+    public void givenIsNotLivingInTheUk_thenIsLivingInTheUkFalse() {
         Address address = Address.builder()
                 .line1("123 New Forest Drive")
                 .line2("My road")
                 .town("Altanta")
+                .portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT)
                 .isInUk(NO)
                 .build();
 
@@ -101,30 +113,17 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndNoPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, USA";
+        String expectedAddress = "123 New Forest Drive, My road, Washington, USA, GB000461";
 
         Address address = Address.builder()
                 .line1("123 New Forest Drive")
                 .line2("My road")
                 .town("Washington")
                 .country("USA")
+                .portOfEntry(UkPortOfEntry.ST_PETER_PORT_GUERNSEY)
                 .isInUk(NO)
                 .build();
 
         assertEquals(expectedAddress, address.getFullAddress());
-    }
-
-    @Test
-    public void givenIsLivingInTheUk_thenIsAppellantHasPortOfEntry() {
-        Address address = Address.builder()
-                .line1("My road")
-                .line2("My road")
-                .town("Brentwood")
-                .county("Essex")
-                .portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT)
-                .isInUk(YES)
-                .build();
-
-        assertEquals(UkPortOfEntry.LONDON_GATEWAY_PORT, address.getPortOfEntry());
     }
 }

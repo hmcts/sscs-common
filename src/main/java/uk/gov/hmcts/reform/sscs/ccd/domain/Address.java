@@ -7,15 +7,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lombok.Builder;
-import lombok.Data;
+
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.Postcode;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.string.StringNoSpecialCharacters;
 
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isNoOrNull;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -37,7 +36,8 @@ public class Address {
     private String postcodeAddress;
     private UkPortOfEntry portOfEntry;
     private String country;
-    private YesNo isInUk;
+    @Builder.Default
+    private YesNo isInUk = YES;
 
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
@@ -61,11 +61,26 @@ public class Address {
         this.country = country;
         this.isInUk = isInUk;
     }
+    
+    public Address(@JsonProperty("line1") String line1,
+                   @JsonProperty("line2") String line2,
+                   @JsonProperty("town") String town,
+                   @JsonProperty("county") String county,
+                   @JsonProperty("postcode") String postcode,
+                   @JsonProperty("postcodeLookup") String postcodeLookup,
+                   @JsonProperty("postcodeAddress") String postcodeAddress) {
+        this.line1 = line1;
+        this.line2 = line2;
+        this.town = town;
+        this.county = county;
+        this.postcode = postcode;
+        this.postcodeLookup = postcodeLookup;
+        this.postcodeAddress = postcodeAddress;
+    }
 
     @JsonIgnore
     public String getFullAddress() {
         if (isYes(isInUk) || isInUk == null) {
-            // Original code for addresses in the UK or unspecified
             return Stream.of(
                             line1,
                             line2,
@@ -75,12 +90,12 @@ public class Address {
                     .filter(StringUtils::isNotBlank)
                     .collect(Collectors.joining(", "));
         } else {
-            // Addresses outside the UK
             return Stream.of(
                             line1,
                             line2,
                             town,
-                            country)
+                            country,
+                            portOfEntry.getLocationCode())
                     .filter(StringUtils::isNotBlank)
                     .collect(Collectors.joining(", "));
         }
@@ -100,7 +115,8 @@ public class Address {
                     line1,
                     line2,
                     town,
-                    country).allMatch(StringUtils::isEmpty);
+                    country,
+                    portOfEntry.getLocationCode()).allMatch(StringUtils::isEmpty);
         }
 
     }

@@ -28,7 +28,7 @@ public class Identity {
         this.nino = nino;
         this.ibcaReference = ibcaReference;
     }
-
+    
     public Identity(@JsonProperty("dob") String dob,
                     @JsonProperty("nino") String nino) {
         this.dob = dob;
