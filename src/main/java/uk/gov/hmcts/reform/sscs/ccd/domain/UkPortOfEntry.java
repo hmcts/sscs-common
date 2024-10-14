@@ -1,8 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
 @Getter
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum UkPortOfEntry {
 
     ABERDEEN("Aberdeen", "Sea traffic", "GB000434"),

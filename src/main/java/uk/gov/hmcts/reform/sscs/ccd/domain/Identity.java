@@ -18,8 +18,17 @@ public class Identity {
     private String dob;
     @NationalInsuranceNumber(groups = UniversalCreditValidationGroup.class)
     private String nino;
+    private String ibcaReference;
 
     @JsonCreator
+    public Identity(@JsonProperty("dob") String dob,
+                    @JsonProperty("nino") String nino,
+                    @JsonProperty("ibcaReference") String ibcaReference) {
+        this.dob = dob;
+        this.nino = nino;
+        this.ibcaReference = ibcaReference;
+    }
+    
     public Identity(@JsonProperty("dob") String dob,
                     @JsonProperty("nino") String nino) {
         this.dob = dob;
