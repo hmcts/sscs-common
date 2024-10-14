@@ -101,14 +101,13 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndNoPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, USA, GB000461";
+        String expectedAddress = "123 New Forest Drive, My road, Washington, USA";
 
         Address address = Address.builder()
                 .line1("123 New Forest Drive")
                 .line2("My road")
                 .town("Washington")
                 .country("USA")
-                .portOfEntry(UkPortOfEntry.ST_PETER_PORT_GUERNSEY)
                 .isInUk(NO)
                 .build();
 

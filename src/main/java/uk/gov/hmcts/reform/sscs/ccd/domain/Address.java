@@ -93,8 +93,7 @@ public class Address {
                             line1,
                             line2,
                             town,
-                            country,
-                            portOfEntry.getLocationCode())
+                            country)
                     .filter(StringUtils::isNotBlank)
                     .collect(Collectors.joining(", "));
         }
