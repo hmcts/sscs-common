@@ -34,7 +34,7 @@ public class Address {
     private String postcode;
     private String postcodeLookup;
     private String postcodeAddress;
-    private UkPortOfEntry portOfEntry;
+    private String portOfEntry;
     private String country;
     private YesNo isInUk;
     private DynamicList ukPortOfEntryList;
@@ -47,7 +47,7 @@ public class Address {
                    @JsonProperty("postcode") String postcode,
                    @JsonProperty("postcodeLookup") String postcodeLookup,
                    @JsonProperty("postcodeAddress") String postcodeAddress,
-                   @JsonProperty("ukPortOfEntry") UkPortOfEntry portOfEntry,
+                   @JsonProperty("ukPortOfEntry") String portOfEntry,
                    @JsonProperty("country") String country,
                    @JsonProperty("inUk") YesNo isInUk,
                    @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList) {
@@ -118,7 +118,7 @@ public class Address {
                     line2,
                     town,
                     country,
-                    portOfEntry.getLocationCode()).allMatch(StringUtils::isEmpty);
+                    portOfEntry).allMatch(StringUtils::isEmpty);
         }
 
     }

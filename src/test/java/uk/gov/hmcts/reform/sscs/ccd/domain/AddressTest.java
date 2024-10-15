@@ -31,14 +31,14 @@ public class AddressTest {
 
     @Test
     public void givenAnNonUKAddressWithNoValuesEntered_thenReturnFalseForEmptyAddress() {
-        Address address = Address.builder().portOfEntry(UkPortOfEntry.ST_PETER_PORT_GUERNSEY).isInUk(NO).build();
+        Address address = Address.builder().portOfEntry("GB000461").isInUk(NO).build();
 
         assertEquals(false, address.isAddressEmpty());
     }
 
     @Test
     public void givenNonAddressIsPartiallyPopulated_thenReturnFalseForEmptyAddress() {
-        Address address = Address.builder().country("Sweden").portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT).isInUk(NO).build();
+        Address address = Address.builder().country("Sweden").portOfEntry("GB000170").isInUk(NO).build();
 
         assertEquals(false, address.isAddressEmpty());
     }
@@ -50,7 +50,7 @@ public class AddressTest {
                 .line2("Ikea")
                 .town("Away")
                 .country("Oslo")
-                .portOfEntry(UkPortOfEntry.LONDON_CITY_AIRPORT)
+                .portOfEntry("GB000130")
                 .isInUk(NO)
                 .build();
 
@@ -77,7 +77,7 @@ public class AddressTest {
                 .line1("123 New Forest Drive")
                 .line2("My road")
                 .town("Altanta")
-                .portOfEntry(UkPortOfEntry.LONDON_GATEWAY_PORT)
+                .portOfEntry("GB000170")
                 .isInUk(NO)
                 .build();
 
