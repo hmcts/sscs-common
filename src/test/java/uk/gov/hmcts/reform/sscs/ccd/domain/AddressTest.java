@@ -113,4 +113,20 @@ public class AddressTest {
 
         assertEquals(expectedAddress, address.getFullAddress());
     }
+
+    @Test
+    public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndPostcode() {
+        String expectedAddress = "123 New Forest Drive, My road, Washington, 98101, USA";
+
+        Address address = Address.builder()
+                .line1("123 New Forest Drive")
+                .line2("My road")
+                .town("Washington")
+                .postcode("98101")
+                .country("USA")
+                .isInUk(NO)
+                .build();
+
+        assertEquals(expectedAddress, address.getFullAddress());
+    }
 }
