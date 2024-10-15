@@ -372,8 +372,6 @@ public class SscsCaseData implements CaseData {
     @Getter(AccessLevel.NONE)
     private CaseOutcome caseOutcome;
 
-    @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
     private HearingOutcomeDetails tempHearingOutcomeDetails;
 
     @JsonUnwrapped
