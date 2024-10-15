@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.*;
@@ -123,11 +125,10 @@ public class Address {
 
     @JsonIgnore
     public UkPortOfEntry getPortOfEntry() {
-        for (UkPortOfEntry port : UkPortOfEntry.values()) {
-            if (port.getLocationCode().equalsIgnoreCase(this.portOfEntry)) {
-                return port;
-            }
-        }
-        return null;
+        return Arrays.stream(UkPortOfEntry.values())
+            .filter(port -> port.getLocationCode().equalsIgnoreCase(this.portOfEntry))
+            .findFirst()
+            .orElse(null);
     }
+
 }
