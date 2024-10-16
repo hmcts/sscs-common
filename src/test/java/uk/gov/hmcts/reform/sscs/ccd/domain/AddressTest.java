@@ -143,7 +143,7 @@ public class AddressTest {
             .country("USA")
             .isInUk(NO)
             .build();
-        assertEquals(port, address.getPortOfEntry());
+        assertEquals(port, address.getUkPortOfEntry());
     }
 
     @Test
@@ -156,6 +156,6 @@ public class AddressTest {
             .country("USA")
             .isInUk(NO)
             .build();
-        assertNull(address.getPortOfEntry());
+        assertNull(address.getUkPortOfEntry());
     }
 }
