@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 public enum HearingType {
-     PAPER("paper", "1"), ORAL("oral", "2"),
+    PAPER("paper", "1"), ORAL("oral", "2"),
     DOMICILIARY("domiciliary", "3"), ONLINE("online", "empty"),
     REGULAR("regular", "empty"),
     COR("cor", "empty");

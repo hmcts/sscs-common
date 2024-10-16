@@ -5057,5 +5057,35 @@
     "benefitCode": "WORKING_FAMILIES_TAX_CREDIT",
     "issue": "RC",
     "category": "CATEGORY_01"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "DD",
+    "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "CE",
+    "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "RA",
+    "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "OS",
+    "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "OX",
+    "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "SP",
+    "category": "CATEGORY_08"
   }
 ]

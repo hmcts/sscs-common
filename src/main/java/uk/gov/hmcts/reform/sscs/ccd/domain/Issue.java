@@ -123,6 +123,7 @@ public enum Issue {
     SF("Funeral"),
     SG("Support Group Placement"),
     SM("Maternity"),
+    SP("Supplementary Payment"),
     SR("Second Adult Rebate"),
     SS("Self Employed - Straightforward"),
     SU("Suspensions"),
