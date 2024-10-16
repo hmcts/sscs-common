@@ -27,9 +27,9 @@ public class HearingOutcomeDetails {
     private HearingChannel outcomeHearingChannel;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime start;
+    private LocalDateTime hearingStart;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    private LocalDateTime end;
+    private LocalDateTime hearingEnd;
     private String VenueName;
 }
