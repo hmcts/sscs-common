@@ -124,7 +124,7 @@ public class Address {
     }
 
     @JsonIgnore
-    public UkPortOfEntry getPortOfEntry() {
+    public UkPortOfEntry getUkPortOfEntry() {
         return Arrays.stream(UkPortOfEntry.values())
             .filter(port -> port.getLocationCode().equalsIgnoreCase(this.portOfEntry))
             .findFirst()
