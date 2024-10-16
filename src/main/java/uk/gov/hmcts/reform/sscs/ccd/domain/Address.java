@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.Postcode;
@@ -120,6 +121,14 @@ public class Address {
                     country,
                     portOfEntry).allMatch(StringUtils::isEmpty);
         }
-
     }
+
+    @JsonIgnore
+    public UkPortOfEntry getPortOfEntry() {
+        return Arrays.stream(UkPortOfEntry.values())
+            .filter(port -> port.getLocationCode().equalsIgnoreCase(this.portOfEntry))
+            .findFirst()
+            .orElse(null);
+    }
+
 }
