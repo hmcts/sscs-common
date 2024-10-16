@@ -20,16 +20,16 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOutcomeDetails {
-    private DynamicList completedHearing;
-    private String completedHearingId;
-    private String hearingOutcome;
-    private YesNo didPoAttendHearing;
-    private HearingChannel outcomeHearingChannel;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime hearingStart;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime hearingEnd;
+    private String completedHearingId;
+    private String hearingOutcome;
+    private YesNo didPoAttendHearing;
+    private HearingChannel outcomeHearingChannel;
     private String venueName;
+    private DynamicList completedHearing;
 }
