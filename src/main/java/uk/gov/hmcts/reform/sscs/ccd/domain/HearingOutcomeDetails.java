@@ -1,7 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,4 +25,11 @@ public class HearingOutcomeDetails {
     private String hearingOutcome;
     private YesNo didPoAttendHearing;
     private HearingChannel outcomeHearingChannel;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime start;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    private LocalDateTime end;
+    private String VenueName;
 }
