@@ -21,5 +21,7 @@ public abstract class Party extends Entity {
 
     private Role role;
 
+    private String ibcRole;
+
     private YesNo confidentialityRequired;
 }

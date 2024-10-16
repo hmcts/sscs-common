@@ -111,7 +111,8 @@
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "role": null
+          "role": null,
+          "ibcRole": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",
@@ -917,7 +918,8 @@
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "role": null
+          "role": null,
+          "ibcRole": null
         },
         "mrnDetails": {
           "mrnDate": "2019-09-01",

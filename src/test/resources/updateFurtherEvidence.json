@@ -105,7 +105,8 @@
           "isAppointee": "No",
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "role": null
+          "role": null,
+          "ibcRole": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
@@ -720,7 +721,8 @@
           "isAppointee": "No",
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
-          "role": null
+          "role": null,
+          "ibcRole": null
         },
         "mrnDetails": {
           "mrnDate": "2018-01-11",
