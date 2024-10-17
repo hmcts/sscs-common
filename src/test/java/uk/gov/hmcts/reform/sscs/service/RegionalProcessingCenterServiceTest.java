@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
@@ -10,6 +12,7 @@ import junitparams.Parameters;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
@@ -20,6 +23,8 @@ public class RegionalProcessingCenterServiceTest {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
+
+    @Mock AirLookupService mockedAirLookupService;
 
     private static final RegionalProcessingCenterService regionalProcessingCenterService;
 
@@ -170,6 +175,15 @@ public class RegionalProcessingCenterServiceTest {
         String somePostcode = "AB10 1AB";
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode);
 
+        assertEquals("GLASGOW", rpc.getName());
+    }
+
+    @Test
+    public void regionalProcessingCentreNameScotlandFromGBLocationCodeReturnGlasgowRpc() {
+        RegionalProcessingCenterService regionalProcessingCenterServiceMockedAirLookup = new RegionalProcessingCenterService(mockedAirLookupService);
+        regionalProcessingCenterServiceMockedAirLookup.init();
+        when(mockedAirLookupService.lookupRegionalCentre(anyString())).thenReturn("Scotland");
+        RegionalProcessingCenter rpc = regionalProcessingCenterServiceMockedAirLookup.getByPostcode("GB0120394");
         assertEquals("GLASGOW", rpc.getName());
     }
 
