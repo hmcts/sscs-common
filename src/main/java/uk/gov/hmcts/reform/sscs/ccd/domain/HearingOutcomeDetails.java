@@ -27,7 +27,7 @@ public class HearingOutcomeDetails {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime hearingEndDateTime;
     private String completedHearingId;
-    private String hearingOutcome;
+    private String hearingOutcomeId;
     private YesNo didPoAttendHearing;
     private HearingChannel outcomeHearingChannelId;
     private Venue venue;
