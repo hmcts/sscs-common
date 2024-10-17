@@ -33,14 +33,14 @@ public class AddressTest {
 
     @Test
     public void givenAnNonUKAddressWithNoValuesEntered_thenReturnFalseForEmptyAddress() {
-        Address address = Address.builder().portOfEntry("GB000461").isInUk(NO).build();
+        Address address = Address.builder().portOfEntry("GB000461").inUk(NO).build();
 
         assertFalse(address.isAddressEmpty());
     }
 
     @Test
     public void givenNonAddressIsPartiallyPopulated_thenReturnFalseForEmptyAddress() {
-        Address address = Address.builder().country("Sweden").portOfEntry("GB000170").isInUk(NO).build();
+        Address address = Address.builder().country("Sweden").portOfEntry("GB000170").inUk(NO).build();
 
         assertFalse(address.isAddressEmpty());
     }
@@ -53,7 +53,7 @@ public class AddressTest {
             .town("Away")
             .country("Oslo")
             .portOfEntry("GB000130")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
 
         assertFalse(address.isAddressEmpty());
@@ -67,10 +67,10 @@ public class AddressTest {
             .line2("My road")
             .town("Brentwood")
             .county("Essex")
-            .isInUk(YES)
+            .inUk(YES)
             .build();
 
-        assertTrue(isYes(address.getIsInUk()));
+        assertTrue(isYes(address.getInUk()));
     }
 
     @Test
@@ -80,10 +80,10 @@ public class AddressTest {
             .line2("My road")
             .town("Altanta")
             .portOfEntry("GB000170")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
 
-        assertTrue(YesNo.isNoOrNull(address.getIsInUk()));
+        assertTrue(YesNo.isNoOrNull(address.getInUk()));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class AddressTest {
             .line2("Ladbroke Grove")
             .town("Notting Hill")
             .postcode("W10 5QA")
-            .isInUk(YES)
+            .inUk(YES)
             .build();
 
         assertEquals(expectedAddress, address.getFullAddress());
@@ -110,7 +110,7 @@ public class AddressTest {
             .line2("My road")
             .town("Washington")
             .country("USA")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
 
         assertEquals(expectedAddress, address.getFullAddress());
@@ -126,7 +126,7 @@ public class AddressTest {
             .town("Washington")
             .postcode("98101")
             .country("USA")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
 
         assertEquals(expectedAddress, address.getFullAddress());
@@ -141,7 +141,7 @@ public class AddressTest {
             .town("Washington")
             .portOfEntry(port.getLocationCode())
             .country("USA")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
         assertEquals(port, address.getUkPortOfEntry());
     }
@@ -154,7 +154,7 @@ public class AddressTest {
             .town("Washington")
             .portOfEntry("some-invalid-code")
             .country("USA")
-            .isInUk(NO)
+            .inUk(NO)
             .build();
         assertNull(address.getUkPortOfEntry());
     }

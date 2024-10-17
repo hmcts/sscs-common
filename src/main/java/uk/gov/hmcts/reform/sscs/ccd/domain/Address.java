@@ -37,7 +37,8 @@ public class Address {
     private String postcodeAddress;
     private String portOfEntry;
     private String country;
-    private YesNo isInUk;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo inUk;
     private DynamicList ukPortOfEntryList;
 
     @JsonCreator
@@ -50,7 +51,7 @@ public class Address {
                    @JsonProperty("postcodeAddress") String postcodeAddress,
                    @JsonProperty("ukPortOfEntry") String portOfEntry,
                    @JsonProperty("country") String country,
-                   @JsonProperty("inUk") YesNo isInUk,
+                   @JsonProperty("inUk") YesNo inUk,
                    @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList) {
         this.line1 = line1;
         this.line2 = line2;
@@ -61,7 +62,7 @@ public class Address {
         this.postcodeAddress = postcodeAddress;
         this.portOfEntry = portOfEntry;
         this.country = country;
-        this.isInUk = isInUk;
+        this.inUk = inUk;
         this.ukPortOfEntryList = ukPortOfEntryList;
     }
     
@@ -83,7 +84,7 @@ public class Address {
 
     @JsonIgnore
     public String getFullAddress() {
-        if (isYes(isInUk) || isInUk == null) {
+        if (isYes(inUk) || inUk == null) {
             return Stream.of(
                     line1,
                     line2,
@@ -106,7 +107,7 @@ public class Address {
 
     @JsonIgnore
     public boolean isAddressEmpty() {
-        if (isYes(isInUk) || isInUk == null) {
+        if (isYes(inUk) || inUk == null) {
             return Stream.of(
                     line1,
                     line2,
