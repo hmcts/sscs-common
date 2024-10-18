@@ -708,6 +708,14 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public HearingOutcomeValue getHearingOutcomeValue() {
+        if (hearingOutcomeValue == null) {
+            this.hearingOutcomeValue = new HearingOutcomeValue();
+        }
+        return hearingOutcomeValue;
+    }
+
+    @JsonIgnore
     public JointParty getJointParty() {
         if (isNull(jointParty)) {
             this.jointParty = new JointParty();
