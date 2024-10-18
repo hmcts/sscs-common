@@ -271,7 +271,11 @@ public class AirLookupService {
     }
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
-        AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
+        AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(
+                isPortOfEntryCode(postcode)
+                        ? postcode
+                        : getFirstHalfOfPostcode(postcode)
+        );
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
         return benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
