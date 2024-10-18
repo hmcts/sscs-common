@@ -65,7 +65,6 @@ public class SscsCaseData implements CaseData {
     private Appeal appeal;
     private List<Hearing> hearings;
     private List<HearingOutcome> hearingOutcomes;
-    private HearingOutcomeValue hearingOutcomeValue;
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
@@ -371,6 +370,10 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private CaseOutcome caseOutcome;
+
+    @JsonUnwrapped
+    @Getter(AccessLevel.NONE)
+    private HearingOutcomeValue hearingOutcomeValue;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
