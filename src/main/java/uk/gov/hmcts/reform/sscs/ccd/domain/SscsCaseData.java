@@ -64,6 +64,7 @@ public class SscsCaseData implements CaseData {
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
+    private List<HearingOutcome> hearingOutcomes;
     private Evidence evidence;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
@@ -369,6 +370,8 @@ public class SscsCaseData implements CaseData {
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
     private CaseOutcome caseOutcome;
+
+    private HearingOutcomeValue hearingOutcomeValue;
 
     @JsonUnwrapped
     @Getter(AccessLevel.NONE)
@@ -703,6 +706,14 @@ public class SscsCaseData implements CaseData {
             this.caseOutcome = new CaseOutcome();
         }
         return caseOutcome;
+    }
+
+    @JsonIgnore
+    public HearingOutcomeValue getHearingOutcomeValue() {
+        if (hearingOutcomeValue == null) {
+            this.hearingOutcomeValue = new HearingOutcomeValue();
+        }
+        return hearingOutcomeValue;
     }
 
     @JsonIgnore
