@@ -114,6 +114,7 @@ public class UpdateCcdCaseService {
     }
 
     @Retryable
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2 instead", forRemoval = true)
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
