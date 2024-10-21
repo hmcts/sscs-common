@@ -52,16 +52,12 @@ public class SscsDataHelper {
     private final CaseEvent caseEvent;
     private final AirLookupService airLookupService;
     private final DwpAddressLookupService dwpAddressLookupService;
-    private final boolean caseAccessManagementFeature;
-
     public SscsDataHelper(CaseEvent caseEvent,
                           AirLookupService airLookupService,
-                          DwpAddressLookupService dwpAddressLookupService,
-                          @Value("${feature.case-access-management.enabled}")  boolean caseAccessManagementFeature) {
+                          DwpAddressLookupService dwpAddressLookupService) {
         this.caseEvent = caseEvent;
         this.airLookupService = airLookupService;
         this.dwpAddressLookupService = dwpAddressLookupService;
-        this.caseAccessManagementFeature = caseAccessManagementFeature;
     }
 
     public void addSscsDataToMap(Map<String, Object> appealData, Appeal appeal, List<SscsDocument> sscsDocuments, Subscriptions subscriptions,
@@ -114,7 +110,7 @@ public class SscsDataHelper {
     }
 
     private void setCaseManagementCategory(FormType formType, Map<String, Object> appealData) {
-        if (caseAccessManagementFeature && formType != null) {
+        if (formType != null) {
             DynamicListItem caseManagementCategory = new DynamicListItem(
                 formType.equals(FormType.SSCS5) ? "sscs5Unknown" : "sscs12Unknown",
                 formType.equals(FormType.SSCS5) ? "SSCS5 Unknown" : "SSCS1/2 Unknown");
@@ -125,24 +121,22 @@ public class SscsDataHelper {
     }
 
     private void setCaseAccessManagementNames(Appeal appeal, Map<String, Object> appealData, FormType formType) {
-        if (caseAccessManagementFeature) {
-            if (appeal.getAppellant() != null
-                && appeal.getAppellant().getName() != null
-                && appeal.getAppellant().getName().getFirstName() != null
-                && appeal.getAppellant().getName().getLastName() != null) {
-                Name name = appeal.getAppellant().getName();
-                appealData.put("caseNameHmctsInternal", name.getFullNameNoTitle());
-                appealData.put("caseNameHmctsRestricted", name.getFullNameNoTitle());
-                appealData.put("caseNamePublic", name.getFullNameNoTitle());
-            }
+        if (appeal.getAppellant() != null
+            && appeal.getAppellant().getName() != null
+            && appeal.getAppellant().getName().getFirstName() != null
+            && appeal.getAppellant().getName().getLastName() != null) {
+            Name name = appeal.getAppellant().getName();
+            appealData.put("caseNameHmctsInternal", name.getFullNameNoTitle());
+            appealData.put("caseNameHmctsRestricted", name.getFullNameNoTitle());
+            appealData.put("caseNamePublic", name.getFullNameNoTitle());
+        }
 
-            if (appeal.getBenefitType() != null) {
-                Optional<Benefit> benefit = Benefit.getBenefitOptionalByCode(appeal.getBenefitType().getCode());
-                if (isHmrcBenefit(benefit, formType)) {
-                    appealData.put("ogdType", "HMRC");
-                } else {
-                    appealData.put("ogdType", "DWP");
-                }
+        if (appeal.getBenefitType() != null) {
+            Optional<Benefit> benefit = Benefit.getBenefitOptionalByCode(appeal.getBenefitType().getCode());
+            if (isHmrcBenefit(benefit, formType)) {
+                appealData.put("ogdType", "HMRC");
+            } else {
+                appealData.put("ogdType", "DWP");
             }
         }
     }
@@ -155,14 +149,12 @@ public class SscsDataHelper {
     }
 
     private void setCaseAccessManagementCategories(Appeal appeal, Map<String, Object> appealData) {
-        if (caseAccessManagementFeature) {
-            Optional<Benefit> benefit = Benefit.getBenefitOptionalByCode(appeal.getBenefitType().getCode());
-            if (benefit.isPresent()) {
-                appealData.put("CaseAccessCategory", CaseUtils.toCamelCase(benefit.get().getDescription(), false, ' '));
-                DynamicListItem caseManagementCategory = new DynamicListItem(benefit.get().getShortName(), benefit.get().getDescription());
-                List<DynamicListItem> listItems = List.of(caseManagementCategory);
-                appealData.put(CASE_MANAGEMENT_CATEGORY, new DynamicList(caseManagementCategory, listItems));
-            }
+        Optional<Benefit> benefit = Benefit.getBenefitOptionalByCode(appeal.getBenefitType().getCode());
+        if (benefit.isPresent()) {
+            appealData.put("CaseAccessCategory", CaseUtils.toCamelCase(benefit.get().getDescription(), false, ' '));
+            DynamicListItem caseManagementCategory = new DynamicListItem(benefit.get().getShortName(), benefit.get().getDescription());
+            List<DynamicListItem> listItems = List.of(caseManagementCategory);
+            appealData.put(CASE_MANAGEMENT_CATEGORY, new DynamicList(caseManagementCategory, listItems));
         }
     }
 

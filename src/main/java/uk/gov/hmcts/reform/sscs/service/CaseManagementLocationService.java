@@ -14,22 +14,17 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 public class CaseManagementLocationService {
 
     private final RefDataService refDataService;
-    private final boolean caseAccessManagementFeature;
     private final VenueService venueService;
 
     public CaseManagementLocationService(RefDataService refDataService,
-                                         VenueService venueService,
-                                         @Value("${feature.case-access-management.enabled}") boolean caseAccessManagementFeature) {
+                                         VenueService venueService) {
         this.refDataService = refDataService;
         this.venueService = venueService;
-        this.caseAccessManagementFeature = caseAccessManagementFeature;
     }
 
     public Optional<CaseManagementLocation> retrieveCaseManagementLocation(String processingVenue, RegionalProcessingCenter
             regionalProcessingCenter) {
-        if (caseAccessManagementFeature
-            && isNotBlank(processingVenue)
-            && nonNull(regionalProcessingCenter)) {
+        if (isNotBlank(processingVenue) && nonNull(regionalProcessingCenter)) {
 
             String venueEpimsId = venueService.getEpimsIdForVenue(processingVenue);
             CourtVenue courtVenue = refDataService.getCourtVenueRefDataByEpimsId(venueEpimsId);
