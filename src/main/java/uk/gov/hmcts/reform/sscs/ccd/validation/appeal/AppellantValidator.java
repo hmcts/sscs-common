@@ -38,7 +38,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Role;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 
-@Component
 @Slf4j
 public class AppellantValidator extends PartyValidator {
     

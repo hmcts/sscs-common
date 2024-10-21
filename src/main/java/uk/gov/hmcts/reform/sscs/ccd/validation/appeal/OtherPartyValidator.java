@@ -25,7 +25,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
 import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
 
-@Component
 @Slf4j
 public class OtherPartyValidator extends PartyValidator {
 

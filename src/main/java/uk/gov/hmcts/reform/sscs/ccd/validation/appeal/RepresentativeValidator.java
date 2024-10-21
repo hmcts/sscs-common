@@ -21,7 +21,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.Contact;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
 import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 
-@Component
 @Slf4j
 public class RepresentativeValidator extends PartyValidator {
 
