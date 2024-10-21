@@ -11,7 +11,10 @@ public enum SscsType {
     SSCS2("sscs2"),
 
     @JsonProperty("sscs5")
-    SSCS5("sscs5");
+    SSCS5("sscs5"),
+
+    @JsonProperty("sscs8")
+    SSCS8("sscs8");
 
     private final String id;
 

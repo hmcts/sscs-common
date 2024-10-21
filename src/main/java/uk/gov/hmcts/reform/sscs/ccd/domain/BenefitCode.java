@@ -51,6 +51,7 @@ public enum BenefitCode {
     SOCIAL_FUND_FUNERAL(89,"Social Fund - Funeral"),
     CHILDRENS_FUNERAL_FUND(90, "Children's Funeral Fund For England"),
     VACCINE_DAMAGE_APPEALS_TRIBUNALS(91,"Vaccine Damage Appeals Tribunals"),
+    IBC(93, "Infected Blood Compensation"),
     BEREAVEMENT_BENEFIT(94,"Bereavement Benefit"),
     BEREAVEMENT_SUPPORT_PAYMENT(95,"Bereavement Support Payment Scheme"),
     WORKING_FAMILIES_TAX_CREDIT(96,"Working Families Tax Credit");

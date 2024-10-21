@@ -749,6 +749,31 @@ public class RoboticsJsonMapperTest {
     }
 
     @Test
+    public void givenIbaCase_thenGetsIbaIssueOffice() {
+
+        SscsCaseData sscsCaseData = buildCaseData("Test", "infectedBloodAppeal", "IBCA");
+        sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
+        roboticsWrapper = RoboticsWrapper
+                .builder()
+                .sscsCaseData(sscsCaseData)
+                .ccdCaseId(123L).evidencePresent("Yes")
+                .state(State.APPEAL_CREATED)
+                .build();
+
+        String date = LocalDate.now().toString();
+        roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
+
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
+
+        roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
+
+        roboticsJsonValidator.validate(roboticsJson, caseId);
+
+        assertEquals("IBCA", roboticsJson.get("dwpIssuingOffice"));
+        assertEquals("IBCA", roboticsJson.get("dwpPresentingOffice"));
+    }
+
+    @Test
     public void shouldPopulateRoboticsWithOtherPartyDetails() {
 
         DateRange dateRange1 = DateRange.builder()
