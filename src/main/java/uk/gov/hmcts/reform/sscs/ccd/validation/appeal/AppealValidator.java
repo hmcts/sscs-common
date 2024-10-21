@@ -25,8 +25,6 @@ import java.util.Map;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.callback.ValidationType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -38,7 +36,6 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.address.AddressValidator;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
-@Component
 @Slf4j
 public class AppealValidator {
 
@@ -54,7 +51,7 @@ public class AppealValidator {
     public AppealValidator(DwpAddressLookupService dwpAddressLookupService,
                            AddressValidator addressValidator,
                            ValidationType validationType,
-                           @Value("#{'${validation.titles}'.split(',')}") List<String> titles) {
+                           List<String> titles) {
         this.dwpAddressLookupService = dwpAddressLookupService;
         this.appellantValidator = new AppellantValidator(addressValidator, validationType, titles);
         this.repValidator = new RepresentativeValidator(addressValidator, validationType, titles);
