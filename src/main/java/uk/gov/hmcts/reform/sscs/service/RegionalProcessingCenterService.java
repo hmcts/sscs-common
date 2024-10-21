@@ -120,6 +120,9 @@ public class RegionalProcessingCenterService {
             return regionalProcessingCenterMap.get("SSCS Glasgow");
         }
         String regionalProcessingCentreName = airLookupService.lookupRegionalCentre(postcode);
+        if (postcode.startsWith("GB") && regionalProcessingCentreName.equals("Scotland")) {
+            return regionalProcessingCenterMap.get("SSCS Glasgow");
+        }
         return regionalProcessingCenterMap.get("SSCS " + regionalProcessingCentreName);
     }
 
