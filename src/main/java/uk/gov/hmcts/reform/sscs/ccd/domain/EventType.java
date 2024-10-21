@@ -13,6 +13,7 @@ public enum EventType {
     ACTION_POSTPONEMENT_REQUEST_WELSH("actionPostponementRequestWelsh", 0, false),
     ACTION_STRIKE_OUT("actionStrikeOut", 0, false),
     ADD_HEARING("addHearing", 0, false),
+    ADD_HEARING_OUTCOME("addHearingOutcome",0,false),
     ADD_NOTE("addNote", 0, false),
     ADD_REPRESENTATIVE("addRepresentative", 0, false),
     ADD_SC_NUMBER("addSCnumber", 0, false),
