@@ -128,6 +128,11 @@ public class PartyValidator {
         return false;
     }
 
+    public static boolean ninoExists(Appeal appeal) {
+        return appeal != null && appeal.getAppellant() != null
+                && appeal.getAppellant().getIdentity() != null && appeal.getAppellant().getIdentity().getNino() != null;
+    }
+
     public static String getWarningMessageName(String personType) {
         return getWarningMessageName(personType, null);
     }
