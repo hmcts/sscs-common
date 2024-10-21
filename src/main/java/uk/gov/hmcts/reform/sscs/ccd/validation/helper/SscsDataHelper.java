@@ -34,6 +34,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.FormType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.MrnDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
 import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Subscriptions;
@@ -58,6 +59,17 @@ public class SscsDataHelper {
         this.caseEvent = caseEvent;
         this.airLookupService = airLookupService;
         this.dwpAddressLookupService = dwpAddressLookupService;
+    }
+
+    public void addSscsDataToMap(Map<String, Object> appealData, SscsCaseData caseData) {
+        addSscsDataToMap(appealData,
+                caseData.getAppeal(),
+                caseData.getSscsDocument(),
+                caseData.getSubscriptions(),
+                caseData.getFormType(),
+                caseData.getChildMaintenanceNumber(),
+                caseData.getOtherParties()
+        );
     }
 
     public void addSscsDataToMap(Map<String, Object> appealData, Appeal appeal, List<SscsDocument> sscsDocuments, Subscriptions subscriptions,
