@@ -124,6 +124,7 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2 instead", forRemoval = true)
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
                                       String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
@@ -132,6 +133,7 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2WithoutRetry instead", forRemoval = true)
     public SscsCaseDetails updateCaseWithoutRetry(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
@@ -142,9 +144,9 @@ public class UpdateCcdCaseService {
     }
 
     @Recover
-    protected SscsCaseDetails recover(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+    protected SscsCaseDetails recover(RuntimeException exception, SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
 
-        log.info("Requesting IDAM tokens to update caseId {} with eventType {}", caseId, eventType);
+        log.info("Requesting IDAM tokens to update caseId {} with eventType {} and exception {}", caseId, eventType, exception.getMessage());
 
         idamTokens = idamService.getIdamTokens();
 
