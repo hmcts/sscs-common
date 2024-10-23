@@ -144,9 +144,9 @@ public class UpdateCcdCaseService {
     }
 
     @Recover
-    protected SscsCaseDetails recover(RuntimeException exception, SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+    protected SscsCaseDetails recover(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
 
-        log.info("Requesting IDAM tokens to update caseId {} with eventType {} and exception {}", caseId, eventType, exception.getMessage());
+        log.info("Requesting IDAM tokens to update caseId {} with eventType {}", caseId, eventType);
 
         idamTokens = idamService.getIdamTokens();
 
