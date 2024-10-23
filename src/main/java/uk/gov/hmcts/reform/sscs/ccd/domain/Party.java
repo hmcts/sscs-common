@@ -21,5 +21,8 @@ public abstract class Party extends Entity {
 
     private Role role;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String ibcRole;
+
     private YesNo confidentialityRequired;
 }
