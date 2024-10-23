@@ -8,11 +8,10 @@ import static org.junit.Assert.assertFalse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import java.time.LocalDate;
 
 public class GlobalSearchOtherReferencesTest {
 
@@ -30,7 +29,7 @@ public class GlobalSearchOtherReferencesTest {
                         .serializationInclusion(JsonInclude.Include.NON_ABSENT);
 
         mapper = objectMapperBuilder.createXmlMapper(false).build();
-        mapper.registerModule(new JavaTimeModule());
+        mapper.findAndRegisterModules();
     }
 
     @Test
