@@ -38,22 +38,33 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 @Service
 @Slf4j
 public class AirLookupService {
-    protected static final AirlookupBenefitToVenue DEFAULT_VENUE = AirlookupBenefitToVenue.builder().pipVenue("Birmingham").jsaVenue("Birmingham").esaOrUcVenue("Birmingham").iidbVenue("Birmingham").csaVenue("Birmingham").build();
-    public static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup22.xlsx";
-    public static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
+    protected static final AirlookupBenefitToVenue DEFAULT_VENUE =
+            AirlookupBenefitToVenue.builder()
+                    .pipVenue("Birmingham")
+                    .jsaVenue("Birmingham")
+                    .esaOrUcVenue("Birmingham")
+                    .iidbVenue("Birmingham")
+                    .csaVenue("Birmingham")
+                    .ibcVenue("Birmingham")
+                    .build();
+    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.2.xlsx";
+    static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
-    private static final int REGIONAL_CENTRE_COLUMN = 7;
+    private static final int REGIONAL_CENTRE_COLUMN = 8;
     private static final int ESA_UC_COLUMN = 3;
     private static final int JSA_COLUMN = 5;
     private static final int PIP_COLUMN = 6;
     private static final int IIDB_COLUMN = 1;
     private static final int CSA_COLUMN = 2;
+    private static final int IBC_COLUMN = 7;
     private Map<String, String> lookupRegionalCentreByPostcode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
 
     public String lookupRegionalCentre(String postcode) {
-        if (isFullPostCodeGiven(postcode)) {
+        if (isPortOfEntryCode(postcode)) {
+            return lookupRegionalCentreByOutcode(postcode.toLowerCase().trim());
+        } else if (isFullPostCodeGiven(postcode)) {
             String outcode = trimLastThreeCharsForOutcode(postcode);
             return lookupRegionalCentreByOutcode(outcode);
         }
@@ -71,6 +82,10 @@ public class AirLookupService {
 
     private boolean isFullPostCodeGiven(String postcode) {
         return postcode.length() >= 5;
+    }
+
+    private boolean isPortOfEntryCode(String postcode) {
+        return postcode.toLowerCase().startsWith("gb");
     }
 
     /**
@@ -156,12 +171,14 @@ public class AirLookupService {
         Cell pipCell = row.getCell(PIP_COLUMN);
         Cell iidbCell = row.getCell(IIDB_COLUMN);
         Cell csaCell = row.getCell(CSA_COLUMN);
+        Cell ibcCell = row.getCell(IBC_COLUMN);
         AirlookupBenefitToVenue airlookupBenefitToVenue = AirlookupBenefitToVenue.builder()
                 .esaOrUcVenue(getStringValue(esaOrUcCell))
                 .jsaVenue(getStringValue(jsaCell))
                 .pipVenue(getStringValue(pipCell))
                 .iidbVenue(getStringValue(iidbCell))
                 .csaVenue(getStringValue(csaCell))
+                .ibcVenue(getStringValue(ibcCell))
                 .build();
         lookupAirVenueNameByPostcode.put(postcode, airlookupBenefitToVenue);
     }
@@ -254,11 +271,14 @@ public class AirLookupService {
     }
 
     public String lookupAirVenueNameByPostCode(String postcode, @NonNull BenefitType benefitType) {
-        AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(getFirstHalfOfPostcode(postcode));
+        AirlookupBenefitToVenue venue = lookupAirVenueNameByPostCode(
+                isPortOfEntryCode(postcode)
+                        ? postcode
+                        : getFirstHalfOfPostcode(postcode)
+        );
         Optional<Benefit> benefitOptional = findBenefitByShortName(benefitType.getCode());
 
-        String retorno = benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
-        return retorno;
+        return benefitOptional.flatMap(b -> b.getAirLookupVenue() != null ? of(b.getAirLookupVenue().apply(this, venue)) : empty()).orElse(venue.getEsaOrUcVenue());
     }
 
     public List<String> lookupAirVenueNamesByBenefitCode(@NonNull Benefit benefit) {
@@ -286,5 +306,9 @@ public class AirLookupService {
 
     public String getCsaVenue(AirlookupBenefitToVenue venue) {
         return venue.getCsaVenue();
+    }
+
+    public String getInfectedBloodCompensationVenue(AirlookupBenefitToVenue venue) {
+        return venue.getIbcVenue();
     }
 }
