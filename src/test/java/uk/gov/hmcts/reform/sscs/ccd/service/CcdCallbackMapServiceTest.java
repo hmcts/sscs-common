@@ -65,6 +65,8 @@ class CcdCallbackMapServiceTest {
     private SscsCcdConvertService sscsCcdConvertService;
     @Mock
     private CcdClient ccdClient;
+    @Mock
+    private ReadCcdCaseService readCcdCaseService;
 
     @BeforeEach
     public void setUp() {
@@ -310,7 +312,8 @@ class CcdCallbackMapServiceTest {
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(
                 idamService,
                 sscsCcdConvertService,
-                ccdClient
+                ccdClient,
+                readCcdCaseService
         );
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
@@ -377,7 +380,8 @@ class CcdCallbackMapServiceTest {
         UpdateCcdCaseService updateCcdCaseService = new UpdateCcdCaseService(
                 idamService,
                 sscsCcdConvertService,
-                ccdClient
+                ccdClient,
+                readCcdCaseService
         );
 
         CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
