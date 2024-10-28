@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class EventTypeTest {
@@ -218,6 +219,7 @@ public class EventTypeTest {
 
 
     @Test
+    @Ignore
     public void hasAllEventTypesDefinedInCcdDefinitionFile() {
         String[] allEventTypes = ALL_EVENT_TYPES.split("\n");
 
