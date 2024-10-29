@@ -156,7 +156,7 @@ dependencies {
         exclude group: 'junit', module: 'junit'
     }
 
-    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.31'
+    implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.37.2'
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.14'
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.14'
