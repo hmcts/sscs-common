@@ -54,9 +54,8 @@ public class UpdateCcdCaseService {
         throw exception;
     }
 
-
     @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
+    public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             SscsCaseDetails sscsCaseDetails = mutator.apply(caseDetails);
             return new UpdateResult(sscsCaseDetails, summary, description);

@@ -66,7 +66,7 @@ public class UpdateCcdCaseServiceTest {
         String postHearingSummary = "Post hearing Summary";
         String postHearingDescription = "Post hearing Description";
 
-        updateCcdCaseService.updateCaseV2(
+        updateCcdCaseService.updateCaseV2WithUnaryFunction(
                 caseId,
                 POST_HEARING_REQUEST.getType(),
                 postHearingSummary,
