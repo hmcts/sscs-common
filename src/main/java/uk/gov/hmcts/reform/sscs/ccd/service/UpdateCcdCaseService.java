@@ -44,33 +44,6 @@ public class UpdateCcdCaseService {
         });
     }
 
-    @Recover
-    public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}",
-                caseId,
-                eventType,
-                exception);
-
-        throw exception;
-    }
-
-    @Retryable
-    public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
-        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
-            SscsCaseDetails sscsCaseDetails = mutator.apply(caseDetails);
-            return new UpdateResult(sscsCaseDetails, summary, description);
-        });
-    }
-
-    @Recover
-    public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}",
-                caseId,
-                eventType,
-                exception);
-        throw exception;
-    }
-
     public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
