@@ -751,7 +751,7 @@ public class RoboticsJsonMapperTest {
     @Test
     public void givenIbaCase_thenGetsIbaIssueOffice() {
 
-        SscsCaseData sscsCaseData = buildCaseData("Test", "infectedBloodAppeal", "IBCA");
+        SscsCaseData sscsCaseData = buildCaseData("Test", "infectedBloodCompensation", "IBCA");
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
         roboticsWrapper = RoboticsWrapper
                 .builder()
