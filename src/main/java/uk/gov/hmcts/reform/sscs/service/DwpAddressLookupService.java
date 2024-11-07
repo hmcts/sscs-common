@@ -266,8 +266,8 @@ public class DwpAddressLookupService {
         return new OfficeMapping[]{dwpMappings.getNationalInsuranceCredits()};
     }
 
-    public OfficeMapping[] infectedBloodAppealMappings() {
-        return new OfficeMapping[]{dwpMappings.getInfectedBloodAppeal()};
+    public OfficeMapping[] infectedBloodCompensationMappings() {
+        return new OfficeMapping[]{dwpMappings.getInfectedBloodCompensation()};
     }
 
     public OfficeMapping[] retirementPensionOfficeMappings() {
