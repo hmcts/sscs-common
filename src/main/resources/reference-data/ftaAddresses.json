@@ -1005,7 +1005,7 @@
       "postCode": "PR1 4AT"
     }
   },
-  "infectedBloodAppeal": {
+  "infectedBloodCompensation": {
     "code": "IBCA",
     "isDefault": true,
     "mapping": {

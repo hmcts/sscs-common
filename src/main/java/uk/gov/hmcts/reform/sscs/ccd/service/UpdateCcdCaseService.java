@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -15,6 +16,7 @@ import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
+import uk.gov.hmcts.reform.sscs.exception.ExitRetryableException;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
@@ -25,14 +27,16 @@ public class UpdateCcdCaseService {
     private final IdamService idamService;
     private final SscsCcdConvertService sscsCcdConvertService;
     private final CcdClient ccdClient;
+    private final ReadCcdCaseService readCcdCaseService;
 
     @Autowired
     public UpdateCcdCaseService(IdamService idamService,
                                 SscsCcdConvertService sscsCcdConvertService,
-                                CcdClient ccdClient) {
+                                CcdClient ccdClient, ReadCcdCaseService readCcdCaseService) {
         this.idamService = idamService;
         this.sscsCcdConvertService = sscsCcdConvertService;
         this.ccdClient = ccdClient;
+        this.readCcdCaseService = readCcdCaseService;
     }
 
     @Retryable
@@ -113,7 +117,57 @@ public class UpdateCcdCaseService {
         }
     }
 
+    public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
+
+    // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
+
+    /**
+     * Update a case while making correct use of CCD's optimistic locking,
+     * when event is dyanamic can be made to case data by the provided mutator which will always be provided
+     * the current version of case data from CCD's start event.
+     */
+    @Retryable(exclude = ExitRetryableException.class)
+    public Optional<SscsCaseDetails> updateCaseV2DynamicEvent(Long caseId, IdamTokens idamTokens, Function<SscsCaseDetails, DynamicEventUpdateResult> mutator) {
+        LocalDateTime initialLastModified;
+        LocalDateTime latestLastModified;
+
+        SscsCaseDetails initialCaseDetails = readCcdCaseService.getByCaseId(caseId, idamTokens);
+        SscsCaseData caseData = initialCaseDetails.getData();
+
+        /**
+          * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+          * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+        */
+        caseData.setCcdCaseId(caseId.toString());
+        caseData.sortCollections();
+
+        initialLastModified = initialCaseDetails.getLastModified();
+
+        DynamicEventUpdateResult dynamicEventUpdateResult = mutator.apply(initialCaseDetails);
+
+        if (dynamicEventUpdateResult.willCommit()) {
+
+            String eventType = dynamicEventUpdateResult.eventType;
+
+            log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+            StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+            SscsCaseDetails latestCaseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+
+            latestLastModified = latestCaseDetails.getLastModified();
+
+            if (!initialLastModified.isEqual(latestLastModified)){
+                throw new RuntimeException();
+            }
+
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, dynamicEventUpdateResult.summary, dynamicEventUpdateResult.description);
+            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+        } else {
+            return Optional.empty();
+        }
+    }
+
     @Retryable
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2 instead", forRemoval = true)
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
@@ -123,6 +177,7 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2 instead", forRemoval = true)
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
                                       String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
@@ -131,6 +186,7 @@ public class UpdateCcdCaseService {
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
+    @Deprecated(since = "since 18/10/2024, use updateCaseV2WithoutRetry instead", forRemoval = true)
     public SscsCaseDetails updateCaseWithoutRetry(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
@@ -141,7 +197,7 @@ public class UpdateCcdCaseService {
     }
 
     @Recover
-    protected SscsCaseDetails recover(SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
+    protected SscsCaseDetails recover(RuntimeException exception, SscsCaseData caseData, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
 
         log.info("Requesting IDAM tokens to update caseId {} with eventType {}", caseId, eventType);
 
