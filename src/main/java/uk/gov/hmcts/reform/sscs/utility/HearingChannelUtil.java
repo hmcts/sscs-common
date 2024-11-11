@@ -10,7 +10,7 @@ import static uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel.FACE_
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 
