@@ -78,12 +78,12 @@ public class AirLookupServiceTest {
         "GBATDSA00, Bradford",
         "GBATSYW00, Bradford",
         "GBATSTY00, Glasgow",
-        "GBATWAR00, Bradford",
-        "GBATWIK00, Glasgow",
-        "GBATYVL00, Bradford",
-        "GBATBZN00, Bradford",
-        "GBATFFD00, Bradford",
-        "GBATFLT00, Bradford"
+        " GBATWAR00, Bradford",
+        "GBATWIK00 , Glasgow",
+        "GbATYVL00, Bradford",
+        "gBATBZN00, Bradford",
+        "gbATFFD00, Bradford",
+        "gbatflT00, Bradford"
     })
     public void lookupPortOfEntryCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(portOfEntryCode));
@@ -98,12 +98,12 @@ public class AirLookupServiceTest {
         "GBATDSA00, Bradford",
         "GBATSYW00, Bradford",
         "GBATSTY00, Glasgow",
-        "GBATWAR00, Bradford",
-        "GBATWIK00, Glasgow",
-        "GBATYVL00, Bradford",
-        "GBATBZN00, Bradford",
-        "GBATFFD00, Bradford",
-        "GBATFLT00, Bradford"
+        " GBATWAR00, Bradford",
+        "GBATWIK00 , Glasgow",
+        "GbATYVL00, Bradford",
+        "gBATBZN00, Bradford",
+        "gbATFFD00, Bradford",
+        "gbatflT00, Bradford"
     })
     public void lookupPortOfEntryIbcCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(portOfEntryCode));
