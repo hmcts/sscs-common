@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
 import java.util.function.UnaryOperator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,7 @@ public class UpdateCcdCaseService {
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
-            return new UpdateResult(caseDetails, summary, description);
+            return new UpdateResult(summary, description);
         });
     }
 
@@ -52,13 +51,13 @@ public class UpdateCcdCaseService {
     public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             SscsCaseDetails sscsCaseDetails = mutator.apply(caseDetails);
-            return new UpdateResult(sscsCaseDetails, summary, description);
+            return new UpdateResult(Optional.of(sscsCaseDetails), summary, description);
         });
     }
 
     @Recover
-    public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
-        log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}",
+    public SscsCaseDetails recoverUpdateCaseV2WithUnaryFunction(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
+        log.error("In recover method(updateCaseV2WithUnaryFunction) for caseId {} and eventType {}",
                 caseId,
                 eventType,
                 exception);
@@ -68,16 +67,20 @@ public class UpdateCcdCaseService {
     public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
-            return new UpdateResult(caseDetails, summary, description);
+            return new UpdateResult(summary, description);
         });
     }
 
     @Retryable
     public SscsCaseDetails triggerCaseEventV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens) {
-        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(caseDetails, summary, description));
+        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
 
-    public record UpdateResult(SscsCaseDetails sscsCaseDetails, String summary, String description) { }
+    public record UpdateResult(Optional<SscsCaseDetails> sscsCaseDetails, String summary, String description) {
+        public UpdateResult(String summary, String description) {
+            this(Optional.empty(), summary, description);
+        }
+    }
 
     /**
      * Update a case while making correct use of CCD's optimistic locking.
@@ -99,7 +102,8 @@ public class UpdateCcdCaseService {
         data.sortCollections();
 
         var result = mutator.apply(caseDetails);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(result.sscsCaseDetails.getData(), startEventResponse, result.summary, result.description);
+        SscsCaseData sscsCaseData = result.sscsCaseDetails.map(SscsCaseDetails::getData).orElse(caseDetails.getData());
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
@@ -173,7 +177,7 @@ public class UpdateCcdCaseService {
 
             latestLastModified = latestCaseDetails.getLastModified();
 
-            if (!initialLastModified.isEqual(latestLastModified)){
+            if (!initialLastModified.isEqual(latestLastModified)) {
                 throw new RuntimeException();
             }
 
@@ -235,7 +239,7 @@ public class UpdateCcdCaseService {
     @Recover
     public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
         log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
-       throw exception;
+        throw exception;
     }
 
 }
