@@ -177,7 +177,7 @@ public class UpdateCcdCaseService {
 
             latestLastModified = latestCaseDetails.getLastModified();
 
-            if (!initialLastModified.isEqual(latestLastModified)) {
+            if (!initialLastModified.isEqual(latestLastModified)){
                 throw new RuntimeException();
             }
 
@@ -242,7 +242,7 @@ public class UpdateCcdCaseService {
     @Recover
     public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
         log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
-        throw exception;
+       throw exception;
     }
 
 }
