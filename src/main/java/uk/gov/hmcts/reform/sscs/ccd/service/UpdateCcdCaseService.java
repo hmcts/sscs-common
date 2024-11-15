@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -102,7 +103,11 @@ public class UpdateCcdCaseService {
         data.sortCollections();
 
         var result = mutator.apply(caseDetails);
-        SscsCaseData sscsCaseData = result.sscsCaseDetails.map(SscsCaseDetails::getData).orElse(caseDetails.getData());
+        SscsCaseData sscsCaseData = caseDetails.getData();
+        if (Objects.nonNull(result.sscsCaseDetails)) {
+            sscsCaseData = result.sscsCaseDetails.map(SscsCaseDetails::getData).orElse(caseDetails.getData());
+        }
+
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));

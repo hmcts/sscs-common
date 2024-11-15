@@ -150,13 +150,52 @@ public class UpdateCcdCaseServiceTest {
         updateCcdCaseService.updateCaseV2(
                 caseId,
                 POST_HEARING_REQUEST.getType(),
-                postHearingSummary,
-                postHearingDescription,
                 IdamTokens.builder().build(),
                 sscsCaseDetails -> {
                     sscsCaseDetails.getData().setAddDocuments(YES);
                     sscsCaseDetails.getData().setBenefitCode(benefitCode);
-                    new UpdateCcdCaseService.UpdateResult(postHearingSummary, postHearingDescription);
+                    return new UpdateCcdCaseService.UpdateResult(postHearingSummary, postHearingDescription);
+                });
+
+        verify(sscsCcdConvertService).getCaseDataContent(
+                sscsCaseDataArgumentCaptor.capture(),
+                any(),
+                eq(postHearingSummary),
+                eq(postHearingDescription));
+
+        SscsCaseData sscsCaseData = sscsCaseDataArgumentCaptor.getValue();
+        assertThat(sscsCaseData.getAddDocuments())
+                .isEqualTo(YES);
+        assertThat(sscsCaseData.getBenefitCode())
+                .isEqualTo(benefitCode);
+    }
+
+    @Test
+    void handleUpdateCaseV2WithUpdateResultSetWithNullSccsCaseDetails() {
+        long caseId = 1234L;
+        String benefitCode = "200DD";
+
+        when(ccdClient.startEvent(isA(IdamTokens.class), anyLong(), eq(POST_HEARING_REQUEST.getType())))
+                .thenReturn(StartEventResponse.builder().build());
+
+        when(sscsCcdConvertService.getCaseDetails(isA(StartEventResponse.class)))
+                .thenReturn(SscsCaseDetails.builder()
+                        .data(SscsCaseData.builder()
+                                .addDocuments(NO)
+                                .build())
+                        .build());
+
+        String postHearingSummary = "Post hearing Summary";
+        String postHearingDescription = "Post hearing Description";
+
+        updateCcdCaseService.updateCaseV2(
+                caseId,
+                POST_HEARING_REQUEST.getType(),
+                IdamTokens.builder().build(),
+                sscsCaseDetails -> {
+                    sscsCaseDetails.getData().setAddDocuments(YES);
+                    sscsCaseDetails.getData().setBenefitCode(benefitCode);
+                    return new UpdateCcdCaseService.UpdateResult(null, postHearingSummary, postHearingDescription);
                 });
 
         verify(sscsCcdConvertService).getCaseDataContent(
