@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,5 +24,10 @@ public class BenefitType {
         this.code = code;
         this.description = description;
         this.descriptionSelection = descriptionSelection;
+    }
+
+    @JsonIgnore
+    public Boolean isIbcCase() {
+        return Benefit.INFECTED_BLOOD_COMPENSATION.getShortName().equals(this.code);
     }
 }
