@@ -38,6 +38,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -757,6 +758,14 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public boolean isIbcCase() {
+        return Benefit.INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)
+                || getBenefitType()
+                .map(Benefit.INFECTED_BLOOD_COMPENSATION::equals)
+                .orElse(false);
     }
 
     @JsonIgnore

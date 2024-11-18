@@ -25,9 +25,4 @@ public class BenefitType {
         this.description = description;
         this.descriptionSelection = descriptionSelection;
     }
-
-    @JsonIgnore
-    public Boolean isIbcCase() {
-        return Benefit.INFECTED_BLOOD_COMPENSATION.getShortName().equals(this.code);
-    }
 }
