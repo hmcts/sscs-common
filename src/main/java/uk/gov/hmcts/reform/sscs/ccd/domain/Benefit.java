@@ -56,7 +56,7 @@ public enum Benefit {
     THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "Gofal Plant am ddim - 30 awr", "058", "thirtyHoursFreeChildcare", List.of("058"), false, DwpAddressLookupService::thirtyHoursFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension (COEG)", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "Credydau Yswiriant Gwladol", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
-    INFECTED_BLOOD_COMPENSATION("Infected Blood Compensation", "Apêl Gwaed Heintiedig", "093", "infectedBloodCompensation", List.of("093"), false, DwpAddressLookupService::infectedBloodCompensationMappings, AirLookupService::getInfectedBloodCompensationVenue, SSCS8);
+    INFECTED_BLOOD_COMPENSATION("Infected Blood Compensation", "Iawndal Gwaed Heintiedig", "093", "infectedBloodCompensation", List.of("093"), false, DwpAddressLookupService::infectedBloodCompensationMappings, AirLookupService::getInfectedBloodCompensationVenue, SSCS8);
 
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
