@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.localdate;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.time.LocalDate;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class LocalDateMustBeInFutureValidator implements ConstraintValidator<LocalDateMustBeInFuture, String> {
 

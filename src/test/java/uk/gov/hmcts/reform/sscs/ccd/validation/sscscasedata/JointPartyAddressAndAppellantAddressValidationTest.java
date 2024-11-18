@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 
 import java.util.Set;
-import javax.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolation;
 import org.junit.Assert;
 import org.junit.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
