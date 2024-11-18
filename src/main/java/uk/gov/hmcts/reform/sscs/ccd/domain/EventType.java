@@ -254,7 +254,8 @@ public enum EventType {
     GET_FIRST_TIER_DOCUMENTS("getFirstTierDocuments", 0, false),
     BUNDLE_CREATED_FOR_UPPER_TRIBUNAL("bundleCreatedForUpperTribunal", 0, false),
     NEW_CASE_ROLES_ASSIGNED("newCaseRolesAssigned",0,false),
-    WA_CASE_MIGRATION("waCaseMigration", 0, false);
+    WA_CASE_MIGRATION("waCaseMigration", 0, false),
+    ADD_HEARING_OUTCOME("addHearingOutcome", 0, false);
 
     private final String type;
     private final String ccdType;
