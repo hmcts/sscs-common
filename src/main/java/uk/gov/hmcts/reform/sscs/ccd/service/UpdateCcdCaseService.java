@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import java.time.LocalDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -52,7 +51,7 @@ public class UpdateCcdCaseService {
     public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             SscsCaseDetails sscsCaseDetails = mutator.apply(caseDetails);
-            return new UpdateResult(Optional.of(sscsCaseDetails), summary, description);
+            return new UpdateResult(sscsCaseDetails, summary, description);
         });
     }
 
@@ -77,9 +76,9 @@ public class UpdateCcdCaseService {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
 
-    public record UpdateResult(Optional<SscsCaseDetails> sscsCaseDetails, String summary, String description) {
+    public record UpdateResult(SscsCaseDetails sscsCaseDetails, String summary, String description) {
         public UpdateResult(String summary, String description) {
-            this(Optional.empty(), summary, description);
+            this(null, summary, description);
         }
     }
 
@@ -104,8 +103,9 @@ public class UpdateCcdCaseService {
 
         var result = mutator.apply(caseDetails);
         SscsCaseData sscsCaseData = caseDetails.getData();
-        if (Objects.nonNull(result.sscsCaseDetails)) {
-            sscsCaseData = result.sscsCaseDetails.map(SscsCaseDetails::getData).orElse(caseDetails.getData());
+        if (result.sscsCaseDetails != null) {
+            log.info("Result contains sscsCaseDetails for caseId {}", caseId);
+            sscsCaseData = result.sscsCaseDetails.getData();
         }
 
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
