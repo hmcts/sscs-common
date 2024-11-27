@@ -5,6 +5,7 @@ import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
@@ -758,6 +759,14 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public boolean isIbcCase() {
+        return INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)
+                || getBenefitType()
+                .map(INFECTED_BLOOD_COMPENSATION::equals)
+                .orElse(false);
     }
 
     @JsonIgnore
