@@ -764,8 +764,8 @@ public class SscsCaseData implements CaseData {
     public boolean isIbcCase() {
         if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
             return true;
-
         }
+        
         return Optional.of(this)
                 .map(SscsCaseData::getAppeal)
                 .map(Appeal::getBenefitType)
