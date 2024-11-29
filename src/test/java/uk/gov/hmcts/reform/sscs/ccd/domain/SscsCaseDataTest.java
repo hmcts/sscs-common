@@ -981,6 +981,17 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void givenAppealBenefitCodeIsSetMidCaseCreateIba_thenIsIbcIsTrue() {
+        DynamicList expectedList = new DynamicList(
+                new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()), new ArrayList<>());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .appeal(Appeal.builder().benefitType(BenefitType.builder().descriptionSelection(expectedList).build()).build()).build();
+
+        assertTrue(sscsCaseData.isIbcCase());
+    }
+
+    @Test
     public void givenAppealBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
                 .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build()).build()).build();
