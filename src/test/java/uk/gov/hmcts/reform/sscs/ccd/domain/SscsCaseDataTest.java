@@ -7,6 +7,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
@@ -960,5 +962,49 @@ public class SscsCaseDataTest {
         var caseData = SscsCaseData.builder().jointParty(jointParty).build();
 
         assertFalse(caseData.isThereAJointParty());
+    }
+
+    @Test
+    public void givenBenefitCodeIsSetIba_thenIsIbcIsTrue() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .benefitCode(INFECTED_BLOOD_COMPENSATION.getBenefitCode()).build();
+
+        assertTrue(sscsCaseData.isIbcCase());
+    }
+
+    @Test
+    public void givenAppealBenefitCodeIsSetIba_thenIsIbcIsTrue() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(INFECTED_BLOOD_COMPENSATION.getShortName()).build()).build()).build();
+
+        assertTrue(sscsCaseData.isIbcCase());
+    }
+
+    @Test
+    public void givenAppealBenefitCodeIsSetMidCaseCreateIba_thenIsIbcIsTrue() {
+        DynamicList expectedList = new DynamicList(
+                new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()), new ArrayList<>());
+
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .appeal(Appeal.builder().benefitType(BenefitType.builder().descriptionSelection(expectedList).build()).build()).build();
+
+        assertTrue(sscsCaseData.isIbcCase());
+    }
+
+    @Test
+    public void givenAppealBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build()).build()).build();
+
+        assertFalse(sscsCaseData.isIbcCase());
+    }
+
+    @Test
+    @Parameters({"030", "034", "016"})
+    public void givenBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse(String benefitCode) {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .benefitCode(benefitCode).build();
+
+        assertFalse(sscsCaseData.isIbcCase());
     }
 }

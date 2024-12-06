@@ -59,7 +59,6 @@ public enum Benefit {
     NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "Credydau Yswiriant Gwladol", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     INFECTED_BLOOD_COMPENSATION("Infected Blood Compensation", "Iawndal Gwaed Heintiedig", "093", "infectedBloodCompensation", List.of("093"), false, DwpAddressLookupService::infectedBloodCompensationMappings, AirLookupService::getInfectedBloodCompensationVenue, SSCS8);
 
-
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
     private final String description;
     private final String welshDescription;
