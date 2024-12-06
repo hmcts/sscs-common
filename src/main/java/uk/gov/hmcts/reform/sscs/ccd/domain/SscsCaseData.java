@@ -40,6 +40,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
@@ -139,7 +140,11 @@ public class SscsCaseData implements CaseData {
     private ReissueArtifactUi reissueArtifactUi;
     private String caseCode;
     private String benefitCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String benefitCodeIbcaOnly;
     private String issueCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String issueCodeIbcaOnly;
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
@@ -763,10 +768,19 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     public boolean isIbcCase() {
-        return INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)
-                || getBenefitType()
-                .map(INFECTED_BLOOD_COMPENSATION::equals)
-                .orElse(false);
+        if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
+            return true;
+        }
+        
+        return Optional.of(this)
+                .map(SscsCaseData::getAppeal)
+                .map(Appeal::getBenefitType)
+                .map(BenefitType::getDescriptionSelection)
+                .map(DynamicList::getValue)
+                .map(DynamicListItem::getCode)
+                .filter(ObjectUtils::isNotEmpty)
+                .map(INFECTED_BLOOD_COMPENSATION.getBenefitCode()::equals)
+                .orElseGet(() -> getBenefitType().map(INFECTED_BLOOD_COMPENSATION::equals).orElse(false));
     }
 
     @JsonIgnore
