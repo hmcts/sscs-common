@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
-
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Rule;
@@ -25,8 +24,7 @@ public class RegionalProcessingCenterServiceTest {
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
-    @Mock
-    AirLookupService mockedAirLookupService;
+    @Mock AirLookupService mockedAirLookupService;
 
     private static final RegionalProcessingCenterService regionalProcessingCenterService;
 
@@ -40,7 +38,7 @@ public class RegionalProcessingCenterServiceTest {
     @Test
     public void givenVenuesCvsFile_shouldLoadSccodeToRpcMap() {
         Map<String, String> sccodeRegionalProcessingCentermap
-            = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
+                = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
         assertEquals(248, sccodeRegionalProcessingCentermap.size());
         assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
         assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
@@ -174,18 +172,10 @@ public class RegionalProcessingCenterServiceTest {
 
     @Test
     public void getRegionalProcessingCentreFromPostcode() {
-        String somePostcode = "SP10 1AB";
-        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, false);
+        String somePostcode = "AB10 1AB";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode);
 
-        assertEquals("CARDIFF", rpc.getName());
-    }
-
-    @Test
-    public void getIbcRegionalProcessingCentreFromPostcode() {
-        String somePostcode = "SP10 1AB";
-        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, true);
-
-        assertEquals("BRADFORD", rpc.getName());
+        assertEquals("GLASGOW", rpc.getName());
     }
 
     @Test
@@ -193,16 +183,7 @@ public class RegionalProcessingCenterServiceTest {
         RegionalProcessingCenterService regionalProcessingCenterServiceMockedAirLookup = new RegionalProcessingCenterService(mockedAirLookupService);
         regionalProcessingCenterServiceMockedAirLookup.init();
         when(mockedAirLookupService.lookupRegionalCentre(anyString())).thenReturn("Scotland");
-        RegionalProcessingCenter rpc = regionalProcessingCenterServiceMockedAirLookup.getByPostcode("GB0120394", false);
-        assertEquals("GLASGOW", rpc.getName());
-    }
-
-    @Test
-    public void ibcRegionalProcessingCentreNameScotlandFromGBLocationCodeReturnGlasgowRpc() {
-        RegionalProcessingCenterService regionalProcessingCenterServiceMockedAirLookup = new RegionalProcessingCenterService(mockedAirLookupService);
-        regionalProcessingCenterServiceMockedAirLookup.init();
-        when(mockedAirLookupService.lookupIbcRegionalCentre(anyString())).thenReturn("Scotland");
-        RegionalProcessingCenter rpc = regionalProcessingCenterServiceMockedAirLookup.getByPostcode("GB0120394", true);
+        RegionalProcessingCenter rpc = regionalProcessingCenterServiceMockedAirLookup.getByPostcode("GB0120394");
         assertEquals("GLASGOW", rpc.getName());
     }
 
