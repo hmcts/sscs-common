@@ -115,11 +115,11 @@ public class RegionalProcessingCenterService {
         return regionalProcessingCenterMap.get(rpc);
     }
 
-    public RegionalProcessingCenter getByPostcode(String postcode) {
+    public RegionalProcessingCenter getByPostcode(String postcode, boolean isIbca) {
         if (testScotlandPostcode != null && testScotlandPostcode.contains(postcode)) {
             return regionalProcessingCenterMap.get("SSCS Glasgow");
         }
-        String regionalProcessingCentreName = airLookupService.lookupRegionalCentre(postcode);
+        String regionalProcessingCentreName = isIbca ? airLookupService.lookupIbcRegionalCentre(postcode) : airLookupService.lookupRegionalCentre(postcode);
         if (postcode.startsWith("GB") && regionalProcessingCentreName.equals("Scotland")) {
             return regionalProcessingCenterMap.get("SSCS Glasgow");
         }
