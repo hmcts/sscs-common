@@ -49,16 +49,64 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-            "GB000434, Scotland",
-            "GB000411, Scotland",
-            "GB000033, Bradford",
-            " GB000052, Bradford",
-            "GB000244 , Bradford",
-            "GB003060 , Bradford",
-            "Gb000500, Bradford"
+        "BR3 8JK, Bradford",
+        "br3 8JK, Bradford",
+        "aa1 1aa, null",
+        "ze3 4gh, Glasgow",
+        "ab1 2gh, Glasgow",
+        "l2 1RT, Bradford",
+        "HP27 1RT, Bradford",
+        "l21RT, Bradford",
+        "HP271RT, Bradford",
+        "HP27, Bradford",
+        "bl1, Bradford",
+        "bl7, Bradford",
+        "s3, Bradford",
+        "s35, Bradford",
+        "br2, Bradford"
+    })
+    public void lookupIbcPostcode(String postcode, @Nullable String expectedAdminGroup) {
+        assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+
+    @Test
+    @Parameters({
+        "GBATGLO00, Bradford",
+        "GBATKEM00, Bradford",
+        "GBATLAS00, Bradford",
+        "GBATOAK00, Bradford",
+        "GBATDSA00, Bradford",
+        "GBATSYW00, Bradford",
+        "GBATSTY00, Glasgow",
+        " GBATWAR00, Bradford",
+        "GBATWIK00 , Glasgow",
+        "GbATYVL00, Bradford",
+        "gBATBZN00, Bradford",
+        "gbATFFD00, Bradford",
+        "gbatflT00, Bradford"
     })
     public void lookupPortOfEntryCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(portOfEntryCode));
+    }
+
+    @Test
+    @Parameters({
+        "GBATGLO00, Bradford",
+        "GBATKEM00, Bradford",
+        "GBATLAS00, Bradford",
+        "GBATOAK00, Bradford",
+        "GBATDSA00, Bradford",
+        "GBATSYW00, Bradford",
+        "GBATSTY00, Glasgow",
+        " GBATWAR00, Bradford",
+        "GBATWIK00 , Glasgow",
+        "GbATYVL00, Bradford",
+        "gBATBZN00, Bradford",
+        "gbATFFD00, Bradford",
+        "gbatflT00, Bradford"
+    })
+    public void lookupPortOfEntryIbcCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
+        assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(portOfEntryCode));
     }
 
     @Test
