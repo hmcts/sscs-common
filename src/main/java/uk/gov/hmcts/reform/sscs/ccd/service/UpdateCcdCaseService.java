@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
+import java.util.function.UnaryOperator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Recover;
@@ -47,6 +47,23 @@ public class UpdateCcdCaseService {
         });
     }
 
+    @Retryable
+    public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
+        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
+            SscsCaseDetails sscsCaseDetails = mutator.apply(caseDetails);
+            return new UpdateResult(sscsCaseDetails, summary, description);
+        });
+    }
+
+    @Recover
+    public SscsCaseDetails recoverUpdateCaseV2WithUnaryFunction(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
+        log.error("In recover method(updateCaseV2WithUnaryFunction) for caseId {} and eventType {}",
+                caseId,
+                eventType,
+                exception);
+        throw exception;
+    }
+
     public SscsCaseDetails updateCaseV2WithoutRetry(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
             mutator.accept(caseDetails);
@@ -59,7 +76,11 @@ public class UpdateCcdCaseService {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> new UpdateResult(summary, description));
     }
 
-    public record UpdateResult(String summary, String description) { }
+    public record UpdateResult(SscsCaseDetails sscsCaseDetails, String summary, String description) {
+        public UpdateResult(String summary, String description) {
+            this(null, summary, description);
+        }
+    }
 
     /**
      * Update a case while making correct use of CCD's optimistic locking.
@@ -81,7 +102,13 @@ public class UpdateCcdCaseService {
         data.sortCollections();
 
         var result = mutator.apply(caseDetails);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
+        SscsCaseData sscsCaseData = caseDetails.getData();
+        if (result.sscsCaseDetails != null) {
+            log.info("Result contains sscsCaseDetails for caseId {}", caseId);
+            sscsCaseData = result.sscsCaseDetails.getData();
+        }
+
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
 
         return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
