@@ -140,7 +140,11 @@ public class SscsCaseData implements CaseData {
     private ReissueArtifactUi reissueArtifactUi;
     private String caseCode;
     private String benefitCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String benefitCodeIbcaOnly;
     private String issueCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String issueCodeIbcaOnly;
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
@@ -310,6 +314,7 @@ public class SscsCaseData implements CaseData {
     private YesNo wcaAppeal;
     private YesNo isAppellantDeceased;
     private YesNo isFqpmRequired;
+    private YesNo isMedicalMemberRequired;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")

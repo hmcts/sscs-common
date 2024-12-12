@@ -51,6 +51,7 @@ public class AirLookupService {
     static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 8;
+    private static final int IBC_REGIONAL_CENTRE_COLUMN = 10;
     private static final int ESA_UC_COLUMN = 3;
     private static final int JSA_COLUMN = 5;
     private static final int PIP_COLUMN = 6;
@@ -58,6 +59,7 @@ public class AirLookupService {
     private static final int CSA_COLUMN = 2;
     private static final int IBC_COLUMN = 7;
     private Map<String, String> lookupRegionalCentreByPostcode;
+    private Map<String, String> lookupIbcRegionalCentreByPostcode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
 
@@ -71,6 +73,16 @@ public class AirLookupService {
         return lookupRegionalCentreByOutcode(postcode.toLowerCase().trim());
     }
 
+    public String lookupIbcRegionalCentre(String postcode) {
+        if (isPortOfEntryCode(postcode)) {
+            return lookupIbcRegionalCentreByOutcode(postcode.toLowerCase().trim());
+        } else if (isFullPostCodeGiven(postcode)) {
+            String outcode = trimLastThreeCharsForOutcode(postcode);
+            return lookupIbcRegionalCentreByOutcode(outcode);
+        }
+        return lookupIbcRegionalCentreByOutcode(postcode.toLowerCase().trim());
+    }
+
     private String trimLastThreeCharsForOutcode(String postcode) {
         int index = postcode.length() - 3;
         return postcode.toLowerCase().substring(0, index).trim();
@@ -78,6 +90,10 @@ public class AirLookupService {
 
     private String lookupRegionalCentreByOutcode(String outcode) {
         return lookupRegionalCentreByPostcode.get(outcode);
+    }
+
+    private String lookupIbcRegionalCentreByOutcode(String outcode) {
+        return lookupIbcRegionalCentreByPostcode.get(outcode);
     }
 
     private boolean isFullPostCodeGiven(String postcode) {
@@ -103,6 +119,7 @@ public class AirLookupService {
 
     private void initialiseLookupMaps() {
         lookupRegionalCentreByPostcode = new HashMap<>();
+        lookupIbcRegionalCentreByPostcode = new HashMap<>();
         lookupAirVenueNameByPostcode = new HashMap<>();
         lookupVenueIdByAirVenueName = new HashMap<>();
     }
@@ -157,12 +174,18 @@ public class AirLookupService {
     private void populateLookupByPostcodeMaps(Row row) {
         String postcode = getStringValue(row.getCell(POSTCODE_COLUMN)).toLowerCase().trim();
         populateLookupRegionalCentreByPostcodeMap(row, postcode);
+        populateLookupIbcRegionalCentreByPostcodeMap(row, postcode);
         populateLookupAirVenueNameByPostcodeMap(postcode, row);
     }
 
     private void populateLookupRegionalCentreByPostcodeMap(Row row, String postcode) {
         Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
         lookupRegionalCentreByPostcode.put(postcode, getStringValue(adminGroupCell));
+    }
+
+    private void populateLookupIbcRegionalCentreByPostcodeMap(Row row, String postcode) {
+        Cell adminGroupCell = row.getCell(IBC_REGIONAL_CENTRE_COLUMN);
+        lookupIbcRegionalCentreByPostcode.put(postcode, getStringValue(adminGroupCell));
     }
 
     private void populateLookupAirVenueNameByPostcodeMap(String postcode, Row row) {
@@ -228,6 +251,16 @@ public class AirLookupService {
      */
     public Map<String, String> getLookupRegionalCentreByPostcode() {
         return ImmutableMap.copyOf(lookupRegionalCentreByPostcode);
+    }
+
+    /**
+     * Get the map with the first half of post code as the key and
+     * the IBC Regional Centre as the value.
+     *
+     * @return map with the first half of post code as the key and the IBC Regional Centre as the value
+     */
+    public Map<String, String> getLookupIbcRegionalCentreByPostcode() {
+        return ImmutableMap.copyOf(lookupIbcRegionalCentreByPostcode);
     }
 
     /**
