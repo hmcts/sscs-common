@@ -145,7 +145,8 @@ public class BenefitTest {
         "Child Benefit, Budd-dal Plant",
         "30 Hours Free Childcare, Gofal Plant am ddim - 30 awr",
         "Guaranteed Minimum Pension (COEG), Isafswm Pensiwn Gwarantedig",
-        "National Insurance Credits, Credydau Yswiriant Gwladol"
+        "National Insurance Credits, Credydau Yswiriant Gwladol",
+        "Infected Blood Compensation, Iawndal Gwaed Heintiedig"
     })
     public void givenAWelshBenefitCodeWithNoAcronym_thenBuildLongBenefitNameDescriptionWithNoAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
@@ -176,6 +177,7 @@ public class BenefitTest {
         "THIRTY_HOURS_FREE_CHILDCARE, 058",
         "GUARANTEED_MINIMUM_PENSION, 034",
         "NATIONAL_INSURANCE_CREDITS, 030",
+        "INFECTED_BLOOD_COMPENSATION, 093",
     })
     public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
@@ -207,7 +209,8 @@ public class BenefitTest {
         "CHILD_BENEFIT, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
         "THIRTY_HOURS_FREE_CHILDCARE, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
         "GUARANTEED_MINIMUM_PENSION, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
-        "NATIONAL_INSURANCE_CREDITS, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER"
+        "NATIONAL_INSURANCE_CREDITS, JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER",
+        "INFECTED_BLOOD_COMPENSATION, IBC_PANEL_COMPOSITION"
     })
     public void panelComposition(Benefit benefit, PanelComposition expectedPanelComposition) {
         assertThat(benefit.getPanelComposition(), is(expectedPanelComposition));
