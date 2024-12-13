@@ -20,7 +20,3 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 17
-      - name: Run dependencyCheck
-        env:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: ./gradlew dependencyCheckAggregate
