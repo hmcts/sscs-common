@@ -27,6 +27,8 @@ public class Address {
     private String line1;
     @StringNoSpecialCharacters(fieldName = "Line 2", groups = {UniversalCreditValidationGroup.class})
     private String line2;
+    @StringNoSpecialCharacters(fieldName = "Line 3", groups = {UniversalCreditValidationGroup.class})
+    private String line3;
     @StringNoSpecialCharacters(fieldName = "Town", groups = {UniversalCreditValidationGroup.class})
     private String town;
     @StringNoSpecialCharacters(fieldName = "County", groups = {UniversalCreditValidationGroup.class})
