@@ -72,6 +72,7 @@ public class Address {
     
     public Address(@JsonProperty("line1") String line1,
                    @JsonProperty("line2") String line2,
+                   @JsonProperty("line3") String line3,
                    @JsonProperty("town") String town,
                    @JsonProperty("county") String county,
                    @JsonProperty("postcode") String postcode,
@@ -79,6 +80,7 @@ public class Address {
                    @JsonProperty("postcodeAddress") String postcodeAddress) {
         this.line1 = line1;
         this.line2 = line2;
+        this.line3 = line3;
         this.town = town;
         this.county = county;
         this.postcode = postcode;
@@ -92,6 +94,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     county,
                     postcode)
@@ -101,6 +104,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     postcode,
                     country)
@@ -115,6 +119,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     county,
                     postcode).allMatch(StringUtils::isEmpty);
@@ -122,6 +127,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     country,
                     portOfEntry).allMatch(StringUtils::isEmpty);
