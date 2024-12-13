@@ -46,6 +46,7 @@ public class Address {
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
                    @JsonProperty("line2") String line2,
+                   @JsonProperty("line3") String line3,
                    @JsonProperty("town") String town,
                    @JsonProperty("county") String county,
                    @JsonProperty("postcode") String postcode,
@@ -57,6 +58,7 @@ public class Address {
                    @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList) {
         this.line1 = line1;
         this.line2 = line2;
+        this.line3 = line3;
         this.town = town;
         this.county = county;
         this.postcode = postcode;
