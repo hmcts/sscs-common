@@ -91,7 +91,7 @@ public class AddressTest {
 
     @Test
     public void givenIsLivingInTheUk_thenFullAddressHasPostcode() {
-        String expectedAddress = "1a Carnival Road, Ladbroke Grove, Notting Hill, W10 5QA";
+        String expectedAddress = "1a Carnival Road, Ladbroke Grove, My neck of the woods, Notting Hill, W10 5QA";
 
         Address address = Address.builder()
             .line1("1a Carnival Road")
@@ -107,7 +107,7 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndNoPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, USA";
+        String expectedAddress = "123 New Forest Drive, My road, My neck of the woods, Washington, USA";
 
         Address address = Address.builder()
             .line1("123 New Forest Drive")
@@ -123,7 +123,7 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, 98101, USA";
+        String expectedAddress = "123 New Forest Drive, My road, My neck of the woods, Washington, 98101, USA";
 
         Address address = Address.builder()
             .line1("123 New Forest Drive")
