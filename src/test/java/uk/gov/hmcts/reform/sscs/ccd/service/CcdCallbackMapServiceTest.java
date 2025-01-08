@@ -76,17 +76,6 @@ class CcdCallbackMapServiceTest {
         idamTokens = IdamTokens.builder().build();
     }
 
-    @DisplayName("When callbackMap is null handleCcdCallbackMap returns the case data unmodified and doesn't call "
-        + "ccdService")
-    @Test
-    void handleCcdCallbackNullCallbackMap() {
-
-        SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(null, caseData);
-
-        assertThat(result).isEqualTo(caseData);
-        verifyNoInteractions(ccdService, idamService);
-    }
-
     @DisplayName("When callbackMap is null, a null pointer exception is thrown")
     @Test
     void handleCcdCallbackNullCallbackMapV2() {
@@ -100,27 +89,6 @@ class CcdCallbackMapServiceTest {
         assertThatNullPointerException().isThrownBy(() -> ccdCallbackMapService.handleCcdCallbackMapV2(null, CASE_ID, caseData -> {
         }));
         verifyNoInteractions(ccdService, idamService);
-    }
-
-    @DisplayName("When PostCallbackDwpState is null handleCcdCallbackMap leaves the Dwp State unmodified")
-    @Test
-    void handleCcdCallbackNullPostCallbackDwpState() {
-        given(callbackMap.getPostCallbackDwpState()).willReturn(null);
-
-        SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
-
-        assertThat(result).isEqualTo(caseData);
-    }
-
-    @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMap correctly sets the Dwp State")
-    @Test
-    void handleCcdCallbackPostCallbackDwpState() {
-        DwpState expected = DIRECTION_ACTION_REQUIRED;
-        given(callbackMap.getPostCallbackDwpState()).willReturn(expected);
-
-        SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
-
-        assertThat(result.getDwpState()).isEqualTo(expected);
     }
 
     @DisplayName("When PostCallbackDwpState is not null handleCcdCallbackMapV2 correctly sets the Dwp State")
@@ -174,16 +142,6 @@ class CcdCallbackMapServiceTest {
         assertThat(result.getDwpState()).isEqualTo(DIRECTION_ACTION_REQUIRED);
     }
 
-    @DisplayName("When CallbackEvent is null handleCcdCallbackMap doesn't call ccdService")
-    @Test
-    void handleCcdCallbackNullCallbackEvent() {
-        given(callbackMap.getCallbackEvent()).willReturn(null);
-
-        ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
-
-        verifyNoInteractions(ccdService, idamService);
-    }
-
     @DisplayName("When CallbackEvent is null, a null pointer exception is thrown")
     @Test
     void handleCcdCallbackV2NullCallbackEvent() {
@@ -203,31 +161,6 @@ class CcdCallbackMapServiceTest {
         }));
 
         verifyNoInteractions(ccdService, idamService);
-    }
-
-    @DisplayName("When CallbackEvent is not null handleCcdCallbackMap will call ccdService")
-    @Test
-    void handleCcdCallbackCallbackEvent() {
-        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
-        given(callbackMap.getCallbackSummary()).willReturn("summary");
-        given(callbackMap.getCallbackDescription()).willReturn("description");
-
-        given(idamService.getIdamTokens()).willReturn(idamTokens);
-
-        SscsCaseData expected = SscsCaseData.builder()
-            .caseReference("changed")
-            .build();
-        given(ccdService
-            .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens))
-            .willReturn(SscsCaseDetails.builder().data(expected).build());
-
-        SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMap(callbackMap, caseData);
-
-        verify(ccdService, times(1))
-            .updateCase(caseData, CASE_ID, READY_TO_LIST.getCcdType(), "summary", "description", idamTokens);
-        verify(idamService, times(1)).getIdamTokens();
-
-        assertThat(result).isEqualTo(expected);
     }
 
     @DisplayName("When CallbackEvent is not null handleCcdCallbackMapV2 will call ccdService")
@@ -316,7 +249,7 @@ class CcdCallbackMapServiceTest {
                 readCcdCaseService
         );
 
-        CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
+        CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(updateCcdCaseService, idamService);
 
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
@@ -384,7 +317,7 @@ class CcdCallbackMapServiceTest {
                 readCcdCaseService
         );
 
-        CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(ccdService, updateCcdCaseService, idamService);
+        CcdCallbackMapService ccdCallbackMapService = new CcdCallbackMapService(updateCcdCaseService, idamService);
 
         given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
         given(callbackMap.getCallbackSummary()).willReturn("summary");
