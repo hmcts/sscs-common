@@ -49,21 +49,21 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-        "BR3 8JK, Bradford",
-        "br3 8JK, Bradford",
+        "BR3 8JK, Sutton",
+        "br3 8JK, Sutton",
         "aa1 1aa, null",
         "ze3 4gh, Glasgow",
         "ab1 2gh, Glasgow",
-        "l2 1RT, Bradford",
+        "l2 1RT, Liverpool",
         "HP27 1RT, Bradford",
-        "l21RT, Bradford",
+        "l21RT, Liverpool",
         "HP271RT, Bradford",
         "HP27, Bradford",
-        "bl1, Bradford",
-        "bl7, Bradford",
-        "s3, Bradford",
-        "s35, Bradford",
-        "br2, Bradford"
+        "bl1, Liverpool",
+        "bl7, Liverpool",
+        "s3, Leeds",
+        "s35, Leeds",
+        "br2, Sutton"
     })
     public void lookupIbcPostcode(String postcode, @Nullable String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
@@ -71,18 +71,18 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-        "GBATGLO00, Bradford",
-        "GBATKEM00, Bradford",
-        "GBATLAS00, Bradford",
+        "GBATGLO00, Cardiff",
+        "GBATKEM00, Cardiff",
+        "GBATLAS00, Cardiff",
         "GBATOAK00, Bradford",
-        "GBATDSA00, Bradford",
-        "GBATSYW00, Bradford",
+        "GBATDSA00, Leeds",
+        "GBATSYW00, Birmingham",
         "GBATSTY00, Glasgow",
-        " GBATWAR00, Bradford",
+        " GBATWAR00, Liverpool",
         "GBATWIK00 , Glasgow",
-        "GbATYVL00, Bradford",
+        "GbATYVL00, Cardiff",
         "gBATBZN00, Bradford",
-        "gbATFFD00, Bradford",
+        "gbATFFD00, Cardiff",
         "gbatflT00, Bradford"
     })
     public void lookupPortOfEntryCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
@@ -91,18 +91,18 @@ public class AirLookupServiceTest {
 
     @Test
     @Parameters({
-        "GBATGLO00, Bradford",
-        "GBATKEM00, Bradford",
-        "GBATLAS00, Bradford",
+        "GBATGLO00, Cardiff",
+        "GBATKEM00, Cardiff",
+        "GBATLAS00, Cardiff",
         "GBATOAK00, Bradford",
-        "GBATDSA00, Bradford",
-        "GBATSYW00, Bradford",
+        "GBATDSA00, Leeds",
+        "GBATSYW00, Birmingham",
         "GBATSTY00, Glasgow",
-        " GBATWAR00, Bradford",
+        " GBATWAR00, Liverpool",
         "GBATWIK00 , Glasgow",
-        "GbATYVL00, Bradford",
+        "GbATYVL00, Cardiff",
         "gBATBZN00, Bradford",
-        "gbATFFD00, Bradford",
+        "gbATFFD00, Cardiff",
         "gbatflT00, Bradford"
     })
     public void lookupPortOfEntryIbcCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
