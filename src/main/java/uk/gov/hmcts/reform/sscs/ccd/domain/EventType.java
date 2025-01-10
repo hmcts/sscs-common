@@ -206,6 +206,7 @@ public enum EventType {
     SET_ASIDE_REFUSED("setAsideRefused", 0, true),
     SET_ASIDE_REFUSED_SOR("setAsideRefusedSOR", 0, true),
     SET_ASIDE_REQUEST("setAsideRequest", 0, false),
+    SET_HEARING_ROUTE("setHearingRoute", 0, false),
     REVIEW_AND_SET_ASIDE("reviewAndSetAside", 0, true),
     SOR_EXTEND_TIME("sORExtendTime", 0, true),
     SOR_REFUSED("sORRefused", 0, true),

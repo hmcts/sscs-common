@@ -213,7 +213,8 @@ public class EventTypeTest {
             "postponementRequest\n" +
             "dwpRequestHearingRecording\n" +
             "sendToFirstTier\n" +
-            "upperTribunalDecision";
+            "upperTribunalDecision\n" +
+            "setHearingRoute";
 
 
     @Test
