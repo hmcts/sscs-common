@@ -168,6 +168,32 @@ class CcdCallbackMapServiceTest {
         assertThat(result.getInterlocReviewState()).isEqualTo(REVIEW_BY_TCW);
     }
 
+    @DisplayName("When PostCallbackInterlocReason is null handleCcdCallbackMapV2 leaves the InterlocReferralReason unmodified ")
+    @Test
+    void handleCcdCallbackNullPostCallbackInterlocReason() {
+        caseData.setInterlocReferralReason(ADVICE_ON_HOW_TO_PROCEED);
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder().id(CASE_ID).data(caseData).build();
+        given(callbackMap.getPostCallbackInterlocReason()).willReturn(null);
+        given(callbackMap.getCallbackEvent()).willReturn(READY_TO_LIST);
+        given(callbackMap.getCallbackSummary()).willReturn("summary");
+        given(callbackMap.getCallbackDescription()).willReturn("description");
+        given(idamService.getIdamTokens()).willReturn(idamTokens);
+        given(updateCcdCaseService
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), any(Consumer.class)))
+                .willReturn(sscsCaseDetails);
+
+        SscsCaseData result = ccdCallbackMapService.handleCcdCallbackMapV2(callbackMap, CASE_ID);
+
+        assertThat(result).isNotNull();
+
+        verify(updateCcdCaseService, times(1))
+                .updateCaseV2(eq(CASE_ID), eq(READY_TO_LIST.getCcdType()), eq("summary"), eq("description"), eq(idamTokens), sscsCaseDetailsArgumentCaptor.capture());
+
+        sscsCaseDetailsArgumentCaptor.getValue().accept(sscsCaseDetails);
+
+        assertThat(result.getInterlocReferralReason()).isEqualTo(ADVICE_ON_HOW_TO_PROCEED);
+    }
+
     @DisplayName("When PostCallbackInterlocReason is not null handleCcdCallbackMapV2 correctly sets InterlocReferralReason")
     @Test
     void handleCcdCallbackNotNullPostCallbackInterlocReason() {
