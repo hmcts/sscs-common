@@ -213,6 +213,7 @@ public class EventTypeTest {
             "postponementRequest\n" +
             "dwpRequestHearingRecording\n" +
             "sendToFirstTier\n" +
+            "ibcUploadResponse\n" +
             "upperTribunalDecision";
 
 

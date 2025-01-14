@@ -123,6 +123,7 @@ public enum EventType {
     HEARING_REMINDER("hearingReminder", 0, true),
     HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
     HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
+    IBC_UPLOAD_RESPONSE("ibcUploadResponse", 0, false),
     INCOMPLETE_APPLICATION_RECEIVED("incompleteApplicationReceived", 0, true),
     INTERLOC_INFORMATION_RECEIVED("interlocInformationReceived", 0, false),
     INTERLOC_INFORMATION_RECEIVED_ACTION_FURTHER_EVIDENCE("interlocInformationReceivedActionFurtherEvidence", 0, false),
