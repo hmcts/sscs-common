@@ -1,12 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,37 +17,9 @@ import uk.gov.hmcts.reform.sscs.idam.IdamService;
 @Service
 @RequiredArgsConstructor
 public class CcdCallbackMapService {
-    private final CcdService ccdService;
     private final UpdateCcdCaseService updateCcdCaseService;
     private final IdamService idamService;
 
-    public SscsCaseData handleCcdCallbackMap(@Nullable CcdCallbackMap callbackMap, @Valid SscsCaseData caseData) {
-        if (isNull(callbackMap)) {
-            return caseData;
-        }
-
-        Long caseId = Long.valueOf(caseData.getCcdCaseId());
-
-        if (nonNull(callbackMap.getPostCallbackDwpState())) {
-            setDwpState(callbackMap, caseId, caseData);
-        }
-
-        if (nonNull(callbackMap.getPostCallbackInterlocState())) {
-            setInterlocReviewState(callbackMap, caseData, caseId);
-        }
-
-        if (nonNull(callbackMap.getPostCallbackInterlocReason())) {
-            setInterlocReferralReason(callbackMap, caseData, caseId);
-        }
-
-        if (nonNull(callbackMap.getCallbackEvent())) {
-            SscsCaseDetails updatedCaseDetails = ccdService.updateCase(caseData, caseId,
-                callbackMap.getCallbackEvent().getCcdType(), callbackMap.getCallbackSummary(),
-                callbackMap.getCallbackDescription(), idamService.getIdamTokens());
-            return updatedCaseDetails.getData();
-        }
-        return caseData;
-    }
 
     public SscsCaseData handleCcdCallbackMapV2(@Nonnull CcdCallbackMap callbackMap, long caseId) {
         return handleCcdCallbackMapV2(callbackMap, caseId, sscsCaseData -> { });
