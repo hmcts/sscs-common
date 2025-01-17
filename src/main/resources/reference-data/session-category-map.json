@@ -5087,5 +5087,10 @@
     "benefitCode": "IBC",
     "issue": "SP",
     "category": "CATEGORY_08"
+  },
+  {
+    "benefitCode": "IBC",
+    "issue": "SD",
+    "category": "CATEGORY_08"
   }
 ]
