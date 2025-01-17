@@ -29,4 +29,5 @@ public class HearingOutcomeDetails {
     private HearingChannel hearingChannelId;
     private Venue venue;
     private String epimsId;
+    private DynamicList completedHearings;
 }
