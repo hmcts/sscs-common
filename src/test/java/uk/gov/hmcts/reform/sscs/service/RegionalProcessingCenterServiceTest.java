@@ -185,7 +185,7 @@ public class RegionalProcessingCenterServiceTest {
         String somePostcode = "SP10 1AB";
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, true);
 
-        assertEquals("BRADFORD", rpc.getName());
+        assertEquals("CARDIFF", rpc.getName());
     }
 
     @Test
