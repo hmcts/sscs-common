@@ -405,7 +405,7 @@ public class SscsCaseData implements CaseData {
     private YesNo ignoreCallbackWarnings;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private YesNo selectNextTypeOfHearing;
+    private YesNo selectNextHmcHearingType;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("hmcHearingType")
