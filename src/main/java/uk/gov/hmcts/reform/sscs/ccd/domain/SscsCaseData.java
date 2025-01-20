@@ -66,6 +66,7 @@ public class SscsCaseData implements CaseData {
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
+    private List<Hearing> completedHearingsList;
     private List<HearingOutcome> hearingOutcomes;
     private HearingOutcomeValue hearingOutcomeValue;
     private Evidence evidence;
