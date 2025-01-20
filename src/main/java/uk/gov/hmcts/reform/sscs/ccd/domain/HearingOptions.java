@@ -25,7 +25,7 @@ public class HearingOptions {
     private String agreeLessNotice;
     private HearingRoute hearingRoute;
     private String other;
-    private TypeOfHearing typeOfHearing;
+    private HmcHearingType hmcHearingType;
 
     @JsonCreator
     public HearingOptions(@JsonProperty("wantsToAttend") String wantsToAttend,
@@ -40,7 +40,7 @@ public class HearingOptions {
                           @JsonProperty("agreeLessNotice") String agreeLessNotice,
                           @JsonProperty("hearingRoute") HearingRoute hearingRoute,
                           @JsonProperty("other") String other,
-                          @JsonProperty("typeOfHearing") TypeOfHearing typeOfHearing) {
+                          @JsonProperty("hmcHearingType") HmcHearingType hmcHearingType) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
         this.languageInterpreter = languageInterpreter;
@@ -53,7 +53,7 @@ public class HearingOptions {
         this.agreeLessNotice = agreeLessNotice;
         this.hearingRoute = hearingRoute;
         this.other = other;
-        this.typeOfHearing = typeOfHearing;
+        this.hmcHearingType = hmcHearingType;
     }
 
     @JsonIgnore

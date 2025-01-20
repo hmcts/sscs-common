@@ -407,8 +407,8 @@ public class SscsCaseData implements CaseData {
     private YesNo selectNextTypeOfHearing;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("typeOfHearing")
-    private TypeOfHearing typeOfHearing;
+    @JsonProperty("hmcHearingType")
+    private HmcHearingType hmcHearingType;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
