@@ -10,6 +10,9 @@ public enum DirectionType {
     @JsonProperty("provideInformation")
     PROVIDE_INFORMATION("provideInformation", "Provide information"),
 
+    @JsonProperty("issueAndSendToAdmin")
+    ISSUE_AND_SEND_TO_ADMIN("issueAndSendToAdmin", "Issue direction and send to admin"),
+
     @JsonProperty("grantExtension")
     GRANT_EXTENSION("grantExtension", "Allow time extension"),
 

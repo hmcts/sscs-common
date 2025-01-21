@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '10.0.3'
+    id 'org.owasp.dependencycheck' version '10.0.4'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -73,7 +73,7 @@ dependencyCheck {
 // region test coverage
 
 jacoco {
-    toolVersion = "0.8.10"
+    toolVersion = "0.8.12"
 }
 
 jacocoTestReport {
@@ -145,13 +145,13 @@ tasks.register('runGitPreCommitTasks') {
 def versions = [
         springboot   : '3.3.0',
         jackson      : '2.17.2',
-        junitjupiter : '5.10.0',
-        lombok       : '1.18.28'
+        junitjupiter : '5.11.3',
+        lombok       : '1.18.36'
 ]
 
 dependencies {
 
-    api group: 'com.google.guava', name: 'guava', version: '32.1.1-jre'
+    api group: 'com.google.guava', name: 'guava', version: '32.1.3-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
@@ -171,16 +171,16 @@ dependencies {
 
     implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.40'
 
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.14'
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.14'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.12'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.12'
 
-    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.7.0'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
     implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.3', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
 
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.17.11'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.17.25'
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.3.1'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
@@ -188,6 +188,7 @@ dependencies {
     implementation group: 'com.github.hmcts', name: 'java-logging', version: '6.1.7'
 
     implementation group: 'com.github.hmcts', name: 'ccd-client', version: '5.0.3'
+
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
 
@@ -208,7 +209,7 @@ dependencies {
     }
     implementation group: 'org.apache.commons', name: 'commons-text', version: '1.10.0'
 
-    implementation group: 'commons-io', name: 'commons-io', version: '2.16.1'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.18.0'
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
@@ -217,7 +218,7 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.0'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.3'
 
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springboot
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.springboot
@@ -227,12 +228,12 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junitjupiter
     testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: versions.junitjupiter
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.10.0'
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.10.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.11.3'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.11.3'
 
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.4.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.2'
 
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.26.3'
     testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.1'
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
@@ -249,6 +250,6 @@ dependencies {
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
-    checkstyle group: 'com.google.guava', name: 'guava', version: '32.1.1-jre'
+    checkstyle group: 'com.google.guava', name: 'guava', version: '32.1.3-jre'
 }
 

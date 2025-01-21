@@ -6,6 +6,7 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.slf4j.LoggerFactory.getLogger;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.IBC_PANEL_COMPOSITION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_A_DOCTOR;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition.JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
@@ -56,8 +57,7 @@ public enum Benefit {
     THIRTY_HOURS_FREE_CHILDCARE("30 Hours Free Childcare", "Gofal Plant am ddim - 30 awr", "058", "thirtyHoursFreeChildcare", List.of("058"), false, DwpAddressLookupService::thirtyHoursFreeChildcareOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     GUARANTEED_MINIMUM_PENSION("Guaranteed Minimum Pension (COEG)", "Isafswm Pensiwn Gwarantedig", "034", "guaranteedMinimumPension", List.of("034"), false, DwpAddressLookupService::guaranteedMinimumPensionOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
     NATIONAL_INSURANCE_CREDITS("National Insurance Credits", "Credydau Yswiriant Gwladol", "030", "nationalInsuranceCredits", List.of("030"), false, DwpAddressLookupService::nationalInsuranceCreditsOfficeMappings, AirLookupService::getJsaBereavementBenefitVenue, SSCS5),
-    INFECTED_BLOOD_COMPENSATION("Infected Blood Compensation", "Apêl Gwaed Heintiedig", "093", "infectedBloodCompensation", List.of("093"), false, DwpAddressLookupService::infectedBloodCompensationMappings, AirLookupService::getInfectedBloodCompensationVenue, SSCS8);
-
+    INFECTED_BLOOD_COMPENSATION("Infected Blood Compensation", "Iawndal Gwaed Heintiedig", "093", "infectedBloodCompensation", List.of("093"), false, DwpAddressLookupService::infectedBloodCompensationMappings, AirLookupService::getInfectedBloodCompensationVenue, SSCS8);
 
     private static final org.slf4j.Logger LOG = getLogger(Benefit.class);
     private final String description;
@@ -135,6 +135,7 @@ public enum Benefit {
             case IIDB, INDUSTRIAL_DEATH_BENEFIT -> JUDGE_AND_ONE_OR_TWO_DOCTORS;
             case CHILD_SUPPORT, TAX_CREDIT, GUARDIANS_ALLOWANCE, TAX_FREE_CHILDCARE, HOME_RESPONSIBILITIES_PROTECTION, CHILD_BENEFIT, THIRTY_HOURS_FREE_CHILDCARE, GUARANTEED_MINIMUM_PENSION, NATIONAL_INSURANCE_CREDITS ->
                     JUDGE_AND_FINANCIALLY_QUALIFIED_PANEL_MEMBER;
+            case INFECTED_BLOOD_COMPENSATION -> IBC_PANEL_COMPOSITION;
             default -> JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE;
         };
     }

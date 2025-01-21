@@ -5,6 +5,7 @@ import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
@@ -39,6 +40,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
@@ -64,6 +66,7 @@ public class SscsCaseData implements CaseData {
     private String region;
     private Appeal appeal;
     private List<Hearing> hearings;
+    private List<Hearing> completedHearingsList;
     private List<HearingOutcome> hearingOutcomes;
     private HearingOutcomeValue hearingOutcomeValue;
     private Evidence evidence;
@@ -138,7 +141,11 @@ public class SscsCaseData implements CaseData {
     private ReissueArtifactUi reissueArtifactUi;
     private String caseCode;
     private String benefitCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String benefitCodeIbcaOnly;
     private String issueCode;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String issueCodeIbcaOnly;
     private DynamicList dwpOriginatingOffice;
     private DynamicList dwpPresentingOffice;
     private String dwpIsOfficerAttending;
@@ -308,6 +315,7 @@ public class SscsCaseData implements CaseData {
     private YesNo wcaAppeal;
     private YesNo isAppellantDeceased;
     private YesNo isFqpmRequired;
+    private YesNo isMedicalMemberRequired;
     @LocalDateMustNotBeInFuture(message = "Date of appellant death must not be in the future")
     private String dateOfAppellantDeath;
     @JsonProperty("phmeGranted")
@@ -757,6 +765,23 @@ public class SscsCaseData implements CaseData {
         } else {
             return Optional.empty();
         }
+    }
+
+    @JsonIgnore
+    public boolean isIbcCase() {
+        if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
+            return true;
+        }
+        
+        return Optional.of(this)
+                .map(SscsCaseData::getAppeal)
+                .map(Appeal::getBenefitType)
+                .map(BenefitType::getDescriptionSelection)
+                .map(DynamicList::getValue)
+                .map(DynamicListItem::getCode)
+                .filter(ObjectUtils::isNotEmpty)
+                .map(INFECTED_BLOOD_COMPENSATION.getBenefitCode()::equals)
+                .orElseGet(() -> getBenefitType().map(INFECTED_BLOOD_COMPENSATION::equals).orElse(false));
     }
 
     @JsonIgnore
