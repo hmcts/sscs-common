@@ -15,4 +15,10 @@ public enum HmcHearingType {
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return hmcReference;
+    }
 }
