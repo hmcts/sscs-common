@@ -11,7 +11,6 @@ public enum HmcHearingType {
     DIRECTION_HEARINGS("BBA3-DIR", "Direction Hearings", null),
     CHAMBERS_OUTCOME("BBA3-CHA", "Chambers Outcome", null);
 
-    @JsonValue
     private final String hmcReference;
     private final String valueEn;
     private final String valueCy;
