@@ -19,6 +19,8 @@ public enum UploadParty {
     JOINT_PARTY("jointParty", "Joint party"),
     @JsonProperty("dwp")
     DWP("dwp", "DWP"),
+    @JsonProperty("fta")
+    FTA("fta", "FTA"),
     @JsonProperty("otherParty")
     OTHER_PARTY("otherParty", "Other party"),
     @JsonProperty("otherPartyRep")
