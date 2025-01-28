@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class PostcodeValidator implements ConstraintValidator<Postcode, String> {
 
