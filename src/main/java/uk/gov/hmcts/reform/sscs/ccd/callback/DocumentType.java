@@ -52,6 +52,7 @@ public enum DocumentType {
     SET_ASIDE_REFUSED("setAsideRefused", "Set Aside Refused Decision Notice"),
     REVIEW_AND_SET_ASIDE("reviewAndSetAside", "Review Granted"),
     SSCS1("sscs1", "SSCS1"),
+    SSCS8("sscs8", "SSCS8"),
     STATEMENT_OF_EVIDENCE("statementOfEvidence", "Statement of evidence"),
     STATEMENT_OF_REASONS_GRANTED("statementOfReasonsGranted", "SOR Granted Decision Notice"),
     STATEMENT_OF_REASONS_REFUSED("statementOfReasonsRefused", "SOR Refused Decision Notice"),
