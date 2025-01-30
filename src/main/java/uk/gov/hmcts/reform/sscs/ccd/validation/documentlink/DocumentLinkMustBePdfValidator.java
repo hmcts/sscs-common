@@ -4,8 +4,8 @@ import static org.apache.commons.io.FilenameUtils.getExtension;
 import static org.apache.commons.lang3.StringUtils.equalsAnyIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DocumentLink;
 
 public class DocumentLinkMustBePdfValidator implements ConstraintValidator<DocumentLinkMustBePdf, DocumentLink> {

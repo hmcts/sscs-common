@@ -14,7 +14,7 @@ import uk.gov.hmcts.reform.sscs.model.CategoryRequest;
 
 @FeignClient(
     name = "common-ref-data-api",
-    url = "${common-ref.api.url}"
+    url = "${common-ref.api.url:dummy}"
 )
 public interface CommonReferenceDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
