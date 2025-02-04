@@ -19,7 +19,7 @@ import uk.gov.hmcts.reform.sscs.model.UserRequest;
 
 @FeignClient(
     name = "caseworker-ref-users-data-api",
-    url = "${caseworker-ref.api.url}"
+    url = "${caseworker-ref.api.url:dummy}"
 )
 public interface CaseWorkerRefUsersDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
