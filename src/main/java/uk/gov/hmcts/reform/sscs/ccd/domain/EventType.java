@@ -258,7 +258,8 @@ public enum EventType {
     WA_CASE_MIGRATION("waCaseMigration", 0, false),
     ADD_HEARING_OUTCOME("addHearingOutcome", 0, false),
     REMOVE_CASE_OUTCOME("removeCaseOutcome", 0, false),
-    AMEND_HEARING_OUTCOME("amendHearingOutcome", 0, false);
+    AMEND_HEARING_OUTCOME("amendHearingOutcome", 0, false),
+    CLEAR_FAILED_FE_FILTER("clearFailedFeFilter", 0, false);
 
     private final String type;
     private final String ccdType;
