@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude
 public class PanelMemberComposition {
-    private PanelMemberType panelMemberCompositionJudge;
+    private String panelMemberCompositionJudge;
     private PanelMemberType panelMemberCompositionMedical;
     private List<PanelMemberType> panelMemberCompositionTribunal;
 }
