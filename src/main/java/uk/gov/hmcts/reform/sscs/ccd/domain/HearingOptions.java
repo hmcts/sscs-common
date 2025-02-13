@@ -25,6 +25,7 @@ public class HearingOptions {
     private String agreeLessNotice;
     private HearingRoute hearingRoute;
     private String other;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
 
     @JsonCreator
