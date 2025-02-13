@@ -25,6 +25,7 @@ public class HearingOptions {
     private String agreeLessNotice;
     private HearingRoute hearingRoute;
     private String other;
+    private HmcHearingType hmcHearingType;
 
     @JsonCreator
     public HearingOptions(@JsonProperty("wantsToAttend") String wantsToAttend,
@@ -38,7 +39,8 @@ public class HearingOptions {
                           @JsonProperty("excludeDates") List<ExcludeDate> excludeDates,
                           @JsonProperty("agreeLessNotice") String agreeLessNotice,
                           @JsonProperty("hearingRoute") HearingRoute hearingRoute,
-                          @JsonProperty("other") String other) {
+                          @JsonProperty("other") String other,
+                          @JsonProperty("hmcHearingType") HmcHearingType hmcHearingType) {
         this.wantsToAttend = wantsToAttend;
         this.wantsSupport = wantsSupport;
         this.languageInterpreter = languageInterpreter;
@@ -51,16 +53,17 @@ public class HearingOptions {
         this.agreeLessNotice = agreeLessNotice;
         this.hearingRoute = hearingRoute;
         this.other = other;
+        this.hmcHearingType = hmcHearingType;
     }
 
     @JsonIgnore
     public Boolean isWantsToAttendHearing() {
-        return StringUtils.isNotBlank(wantsToAttend) && wantsToAttend.toLowerCase().equals("yes");
+        return StringUtils.isNotBlank(wantsToAttend) && wantsToAttend.equalsIgnoreCase("yes");
     }
 
     @JsonIgnore
     public Boolean isAgreeLessNotice() {
-        return StringUtils.isNotBlank(agreeLessNotice) && agreeLessNotice.toLowerCase().equals("yes");
+        return StringUtils.isNotBlank(agreeLessNotice) && agreeLessNotice.equalsIgnoreCase("yes");
     }
 
     public Boolean wantsSignLanguageInterpreter() {
