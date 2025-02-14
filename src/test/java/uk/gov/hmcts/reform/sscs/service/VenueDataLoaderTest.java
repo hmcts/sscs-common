@@ -149,7 +149,7 @@ public class VenueDataLoaderTest {
     @Test
     public void shouldGetEpimsIdForGivenPostcode() {
         String result = venueDataLoader.getActiveVenueDetailsMapByPostcode().get("MK9 2AJ").getEpimsId();
-        assertEquals("815997", result);
+        assertEquals("497356", result);
     }
 
     @Test
