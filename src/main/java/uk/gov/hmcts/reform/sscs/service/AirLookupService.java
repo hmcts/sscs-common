@@ -47,7 +47,7 @@ public class AirLookupService {
                     .csaVenue("Birmingham")
                     .ibcVenue("Birmingham")
                     .build();
-    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_22.2.xlsx";
+    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_23.1.xlsx";
     static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 8;
