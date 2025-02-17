@@ -25,6 +25,8 @@ public class OverrideFields {
     private HearingWindow hearingWindow;
     private YesNo autoList;
     private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private HmcHearingType hmcHearingType;
 
     @SuppressWarnings("unused")
     @JsonIgnore

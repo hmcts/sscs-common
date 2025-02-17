@@ -404,6 +404,12 @@ public class SscsCaseData implements CaseData {
 
     private YesNo ignoreCallbackWarnings;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo selectNextHmcHearingType;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private HmcHearingType hmcHearingType;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
