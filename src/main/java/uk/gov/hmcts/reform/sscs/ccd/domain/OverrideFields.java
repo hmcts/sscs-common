@@ -17,7 +17,7 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude
 public class OverrideFields {
     private Integer duration;
     private HearingInterpreter appellantInterpreter;

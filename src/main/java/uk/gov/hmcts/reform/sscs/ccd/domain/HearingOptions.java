@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
-@JsonInclude
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOptions {
 
     private String wantsToAttend;
