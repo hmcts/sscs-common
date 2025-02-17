@@ -408,7 +408,6 @@ public class SscsCaseData implements CaseData {
     private YesNo selectNextHmcHearingType;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("hmcHearingType")
     private HmcHearingType hmcHearingType;
 
     @JsonIgnore
