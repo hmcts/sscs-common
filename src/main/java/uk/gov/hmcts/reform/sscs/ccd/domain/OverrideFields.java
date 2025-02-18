@@ -5,6 +5,7 @@ import static java.util.Objects.isNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,20 @@ public class OverrideFields {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
 
+    public OverrideFields(@JsonProperty Integer duration,
+                          @JsonProperty HearingInterpreter appellantInterpreter,
+                          @JsonProperty HearingChannel appellantHearingChannel,
+                          @JsonProperty HearingWindow hearingWindow,
+                          @JsonProperty YesNo autoList,
+                          @JsonProperty List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds) {
+        this.duration = duration;
+        this.appellantInterpreter = appellantInterpreter;
+        this.appellantHearingChannel = appellantHearingChannel;
+        this.hearingWindow = hearingWindow;
+        this.autoList = autoList;
+        this.hearingVenueEpimsIds = hearingVenueEpimsIds;
+    }
+
     @SuppressWarnings("unused")
     @JsonIgnore
     public boolean isAllNull() {
@@ -37,5 +52,17 @@ public class OverrideFields {
             && isNull(hearingWindow)
             && isNull(autoList)
             && isNull(hearingVenueEpimsIds);
+    }
+
+    @SuppressWarnings("unused")
+    @JsonIgnore
+    public boolean isAllNullPostDirections() {
+        return isNull(duration)
+            && isNull(appellantInterpreter)
+            && isNull(appellantHearingChannel)
+            && isNull(hearingWindow)
+            && isNull(autoList)
+            && isNull(hearingVenueEpimsIds)
+            && isNull(hmcHearingType);
     }
 }
