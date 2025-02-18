@@ -18,30 +18,21 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude
 public class OverrideFields {
+    @JsonInclude
     private Integer duration;
+    @JsonInclude
     private HearingInterpreter appellantInterpreter;
+    @JsonInclude
     private HearingChannel appellantHearingChannel;
+    @JsonInclude
     private HearingWindow hearingWindow;
+    @JsonInclude
     private YesNo autoList;
+    @JsonInclude
     private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
-
-    public OverrideFields(@JsonProperty Integer duration,
-                          @JsonProperty HearingInterpreter appellantInterpreter,
-                          @JsonProperty HearingChannel appellantHearingChannel,
-                          @JsonProperty HearingWindow hearingWindow,
-                          @JsonProperty YesNo autoList,
-                          @JsonProperty List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds) {
-        this.duration = duration;
-        this.appellantInterpreter = appellantInterpreter;
-        this.appellantHearingChannel = appellantHearingChannel;
-        this.hearingWindow = hearingWindow;
-        this.autoList = autoList;
-        this.hearingVenueEpimsIds = hearingVenueEpimsIds;
-    }
 
     @SuppressWarnings("unused")
     @JsonIgnore
@@ -56,7 +47,7 @@ public class OverrideFields {
 
     @SuppressWarnings("unused")
     @JsonIgnore
-    public boolean isAllNullPostDirections() {
+    public boolean isAllNullHmcHearingType() {
         return isNull(duration)
             && isNull(appellantInterpreter)
             && isNull(appellantHearingChannel)
