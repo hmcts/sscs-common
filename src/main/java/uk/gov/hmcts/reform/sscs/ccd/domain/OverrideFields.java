@@ -41,17 +41,6 @@ public class OverrideFields {
             && isNull(appellantHearingChannel)
             && isNull(hearingWindow)
             && isNull(autoList)
-            && isNull(hearingVenueEpimsIds);
-    }
-
-    @SuppressWarnings("unused")
-    @JsonIgnore
-    public boolean isAllNullHmcHearingType() {
-        return isNull(duration)
-            && isNull(appellantInterpreter)
-            && isNull(appellantHearingChannel)
-            && isNull(hearingWindow)
-            && isNull(autoList)
             && isNull(hearingVenueEpimsIds)
             && isNull(hmcHearingType);
     }
