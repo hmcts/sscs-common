@@ -26,6 +26,8 @@ public class ScannedDocumentDetails {
     private String includeInBundle;
     private String originalSenderOtherPartyId;
     private String originalSenderOtherPartyName;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String isInternalDocument;
 
     @JsonCreator
     public ScannedDocumentDetails(@JsonProperty("type") String type,
@@ -38,7 +40,8 @@ public class ScannedDocumentDetails {
                                   @JsonProperty("subtype") String subtype,
                                   @JsonProperty("includeInBundle") String includeInBundle,
                                   @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
-                                  @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName) {
+                                  @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName,
+                                  @JsonProperty("isInternalDocument") String isInternalDocument) {
         this.type = type;
         this.url = url;
         this.editedUrl = editedUrl;
@@ -50,6 +53,7 @@ public class ScannedDocumentDetails {
         this.includeInBundle = includeInBundle;
         this.originalSenderOtherPartyId = originalSenderOtherPartyId;
         this.originalSenderOtherPartyName = originalSenderOtherPartyName;
+        this.isInternalDocument = isInternalDocument;
     }
 
     @JsonIgnore
