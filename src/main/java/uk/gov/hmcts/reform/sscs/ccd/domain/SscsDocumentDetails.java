@@ -18,7 +18,7 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
     private String originalPartySender;
     private String dateApproved;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String isInternalDocument;
+    private DocumentTabChoice documentTabChoice;
 
     @JsonCreator
     public SscsDocumentDetails(@JsonProperty("documentType") String documentType,
@@ -39,13 +39,13 @@ public class SscsDocumentDetails extends AbstractDocumentDetails {
                                @JsonProperty("originalSenderOtherPartyId") String originalSenderOtherPartyId,
                                @JsonProperty("originalSenderOtherPartyName") String originalSenderOtherPartyName,
                                @JsonProperty("controlNumber") String controlNumber,
-                               @JsonProperty("isInternalDocument") String isInternalDocument) {
+                               @JsonProperty("documentTabChoice") DocumentTabChoice documentTabChoice) {
         super(documentType, documentFileName, documentDateAdded, documentLink, editedDocumentLink, documentComment, evidenceIssued, bundleAddition, documentTranslationStatus, partyUploaded, dateApproved, resizedDocumentLink, avDocumentLink, originalPartySender, originalSenderOtherPartyId, originalSenderOtherPartyName, controlNumber);
         this.documentEmailContent = documentEmailContent;
         this.editedDocumentLink = editedDocumentLink;
         this.partyUploaded = partyUploaded;
         this.dateApproved = dateApproved;
         this.originalPartySender = originalPartySender;
-        this.isInternalDocument = isInternalDocument;
+        this.documentTabChoice = documentTabChoice;
     }
 }
