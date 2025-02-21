@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -11,5 +12,11 @@ public enum DocumentTabChoice {
 
     DocumentTabChoice(String value) {
         this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+        return value;
     }
 }
