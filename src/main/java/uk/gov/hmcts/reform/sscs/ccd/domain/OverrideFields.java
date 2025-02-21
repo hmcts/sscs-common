@@ -17,14 +17,21 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude
 public class OverrideFields {
+    @JsonInclude
     private Integer duration;
+    @JsonInclude
     private HearingInterpreter appellantInterpreter;
+    @JsonInclude
     private HearingChannel appellantHearingChannel;
+    @JsonInclude
     private HearingWindow hearingWindow;
+    @JsonInclude
     private YesNo autoList;
+    @JsonInclude
     private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private HmcHearingType hmcHearingType;
 
     @SuppressWarnings("unused")
     @JsonIgnore
@@ -34,6 +41,7 @@ public class OverrideFields {
             && isNull(appellantHearingChannel)
             && isNull(hearingWindow)
             && isNull(autoList)
-            && isNull(hearingVenueEpimsIds);
+            && isNull(hearingVenueEpimsIds)
+            && isNull(hmcHearingType);
     }
 }
