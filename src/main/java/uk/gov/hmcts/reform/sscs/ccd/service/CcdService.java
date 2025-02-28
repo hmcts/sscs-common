@@ -58,7 +58,7 @@ public class CcdService {
 
     public List<SscsCaseDetails> findCaseByQuery(SearchSourceBuilder searchBuilder, IdamTokens idamTokens) {
         try {
-            return searchCcdCaseService.findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
+            return searchCcdCaseService.findSubmittedCasesBySearchCriteria(searchBuilder.toString(), idamTokens);
         } catch (Exception ex) {
             throw logCcdException(ERROR_WHILE_GETTING_CASE_FROM_CCD, ex);
         }
@@ -103,7 +103,7 @@ public class CcdService {
             try {
                 SearchSourceBuilder searchBuilder = findCcdCaseByNinoAndBenefitTypeAndMrnDateQuery(nino, benefitCode, mrnDate);
 
-                List<SscsCaseDetails> caseDetails = searchCcdCaseService.findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
+                List<SscsCaseDetails> caseDetails = searchCcdCaseService.findSubmittedCasesBySearchCriteria(searchBuilder.toString(), idamTokens);
 
                 return !caseDetails.isEmpty() ? caseDetails.get(0) : null;
             } catch (Exception ex) {
@@ -182,7 +182,7 @@ public class CcdService {
         }
 
 
-        List<SscsCaseDetails> caseDetailsList = searchCcdCaseService.findCaseBySearchCriteria(searchBuilder.toString(), idamTokens);
+        List<SscsCaseDetails> caseDetailsList = searchCcdCaseService.findSubmittedCasesBySearchCriteria(searchBuilder.toString(), idamTokens);
 
         caseDetailsList = caseDetailsList.stream()
                 .filter(AppealNumberGenerator::filterCaseNotDraftOrArchivedDraft)
