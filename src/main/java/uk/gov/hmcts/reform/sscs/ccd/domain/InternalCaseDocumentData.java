@@ -25,16 +25,4 @@ public class InternalCaseDocumentData {
     private DynamicMixedChoiceList moveDocumentToInternalDocumentsTabDL;
     private DynamicMixedChoiceList moveDocumentToDocumentsTabDL;
     private YesNo shouldBeIssued;
-
-    public void setDynamicList(boolean moveToInternal, DynamicMixedChoiceList dynamicList) {
-        if (moveToInternal) {
-            this.moveDocumentToInternalDocumentsTabDL = dynamicList;
-        } else {
-            this.moveDocumentToDocumentsTabDL = dynamicList;
-        }
-    }
-
-    public DynamicMixedChoiceList getDynamicList(boolean moveToInternal) {
-        return moveToInternal ? this.moveDocumentToInternalDocumentsTabDL : this.moveDocumentToDocumentsTabDL;
-    }
 }
