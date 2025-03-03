@@ -79,6 +79,8 @@ public class SscsCaseData implements CaseData {
     private List<Bundle> caseBundles;
     private List<Bundle> historicalBundles;
     private List<SscsDocument> sscsDocument;
+    @JsonUnwrapped
+    private InternalCaseDocumentData internalCaseDocumentData;
     private List<SscsDocument> draftSscsDocument;
     private List<SscsFurtherEvidenceDoc> draftSscsFurtherEvidenceDocument;
     private SscsInterlocDecisionDocument sscsInterlocDecisionDocument;
