@@ -217,6 +217,7 @@ public class SscsCaseData implements CaseData {
     private String urgentHearingOutcome;
     private String documentSentToDwp;
     private String directionDueDate;
+    private YesNo shouldReadyToListBeTriggered;
     private String reservedToJudge;
     private YesNo judgeReserved;
     private JudicialUserBase reservedToJudgeInterloc;
