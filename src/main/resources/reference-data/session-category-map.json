@@ -5061,43 +5061,36 @@
   {
     "benefitCode": "IBC",
     "issue": "DD",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "CE",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "RA",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "OS",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "OX",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "SP",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   },
   {
     "benefitCode": "IBC",
     "issue": "SD",
-    "fqpmRequired": true,
     "category": "CATEGORY_08"
   }
 ]

@@ -40,7 +40,7 @@ public class SessionCategoryMapService {
 
     public SessionCategoryMap getSessionCategory(BenefitCode benefitCode, Issue issue,
                                                  boolean secondDoctor, boolean fqpmRequired) {
-        return sessionCategoryHashMap.get(new SessionCategoryMap(benefitCode, issue, secondDoctor, fqpmRequired));
+        return sessionCategoryHashMap.get(new SessionCategoryMap(benefitCode, issue, secondDoctor, !benefitCode.equals(BenefitCode.IBC) && fqpmRequired));
     }
 
     public String getCategoryTypeValue(SessionCategoryMap sessionCategoryMap) {
