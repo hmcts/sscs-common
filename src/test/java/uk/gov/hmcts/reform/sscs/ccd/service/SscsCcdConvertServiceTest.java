@@ -1,18 +1,17 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.hasAppellantIdentify;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
@@ -25,6 +24,8 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 
 public class SscsCcdConvertServiceTest {
+    
+    private final SscsCcdConvertService underTest = new SscsCcdConvertService();
 
     @Test
     public void canBuildCaseDetails() {
@@ -40,11 +41,11 @@ public class SscsCcdConvertServiceTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
-        assertThat(caseDetails.getId(), is(id));
-        assertThat(caseDetails.getData().getCaseReference(), is(caseReference));
-        assertThat(caseDetails.getData().getAppeal().getSigner(), is(signer));
+        assertEquals(id, caseDetails.getId());
+        assertEquals(caseReference, caseDetails.getData().getCaseReference());
+        assertEquals(signer, caseDetails.getData().getAppeal().getSigner());
     }
 
     @Test
@@ -67,7 +68,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertFalse(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -84,7 +85,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertFalse(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -104,7 +105,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertFalse(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -125,7 +126,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertFalse(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -146,7 +147,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertFalse(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -167,7 +168,7 @@ public class SscsCcdConvertServiceTest {
             .id(id)
             .data(data)
             .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertTrue(hasAppellantIdentify(caseDetails.getData()));
     }
@@ -180,7 +181,7 @@ public class SscsCcdConvertServiceTest {
                 .data(new HashMap<>())
                 .build();
 
-        assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+        assertEquals(caseId.toString(), underTest.getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
 
     @Test
@@ -192,7 +193,7 @@ public class SscsCcdConvertServiceTest {
                 .data(new HashMap<>())
                 .build();
 
-        assertNull(new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+        assertNull(underTest.getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
 
     @Test
@@ -203,7 +204,7 @@ public class SscsCcdConvertServiceTest {
                 .data(null)
                 .build();
 
-        assertEquals(caseId.toString(), new SscsCcdConvertService().getCaseDetails(caseDetails).getData().getCcdCaseId());
+        assertEquals(caseId.toString(), underTest.getCaseDetails(caseDetails).getData().getCcdCaseId());
     }
 
     @Test
@@ -229,7 +230,7 @@ public class SscsCcdConvertServiceTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertTrue(hasAppellantIdentify(caseDetails.getData()));
 
@@ -250,7 +251,7 @@ public class SscsCcdConvertServiceTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertEquals(DirectionType.APPEAL_TO_PROCEED, caseDetails.getData().getDirectionType());
     }
@@ -267,7 +268,7 @@ public class SscsCcdConvertServiceTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertEquals(RequestOutcome.IN_PROGRESS, caseDetails.getData().getReinstatementOutcome());
     }
@@ -285,7 +286,7 @@ public class SscsCcdConvertServiceTest {
                 .id(id)
                 .data(data)
                 .build();
-        SscsCaseDetails caseDetails = new SscsCcdConvertService().getCaseDetails(build);
+        SscsCaseDetails caseDetails = underTest.getCaseDetails(build);
 
         assertEquals(YesNo.YES, caseDetails.getData().getSscsEsaCaseData().getShowRegulation29Page());
         assertEquals(YesNo.NO, caseDetails.getData().getSscsEsaCaseData().getDoesRegulation29Apply());
@@ -295,8 +296,37 @@ public class SscsCcdConvertServiceTest {
 
     @Test
     public void givenGetCaseDataContent_thenSetSupplementaryData() {
-        CaseDataContent caseDataContent = new SscsCcdConvertService().getCaseDataContent(SscsCaseData.builder().build(), StartEventResponse.builder().build(), "Summary", "Description");
+        CaseDataContent caseDataContent = underTest.getCaseDataContent(SscsCaseData.builder().build(), StartEventResponse.builder().build(), "Summary", "Description");
 
         assertEquals("BBA3", caseDataContent.getSupplementaryDataRequest().get("$set").get("HMCTSServiceId"));
+    }
+
+    @Test
+    public void testGetCaseDetails() {
+        SscsCaseData caseData = SscsCaseData.builder().caseReference("123").build();
+        SscsCaseDetails sscsCaseDetails = SscsCaseDetails.builder()
+                .id(123L)
+                .jurisdiction("SSCS")
+                .caseTypeId("Benefit")
+                .data(caseData)
+                .build();
+
+        CaseDetails caseDetails = underTest.getCaseDetails(sscsCaseDetails);
+
+        assertNotNull(caseDetails);
+        assertEquals(Long.valueOf(123L), caseDetails.getId());
+        assertEquals("SSCS", caseDetails.getJurisdiction());
+        assertEquals("Benefit", caseDetails.getCaseTypeId());
+        assertEquals("123", caseDetails.getData().get("caseReference"));
+    }
+
+    @Test
+    public void testGetCaseDataMap() {
+        SscsCaseData caseData = SscsCaseData.builder().caseReference("1234").build();
+
+        Map<String, Object> caseDataMap = underTest.getCaseDataMap(caseData);
+
+        assertNotNull(caseDataMap);
+        assertEquals("1234", caseDataMap.get("caseReference"));
     }
 }
