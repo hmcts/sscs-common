@@ -2,8 +2,10 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
@@ -95,6 +97,29 @@ public class SscsCcdConvertService {
                 .build();
     }
 
+    public CaseDetails getCaseDetails(SscsCaseDetails sscsCaseDetails) {
+        if (sscsCaseDetails.getId() != null) {
+            if (sscsCaseDetails.getData() == null) {
+                sscsCaseDetails = sscsCaseDetails.toBuilder()
+                        .data(SscsCaseData.builder().build()).build();
+            }
+            sscsCaseDetails.getData().setCcdCaseId(sscsCaseDetails.getId().toString());
+        }
+        return CaseDetails.builder()
+                .id(sscsCaseDetails.getId())
+                .jurisdiction(sscsCaseDetails.getJurisdiction())
+                .caseTypeId(sscsCaseDetails.getCaseTypeId())
+                .createdDate(sscsCaseDetails.getCreatedDate())
+                .lastModified(sscsCaseDetails.getLastModified())
+                .state(sscsCaseDetails.getState())
+                .lockedBy(sscsCaseDetails.getLockedBy())
+                .securityLevel(sscsCaseDetails.getSecurityLevel())
+                .data(getCaseDataMap(sscsCaseDetails.getData()))
+                .securityClassification(sscsCaseDetails.getSecurityClassification())
+                .callbackResponseStatus(sscsCaseDetails.getCallbackResponseStatus())
+                .build();
+    }
+
     public SscsCaseData getCaseData(Map<String, Object> dataMap) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -106,16 +131,19 @@ public class SscsCcdConvertService {
                 sscsCaseData.getAppeal().getAppellant().getIdentity().setNino(
                     normaliseNino(sscsCaseData.getAppeal().getAppellant().getIdentity().getNino())
                 );
-
                 sscsCaseData.sortCollections();
             }
-
             return sscsCaseData;
         } catch (Exception e) {
             CcdDeserializationException ccdDeserializationException = new CcdDeserializationException(e);
             LOG.error("Error occurred when SscsCaseDetails are mapped into SscsCaseData", ccdDeserializationException);
             throw ccdDeserializationException;
         }
+    }
+
+    public Map<String, Object> getCaseDataMap(SscsCaseData caseData) {
+        return new ObjectMapper().registerModule(new JavaTimeModule())
+                .convertValue(caseData, new TypeReference<>(){});
     }
 
     public static boolean hasAppellantIdentify(SscsCaseData sscsCaseData) {
