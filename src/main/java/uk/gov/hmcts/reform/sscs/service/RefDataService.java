@@ -11,6 +11,8 @@ import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 import uk.gov.hmcts.reform.sscs.model.CourtVenue;
+import uk.gov.hmcts.reform.sscs.model.DefaultPanelCategory;
+import uk.gov.hmcts.reform.sscs.model.PanelResponse;
 
 @Service
 @Slf4j
@@ -47,5 +49,23 @@ public class RefDataService {
 
         return refDataApi.courtVenues(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), SSCS_COURT_TYPE_ID);
+    }
+
+    public List<DefaultPanelCategory> getDefaultPanelCategory(@NonNull String serviceId, @NonNull String key) {
+        log.info("Requesting default panel category for serviceId: {} and key: {}", serviceId, key);
+        IdamTokens idamTokens = idamService.getIdamTokens();
+
+        PanelResponse response = refDataApi.getDefaultPanelCategory(idamTokens.getIdamOauth2Token(),
+            idamTokens.getServiceAuthorization(), serviceId, key);
+
+        DefaultPanelCategory category = response.getDefaultPanelCategory().stream().findFirst().orElse(null);
+
+        if (category != null) {
+            return refDataApi.getPanelCategoryMember(idamTokens.getIdamOauth2Token(),
+                    idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), category.getParentKey()).getDefaultPanelCategory();
+        } else {
+            return null;
+        }
+
     }
 }
