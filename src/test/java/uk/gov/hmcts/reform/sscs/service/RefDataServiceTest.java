@@ -1,20 +1,29 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static java.util.Optional.empty;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
+import uk.gov.hmcts.reform.sscs.client.CommonReferenceDataApi;
 import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
+import uk.gov.hmcts.reform.sscs.model.Categories;
+import uk.gov.hmcts.reform.sscs.model.Category;
 import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class RefDataServiceTest {
 
     private static final String SSCS_COURT_TYPE_ID = "31";
@@ -23,6 +32,8 @@ public class RefDataServiceTest {
     private IdamService idamService;
     @Mock
     private RefDataApi refDataApi;
+    @Mock
+    private CommonReferenceDataApi commonRefDataApi;
 
     @InjectMocks
     RefDataService refDataService;
@@ -56,7 +67,25 @@ public class RefDataServiceTest {
         CourtVenue venue = refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID);
 
         assertNotNull(venue);
-        assertEquals(venue.getEpimsId(), EPIMS_ID);
+        assertEquals(EPIMS_ID, venue.getEpimsId());
+    }
+
+    @Test
+    public void getPanelMembersByType() {
+        IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
+
+        List<Category> categories = List.of(Category.builder().key("JudgeType").valueEn("Tribunal Judge").build());
+        var response = ResponseEntity.ok().body(new Categories(categories));
+
+        when(idamService.getIdamTokens()).thenReturn(idamTokens);
+        when(commonRefDataApi.retrieveListOfValuesByCategoryId(
+                eq("auth2"), eq("s2s"), eq(empty()),
+                argThat(catReq -> catReq.getCategoryId().equals("JudgeType")))).thenReturn(response);
+
+        var result = refDataService.getPanelMembersByType("JudgeType");
+
+        assertNotNull(result);
+        assertEquals(response.getBody().getListOfCategory(), result);
     }
 
     @Test
