@@ -121,6 +121,8 @@ public class SscsCaseData implements CaseData {
     private YesNo poAttendanceConfirmed;
     private YesNo tribunalDirectPoToAttend;
 
+    private List<FtaCommunication> ftaCommunication;
+
     //SSCS-10007
     private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
     private List<CcdValue<DocumentSelectionDetails>> documentSelection;
