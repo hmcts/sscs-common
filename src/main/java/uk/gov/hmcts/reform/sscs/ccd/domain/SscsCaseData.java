@@ -120,8 +120,7 @@ public class SscsCaseData implements CaseData {
     private String presentingOfficersHearingLink;
     private YesNo poAttendanceConfirmed;
     private YesNo tribunalDirectPoToAttend;
-
-    private List<FtaCommunication> ftaCommunication;
+    private FtaCommunicationFields ftaCommunicationFields;
 
     //SSCS-10007
     private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
