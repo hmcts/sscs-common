@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import uk.gov.hmcts.reform.sscs.model.CaseFlag;
 import uk.gov.hmcts.reform.sscs.model.Categories;
 import uk.gov.hmcts.reform.sscs.model.CategoryRequest;
+import uk.gov.hmcts.reform.sscs.model.PanelResponse;
 
 @FeignClient(
     name = "common-ref-data-api",
@@ -43,5 +44,29 @@ public interface CommonReferenceDataApi {
         @PathVariable(value = "service-id") String serviceId,
         @RequestParam(value = "flag-type", required = false) String flagType,
         @RequestParam(value = "welsh-required", required = false) String welshRequired
+    );
+
+
+    @GetMapping(
+            value = "refdata/commondata/lov/categories/defaultPanelCategory",
+            headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+    )
+    PanelResponse getDefaultPanelCategory(
+            @RequestHeader(AUTHORIZATION) String authorisation,
+            @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+            @RequestParam("serviceId") String serviceId,
+            @RequestParam("key") String key
+    );
+
+    @GetMapping(
+            value = "refdata/commondata/lov/categories/panelCategoryMember",
+            headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
+    )
+    PanelResponse getPanelCategoryMember(
+            @RequestHeader(AUTHORIZATION) String authorisation,
+            @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+            @RequestParam("serviceId") String serviceId,
+            @RequestParam("parentCategory") String parentCategory,
+            @RequestParam("parentKey") String parentKey
     );
 }

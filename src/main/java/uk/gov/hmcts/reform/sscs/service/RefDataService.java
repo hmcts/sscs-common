@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.sscs.client.CommonReferenceDataApi;
 import uk.gov.hmcts.reform.sscs.client.RefDataApi;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
@@ -22,6 +23,7 @@ public class RefDataService {
     private static final String SSCS_COURT_TYPE_ID = "31";
     public static final String OPEN = "Open";
     private final RefDataApi refDataApi;
+    private final CommonReferenceDataApi commonReferenceDataApi;
     private final IdamService idamService;
 
     public CourtVenue getCourtVenueRefDataByEpimsId(@NonNull String epimsId) {
@@ -55,13 +57,13 @@ public class RefDataService {
         log.info("Requesting default panel category for serviceId: {} and key: {}", serviceId, key);
         IdamTokens idamTokens = idamService.getIdamTokens();
 
-        PanelResponse response = refDataApi.getDefaultPanelCategory(idamTokens.getIdamOauth2Token(),
+        PanelResponse response = commonReferenceDataApi.getDefaultPanelCategory(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), serviceId, key);
 
         DefaultPanelCategory category = response.getDefaultPanelCategory().stream().findFirst().orElse(null);
 
         if (category != null) {
-            return refDataApi.getPanelCategoryMember(idamTokens.getIdamOauth2Token(),
+            return commonReferenceDataApi.getPanelCategoryMember(idamTokens.getIdamOauth2Token(),
                     idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), category.getParentKey()).getDefaultPanelCategory();
         } else {
             return null;
