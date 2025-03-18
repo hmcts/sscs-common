@@ -114,6 +114,7 @@ public enum EventType {
     FINAL_DECISION("corDecision", 0, false),
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
     FIRST_HEARING_HOLDING_REMINDER("hearingHoldingReminder", 0, true),
+    FTA_COMMUNICATION("ftaCommunication", 0, false),
     FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
     GENERATE_COVERSHEET("generateCoversheet", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
