@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class FtaCommunication {
 
     private LocalDateTime requestDateTime;
+    private LocalDateTime requestDueDate;
     private String requestTopic;
     private String requestText;
     private String requestUserName;
