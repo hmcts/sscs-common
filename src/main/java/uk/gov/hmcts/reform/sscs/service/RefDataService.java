@@ -60,11 +60,11 @@ public class RefDataService {
         PanelResponse response = commonReferenceDataApi.getDefaultPanelCategory(idamTokens.getIdamOauth2Token(),
             idamTokens.getServiceAuthorization(), serviceId, key);
 
-        DefaultPanelCategory category = response.getDefaultPanelCategory().stream().findFirst().orElse(null);
+        DefaultPanelCategory category = response.getListOfValues().stream().findFirst().orElse(null);
 
         if (category != null) {
             return commonReferenceDataApi.getPanelCategoryMember(idamTokens.getIdamOauth2Token(),
-                    idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), category.getParentKey()).getDefaultPanelCategory();
+                    idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), category.getParentKey()).getListOfValues();
         } else {
             return null;
         }

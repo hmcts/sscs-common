@@ -15,7 +15,7 @@ import java.util.List;
 public class PanelResponse {
 
     @JsonProperty("list_of_values")
-    private List<DefaultPanelCategory> defaultPanelCategory;
+    private List<DefaultPanelCategory> listOfValues;
 
 }
 
