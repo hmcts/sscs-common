@@ -63,8 +63,9 @@ public class RefDataService {
         DefaultPanelCategory category = response.getListOfValues().stream().findFirst().orElse(null);
 
         if (category != null) {
+            String parentKey = category.getParentKey().replace("panel-", "");
             return commonReferenceDataApi.getPanelCategoryMember(idamTokens.getIdamOauth2Token(),
-                    idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), category.getParentKey()).getListOfValues();
+                    idamTokens.getServiceAuthorization(), serviceId, category.getParentCategory(), parentKey).getListOfValues();
         } else {
             return null;
         }
