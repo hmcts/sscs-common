@@ -143,7 +143,7 @@ tasks.register('runGitPreCommitTasks') {
 }
 
 def versions = [
-        springboot   : '3.3.0',
+        springboot   : '3.4.4',
         jackson      : '2.17.2',
         junitjupiter : '5.11.3',
         lombok       : '1.18.36'
@@ -156,7 +156,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.1.14'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.5'
 
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
@@ -180,7 +180,7 @@ dependencies {
 
     implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.17.21'
 
-    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.3.1'
+    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '1.3.4'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
     implementation group: 'com.github.hmcts', name: 'java-logging', version: '6.1.7'
@@ -194,7 +194,7 @@ dependencies {
 
     implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.3'
 
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.1.3'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.2.1'
 
     implementation group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
