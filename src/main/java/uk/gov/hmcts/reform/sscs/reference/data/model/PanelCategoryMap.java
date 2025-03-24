@@ -18,9 +18,8 @@ public class PanelCategoryMap {
     private String fqpm;
     private ArrayList<String> johTiers;
 
-    public PanelCategoryMap(String benefitIssueCode, String category, String specialism, String fqpm) {
+    public PanelCategoryMap(String benefitIssueCode, String specialism, String fqpm) {
         this.benefitIssueCode = benefitIssueCode;
-        this.category = category;
         this.specialismCount = specialism;
         this.fqpm = fqpm;
     }
@@ -35,14 +34,13 @@ public class PanelCategoryMap {
         }
         PanelCategoryMap that = (PanelCategoryMap) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
-                && Objects.equals(category, that.category)
                 && Objects.equals(specialismCount, that.specialismCount)
                 && Objects.equals(fqpm, that.fqpm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(benefitIssueCode, category, specialismCount, fqpm);
+        return Objects.hash(benefitIssueCode, specialismCount, fqpm);
     }
 
 }
