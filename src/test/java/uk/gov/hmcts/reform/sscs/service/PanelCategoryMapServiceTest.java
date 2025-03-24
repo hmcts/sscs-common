@@ -15,7 +15,8 @@ public class PanelCategoryMapServiceTest {
 
     @Test
     public void getPanelCategoryMap(){
-        PanelCategoryMap result = panelCategoryMapService.getPanelCategoryMap("001AD", "1", null, null);
+        PanelCategoryMap result = panelCategoryMapService.getPanelCategoryMap("001AD", null, null);
         assertThat(result).isNotNull();
+        assertThat(result.getBenefitIssueCode()).isEqualTo("001AD");
     }
 }

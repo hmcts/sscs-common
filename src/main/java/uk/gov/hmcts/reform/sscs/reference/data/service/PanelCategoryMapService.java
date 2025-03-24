@@ -24,7 +24,7 @@ public class PanelCategoryMapService {
         panelCategoryHashMap = generateHashMap(panelCategoryMaps);
     }
 
-    public PanelCategoryMap getPanelCategoryMap(String benefitIssueCode, String category, String specialism, String fqpm) {
-        return panelCategoryHashMap.get(new PanelCategoryMap(benefitIssueCode, category, specialism, fqpm));
+    public PanelCategoryMap getPanelCategoryMap(String benefitIssueCode, String specialism, String fqpm) {
+        return panelCategoryHashMap.get(new PanelCategoryMap(benefitIssueCode, specialism, fqpm));
     }
 }
