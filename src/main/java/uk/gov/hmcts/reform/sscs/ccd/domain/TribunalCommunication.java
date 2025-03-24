@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TribunalCommunication {
 
-    private List<TribunalCommunicationFields> tribunalCommunicatinFields;
+    private List<TribunalCommunicationFields> tribunalCommunicationFields;
     private String tribunalRequestTopic;
-    private String tribunalRequestType;
+    private String tribunalRequestQuestion;
 }
