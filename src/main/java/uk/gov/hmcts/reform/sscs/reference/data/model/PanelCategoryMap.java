@@ -1,13 +1,11 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
+import java.util.ArrayList;
+import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
@@ -16,14 +14,14 @@ import java.util.Objects;
 public class PanelCategoryMap {
     private String benefitIssueCode;
     private String category;
-    private String specialism;
+    private String specialismCount;
     private String fqpm;
-    private ArrayList<String> johTier;
+    private ArrayList<String> johTiers;
 
     public PanelCategoryMap(String benefitIssueCode, String category, String specialism, String fqpm) {
         this.benefitIssueCode = benefitIssueCode;
         this.category = category;
-        this.specialism = specialism;
+        this.specialismCount = specialism;
         this.fqpm = fqpm;
     }
 
@@ -38,13 +36,13 @@ public class PanelCategoryMap {
         PanelCategoryMap that = (PanelCategoryMap) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
                 && Objects.equals(category, that.category)
-                && Objects.equals(specialism, that.specialism)
+                && Objects.equals(specialismCount, that.specialismCount)
                 && Objects.equals(fqpm, that.fqpm);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(benefitIssueCode, category, specialism, fqpm);
+        return Objects.hash(benefitIssueCode, category, specialismCount, fqpm);
     }
 
 }
