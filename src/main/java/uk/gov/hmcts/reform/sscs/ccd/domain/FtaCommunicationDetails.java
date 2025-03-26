@@ -1,27 +1,26 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Value
+@Data
 @Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class FtaCommunication {
-    FtaCommunicationDetails value;
+public class FtaCommunicationDetails {
 
-    @JsonCreator
-    public FtaCommunication(@JsonProperty("value") FtaCommunicationDetails value) {
-        this.value = value;
-    }
+    private LocalDateTime requestDateTime;
+    private LocalDateTime requestDueDate;
+    private String requestTopic;
+    private String requestText;
+    private String requestUserName;
+
 }
 
