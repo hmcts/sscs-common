@@ -22,5 +22,9 @@ public class FtaCommunicationFields {
     private String ftaRequestTopic;
     private String ftaRequestQuestion;
 
+    private FtaCommunicationFilter ftaCommunicationFilter; 
+    private TribunalCommunicationFilter tribunalCommunicationFilter; 
+    private FtaRequestType ftaRequestType;
+
 }
 
