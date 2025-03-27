@@ -23,5 +23,5 @@ public class TribunalCommunicationDetails {
     private String tribunalRequestQuestion;
     private FtaCommunicationFilter ftaCommunicationFilter;
     private TribunalCommunicationFilter tribunalCommunicationFilter;
-    private TribunalRequestType ftaRequestType;
+    private TribunalRequestType tribunalRequestType;
 }
