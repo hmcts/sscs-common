@@ -12,7 +12,7 @@ public enum TribunalCommunicationFilter {
     INFO_PROVIDED_BY_TRIBUNAL("Info Provided by tribunal"),
 
     @JsonProperty("inforequestfromtribunal")
-    INFO_REQUEST_FROM_TRIBUNAL("Info Request from FTA");
+    INFO_REQUEST_FROM_FTA("Info Request from FTA");
 
     private final String value;
 

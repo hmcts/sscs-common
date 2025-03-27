@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum FtaCommunicationFilter {
 
     @JsonProperty("awaitinginfofromfta")
-    AWAITING_INFO_FROM_FTA("Awaiting info from Tribunal"),
+    AWAITING_INFO_FROM_TRIBUNAL("Awaiting info from Tribunal"),
 
     @JsonProperty("infoprovidedbyfta")
     INFO_PROVIDED_BY_FTA("Info Provided by FTA"),
