@@ -413,6 +413,9 @@ public class SscsCaseData implements CaseData {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
 
+    @JsonUnwrapped
+    private TribunalCommunicationDetails tribunalCommunicationsDetails;
+
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
