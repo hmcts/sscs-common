@@ -6,16 +6,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum FtaRequestType {
 
     @JsonProperty("newrequest")
-    NEW_REQUEST("New Request"),
+    NEW_REQUEST("newrequest"),
     
     @JsonProperty("replyftaquery")
-    REPLY_TO_FTA_QUERY("Reply to FTA Query"),
+    REPLY_TO_FTA_QUERY("replyftaquery"),
     
     @JsonProperty("reviewftareply")
-    REVIEW_FTA_REPLY("Review FTA Reply"),
+    REVIEW_FTA_REPLY("reviewftareply"),
     
     @JsonProperty("deleterequestorreply")
-    DELETE_REQUEST_REPLY("Delete a request/reply");
+    DELETE_REQUEST_REPLY("deleterequestorreply");
 
     private final String value;
 
