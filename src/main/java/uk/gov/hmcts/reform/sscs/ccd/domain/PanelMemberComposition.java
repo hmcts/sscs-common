@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.reference.data.model.JudicialMemberType;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -18,5 +20,5 @@ public class PanelMemberComposition {
     private JudicialMemberType panelCompositionJudge;
     private PanelMemberType panelCompositionMemberMedical1;
     private PanelMemberType panelCompositionMemberMedical2;
-    private PanelMemberType panelCompositionDisabilityAndFqMember;
+    private List<PanelMemberType> panelCompositionDisabilityAndFqMember;
 }
