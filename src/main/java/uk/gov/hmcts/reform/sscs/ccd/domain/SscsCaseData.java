@@ -414,7 +414,7 @@ public class SscsCaseData implements CaseData {
     private HmcHearingType hmcHearingType;
 
     @JsonUnwrapped
-    private TribunalCommunicationDetails tribunalCommunicationsDetails;
+    private TribunalCommunicationFields tribunalCommunicationFields;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {

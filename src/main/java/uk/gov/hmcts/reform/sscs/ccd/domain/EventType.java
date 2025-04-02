@@ -225,6 +225,7 @@ public enum EventType {
     TCW_DIRECTION_ISSUED("tcwDirectionIssued", 0, false),
     TCW_REFER_TO_JUDGE("tcwReferToJudge", 0, false),
     THIRD_HEARING_HOLDING_REMINDER("thirdHearingHoldingReminder", 0, true),
+    TRIBUNAL_COMMUNICATION("tribunalCommunication",0,false),
     UNASSIGN_TO_JUDGE("unassignToJudge", 0, false),
     UPDATE_CASE_ONLY("updateCaseOnly", 0, false),
     UPDATE_DRAFT("updateDraft", "updateDraft", 0, false),
@@ -239,7 +240,6 @@ public enum EventType {
     UPLOAD_COR_DOCUMENT("uploadCorDocument", 0, false),
     UPLOAD_DOCUMENT("uploadDocument", 0, false),
     UPLOAD_DOCUMENT_FURTHER_EVIDENCE("uploadDocumentFurtherEvidence", 0, false),
-
     UPLOAD_DRAFT_COR_DOCUMENT("uploadDraftCorDocument", 0, false),
     UPLOAD_DRAFT_DOCUMENT("uploadDraftDocument", 0, false),
     UPLOAD_FURTHER_EVIDENCE("uploadFurtherEvidence", 0, false),
@@ -260,8 +260,7 @@ public enum EventType {
     ADD_HEARING_OUTCOME("addHearingOutcome", 0, false),
     REMOVE_CASE_OUTCOME("removeCaseOutcome", 0, false),
     AMEND_HEARING_OUTCOME("amendHearingOutcome", 0, false),
-    CLEAR_FAILED_FE_FILTER("clearFailedFeFilter", 0, false),
-    TRIBUNAL_COMMUNICATION("tribunalCommunication",0,false);
+    CLEAR_FAILED_FE_FILTER("clearFailedFeFilter", 0, false);
 
     private final String type;
     private final String ccdType;
