@@ -17,9 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PanelMemberComposition {
-    private JudicialMemberType panelCompositionJudge;
-    private PanelMemberType panelCompositionMemberMedical1;
-    private PanelMemberType panelCompositionMemberMedical2;
+    private String panelCompositionJudge;
+    private String panelCompositionMemberMedical1;
+    private String panelCompositionMemberMedical2;
     private List<String> panelCompositionDisabilityAndFqMember;
-
 }
