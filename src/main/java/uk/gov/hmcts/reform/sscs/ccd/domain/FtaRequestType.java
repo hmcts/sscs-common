@@ -32,4 +32,5 @@ public enum FtaRequestType {
     public String toString() {
         return value;
     }
+    
 }
