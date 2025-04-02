@@ -20,6 +20,6 @@ public class PanelMemberComposition {
     private JudicialMemberType panelCompositionJudge;
     private PanelMemberType panelCompositionMemberMedical1;
     private PanelMemberType panelCompositionMemberMedical2;
-    private PanelMemberType panelCompositionDisabilityMember;
-    private PanelMemberType panelCompositionFqMember;
+    private panelCompositionDisabilityAndFqMember panelCompositionDisabilityAndFqMember;
+
 }
