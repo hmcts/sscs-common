@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TribunalCommunicationRequestDetails {
+public class CommunicationRequestDetails {
 
     private LocalDateTime requestDateTime;
-    private LocalDateTime requestResponseDue;
+    private LocalDateTime requestResponseDueDate;
     private String requestUserName;
     private String requestTopic;
     private String requestMessage;
+
 }
+

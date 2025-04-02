@@ -8,15 +8,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Value;
 
-@JsonIgnoreProperties (ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Value
-@Builder (toBuilder = true)
-@JsonInclude (JsonInclude.Include.NON_NULL)
-public class TribunalCommunication {
-    TribunalCommunicationRequestDetails value;
+@Builder(toBuilder = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CommunicationRequest {
+    CommunicationRequestDetails value;
 
     @JsonCreator
-    public TribunalCommunication(@JsonProperty("value") TribunalCommunicationRequestDetails value){
+    public CommunicationRequest(@JsonProperty("value") CommunicationRequestDetails value) {
         this.value = value;
     }
 }

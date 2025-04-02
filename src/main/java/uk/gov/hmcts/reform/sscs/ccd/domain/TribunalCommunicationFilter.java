@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TribunalCommunicationFilter {
 
-    @JsonProperty("awaitinginfofromfta")
-    AWAITING_INFO_FROM_FTA("Awaiting info from FTA"),
+    @JsonProperty("provideInfoToTribunal")
+    PROVIDE_INFO_TO_TRIBUNAL("provideInfoToTribunal"),
 
-    @JsonProperty("infoprovidedbyfta")
-    INFO_PROVIDED_BY_FTA("Info Provided by FTA"),
+    @JsonProperty("awaitingInfoFromTribunal")
+    AWAITING_INFO_FROM_TRIBUNAL("awaitingInfoFromTribunal"),
 
-    @JsonProperty("inforequestfromfta")
-    INFO_REQUEST_FROM_FTA("Info Request from FTA");
+    @JsonProperty("infoProvidedFromTribunal")
+    INFO_PROVIDED_FROM_TRIBUNAL("infoProvidedFromTribunal");
 
     private final String value;
 

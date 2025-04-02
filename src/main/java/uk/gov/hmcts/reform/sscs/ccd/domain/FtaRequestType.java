@@ -3,20 +3,23 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TribunalRequestType {
+public enum FtaRequestType {
 
     @JsonProperty("newRequest")
     NEW_REQUEST("newRequest"),
-
-    @JsonProperty("replyToTribunalQuery")
-    REPLY_TO_TRIBUNAL_QUERY("replyToTribunalQuery"),
-
-    @JsonProperty("reviewTribunalReply")
-    REVIEW_TRIBUNAL_REPLY("reviewTribunalReply");
+    
+    @JsonProperty("replyToFtaQuery")
+    REPLY_TO_FTA_QUERY("replyToFtaQuery"),
+    
+    @JsonProperty("reviewFtaReply")
+    REVIEW_FTA_REPLY("reviewFtaReply"),
+    
+    @JsonProperty("deleteRequestReply")
+    DELETE_REQUEST_REPLY("deleteRequestReply");
 
     private final String value;
 
-    TribunalRequestType(String value) {
+    FtaRequestType(String value) {
         this.value = value;
     }
 
@@ -29,4 +32,5 @@ public enum TribunalRequestType {
     public String toString() {
         return value;
     }
+    
 }

@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -15,12 +16,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TribunalCommunicationFields {
+public class FtaCommunicationFields {
 
-    private List<TribunalCommunication> tribunalCommunications;
+    private List<CommunicationRequest> ftaCommunications;
+    private String ftaRequestTopic;
+    private String ftaRequestQuestion;
+    private FtaRequestType ftaRequestType;
+
+    private List<CommunicationRequest> tribunalCommunications;
     private String tribunalRequestTopic;
     private String tribunalRequestQuestion;
+    private TribunalRequestType tribunalRequestType;
+
     private FtaCommunicationFilter ftaCommunicationFilter;
     private TribunalCommunicationFilter tribunalCommunicationFilter;
-    private TribunalRequestType tribunalRequestType;
+
 }
+
