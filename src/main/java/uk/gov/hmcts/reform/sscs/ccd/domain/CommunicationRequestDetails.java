@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 public class CommunicationRequestDetails {
 
     private LocalDateTime requestDateTime;
-    private LocalDateTime requestResponseDueDate;
+    private LocalDate requestResponseDueDate;
     private String requestUserName;
     private String requestTopic;
     private String requestMessage;
