@@ -15,13 +15,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommunicationRequestDetails {
+public class CommunicationRequestReply {
 
-    private LocalDateTime requestDateTime;
-    private LocalDate requestResponseDueDate;
-    private String requestUserName;
-    private String requestTopic;
-    private String requestMessage;
-    private CommunicationRequestReply requestReply;
+    private LocalDateTime replyDateTime;
+    private String replyUserName;
+    private String replyMessage;
 }
 
