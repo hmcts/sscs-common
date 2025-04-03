@@ -146,7 +146,7 @@ def versions = [
         springboot   : '3.4.4',
         jackson      : '2.18.3',
         junitjupiter : '5.11.3',
-        lombok       : '1.18.36'
+        lombok       : '1.18.38'
 ]
 
 dependencies {
@@ -216,7 +216,7 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.3'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.4'
 
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springboot
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.springboot
