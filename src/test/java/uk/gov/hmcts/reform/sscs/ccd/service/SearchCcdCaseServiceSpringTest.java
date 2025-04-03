@@ -13,13 +13,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
@@ -74,16 +74,16 @@ public class SearchCcdCaseServiceSpringTest {
             return new SscsCcdConvertService();
         }
 
-        @MockBean
+        @MockitoBean
         public CcdRequestDetails ccdRequestDetails;
 
-        @MockBean
+        @MockitoBean
         public CoreCaseDataApi coreCaseDataApi;
 
-        @MockBean
+        @MockitoBean
         public CcdClient ccdClient;
 
-        @MockBean
+        @MockitoBean
         public ReadCcdCaseService readCcdCaseService;
 
         @Bean
