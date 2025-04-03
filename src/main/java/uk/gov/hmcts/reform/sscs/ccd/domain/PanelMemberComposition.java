@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 
+import java.util.List;
+
 @Value
 @Builder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,7 +17,7 @@ public class PanelMemberComposition {
     public PanelMemberComposition(@JsonProperty("panelCompositionJudge") String panelCompositionJudge,
                                   @JsonProperty("panelCompositionMemberMedical1") String panelCompositionMemberMedical1,
                                   @JsonProperty("panelCompositionMemberMedical2") String panelCompositionMemberMedical2,
-                                  @JsonProperty("panelCompositionDisabilityAndFqMember") String panelCompositionDisabilityAndFqMember) {
+                                  @JsonProperty("panelCompositionDisabilityAndFqMember") List<String> panelCompositionDisabilityAndFqMember) {
         this.panelCompositionJudge = panelCompositionJudge;
         this.panelCompositionMemberMedical1 = panelCompositionMemberMedical1;
         this.panelCompositionMemberMedical2 = panelCompositionMemberMedical2;
@@ -28,6 +30,6 @@ public class PanelMemberComposition {
 
     String panelCompositionMemberMedical2;
 
-    String panelCompositionDisabilityAndFqMember;
+    List<String> panelCompositionDisabilityAndFqMember;
 
 }
