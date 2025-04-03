@@ -16,18 +16,16 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 public class AirLookupDataValidationTest {
 
-    @Rule
-    public final JUnitSoftAssertions softly = new JUnitSoftAssertions();
+    private final SoftAssertions softly = new SoftAssertions();
 
     private static Sheet airLookupVenueIdsSheet;
 
@@ -37,7 +35,7 @@ public class AirLookupDataValidationTest {
 
     public static final int ID_CELL = 1;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() throws IOException {
         DataFormatter dataFormatter = new DataFormatter();
         ClassPathResource airLookupFile = new ClassPathResource(AIR_LOOKUP_FILE);

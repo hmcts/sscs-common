@@ -1,23 +1,21 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@RunWith(JUnitParamsRunner.class)
 public class EventTypeTest {
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
             "secondHearingHoldingReminder",
             "thirdHearingHoldingReminder",
             "abateCase",

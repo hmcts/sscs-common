@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -13,22 +13,16 @@ import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
 import java.util.*;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import junitparams.converters.Nullable;
 import org.json.JSONObject;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
-@RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonMapperTest {
 
     private static final String caseId = "12345678";
@@ -44,15 +38,13 @@ public class RoboticsJsonMapperTest {
     private final List<ElementDisputed> elementsDisputedChildElementList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedChildDisabledList = new ArrayList<>();
     private final List<ElementDisputed> elementsDisputedLimitedWorkList = new ArrayList<>();
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
     private JSONObject roboticsJson;
     @Mock
     private AirLookupService airLookupService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         openMocks(this);
         roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
@@ -79,8 +71,9 @@ public class RoboticsJsonMapperTest {
         roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 25,
-                roboticsJson.length()
+            roboticsJson.length(),
+            25,
+            "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("002DD", roboticsJson.get("caseCode"));
@@ -105,8 +98,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 11,
-                roboticsJson.getJSONObject("appointee").length()
+            11,
+            roboticsJson.getJSONObject("appointee").length(),
+           "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));
@@ -122,8 +116,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("appointee@hmcts.net", roboticsJson.getJSONObject("appointee").get("email"));
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 10,
-                roboticsJson.getJSONObject("appellant").length()
+            10,
+            roboticsJson.getJSONObject("appellant").length(),
+            "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Mr", roboticsJson.getJSONObject("appellant").get("title"));
@@ -138,8 +133,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("mail@email.com", roboticsJson.getJSONObject("appellant").get("email"));
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 11,
-                roboticsJson.getJSONObject("appointee").length()
+            11,
+            roboticsJson.getJSONObject("appointee").length(),
+            "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));
@@ -155,8 +151,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("appointee@hmcts.net", roboticsJson.getJSONObject("appointee").get("email"));
 
         assertEquals(
-                "If this fails, add an assertion, do not just increment the number :)", 11,
-                roboticsJson.getJSONObject("representative").length()
+            11,
+            roboticsJson.getJSONObject("representative").length(),
+            "If this fails, add an assertion, do not just increment the number :)"
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("representative").get("title"));
@@ -172,8 +169,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("mail@email.com", roboticsJson.getJSONObject("representative").get("email"));
 
         assertEquals(
-                "If this fails, add an assertion below, do not just increment the number :)", 6,
-                roboticsJson.getJSONObject("hearingArrangements").length()
+            6,
+            roboticsJson.getJSONObject("hearingArrangements").length(),
+            "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Spanish", roboticsJson.getJSONObject("hearingArrangements").get("languageInterpreter"));
@@ -206,8 +204,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("s/m", roboticsJson.getJSONObject("representative").get("title"));
     }
 
-    @Test
-    @Parameters({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD"})
+    @ParameterizedTest
+    @CsvSource({"PIP, 002DD", "ESA, 051DD", "null, 002DD", ", 002DD"})
     public void givenBenefitType_shouldMapCaseCodeAccordingly(String benefitCode, String expectedCaseCode) {
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(benefitCode);
 
@@ -216,9 +214,12 @@ public class RoboticsJsonMapperTest {
         assertThat(roboticsJson.get("caseCode"), is(expectedCaseCode));
     }
 
-    @Test
-    @Parameters({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD", "037DD, 037DD", "022DD, 022DD"})
-    public void givenCaseCodeOnCase_shouldSetRetrieveCaseCodeAccordingly(@Nullable String caseCode, String expectedCaseCode) {
+    @ParameterizedTest
+    @CsvSource({"051DD, 051DD", "null, 002DD", ", 002DD", "001EE, 001EE", "070DD, 070DD", "037DD, 037DD", "022DD, 022DD"})
+    public void givenCaseCodeOnCase_shouldSetRetrieveCaseCodeAccordingly(String caseCode, String expectedCaseCode) {
+        if ("null".equals(caseCode)) {
+            caseCode = null;
+        }
         roboticsWrapper.getSscsCaseData().setCaseCode(caseCode);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -547,9 +548,9 @@ public class RoboticsJsonMapperTest {
         assertEquals("No", roboticsJson.get("dwpUcb"));
     }
 
-    @Test
-    @Parameters({"validAppeal, No", "readyToList, Yes", "null, No"})
-    public void givenCreatedInGapsFrom_shouldSetRetrieveIsDigitalAccordingly(@Nullable String createdInGapsFrom, String expectedIsDigital) {
+    @ParameterizedTest
+    @CsvSource({"validAppeal, No", "readyToList, Yes", "null, No"})
+    public void givenCreatedInGapsFrom_shouldSetRetrieveIsDigitalAccordingly(String createdInGapsFrom, String expectedIsDigital) {
         roboticsWrapper.getSscsCaseData().setCreatedInGapsFrom(createdInGapsFrom);
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -1098,8 +1099,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("2021-12-30", ((JSONObject) ((JSONObject) roboticsJson.getJSONArray("otherParties").get(0)).get("hearingArrangements")).getJSONArray("datesCantAttend").get(0));
     }
 
-    @Test
-    @Parameters({"No, No, Paper", "No, Yes, Oral", "Yes, No, Oral", "Yes, Yes, Oral"})
+    @ParameterizedTest
+    @CsvSource({"No, No, Paper", "No, Yes, Oral", "Yes, No, Oral", "Yes, Yes, Oral"})
     public void givenOtherPartyAndAppellantAttendingHearingPreference_thenSetHearingTypeCorrectly(String isAppellantAttending, String isOtherPartyAttending, String expectedResult) {
 
         List<CcdValue<OtherParty>> otherPartyList = new ArrayList<>();

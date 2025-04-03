@@ -1,23 +1,25 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import org.junit.Assert;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public class ValidatorTestBase {
 
     protected Validator validator;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
     protected <B> void assertSingleViolationWithMessage(Set<ConstraintViolation<B>> violations, String expectedMessage) {
-        Assert.assertTrue(violations.size() == 1);
-        Assert.assertEquals(expectedMessage, violations.stream().map(v -> v.getMessage()).findFirst().orElse(""));
+        assertTrue(violations.size() == 1);
+        assertEquals(expectedMessage, violations.stream().map(v -> v.getMessage()).findFirst().orElse(""));
     }
 }

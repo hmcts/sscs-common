@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
@@ -14,7 +15,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
 
         SscsCaseData testBean = SscsCaseData.builder().build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -23,7 +24,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
         Address jointPartyAddress = Address.builder().build();
         SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -32,7 +33,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
         Address jointPartyAddress = Address.builder().line1("some text").build();
         SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().address(jointPartyAddress).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     /**
@@ -75,7 +76,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
             .build();
 
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     /**
@@ -94,7 +95,7 @@ public class JointPartyAddressAndAppellantAddressValidationTest extends Validato
             .build();
 
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
 }

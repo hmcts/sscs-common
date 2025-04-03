@@ -1,12 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.identity;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.ConvertGroup;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -27,7 +28,7 @@ public class UniversalCreditIdentityMustBeValidTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -38,7 +39,7 @@ public class UniversalCreditIdentityMustBeValidTest extends ValidatorTestBase {
             .nino("BB000000B").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -60,7 +61,7 @@ public class UniversalCreditIdentityMustBeValidTest extends ValidatorTestBase {
             .dob(LocalDate.now().minusYears(2).toString()).build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test

@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.localdate;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class LocalDateMustBeInFutureValidatorTest extends ValidatorTestBase {
@@ -24,7 +25,7 @@ public class LocalDateMustBeInFutureValidatorTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -34,7 +35,7 @@ public class LocalDateMustBeInFutureValidatorTest extends ValidatorTestBase {
         testBean.testDate = LocalDate.now().plusDays(1).toString();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test

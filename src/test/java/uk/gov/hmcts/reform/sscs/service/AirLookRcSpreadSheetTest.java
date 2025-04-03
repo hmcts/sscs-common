@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import com.opencsv.CSVReader;
@@ -16,8 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
@@ -33,7 +33,7 @@ public class AirLookRcSpreadSheetTest {
     Map<String, AirlookupBenefitToVenue> venueData;
     Map<String, Integer> lookupVenueIdByAirLookupName;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         airLookupService = new AirLookupService();
         airLookupService.init();
@@ -113,10 +113,10 @@ public class AirLookRcSpreadSheetTest {
             }
         }
 
-        assertTrue(missingPipVenuePostcodes + " of " + lookupData.size()
+        assertTrue(missingPipVenuePostcodes.size() == 0,
+            missingPipVenuePostcodes + " of " + lookupData.size()
                         + " post codes do not have a PIP entry: "
-                        + Arrays.toString(missingPipVenuePostcodes.toArray()),
-                missingPipVenuePostcodes.size() == 0);
+                        + Arrays.toString(missingPipVenuePostcodes.toArray()));
     }
 
     @Test
@@ -136,10 +136,10 @@ public class AirLookRcSpreadSheetTest {
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, esaVenue);
         }
 
-        assertTrue(missingAirLookupNames.size() + " airLookupNames don't map to a venueId"
+        assertTrue(missingAirLookupNames.size() == 0,
+            missingAirLookupNames.size() + " airLookupNames don't map to a venueId"
                         + "\nMissing: " + Arrays.toString(missingAirLookupNames.toArray())
-                        + "\nWorking: " + Arrays.toString(workingAirLookupNames.toArray()),
-                missingAirLookupNames.size() == 0);
+                        + "\nWorking: " + Arrays.toString(workingAirLookupNames.toArray()));
     }
 
     private void checkVenueExists(Set<String> missingAirLookupNames, Set<String> workingAirLookupNames, String venue) {

@@ -5,9 +5,10 @@ import static org.apache.commons.io.IOUtils.resourceToString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -15,11 +16,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -30,13 +30,12 @@ import uk.gov.hmcts.reform.sscs.exception.DwpAddressLookupException;
 import uk.gov.hmcts.reform.sscs.exception.NoMrnDetailsException;
 import uk.gov.hmcts.reform.sscs.model.dwp.OfficeMapping;
 
-@RunWith(JUnitParamsRunner.class)
 public class DwpAddressLookupServiceTest {
 
     private final DwpAddressLookupService dwpAddressLookup = new DwpAddressLookupService();
     private SscsCaseData caseData;
 
-    @Before
+    @BeforeEach
     public void setup() {
         caseData = buildCaseData();
     }
@@ -50,24 +49,24 @@ public class DwpAddressLookupServiceTest {
         assertEquals("WV98 1AA", address.getPostcode());
     }
 
-    @Test
-    @Parameters({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
+    @ParameterizedTest
+    @CsvSource({"1", "2", "3", "4", "5", "6", "7", "8", "9", "(AE)"})
     public void pipAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
 
-    @Test
-    @Parameters({"PIP (3)", "  PIP 3  ", "PIP 3", "DWP PIP (3)", "(AE)", "AE", "PIP AE", "DWP PIP (AE)", "Recovery from Estates", "PIP Recovery from Estates"})
+    @ParameterizedTest
+    @CsvSource({"PIP (3)", "  PIP 3  ", "PIP 3", "DWP PIP (3)", "(AE)", "AE", "PIP AE", "DWP PIP (AE)", "Recovery from Estates", "PIP Recovery from Estates"})
     public void pipFuzzyMatchingAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "PIP, 1", "pip, 1", "PiP, 1", "pIP, 1",
         "ESA, Balham DRT", "EsA, Balham DRT", "esa, Balham DRT"
     })
@@ -91,8 +90,8 @@ public class DwpAddressLookupServiceTest {
         assertNotNull(address);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Balham DRT", "Birkenhead LM DRT", "Lowestoft DRT", "Wellingborough DRT", "Chesterfield DRT",
         "Coatbridge Benefit Centre", "Inverness DRT", "Milton Keynes DRT", "Springburn DRT", "Watford DRT",
         "Norwich DRT", "Sheffield DRT", "Worthing DRT"
@@ -103,8 +102,8 @@ public class DwpAddressLookupServiceTest {
         assertNotNull(address);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Disability Benefit Centre 4", "The Pension Service 11", "Recovery from Estates"
     })
     public void dlaAddressesExist(final String dwpIssuingOffice) {
@@ -113,37 +112,37 @@ public class DwpAddressLookupServiceTest {
         assertNotNull(address);
     }
 
-    @Test
-    @Parameters({"The Pension Service 11", "Recovery from Estates"})
+    @ParameterizedTest
+    @CsvSource({"The Pension Service 11", "Recovery from Estates"})
     public void attendanceAllowanceAddressesExist(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("DLA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
         assertNotNull(address);
     }
 
-    @Test(expected = DwpAddressLookupException.class)
-    @Parameters({"JOB", "UNK", "PLOP", "BIG", "FIG"})
+    @ParameterizedTest
+    @CsvSource({"JOB", "UNK", "PLOP", "BIG", "FIG"})
     public void unknownBenefitTypeReturnsNone(final String benefitType) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("1").build()).build()).build();
-        dwpAddressLookup.lookupDwpAddress(caseData);
+        assertThrows(DwpAddressLookupException.class, () -> dwpAddressLookup.lookupDwpAddress(caseData));
     }
 
-    @Test(expected = DwpAddressLookupException.class)
-    @Parameters({"11", "12", "13", "14", "JOB"})
+    @ParameterizedTest
+    @CsvSource({"11", "12", "13", "14", "JOB"})
     public void unknownPipDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
-        dwpAddressLookup.lookupDwpAddress(caseData);
+        assertThrows(DwpAddressLookupException.class, () -> dwpAddressLookup.lookupDwpAddress(caseData));
     }
 
-    @Test(expected = DwpAddressLookupException.class)
-    @Parameters({"JOB", "UNK", "PLOP", "BIG", "11"})
+    @ParameterizedTest
+    @CsvSource({"JOB", "UNK", "PLOP", "BIG", "11"})
     public void unknownEsaDwpIssuingOfficeReturnsNone(final String dwpIssuingOffice) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice(dwpIssuingOffice).build()).build()).build();
-        dwpAddressLookup.lookupDwpAddress(caseData);
+        assertThrows(DwpAddressLookupException.class, () -> dwpAddressLookup.lookupDwpAddress(caseData));
     }
 
-    @Test
-    @Parameters({"PIP", "ESA", "JOB", "UNK", "PLOP", "BIG", "11"})
+    @ParameterizedTest
+    @CsvSource({"PIP", "ESA", "JOB", "UNK", "PLOP", "BIG", "11"})
     public void willAlwaysReturnTestAddressForATestDwpIssuingOffice(final String benefitType) {
         SscsCaseData caseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code(benefitType).build()).mrnDetails(MrnDetails.builder().dwpIssuingOffice("test-hmcts-address").build()).build()).build();
         Address address = dwpAddressLookup.lookupDwpAddress(caseData);
@@ -151,23 +150,23 @@ public class DwpAddressLookupServiceTest {
         assertEquals("E1 8FA", address.getPostcode());
     }
 
-    @Test(expected = NoMrnDetailsException.class)
+    @Test
     public void asAppealWithNoMrnDetailsWillNotHaveADwpAddress() {
         caseData = buildCaseData();
         caseData.setRegionalProcessingCenter(null);
 
         caseData = caseData.toBuilder().appeal(caseData.getAppeal().toBuilder().mrnDetails(null).build()).build();
-        dwpAddressLookup.lookupDwpAddress(caseData);
+        assertThrows(NoMrnDetailsException.class, () -> dwpAddressLookup.lookupDwpAddress(caseData));
     }
 
-    @Test(expected = NoMrnDetailsException.class)
+    @Test
     public void anAppealWithNoDwpIssuingOfficeWillNotHaveADwpAddress() {
         caseData = buildCaseData();
         caseData.setRegionalProcessingCenter(null);
 
         caseData = caseData.toBuilder().appeal(caseData.getAppeal().toBuilder().mrnDetails(
                 MrnDetails.builder().mrnLateReason("soz").build()).build()).build();
-        dwpAddressLookup.lookupDwpAddress(caseData);
+        assertThrows(NoMrnDetailsException.class, () -> dwpAddressLookup.lookupDwpAddress(caseData));
     }
 
     @Test
@@ -277,8 +276,8 @@ public class DwpAddressLookupServiceTest {
         assertTrue(stream(result).anyMatch(OfficeMapping::isDefault));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "PIP, 11",
         "UC, 2",
         "ESA, 14",
@@ -302,8 +301,8 @@ public class DwpAddressLookupServiceTest {
         assertTrue(stream(officeMappings).anyMatch(OfficeMapping::isDefault));
     }
 
-    @Test
-    @Parameters({"3, 3", "PIP Recovery from Estates, Recovery from Estates"})
+    @ParameterizedTest
+    @CsvSource({"3, 3", "PIP Recovery from Estates, Recovery from Estates"})
     public void givenAPipBenefitTypeAndDwpOffice_thenReturnAPipOffice(String office, String expectedResult) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", office);
 
@@ -318,8 +317,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals(Optional.empty(), result);
     }
 
-    @Test
-    @Parameters({"(AE)", "AE", "DWP PIP (AE)"})
+    @ParameterizedTest
+    @CsvSource({"(AE)", "AE", "DWP PIP (AE)"})
     public void givenAPipBenefitTypeAndAeOffice_thenFuzzyMatch(String pipAe) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("pip", pipAe);
 
@@ -327,8 +326,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals("AE", result.get().getCode());
     }
 
-    @Test
-    @Parameters({"Balham DRT, Balham DRT", "ESA Recovery from Estates, Recovery from Estates"})
+    @ParameterizedTest
+    @CsvSource({"Balham DRT, Balham DRT", "ESA Recovery from Estates, Recovery from Estates"})
     public void givenAEsaBenefitTypeAndDwpOffice_thenReturnEsaOffice(String office, String expectedResult) {
         Optional<OfficeMapping> result = dwpAddressLookup.getDwpMappingByOffice("esa", office);
 
@@ -573,8 +572,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals("PT Operations North East England", result.get().getCode());
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Disability Benefit Centre 4, DLA Child/Adult", "The Pension Service 11, DLA 65", "Recovery from Estates, RfE"
     })
     public void givenADlaBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
@@ -599,8 +598,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals("Pensions Dispute Resolution Team", result.get().getCode());
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Barrow IIDB Centre, IIDB Barrow", "Barnsley Benefit Centre, IIDB Barnsley"
     })
     public void givenAIidbBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
@@ -609,8 +608,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals(dwpRegionalCentre, result);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Barrow IIDB Centre, IDB Barrow", "Barnsley Benefit Centre, IDB Barnsley"
     })
     public void givenAIndustrialDeathBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
@@ -619,8 +618,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals(dwpRegionalCentre, result);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Pensions Dispute Resolution Team, Pension Credit", "Recovery from Estates, RfE"
     })
     public void givenAPensionCreditsBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
@@ -629,8 +628,8 @@ public class DwpAddressLookupServiceTest {
         assertEquals(dwpRegionalCentre, result);
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "Pensions Dispute Resolution Team, Retirement Pension", "Recovery from Estates, RfE"
     })
     public void givenARetirementPensionBenefitType_thenReturnTheCorrectDwpRegionalCentre(String office, String dwpRegionalCentre) {
@@ -743,8 +742,8 @@ public class DwpAddressLookupServiceTest {
         assertThat(tree, is(notNullValue()));
     }
 
-    @Test
-    @Parameters({"PIP,1,true", "ESA,,false", "carersAllowance,Invalid,false", "carersAllowance,Carer’s Allowance Dispute Resolution Team,true"})
+    @ParameterizedTest
+    @CsvSource({"PIP,1,true", "ESA,,false", "carersAllowance,Invalid,false", "carersAllowance,Carer’s Allowance Dispute Resolution Team,true"})
     public void validateIssuingOffice(String benefitType, String issuingOffice, boolean isValid) {
         boolean result = dwpAddressLookup.validateIssuingOffice(benefitType, issuingOffice);
         assertEquals(isValid, result);

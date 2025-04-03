@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.nino;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class NationalInsuranceNumberValidatorTest extends ValidatorTestBase {
@@ -23,7 +24,7 @@ public class NationalInsuranceNumberValidatorTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class NationalInsuranceNumberValidatorTest extends ValidatorTestBase {
         testBean.testNino = "BB000000B";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -63,6 +64,6 @@ public class NationalInsuranceNumberValidatorTest extends ValidatorTestBase {
         testBean.testNino = "BB 00 00 00 B";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 }
