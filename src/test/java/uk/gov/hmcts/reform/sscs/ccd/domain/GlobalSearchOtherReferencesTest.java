@@ -3,14 +3,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_USING_TO_STRING;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDate;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 public class GlobalSearchOtherReferencesTest {
@@ -18,7 +18,7 @@ public class GlobalSearchOtherReferencesTest {
     private LocalDate now = LocalDate.now();
     private ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =

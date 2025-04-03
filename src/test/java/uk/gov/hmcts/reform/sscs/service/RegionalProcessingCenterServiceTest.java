@@ -1,29 +1,26 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
 import uk.gov.hmcts.reform.sscs.ccd.domain.RegionalProcessingCenter;
 
-@RunWith(JUnitParamsRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ExtendWith(MockitoExtension.class)
 public class RegionalProcessingCenterServiceTest {
-
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
 
     @Mock
     AirLookupService mockedAirLookupService;
@@ -47,8 +44,8 @@ public class RegionalProcessingCenterServiceTest {
         assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
     }
 
-    @Test
-    @Parameters(method = "getDifferentRpcScenarios")
+    @ParameterizedTest
+    @MethodSource("getDifferentRpcScenarios")
     public void givenRpcMetaData_shouldLoadRpcMetadataToMap(RegionalProcessingCenter expectedRpc, String rpcKey) {
         //Then
         Map<String, RegionalProcessingCenter> regionalProcessingCenterMap

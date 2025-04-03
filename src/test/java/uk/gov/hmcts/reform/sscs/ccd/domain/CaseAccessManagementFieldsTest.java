@@ -4,14 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.BEREAVEMENT_BENEFIT;
 
 import java.util.List;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CaseAccessManagementFieldsTest {
 
     private CaseAccessManagementFields unitUnderTest;
 
-    @Before
+    @BeforeEach
     public void setup() {
         unitUnderTest = new CaseAccessManagementFields();
     }

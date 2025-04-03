@@ -1,21 +1,19 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.util.Arrays.stream;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import junitparams.converters.Nullable;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
-@RunWith(JUnitParamsRunner.class)
 public class AirLookupServiceTest {
 
     private static final AirLookupService airLookupService;
@@ -25,8 +23,8 @@ public class AirLookupServiceTest {
         airLookupService.init();
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "BR3 8JK, Sutton",
             "br3 8JK, Sutton",
             "aa1 1aa, null",
@@ -43,12 +41,15 @@ public class AirLookupServiceTest {
             "s35, Leeds",
             "br2, Sutton"
     })
-    public void lookupPostcode(String postcode, @Nullable String expectedAdminGroup) {
+    public void lookupPostcode(String postcode, String expectedAdminGroup) {
+        if ("null".equals(expectedAdminGroup)) {
+            expectedAdminGroup = null;
+        }
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(postcode));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "BR3 8JK, Sutton",
             "br3 8JK, Sutton",
             "aa1 1aa, null",
@@ -65,12 +66,15 @@ public class AirLookupServiceTest {
             "s35, Leeds",
             "br2, Sutton"
     })
-    public void lookupIbcPostcode(String postcode, @Nullable String expectedAdminGroup) {
+    public void lookupIbcPostcode(String postcode, String expectedAdminGroup) {
+        if ("null".equals(expectedAdminGroup)) {
+            expectedAdminGroup = null;
+        }
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "GBATGLO00, Cardiff",
             "GBATKEM00, Cardiff",
             "GBATLAS00, Cardiff",
@@ -85,12 +89,12 @@ public class AirLookupServiceTest {
             "gbATFFD00, Cardiff",
             "gbatflT00, Bradford"
     })
-    public void lookupPortOfEntryCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
+    public void lookupPortOfEntryCode(String portOfEntryCode, String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupRegionalCentre(portOfEntryCode));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "GBATGLO00, Cardiff",
             "GBATKEM00, Cardiff",
             "GBATLAS00, Cardiff",
@@ -105,12 +109,12 @@ public class AirLookupServiceTest {
             "gbATFFD00, Cardiff",
             "gbatflT00, Bradford"
     })
-    public void lookupPortOfEntryIbcCode(String portOfEntryCode, @Nullable String expectedAdminGroup) {
+    public void lookupPortOfEntryIbcCode(String portOfEntryCode, String expectedAdminGroup) {
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(portOfEntryCode));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
             "GBSTTRT00,Northampton,Birmingham",
             "GBSTBLY00,Bedlington,Leeds",
             "GBSTWAT00,Barnstaple,Cardiff",
@@ -381,7 +385,13 @@ public class AirLookupServiceTest {
             "GBUTKIL00,Grimsby,Leeds",
             "GBUTPUF00,Romford,Sutton"
     })
-    public void lookupRpcAndVenueFromPortOfEntryCode(String portOfEntryCode, String expectedVenue, String expectedRpc) {
+    public void lookupRpcAndVenueFromPortOfEntryCode(String row) {
+        row = row.replace("\\,", "&comma;");
+        String[] parts = row.split(",");
+        String portOfEntryCode = parts[0].trim().replace("&comma;", ",");
+        String expectedVenue = parts[1].trim().replace("&comma;", ",");
+        String expectedRpc = parts[2].trim().replace("&comma;", ",");
+
         assertEquals(expectedVenue, airLookupService.lookupAirVenueNameByPostCode(portOfEntryCode, BenefitType.builder().code("infectedBloodCompensation").build()));
         assertEquals(expectedRpc, airLookupService.lookupRegionalCentre(portOfEntryCode));
     }
@@ -414,8 +424,8 @@ public class AirLookupServiceTest {
         assertEquals(Optional.of(1127), Optional.ofNullable(airLookupService.lookupVenueIdByAirVenueName("Worcester Mags")));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "b4, 1234",
             "NN85, 1223",
     })
@@ -425,8 +435,8 @@ public class AirLookupServiceTest {
         assertEquals(expectedPipVenue, lookupVenueId(venues.getPipVenue()));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
             "b4 1lal, Birmingham, PIP",
             "CV9 1ss, Nuneaton, PIP",
             "NN85 1ss, Northampton, DLA",

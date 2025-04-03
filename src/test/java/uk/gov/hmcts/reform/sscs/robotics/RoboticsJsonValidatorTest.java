@@ -1,23 +1,21 @@
 package uk.gov.hmcts.reform.sscs.robotics;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.everit.json.schema.ValidationException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.util.CollectionUtils;
 
-@RunWith(JUnitParamsRunner.class)
 public class RoboticsJsonValidatorTest {
 
     private static final String caseId = "12345678";
@@ -45,8 +43,8 @@ public class RoboticsJsonValidatorTest {
         assertTrue(CollectionUtils.isEmpty(actual));
     }
 
-    @Test
-    @Parameters({"appellant", "appointee"})
+    @ParameterizedTest
+    @ValueSource(strings = {"appellant", "appointee"})
     public void givenRoboticJsonWithDobForAppellantAndAppointee_shouldValidateSuccessfully(String person) throws IOException {
         jsonData = updateEmbeddedProperty(jsonData.toString(), "2018-08-12", person, "dob");
         Set<String> actual = roboticsSchema.validate(jsonData, caseId);
@@ -103,8 +101,8 @@ public class RoboticsJsonValidatorTest {
         assertFalse(CollectionUtils.isEmpty(actual));
     }
 
-    @Test
-    @Parameters({"Yes", "No"})
+    @ParameterizedTest
+    @ValueSource(strings = {"Yes", "No"})
     public void givenJsonWithTheSameAddressAsAppellantProperty_shouldValidateSuccessfully(String value) {
         jsonData.getJSONObject("appointee").put("sameAddressAsAppellant", value);
         Set<String> actual = roboticsSchema.validate(jsonData, caseId);

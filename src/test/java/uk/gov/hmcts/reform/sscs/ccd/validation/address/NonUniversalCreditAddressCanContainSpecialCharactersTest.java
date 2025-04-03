@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
@@ -31,7 +32,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -47,7 +48,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
 
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -62,7 +63,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
             .postcode("some text").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
@@ -78,7 +79,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
             .postcode("some text").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
@@ -94,7 +95,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
             .postcode("some text").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
@@ -110,7 +111,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
             .postcode("some text").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
@@ -126,7 +127,7 @@ public class NonUniversalCreditAddressCanContainSpecialCharactersTest extends Va
             .postcode("some @ text").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 
