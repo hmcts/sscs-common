@@ -3,21 +3,27 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.List.of;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 
 import java.util.Optional;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.aggregator.ArgumentsAccessor;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import uk.gov.hmcts.reform.sscs.exception.BenefitMappingException;
 
-@RunWith(JUnitParamsRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BenefitTest {
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "ESA, ESA",
         "JSA, JSA",
         "Employment and Support Allowance, ESA",
@@ -27,8 +33,8 @@ public class BenefitTest {
         assertThat(Benefit.getBenefitOptionalByCode(code), is(Optional.of(expectedBenefit)));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "051, ESA",
         "073, JSA",
         "002, PIP",
@@ -42,9 +48,9 @@ public class BenefitTest {
         assertThat(Benefit.getBenefitOptionalByCode("invalid"), is(Optional.empty()));
     }
 
-    @Test(expected = BenefitMappingException.class)
+    @Test
     public void getBenefitByCodeOrThrowExceptionThrowsExceptionForInvalidBenefit() {
-        Benefit.getBenefitByCodeOrThrowException("invalid");
+        assertThrows(BenefitMappingException.class, () -> Benefit.getBenefitByCodeOrThrowException("invalid"));
     }
 
     @Test
@@ -63,8 +69,8 @@ public class BenefitTest {
         assertFalse(Benefit.isBenefitTypeValid("BLA"));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "PIP, Personal Independence Payment (PIP)",
         "ESA, Employment and Support Allowance (ESA)",
         "UC, Universal Credit (UC)",
@@ -75,8 +81,8 @@ public class BenefitTest {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "carersAllowance, Carer's Allowance",
         "attendanceAllowance, Attendance Allowance",
         "bereavementBenefit, Bereavement Benefit",
@@ -101,8 +107,8 @@ public class BenefitTest {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, true));
     }
 
-    @Test
-    @Parameters(method = "welshBenefitScenarios")
+    @ParameterizedTest
+    @MethodSource("welshBenefitScenarios")
     public void givenAWelshBenefitCodeWithAcronym_thenBuildLongBenefitNameDescriptionWithAcronym(String benefitCode, String expected) {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
@@ -126,8 +132,8 @@ public class BenefitTest {
         };
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "carersAllowance, Lwfans Gofalwr",
         "attendanceAllowance, Lwfans Gweini",
         "bereavementBenefit, Budd-dal Profedigaeth",
@@ -152,9 +158,10 @@ public class BenefitTest {
         assertEquals(expected, Benefit.getLongBenefitNameDescriptionWithOptionalAcronym(benefitCode, false));
     }
 
-    @Test
-    @Parameters({
-        "PIP, 002, 003", "ESA, 051",
+    @ParameterizedTest
+    @CsvSource({
+        "PIP, 002, 003",
+        "ESA, 051",
         "ATTENDANCE_ALLOWANCE, 013",
         "UC, 001",
         "JSA, 073",
@@ -179,12 +186,17 @@ public class BenefitTest {
         "NATIONAL_INSURANCE_CREDITS, 030",
         "INFECTED_BLOOD_COMPENSATION, 093",
     })
-    public void caseloaderKeyIds(Benefit benefit, String... caseloaderKeyIds) {
+    public void caseloaderKeyIds(ArgumentsAccessor arguments) {
+        Benefit benefit = Benefit.valueOf(arguments.getString(0));
+        String[] caseloaderKeyIds = new String[arguments.size() - 1];
+        for (int i = 1; i < arguments.size(); i++) {
+            caseloaderKeyIds[i - 1] = arguments.getString(i);
+        }
         assertThat(benefit.getCaseLoaderKeyId(), is(of(caseloaderKeyIds)));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "PIP, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
         "ATTENDANCE_ALLOWANCE, JUDGE_DOCTOR_AND_DISABILITY_EXPERT",
         "UC, JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE",

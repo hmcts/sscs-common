@@ -1,19 +1,19 @@
 package uk.gov.hmcts.reform.sscs.utility;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static uk.gov.hmcts.reform.sscs.utility.AppealNumberGenerator.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 
-@RunWith(JUnitParamsRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AppealNumberGeneratorTest {
 
     @Test
@@ -56,8 +56,8 @@ public class AppealNumberGeneratorTest {
         assertTrue(result);
     }
 
-    @Test
-    @Parameters(method = "generateInvalidStateScenarios")
+    @ParameterizedTest
+    @MethodSource("generateInvalidStateScenarios")
     public void filterActiveCasesWithGivenStateThenShouldReturnFalse(State state) {
         SscsCaseDetails caseDetails = Mockito.mock(SscsCaseDetails.class);
         Mockito.when(caseDetails.getState()).thenReturn(state.getId());
@@ -86,8 +86,8 @@ public class AppealNumberGeneratorTest {
         assertFalse(result);
     }
 
-    @Test
-    @Parameters(method = "generateDormantVoidStateScenarios")
+    @ParameterizedTest
+    @MethodSource("generateDormantVoidStateScenarios")
     public void filterDormantCasesWithGivenStateThenShouldReturnTrue(State state) {
         SscsCaseDetails caseDetails = Mockito.mock(SscsCaseDetails.class);
         Mockito.when(caseDetails.getState()).thenReturn(state.getId());

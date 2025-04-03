@@ -1,15 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.localdate;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
-@RunWith(MockitoJUnitRunner.class)
 public class LocalDateYearMustBeInPastValidatorTest extends ValidatorTestBase {
 
     private class TestBean {
@@ -26,7 +24,7 @@ public class LocalDateYearMustBeInPastValidatorTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -36,7 +34,7 @@ public class LocalDateYearMustBeInPastValidatorTest extends ValidatorTestBase {
         testBean.testDate = LocalDate.now().plusYears(-1).toString();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test

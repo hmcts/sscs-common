@@ -1,10 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
@@ -32,7 +33,7 @@ public class NonUniversalCreditAddressPostcodeCanBeInvalidTest extends Validator
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -43,7 +44,7 @@ public class NonUniversalCreditAddressPostcodeCanBeInvalidTest extends Validator
             .postcode("sw1p 4df").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -54,7 +55,7 @@ public class NonUniversalCreditAddressPostcodeCanBeInvalidTest extends Validator
             .postcode("something").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
 
     }
 

@@ -3,10 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_USING_TO_STRING;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
@@ -25,24 +25,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import junitparams.converters.Nullable;
 import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
-@RunWith(JUnitParamsRunner.class)
 public class SscsCaseDataTest {
 
     private LocalDate now = LocalDate.now();
     private ObjectMapper mapper;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
@@ -65,7 +63,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(newSscsDocument).build();
         sscsCaseData.sortCollections();
 
-        assertTrue("No sorting error", true);
+        assertTrue(true, "No sorting error");
     }
 
     @Test
@@ -450,7 +448,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertTrue("Result has a value", result.isPresent());
+        assertTrue(result.isPresent(), "Result has a value");
         assertEquals("testUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -464,7 +462,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertTrue("Result has a value", result.isPresent());
+        assertTrue(result.isPresent(), "Result has a value");
         assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -479,7 +477,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertTrue("Result has a value", result.isPresent());
+        assertTrue(result.isPresent(), "Result has a value");
         assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -489,7 +487,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(null).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertTrue("Result is empty", result.isEmpty());
+        assertTrue(result.isEmpty(), "Result is empty");
     }
 
     @Test
@@ -506,7 +504,7 @@ public class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
 
-        assertTrue("Result has a value", result.isPresent());
+        assertTrue(result.isPresent(), "Result has a value");
         assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
@@ -559,9 +557,11 @@ public class SscsCaseDataTest {
         assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
     }
 
-    @Test
-    @Parameters({"TRANSLATION_REQUESTED", "TRANSLATION_REQUIRED", "null"})
-    public void givenACaseHasMultipleDwpDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3(@Nullable SscsDocumentTranslationStatus translationStatus) {
+    @ParameterizedTest
+    @ValueSource(strings = {"TRANSLATION_REQUESTED", "TRANSLATION_REQUIRED", "null"})
+    public void givenACaseHasMultipleDwpDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3(String translationStatusString) {
+        SscsDocumentTranslationStatus translationStatus = "null".equals(translationStatusString) ? null : SscsDocumentTranslationStatus.valueOf(translationStatusString);
+
         List<DwpDocument> documents = new ArrayList<>();
         documents.add(buildDwpDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
         documents.add(buildDwpDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
@@ -999,8 +999,8 @@ public class SscsCaseDataTest {
         assertFalse(sscsCaseData.isIbcCase());
     }
 
-    @Test
-    @Parameters({"030", "034", "016"})
+    @ParameterizedTest
+    @CsvSource({"030", "034", "016"})
     public void givenBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse(String benefitCode) {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
                 .benefitCode(benefitCode).build();

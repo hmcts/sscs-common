@@ -1,11 +1,11 @@
 package uk.gov.hmcts.reform.sscs.utility;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @SuppressWarnings({"PMD.JUnitTestContainsTooManyAsserts", "PMD.LongVariable"})
 public class PhoneNumbersUtilTest {
@@ -21,72 +21,72 @@ public class PhoneNumbersUtilTest {
 
     @Test
     public void isValidMobileNumberWillReturnTrueForAUkMobileNumber() {
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(UK_MOBILE_NUMBER));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(UK_MOBILE_NUMBER_WITH_COUNTRY_CODE));
+        assertTrue(PhoneNumbersUtil.isValidMobileNumber(UK_MOBILE_NUMBER), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidMobileNumber(UK_MOBILE_NUMBER_WITH_COUNTRY_CODE), ASSERTION_TRUE_MESSAGE);
     }
 
     @Test
     public void isValidMobileNumberWillReturnFalseForLandLineOrInvalidValues() {
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(""));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(null));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(UK_LAND_LINE));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidMobileNumber(UK_LAND_LINE_WITH_COUNTRY_CODE));
+        assertFalse(PhoneNumbersUtil.isValidMobileNumber(""), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidMobileNumber(null), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidMobileNumber(UK_LAND_LINE), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidMobileNumber(UK_LAND_LINE_WITH_COUNTRY_CODE), ASSERTION_FALSE_MESSAGE);
     }
 
     @Test
     public void isValidUkMobileNumberWillBeTrueForValidUkMobileNumbers() {
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(UK_MOBILE_NUMBER));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(UK_MOBILE_NUMBER_WITH_COUNTRY_CODE));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("07123456789"));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("07123 456789"));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("07123 456 789"));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("+447123456789"));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("+44 7123 456 789"));
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber(UK_MOBILE_NUMBER), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber(UK_MOBILE_NUMBER_WITH_COUNTRY_CODE), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber("07123456789"), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber("07123 456789"), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber("07123 456 789"), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber("+447123456789"), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidUkMobileNumber("+44 7123 456 789"), ASSERTION_TRUE_MESSAGE);
     }
 
     @Test
     public void isValidUkMobileNumberWillBeFalseForLandLineNumbers() {
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(UK_LAND_LINE));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(UK_LAND_LINE_WITH_COUNTRY_CODE));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("01234567890"));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("08001234567"));
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber(UK_LAND_LINE), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber(UK_LAND_LINE_WITH_COUNTRY_CODE), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber("01234567890"), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber("08001234567"), ASSERTION_FALSE_MESSAGE);
     }
 
     @Test
     public void isValidUkMobileNumberWillReturnFalseForInvalidValues() {
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber("0744"));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(null));
-        assertFalse(ASSERTION_FALSE_MESSAGE, PhoneNumbersUtil.isValidUkMobileNumber(""));
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber("0744"), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber(null), ASSERTION_FALSE_MESSAGE);
+        assertFalse(PhoneNumbersUtil.isValidUkMobileNumber(""), ASSERTION_FALSE_MESSAGE);
     }
 
     @Test
     public void isValidLandLineNumberReturnsTrueForLandlineNumbers() {
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidLandLineNumber(US_LAND_LINE_WITH_COUNTRY_CODE));
-        assertTrue(ASSERTION_TRUE_MESSAGE, PhoneNumbersUtil.isValidLandLineNumber(UK_LAND_LINE));
+        assertTrue(PhoneNumbersUtil.isValidLandLineNumber(US_LAND_LINE_WITH_COUNTRY_CODE), ASSERTION_TRUE_MESSAGE);
+        assertTrue(PhoneNumbersUtil.isValidLandLineNumber(UK_LAND_LINE), ASSERTION_TRUE_MESSAGE);
     }
 
     @Test
     public void cleanNumberForUkMobile() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+447861675377"), PhoneNumbersUtil.cleanPhoneNumber(UK_MOBILE_NUMBER));
+        assertEquals(Optional.of("+447861675377"), PhoneNumbersUtil.cleanPhoneNumber(UK_MOBILE_NUMBER), ASSERTION_EQUALS_MESSAGE);
     }
 
     @Test
     public void cleanNumberForUkLandLine() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE));
+        assertEquals(Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE), ASSERTION_EQUALS_MESSAGE);
     }
 
     @Test
     public void cleanNumberForUkLandLineWithCountryCode() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE_WITH_COUNTRY_CODE));
+        assertEquals(Optional.of("+442037374299"), PhoneNumbersUtil.cleanPhoneNumber(UK_LAND_LINE_WITH_COUNTRY_CODE), ASSERTION_EQUALS_MESSAGE);
     }
 
     @Test
     public void cleanNumberForAnAmericanLandLine() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.of("+15417543010"), PhoneNumbersUtil.cleanPhoneNumber(US_LAND_LINE_WITH_COUNTRY_CODE));
+        assertEquals(Optional.of("+15417543010"), PhoneNumbersUtil.cleanPhoneNumber(US_LAND_LINE_WITH_COUNTRY_CODE), ASSERTION_EQUALS_MESSAGE);
     }
 
     @Test
     public void cleanNumberForAnInvalidNumberReturnsEmptyOption() {
-        assertEquals(ASSERTION_EQUALS_MESSAGE, Optional.empty(), PhoneNumbersUtil.cleanPhoneNumber("99a"));
+        assertEquals(Optional.empty(), PhoneNumbersUtil.cleanPhoneNumber("99a"), ASSERTION_EQUALS_MESSAGE);
     }
 }
