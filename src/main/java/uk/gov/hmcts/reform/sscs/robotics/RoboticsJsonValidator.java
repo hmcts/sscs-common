@@ -10,6 +10,8 @@ import com.networknt.schema.ValidationMessage;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +91,7 @@ public class RoboticsJsonValidator {
         String ccdError;
 
         String errorType = error.getType();
-        String path = toPath(error.getPath());
+        String path = toPath(error.getMessage());
 
         if (errorType.equals("required")) {
 
@@ -108,11 +110,10 @@ public class RoboticsJsonValidator {
         return ccdError;
     }
 
-
     private String requiredErrorMessage(ValidationMessage error, String path) {
         String ccdError;
         if (error.getArguments().length > 0) {
-            String field = error.getArguments()[0];
+            String field = error.getArguments()[0].toString();
             if (path.length() > 0) {
                 ccdError = path + "." + field + MISSING_FIELD_MESSAGE;
             } else {
@@ -125,8 +126,10 @@ public class RoboticsJsonValidator {
     }
 
     private String toPath(String input) {
-        if (input != null && input.length() > 2) {
-            return input.substring(2);
+        String inputWithoutError = input == null ? "" : input.substring(0, input.indexOf(":"));
+
+        if (inputWithoutError.length() > 2) {
+            return inputWithoutError.substring(2);
         } else {
             return  "";
         }
