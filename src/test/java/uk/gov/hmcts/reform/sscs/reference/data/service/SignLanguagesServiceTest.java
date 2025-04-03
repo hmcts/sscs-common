@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 
@@ -17,7 +17,7 @@ public class SignLanguagesServiceTest {
 
     SignLanguagesService signLanguages;
 
-    @Before
+    @BeforeEach
     public void setup() {
         signLanguages = new SignLanguagesService();
     }

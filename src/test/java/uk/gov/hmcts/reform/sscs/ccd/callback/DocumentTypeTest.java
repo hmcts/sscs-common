@@ -1,18 +1,15 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-@RunWith(JUnitParamsRunner.class)
 public class DocumentTypeTest {
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "DIRECTION_NOTICE, Direction Notice",
         "DECISION_NOTICE, Decision Notice",
         "APPELLANT_EVIDENCE, appellantEvidence",

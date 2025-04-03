@@ -1,18 +1,18 @@
 package uk.gov.hmcts.reform.sscs.ccd.callback;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Optional;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.EventType;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CallbackTest {
 
     private final EventType event = EventType.APPEAL_RECEIVED;
@@ -22,7 +22,7 @@ public class CallbackTest {
 
     private Callback<CaseData> callback;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         callback = new Callback<>(
             caseDetails,
