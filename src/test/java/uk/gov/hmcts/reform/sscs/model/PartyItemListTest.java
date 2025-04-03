@@ -1,16 +1,14 @@
 package uk.gov.hmcts.reform.sscs.model;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType.*;
 import static uk.gov.hmcts.reform.sscs.model.PartyItemList.findPartyItemByCode;
 import static uk.gov.hmcts.reform.sscs.model.PartyItemList.isOtherPartyItemType;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-@RunWith(JUnitParamsRunner.class)
 public class PartyItemListTest {
 
     @Test
@@ -43,14 +41,14 @@ public class PartyItemListTest {
         assertEquals(HMCTS_EVIDENCE, PartyItemList.HMCTS.getDocumentType());
     }
 
-    @Test
-    @Parameters({"APPELLANT, appellant", "REPRESENTATIVE, representative", "JOINT_PARTY, jointParty", "OTHER_PARTY, otherParty", "OTHER_PARTY_REPRESENTATIVE, otherPartyRep"})
+    @ParameterizedTest
+    @CsvSource({"APPELLANT, appellant", "REPRESENTATIVE, representative", "JOINT_PARTY, jointParty", "OTHER_PARTY, otherParty", "OTHER_PARTY_REPRESENTATIVE, otherPartyRep"})
     public void givenPartyItemCode_thenReturnPartyItemListValue(PartyItemList expectedPartyItem, String partyItemCode) {
         assertEquals(expectedPartyItem, findPartyItemByCode(partyItemCode));
     }
 
-    @Test
-    @Parameters({"appellant, false", "representative, false", "jointParty, false", "otherParty, true", "otherPartyRep, true", "otherParty1, true", "otherPartyRep2, true"})
+    @ParameterizedTest
+    @CsvSource({"appellant, false", "representative, false", "jointParty, false", "otherParty, true", "otherPartyRep, true", "otherParty1, true", "otherPartyRep2, true"})
     public void givenPartyItemCode_thenCheckIfOtherPartyType(String expectedPartyItem, boolean isOtherParty) {
         assertEquals(isOtherParty, isOtherPartyItemType(expectedPartyItem));
     }

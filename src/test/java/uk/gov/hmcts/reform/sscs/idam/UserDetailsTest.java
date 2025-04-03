@@ -5,78 +5,77 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@RunWith(JUnitParamsRunner.class)
 public class UserDetailsTest {
 
     final UserDetails userDetails = new UserDetails("id", "email", new ArrayList<>());
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-judge",
         "caseworker-sscs-judge"
     })
-    public void userWithJudgeRoles_shouldReturnTrue(String... roleWithJudge) {
-        userDetails.getRoles().addAll(asList(roleWithJudge));
+    public void userWithJudgeRoles_shouldReturnTrue(String roleWithJudge) {
+        userDetails.getRoles().addAll(asList(roleWithJudge.split(",")));
         assertThat(userDetails.hasRole(UserRole.JUDGE), is(true));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-panelmember",
         "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
         "caseworker-sscs,caseworker-sscs-registrar",
         "caseworker-sscs,caseworker-sscs-superuser"
     })
-    public void userWithNoJudgeRoles_shouldReturnFalse(String... roles) {
-        userDetails.getRoles().addAll(asList(roles));
+    public void userWithNoJudgeRoles_shouldReturnFalse(String roles) {
+        userDetails.getRoles().addAll(asList(roles.split(",")));
         assertThat(userDetails.hasRole(UserRole.JUDGE), is(false));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-panelmember",
         "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
         "caseworker-sscs,caseworker-sscs-registrar",
         "caseworker-sscs,caseworker-sscs-judge"
     })
-    public void userWithNoSuperUserRoles_shouldReturnFalse(String... roles) {
-        userDetails.getRoles().addAll(asList(roles));
+    public void userWithNoSuperUserRoles_shouldReturnFalse(String roles) {
+        userDetails.getRoles().addAll(asList(roles.split(",")));
         assertThat(userDetails.hasRole(UserRole.SUPER_USER), is(false));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-superuser",
         "caseworker-sscs-superuser"
     })
-    public void userWithSuperUserRoles_shouldReturnTrue(String... userWithSuperUserRole) {
-        userDetails.getRoles().addAll(asList(userWithSuperUserRole));
+    public void userWithSuperUserRoles_shouldReturnTrue(String userWithSuperUserRole) {
+        userDetails.getRoles().addAll(asList(userWithSuperUserRole.split(",")));
         assertThat(userDetails.hasRole(UserRole.SUPER_USER), is(true));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-panelmember",
         "caseworker-sscs,caseworker-sscs-registrar",
         "caseworker-sscs,caseworker-sscs-judge"
     })
-    public void userWithNoDwpRoles_shouldReturnFalse(String... roles) {
-        userDetails.getRoles().addAll(asList(roles));
+    public void userWithNoDwpRoles_shouldReturnFalse(String roles) {
+        userDetails.getRoles().addAll(asList(roles.split(",")));
         assertThat(userDetails.hasRole(UserRole.DWP), is(false));
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "caseworker-sscs,caseworker-sscs-dwpresponsewriter",
         "caseworker-sscs-dwpresponsewriter"
     })
-    public void userWithDwpRoles_shouldReturnTrue(String... userWithSuperUserRole) {
-        userDetails.getRoles().addAll(asList(userWithSuperUserRole));
+    public void userWithDwpRoles_shouldReturnTrue(String userWithSuperUserRole) {
+        userDetails.getRoles().addAll(asList(userWithSuperUserRole.split(",")));
         assertThat(userDetails.hasRole(UserRole.DWP), is(true));
     }
 

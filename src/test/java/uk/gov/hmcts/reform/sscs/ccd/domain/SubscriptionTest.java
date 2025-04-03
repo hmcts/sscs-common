@@ -1,17 +1,18 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(JUnitParamsRunner.class)
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SubscriptionTest {
 
-    @Test
-    @Parameters(method = "generateEmailSubscriptionScenarios")
+    @ParameterizedTest
+    @MethodSource("generateEmailSubscriptionScenarios")
     public void givenSubscription_shouldReturnWhetherEmailSubscribedOrNotCorrectly(Subscription subscription,
                                                                                    boolean expectedEmailSubs) {
         assertEquals(expectedEmailSubs, subscription.isEmailSubscribed());
@@ -50,8 +51,8 @@ public class SubscriptionTest {
         };
     }
 
-    @Test
-    @Parameters(method = "generateSmsSubscriptionScenarios")
+    @ParameterizedTest
+    @MethodSource("generateSmsSubscriptionScenarios")
     public void givenSubscription_shouldReturnWhetherSmsSubscribedOrNotCorrectly(Subscription subscription,
                                                                                  boolean expectedSmsSubs) {
         assertEquals(expectedSmsSubs, subscription.isSmsSubscribed());

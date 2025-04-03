@@ -1,17 +1,14 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-@RunWith(JUnitParamsRunner.class)
 public class UploadPartyTest {
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "CTSC, ctsc",
         "APPELLANT, appellant",
         "APPOINTEE, appointee",

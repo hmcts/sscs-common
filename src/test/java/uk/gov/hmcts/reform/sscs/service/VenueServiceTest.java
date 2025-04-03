@@ -2,19 +2,20 @@ package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class VenueServiceTest {
 
     private static final String VALID_EPIMS_ID = "45900";
@@ -134,10 +135,10 @@ public class VenueServiceTest {
                 .epimsId("111111")
                 .build());
 
-        when(airLookupService.getLookupVenueIdByAirVenueName()).thenReturn(venueIdMap);
-        when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
-        when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpims);
-        when(venueDataLoader.getActiveVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
+        lenient().when(airLookupService.getLookupVenueIdByAirVenueName()).thenReturn(venueIdMap);
+        lenient().when(venueDataLoader.getVenueDetailsMap()).thenReturn(venueDetailsMap);
+        lenient().when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpims);
+        lenient().when(venueDataLoader.getActiveVenueDetailsMapByPostcode()).thenReturn(venueDetailsMapByPostcode);
     }
 
     private void setupRegionalVenueMaps() {
@@ -164,8 +165,8 @@ public class VenueServiceTest {
                         VenueDetails.builder().epimsId("456456").build(),
                         VenueDetails.builder().epimsId("654654").build()));
 
-        when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpimsId);
-        when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
+        lenient().when(venueDataLoader.getActiveVenueDetailsMapByEpimsId()).thenReturn(venueDetailsMapByEpimsId);
+        lenient().when(venueDataLoader.getActiveVenueEpimsIdsMapByRpc()).thenReturn(activeVenueEpimsIdsMapByRpc);
     }
 
 }

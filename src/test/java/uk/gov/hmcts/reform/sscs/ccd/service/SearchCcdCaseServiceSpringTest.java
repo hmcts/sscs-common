@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static java.util.Collections.singletonList;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -9,9 +9,9 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySi
 
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
@@ -37,7 +37,7 @@ import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
  * If a client calls a method without the annotation which then calls another method in
  * it's own class with the annotation, Spring will not retry if the method fails.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SearchCcdCaseServiceSpringTest.TestContextConfiguration.class)
 @Slf4j
 public class SearchCcdCaseServiceSpringTest {
@@ -96,7 +96,7 @@ public class SearchCcdCaseServiceSpringTest {
         }
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
 
         idamTokens = IdamTokens.builder()
