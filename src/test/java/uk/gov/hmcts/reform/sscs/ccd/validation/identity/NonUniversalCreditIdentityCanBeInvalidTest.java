@@ -1,11 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.identity;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
@@ -33,7 +34,7 @@ public class NonUniversalCreditIdentityCanBeInvalidTest extends ValidatorTestBas
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -44,7 +45,7 @@ public class NonUniversalCreditIdentityCanBeInvalidTest extends ValidatorTestBas
             .nino("something").build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -55,7 +56,7 @@ public class NonUniversalCreditIdentityCanBeInvalidTest extends ValidatorTestBas
             .dob(LocalDate.now().toString()).build();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
 }

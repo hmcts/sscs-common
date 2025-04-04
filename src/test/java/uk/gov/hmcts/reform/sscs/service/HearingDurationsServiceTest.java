@@ -6,8 +6,8 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
 import java.util.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,7 +34,7 @@ public class HearingDurationsServiceTest {
 
     private SscsCaseData caseData;
 
-    @Before
+    @BeforeEach
     public void setup() {
         hearingDurations = new HearingDurationsService();
 

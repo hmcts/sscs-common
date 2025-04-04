@@ -1,13 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
@@ -37,7 +37,7 @@ public class CreateCcdCaseServiceTest {
     private CreateCcdCaseService createCcdCaseService;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         openMocks(this);
         idamTokens = IdamTokens.builder()

@@ -5,8 +5,8 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 
 import java.util.*;
 import java.util.stream.Collectors;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 
@@ -14,7 +14,7 @@ public class VerbalLanguagesServiceTest {
 
     VerbalLanguagesService languagesService;
 
-    @Before
+    @BeforeEach
     public void setup() {
         languagesService = new VerbalLanguagesService();
     }

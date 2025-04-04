@@ -1,18 +1,16 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-@RunWith(JUnitParamsRunner.class)
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 public class HmcHearingTypeTest {
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @CsvSource({
         "SUBSTANTIVE,BBA3-SUB,Substantive",
         "DIRECTION_HEARINGS,BBA3-DIR,Direction Hearings",
         "CHAMBERS_OUTCOME,BBA3-CHA,Chambers Outcome"
