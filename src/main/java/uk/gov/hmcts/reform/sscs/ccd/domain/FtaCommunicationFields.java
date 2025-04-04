@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class FtaCommunicationFields {
 
     private List<CommunicationRequest> ftaCommunications;
-    private String ftaRequestTopic;
+    private CommunicationRequestTopic ftaRequestTopic;
     private String ftaRequestQuestion;
     private FtaRequestType ftaRequestType;
     private DynamicList ftaRequestNoResponseRadioDl;
@@ -27,7 +27,7 @@ public class FtaCommunicationFields {
     private String ftaRequestNoResponseTextArea;
 
     private List<CommunicationRequest> tribunalCommunications;
-    private String tribunalRequestTopic;
+    private CommunicationRequestTopic tribunalRequestTopic;
     private String tribunalRequestQuestion;
     private TribunalRequestType tribunalRequestType;
 
