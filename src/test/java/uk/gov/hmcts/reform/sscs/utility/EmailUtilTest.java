@@ -2,18 +2,16 @@ package uk.gov.hmcts.reform.sscs.utility;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.annotation.Nullable;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(JUnitParamsRunner.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class EmailUtilTest {
 
-    @Test
-    @Parameters(method = "generateValidAndInvalidEmails")
-    public void givenAListOfEmails_ThenVerifyIfEmailIsValidOrNot(@Nullable String email, boolean isValid) {
+    @ParameterizedTest
+    @MethodSource("generateValidAndInvalidEmails")
+    public void givenAListOfEmails_ThenVerifyIfEmailIsValidOrNot(String email, boolean isValid) {
         assertThat(EmailUtil.isEmailValid(email)).isEqualTo(isValid);
     }
 

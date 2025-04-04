@@ -1,25 +1,23 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static java.lang.String.format;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
-@RunWith(JUnitParamsRunner.class)
 public class VenueDataLoaderTest {
 
     private VenueDataLoader venueDataLoader;
@@ -28,14 +26,14 @@ public class VenueDataLoaderTest {
             "517400", "449358", "563156", "45900", "744412", "572158", "288691", "562808", "720624", "427519",
             "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
-    @Before
+    @BeforeEach
     public void setUp() {
         venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
     }
 
-    @Test
-    @Parameters({"1", "2", "3", "8", "11", "22", "24", "30", "34", "35", "37", "38", "40", "44", "45", "48", "52", "75",
+    @ParameterizedTest
+    @CsvSource({"1", "2", "3", "8", "11", "22", "24", "30", "34", "35", "37", "38", "40", "44", "45", "48", "52", "75",
         "85", "86", "92", "94", "97", "105", "106", "109", "110", "114", "115", "132", "133", "146", "147", "151",
         "170", "171", "175", "177", "178", "186", "189", "199", "203", "221", "224", "225", "226", "227", "228", "234",
         "241", "260", "266", "268", "991", "996", "998", "1000", "1001", "1003", "1004", "1005", "1008", "1009", "1012",
@@ -48,8 +46,8 @@ public class VenueDataLoaderTest {
         assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("No"));
     }
 
-    @Test
-    @Parameters({"7", "9", "10", "43", "49", "51", "53", "60", "61", "62", "63", "64", "65", "67", "68", "70", "71",
+    @ParameterizedTest
+    @CsvSource({"7", "9", "10", "43", "49", "51", "53", "60", "61", "62", "63", "64", "65", "67", "68", "70", "71",
         "79", "81", "84", "89", "90", "91", "96", "101", "104", "108", "111", "112", "122", "123", "134", "140", "141",
         "142", "143", "154", "156", "168", "173", "179", "185", "187", "192", "194", "195", "198", "200", "201", "205",
         "206", "209", "210", "232", "233", "236", "240", "261", "262", "265", "267", "992", "993", "1002", "1025",
@@ -68,8 +66,9 @@ public class VenueDataLoaderTest {
     public void venuesShouldEitherBeActiveOrNotActive() {
         venueDataLoader.getVenueDetailsMap().values()
                 .forEach(venueDetails ->
-                        assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
-                                venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"))
+                        assertTrue(
+                            venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"),
+                            format("%s is incorrect", venueDetails.getVenueId()))
                 );
     }
 
@@ -79,10 +78,12 @@ public class VenueDataLoaderTest {
                 .stream()
                 .filter(venueDetails -> venueDetails.getActive().equals("Yes"))
                 .forEach(venueDetails -> {
-                    assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
-                            venueDetails.getUrl().contains("https://"));
-                    assertTrue(format("%s is incorrect", venueDetails.getVenueId()),
-                            venueDetails.getUrl().contains("goo"));
+                    assertTrue(
+                        venueDetails.getUrl().contains("https://"),
+                        format("%s is incorrect", venueDetails.getVenueId()));
+                    assertTrue(
+                        venueDetails.getUrl().contains("goo"),
+                        format("%s is incorrect", venueDetails.getVenueId()));
                 });
     }
 

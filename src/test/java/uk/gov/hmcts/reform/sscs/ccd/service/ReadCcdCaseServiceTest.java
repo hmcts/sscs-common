@@ -1,11 +1,11 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.client.CcdClient;
@@ -24,7 +24,7 @@ public class ReadCcdCaseServiceTest {
 
     ReadCcdCaseService readCcdCaseService;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         openMocks(this);
         readCcdCaseService = new ReadCcdCaseService(idamService, ccdClient, sscsCcdConvertService);

@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.documentlink;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.DocumentLink;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
@@ -24,7 +25,7 @@ public class DocumentLinkMustBePdfValidatorTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test

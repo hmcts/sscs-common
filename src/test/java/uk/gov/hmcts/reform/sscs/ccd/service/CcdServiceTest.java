@@ -2,11 +2,11 @@ package uk.gov.hmcts.reform.sscs.ccd.service;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
@@ -19,13 +19,13 @@ import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseDataMap;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
@@ -38,7 +38,7 @@ import uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CcdServiceTest {
 
     private static final String APPELLANT_SEARCH_FIELD = "case.subscriptions.appellantSubscription.tya";
@@ -66,7 +66,7 @@ public class CcdServiceTest {
     @Captor
     private ArgumentCaptor<CaseDataContent> captor;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         openMocks(this);
         String userId = "userId";
@@ -281,8 +281,8 @@ public class CcdServiceTest {
 
         ccdService.updateSubscription(REPRESENTATIVE_APPEAL_NUMBER, UPDATED_TEST_COM, idamTokens);
 
-        assertEquals("Rep email should be updated", UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getEmail());
-        assertEquals("Rep is subscribed", YES, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getSubscribeEmail());
+        assertEquals(UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getEmail(), "Rep email should be updated");
+        assertEquals(YES, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getSubscribeEmail(), "Rep is subscribed");
     }
 
     @Test
@@ -297,7 +297,7 @@ public class CcdServiceTest {
         when(ccdClient.submitEventForCaseworker(eq(idamTokens), eq(1L), captor.capture())).thenReturn(caseDetails);
 
         ccdService.updateSubscription(REPRESENTATIVE_APPEAL_NUMBER, UPDATED_TEST_COM, idamTokens);
-        assertEquals("Rep email should be updated", UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getEmail());
+        assertEquals(UPDATED_TEST_COM, ((SscsCaseData) captor.getAllValues().get(0).getData()).getSubscriptions().getRepresentativeSubscription().getEmail(), "Rep email should be updated");
     }
 
     @Test

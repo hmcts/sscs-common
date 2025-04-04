@@ -1,9 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 
 public class PostcodeValidatorTest extends ValidatorTestBase {
@@ -23,7 +24,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         TestBean testBean = new TestBean();
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -33,7 +34,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "sw1p 4df";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -43,7 +44,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "SW1P 4df";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "WV112HE";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -63,7 +64,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "WV11 2HE";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -73,7 +74,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "GIR 0AA";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -83,7 +84,7 @@ public class PostcodeValidatorTest extends ValidatorTestBase {
         testBean.postcode = "gir 0aa";
 
         Set<ConstraintViolation<TestBean>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test

@@ -4,7 +4,11 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_U
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.doThrow;
@@ -22,40 +26,34 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.sscs.ccd.callback.Callback;
 import uk.gov.hmcts.reform.sscs.ccd.domain.*;
 
-@RunWith(JUnitParamsRunner.class)
 @Slf4j
+@ExtendWith(SpringExtension.class)
 public class SscsCaseCallbackDeserializerTest {
 
     private ObjectMapper mapper;
-
-    @Rule
-    public MockitoRule mockitoJUnitRunner = MockitoJUnit.rule().strictness(Strictness.STRICT_STUBS);
 
     @Mock
     private ObjectMapper mockedMapper;
 
     private SscsCaseCallbackDeserializer sscsCaseCallbackDeserializer;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
@@ -70,8 +68,8 @@ public class SscsCaseCallbackDeserializerTest {
         mapper.findAndRegisterModules();
     }
 
-    @Test
-    @Parameters({
+    @ParameterizedTest
+    @ValueSource(strings = {
         "reissueFurtherEvidenceCallbackWithEmptyDynamicList.json",
         "reissueFurtherEvidenceCallbackWithDynamicListAsPerAboutToStartCallback.json",
         "reissueFurtherEvidenceCallbackWithDynamicListAsPerMiddleEventCallback.json"
@@ -258,8 +256,8 @@ public class SscsCaseCallbackDeserializerTest {
 
     }
 
-    @Test
-    @Parameters({"adminAppealWithdrawnCallback.json", "updateFurtherEvidence.json"})
+    @ParameterizedTest
+    @ValueSource(strings = {"adminAppealWithdrawnCallback.json", "updateFurtherEvidence.json"})
     public void should_deserialise_and_serialise(final String jsonFileName) throws IOException, JSONException {
         sscsCaseCallbackDeserializer = new SscsCaseCallbackDeserializer(mapper);
 
