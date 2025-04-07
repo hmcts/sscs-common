@@ -25,6 +25,7 @@ public class FtaCommunicationFields {
     private DynamicList ftaRequestNoResponseRadioDl;
     private String ftaRequestNoResponseQuery;
     private String ftaRequestNoResponseTextArea;
+    private List<String> ftaRequestNoResponseNoAction;
 
     private List<CommunicationRequest> tribunalCommunications;
     private CommunicationRequestTopic tribunalRequestTopic;
