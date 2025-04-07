@@ -28,20 +28,20 @@ public class CreatePanelJsonFromCsv {
 
     public void convertCsvToJson() {
         try (BufferedReader read = new BufferedReader(new FileReader(csvFile))) {
-            JSONArray arrayOfObjects = new JSONArray();
+            JSONArray panelCompositionObject = new JSONArray();
 
             while ((lineData = read.readLine()) != null) {
                 String[] data = lineData.split(delimiter);
                 if (data.length >= 4) {
-                    JSONObject object = getJsonObjectPanel(data, category1Index, panel1ColumnIndex);
-                    if (object != null) {
-                        arrayOfObjects.put(object);
+                    JSONObject firstCategoryObject = getJsonObjectPanel(data, category1Index, panel1ColumnIndex);
+                    if (firstCategoryObject != null) {
+                        panelCompositionObject.put(firstCategoryObject);
                     }
 
                     if (!data[panel2ColumnIndex].contains("''")) {
-                        JSONObject object2 = getJsonObjectPanel(data, category2Index, panel2ColumnIndex);
-                        if (object2 != null) {
-                            arrayOfObjects.put(object2);
+                        JSONObject secondCategoryObject = getJsonObjectPanel(data, category2Index, panel2ColumnIndex);
+                        if (secondCategoryObject != null) {
+                            panelCompositionObject.put(secondCategoryObject);
                         }
                     }
 
@@ -50,28 +50,27 @@ public class CreatePanelJsonFromCsv {
 
             Path path = Paths.get("src/main/resources/reference-data/" + LocalDate.now().toString().replace("-", "")
                     .concat("_" + "johTierJsonMapping.json"));
-
-            Files.write(path, arrayOfObjects.toString(4).getBytes()); // Indent with 4 spaces
+            Files.write(path, panelCompositionObject.toString(4).getBytes()); // Indent with 4 spaces
         } catch (IOException e) {
             throw new RuntimeException("Error reading file", e);
         }
     }
 
     private static JSONObject getJsonObjectPanel(String[] data, int categoryIndex, int panelColumnIndex) {
-        JSONObject object = new JSONObject();
+        JSONObject panelObject = new JSONObject();
 
         if (!data[panelColumnIndex].contains("''")) {
-            object.put("benefitIssueCode", data[benefitIssueCodeIndex]);
+            panelObject.put("benefitIssueCode", data[benefitIssueCodeIndex]);
             // category is only one digit or NA (some comments contain numbers)
             if (trimSuperfluousInfo(data[categoryIndex]).isEmpty()) {
-                object.put("category", "NA");
+                panelObject.put("category", "NA");
             } else {
-                object.put("category", trimSuperfluousInfo(data[categoryIndex]).substring(0, 1));
+                panelObject.put("category", trimSuperfluousInfo(data[categoryIndex]).substring(0, 1));
             }
 
             // add fqpm key
             if (data[categoryIndex].contains("FQPM") && panelColumnIndex == panel2ColumnIndex) {
-                object.put("fqpm", "true");
+                panelObject.put("fqpm", "true");
             }
 
             String[] johTier = data[panelColumnIndex].split(" ");
@@ -81,9 +80,9 @@ public class CreatePanelJsonFromCsv {
             // add specialism number
                 if (panelMember.contains("specialism")) {
                     if (panelColumnIndex == panel2ColumnIndex) {
-                        object.put("specialismCount", "2");
+                        panelObject.put("specialismCount", "2");
                     } else {
-                        object.put("specialismCount", "1");
+                        panelObject.put("specialismCount", "1");
                     }
                 }
 
@@ -93,9 +92,9 @@ public class CreatePanelJsonFromCsv {
                     johTierArray.put(trimmedPanelMember);
                 }
             }
-            object.put("johTiers", johTierArray);
+            panelObject.put("johTiers", johTierArray);
 
-            return object;
+            return panelObject;
         } else {
             return null;
         }
