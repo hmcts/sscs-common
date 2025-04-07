@@ -1,13 +1,13 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_DWP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_UT;
 
 import java.util.Arrays;
 import java.util.Optional;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StateTest {
     // copied from the State TAB in the CCD Definition file
@@ -36,7 +36,7 @@ public class StateTest {
 
         for (String stateId : allStateIds) {
             final Optional<State> found = Arrays.stream(allStatesActual).filter(s -> s.getId().contains(stateId)).findFirst();
-            assertTrue(String.format("missing %s", stateId), found.isPresent());
+            assertTrue(found.isPresent(), String.format("missing %s", stateId));
         }
     }
 

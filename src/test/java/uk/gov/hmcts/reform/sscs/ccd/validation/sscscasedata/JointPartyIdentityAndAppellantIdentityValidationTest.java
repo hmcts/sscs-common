@@ -1,11 +1,12 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appellant;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
@@ -20,7 +21,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
 
         SscsCaseData testBean = SscsCaseData.builder().build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -28,7 +29,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
 
         SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().id(StringUtils.EMPTY).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -37,7 +38,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
         Identity jointPartyIdentity = Identity.builder().build();
         SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     @Test
@@ -46,7 +47,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
         Identity jointPartyIdentity = Identity.builder().nino("BB000000B").dob(LocalDate.now().minusYears(2).toString()).build();
         SscsCaseData testBean = SscsCaseData.builder().jointParty(JointParty.builder().identity(jointPartyIdentity).build()).build();
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     /**
@@ -89,7 +90,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
             .build();
 
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
     /**
@@ -108,7 +109,7 @@ public class JointPartyIdentityAndAppellantIdentityValidationTest extends Valida
             .build();
 
         Set<ConstraintViolation<SscsCaseData>> violations = validator.validate(testBean);
-        Assert.assertTrue(violations.isEmpty());
+        assertTrue(violations.isEmpty());
     }
 
 }
