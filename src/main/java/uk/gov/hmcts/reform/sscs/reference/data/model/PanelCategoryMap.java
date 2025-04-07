@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class PanelCategoryMap {
     private String category;
     private String specialismCount;
     private String fqpm;
-    private ArrayList<String> johTiers;
+    private List<String> johTiers;
 
     public PanelCategoryMap(String benefitIssueCode, String specialism, String fqpm) {
         this.benefitIssueCode = benefitIssueCode;
