@@ -90,10 +90,6 @@ public class CreatePanelJsonFromCsv {
             // trim panel member of specialism information
                 String trimmedPanelMember = trimSuperfluousInfo(panelMember);
                 if (!trimSuperfluousInfo(panelMember).isEmpty()) {
-            //  correct typo (85 should be 58)
-                    if (trimmedPanelMember.equals("85")) {
-                        trimmedPanelMember = "58";
-                    }
                     johTierArray.put(trimmedPanelMember);
                 }
             }
