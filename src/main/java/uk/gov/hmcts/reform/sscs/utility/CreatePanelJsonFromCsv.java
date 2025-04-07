@@ -50,8 +50,8 @@ public class CreatePanelJsonFromCsv {
 
             Path path = Paths.get("src/main/resources/reference-data/" + LocalDate.now().toString().replace("-", "")
                     .concat("_" + "johTierJsonMapping.json"));
-            Files.write(path, panelCompositionObject.toString(4).getBytes()); // Indent with 4 spaces
             
+            Files.write(path, panelCompositionObject.toString(4).getBytes()); // Indent with 4 spaces
         } catch (IOException e) {
             throw new RuntimeException("Error reading file", e);
         }
