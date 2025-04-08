@@ -11,18 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @Data
 @Slf4j
-public class PanelCategoryMap {
+public class PanelCategory {
     private String benefitIssueCode;
     private String category;
     private String specialismCount;
     private String fqpm;
     private List<String> johTiers;
-
-    public PanelCategoryMap(String benefitIssueCode, String specialism, String fqpm) {
-        this.benefitIssueCode = benefitIssueCode;
-        this.specialismCount = specialism;
-        this.fqpm = fqpm;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -32,7 +26,7 @@ public class PanelCategoryMap {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PanelCategoryMap that = (PanelCategoryMap) o;
+        PanelCategory that = (PanelCategory) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
                 && Objects.equals(specialismCount, that.specialismCount)
                 && Objects.equals(fqpm, that.fqpm);
