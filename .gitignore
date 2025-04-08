@@ -29,3 +29,4 @@
 ### VS Code ###
 .vscode/
 /src/main/resources/reference-data/~$*.xlsx
+/bin
