@@ -6,6 +6,8 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +30,10 @@ public class PanelCategoryService {
     public PanelCategory getPanelCategory(String benefitIssueCode, String specialism, String fqpm) {
         PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialism, fqpm);
         return panelCategories.stream()
-                .filter(panelCategorySelection::equals)
+                .filter(panelCategory ->
+                        Objects.equals(benefitIssueCode, panelCategory.getBenefitIssueCode())
+                                && Objects.equals(fqpm, panelCategory.getFqpm())
+                                && Objects.equals(specialism, panelCategory.getSpecialismCount()))
                 .findFirst().orElse(null);
     }
 

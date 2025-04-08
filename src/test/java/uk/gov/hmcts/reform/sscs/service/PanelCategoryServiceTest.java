@@ -79,6 +79,8 @@ public class PanelCategoryServiceTest {
         List<String> result = panelCategoryService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result.get(0)).isEqualTo("84");
+        assertThat(oneSpecialismResult.getJohTiers().stream().filter("58"::equals).count()).isEqualTo(1);
+        assertThat(twoSpecialismResult.getJohTiers().stream().filter("58"::equals).count()).isEqualTo(2);
     }
 
     @DisplayName("getRoleTypes should return an empty list when an invalid benefit issue code is given")
