@@ -32,7 +32,11 @@ public class FtaCommunicationFields {
     private String tribunalRequestQuestion;
     private TribunalRequestType tribunalRequestType;
 
-    private FtaCommunicationFilter ftaCommunicationFilter;
-    private TribunalCommunicationFilter tribunalCommunicationFilter;
+    private YesNo awaitingInfoFromFta;
+    private YesNo infoProvidedByFta;
+    private YesNo infoRequestFromFta;
+    private YesNo provideInfoToTribunal;
+    private YesNo awaitingInfoFromTribunal;
+    private YesNo infoProvidedFromTribunal;
 }
 
