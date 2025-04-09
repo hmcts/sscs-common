@@ -30,10 +30,7 @@ public class PanelCategoryService {
     public PanelCategory getPanelCategory(String benefitIssueCode, String specialism, String fqpm) {
         PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialism, fqpm);
         return panelCategories.stream()
-                .filter(panelCategory ->
-                        Objects.equals(benefitIssueCode, panelCategory.getBenefitIssueCode())
-                                && Objects.equals(fqpm, panelCategory.getFqpm())
-                                && Objects.equals(specialism, panelCategory.getSpecialismCount()))
+                .filter(panelCategorySelection::equals)
                 .findFirst().orElse(null);
     }
 
