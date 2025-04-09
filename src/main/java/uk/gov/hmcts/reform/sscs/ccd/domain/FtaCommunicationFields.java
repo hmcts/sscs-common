@@ -38,5 +38,7 @@ public class FtaCommunicationFields {
 
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
+    private LocalDate tribunalResponseProvidedDate;
+    private LocalDate ftaResponseProvidedDate;
 }
 
