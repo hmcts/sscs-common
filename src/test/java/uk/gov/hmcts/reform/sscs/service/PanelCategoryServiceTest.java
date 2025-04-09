@@ -1,12 +1,9 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -15,7 +12,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 import uk.gov.hmcts.reform.sscs.reference.data.service.PanelCategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PanelCategoryServiceTest {
@@ -79,8 +75,6 @@ public class PanelCategoryServiceTest {
         List<String> result = panelCategoryService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result.get(0)).isEqualTo("84");
-        assertThat(oneSpecialismResult.getJohTiers().stream().filter("58"::equals).count()).isEqualTo(1);
-        assertThat(twoSpecialismResult.getJohTiers().stream().filter("58"::equals).count()).isEqualTo(2);
     }
 
     @DisplayName("getRoleTypes should return an empty list when an invalid benefit issue code is given")
