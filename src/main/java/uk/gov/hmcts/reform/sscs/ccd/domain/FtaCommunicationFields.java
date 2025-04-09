@@ -31,6 +31,10 @@ public class FtaCommunicationFields {
     private CommunicationRequestTopic tribunalRequestTopic;
     private String tribunalRequestQuestion;
     private TribunalRequestType tribunalRequestType;
+    private DynamicList tribunalRequestNoResponseRadioDl;
+    private String tribunalRequestNoResponseQuery;
+    private String tribunalRequestNoResponseTextArea;
+    private List<String> tribunalRequestNoResponseNoAction;
 
     private FtaCommunicationFilter ftaCommunicationFilter;
     private TribunalCommunicationFilter tribunalCommunicationFilter;
