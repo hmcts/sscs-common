@@ -22,12 +22,10 @@ public class PanelCategoryService {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
     }
 
-    public PanelCategory getPanelCategoryMap(String benefitIssueCode, String specialism, String fqpm) {
+    public PanelCategory getPanelCategory(String benefitIssueCode, String specialism, String fqpm) {
+        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialism, fqpm);
         return panelCategories.stream()
-                .filter(panelCategory ->
-                        Objects.equals(benefitIssueCode, panelCategory.getBenefitIssueCode())
-                                && Objects.equals(fqpm, panelCategory.getFqpm())
-                                && Objects.equals(specialism, panelCategory.getSpecialismCount()))
+                .filter(panelCategorySelection::equals)
                 .findFirst().orElse(null);
     }
 }

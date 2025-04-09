@@ -18,6 +18,12 @@ public class PanelCategory {
     private String fqpm;
     private List<String> johTiers;
 
+    public PanelCategory(String benefitIssueCode, String specialismCount, String fqpm) {
+        this.benefitIssueCode = benefitIssueCode;
+        this.specialismCount = specialismCount;
+        this.fqpm = fqpm;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
