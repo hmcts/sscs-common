@@ -36,6 +36,11 @@ public class FtaCommunicationFields {
     private String tribunalRequestRespondedReply;
     private YesNo tribunalRequestRespondedActioned;
 
+    private DynamicList tribunalRequestNoResponseRadioDl;
+    private String tribunalRequestNoResponseQuery;
+    private String tribunalRequestNoResponseTextArea;
+    private List<String> tribunalRequestNoResponseNoAction;
+
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
     private LocalDate tribunalResponseProvidedDate;
