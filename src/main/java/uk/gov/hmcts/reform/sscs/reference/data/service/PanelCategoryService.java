@@ -9,10 +9,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.reference.data.model.BenefitRoleRelationType;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 
 @Getter
@@ -22,8 +20,6 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 public class PanelCategoryService {
     private static final String JSON_DATA_LOCATION = "reference-data/panel-category-map.json";
     private List<PanelCategory> panelCategories;
-    @Value("${feature.default-panel-comp.enabled}")
-    private boolean defaultPanelCompEnabled;
 
     public PanelCategoryService() {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -37,7 +33,6 @@ public class PanelCategoryService {
     }
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
-        if (defaultPanelCompEnabled) {
             String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
             String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                     ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
@@ -46,8 +41,5 @@ public class PanelCategoryService {
             PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
             log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
             return panelComp != null ? panelComp.getJohTiers() : Collections.emptyList();
-        } else {
-            return BenefitRoleRelationType.findRoleTypesByBenefitCode(caseData.getBenefitCode());
-        }
     }
 }
