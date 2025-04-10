@@ -70,6 +70,7 @@ public class SscsCaseData implements CaseData {
     private List<HearingOutcome> hearingOutcomes;
     private HearingOutcomeValue hearingOutcomeValue;
     private Evidence evidence;
+    private PanelMemberComposition panelMemberComposition;
     private List<DwpTimeExtension> dwpTimeExtension;
     private List<Event> events;
     @Getter(AccessLevel.NONE)
