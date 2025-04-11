@@ -19,6 +19,7 @@ public class CommunicationRequestReply {
 
     private LocalDateTime replyDateTime;
     private String replyUserName;
+    private String replyUserRole;
     private String replyMessage;
     private YesNo replyHasBeenActioned;
 }

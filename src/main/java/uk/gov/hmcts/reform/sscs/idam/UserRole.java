@@ -13,6 +13,8 @@ public enum UserRole {
     TCW("caseworker-sscs-registrar", "Registrar"),
     CTSC_CLERK("caseworker-sscs-clerk", "Clerk"),
     DWP("caseworker-sscs-dwpresponsewriter", "FTA"),
+    HMRC("caseworker-sscs-hmrcresponsewriter", "FTA"),
+    IBCA("caseworker-sscs-ibcaresponsewriter", "FTA"),
     CITIZEN("citizen", "Citizen");
 
     private final String value;
