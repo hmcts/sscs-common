@@ -20,6 +20,7 @@ public class CommunicationRequestDetails {
     private LocalDateTime requestDateTime;
     private LocalDate requestResponseDueDate;
     private String requestUserName;
+    private String requestUserRole;
     private CommunicationRequestTopic requestTopic;
     private String requestMessage;
     private CommunicationRequestReply requestReply;
