@@ -149,7 +149,7 @@ def versions = [
 
 dependencies {
 
-    api group: 'com.google.guava', name: 'guava', version: '33.4.6-jre'
+    api group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
@@ -244,6 +244,6 @@ dependencies {
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
-    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.6-jre'
+    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
 }
 
