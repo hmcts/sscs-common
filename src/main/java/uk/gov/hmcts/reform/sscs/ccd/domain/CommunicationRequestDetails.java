@@ -2,8 +2,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +26,14 @@ public class CommunicationRequestDetails {
     private CommunicationRequestTopic requestTopic;
     private String requestMessage;
     private CommunicationRequestReply requestReply;
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("{0} - {1} - {2} - {3}",
+            this.getRequestTopic().getValue(),
+            this.getRequestDateTime().format(DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm")),
+            this.getRequestUserName(),
+            this.getRequestUserRole());
+    }
 }
 
