@@ -35,7 +35,7 @@ public class PanelCategoryService {
                 .findFirst().orElse(null);
     }
 
-    public List<String> getRoleTypes(SscsCaseData caseData) {
+    public List<String> getRoleTypes(SscsCaseData caseData, boolean savePanelComp) {
         if (caseData.getPanelMemberComposition() != null) {
             return mapPanelMemberCompositionToRoleTypes(caseData.getPanelMemberComposition());
         }
@@ -45,9 +45,11 @@ public class PanelCategoryService {
                 ? "2" : "1" : null;
         String isFqpm = isYes(caseData.getIsFqpmRequired()) ? "true" : null;
         PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
-        log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
         if (panelComp != null) {
-            setPanelMemberComposition(caseData, panelComp.getJohTiers());
+            if (savePanelComp) {
+                log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
+                setPanelMemberComposition(caseData, panelComp.getJohTiers());
+            }
             return panelComp.getJohTiers();
         } else {
             return Collections.emptyList();

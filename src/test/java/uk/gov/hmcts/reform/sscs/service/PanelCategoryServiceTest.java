@@ -76,7 +76,7 @@ public class PanelCategoryServiceTest {
     @DisplayName("getRoleTypes returns an valid list")
     @Test
     public void testGetRoles() {
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isNotEmpty();
         assertThat(result.get(0)).isEqualTo("84");
     }
@@ -86,7 +86,7 @@ public class PanelCategoryServiceTest {
     public void testGetRolesWithInvalidBenefitIssueCode() {
         caseData.setBenefitCode(null);
         caseData.setIssueCode(null);
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isEmpty();
     }
 
@@ -94,7 +94,7 @@ public class PanelCategoryServiceTest {
     @Test
     public void testGetRolesWithFeatureFlagOff() {
         ReflectionTestUtils.setField(panelCategoryService, "defaultPanelCompEnabled", false);
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isEmpty();
     }
 
@@ -104,7 +104,7 @@ public class PanelCategoryServiceTest {
         caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("dummy");
         caseData.setBenefitCode("067");
         caseData.setIssueCode("CB");
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isNotEmpty();
         assertThat(result.stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL::equals)).isTrue();
     }
@@ -115,7 +115,7 @@ public class PanelCategoryServiceTest {
         caseData.setIsFqpmRequired(YesNo.YES);
         caseData.setBenefitCode("016");
         caseData.setIssueCode("CC");
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isNotEmpty();
         assertThat(result.stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
     }
