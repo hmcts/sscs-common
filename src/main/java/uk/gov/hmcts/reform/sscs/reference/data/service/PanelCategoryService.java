@@ -4,12 +4,17 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 
@@ -32,6 +37,10 @@ public class PanelCategoryService {
                 .findFirst().orElse(null);
     }
 
+    public List<String> getPanelMemberCompositionRoleTypes(SscsCaseData caseData) {
+        return caseData.getPanelMemberComposition() != null ? getExistingPanelComposition(caseData) : getRoleTypes(caseData);
+    }
+
     public List<String> getRoleTypes(SscsCaseData caseData) {
             String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
             String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
@@ -41,5 +50,16 @@ public class PanelCategoryService {
             PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
             log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
             return panelComp != null ? panelComp.getJohTiers() : Collections.emptyList();
+    }
+
+    public List<String> getExistingPanelComposition(SscsCaseData caseData) {
+        PanelMemberComposition panelComposition = caseData.getPanelMemberComposition();
+        List<String> existingPanelMemberComposition = new ArrayList<>();
+        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionJudge());
+        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionMemberMedical1());
+        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionMemberMedical2());
+        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionDisabilityAndFqMember().get(0));
+        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionDisabilityAndFqMember().get(1));
+        return existingPanelMemberComposition;
     }
 }
