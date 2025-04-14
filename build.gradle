@@ -203,7 +203,7 @@ dependencies {
     implementation group: 'com.opencsv', name: 'opencsv', version: '5.10', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
-    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.13.0'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.13.1'
 
     implementation group: 'commons-io', name: 'commons-io', version: '2.18.0'
 
