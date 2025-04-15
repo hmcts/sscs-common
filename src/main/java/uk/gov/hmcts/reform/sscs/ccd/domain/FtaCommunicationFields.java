@@ -31,6 +31,7 @@ public class FtaCommunicationFields {
     private String ftaResponseNoResponseQuery;
     private String ftaResponseNoResponseTextArea;
     private List<String> ftaResponseNoResponseNoAction;
+    private  YesNo ftaResponseNoResponseActioned;
 
     private List<CommunicationRequest> tribunalCommunications;
     private CommunicationRequestTopic tribunalRequestTopic;
