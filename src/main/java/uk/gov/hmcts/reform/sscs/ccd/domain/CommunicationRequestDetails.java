@@ -23,6 +23,5 @@ public class CommunicationRequestDetails {
     private CommunicationRequestTopic requestTopic;
     private String requestMessage;
     private CommunicationRequestReply requestReply;
-    private YesNo requestActioned;
 }
 
