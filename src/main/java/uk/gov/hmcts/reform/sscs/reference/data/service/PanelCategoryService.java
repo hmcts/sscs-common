@@ -54,12 +54,17 @@ public class PanelCategoryService {
 
     public List<String> getExistingPanelComposition(SscsCaseData caseData) {
         PanelMemberComposition panelComposition = caseData.getPanelMemberComposition();
+
         List<String> existingPanelMemberComposition = new ArrayList<>();
+
         CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionJudge());
         CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionMemberMedical1());
         CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionMemberMedical2());
-        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionDisabilityAndFqMember().get(0));
-        CollectionUtils.addIgnoreNull(existingPanelMemberComposition, panelComposition.getPanelCompositionDisabilityAndFqMember().get(1));
+        for(String member : panelComposition.getPanelCompositionDisabilityAndFqMember()){
+            CollectionUtils.addIgnoreNull(existingPanelMemberComposition, member);
+        }
+
         return existingPanelMemberComposition;
     }
+
 }
