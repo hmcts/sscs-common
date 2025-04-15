@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Objects.isNull;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -41,7 +43,7 @@ public class PanelCategoryMapParser {
             ClassPathResource classPathResource = new ClassPathResource(JOH_TIER_FILE);
             Workbook workbook = new XSSFWorkbook(classPathResource.getInputStream());
             Sheet sheet = workbook.getSheet(SHEET_NAME);
-            if (sheet == null) {
+            if (isNull(sheet)) {
                 log.error("Sheet {} not found in file {}", SHEET_NAME, JOH_TIER_FILE);
                 throw new RuntimeException();
             }
@@ -50,9 +52,10 @@ public class PanelCategoryMapParser {
 
             List<PanelCategory> panelCategoryList = new ArrayList<>();
 
-            for (int i = 1; i <=sheet.getLastRowNum(); i++) {
+            // start from 1 to skip header row
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
-                if (row == null) continue;
+                if (isNull(row)) continue;
 
                 String benefitCode = getCellValue(row.getCell(BENEFIT_ISSUE_CODE_COLUMN));
                 String category1 = getCellValue(row.getCell(CATEGORY_1_COLUMN));
@@ -61,7 +64,6 @@ public class PanelCategoryMapParser {
                 String panel2 = getCellValue(row.getCell(PANEL_2_COLUMN));
 
                 if (benefitCode.isEmpty()) continue;
-
 
                 if (category1.toLowerCase().contains("specialism")) {
                     panelCategoryList.add(createPanelCategory(
@@ -115,7 +117,7 @@ public class PanelCategoryMapParser {
     }
 
     private static String getCellValue(Cell cell) {
-        if (cell == null) return "";
+        if (isNull(cell)) return "";
         return switch (cell.getCellType()) {
             case STRING -> cell.getStringCellValue().trim();
             case NUMERIC -> String.valueOf((int) cell.getNumericCellValue());
@@ -125,21 +127,23 @@ public class PanelCategoryMapParser {
     }
 
     private static String parseCategory(String category) {
-        if (category == null || category.isBlank()) return "";
+        if (isNull(category) || category.isBlank()) return "";
 
         if ("N/A".equalsIgnoreCase(category.trim())) {
             return "N/A";
         }
 
+        // pattern to find single digit numbers
         Matcher singleDigitNumber = Pattern.compile("\\b\\d\\b").matcher(category);
 
         return singleDigitNumber.find() ? singleDigitNumber.group() : "";
     }
 
     private static List<String> parseJohTiers(String tiers) {
-        if (tiers == null || tiers.isBlank()) return Collections.emptyList();
+        if (isNull(tiers) || tiers.isBlank()) return Collections.emptyList();
         List<String> parsedTiers = new ArrayList<>();
 
+        // pattern to find double-digit numbers
         Matcher doubleDigitNumbers = Pattern.compile("\\b\\d{2}\\b").matcher(tiers);
         while (doubleDigitNumbers.find()) {
             parsedTiers.add(doubleDigitNumbers.group());
@@ -153,8 +157,8 @@ public class PanelCategoryMapParser {
         PanelCategory panelCategory = new PanelCategory();
         panelCategory.setBenefitIssueCode(benefitIssueCode);
         panelCategory.setCategory(category);
-        if (specialismCount != null) panelCategory.setSpecialismCount(specialismCount);
-        if (fqpm != null) panelCategory.setFqpm(fqpm);
+        if (!isNull(specialismCount)) panelCategory.setSpecialismCount(specialismCount);
+        if (!isNull(fqpm)) panelCategory.setFqpm(fqpm);
         panelCategory.setJohTiers(johTiers);
 
         return panelCategory;
