@@ -31,6 +31,7 @@ public class FtaCommunicationFields {
     private CommunicationRequestTopic tribunalRequestTopic;
     private String tribunalRequestQuestion;
     private TribunalRequestType tribunalRequestType;
+
     private DynamicList tribunalRequestRespondedDl;
     private String tribunalRequestRespondedQuery;
     private String tribunalRequestRespondedReply;
