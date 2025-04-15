@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -47,7 +48,7 @@ public class PanelCategoryService {
                 ? "2" : "1" : null;
         String isFqpm = isYes(caseData.getIsFqpmRequired()) ? "true" : null;
         PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
-        if (panelComp != null) {
+        if (panelComp != null && !CollectionUtils.isEmpty(panelComp.getJohTiers())) {
             if (savePanelComposition) {
                 log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
                 setPanelMemberComposition(caseData, panelComp.getJohTiers());
