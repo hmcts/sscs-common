@@ -35,6 +35,12 @@ public class FtaCommunicationFields {
     private CommunicationRequestTopic tribunalRequestTopic;
     private String tribunalRequestQuestion;
     private TribunalRequestType tribunalRequestType;
+
+    private DynamicList tribunalRequestRespondedDl;
+    private String tribunalRequestRespondedQuery;
+    private String tribunalRequestRespondedReply;
+    private YesNo tribunalRequestRespondedActioned;
+
     private DynamicList tribunalRequestNoResponseRadioDl;
     private String tribunalRequestNoResponseQuery;
     private String tribunalRequestNoResponseTextArea;
@@ -42,5 +48,7 @@ public class FtaCommunicationFields {
 
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
+    private LocalDate tribunalResponseProvidedDate;
+    private LocalDate ftaResponseProvidedDate;
 }
 
