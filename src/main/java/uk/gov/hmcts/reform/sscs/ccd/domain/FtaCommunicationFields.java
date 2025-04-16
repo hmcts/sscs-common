@@ -50,6 +50,8 @@ public class FtaCommunicationFields {
     private DynamicList deleteCommRequestRadioDl;
     private CommunicationRequestDetails deleteCommRequestReadOnly;
     private String deleteCommRequestTextArea;
+    private CommunicationRequestDetails deleteCommRequestReadOnlyStored;
+    private String deleteCommRequestTextAreaStored;
 
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
