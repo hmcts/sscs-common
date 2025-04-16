@@ -149,7 +149,7 @@ def versions = [
 
 dependencies {
 
-    api group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
+    api group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
@@ -176,7 +176,7 @@ dependencies {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
 
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.17.4'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.18.0'
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.11'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
@@ -244,6 +244,6 @@ dependencies {
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
-    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
+    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
 }
 
