@@ -47,9 +47,22 @@ public class FtaCommunicationFields {
     private String tribunalRequestNoResponseTextArea;
     private List<String> tribunalRequestNoResponseNoAction;
 
+    private DynamicList deleteCommRequestRadioDl;
+    private CommunicationRequestDetails deleteCommRequestReadOnly;
+    private String deleteCommRequestTextArea;
+    private CommunicationRequestDetails deleteCommRequestReadOnlyStored;
+    private String deleteCommRequestTextAreaStored;
+
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
     private LocalDate tribunalResponseProvidedDate;
     private LocalDate ftaResponseProvidedDate;
+
+    private YesNo awaitingInfoFromFta;
+    private YesNo infoProvidedByFta;
+    private YesNo infoRequestFromFta;
+    private YesNo infoRequestFromTribunal;
+    private YesNo awaitingInfoFromTribunal;
+    private YesNo infoProvidedByTribunal;
 }
 
