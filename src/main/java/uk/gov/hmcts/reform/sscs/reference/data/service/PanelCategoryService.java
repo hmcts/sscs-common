@@ -51,7 +51,9 @@ public class PanelCategoryService {
 
     public List<String> getRoleTypes(SscsCaseData caseData, boolean savePanelComposition) {
         if (caseData.getPanelMemberComposition() != null) {
-            return mapPanelMemberCompositionToRoleTypes(caseData.getPanelMemberComposition());
+            YesNo reservedToDistrictTribunalJudge = Optional.ofNullable(caseData.getSchedulingAndListingFields()
+                    .getReserveTo().getReservedDistrictTribunalJudge()).orElse(NO);
+            return mapPanelMemberCompositionToRoleTypes(caseData.getPanelMemberComposition(), reservedToDistrictTribunalJudge);
         }
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
@@ -71,9 +73,11 @@ public class PanelCategoryService {
     }
 
 
-    public static List<String> mapPanelMemberCompositionToRoleTypes(PanelMemberComposition panelMemberComposition) {
+    public static List<String> mapPanelMemberCompositionToRoleTypes(PanelMemberComposition panelMemberComposition, YesNo reservedToDistrictTribunalJudge) {
         ArrayList<String> roleTypes = new ArrayList<>();
-        if (nonNull(panelMemberComposition.getPanelCompositionJudge())) {
+        if (reservedToDistrictTribunalJudge == YES) {
+            roleTypes.add(DISTRICT_TRIBUNAL_JUDGE);
+        } else if (nonNull(panelMemberComposition.getPanelCompositionJudge())) {
             roleTypes.add(panelMemberComposition.getPanelCompositionJudge());
         }
         if (nonNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
@@ -108,11 +112,6 @@ public class PanelCategoryService {
                     break;
                 default:
             }
-        }
-        YesNo reservedToDistrictTribunalJudge = Optional.ofNullable(caseData.getSchedulingAndListingFields()
-                .getReserveTo().getReservedDistrictTribunalJudge()).orElse(NO);
-        if (reservedToDistrictTribunalJudge == YES) {
-            panelMemberComposition.setPanelCompositionJudge(DISTRICT_TRIBUNAL_JUDGE);
         }
         caseData.setPanelMemberComposition(panelMemberComposition);
     }
