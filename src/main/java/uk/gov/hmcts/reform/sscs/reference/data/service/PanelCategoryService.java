@@ -24,6 +24,12 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 public class PanelCategoryService {
     private static final String JSON_DATA_LOCATION = "reference-data/panel-category-map.json";
     private List<PanelCategory> panelCategories;
+    private static final String TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED = "50";
+    private static final String TRIBUNAL_MEMBER_DISABILITY = "44";
+    private static final String TRIBUNAL_MEMBER_MEDICAL = "58";
+    private static final String TRIBUNAL_JUDGE = "84";
+    private static final String REGIONAL_JUDGE = "74";
+    private static final String REGIONAL_MEMBER_MEDICAL = "69";
 
     public PanelCategoryService() {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -80,17 +86,17 @@ public class PanelCategoryService {
         panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
             switch (johTier) {
-                case "50", "44":
+                case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED, TRIBUNAL_MEMBER_DISABILITY:
                     panelMemberComposition.getPanelCompositionDisabilityAndFqMember().add(johTier);
                     break;
-                case "58", "69":
+                case TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEMBER_MEDICAL:
                     if (panelMemberComposition.getPanelCompositionMemberMedical1() != null) {
                         panelMemberComposition.setPanelCompositionMemberMedical2(johTier);
                     } else {
                         panelMemberComposition.setPanelCompositionMemberMedical1(johTier);
                     }
                     break;
-                case "84", "74":
+                case TRIBUNAL_JUDGE, REGIONAL_JUDGE:
                     panelMemberComposition.setPanelCompositionJudge(johTier);
                     break;
                 default:
