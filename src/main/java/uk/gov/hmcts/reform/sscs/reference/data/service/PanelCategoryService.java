@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Objects.nonNull;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
@@ -8,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +19,7 @@ import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.BenefitRoleRelationType;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 
@@ -32,6 +36,7 @@ public class PanelCategoryService {
     private static final String TRIBUNAL_JUDGE = "84";
     private static final String REGIONAL_JUDGE = "74";
     private static final String REGIONAL_MEMBER_MEDICAL = "69";
+    private static final String DISTRICT_TRIBUNAL_JUDGE = "9000";
 
     public PanelCategoryService() {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -103,6 +108,11 @@ public class PanelCategoryService {
                     break;
                 default:
             }
+        }
+        YesNo reservedToDistrictTribunalJudge = Optional.ofNullable(caseData.getSchedulingAndListingFields()
+                .getReserveTo().getReservedDistrictTribunalJudge()).orElse(NO);
+        if (reservedToDistrictTribunalJudge == YES) {
+            panelMemberComposition.setPanelCompositionJudge(DISTRICT_TRIBUNAL_JUDGE);
         }
         caseData.setPanelMemberComposition(panelMemberComposition);
     }
