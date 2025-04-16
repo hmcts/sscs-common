@@ -34,7 +34,7 @@ public class PanelCategoryService {
     private static final String TRIBUNAL_JUDGE = "84";
     private static final String REGIONAL_JUDGE = "74";
     private static final String REGIONAL_MEMBER_MEDICAL = "69";
-    private static final String DISTRICT_TRIBUNAL_JUDGE = "9000";
+    private static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
 
     public PanelCategoryService() {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
