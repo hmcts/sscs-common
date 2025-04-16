@@ -4,7 +4,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -66,5 +65,4 @@ public class PanelCategoryService {
 
         return existingPanelMemberComposition;
     }
-
 }
