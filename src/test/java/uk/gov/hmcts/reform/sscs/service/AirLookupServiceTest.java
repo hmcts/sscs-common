@@ -7,20 +7,68 @@ import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
+import uk.gov.hmcts.reform.sscs.config.AirLookupConfig;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AirLookupServiceTest {
-
-    private static final AirLookupService airLookupService;
+    private static AirLookupService airLookupService;
 
     static {
         airLookupService = new AirLookupService();
         airLookupService.init();
+    }
+
+    @Mock
+    private AirLookupConfig airLookupConfig;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        org.mockito.MockitoAnnotations.openMocks(this);
+        airLookupService = new AirLookupService();
+
+        // Inject the mock AirLookupConfig
+        java.lang.reflect.Field airLookupConfigField = AirLookupService.class.getDeclaredField("airLookupConfig");
+        airLookupConfigField.setAccessible(true);
+        airLookupConfigField.set(airLookupService, airLookupConfig);
+
+        airLookupService.init();
+    }
+    @Test
+    void shouldReturnDefaultFileWhenConfigIsNull() throws NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field airLookupConfigField = AirLookupService.class.getDeclaredField("airLookupConfig");
+        airLookupConfigField.setAccessible(true);
+        airLookupConfigField.set(airLookupService, null);
+        airLookupService.init();
+
+        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
+    }
+
+    @Test
+    void shouldReturnDefaultFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
+
+        assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
+    }
+
+
+
+    @Test
+    void shouldReturnDefaultFileWhenAllowNIPostcodesIsFalse() {
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
+        airLookupService.init();
+
+        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
     }
 
     @ParameterizedTest

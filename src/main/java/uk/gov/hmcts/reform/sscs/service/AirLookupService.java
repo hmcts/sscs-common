@@ -72,7 +72,7 @@ public class AirLookupService {
 
     public String getPathForAirLookup() {
         if (airLookupConfig == null) {
-            return AIR_LOOKUP_FILE;  // Default behavior
+            return AIR_LOOKUP_FILE;
         }
         return airLookupConfig.allowNIPostcodes() ?
                     AIR_LOOKUP_FILE_V2 : AIR_LOOKUP_FILE;
