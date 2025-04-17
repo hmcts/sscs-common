@@ -49,8 +49,12 @@ public class PanelCategoryService {
 
     public List<String> getRoleTypes(SscsCaseData caseData, boolean savePanelComposition) {
         if (caseData.getPanelMemberComposition() != null) {
-            YesNo reservedToDistrictTribunalJudge = Optional.ofNullable(caseData.getSchedulingAndListingFields()
-                    .getReserveTo().getReservedDistrictTribunalJudge()).orElse(NO);
+            YesNo reservedToDistrictTribunalJudge = NO;
+            if (caseData.getSchedulingAndListingFields().getReserveTo() != null
+                    && caseData.getSchedulingAndListingFields().getReserveTo().getReservedDistrictTribunalJudge() != null) {
+                reservedToDistrictTribunalJudge = caseData.getSchedulingAndListingFields()
+                        .getReserveTo().getReservedDistrictTribunalJudge();
+            }
             return mapPanelMemberCompositionToRoleTypes(caseData.getPanelMemberComposition(), reservedToDistrictTribunalJudge);
         }
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();

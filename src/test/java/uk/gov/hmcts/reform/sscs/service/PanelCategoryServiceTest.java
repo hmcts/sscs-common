@@ -1,34 +1,34 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCategoryService.mapPanelMemberCompositionToRoleTypes;
 
-import org.junit.Before;
-import org.junit.Test;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.junit.jupiter.api.Test;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 import uk.gov.hmcts.reform.sscs.reference.data.service.PanelCategoryService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PanelCategoryServiceTest {
 
     private final PanelCategoryService panelCategoryService = new PanelCategoryService();
     private static final String TRIBUNAL_MEMBER_MEDICAL = "58";
+    private static final String TRIBUNAL_JUDGE = "84";
     private static final String TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED = "50";
+    private static final String REGIONAL_MEDICAL_MEMBER = "69";
+    private static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
     private SscsCaseData caseData;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        ReflectionTestUtils.setField(panelCategoryService, "defaultPanelCompEnabled", true);
         caseData = SscsCaseData.builder()
                 .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build())
                 .benefitCode("001")
@@ -37,8 +37,8 @@ public class PanelCategoryServiceTest {
                 .build();
     }
 
-    @Test
     @DisplayName("Valid call to getPanelCategory should return correct johTier")
+    @Test
     public void getPanelCategory(){
         PanelCategory result = panelCategoryService.getPanelCategory("001AD", null, null);
         assertThat(result).isNotNull();
@@ -47,23 +47,23 @@ public class PanelCategoryServiceTest {
         assertThat(result.getJohTiers().get(0)).isEqualTo("84");
     }
 
-    @Test
     @DisplayName("Invalid call to getPanelCategory should return null")
+    @Test
     public void getPanelCategoryWithInvalidParameters() {
         PanelCategory result = panelCategoryService.getPanelCategory(null, null, null);
         assertThat(result).isNull();
     }
 
-    @Test
     @DisplayName("Call to getPanelCategory with FQPM should return correct johTier")
+    @Test
     public void getPanelCategoryWithFQPM() {
         PanelCategory result = panelCategoryService.getPanelCategory("016CC", null, "true");
         assertThat(result).isNotNull();
         assertThat(result.getJohTiers().stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
     }
 
-    @Test
     @DisplayName("Call to getPanelCategory with specialism should return correct johTier")
+    @Test
     public void getPanelCategoryWithSpecialism() {
         PanelCategory oneSpecialismResult = panelCategoryService.getPanelCategory("067CB", "1", null);
         PanelCategory twoSpecialismResult = panelCategoryService.getPanelCategory("067CB", "2", null);
@@ -90,13 +90,6 @@ public class PanelCategoryServiceTest {
         assertThat(result).isEmpty();
     }
 
-    @DisplayName("getRoleTypes should return an empty list when feature flag is turned off and case is not IIDB or CS")
-    @Test
-    public void testGetRolesWithFeatureFlagOff() {
-        ReflectionTestUtils.setField(panelCategoryService, "defaultPanelCompEnabled", false);
-        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
-        assertThat(result).isEmpty();
-    }
 
     @DisplayName("getRoleTypes should return a medical member when specialism is on casedata")
     @Test
@@ -112,12 +105,78 @@ public class PanelCategoryServiceTest {
     @DisplayName("getRoleTypes should return FQPM when FQPM = yes on casedata")
     @Test
     public void testGetRolesWithFQPM() {
-        caseData.setIsFqpmRequired(YesNo.YES);
+        caseData.setIsFqpmRequired(YES);
         caseData.setBenefitCode("016");
         caseData.setIssueCode("CC");
         List<String> result = panelCategoryService.getRoleTypes(caseData, false);
         assertThat(result).isNotEmpty();
         assertThat(result.stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
+    }
+
+
+    @DisplayName("getRoleTypes should save to case data when savePanelComposition is true")
+    @Test
+    public void testGetRolesWithSavePanelComposition() {
+        List<String> result = panelCategoryService.getRoleTypes(caseData, true);
+        assertThat(result).isNotEmpty();
+        assertThat(caseData.getPanelMemberComposition()).isNotNull();
+    }
+
+    @DisplayName("getRoleTypes should not save to case data when savePanelComposition is false")
+    @Test
+    public void testGetRolesWithoutSavePanelComposition() {
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
+        assertThat(result).isNotEmpty();
+        assertThat(caseData.getPanelMemberComposition()).isNull();
+    }
+
+    @DisplayName("getRoleTypes should use panelMemberComposition when it exists in case data")
+    @Test
+    public void testGetRolesWithPanelCompositionInCaseData() {
+        caseData.setPanelMemberComposition(PanelMemberComposition.builder().panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER).build());
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
+        assertThat(result).isNotEmpty();
+        assertThat(result).isEqualTo(List.of(REGIONAL_MEDICAL_MEMBER));
+    }
+
+    @DisplayName("getRoleTypes should return District tribunal judge when it is set to yes in case data")
+    @Test
+    public void testGetRolesWithDTJ() {
+        caseData.setPanelMemberComposition(PanelMemberComposition.builder().build());
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+        List<String> result = panelCategoryService.getRoleTypes(caseData, false);
+        assertThat(result).isNotEmpty();
+        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE));
+    }
+
+    @DisplayName("mapPanelMemberCompositionToRoleTypes should extract the JOHTiers within panelComposition object")
+    @Test
+    public void mapPanelMemberCompositionToRoleTypesShouldExtractPanelCompositionIntoListOfStrings() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionJudge(TRIBUNAL_JUDGE)
+                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL)
+                .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER)
+                .panelCompositionDisabilityAndFqMember(List.of(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED)).build();
+        List<String> result = mapPanelMemberCompositionToRoleTypes(panelMemberComposition, NO);
+        assertThat(result).isNotEmpty();
+        assertThat(result).isEqualTo(List.of(TRIBUNAL_JUDGE, TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEDICAL_MEMBER, TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED));
+    }
+
+    @DisplayName("mapPanelMemberCompositionToRoleTypes should return an empty list when there is nothing to map")
+    @Test
+    public void mapPanelMemberCompositionToRoleTypesShouldReturnEmptyListWhenFieldsAreEmpty() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        List<String> result = mapPanelMemberCompositionToRoleTypes(panelMemberComposition, NO);
+        assertThat(result).isEmpty();
+    }
+
+    @DisplayName("mapPanelMemberCompositionToRoleTypes should return DTJ code when reservedToDistrictTribunalJudge is true")
+    @Test
+    public void mapPanelMemberCompositionShouldIncludeDTJWhenSetToYes() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        List<String> result = mapPanelMemberCompositionToRoleTypes(panelMemberComposition, YES);
+        assertThat(result).isNotEmpty();
+        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE));
     }
 
 }
