@@ -148,8 +148,11 @@ public class AirLookupService {
     private void loadAndParseAirLookupFile() throws IOException {
         ClassPathResource classPathResource = new ClassPathResource(getPathForAirLookup());
         Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
+        System.out.println("Loading file: " + classPathResource.getPath());
+
         parseAirLookupData(wb2);
         parseVenueData(wb2);
+
         log.debug("Successfully loaded lookup data for postcode endpoint");
     }
 
@@ -178,7 +181,6 @@ public class AirLookupService {
     private void populateLookupData(Row row) {
         Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
         Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
-
         if (postcodeCell != null && adminGroupCell != null
                 && postcodeCell.getCellType() == CellType.STRING
                 && adminGroupCell.getCellType() == CellType.STRING) {
@@ -230,6 +232,7 @@ public class AirLookupService {
 
         for (Sheet sheet : wb) {
             if (sheet.getSheetName().equalsIgnoreCase(AIR_LOOKUP_VENUE_IDS_CSV)) {
+
                 populateVenueDataRow(sheet);
             }
         }

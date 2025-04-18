@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
@@ -22,25 +23,20 @@ import uk.gov.hmcts.reform.sscs.config.AirLookupConfig;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AirLookupServiceTest {
-    private static AirLookupService airLookupService;
-
-    static {
-        airLookupService = new AirLookupService();
-        airLookupService.init();
-    }
-
     @Mock
     private AirLookupConfig airLookupConfig;
+
+    private AirLookupService airLookupService;
 
     @BeforeEach
     void setUp() throws Exception {
         org.mockito.MockitoAnnotations.openMocks(this);
         airLookupService = new AirLookupService();
 
-        // Inject the mock AirLookupConfig
         java.lang.reflect.Field airLookupConfigField = AirLookupService.class.getDeclaredField("airLookupConfig");
         airLookupConfigField.setAccessible(true);
         airLookupConfigField.set(airLookupService, airLookupConfig);
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
 
         airLookupService.init();
     }
@@ -60,8 +56,6 @@ public class AirLookupServiceTest {
 
         assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
     }
-
-
 
     @Test
     void shouldReturnDefaultFileWhenAllowNIPostcodesIsFalse() {
@@ -118,6 +112,37 @@ public class AirLookupServiceTest {
         if ("null".equals(expectedAdminGroup)) {
             expectedAdminGroup = null;
         }
+        assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "BT3 9EP, Glasgow",
+            "BT1 3WH, Glasgow"
+    })
+    public void lookupIbcNIPostcodeOldAirlookup(String postcode, String expectedAdminGroup) {
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
+        airLookupService.init();
+
+
+        System.out.println(airLookupService.getPathForAirLookup());
+        assertNull(airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "BT3 9EP, Glasgow",
+            "BT1 3WH, Glasgow"
+    })
+    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) {
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
+        airLookupService.init();
+
+
+        System.out.println(airLookupService.getPathForAirLookup());
+        if ("null".equals(expectedAdminGroup)) {
+            expectedAdminGroup = null;
+        }
+        System.out.println("expectedAdminGroup: " + expectedAdminGroup);
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 
