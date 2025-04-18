@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 public class VenueConfig {
     private boolean enableBelfast;
 
-    public void setAllowNIPostcodes(boolean enableBelfast) {
+    public void setenableBelfast(boolean enableBelfast) {
         this.enableBelfast = enableBelfast;
     }
 
-    public boolean allowNIPostcodes() {
+    public boolean enableBelfast() {
         return enableBelfast;
     }
 }

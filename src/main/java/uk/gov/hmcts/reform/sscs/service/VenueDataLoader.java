@@ -15,8 +15,10 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
+import uk.gov.hmcts.reform.sscs.config.VenueConfig;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @Service
@@ -24,15 +26,28 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 public class VenueDataLoader {
 
     private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
+    private static final String CSV_FILE_PATH_V2 = "reference-data/sscs-venues-v2.csv";
+
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
     private final Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
+    @Autowired
+    private VenueConfig venueConfig;
+
+    public String getPathForScssVenues() {
+        if (venueConfig == null) {
+            return CSV_FILE_PATH;
+        }
+        return venueConfig.enableBelfast() ?
+                CSV_FILE_PATH_V2 : CSV_FILE_PATH;
+    }
     @PostConstruct
     protected void init() {
-        InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
+        String csvFilePath = getPathForScssVenues();
+        InputStream is = getClass().getClassLoader().getResourceAsStream(csvFilePath);
         try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
 
             List<String[]> linesList = reader.readAll();
@@ -71,7 +86,7 @@ public class VenueDataLoader {
                             Collectors.toList())));
 
         } catch (IOException | CsvException  e) {
-            log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
+            log.error("Error occurred while loading the sscs venues reference data file: " + csvFilePath + e);
         }
     }
 

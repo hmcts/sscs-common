@@ -22,7 +22,6 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VenueDataLoaderTest {
-
     private VenueDataLoader venueDataLoader;
 
     private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
