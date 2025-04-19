@@ -51,10 +51,17 @@ public class AirLookupServiceTest {
     }
 
     @Test
-    void shouldReturnDefaultFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
+    void shouldReturnNewFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
         when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
 
         assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
+    }
+
+    @Test
+    void shouldReturnOldFileWhenConfigIsFalse() throws NoSuchFieldException, IllegalAccessException {
+        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
+
+        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
     }
 
     @Test

@@ -46,6 +46,29 @@ public class VenueDataLoaderTest {
         venueDataLoader.init();
     }
 
+    @Test
+    void shouldReturnDefaultFileWhenConfigIsNull() throws NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field venueDataLoaderConfigField = VenueDataLoader.class.getDeclaredField("venueConfig");
+        venueDataLoaderConfigField.setAccessible(true);
+        venueDataLoaderConfigField.set(venueDataLoader, null);
+
+        assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
+    }
+
+    @Test
+    void shouldReturnNewFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
+        when(venueConfig.enableBelfast()).thenReturn(true);
+
+        assertEquals("reference-data/sscs-venues-v2.csv", venueDataLoader.getPathForScssVenues());
+    }
+
+    @Test
+    void shouldReturnOldFileWhenConfigIsFalse() throws NoSuchFieldException, IllegalAccessException {
+        when(venueConfig.enableBelfast()).thenReturn(false);
+
+        assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
+    }
+
     @ParameterizedTest
     @CsvSource({"1", "2", "3", "8", "11", "22", "24", "30", "34", "35", "37", "38", "40", "44", "45", "48", "52", "75",
         "85", "86", "92", "94", "97", "105", "106", "109", "110", "114", "115", "132", "133", "146", "147", "151",
