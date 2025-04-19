@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +16,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
-import uk.gov.hmcts.reform.sscs.model.VenueDetails;
+import uk.gov.hmcts.reform.sscs.config.VenueConfig;
 
 @RunWith(MockitoJUnitRunner.class)
 public class VenueDataLoaderTest {
+    @Mock
+    private VenueConfig venueConfig;
+
     private VenueDataLoader venueDataLoader;
 
     private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
@@ -29,8 +34,15 @@ public class VenueDataLoaderTest {
             "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
+        org.mockito.MockitoAnnotations.openMocks(this);
         venueDataLoader = new VenueDataLoader();
+
+        java.lang.reflect.Field venueDataLoaderConfigField = VenueDataLoader.class.getDeclaredField("venueConfig");
+        venueDataLoaderConfigField.setAccessible(true);
+        venueDataLoaderConfigField.set(venueDataLoader, venueConfig);
+        when(venueConfig.enableBelfast()).thenReturn(true);
+
         venueDataLoader.init();
     }
 
