@@ -71,6 +71,7 @@ public class AirLookupService {
     private AirLookupConfig airLookupConfig;
 
     public String getPathForAirLookup() {
+        System.out.println("AirLookupConfig: " + airLookupConfig);
         if (airLookupConfig == null) {
             return AIR_LOOKUP_FILE;
         }

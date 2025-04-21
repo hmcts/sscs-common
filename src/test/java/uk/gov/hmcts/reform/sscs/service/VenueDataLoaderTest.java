@@ -203,4 +203,25 @@ public class VenueDataLoaderTest {
         List<uk.gov.hmcts.reform.sscs.model.VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
     }
+
+    @DisplayName("VenueDataLoader provides Belfast court details when using the new file")
+    @Test
+    public void testGetVenueReturnsBelfastCourtWhenUsingNewFile() {
+        uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
+
+        assertNotNull(result);
+        assertEquals("1270", result.getVenueId());
+        assertEquals("SC400", result.getThreeDigitReference());
+    }
+
+    @DisplayName("VenueDataLoader doesn't provide Belfast court details when using the old file")
+    @Test
+    public void testGetVenueReturnsNullForBelfastIDWhenUsingOldFile() throws IllegalAccessException {
+        venueDataLoader = new VenueDataLoader();
+        when(venueConfig.enableBelfast()).thenReturn(false);
+        venueDataLoader.init();
+
+        uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
+        assertNull(result);
+    }
 }
