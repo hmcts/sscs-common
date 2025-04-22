@@ -1,0 +1,6758 @@
+[
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001AD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001BC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001BR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CH"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001CX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001HC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001HS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001IJ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001LM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001PT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001QC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001SA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "001SG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001TB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001TD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001TP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "001UC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "001WC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002AR"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002CD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002CF"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "002EI"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "002GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002LC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "002LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002MD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002ML"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002MO"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "002RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "002RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "002VW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003AR"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003CD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003CF"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "003EI"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "003GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003LC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "003LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003MD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003ML"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003MO"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "003RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "003RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "003VW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013AR"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013CD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013CF"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013EI"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013MD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "013RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "014DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "014DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "014MN"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "014MN"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016PF"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016RG"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "016SU"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "016SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022CA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022CA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "022SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "022SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023CA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023CA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "023SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "023SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024CA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024CA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "024SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "024SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025CA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025CA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "025SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "025SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "026SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "026SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028CC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028CE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028CP"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028DD"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028EC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028EX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028GC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028LE"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028OC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028ON"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028OS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028OX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028PC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028RA"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028RB"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028RC"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028SS"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "028SX"
+    },
+    {
+        "fqpm": "true",
+        "johTiers": [
+            "84",
+            "50"
+        ],
+        "category": "2",
+        "benefitIssueCode": "028SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030CO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "030RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031NW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031NW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031RY"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031RY"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031SS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031SS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031SX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031SX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "031XA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "031XA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "032RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "033RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "034SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "035RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "036AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "036AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "036CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "036CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "036DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "036DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "036DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "036DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "036ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "036ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037AR"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037CD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037CF"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037EI"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037MD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037OC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "44"
+        ],
+        "category": "3",
+        "benefitIssueCode": "037RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045AP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045BW"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045DA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045DP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045HC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045PR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045SF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045SM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "045SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "050RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051FR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051WI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051IM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051NC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "051SG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051TL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "051TP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "051WC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053DQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053FX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053OI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "053RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054DQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054FX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054OI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "054RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "055CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "055DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "055EQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "055FC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "055IS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "NA",
+        "benefitIssueCode": ""
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057DK"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057DS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057RO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "057TU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "058CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "058CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "058DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061AT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061BW"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061DP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061DQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061WI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061HC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061IA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061ID"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061LM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061PR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061SF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061SM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061TT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "061WF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062IM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062NC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "062SG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "062TP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "4",
+        "benefitIssueCode": "062WC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064CS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064CS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064IA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064IA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064ID"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064ID"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "064RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "064RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067CB"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067CB"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067CS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067CS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067DM"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067DM"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067EX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067FW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067FW"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067IA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067IA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067ID"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067ID"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067OK"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067OK"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067OS"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067OX"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "067RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "067RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069AA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069BD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069DE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069DP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069OL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069PR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069RS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069SC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069TB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069TE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "069TO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070EI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "070RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073AT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073AV"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073AW"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073BW"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073DR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073FT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073HC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073LM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073RT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073SM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "073SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075AA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075AB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075AX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075BD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075BR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075DC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075DE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075DL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075DP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075HS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075LH"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075LX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075OL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075PR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RI"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075RS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075SC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075TB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075TE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075TO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075UA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "075UL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077AA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077AS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077BD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077CL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077DE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077DP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077HT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077IQ"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077OL"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077PC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077PR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077RG"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077SC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077SR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077SS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077SU"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077SX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077TB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077TE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "077TO"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "079RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "082RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088SF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "088SM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089PF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089SF"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "089SM"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "090DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "090FF"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091AA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091CC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091CE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091CP"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091DD"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091DQ"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091EC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091GC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091LE"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091ON"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091RA"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58"
+        ],
+        "category": "5",
+        "specialismCount": "1",
+        "benefitIssueCode": "091RC"
+    },
+    {
+        "johTiers": [
+            "84",
+            "58",
+            "58"
+        ],
+        "category": "6",
+        "specialismCount": "2",
+        "benefitIssueCode": "091RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094LT"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "094RC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095CB"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "095RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096CC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096CE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096CP"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096CR"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "009DD"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096EC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096EX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096GC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096LE"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096OC"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096ON"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096OS"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096OX"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096RA"
+    },
+    {
+        "johTiers": ["84"],
+        "category": "1",
+        "benefitIssueCode": "096RC"
+    }
+]
