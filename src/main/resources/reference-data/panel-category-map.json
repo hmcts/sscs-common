@@ -6754,5 +6754,47 @@
         "johTiers": ["84"],
         "category": "1",
         "benefitIssueCode": "096RC"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093DD"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093CE"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093RA"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093OS"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093OX"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093SP"
+    },
+    {
+        "johTiers": ["84", "50", "58"],
+        "category": "8",
+        "fqpm": "true",
+        "benefitIssueCode": "093SD"
     }
 ]
