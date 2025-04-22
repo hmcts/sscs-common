@@ -32,11 +32,6 @@ public class FtaCommunicationFields {
     private String ftaRequestRespondedReply;
     private YesNo commRequestActioned;
 
-    private DynamicList ftaResponseNoActionedRadioDl;
-    private String ftaResponseNoActionedQuery;
-    private YesNo ftaResponseActioned;
-    private String ftaResponseNoActionedReply;
-
     private List<CommunicationRequest> tribunalCommunications;
     private TribunalRequestType tribunalRequestType;
 
