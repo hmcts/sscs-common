@@ -140,6 +140,13 @@ tasks.register('runGitPreCommitTasks') {
     dependsOn 'checkstyleTest'
 }
 
+tasks.register('generatePanelCategoryMap', JavaExec) {
+    mainClass = "uk.gov.hmcts.reform.sscs.utility.PanelCategoryMapParser"
+    group = "utility"
+    description = "Runs the sscs.utility.PanelCategoryMapParser class"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 def versions = [
         springboot   : '3.4.4',
         jackson      : '2.18.3',
@@ -162,6 +169,7 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: versions.jackson
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: versions.jackson
 
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1', {
         exclude group: 'junit', module: 'junit'
@@ -171,6 +179,7 @@ dependencies {
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
+    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
     implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.4', {
         exclude group: 'commons-collections', module: 'commons-collections'
