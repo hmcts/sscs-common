@@ -52,6 +52,7 @@ public class PanelCategoryMapParser {
         try {
             List<PanelCategory> panelCategories = parser.createJson(new File(JOH_TIER_CSV_FILE));
             parser.writeToJson(panelCategories, new File(PANEL_CATEGORY_MAP_JSON_FILE));
+            log.info("Panel-category-map generation was successful");
         } catch (IOException e) {
             log.error("Failed to process files. CSV Path: {}, JSON Path: {}. Error: {}",
                 JOH_TIER_CSV_FILE, PANEL_CATEGORY_MAP_JSON_FILE, e.getMessage(), e);
