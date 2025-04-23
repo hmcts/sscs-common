@@ -172,6 +172,7 @@ dependencies {
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
+    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
     implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.4', {
         exclude group: 'commons-collections', module: 'commons-collections'
