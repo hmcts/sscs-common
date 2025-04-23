@@ -140,6 +140,13 @@ tasks.register('runGitPreCommitTasks') {
     dependsOn 'checkstyleTest'
 }
 
+tasks.register('generatePanelCategoryMap', JavaExec) {
+    mainClass = "uk.gov.hmcts.reform.sscs.utility.PanelCategoryMapParser"
+    group = "utility"
+    description = "Runs the sscs.utility.RunnerUtility class"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 def versions = [
         springboot   : '3.4.4',
         jackson      : '2.18.3',
