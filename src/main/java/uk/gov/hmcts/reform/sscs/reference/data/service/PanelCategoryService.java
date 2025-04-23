@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Objects.nonNull;
+import static org.springframework.util.CollectionUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
@@ -8,14 +9,11 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -28,15 +26,16 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 @Slf4j
 @Component
 public class PanelCategoryService {
+
     private static final String JSON_DATA_LOCATION = "reference-data/panel-category-map.json";
     private List<PanelCategory> panelCategories;
-    private static final String TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED = "50";
-    private static final String TRIBUNAL_MEMBER_DISABILITY = "44";
-    private static final String TRIBUNAL_MEMBER_MEDICAL = "58";
-    private static final String TRIBUNAL_JUDGE = "84";
-    private static final String REGIONAL_JUDGE = "74";
-    private static final String REGIONAL_MEMBER_MEDICAL = "69";
-    private static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
+    static final String TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED = "50";
+    static final String TRIBUNAL_MEMBER_DISABILITY = "44";
+    static final String TRIBUNAL_MEMBER_MEDICAL = "58";
+    static final String TRIBUNAL_JUDGE = "84";
+    static final String REGIONAL_JUDGE = "74";
+    static final String REGIONAL_MEMBER_MEDICAL = "69";
+    static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
 
     public PanelCategoryService() {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
@@ -49,7 +48,7 @@ public class PanelCategoryService {
                 .findFirst().orElse(null);
     }
 
-    public List<String> getRoleTypes(SscsCaseData caseData, boolean savePanelComposition) {
+    public List<String> getRoleTypes(SscsCaseData caseData) {
         if (caseData.getPanelMemberComposition() != null) {
             YesNo reservedToDistrictTribunalJudge = NO;
             if (caseData.getSchedulingAndListingFields().getReserveTo() != null
@@ -65,15 +64,7 @@ public class PanelCategoryService {
                 ? "2" : "1" : null;
         String isFqpm = isYes(caseData.getIsFqpmRequired()) ? "true" : null;
         PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
-        if (panelComp != null && !CollectionUtils.isEmpty(panelComp.getJohTiers())) {
-            if (savePanelComposition) {
-                log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
-                setPanelMemberComposition(caseData, panelComp.getJohTiers());
-            }
-            return panelComp.getJohTiers();
-        } else {
-            return Collections.emptyList();
-        }
+        return nonNull(panelComp) && !isEmpty(panelComp.getJohTiers()) ? panelComp.getJohTiers() : List.of();
     }
 
 
@@ -96,7 +87,8 @@ public class PanelCategoryService {
         return roleTypes;
     }
 
-    public static void setPanelMemberComposition(SscsCaseData caseData, List<String> johTiers) {
+    public void setPanelMemberComposition(SscsCaseData caseData, List<String> johTiers) {
+        log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), johTiers);
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
         panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
