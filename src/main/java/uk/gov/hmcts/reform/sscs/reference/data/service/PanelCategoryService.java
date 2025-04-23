@@ -69,7 +69,7 @@ public class PanelCategoryService {
 
 
     public static List<String> mapPanelMemberCompositionToRoleTypes(PanelMemberComposition panelMemberComposition, YesNo reservedToDistrictTribunalJudge) {
-        ArrayList<String> roleTypes = new ArrayList<>();
+        List<String> roleTypes = new ArrayList<>();
         if (reservedToDistrictTribunalJudge == YES) {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE);
         } else if (nonNull(panelMemberComposition.getPanelCompositionJudge())) {
