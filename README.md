@@ -57,7 +57,7 @@ core_case_data:
 
 The `PanelCategoryMapParser` utility class reads data from `JOHTier_PanelMemberComposition_1.2.csv` file, converts it
 into JSON and overwrites `panel-category-map.json`. It does not rely on CSV headers, but instead maps data
-based on column indexes. 
+based on column indexes. Do not edit `panel-category-map.json` manually — any changes will be overwritten during regeneration.
 
 To run
 ```bash
