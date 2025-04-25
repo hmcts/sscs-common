@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -19,56 +18,40 @@ import org.junit.jupiter.params.provider.ValueSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
-import uk.gov.hmcts.reform.sscs.config.AirLookupConfig;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AirLookupServiceTest {
     @Mock
-    private AirLookupConfig airLookupConfig;
+    private Boolean allowNIPostcodes;
 
     private AirLookupService airLookupService;
 
+    private void setAllowNIPostcodes(Boolean value) throws NoSuchFieldException, IllegalAccessException {
+        java.lang.reflect.Field allowNIPostcodesField = AirLookupService.class.getDeclaredField("allowNIPostcodes");
+        allowNIPostcodesField.setAccessible(true);
+        allowNIPostcodesField.set(airLookupService, value);
+    }
     @BeforeEach
     void setUp() throws Exception {
-        org.mockito.MockitoAnnotations.openMocks(this);
         airLookupService = new AirLookupService();
-
-        java.lang.reflect.Field airLookupConfigField = AirLookupService.class.getDeclaredField("airLookupConfig");
-        airLookupConfigField.setAccessible(true);
-        airLookupConfigField.set(airLookupService, airLookupConfig);
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
-
+        setAllowNIPostcodes(true);
         airLookupService.init();
     }
     @Test
-    void shouldReturnDefaultFileWhenConfigIsNull() throws NoSuchFieldException, IllegalAccessException {
-        java.lang.reflect.Field airLookupConfigField = AirLookupService.class.getDeclaredField("airLookupConfig");
-        airLookupConfigField.setAccessible(true);
-        airLookupConfigField.set(airLookupService, null);
-        airLookupService.init();
-
+    void shouldReturnDefaultFileWhenAllowNIPostcodesIsNull() throws Exception {
+        setAllowNIPostcodes(null);
         assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
     }
 
     @Test
-    void shouldReturnNewFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
-
+    void shouldReturnNewFileWhenAllowNIPostcodesIsTrue() throws Exception {
+        setAllowNIPostcodes(true);
         assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
     }
 
     @Test
-    void shouldReturnOldFileWhenConfigIsFalse() throws NoSuchFieldException, IllegalAccessException {
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
-
-        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
-    }
-
-    @Test
-    void shouldReturnDefaultFileWhenAllowNIPostcodesIsFalse() {
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
-        airLookupService.init();
-
+    void shouldReturnOldFileWhenAllowNIPostcodesIsFalse() throws Exception {
+        setAllowNIPostcodes(false);
         assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
     }
 
@@ -124,15 +107,12 @@ public class AirLookupServiceTest {
 
     @ParameterizedTest
     @CsvSource({
-            "BT3 9EP, Glasgow",
-            "BT1 3WH, Glasgow"
+            "BT3 9EP",
+            "BT1 3WH"
     })
-    public void lookupIbcNIPostcodeOldAirlookup(String postcode, String expectedAdminGroup) {
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(false);
-        airLookupService.init();
-
-
-        System.out.println(airLookupService.getPathForAirLookup());
+    public void lookupIbcNIPostcodeOldAirlookup(String postcode) throws Exception {
+        setAllowNIPostcodes(false);
+        airLookupService.init(); // reinitialize to load the old file
         assertNull(airLookupService.lookupIbcRegionalCentre(postcode));
     }
     @ParameterizedTest
@@ -140,17 +120,9 @@ public class AirLookupServiceTest {
             "BT3 9EP, Glasgow",
             "BT1 3WH, Glasgow"
     })
-    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) {
-        when(airLookupConfig.allowNIPostcodes()).thenReturn(true);
-        airLookupService.init();
-
-
-        System.out.println(airLookupService.getPathForAirLookup());
-        if ("null".equals(expectedAdminGroup)) {
-            expectedAdminGroup = null;
-        }
-        System.out.println("expectedAdminGroup: " + expectedAdminGroup);
-        assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) throws Exception {
+        setAllowNIPostcodes(true);
+        assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 
     @ParameterizedTest

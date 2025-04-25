@@ -23,14 +23,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.exception.AirLookupServiceException;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
-import uk.gov.hmcts.reform.sscs.config.AirLookupConfig;
 
 /**
  * Service that ingests a spreadsheet and a csv file containing the
@@ -67,15 +66,13 @@ public class AirLookupService {
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
 
-    @Autowired
-    private AirLookupConfig airLookupConfig;
+    @Value("${feature.ibc-ni-postcodes.enabled:false}") Boolean allowNIPostcodes;
 
     public String getPathForAirLookup() {
-        System.out.println("AirLookupConfig: " + airLookupConfig);
-        if (airLookupConfig == null) {
+        if (allowNIPostcodes == null) {
             return AIR_LOOKUP_FILE;
         }
-        return airLookupConfig.allowNIPostcodes() ?
+        return allowNIPostcodes ?
                     AIR_LOOKUP_FILE_V2 : AIR_LOOKUP_FILE;
     }
 
@@ -149,7 +146,6 @@ public class AirLookupService {
     private void loadAndParseAirLookupFile() throws IOException {
         ClassPathResource classPathResource = new ClassPathResource(getPathForAirLookup());
         Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
-        System.out.println("Loading file: " + classPathResource.getPath());
 
         parseAirLookupData(wb2);
         parseVenueData(wb2);
