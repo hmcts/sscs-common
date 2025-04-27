@@ -15,10 +15,9 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
-import uk.gov.hmcts.reform.sscs.config.VenueConfig;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 @Service
@@ -34,14 +33,13 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
     private final Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
-    @Autowired
-    private VenueConfig venueConfig;
+    @Value("${feature.ibc-ni-postcodes.enabled:false}") Boolean venueConfig;
 
     public String getPathForScssVenues() {
         if (venueConfig == null) {
             return CSV_FILE_PATH;
         }
-        return venueConfig.enableBelfast() ?
+        return venueConfig ?
                 CSV_FILE_PATH_V2 : CSV_FILE_PATH;
     }
     @PostConstruct

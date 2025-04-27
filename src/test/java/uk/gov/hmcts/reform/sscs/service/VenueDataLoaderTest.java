@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
-import uk.gov.hmcts.reform.sscs.config.VenueConfig;
 
-@RunWith(MockitoJUnitRunner.class)
 public class VenueDataLoaderTest {
-    @Mock
-    private VenueConfig venueConfig;
 
     private VenueDataLoader venueDataLoader;
 
@@ -33,39 +25,32 @@ public class VenueDataLoaderTest {
             "517400", "449358", "563156", "45900", "744412", "572158", "288691", "562808", "720624", "427519",
             "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        org.mockito.MockitoAnnotations.openMocks(this);
-        venueDataLoader = new VenueDataLoader();
-
+    private void setVenueConfig(Boolean value) throws Exception {
         java.lang.reflect.Field venueDataLoaderConfigField = VenueDataLoader.class.getDeclaredField("venueConfig");
         venueDataLoaderConfigField.setAccessible(true);
-        venueDataLoaderConfigField.set(venueDataLoader, venueConfig);
-        when(venueConfig.enableBelfast()).thenReturn(true);
-
+        venueDataLoaderConfigField.set(venueDataLoader, value);
+    }
+    @BeforeEach
+    public void setUp() throws Exception {
+        venueDataLoader = new VenueDataLoader();
+        setVenueConfig(true);
         venueDataLoader.init();
     }
 
     @Test
-    void shouldReturnDefaultFileWhenConfigIsNull() throws NoSuchFieldException, IllegalAccessException {
-        java.lang.reflect.Field venueDataLoaderConfigField = VenueDataLoader.class.getDeclaredField("venueConfig");
-        venueDataLoaderConfigField.setAccessible(true);
-        venueDataLoaderConfigField.set(venueDataLoader, null);
-
+    void shouldReturnDefaultFileWhenConfigIsNull() throws Exception {
+        setVenueConfig(null);
         assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
     }
 
     @Test
-    void shouldReturnNewFileWhenConfigIsTrue() throws NoSuchFieldException, IllegalAccessException {
-        when(venueConfig.enableBelfast()).thenReturn(true);
-
+    void shouldReturnNewFileWhenConfigIsTrue() {
         assertEquals("reference-data/sscs-venues-v2.csv", venueDataLoader.getPathForScssVenues());
     }
 
     @Test
-    void shouldReturnOldFileWhenConfigIsFalse() throws NoSuchFieldException, IllegalAccessException {
-        when(venueConfig.enableBelfast()).thenReturn(false);
-
+    void shouldReturnOldFileWhenConfigIsFalse() throws Exception {
+        setVenueConfig(false);
         assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
     }
 
@@ -216,12 +201,12 @@ public class VenueDataLoaderTest {
 
     @DisplayName("VenueDataLoader doesn't provide Belfast court details when using the old file")
     @Test
-    public void testGetVenueReturnsNullForBelfastIDWhenUsingOldFile() throws IllegalAccessException {
+    public void testGetVenueReturnsNullForBelfastIDWhenUsingOldFile() throws Exception {
         venueDataLoader = new VenueDataLoader();
-        when(venueConfig.enableBelfast()).thenReturn(false);
+        setVenueConfig(false);
         venueDataLoader.init();
 
         uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
-        assertNull(result);
+        assertNull(result, "Belfast court details should not be present when using the old file");
     }
 }

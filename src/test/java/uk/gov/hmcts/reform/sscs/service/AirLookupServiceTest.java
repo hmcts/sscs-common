@@ -20,7 +20,7 @@ public class AirLookupServiceTest {
 
     private AirLookupService airLookupService;
 
-    private void setAllowNIPostcodes(Boolean value) throws NoSuchFieldException, IllegalAccessException {
+    private void setAllowNIPostcodes(Boolean value) throws Exception {
         java.lang.reflect.Field allowNIPostcodesField = AirLookupService.class.getDeclaredField("allowNIPostcodes");
         allowNIPostcodesField.setAccessible(true);
         allowNIPostcodesField.set(airLookupService, value);
