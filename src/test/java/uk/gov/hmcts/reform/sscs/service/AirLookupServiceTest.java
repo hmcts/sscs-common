@@ -31,11 +31,6 @@ public class AirLookupServiceTest {
         setAllowNIPostcodes(true);
         airLookupService.init();
     }
-    @Test
-    void shouldReturnDefaultFileWhenAllowNIPostcodesIsNull() throws Exception {
-        setAllowNIPostcodes(null);
-        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
-    }
 
     @Test
     void shouldReturnNewFileWhenAllowNIPostcodesIsTrue() throws Exception {

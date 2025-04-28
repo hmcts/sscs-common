@@ -33,14 +33,10 @@ public class VenueDataLoader {
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
     private final Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
-    @Value("${feature.ibc-ni-postcodes.enabled:false}") Boolean venueConfig;
+    @Value("${feature.ibc-ni-postcodes.enabled:false}") boolean venueConfig;
 
     public String getPathForScssVenues() {
-        if (venueConfig == null) {
-            return CSV_FILE_PATH;
-        }
-        return venueConfig ?
-                CSV_FILE_PATH_V2 : CSV_FILE_PATH;
+        return venueConfig ? CSV_FILE_PATH_V2 : CSV_FILE_PATH;
     }
     @PostConstruct
     protected void init() {

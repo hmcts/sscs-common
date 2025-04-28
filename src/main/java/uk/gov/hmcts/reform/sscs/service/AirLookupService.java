@@ -66,14 +66,10 @@ public class AirLookupService {
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
 
-    @Value("${feature.ibc-ni-postcodes.enabled:false}") Boolean allowNIPostcodes;
+    @Value("${feature.ibc-ni-postcodes.enabled:false}") boolean allowNIPostcodes;
 
     public String getPathForAirLookup() {
-        if (allowNIPostcodes == null) {
-            return AIR_LOOKUP_FILE;
-        }
-        return allowNIPostcodes ?
-                    AIR_LOOKUP_FILE_V2 : AIR_LOOKUP_FILE;
+        return allowNIPostcodes ? AIR_LOOKUP_FILE_V2 : AIR_LOOKUP_FILE;
     }
 
     public String lookupRegionalCentre(String postcode) {

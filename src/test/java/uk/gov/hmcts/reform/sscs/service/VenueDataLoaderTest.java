@@ -16,6 +16,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
+import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 
 public class VenueDataLoaderTest {
 
@@ -35,12 +36,6 @@ public class VenueDataLoaderTest {
         venueDataLoader = new VenueDataLoader();
         setVenueConfig(true);
         venueDataLoader.init();
-    }
-
-    @Test
-    void shouldReturnDefaultFileWhenConfigIsNull() throws Exception {
-        setVenueConfig(null);
-        assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
     }
 
     @Test
@@ -128,21 +123,21 @@ public class VenueDataLoaderTest {
 
     @Test
     public void shouldGetGapsVenueNameForGivenVenueId() {
-        uk.gov.hmcts.reform.sscs.ccd.domain.Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
         String result = venueDataLoader.getGapVenueName(venue, "68");
         assertEquals("Liverpool", result);
     }
 
     @Test
     public void shouldGetGapsVenueNameIfVenueIdIsBlankAndVenueIsNotBlank() {
-        uk.gov.hmcts.reform.sscs.ccd.domain.Venue venue = Venue.builder().name("Barnsley SSCS Hearing Venue").address(Address.builder().postcode("S70 1WA").build()).build();
+        Venue venue = Venue.builder().name("Barnsley SSCS Hearing Venue").address(Address.builder().postcode("S70 1WA").build()).build();
         String result = venueDataLoader.getGapVenueName(venue, null);
         assertEquals("Barnsley", result);
     }
 
     @Test
     public void shouldGetExistingVenueNameIfVenueIdIsBlankAndVenueIsNotFound() {
-        uk.gov.hmcts.reform.sscs.ccd.domain.Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
+        Venue venue = Venue.builder().name("test").address(Address.builder().postcode("postcode").build()).build();
         String result = venueDataLoader.getGapVenueName(venue, null);
         assertEquals("test", result);
     }
@@ -156,7 +151,7 @@ public class VenueDataLoaderTest {
     @DisplayName("When a valid epims ID is searched, getVenue return the correct venue details")
     @Test
     public void testGetVenue() {
-        uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("45900");
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("45900");
 
         assertNotNull(result);
         assertEquals("1236", result.getVenueId());
@@ -177,7 +172,7 @@ public class VenueDataLoaderTest {
 
     @Test
     public void testActiveVenueEpimsIdsMapByRpcReturnsVenues() {
-        List<uk.gov.hmcts.reform.sscs.model.VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
         assertFalse(result.isEmpty());
         assertEquals(19, result.size());
         result.forEach(vd -> assertTrue(venueDetailsByLeedsRpc.contains(vd.getEpimsId())));
@@ -185,14 +180,14 @@ public class VenueDataLoaderTest {
 
     @Test
     public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
-        List<uk.gov.hmcts.reform.sscs.model.VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
+        List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
     }
 
     @DisplayName("VenueDataLoader provides Belfast court details when using the new file")
     @Test
     public void testGetVenueReturnsBelfastCourtWhenUsingNewFile() {
-        uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
 
         assertNotNull(result);
         assertEquals("1270", result.getVenueId());
@@ -206,7 +201,7 @@ public class VenueDataLoaderTest {
         setVenueConfig(false);
         venueDataLoader.init();
 
-        uk.gov.hmcts.reform.sscs.model.VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
         assertNull(result, "Belfast court details should not be present when using the old file");
     }
 }
