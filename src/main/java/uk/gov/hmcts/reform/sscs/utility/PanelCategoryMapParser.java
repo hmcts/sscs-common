@@ -1,18 +1,17 @@
 package uk.gov.hmcts.reform.sscs.utility;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 
@@ -35,6 +34,7 @@ public class PanelCategoryMapParser {
             .addColumn("col4")
             .addColumn("category")
             .addColumn("fqpm")
+            .addColumn("medicalMember")
             .addColumn("specialismCount")
             .addColumn("johTiers")
             .addColumn("col9")
@@ -78,6 +78,7 @@ public class PanelCategoryMapParser {
     private void processPanelCategory(PanelCategory panelCategory) {
         panelCategory.setJohTiers(parseJohTiers(panelCategory.getJohTiers()));
         panelCategory.setFqpm(yesToTrue(panelCategory.getFqpm()));
+        panelCategory.setMedicalMember(yesToTrue(panelCategory.getMedicalMember()));
         panelCategory.setSpecialismCount(blankToNull(panelCategory.getSpecialismCount()));
     }
 
