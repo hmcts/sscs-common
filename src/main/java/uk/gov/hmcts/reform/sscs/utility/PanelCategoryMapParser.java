@@ -5,13 +5,13 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 
@@ -25,7 +25,7 @@ public class PanelCategoryMapParser {
     private final ObjectMapper objectMapper;
 
     public PanelCategoryMapParser() {
-        this.csvMapper = new CsvMapper();
+        this.csvMapper = new CsvMapper().enable(CsvParser.Feature.TRIM_SPACES);
         this.schema = CsvSchema.builder()
             .addColumn("benefitIssueCode")
             .addColumn("col1")
@@ -36,7 +36,7 @@ public class PanelCategoryMapParser {
             .addColumn("fqpm")
             .addColumn("medicalMember")
             .addColumn("specialismCount")
-            .addColumn("johTiers")
+            .addArrayColumn("johTiers", ",")
             .addColumn("col9")
             .addColumn("col10")
             .setUseHeader(true)
@@ -76,7 +76,6 @@ public class PanelCategoryMapParser {
     }
 
     private void processPanelCategory(PanelCategory panelCategory) {
-        panelCategory.setJohTiers(parseJohTiers(panelCategory.getJohTiers()));
         panelCategory.setFqpm(yesToTrue(panelCategory.getFqpm()));
         panelCategory.setMedicalMember(yesToTrue(panelCategory.getMedicalMember()));
         panelCategory.setSpecialismCount(blankToNull(panelCategory.getSpecialismCount()));
@@ -85,15 +84,6 @@ public class PanelCategoryMapParser {
     public void writeToJson(List<PanelCategory> panelCategories, File jsonFile) throws IOException {
         log.info("Writing {} panel categories to JSON file: {}", panelCategories.size(), jsonFile.getAbsolutePath());
         objectMapper.writeValue(jsonFile, panelCategories);
-    }
-
-    private List<String> parseJohTiers(List<String> tiers) {
-        return Optional.ofNullable(tiers)
-            .orElse(List.of())
-            .stream()
-            .flatMap(tier -> Arrays.stream(tier.split(",")))
-            .map(String::trim)
-            .collect(Collectors.toList());
     }
 
     private String blankToNull(String value) {
