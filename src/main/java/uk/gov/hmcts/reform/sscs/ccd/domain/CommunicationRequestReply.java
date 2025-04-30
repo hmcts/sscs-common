@@ -21,5 +21,7 @@ public class CommunicationRequestReply {
     private String replyUserRole;
     private String replyMessage;
     private YesNo replyHasBeenActioned;
+    private YesNo replyHasBeenActionedByTribunal;
+    private YesNo replyHasBeenActionedByFta;
 }
 
