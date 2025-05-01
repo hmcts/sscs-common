@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class PanelMemberComposition {
 
 
-    private String panelCompositionJudge;
+    private List<String> panelCompositionJudge;
 
-    private String panelCompositionMemberMedical1;
+    private List<String> panelCompositionMemberMedical1;
 
-    private String panelCompositionMemberMedical2;
+    private List<String> panelCompositionMemberMedical2;
 
     private List<String> panelCompositionDisabilityAndFqMember;
 
