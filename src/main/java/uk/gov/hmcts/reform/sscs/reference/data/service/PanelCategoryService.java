@@ -71,13 +71,13 @@ public class PanelCategoryService {
         if (reservedToDistrictTribunalJudge == YES) {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE);
         } else if (nonNull(panelMemberComposition.getPanelCompositionJudge())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionJudge());
+            roleTypes.add(panelMemberComposition.getPanelCompositionJudge().get(0));
         }
         if (nonNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical1());
+            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical1().get(0));
         }
         if (nonNull(panelMemberComposition.getPanelCompositionMemberMedical2())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical2());
+            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical2().get(0));
         }
         if (nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
             roleTypes.addAll(panelMemberComposition.getPanelCompositionDisabilityAndFqMember());
@@ -96,13 +96,13 @@ public class PanelCategoryService {
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEMBER_MEDICAL:
                     if (panelMemberComposition.getPanelCompositionMemberMedical1() != null) {
-                        panelMemberComposition.setPanelCompositionMemberMedical2(johTier);
+                        panelMemberComposition.setPanelCompositionMemberMedical2(List.of(johTier));
                     } else {
-                        panelMemberComposition.setPanelCompositionMemberMedical1(johTier);
+                        panelMemberComposition.setPanelCompositionMemberMedical1(List.of(johTier));
                     }
                     break;
                 case TRIBUNAL_JUDGE, REGIONAL_JUDGE:
-                    panelMemberComposition.setPanelCompositionJudge(johTier);
+                    panelMemberComposition.setPanelCompositionJudge(List.of(johTier));
                     break;
                 default:
             }

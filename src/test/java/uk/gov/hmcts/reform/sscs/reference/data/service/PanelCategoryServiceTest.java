@@ -132,7 +132,7 @@ public class PanelCategoryServiceTest {
     @DisplayName("getRoleTypes should use panelMemberComposition when it exists in case data")
     @Test
     public void testGetRolesWithPanelCompositionInCaseData() {
-        caseData.setPanelMemberComposition(PanelMemberComposition.builder().panelCompositionMemberMedical1(REGIONAL_MEMBER_MEDICAL).build());
+        caseData.setPanelMemberComposition(PanelMemberComposition.builder().panelCompositionMemberMedical1(List.of(REGIONAL_MEMBER_MEDICAL)).build());
         List<String> result = panelCategoryService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result).isEqualTo(List.of(REGIONAL_MEMBER_MEDICAL));
@@ -152,9 +152,9 @@ public class PanelCategoryServiceTest {
     @Test
     public void mapPanelMemberCompositionToRoleTypesShouldExtractPanelCompositionIntoListOfStrings() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
-                .panelCompositionJudge(TRIBUNAL_JUDGE)
-                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL)
-                .panelCompositionMemberMedical2(REGIONAL_MEMBER_MEDICAL)
+                .panelCompositionJudge(List.of(TRIBUNAL_JUDGE))
+                .panelCompositionMemberMedical1(List.of(TRIBUNAL_MEMBER_MEDICAL))
+                .panelCompositionMemberMedical2(List.of(REGIONAL_MEMBER_MEDICAL))
                 .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED)).build();
         List<String> result = mapPanelMemberCompositionToRoleTypes(panelMemberComposition, NO);
         assertThat(result).isNotEmpty();
