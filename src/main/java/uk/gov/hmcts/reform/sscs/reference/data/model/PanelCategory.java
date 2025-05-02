@@ -36,8 +36,9 @@ public class PanelCategory {
         }
         PanelCategory that = (PanelCategory) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
-                && Objects.equals(specialismCount, that.specialismCount)
-                && Objects.equals(fqpm, that.fqpm);
+            && Objects.equals(specialismCount, that.specialismCount)
+            && Objects.equals(fqpm, that.fqpm)
+            && Objects.equals(medicalMember, that.medicalMember);
     }
 
     @Override
