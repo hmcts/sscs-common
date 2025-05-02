@@ -20,6 +20,7 @@ public enum EventType {
     ADJOURN_CASE("adjournCase", 0, false),
     ADMIN_ACTION_CORRECTION("adminActionCorrection", 0, false),
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
+    ADMIN_CANCEL_TEST_HEARING("adminCancelTestHearings", 0, false),
     ADMIN_CORRECTION_BODY("adminCorrectionBody", 0, false),
     ADMIN_CORRECTION_HEADER("adminCorrectionHeader", 0, true),
     ADMIN_RESTORE_CASES("adminRestoreCases", 0, false),
