@@ -1,0 +1,5430 @@
+[ {
+  "benefitIssueCode" : "001AD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001BC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001BR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CH",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001CX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001HC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001HS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001IJ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001LM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001PT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001QC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001SA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001SG",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "001SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001TB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001TD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001TP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001UC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "001WC",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "001UM",
+  "category" : "1",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "001UM",
+  "category" : "4",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "001US",
+  "category" : "1",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "001US",
+  "category" : "4",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "002AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "002AR",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002CC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002CD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002CE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002CF",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002CP",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002DD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002EC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002EI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "002EX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "002LC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "002MD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002ML",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002MO",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002OC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002ON",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002OS",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002OX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "002RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "002RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "002VW",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "003AR",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003CC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003CD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003CE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003CF",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003CP",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003DD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003EC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003EI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "003EX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "003LC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "003MD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003ML",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003MO",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003OC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003ON",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003OS",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003OX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "003RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "003RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "003VW",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "011AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011FA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011FI",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011NP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "011NV",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "012AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "012CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "012CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "012HT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "013AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "013AR",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013CC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013CD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013CE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013CF",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013CP",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013DD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013DQ",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013EC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013EI",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013EX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013GC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013LE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013MD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013OC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013ON",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013OS",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013OX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013RA",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "013RC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "014DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "014DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "014MN",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "014MN",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "016AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "016CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016PF",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016RG",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "016SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "016SU",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "022CA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022CA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "022SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "022SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "023CA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023CA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "023SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "023SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "024CA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024CA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "024SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "024SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "025CA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025CA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "025SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "025SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "026CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "026SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "026SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "028CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028CC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028CE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028CP",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028DD",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028EC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028EX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028GC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028LE",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028OC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028ON",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028OS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028OX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028PC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028RA",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028RB",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028RC",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028SS",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "028SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "028SX",
+  "category" : "2",
+  "fqpm" : "true",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "030AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "030CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030CO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "030RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "031AA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031AA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031CC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031CC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031CE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031CE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031CP",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031CP",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031DQ",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031DQ",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031EC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031EC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031EX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031EX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031GC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031GC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031LE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031LE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031NW",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031NW",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031OC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031OC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031ON",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031ON",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031OS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031OS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031OX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031OX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031RA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031RA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031RC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031RC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031RY",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031RY",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031SS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031SS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031SX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031SX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "031XA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "031XA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "032AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "032CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "032RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "033CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "033RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "034CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "034SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "035CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "035RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "036AA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "036AA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "036CP",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "036CP",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "036DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "036DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "036DQ",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "036DQ",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "036ON",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "036ON",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "037AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "037AR",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037CC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037CD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037CE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037CF",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037CP",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037DD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037EC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037EI",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037EX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037GC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037LE",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037MD",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037OC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037ON",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037OS",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037OX",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037RA",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "037RC",
+  "category" : "3",
+  "johTiers" : [ "84", "58", "44" ]
+}, {
+  "benefitIssueCode" : "040AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040DQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040HT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040IQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040MD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040OC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040PF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040RG",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040SS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "040SX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043CR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043DQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043OC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "043RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "045AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "045AP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045BW",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045DA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045DP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045HC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045PR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045SF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045SM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "045SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "049AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049CL",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049IQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049LT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "049RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "050AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "050CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "050RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "051CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051FR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051WI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051IM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051NC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051SG",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "051TL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051TP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "051WC",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "052AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052AT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052CB",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052CR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052NC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "052RG",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "053AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "053CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053DQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053FX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053OI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "053RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "054CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054DQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054FX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054OI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "054RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "055AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "055CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "055DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "055EQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "055FC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "055IS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "",
+  "category" : "",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057DK",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057DS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057RO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "057TU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "058CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "058CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "058DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "061AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061AT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061BW",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061DP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061DQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061WI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061HC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061IA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061ID",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061LM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061PR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061SF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061SM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061TT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "061WF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "062CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062IM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062NC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062SG",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "062TP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "062WC",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "064CC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064CC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064CE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064CE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064CP",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064CP",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064CS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064CS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064DQ",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064DQ",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064EC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064EC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064EX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064EX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064GC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064GC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064IA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064IA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064ID",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064ID",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064LE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064LE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064ON",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064ON",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064OS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064OS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064OX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064OX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064RA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064RA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "064RC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "064RC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "067CB",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067CB",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067CC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067CC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067CE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067CE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067CP",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067CP",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067CS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067CS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067DM",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067DM",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067DQ",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067DQ",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067EC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067EC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067EX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067EX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067FW",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067FW",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067GC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067GC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067IA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067IA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067ID",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067ID",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067LE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067LE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067OK",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067OK",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067ON",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067ON",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067OS",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067OS",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067OX",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067OX",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067RA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067RA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "067RC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "067RC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "069AA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069BD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069DE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069DP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069OL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069PR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069RS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069SC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069TB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069TE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "069TO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "070CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070EI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "070RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "073AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073AT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073AV",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073AW",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073BW",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073DR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073FT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073HC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073LM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073RT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073SM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "073SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075AA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075AB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075AX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075BD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075BR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075DC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075DE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075DL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075DP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075HS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075LH",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075LX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075OL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075PR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RI",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075RS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075SC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075TB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075TE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075TO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075UA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "075UL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "076AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076AS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076AT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076BW",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CL",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076CS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076DP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076DQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076HC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076HT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076IA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076ID",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076IQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076LM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076LT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076MD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076OC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076PC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076PF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076PR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076RB",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076RG",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076SF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076SM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076SS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076SU",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "076SX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "077AA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077AS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077BD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077CL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077DE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077DP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077HT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077IQ",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077OL",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077PC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077PR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077RG",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077SC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077SR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077SS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077SU",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077SX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077TB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077TE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "077TO",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "079CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "079RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "082CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "082RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "058AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058AT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058CP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058DQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058OC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "058RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "088AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "088CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088SF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "088SM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "089CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089PF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089SF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "089SM",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "090DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "090FF",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "091AA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091AA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091CC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091CC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091CE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091CE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091CP",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091CP",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091DD",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091DD",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091DQ",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091DQ",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091EC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091EC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091GC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091GC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091LE",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091LE",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091ON",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091ON",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091RA",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091RA",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "091RC",
+  "category" : "5",
+  "specialismCount" : "1",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "091RC",
+  "category" : "6",
+  "specialismCount" : "2",
+  "johTiers" : [ "84", "58", "58" ]
+}, {
+  "benefitIssueCode" : "094AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "094CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094LT",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "094RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095CB",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "095RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "096CC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096CP",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096CR",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096DD",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096EC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096EX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096GC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096LE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096OC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096ON",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096OS",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096OX",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096RA",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "096RC",
+  "category" : "1",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "099AA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099AS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099AT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099BW",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CL",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099CX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099DD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099DP",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099DQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099DX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099EC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099EX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099GC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099HB",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099HC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099HI",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099HT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099IA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099ID",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099IQ",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099JL",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099LA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099LE",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099LM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099LT",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099MD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099MG",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099MI",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099OC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099ON",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099OS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099OX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099PC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099PD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099PF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099PR",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099RA",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099RB",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099RC",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099RG",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SD",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SF",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SM",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SS",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SU",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099SX",
+  "category" : "N/A",
+  "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "099WB",
+  "category" : "N/A",
+  "johTiers" : [ ]
+} ]

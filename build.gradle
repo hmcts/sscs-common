@@ -32,11 +32,11 @@ repositories {
 // region static code analysis
 
 checkstyle {
-    toolVersion = "10.23.0"
+    toolVersion = "10.23.1"
 }
 
 pmd {
-    toolVersion = "6.55.0"
+    toolVersion = "7.12.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
     reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
@@ -140,16 +140,23 @@ tasks.register('runGitPreCommitTasks') {
     dependsOn 'checkstyleTest'
 }
 
+tasks.register('generatePanelCategoryMap', JavaExec) {
+    mainClass = "uk.gov.hmcts.reform.sscs.utility.PanelCategoryMapParser"
+    group = "utility"
+    description = "Runs the sscs.utility.PanelCategoryMapParser class"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 def versions = [
         springboot   : '3.4.4',
-        jackson      : '2.18.3',
+        jackson      : '2.19.0',
         junitjupiter : '5.12.2',
         lombok       : '1.18.38'
 ]
 
 dependencies {
 
-    api group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
+    api group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
@@ -162,6 +169,7 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: versions.jackson
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-csv', version: versions.jackson
 
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1', {
         exclude group: 'junit', module: 'junit'
@@ -171,26 +179,27 @@ dependencies {
 
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
+    implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
     implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.4', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
 
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '7.17.28'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.18.0'
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.11'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
     implementation group: 'com.github.hmcts', name: 'java-logging', version: '6.1.8'
 
-    implementation group: 'com.github.hmcts', name: 'ccd-client', version: '5.0.3'
+    implementation group: 'com.github.hmcts', name: 'ccd-client', version: '5.0.5'
 
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
 
-    implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: '5.3.0'
+    implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: '5.3.2'
 
-    implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.3'
+    implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.4'
 
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.2.1'
 
@@ -244,6 +253,6 @@ dependencies {
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
-    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.7-jre'
+    checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
 }
 
