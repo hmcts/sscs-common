@@ -11,14 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @Data
 @Slf4j
-public class PanelCategory {
+public class DefaultPanelComposition {
     private String benefitIssueCode;
     private String category;
     private String specialismCount;
     private String fqpm;
     private List<String> johTiers;
 
-    public PanelCategory(String benefitIssueCode, String specialismCount, String fqpm) {
+    public DefaultPanelComposition(String benefitIssueCode, String specialismCount, String fqpm) {
         this.benefitIssueCode = benefitIssueCode;
         this.specialismCount = specialismCount;
         this.fqpm = fqpm;
@@ -32,7 +32,7 @@ public class PanelCategory {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PanelCategory that = (PanelCategory) o;
+        DefaultPanelComposition that = (DefaultPanelComposition) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
                 && Objects.equals(specialismCount, that.specialismCount)
                 && Objects.equals(fqpm, that.fqpm);

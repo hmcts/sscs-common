@@ -14,10 +14,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import lombok.extern.slf4j.Slf4j;
-import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
+import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Slf4j
-public class PanelCategoryMapParser {
+public class DefaultPanelCompositionParser {
     private static final String JOH_TIER_CSV_FILE = "src/main/resources/reference-data/JOHTier_PanelMemberComposition_1.2.csv";
     private static final String PANEL_CATEGORY_MAP_JSON_FILE = "src/main/resources/reference-data/panel-category-map.json";
 
@@ -25,7 +25,7 @@ public class PanelCategoryMapParser {
     private final CsvSchema schema;
     private final ObjectMapper objectMapper;
 
-    public PanelCategoryMapParser() {
+    public DefaultPanelCompositionParser() {
         this.csvMapper = new CsvMapper();
         this.schema = CsvSchema.builder()
             .addColumn("benefitIssueCode")
@@ -48,10 +48,10 @@ public class PanelCategoryMapParser {
     }
 
     public static void main(String[] args) {
-        PanelCategoryMapParser parser = new PanelCategoryMapParser();
+        DefaultPanelCompositionParser parser = new DefaultPanelCompositionParser();
         try {
-            List<PanelCategory> panelCategories = parser.createJson(new File(JOH_TIER_CSV_FILE));
-            parser.writeToJson(panelCategories, new File(PANEL_CATEGORY_MAP_JSON_FILE));
+            List<DefaultPanelComposition> defaultPanelCompositions = parser.createJson(new File(JOH_TIER_CSV_FILE));
+            parser.writeToJson(defaultPanelCompositions, new File(PANEL_CATEGORY_MAP_JSON_FILE));
             log.info("Panel-category-map generation was successful");
         } catch (IOException e) {
             log.error("Failed to process files. CSV Path: {}, JSON Path: {}. Error: {}",
@@ -59,29 +59,29 @@ public class PanelCategoryMapParser {
         }
     }
 
-    public List<PanelCategory> createJson(File csvFile) throws IOException {
+    public List<DefaultPanelComposition> createJson(File csvFile) throws IOException {
         log.info("Reading and parsing CSV file: {}", csvFile.getAbsolutePath());
 
-        try (MappingIterator<PanelCategory> panelCategoriesIterator = csvMapper
-            .readerFor(PanelCategory.class)
+        try (MappingIterator<DefaultPanelComposition> panelCompositionsIterator = csvMapper
+            .readerFor(DefaultPanelComposition.class)
             .with(schema)
             .readValues(csvFile)) {
 
-            List<PanelCategory> panelCategories = panelCategoriesIterator.readAll();
+            List<DefaultPanelComposition> defaultPanelCompositions = panelCompositionsIterator.readAll();
 
-            panelCategories.forEach(this::processPanelCategory);
+            defaultPanelCompositions.forEach(this::processPanelCompositionConfig);
 
-            return panelCategories;
+            return defaultPanelCompositions;
         }
     }
 
-    private void processPanelCategory(PanelCategory panelCategory) {
-        panelCategory.setJohTiers(parseJohTiers(panelCategory.getJohTiers()));
-        panelCategory.setFqpm(yesToTrue(panelCategory.getFqpm()));
-        panelCategory.setSpecialismCount(blankToNull(panelCategory.getSpecialismCount()));
+    private void processPanelCompositionConfig(DefaultPanelComposition defaultPanelComposition) {
+        defaultPanelComposition.setJohTiers(parseJohTiers(defaultPanelComposition.getJohTiers()));
+        defaultPanelComposition.setFqpm(yesOrNull(defaultPanelComposition.getFqpm()));
+        defaultPanelComposition.setSpecialismCount(blankToNull(defaultPanelComposition.getSpecialismCount()));
     }
 
-    public void writeToJson(List<PanelCategory> panelCategories, File jsonFile) throws IOException {
+    public void writeToJson(List<DefaultPanelComposition> panelCategories, File jsonFile) throws IOException {
         log.info("Writing {} panel categories to JSON file: {}", panelCategories.size(), jsonFile.getAbsolutePath());
         objectMapper.writeValue(jsonFile, panelCategories);
     }
@@ -102,11 +102,10 @@ public class PanelCategoryMapParser {
             .orElse(null);
     }
 
-    private String yesToTrue(String value) {
+    private String yesOrNull(String value) {
         return Optional.ofNullable(value)
             .map(String::trim)
             .filter("yes"::equalsIgnoreCase)
-            .map(trimmed -> "true")
             .orElse(null);
     }
 }
