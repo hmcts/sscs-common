@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
-import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.REGIONAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED;
@@ -15,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
@@ -39,8 +37,8 @@ public class PanelCompositionServiceTest {
     @DisplayName("Valid call to getPanelCategory should return correct johTier")
     @Test
     public void getDefaultPanelComposition(){
-        DefaultPanelComposition result =
-                panelCompositionService.getDefaultPanelComposition(SscsCaseData.builder().benefitCode("001AD").build());
+        DefaultPanelComposition result = panelCompositionService
+                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
 
         assertThat(result).isNotNull();
         assertThat(result.getBenefitIssueCode()).isEqualTo("001AD");
@@ -58,25 +56,27 @@ public class PanelCompositionServiceTest {
     @DisplayName("Call to getPanelCategory with FQPM should return correct johTier")
     @Test
     public void getDefaultPanelCompositionWithFQPM() {
-
-        DefaultPanelComposition result = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("001AD").isFqpmRequired(YES).build());
+        DefaultPanelComposition result = panelCompositionService.getDefaultPanelComposition(
+                SscsCaseData.builder().benefitCode("016").issueCode("CC").isFqpmRequired(YES).build()
+        );
 
         assertThat(result).isNotNull();
-        assertThat(result.getJohTiers().stream().anyMatch(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
+        assertThat(result.getJohTiers()).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED);
     }
 
     @DisplayName("Call to getPanelCategory with specialism should return correct johTier")
     @Test
     public void getDefaultPanelCompositionWithSpecialism() {
         DefaultPanelComposition oneSpecialismResult = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("067CB")
-                        .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build()).build());
-        DefaultPanelComposition twoSpecialismResult = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("067CB")
+                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("031").issueCode("AA")
                         .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder()
-                                .secondPanelDoctorSpecialism("2ndSpecialism").build())
+                                .panelDoctorSpecialism("one").build()).build());
+        DefaultPanelComposition twoSpecialismResult = panelCompositionService
+                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("031").issueCode("AA")
+                        .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder()
+                                .panelDoctorSpecialism("one").secondPanelDoctorSpecialism("two").build())
                         .build());
+
         assertThat(oneSpecialismResult).isNotNull();
         assertThat(twoSpecialismResult).isNotNull();
         assertThat(oneSpecialismResult.getJohTiers().stream().filter(TRIBUNAL_MEMBER_MEDICAL::equals).count()).isEqualTo(1);
@@ -149,16 +149,6 @@ public class PanelCompositionServiceTest {
         assertThat(result).isEqualTo(List.of(REGIONAL_MEMBER_MEDICAL));
     }
 
-    @DisplayName("getRoleTypes should return District tribunal judge when it is set to yes in case data")
-    @Test
-    public void testGetRolesWithDTJ() {
-        caseData.setPanelMemberComposition(PanelMemberComposition.builder().build());
-        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
-        List<String> result = panelCompositionService.getRoleTypes(caseData);
-        assertThat(result).isNotEmpty();
-        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE));
-    }
-
     @DisplayName("mapPanelMemberCompositionToRoleTypes should extract the JOHTiers within panelComposition object")
     @Test
     public void mapPanelMemberCompositionToRoleTypesShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
@@ -179,16 +169,4 @@ public class PanelCompositionServiceTest {
         List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition);
         assertThat(result).isEmpty();
     }
-
-    @DisplayName("mapPanelMemberCompositionToRoleTypes should return DTJ code when reservedToDistrictTribunalJudge is true")
-    @Test
-    public void mapPanelMemberCompositionShouldIncludeDTJWhenSetToYes() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-
-        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition);
-        
-        assertThat(result).isNotEmpty();
-        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE));
-    }
-
 }

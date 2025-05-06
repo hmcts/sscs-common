@@ -29,7 +29,6 @@ public class PanelCompositionService {
     static final String TRIBUNAL_JUDGE = "84";
     static final String REGIONAL_JUDGE = "74";
     static final String REGIONAL_MEMBER_MEDICAL = "69";
-    static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
 
     private List<DefaultPanelComposition> defaultPanelCompositions;
 
@@ -52,7 +51,8 @@ public class PanelCompositionService {
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
-        String isFqpm = caseData.getIsFqpmRequired().getValue().toLowerCase();
+        String isFqpm =
+                nonNull(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         return defaultPanelCompositions.stream()
                 .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm)::equals)
                 .findFirst().orElse(null);
