@@ -53,6 +53,7 @@ public class AddressTest {
         Address address = Address.builder()
             .line1("123 Outside London")
             .line2("Ikea")
+            .line3("My neck of the woods")
             .town("Away")
             .country("Oslo")
             .portOfEntry("GB000130")
@@ -68,6 +69,7 @@ public class AddressTest {
         Address address = Address.builder()
             .line1("My road")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Brentwood")
             .county("Essex")
             .inMainlandUk(YES)
@@ -81,6 +83,7 @@ public class AddressTest {
         Address address = Address.builder()
             .line1("123 New Forest Drive")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Altanta")
             .portOfEntry("GB000170")
             .inMainlandUk(NO)
@@ -91,11 +94,12 @@ public class AddressTest {
 
     @Test
     public void givenIsLivingInTheUk_thenFullAddressHasPostcode() {
-        String expectedAddress = "1a Carnival Road, Ladbroke Grove, Notting Hill, W10 5QA";
+        String expectedAddress = "1a Carnival Road, Ladbroke Grove, My neck of the woods, Notting Hill, W10 5QA";
 
         Address address = Address.builder()
             .line1("1a Carnival Road")
             .line2("Ladbroke Grove")
+            .line3("My neck of the woods")
             .town("Notting Hill")
             .postcode("W10 5QA")
             .inMainlandUk(YES)
@@ -106,11 +110,12 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndNoPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, USA";
+        String expectedAddress = "123 New Forest Drive, My road, My neck of the woods, Washington, USA";
 
         Address address = Address.builder()
             .line1("123 New Forest Drive")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Washington")
             .country("USA")
             .inMainlandUk(NO)
@@ -121,11 +126,12 @@ public class AddressTest {
 
     @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndPostcode() {
-        String expectedAddress = "123 New Forest Drive, My road, Washington, 98101, USA";
+        String expectedAddress = "123 New Forest Drive, My road, My neck of the woods, Washington, 98101, USA";
 
         Address address = Address.builder()
             .line1("123 New Forest Drive")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Washington")
             .postcode("98101")
             .country("USA")
@@ -141,6 +147,7 @@ public class AddressTest {
         Address address = Address.builder()
             .line1("123 New Forest Drive")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Washington")
             .portOfEntry(port.getLocationCode())
             .country("USA")
@@ -154,6 +161,7 @@ public class AddressTest {
         Address address = Address.builder()
             .line1("123 New Forest Drive")
             .line2("My road")
+            .line3("My neck of the woods")
             .town("Washington")
             .portOfEntry("some-invalid-code")
             .country("USA")
