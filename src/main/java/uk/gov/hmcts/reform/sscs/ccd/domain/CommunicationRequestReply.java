@@ -20,6 +20,7 @@ public class CommunicationRequestReply {
     private String replyUserName;
     private String replyUserRole;
     private String replyMessage;
-    private YesNo replyHasBeenActioned;
+    private YesNo replyHasBeenActionedByTribunal;
+    private YesNo replyHasBeenActionedByFta;
 }
 
