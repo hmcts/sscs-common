@@ -509,7 +509,7 @@
 }, {
   "benefitIssueCode" : "016CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016CE",
@@ -518,7 +518,7 @@
 }, {
   "benefitIssueCode" : "016CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016CP",
@@ -527,7 +527,7 @@
 }, {
   "benefitIssueCode" : "016CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016DD",
@@ -536,7 +536,7 @@
 }, {
   "benefitIssueCode" : "016DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016EC",
@@ -545,7 +545,7 @@
 }, {
   "benefitIssueCode" : "016EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016EX",
@@ -554,7 +554,7 @@
 }, {
   "benefitIssueCode" : "016EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016GC",
@@ -563,7 +563,7 @@
 }, {
   "benefitIssueCode" : "016GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016LE",
@@ -572,7 +572,7 @@
 }, {
   "benefitIssueCode" : "016LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016OC",
@@ -581,7 +581,7 @@
 }, {
   "benefitIssueCode" : "016OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016ON",
@@ -590,7 +590,7 @@
 }, {
   "benefitIssueCode" : "016ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016OS",
@@ -599,7 +599,7 @@
 }, {
   "benefitIssueCode" : "016OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016OX",
@@ -608,7 +608,7 @@
 }, {
   "benefitIssueCode" : "016OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016PF",
@@ -617,7 +617,7 @@
 }, {
   "benefitIssueCode" : "016PF",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016RA",
@@ -626,7 +626,7 @@
 }, {
   "benefitIssueCode" : "016RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016RC",
@@ -635,7 +635,7 @@
 }, {
   "benefitIssueCode" : "016RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016RG",
@@ -644,7 +644,7 @@
 }, {
   "benefitIssueCode" : "016RG",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "016SU",
@@ -653,7 +653,7 @@
 }, {
   "benefitIssueCode" : "016SU",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022AA",
@@ -666,7 +666,7 @@
 }, {
   "benefitIssueCode" : "022CA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022CC",
@@ -675,7 +675,7 @@
 }, {
   "benefitIssueCode" : "022CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022CE",
@@ -684,7 +684,7 @@
 }, {
   "benefitIssueCode" : "022CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022CP",
@@ -693,7 +693,7 @@
 }, {
   "benefitIssueCode" : "022CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022DD",
@@ -702,7 +702,7 @@
 }, {
   "benefitIssueCode" : "022DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022EC",
@@ -711,7 +711,7 @@
 }, {
   "benefitIssueCode" : "022EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022EX",
@@ -720,7 +720,7 @@
 }, {
   "benefitIssueCode" : "022EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022GC",
@@ -729,7 +729,7 @@
 }, {
   "benefitIssueCode" : "022GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022LE",
@@ -738,7 +738,7 @@
 }, {
   "benefitIssueCode" : "022LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022OC",
@@ -747,7 +747,7 @@
 }, {
   "benefitIssueCode" : "022OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022ON",
@@ -756,7 +756,7 @@
 }, {
   "benefitIssueCode" : "022ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022OS",
@@ -765,7 +765,7 @@
 }, {
   "benefitIssueCode" : "022OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022OX",
@@ -774,7 +774,7 @@
 }, {
   "benefitIssueCode" : "022OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022PC",
@@ -783,7 +783,7 @@
 }, {
   "benefitIssueCode" : "022PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022RA",
@@ -792,7 +792,7 @@
 }, {
   "benefitIssueCode" : "022RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022RB",
@@ -801,7 +801,7 @@
 }, {
   "benefitIssueCode" : "022RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022RC",
@@ -810,7 +810,7 @@
 }, {
   "benefitIssueCode" : "022RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022SS",
@@ -819,7 +819,7 @@
 }, {
   "benefitIssueCode" : "022SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "022SX",
@@ -828,7 +828,7 @@
 }, {
   "benefitIssueCode" : "022SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023AA",
@@ -841,7 +841,7 @@
 }, {
   "benefitIssueCode" : "023CA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023CC",
@@ -850,7 +850,7 @@
 }, {
   "benefitIssueCode" : "023CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023CE",
@@ -859,7 +859,7 @@
 }, {
   "benefitIssueCode" : "023CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023CP",
@@ -868,7 +868,7 @@
 }, {
   "benefitIssueCode" : "023CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023DD",
@@ -877,7 +877,7 @@
 }, {
   "benefitIssueCode" : "023DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023EC",
@@ -886,7 +886,7 @@
 }, {
   "benefitIssueCode" : "023EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023EX",
@@ -895,7 +895,7 @@
 }, {
   "benefitIssueCode" : "023EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023GC",
@@ -904,7 +904,7 @@
 }, {
   "benefitIssueCode" : "023GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023LE",
@@ -913,7 +913,7 @@
 }, {
   "benefitIssueCode" : "023LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023OC",
@@ -922,7 +922,7 @@
 }, {
   "benefitIssueCode" : "023OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023ON",
@@ -931,7 +931,7 @@
 }, {
   "benefitIssueCode" : "023ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023OS",
@@ -940,7 +940,7 @@
 }, {
   "benefitIssueCode" : "023OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023OX",
@@ -949,7 +949,7 @@
 }, {
   "benefitIssueCode" : "023OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023PC",
@@ -958,7 +958,7 @@
 }, {
   "benefitIssueCode" : "023PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023RA",
@@ -967,7 +967,7 @@
 }, {
   "benefitIssueCode" : "023RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023RB",
@@ -976,7 +976,7 @@
 }, {
   "benefitIssueCode" : "023RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023RC",
@@ -985,7 +985,7 @@
 }, {
   "benefitIssueCode" : "023RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023SS",
@@ -994,7 +994,7 @@
 }, {
   "benefitIssueCode" : "023SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "023SX",
@@ -1003,7 +1003,7 @@
 }, {
   "benefitIssueCode" : "023SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024AA",
@@ -1016,7 +1016,7 @@
 }, {
   "benefitIssueCode" : "024CA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024CC",
@@ -1025,7 +1025,7 @@
 }, {
   "benefitIssueCode" : "024CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024CE",
@@ -1034,7 +1034,7 @@
 }, {
   "benefitIssueCode" : "024CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024CP",
@@ -1043,7 +1043,7 @@
 }, {
   "benefitIssueCode" : "024CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024DD",
@@ -1052,7 +1052,7 @@
 }, {
   "benefitIssueCode" : "024DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024EC",
@@ -1061,7 +1061,7 @@
 }, {
   "benefitIssueCode" : "024EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024EX",
@@ -1070,7 +1070,7 @@
 }, {
   "benefitIssueCode" : "024EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024GC",
@@ -1079,7 +1079,7 @@
 }, {
   "benefitIssueCode" : "024GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024LE",
@@ -1088,7 +1088,7 @@
 }, {
   "benefitIssueCode" : "024LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024OC",
@@ -1097,7 +1097,7 @@
 }, {
   "benefitIssueCode" : "024OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024ON",
@@ -1106,7 +1106,7 @@
 }, {
   "benefitIssueCode" : "024ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024OS",
@@ -1115,7 +1115,7 @@
 }, {
   "benefitIssueCode" : "024OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024OX",
@@ -1124,7 +1124,7 @@
 }, {
   "benefitIssueCode" : "024OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024PC",
@@ -1133,7 +1133,7 @@
 }, {
   "benefitIssueCode" : "024PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024RA",
@@ -1142,7 +1142,7 @@
 }, {
   "benefitIssueCode" : "024RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024RB",
@@ -1151,7 +1151,7 @@
 }, {
   "benefitIssueCode" : "024RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024RC",
@@ -1160,7 +1160,7 @@
 }, {
   "benefitIssueCode" : "024RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024SS",
@@ -1169,7 +1169,7 @@
 }, {
   "benefitIssueCode" : "024SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "024SX",
@@ -1178,7 +1178,7 @@
 }, {
   "benefitIssueCode" : "024SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025AA",
@@ -1191,7 +1191,7 @@
 }, {
   "benefitIssueCode" : "025CA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025CC",
@@ -1200,7 +1200,7 @@
 }, {
   "benefitIssueCode" : "025CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025CE",
@@ -1209,7 +1209,7 @@
 }, {
   "benefitIssueCode" : "025CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025CP",
@@ -1218,7 +1218,7 @@
 }, {
   "benefitIssueCode" : "025CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025DD",
@@ -1227,7 +1227,7 @@
 }, {
   "benefitIssueCode" : "025DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025EC",
@@ -1236,7 +1236,7 @@
 }, {
   "benefitIssueCode" : "025EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025EX",
@@ -1245,7 +1245,7 @@
 }, {
   "benefitIssueCode" : "025EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025GC",
@@ -1254,7 +1254,7 @@
 }, {
   "benefitIssueCode" : "025GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025LE",
@@ -1263,7 +1263,7 @@
 }, {
   "benefitIssueCode" : "025LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025OC",
@@ -1272,7 +1272,7 @@
 }, {
   "benefitIssueCode" : "025OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025ON",
@@ -1281,7 +1281,7 @@
 }, {
   "benefitIssueCode" : "025ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025OS",
@@ -1290,7 +1290,7 @@
 }, {
   "benefitIssueCode" : "025OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025OX",
@@ -1299,7 +1299,7 @@
 }, {
   "benefitIssueCode" : "025OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025PC",
@@ -1308,7 +1308,7 @@
 }, {
   "benefitIssueCode" : "025PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025RA",
@@ -1317,7 +1317,7 @@
 }, {
   "benefitIssueCode" : "025RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025RB",
@@ -1326,7 +1326,7 @@
 }, {
   "benefitIssueCode" : "025RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025RC",
@@ -1335,7 +1335,7 @@
 }, {
   "benefitIssueCode" : "025RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025SS",
@@ -1344,7 +1344,7 @@
 }, {
   "benefitIssueCode" : "025SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "025SX",
@@ -1353,7 +1353,7 @@
 }, {
   "benefitIssueCode" : "025SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026AA",
@@ -1366,7 +1366,7 @@
 }, {
   "benefitIssueCode" : "026CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026CE",
@@ -1375,7 +1375,7 @@
 }, {
   "benefitIssueCode" : "026CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026CP",
@@ -1384,7 +1384,7 @@
 }, {
   "benefitIssueCode" : "026CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026DD",
@@ -1393,7 +1393,7 @@
 }, {
   "benefitIssueCode" : "026DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026EC",
@@ -1402,7 +1402,7 @@
 }, {
   "benefitIssueCode" : "026EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026EX",
@@ -1411,7 +1411,7 @@
 }, {
   "benefitIssueCode" : "026EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026GC",
@@ -1420,7 +1420,7 @@
 }, {
   "benefitIssueCode" : "026GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026LE",
@@ -1429,7 +1429,7 @@
 }, {
   "benefitIssueCode" : "026LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026OC",
@@ -1438,7 +1438,7 @@
 }, {
   "benefitIssueCode" : "026OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026ON",
@@ -1447,7 +1447,7 @@
 }, {
   "benefitIssueCode" : "026ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026OS",
@@ -1456,7 +1456,7 @@
 }, {
   "benefitIssueCode" : "026OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026OX",
@@ -1465,7 +1465,7 @@
 }, {
   "benefitIssueCode" : "026OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026PC",
@@ -1474,7 +1474,7 @@
 }, {
   "benefitIssueCode" : "026PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026RA",
@@ -1483,7 +1483,7 @@
 }, {
   "benefitIssueCode" : "026RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026RB",
@@ -1492,7 +1492,7 @@
 }, {
   "benefitIssueCode" : "026RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026RC",
@@ -1501,7 +1501,7 @@
 }, {
   "benefitIssueCode" : "026RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026SS",
@@ -1510,7 +1510,7 @@
 }, {
   "benefitIssueCode" : "026SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "026SX",
@@ -1519,7 +1519,7 @@
 }, {
   "benefitIssueCode" : "026SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028AA",
@@ -1532,7 +1532,7 @@
 }, {
   "benefitIssueCode" : "028CC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028CE",
@@ -1541,7 +1541,7 @@
 }, {
   "benefitIssueCode" : "028CE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028CP",
@@ -1550,7 +1550,7 @@
 }, {
   "benefitIssueCode" : "028CP",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028DD",
@@ -1559,7 +1559,7 @@
 }, {
   "benefitIssueCode" : "028DD",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028EC",
@@ -1568,7 +1568,7 @@
 }, {
   "benefitIssueCode" : "028EC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028EX",
@@ -1577,7 +1577,7 @@
 }, {
   "benefitIssueCode" : "028EX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028GC",
@@ -1586,7 +1586,7 @@
 }, {
   "benefitIssueCode" : "028GC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028LE",
@@ -1595,7 +1595,7 @@
 }, {
   "benefitIssueCode" : "028LE",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028OC",
@@ -1604,7 +1604,7 @@
 }, {
   "benefitIssueCode" : "028OC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028ON",
@@ -1613,7 +1613,7 @@
 }, {
   "benefitIssueCode" : "028ON",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028OS",
@@ -1622,7 +1622,7 @@
 }, {
   "benefitIssueCode" : "028OS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028OX",
@@ -1631,7 +1631,7 @@
 }, {
   "benefitIssueCode" : "028OX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028PC",
@@ -1640,7 +1640,7 @@
 }, {
   "benefitIssueCode" : "028PC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028RA",
@@ -1649,7 +1649,7 @@
 }, {
   "benefitIssueCode" : "028RA",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028RB",
@@ -1658,7 +1658,7 @@
 }, {
   "benefitIssueCode" : "028RB",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028RC",
@@ -1667,7 +1667,7 @@
 }, {
   "benefitIssueCode" : "028RC",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028SS",
@@ -1676,7 +1676,7 @@
 }, {
   "benefitIssueCode" : "028SS",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "028SX",
@@ -1685,7 +1685,7 @@
 }, {
   "benefitIssueCode" : "028SX",
   "category" : "2",
-  "fqpm" : "true",
+  "fqpm" : "yes",
   "johTiers" : [ "84", "50" ]
 }, {
   "benefitIssueCode" : "030AA",
