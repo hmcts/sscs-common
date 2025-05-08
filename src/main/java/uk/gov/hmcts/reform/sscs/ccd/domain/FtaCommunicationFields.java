@@ -19,32 +19,28 @@ import lombok.NoArgsConstructor;
 public class FtaCommunicationFields {
 
     private List<CommunicationRequest> ftaCommunications;
-    private CommunicationRequestTopic commRequestTopic;
-    private String commRequestQuestion;
     private FtaRequestType ftaRequestType;
     private DynamicList ftaRequestsDl;
     private String ftaRequestNoResponseQuery;
-    private String commRequestResponseTextArea;
-    private List<String> commRequestResponseNoAction;
-
-    private DynamicList tribunalRequestsDl;
-    private String ftaRequestRespondedQuery;
-    private String ftaRequestRespondedReply;
-    private YesNo commRequestActioned;
 
     private List<CommunicationRequest> tribunalCommunications;
     private TribunalRequestType tribunalRequestType;
-
-    private String tribunalRequestRespondedQuery;
-    private String tribunalRequestRespondedReply;
-
+    private DynamicList tribunalRequestsDl;
     private String tribunalRequestNoResponseQuery;
+
+    private CommunicationRequestTopic commRequestTopic;
+    private String commRequestQuestion;
+    private String commRequestResponseTextArea;
+    private List<String> commRequestResponseNoAction;
 
     private DynamicList deleteCommRequestRadioDl;
     private CommunicationRequestDetails deleteCommRequestReadOnly;
     private String deleteCommRequestTextArea;
     private CommunicationRequestDetails deleteCommRequestReadOnlyStored;
     private String deleteCommRequestTextAreaStored;
+
+    private DynamicMixedChoiceList tribunalRequestsToReviewDl;
+    private DynamicMixedChoiceList ftaRequestsToReviewDl;
 
     private LocalDate tribunalResponseDueDate;
     private LocalDate ftaResponseDueDate;
