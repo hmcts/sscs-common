@@ -11,6 +11,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -60,18 +61,14 @@ public class PanelCompositionService {
 
     public static List<String> getRoleTypesFromPanelComposition(PanelMemberComposition panelMemberComposition) {
         List<String> roleTypes = new ArrayList<>();
-        if (nonNull(panelMemberComposition.getPanelCompositionJudge())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionJudge());
+
+        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
+        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
+        for(String member : panelMemberComposition.getPanelCompositionDisabilityAndFqMember()){
+            CollectionUtils.addIgnoreNull(roleTypes, member);
         }
-        if (nonNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical1());
-        }
-        if (nonNull(panelMemberComposition.getPanelCompositionMemberMedical2())) {
-            roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical2());
-        }
-        if (nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
-            roleTypes.addAll(panelMemberComposition.getPanelCompositionDisabilityAndFqMember());
-        }
+
         return roleTypes;
     }
 
