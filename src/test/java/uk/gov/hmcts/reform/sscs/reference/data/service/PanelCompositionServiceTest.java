@@ -10,6 +10,7 @@ import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionSe
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.TRIBUNAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.getRoleTypesFromPanelComposition;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
