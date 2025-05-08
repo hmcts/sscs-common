@@ -65,8 +65,10 @@ public class PanelCompositionService {
         CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
         CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
         CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
-        for(String member : panelMemberComposition.getPanelCompositionDisabilityAndFqMember()){
-            CollectionUtils.addIgnoreNull(roleTypes, member);
+        if(nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
+            for (String member : panelMemberComposition.getPanelCompositionDisabilityAndFqMember()) {
+                CollectionUtils.addIgnoreNull(roleTypes, member);
+            }
         }
 
         return roleTypes;
