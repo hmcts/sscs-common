@@ -1,21 +1,16 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.PanelCategory;
 import uk.gov.hmcts.reform.sscs.reference.data.service.PanelCategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PanelCategoryServiceTest {
@@ -26,9 +21,8 @@ public class PanelCategoryServiceTest {
     private SscsCaseData caseData;
 
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        ReflectionTestUtils.setField(panelCategoryService, "defaultPanelCompEnabled", true);
         caseData = SscsCaseData.builder()
                 .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build())
                 .benefitCode("001")
@@ -40,7 +34,7 @@ public class PanelCategoryServiceTest {
     @Test
     @DisplayName("Valid call to getPanelCategory should return correct johTier")
     public void getPanelCategory(){
-        PanelCategory result = panelCategoryService.getPanelCategory("001AD", null, null);
+        PanelCategory result = panelCategoryService.getPanelCategory("001AD", null, null, null);
         assertThat(result).isNotNull();
         assertThat(result.getBenefitIssueCode()).isEqualTo("001AD");
         assertThat(result.getJohTiers()).isNotEmpty();
@@ -50,14 +44,14 @@ public class PanelCategoryServiceTest {
     @Test
     @DisplayName("Invalid call to getPanelCategory should return null")
     public void getPanelCategoryWithInvalidParameters() {
-        PanelCategory result = panelCategoryService.getPanelCategory(null, null, null);
+        PanelCategory result = panelCategoryService.getPanelCategory(null, null, null, null);
         assertThat(result).isNull();
     }
 
     @Test
     @DisplayName("Call to getPanelCategory with FQPM should return correct johTier")
     public void getPanelCategoryWithFQPM() {
-        PanelCategory result = panelCategoryService.getPanelCategory("016CC", null, "true");
+        PanelCategory result = panelCategoryService.getPanelCategory("016CC", null, "true", null);
         assertThat(result).isNotNull();
         assertThat(result.getJohTiers().stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
     }
@@ -65,12 +59,29 @@ public class PanelCategoryServiceTest {
     @Test
     @DisplayName("Call to getPanelCategory with specialism should return correct johTier")
     public void getPanelCategoryWithSpecialism() {
-        PanelCategory oneSpecialismResult = panelCategoryService.getPanelCategory("067CB", "1", null);
-        PanelCategory twoSpecialismResult = panelCategoryService.getPanelCategory("067CB", "2", null);
+        PanelCategory oneSpecialismResult = panelCategoryService.getPanelCategory("067CB", "1", null, null);
+        PanelCategory twoSpecialismResult = panelCategoryService.getPanelCategory("067CB", "2", null, null);
         assertThat(oneSpecialismResult).isNotNull();
         assertThat(twoSpecialismResult).isNotNull();
         assertThat(oneSpecialismResult.getJohTiers().stream().filter(TRIBUNAL_MEMBER_MEDICAL::equals).count()).isEqualTo(1);
         assertThat(twoSpecialismResult.getJohTiers().stream().filter(TRIBUNAL_MEMBER_MEDICAL::equals).count()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Call to getPanelCategory with medical member should return correct johTier")
+    public void getPanelCategoryWithMedicalMember() {
+        PanelCategory result = panelCategoryService.getPanelCategory("093CE", null, null, "true");
+        assertThat(result).isNotNull();
+        assertThat(result.getJohTiers().stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL::equals)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Call to getPanelCategory with FQPM and medical member should return correct johTier")
+    public void getPanelCategoryWithFqpmAndMedicalMember() {
+        PanelCategory result = panelCategoryService.getPanelCategory("093CE", null, "true", "true");
+        assertThat(result).isNotNull();
+        assertThat(result.getJohTiers().stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
+        assertThat(result.getJohTiers().stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL::equals)).isTrue();
     }
 
     @DisplayName("getRoleTypes returns an valid list")
@@ -86,14 +97,6 @@ public class PanelCategoryServiceTest {
     public void testGetRolesWithInvalidBenefitIssueCode() {
         caseData.setBenefitCode(null);
         caseData.setIssueCode(null);
-        List<String> result = panelCategoryService.getRoleTypes(caseData);
-        assertThat(result).isEmpty();
-    }
-
-    @DisplayName("getRoleTypes should return an empty list when feature flag is turned off and case is not IIDB or CS")
-    @Test
-    public void testGetRolesWithFeatureFlagOff() {
-        ReflectionTestUtils.setField(panelCategoryService, "defaultPanelCompEnabled", false);
         List<String> result = panelCategoryService.getRoleTypes(caseData);
         assertThat(result).isEmpty();
     }
@@ -118,6 +121,17 @@ public class PanelCategoryServiceTest {
         List<String> result = panelCategoryService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result.stream().anyMatch(TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED::equals)).isTrue();
+    }
+
+    @DisplayName("getRoleTypes should return medical member when medicalMember = yes on casedata")
+    @Test
+    public void testGetRolesWithMedicalMember() {
+        caseData.setIsMedicalMemberRequired(YesNo.YES);
+        caseData.setBenefitCode("093");
+        caseData.setIssueCode("CE");
+        List<String> result = panelCategoryService.getRoleTypes(caseData);
+        assertThat(result).isNotEmpty();
+        assertThat(result.stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL::equals)).isTrue();
     }
 
 }
