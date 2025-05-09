@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @NoArgsConstructor
-public class SscsCaseDataOverflow {
+public class ExtendedSscsCaseData {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo selectNextHmcHearingType;
 }

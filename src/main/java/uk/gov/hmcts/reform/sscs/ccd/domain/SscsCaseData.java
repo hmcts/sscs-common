@@ -410,23 +410,23 @@ public class SscsCaseData implements CaseData {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
-    
+
     @JsonUnwrapped
     private FtaCommunicationFields communicationFields;
 
     @JsonUnwrapped
-    private SscsCaseDataOverflow sscsCaseDataOverflow;
+    private ExtendedSscsCaseData extendedSscsCaseData;
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
         return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
     }
 
-    public SscsCaseDataOverflow getSscsCaseDataOverflow() {
-        if (sscsCaseDataOverflow == null) {
-            sscsCaseDataOverflow = new SscsCaseDataOverflow();
+    public ExtendedSscsCaseData getExtendedSscsCaseData() {
+        if (extendedSscsCaseData == null) {
+            extendedSscsCaseData = new ExtendedSscsCaseData();
         }
-        return sscsCaseDataOverflow;
+        return extendedSscsCaseData;
     }
 
     /**
