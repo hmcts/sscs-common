@@ -105,6 +105,34 @@ public class AddressTest {
     }
 
     @Test
+    public void givenIsLivingInNI_thenFullAddressHasPostcode() {
+        String expectedAddress = "Stranmillis Road, Botanic Gardens, Belfast, BT9 5AB";
+
+        Address address = Address.builder()
+                .line1("Stranmillis Road")
+                .line2("Botanic Gardens")
+                .town("Belfast")
+                .postcode("BT9 5AB")
+                .inMainlandUk(YES)
+                .build();
+
+        assertEquals(expectedAddress, address.getFullAddress());
+    }
+
+    @Test
+    public void givenIsLivingInNI_thenIsLivingInTheUkTrue() {
+        Address address = Address.builder()
+                .line1("Stranmillis Road")
+                .line2("Botanic Gardens")
+                .town("Belfast")
+                .postcode("BT9 5AB")
+                .inMainlandUk(YES)
+                .build();
+
+        assertTrue(isYes(address.getInMainlandUk()));
+    }
+
+    @Test
     public void givenIsNotLivingInTheUk_thenFullAddressHasCountryAndNoPostcode() {
         String expectedAddress = "123 New Forest Drive, My road, Washington, USA";
 

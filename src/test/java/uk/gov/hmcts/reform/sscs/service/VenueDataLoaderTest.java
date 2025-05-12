@@ -26,10 +26,27 @@ public class VenueDataLoaderTest {
             "517400", "449358", "563156", "45900", "744412", "572158", "288691", "562808", "720624", "427519",
             "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
+    private void setVenueConfig(Boolean value) throws Exception {
+        java.lang.reflect.Field venueDataLoaderConfigField = VenueDataLoader.class.getDeclaredField("venueConfig");
+        venueDataLoaderConfigField.setAccessible(true);
+        venueDataLoaderConfigField.set(venueDataLoader, value);
+    }
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
         venueDataLoader = new VenueDataLoader();
+        setVenueConfig(true);
         venueDataLoader.init();
+    }
+
+    @Test
+    void shouldReturnNewFileWhenConfigIsTrue() {
+        assertEquals("reference-data/sscs-venues-v2.csv", venueDataLoader.getPathForScssVenues());
+    }
+
+    @Test
+    void shouldReturnOldFileWhenConfigIsFalse() throws Exception {
+        setVenueConfig(false);
+        assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
     }
 
     @ParameterizedTest
@@ -165,5 +182,26 @@ public class VenueDataLoaderTest {
     public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
         List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
+    }
+
+    @DisplayName("VenueDataLoader provides Belfast court details when using the new file")
+    @Test
+    public void testGetVenueReturnsBelfastCourtWhenUsingNewFile() {
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("366559");
+
+        assertNotNull(result);
+        assertEquals("1270", result.getVenueId());
+        assertEquals("SC400", result.getThreeDigitReference());
+    }
+
+    @DisplayName("VenueDataLoader doesn't provide Belfast court details when using the old file")
+    @Test
+    public void testGetVenueReturnsNullForBelfastIDWhenUsingOldFile() throws Exception {
+        venueDataLoader = new VenueDataLoader();
+        setVenueConfig(false);
+        venueDataLoader.init();
+
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
+        assertNull(result, "Belfast court details should not be present when using the old file");
     }
 }
