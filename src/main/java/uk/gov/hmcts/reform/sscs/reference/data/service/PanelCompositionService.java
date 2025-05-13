@@ -8,13 +8,17 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Getter
@@ -26,9 +30,10 @@ public class PanelCompositionService {
     private static final String JSON_DATA_LOCATION = "reference-data/panel-category-map.json";
     static final String TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED = "50";
     static final String TRIBUNAL_MEMBER_DISABILITY = "44";
-    static final String TRIBUNAL_MEMBER_MEDICAL = "58";
     static final String TRIBUNAL_JUDGE = "84";
     static final String REGIONAL_JUDGE = "74";
+    static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
+    static final String TRIBUNAL_MEMBER_MEDICAL = "58";
     static final String REGIONAL_MEMBER_MEDICAL = "69";
 
     private List<DefaultPanelComposition> defaultPanelCompositions;
@@ -39,7 +44,7 @@ public class PanelCompositionService {
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
         if (nonNull(caseData.getPanelMemberComposition())) {
-            return getRoleTypesFromPanelComposition(caseData.getPanelMemberComposition());
+            return getRoleTypesFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
             return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())
@@ -59,10 +64,16 @@ public class PanelCompositionService {
                 .findFirst().orElse(null);
     }
 
-    public static List<String> getRoleTypesFromPanelComposition(PanelMemberComposition panelMemberComposition) {
+    public static List<String> getRoleTypesFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
         List<String> roleTypes = new ArrayList<>();
+        ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
 
-        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
+        if (reserveTo != null && reserveTo.getReservedDistrictTribunalJudge().equals(YesNo.YES)) {
+            roleTypes.add(DISTRICT_TRIBUNAL_JUDGE);
+        } else {
+            CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
+        }
+
         CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
         CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
         if(nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {

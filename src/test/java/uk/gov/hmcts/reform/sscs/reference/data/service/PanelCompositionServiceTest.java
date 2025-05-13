@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
+import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.REGIONAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED;
@@ -15,8 +16,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 public class PanelCompositionServiceTest {
@@ -158,7 +161,7 @@ public class PanelCompositionServiceTest {
                 .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL)
                 .panelCompositionMemberMedical2(REGIONAL_MEMBER_MEDICAL)
                 .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED)).build();
-        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition);
+        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition, caseData);
         assertThat(result).isNotEmpty();
         assertThat(result).isEqualTo(List.of(TRIBUNAL_JUDGE, TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEMBER_MEDICAL, TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED));
     }
@@ -167,7 +170,16 @@ public class PanelCompositionServiceTest {
     @Test
     public void getRoleTypesFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition);
+        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition,caseData);
         assertThat(result).isEmpty();
+    }
+
+    @DisplayName("mapPanelMemberCompositionToRoleTypes should return a district tribunal judge when they are reserved")
+    @Test
+    public void getRoleTypesFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition,caseData);
+        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE));
     }
 }
