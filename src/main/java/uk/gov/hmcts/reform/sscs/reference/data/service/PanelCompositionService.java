@@ -3,12 +3,13 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.springframework.util.CollectionUtils.isEmpty;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.getPanelMemberType;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,13 +29,6 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 public class PanelCompositionService {
 
     private static final String JSON_DATA_LOCATION = "reference-data/panel-category-map.json";
-    static final String TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED = "50";
-    static final String TRIBUNAL_MEMBER_DISABILITY = "44";
-    static final String TRIBUNAL_JUDGE = "84";
-    static final String REGIONAL_JUDGE = "74";
-    static final String DISTRICT_TRIBUNAL_JUDGE = "90000";
-    static final String TRIBUNAL_MEMBER_MEDICAL = "58";
-    static final String REGIONAL_MEMBER_MEDICAL = "69";
 
     private List<DefaultPanelComposition> defaultPanelCompositions;
 
@@ -69,7 +63,7 @@ public class PanelCompositionService {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
 
         if (reserveTo != null && reserveTo.getReservedDistrictTribunalJudge().equals(YesNo.YES)) {
-            roleTypes.add(DISTRICT_TRIBUNAL_JUDGE);
+            roleTypes.add(DISTRICT_TRIBUNAL_JUDGE.toRef());
         } else {
             CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
         }
@@ -89,13 +83,13 @@ public class PanelCompositionService {
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
         panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
-            switch (johTier) {
+            switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
                 case TRIBUNAL_MEMBER_DISABILITY:
                     panelMemberComposition.getPanelCompositionDisabilityAndFqMember().add(johTier);
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL:
-                case REGIONAL_MEMBER_MEDICAL:
+                case REGIONAL_MEDICAL_MEMBER:
                     if (isNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
                         panelMemberComposition.setPanelCompositionMemberMedical1(johTier);
                     } else {
@@ -103,7 +97,7 @@ public class PanelCompositionService {
                     }
                     break;
                 case TRIBUNAL_JUDGE:
-                case REGIONAL_JUDGE:
+                case REGIONAL_TRIBUNAL_JUDGE:
                     panelMemberComposition.setPanelCompositionJudge(johTier);
                     break;
             }
