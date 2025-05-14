@@ -25,21 +25,22 @@ public class PanelCategoryService {
         panelCategories = getReferenceData(JSON_DATA_LOCATION, new TypeReference<>() {});
     }
 
-    public PanelCategory getPanelCategory(String benefitIssueCode, String specialism, String fqpm) {
-        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialism, fqpm);
+    public PanelCategory getPanelCategory(String benefitIssueCode, String specialism, String fqpm, String medicalMember) {
+        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialism, fqpm, medicalMember);
         return panelCategories.stream()
                 .filter(panelCategorySelection::equals)
                 .findFirst().orElse(null);
     }
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
-            String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
-            String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
-                    ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
-                    ? "2" : "1" : null;
-            String isFqpm =  isYes(caseData.getIsFqpmRequired()) ? "true" : null;
-            PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm);
-            log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
-            return panelComp != null ? panelComp.getJohTiers() : Collections.emptyList();
+        String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
+        String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
+        String isFqpm =  isYes(caseData.getIsFqpmRequired()) ? "true" : null;
+        String isMedicalMember =  isYes(caseData.getIsMedicalMemberRequired()) ? "true" : null;
+        PanelCategory panelComp = getPanelCategory(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
+        log.info("Panel Category Map for Case {}: {}", caseData.getCcdCaseId(), panelComp);
+        return panelComp != null ? panelComp.getJohTiers() : Collections.emptyList();
     }
 }
