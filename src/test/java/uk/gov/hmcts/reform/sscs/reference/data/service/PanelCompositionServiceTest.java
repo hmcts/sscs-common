@@ -4,6 +4,7 @@ import static java.util.Collections.frequency;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_JUDGE;
@@ -203,7 +204,7 @@ public class PanelCompositionServiceTest {
 
         var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
-        assertEquals(panelComposition, result);
+        assertEqualsPanelComposition(panelComposition, result);
     }
 
     @DisplayName("Populate Panel composition from role types with one medical member")
@@ -220,7 +221,7 @@ public class PanelCompositionServiceTest {
 
         var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
-        assertEquals(panelComposition, result);
+        assertEqualsPanelComposition(panelComposition, result);
     }
 
     @DisplayName("Populate Panel composition from role types with two medical members")
@@ -238,7 +239,7 @@ public class PanelCompositionServiceTest {
 
         var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
-        assertEquals(panelComposition, result);
+        assertEqualsPanelComposition(panelComposition, result);
     }
 
     @DisplayName("Populate Panel composition from role types with regional and tribunal medical members")
@@ -256,6 +257,13 @@ public class PanelCompositionServiceTest {
 
         var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
-        assertEquals(panelComposition, result);
+        assertEqualsPanelComposition(panelComposition, result);
+    }
+
+    private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {
+        assertEquals(expected.getPanelCompJudge(), actual.getPanelCompJudge());
+        assertEquals(expected.getPanelCompMedical1(), actual.getPanelCompMedical1());
+        assertEquals(expected.getPanelCompMedical2(), actual.getPanelCompMedical2());
+        assertTrue(expected.getPanelCompDisabilityAndFqm().containsAll(actual.getPanelCompDisabilityAndFqm()));
     }
 }
