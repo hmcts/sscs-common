@@ -17,13 +17,13 @@ import lombok.NoArgsConstructor;
 public class PanelMemberComposition {
 
 
-    private String panelCompositionJudge;
+    private String panelCompJudge;
 
-    private String panelCompositionMemberMedical1;
+    private String panelCompMedical1;
 
-    private String panelCompositionMemberMedical2;
+    private String panelCompMedical2;
 
-    private List<String> panelCompositionDisabilityAndFqMember;
+    private List<String> panelCompDisabilityAndFqm;
 
     @Override
     public boolean equals(Object o) {
@@ -34,10 +34,10 @@ public class PanelMemberComposition {
             return false;
         }
         PanelMemberComposition that = (PanelMemberComposition) o;
-        return Objects.equals(panelCompositionJudge, that.panelCompositionJudge)
-                && Objects.equals(panelCompositionMemberMedical1, that.panelCompositionMemberMedical1)
-                && Objects.equals(panelCompositionMemberMedical2, that.panelCompositionMemberMedical2)
-                && new HashSet<>(panelCompositionDisabilityAndFqMember)
-                .containsAll(that.panelCompositionDisabilityAndFqMember);
+        return Objects.equals(panelCompJudge, that.panelCompJudge)
+                && Objects.equals(panelCompMedical1, that.panelCompMedical1)
+                && Objects.equals(panelCompMedical2, that.panelCompMedical2)
+                && new HashSet<>(panelCompDisabilityAndFqm)
+                .containsAll(that.panelCompDisabilityAndFqm);
     }
 }

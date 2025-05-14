@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
+import static java.util.Collections.frequency;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,7 +12,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
-import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.getRoleTypesFromPanelComposition;
+import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.getJohTiersFromPanelComposition;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -86,8 +87,7 @@ public class PanelCompositionServiceTest {
         assertNotNull(oneSpecialismResult);
         assertNotNull(twoSpecialismResult);
         assertThat(oneSpecialismResult.getJohTiers()).containsOnlyOnce(TRIBUNAL_MEMBER_MEDICAL.toRef());
-        assertEquals(2,
-                twoSpecialismResult.getJohTiers().stream().filter(TRIBUNAL_MEMBER_MEDICAL.toRef()::equals).count());
+        assertEquals(2, frequency(twoSpecialismResult.getJohTiers(), TRIBUNAL_MEMBER_MEDICAL.toRef()));
     }
 
     @DisplayName("getRoleTypes returns an valid list")
@@ -135,9 +135,9 @@ public class PanelCompositionServiceTest {
     @Test
     public void testGetRolesWithSavePanelComposition() {
         var updatedPanelMemberComposition =
-                panelCompositionService.getPanelCompositionFromRoleTypes(List.of(TRIBUNAL_JUDGE.toRef()));
+                panelCompositionService.createPanelCompositionFromJohTiers(List.of(TRIBUNAL_JUDGE.toRef()));
 
-        assertEquals(TRIBUNAL_JUDGE.toRef(), updatedPanelMemberComposition.getPanelCompositionJudge());
+        assertEquals(TRIBUNAL_JUDGE.toRef(), updatedPanelMemberComposition.getPanelCompJudge());
     }
 
     @DisplayName("getRoleTypes should not save to case data when savePanelComposition is false")
@@ -152,7 +152,7 @@ public class PanelCompositionServiceTest {
     @Test
     public void testGetRolesWithPanelCompositionInCaseData() {
         caseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
+                .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result).isEqualTo(List.of(REGIONAL_MEDICAL_MEMBER.toRef()));
@@ -160,13 +160,13 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("mapPanelMemberCompositionToRoleTypes should extract the JOHTiers within panelComposition object")
     @Test
-    public void getRoleTypesFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
+    public void getJohTiersFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
-                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
-                .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
-        List<String> roleTypes = getRoleTypesFromPanelComposition(panelMemberComposition, caseData);
+                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompDisabilityAndFqm(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
+        List<String> roleTypes = getJohTiersFromPanelComposition(panelMemberComposition, caseData);
         assertThat(roleTypes).isNotEmpty();
         assertEquals(roleTypes.stream().map(PanelMemberType::getPanelMemberType).toList(),
                 List.of(TRIBUNAL_JUDGE, TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEDICAL_MEMBER,
@@ -175,34 +175,86 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("mapPanelMemberCompositionToRoleTypes should return an empty list when there is nothing to map")
     @Test
-    public void getRoleTypesFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
+    public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition,caseData);
+        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
         assertThat(result).isEmpty();
     }
 
     @DisplayName("mapPanelMemberCompositionToRoleTypes should return a district tribunal judge when they are reserved")
     @Test
-    public void getRoleTypesFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
+    public void getJohTiersFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
-        List<String> result = getRoleTypesFromPanelComposition(panelMemberComposition,caseData);
+        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
         assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
     }
 
-    @DisplayName("Populate Panel composition from role types")
+    @DisplayName("Populate Panel composition from role types with No medical member")
     @Test
-    public void getPanelCompositionFromRoleTypes() {
-        var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
-                TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
+    public void createPanelCompositionFromJohTiersNoMedicalMember() {
+        var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
+                TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
-                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompositionDisabilityAndFqMember(
+                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompDisabilityAndFqm(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
-        var result = panelCompositionService.getPanelCompositionFromRoleTypes(roleTypes);
+        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+
+        assertEquals(panelComposition, result);
+    }
+
+    @DisplayName("Populate Panel composition from role types with one medical member")
+    @Test
+    public void createPanelCompositionFromJohTiersWithOneMedicalMember() {
+        var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
+                TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
+        var panelComposition = PanelMemberComposition.builder()
+                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqm(
+                        List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
+                ).build();
+
+        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+
+        assertEquals(panelComposition, result);
+    }
+
+    @DisplayName("Populate Panel composition from role types with two medical members")
+    @Test
+    public void createPanelCompositionFromJohTiersWithTwoMedicalMembers() {
+        var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
+                TRIBUNAL_MEMBER_MEDICAL.toRef(),TRIBUNAL_MEMBER_MEDICAL.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
+        var panelComposition = PanelMemberComposition.builder()
+                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqm(
+                        List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
+                ).build();
+
+        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+
+        assertEquals(panelComposition, result);
+    }
+
+    @DisplayName("Populate Panel composition from role types with regional and tribunal medical members")
+    @Test
+    public void createPanelCompositionFromJohTiersWithRegionalAndTribunalMedicalMembers() {
+        var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
+                TRIBUNAL_MEMBER_MEDICAL.toRef(),REGIONAL_MEDICAL_MEMBER.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
+        var panelComposition = PanelMemberComposition.builder()
+                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqm(
+                        List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
+                ).build();
+
+        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
         assertEquals(panelComposition, result);
     }
