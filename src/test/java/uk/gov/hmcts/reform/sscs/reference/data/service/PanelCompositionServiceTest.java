@@ -159,7 +159,7 @@ public class PanelCompositionServiceTest {
         assertThat(result).isEqualTo(List.of(REGIONAL_MEDICAL_MEMBER.toRef()));
     }
 
-    @DisplayName("mapPanelMemberCompositionToRoleTypes should extract the JOHTiers within panelComposition object")
+    @DisplayName("createPanelCompositionFromJohTiers should extract the JOHTiers within panelComposition object")
     @Test
     public void getJohTiersFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
@@ -174,7 +174,7 @@ public class PanelCompositionServiceTest {
                         TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED));
     }
 
-    @DisplayName("mapPanelMemberCompositionToRoleTypes should return an empty list when there is nothing to map")
+    @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
@@ -182,13 +182,29 @@ public class PanelCompositionServiceTest {
         assertThat(result).isEmpty();
     }
 
-    @DisplayName("mapPanelMemberCompositionToRoleTypes should return a district tribunal judge when they are reserved")
+    @DisplayName("createPanelCompositionFromJohTiers should return a district tribunal judge when they are reserved")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+        PanelMemberComposition panelMemberComposition =
+                PanelMemberComposition.builder().panelCompDisabilityAndFqm(List.of()).build();
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
+                .reservedDistrictTribunalJudge(YES).build());
         List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
         assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
+    }
+
+    @DisplayName("createPanelCompositionFromJohTiers should return fqpm and disability expert when present")
+    @Test
+    public void getJohTiersFromPanelCompositionShouldReturnFqpmAndDisabilityList() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompDisabilityAndFqm(
+                        List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
+                ).build();
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
+                .reservedDistrictTribunalJudge(YES).build());
+        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
+        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef(),
+                TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()));
     }
 
     @DisplayName("Populate Panel composition from role types with No medical member")

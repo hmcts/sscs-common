@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Collections.frequency;
 import static java.util.Objects.nonNull;
+import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
 import static org.springframework.util.CollectionUtils.isEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
@@ -16,7 +17,6 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
@@ -63,21 +63,17 @@ public class PanelCompositionService {
     public static List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
         List<String> roleTypes = new ArrayList<>();
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
-
         if (reserveTo != null && YesNo.YES.equals(reserveTo.getReservedDistrictTribunalJudge())) {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE.toRef());
         } else {
-            CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompJudge());
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompJudge());
         }
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical1());
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical2());
 
-        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical1());
-        CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical2());
         if(nonNull(panelMemberComposition.getPanelCompDisabilityAndFqm())) {
-            for (String member : panelMemberComposition.getPanelCompDisabilityAndFqm()) {
-                CollectionUtils.addIgnoreNull(roleTypes, member);
-            }
+            roleTypes.addAll(panelMemberComposition.getPanelCompDisabilityAndFqm());
         }
-
         return roleTypes;
     }
 
