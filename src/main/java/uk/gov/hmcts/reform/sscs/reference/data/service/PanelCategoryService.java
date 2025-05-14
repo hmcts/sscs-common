@@ -32,6 +32,18 @@ public class PanelCategoryService {
                 .findFirst().orElse(null);
     }
 
+    public PanelCategory getPanelCategoryFromCaseData(SscsCaseData caseData) {
+        String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
+        String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
+        String isFqpm =  isYes(caseData.getIsFqpmRequired()) ? "true" : null;
+        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialismCount, isFqpm);
+        return panelCategories.stream()
+                .filter(panelCategorySelection::equals)
+                .findFirst().orElse(null);
+    }
+
     public List<String> getRoleTypes(SscsCaseData caseData) {
             String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
             String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
