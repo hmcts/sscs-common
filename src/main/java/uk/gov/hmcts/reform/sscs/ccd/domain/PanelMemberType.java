@@ -14,7 +14,7 @@ public enum PanelMemberType {
     REGIONAL_MEDICAL_MEMBER("69", "Regional Medical Member"),
 
     TRIBUNAL_PRESIDENT("65","President of Tribunal"),
-    DISTRICT_TRIBUNAL_JUDGE("9000","District Tribunal Judge"),
+    DISTRICT_TRIBUNAL_JUDGE("90000","District Tribunal Judge"),
     REGIONAL_TRIBUNAL_JUDGE("74","Regional Tribunal Judge"),
     TRIBUNAL_JUDGE("84","Tribunal Judge");
 
