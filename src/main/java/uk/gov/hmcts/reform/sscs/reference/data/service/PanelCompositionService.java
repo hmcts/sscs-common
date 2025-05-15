@@ -45,7 +45,6 @@ public class PanelCompositionService {
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
             log.info("default panel compostion is null: {}", nonNull(defaultPanelComposition));
-            log.info("defaultPanelComposition joh tiers: {}", defaultPanelComposition.getJohTiers());
             return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
