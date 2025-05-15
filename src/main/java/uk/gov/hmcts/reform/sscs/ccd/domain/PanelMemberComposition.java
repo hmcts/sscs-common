@@ -16,5 +16,5 @@ public class PanelMemberComposition {
     private String panelCompositionJudge;
     private String panelCompositionMemberMedical1;
     private String panelCompositionMemberMedical2;
-    private List<String> panelCompDisabilityAndFqMember;
+    private List<String> panelCompositionDisabilityAndFqMember;
 }
