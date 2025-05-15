@@ -147,13 +147,13 @@ public class PanelMemberCompositionServiceTest {
     public void testGetRolesWithoutSavePanelComposition() {
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
-        assertThat(caseData.getPanelComposition()).isNull();
+        assertThat(caseData.getPanelMemberComposition()).isNull();
     }
 
     @DisplayName("getRoleTypes should use panelMemberComposition when it exists in case data")
     @Test
     public void testGetRolesWithPanelCompositionInCaseData() {
-        caseData.setPanelComposition(PanelMemberComposition.builder()
+        caseData.setPanelMemberComposition(PanelMemberComposition.builder()
                 .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
