@@ -71,20 +71,20 @@ public class PanelCompositionService {
         addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
         addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
 
-        if(nonNull(panelMemberComposition.getPanelCompDisabilityAndFqMember())) {
-            roleTypes.addAll(panelMemberComposition.getPanelCompDisabilityAndFqMember());
+        if(nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
+            roleTypes.addAll(panelMemberComposition.getPanelCompositionDisabilityAndFqMember());
         }
         return roleTypes;
     }
 
     public PanelMemberComposition createPanelCompositionFromJohTiers(List<String> johTiers) {
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
-        panelMemberComposition.setPanelCompDisabilityAndFqMember(new ArrayList<>());
+        panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
             switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
                 case TRIBUNAL_MEMBER_DISABILITY:
-                    panelMemberComposition.getPanelCompDisabilityAndFqMember().add(johTier);
+                    panelMemberComposition.getPanelCompositionDisabilityAndFqMember().add(johTier);
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL:
                     if((frequency(johTiers, TRIBUNAL_MEMBER_MEDICAL.toRef()) > 1
