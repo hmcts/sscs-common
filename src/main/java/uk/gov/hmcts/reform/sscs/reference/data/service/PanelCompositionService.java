@@ -39,8 +39,8 @@ public class PanelCompositionService {
     }
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
-        if (nonNull(caseData.getPanelMemberComposition())) {
-            return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
+        if (nonNull(caseData.getPanelComposition())) {
+            return getJohTiersFromPanelComposition(caseData.getPanelComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
             return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())

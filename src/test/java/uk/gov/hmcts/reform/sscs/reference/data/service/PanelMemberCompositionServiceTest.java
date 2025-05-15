@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Collections.frequency;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,7 +27,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
-public class PanelCompositionServiceTest {
+public class PanelMemberCompositionServiceTest {
 
     private final PanelCompositionService panelCompositionService = new PanelCompositionService();
     private SscsCaseData caseData;
@@ -146,13 +147,13 @@ public class PanelCompositionServiceTest {
     public void testGetRolesWithoutSavePanelComposition() {
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
-        assertThat(caseData.getPanelMemberComposition()).isNull();
+        assertThat(caseData.getPanelComposition()).isNull();
     }
 
     @DisplayName("getRoleTypes should use panelMemberComposition when it exists in case data")
     @Test
     public void testGetRolesWithPanelCompositionInCaseData() {
-        caseData.setPanelMemberComposition(PanelMemberComposition.builder()
+        caseData.setPanelComposition(PanelMemberComposition.builder()
                 .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
@@ -191,6 +192,16 @@ public class PanelCompositionServiceTest {
                 .reservedDistrictTribunalJudge(YES).build());
         List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
         assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
+    }
+
+    @DisplayName("should not throw exception if reservedDistrictTribunalJudge is null")
+    @Test
+    public void getJohTiersFromPanelCompositionShouldNotThrowExceptionIfReservedDistrictTribunalJudgeIsNull() {
+        PanelMemberComposition panelMemberComposition =
+                PanelMemberComposition.builder().panelCompDisabilityAndFqm(List.of()).build();
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().build());
+
+        assertDoesNotThrow(() -> getJohTiersFromPanelComposition(panelMemberComposition,caseData));
     }
 
     @DisplayName("createPanelCompositionFromJohTiers should return fqpm and disability expert when present")
