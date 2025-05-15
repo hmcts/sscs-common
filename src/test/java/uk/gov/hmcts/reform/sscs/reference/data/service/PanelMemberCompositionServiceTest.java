@@ -183,6 +183,16 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).isEmpty();
     }
 
+    @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
+    @Test
+    public void getRoleTypeShouldNotReturnEmptyListWhenPanelCompositionFieldsAreEmpty() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(List.of("84"));
+    }
+
     @DisplayName("createPanelCompositionFromJohTiers should return a district tribunal judge when they are reserved")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
