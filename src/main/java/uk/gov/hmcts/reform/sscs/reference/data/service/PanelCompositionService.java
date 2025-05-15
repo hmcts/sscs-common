@@ -66,42 +66,42 @@ public class PanelCompositionService {
         if (reserveTo != null && YesNo.YES.equals(reserveTo.getReservedDistrictTribunalJudge())) {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE.toRef());
         } else {
-            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompJudge());
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
         }
-        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical1());
-        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompMedical2());
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
 
-        if(nonNull(panelMemberComposition.getPanelCompDisabilityAndFqm())) {
-            roleTypes.addAll(panelMemberComposition.getPanelCompDisabilityAndFqm());
+        if(nonNull(panelMemberComposition.getPanelCompDisabilityAndFqMember())) {
+            roleTypes.addAll(panelMemberComposition.getPanelCompDisabilityAndFqMember());
         }
         return roleTypes;
     }
 
     public PanelMemberComposition createPanelCompositionFromJohTiers(List<String> johTiers) {
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
-        panelMemberComposition.setPanelCompDisabilityAndFqm(new ArrayList<>());
+        panelMemberComposition.setPanelCompDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
             switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
                 case TRIBUNAL_MEMBER_DISABILITY:
-                    panelMemberComposition.getPanelCompDisabilityAndFqm().add(johTier);
+                    panelMemberComposition.getPanelCompDisabilityAndFqMember().add(johTier);
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL:
                     if((frequency(johTiers, TRIBUNAL_MEMBER_MEDICAL.toRef()) > 1
-                            && nonNull(panelMemberComposition.getPanelCompMedical1()))
+                            && nonNull(panelMemberComposition.getPanelCompositionMemberMedical1()))
                             || johTiers.contains(REGIONAL_MEDICAL_MEMBER.toRef())) {
-                        panelMemberComposition.setPanelCompMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
+                        panelMemberComposition.setPanelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
                     } else {
-                        panelMemberComposition.setPanelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
+                        panelMemberComposition.setPanelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
                     }
                     break;
                 case REGIONAL_MEDICAL_MEMBER:
-                    panelMemberComposition.setPanelCompMedical1(johTier);
+                    panelMemberComposition.setPanelCompositionMemberMedical1(johTier);
                     break;
                 case TRIBUNAL_JUDGE:
                 case REGIONAL_TRIBUNAL_JUDGE:
                 case DISTRICT_TRIBUNAL_JUDGE:
-                    panelMemberComposition.setPanelCompJudge(johTier);
+                    panelMemberComposition.setPanelCompositionJudge(johTier);
                     break;
             }
         }

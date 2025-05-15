@@ -139,7 +139,7 @@ public class PanelMemberCompositionServiceTest {
         var updatedPanelMemberComposition =
                 panelCompositionService.createPanelCompositionFromJohTiers(List.of(TRIBUNAL_JUDGE.toRef()));
 
-        assertEquals(TRIBUNAL_JUDGE.toRef(), updatedPanelMemberComposition.getPanelCompJudge());
+        assertEquals(TRIBUNAL_JUDGE.toRef(), updatedPanelMemberComposition.getPanelCompositionJudge());
     }
 
     @DisplayName("getRoleTypes should not save to case data when savePanelComposition is false")
@@ -154,7 +154,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void testGetRolesWithPanelCompositionInCaseData() {
         caseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
+                .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
         assertThat(result).isEqualTo(List.of(REGIONAL_MEDICAL_MEMBER.toRef()));
@@ -164,10 +164,10 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
-                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
-                .panelCompDisabilityAndFqm(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
+                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
         List<String> roleTypes = getJohTiersFromPanelComposition(panelMemberComposition, caseData);
         assertThat(roleTypes).isNotEmpty();
         assertEquals(roleTypes.stream().map(PanelMemberType::getPanelMemberType).toList(),
@@ -187,7 +187,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
         PanelMemberComposition panelMemberComposition =
-                PanelMemberComposition.builder().panelCompDisabilityAndFqm(List.of()).build();
+                PanelMemberComposition.builder().panelCompDisabilityAndFqMember(List.of()).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
                 .reservedDistrictTribunalJudge(YES).build());
         List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
@@ -198,7 +198,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldNotThrowExceptionIfReservedDistrictTribunalJudgeIsNull() {
         PanelMemberComposition panelMemberComposition =
-                PanelMemberComposition.builder().panelCompDisabilityAndFqm(List.of()).build();
+                PanelMemberComposition.builder().panelCompDisabilityAndFqMember(List.of()).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().build());
 
         assertDoesNotThrow(() -> getJohTiersFromPanelComposition(panelMemberComposition,caseData));
@@ -208,7 +208,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnFqpmAndDisabilityList() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
-                .panelCompDisabilityAndFqm(
+                .panelCompDisabilityAndFqMember(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
@@ -224,8 +224,8 @@ public class PanelMemberCompositionServiceTest {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
-                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompDisabilityAndFqm(
+                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompDisabilityAndFqMember(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
@@ -240,9 +240,9 @@ public class PanelMemberCompositionServiceTest {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
                 TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
-                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompDisabilityAndFqm(
+                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqMember(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
@@ -257,10 +257,10 @@ public class PanelMemberCompositionServiceTest {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_MEDICAL.toRef(),TRIBUNAL_MEMBER_MEDICAL.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
-                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompDisabilityAndFqm(
+                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqMember(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
@@ -275,10 +275,10 @@ public class PanelMemberCompositionServiceTest {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_MEDICAL.toRef(),REGIONAL_MEDICAL_MEMBER.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
-                .panelCompJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
-                .panelCompMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompDisabilityAndFqm(
+                .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
+                .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
+                .panelCompDisabilityAndFqMember(
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
@@ -288,9 +288,9 @@ public class PanelMemberCompositionServiceTest {
     }
 
     private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {
-        assertEquals(expected.getPanelCompJudge(), actual.getPanelCompJudge());
-        assertEquals(expected.getPanelCompMedical1(), actual.getPanelCompMedical1());
-        assertEquals(expected.getPanelCompMedical2(), actual.getPanelCompMedical2());
-        assertTrue(expected.getPanelCompDisabilityAndFqm().containsAll(actual.getPanelCompDisabilityAndFqm()));
+        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
+        assertEquals(expected.getPanelCompositionMemberMedical1(), actual.getPanelCompositionMemberMedical1());
+        assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
+        assertTrue(expected.getPanelCompDisabilityAndFqMember().containsAll(actual.getPanelCompDisabilityAndFqMember()));
     }
 }

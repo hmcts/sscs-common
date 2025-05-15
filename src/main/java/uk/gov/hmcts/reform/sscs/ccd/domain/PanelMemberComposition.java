@@ -13,13 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PanelMemberComposition {
-
-
-    private String panelCompJudge;
-
-    private String panelCompMedical1;
-
-    private String panelCompMedical2;
-
-    private List<String> panelCompDisabilityAndFqm;
+    private String panelCompositionJudge;
+    private String panelCompositionMemberMedical1;
+    private String panelCompositionMemberMedical2;
+    private List<String> panelCompDisabilityAndFqMember;
 }
