@@ -64,7 +64,7 @@ public class PanelCompositionService {
         List<String> roleTypes = new ArrayList<>();
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
 
-        if (reserveTo != null && reserveTo.getReservedDistrictTribunalJudge().equals(YesNo.YES)) {
+        if (reserveTo != null && YesNo.YES.equals(reserveTo.getReservedDistrictTribunalJudge())) {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE.toRef());
         } else {
             CollectionUtils.addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompJudge());
