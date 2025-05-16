@@ -39,6 +39,7 @@ public class PanelCompositionService {
     }
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
+        log.info("PanelCompositionIsEmpty {}", caseData.getPanelMemberComposition().isEmpty());
         if (nonNull(caseData.getPanelMemberComposition()) && !caseData.getPanelMemberComposition().isEmpty()) {
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
