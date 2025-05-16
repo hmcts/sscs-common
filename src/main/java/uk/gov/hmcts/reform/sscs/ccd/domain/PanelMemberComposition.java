@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,9 +18,13 @@ import static java.util.Objects.isNull;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PanelMemberComposition {
+    @JsonProperty("panelCompositionJudge")
     private String panelCompositionJudge;
+    @JsonProperty("panelCompositionMemberMedical1")
     private String panelCompositionMemberMedical1;
+    @JsonProperty("panelCompositionMemberMedical2")
     private String panelCompositionMemberMedical2;
+    @JsonProperty("panelCompositionDisabilityAndFqMember")
     private List<String> panelCompositionDisabilityAndFqMember;
 
     public boolean isEmpty() {
