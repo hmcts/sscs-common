@@ -23,6 +23,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 
 public class PanelMemberCompositionServiceTest {
 
@@ -153,7 +154,7 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).isEmpty();
     }
 
-    @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
+    @DisplayName("getRoleType should return default values when there is nothing to map")
     @Test
     public void getRoleTypeShouldNotReturnEmptyListWhenPanelCompositionFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
@@ -161,6 +162,17 @@ public class PanelMemberCompositionServiceTest {
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(List.of("84"));
+    }
+
+    @DisplayName("getRoleType should return an empty list when there is nothing to map")
+    @Test
+    public void getRoleTypeShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(List.of("90000"));
     }
 
     @DisplayName("createPanelCompositionFromJohTiers should return a district tribunal judge when they are reserved")

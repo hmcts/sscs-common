@@ -39,12 +39,11 @@ public class PanelCompositionService {
     }
 
     public List<String> getRoleTypes(SscsCaseData caseData) {
-        if (nonNull(caseData.getPanelMemberComposition()) && !caseData.getPanelMemberComposition().isEmpty()) {
-            log.info("PanelCompositionIsEmpty {}", caseData.getPanelMemberComposition().isEmpty());
+        if (nonNull(caseData.getPanelMemberComposition()) &&
+                (!caseData.getPanelMemberComposition().isEmpty() || isDtjSelected(caseData))) {
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
-            log.info("Generating Default Panel Composition");
             return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
@@ -108,5 +107,10 @@ public class PanelCompositionService {
             }
         }
         return panelMemberComposition;
+    }
+
+    private boolean isDtjSelected(SscsCaseData caseData) {
+        ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
+        return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 }
