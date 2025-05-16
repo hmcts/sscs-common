@@ -48,7 +48,7 @@ public class PanelCompositionService {
         }
     }
 
-    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
+    private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
@@ -60,7 +60,7 @@ public class PanelCompositionService {
                 .findFirst().orElse(null);
     }
 
-    public static List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
+    private static List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
         List<String> roleTypes = new ArrayList<>();
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         if (reserveTo != null && YesNo.YES.equals(reserveTo.getReservedDistrictTribunalJudge())) {

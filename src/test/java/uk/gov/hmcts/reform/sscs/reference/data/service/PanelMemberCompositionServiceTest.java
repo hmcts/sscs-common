@@ -14,24 +14,20 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
-import static uk.gov.hmcts.reform.sscs.reference.data.service.PanelCompositionService.getJohTiersFromPanelComposition;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
-import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
-import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 public class PanelMemberCompositionServiceTest {
 
     private final PanelCompositionService panelCompositionService = new PanelCompositionService();
     private SscsCaseData caseData;
-
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -43,72 +39,53 @@ public class PanelMemberCompositionServiceTest {
                 .build();
     }
 
-    @DisplayName("Valid call to getPanelCategory should return correct johTier")
+    @DisplayName("Valid call to gerRoleTypes should return correct johTier")
     @Test
     public void getDefaultPanelComposition(){
-        DefaultPanelComposition result = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+        var result = panelCompositionService
+                .getRoleTypes(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
 
         assertThat(result).isNotNull();
-        assertThat(result.getBenefitIssueCode()).isEqualTo("001AD");
-        assertThat(result.getJohTiers()).isNotEmpty();
-        assertThat(result.getJohTiers().get(0)).isEqualTo("84");
+        assertThat(result).isNotEmpty();
+        assertThat(result).containsOnly("84");
     }
 
-    @DisplayName("Invalid call to getPanelCategory should return null")
+    @DisplayName("Invalid call to gerRoleTypes should return null")
     @Test
     public void getDefaultPanelCompositionWithInvalidParameters() {
-        DefaultPanelComposition result = panelCompositionService.getDefaultPanelComposition(buildCaseData());
-        assertThat(result).isNull();
+        var result = panelCompositionService.getRoleTypes(buildCaseData());
+        assertThat(result).isEmpty();
     }
 
-    @DisplayName("Call to getPanelCategory with FQPM should return correct johTier")
+    @DisplayName("Call to getRoleTypes with FQPM should return correct johTier")
     @Test
     public void getDefaultPanelCompositionWithFQPM() {
-        DefaultPanelComposition result = panelCompositionService.getDefaultPanelComposition(
+        var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("016").issueCode("CC").isFqpmRequired(YES).build()
         );
 
         assertThat(result).isNotNull();
-        assertThat(result.getJohTiers()).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
+        assertThat(result).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
     }
 
-    @DisplayName("Call to getPanelCategory with specialism should return correct johTier")
+    @DisplayName("Call to getRoleTypes with specialism should return correct johTier")
     @Test
     public void getDefaultPanelCompositionWithSpecialism() {
-        DefaultPanelComposition oneSpecialismResult = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("031").issueCode("AA")
+        var oneSpecialismResult = panelCompositionService
+                .getRoleTypes(SscsCaseData.builder().benefitCode("031").issueCode("AA")
                         .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder()
                                 .panelDoctorSpecialism("one").build()).build());
-        DefaultPanelComposition twoSpecialismResult = panelCompositionService
-                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("031").issueCode("AA")
+        var twoSpecialismResult = panelCompositionService
+                .getRoleTypes(SscsCaseData.builder().benefitCode("031").issueCode("AA")
                         .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder()
                                 .panelDoctorSpecialism("one").secondPanelDoctorSpecialism("two").build())
                         .build());
 
         assertNotNull(oneSpecialismResult);
         assertNotNull(twoSpecialismResult);
-        assertThat(oneSpecialismResult.getJohTiers()).containsOnlyOnce(TRIBUNAL_MEMBER_MEDICAL.toRef());
-        assertEquals(2, frequency(twoSpecialismResult.getJohTiers(), TRIBUNAL_MEMBER_MEDICAL.toRef()));
+        assertThat(oneSpecialismResult).containsOnlyOnce(TRIBUNAL_MEMBER_MEDICAL.toRef());
+        assertEquals(2, frequency(twoSpecialismResult, TRIBUNAL_MEMBER_MEDICAL.toRef()));
     }
-
-    @DisplayName("getRoleTypes returns an valid list")
-    @Test
-    public void testGetRoles() {
-        List<String> result = panelCompositionService.getRoleTypes(caseData);
-        assertThat(result).isNotEmpty();
-        assertThat(result.get(0)).isEqualTo("84");
-    }
-
-    @DisplayName("getRoleTypes should return an empty list when an invalid benefit issue code is given")
-    @Test
-    public void testGetRolesWithInvalidBenefitIssueCode() {
-        caseData.setBenefitCode(null);
-        caseData.setIssueCode(null);
-        List<String> result = panelCompositionService.getRoleTypes(caseData);
-        assertThat(result).isEmpty();
-    }
-
 
     @DisplayName("getRoleTypes should return a medical member when specialism is on casedata")
     @Test
@@ -118,20 +95,8 @@ public class PanelMemberCompositionServiceTest {
         caseData.setIssueCode("CB");
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
-        assertThat(result.stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL.toRef()::equals)).isTrue();
+        assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
     }
-
-    @DisplayName("getRoleTypes should return FQPM when FQPM = yes on casedata")
-    @Test
-    public void testGetRolesWithFQPM() {
-        caseData.setIsFqpmRequired(YES);
-        caseData.setBenefitCode("016");
-        caseData.setIssueCode("CC");
-        List<String> result = panelCompositionService.getRoleTypes(caseData);
-        assertThat(result).isNotEmpty();
-        assertThat(result.stream().anyMatch(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()::equals)).isTrue();
-    }
-
 
     @DisplayName("getRoleTypes should save to case data when savePanelComposition is true")
     @Test
@@ -168,18 +133,23 @@ public class PanelMemberCompositionServiceTest {
                 .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
                 .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
                 .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
-        List<String> roleTypes = getJohTiersFromPanelComposition(panelMemberComposition, caseData);
+        caseData.setPanelMemberComposition(panelMemberComposition);
+
+        List<String> roleTypes = panelCompositionService.getRoleTypes(caseData);
+
         assertThat(roleTypes).isNotEmpty();
-        assertEquals(roleTypes.stream().map(PanelMemberType::getPanelMemberType).toList(),
-                List.of(TRIBUNAL_JUDGE, TRIBUNAL_MEMBER_MEDICAL, REGIONAL_MEDICAL_MEMBER,
-                        TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED));
+        assertThat(roleTypes)
+                .containsAll(List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
+                        REGIONAL_MEDICAL_MEMBER.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()));
     }
 
     @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
+        var caseData = buildCaseData();
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isEmpty();
     }
 
@@ -197,10 +167,13 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnDtjWhenItIsReserved() {
         PanelMemberComposition panelMemberComposition =
-                PanelMemberComposition.builder().panelCompositionDisabilityAndFqMember(List.of()).build();
+                PanelMemberComposition.builder().panelCompositionJudge(TRIBUNAL_JUDGE.toRef()).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
                 .reservedDistrictTribunalJudge(YES).build());
-        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
+        caseData.setPanelMemberComposition(panelMemberComposition);
+
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+
         assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
     }
 
@@ -208,13 +181,14 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getJohTiersFromPanelCompositionShouldNotThrowExceptionIfReservedDistrictTribunalJudgeIsNull() {
         PanelMemberComposition panelMemberComposition =
-                PanelMemberComposition.builder().panelCompositionDisabilityAndFqMember(List.of()).build();
+                PanelMemberComposition.builder().panelCompositionJudge(TRIBUNAL_JUDGE.toRef()).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().build());
+        caseData.setPanelMemberComposition(panelMemberComposition);
 
-        assertDoesNotThrow(() -> getJohTiersFromPanelComposition(panelMemberComposition,caseData));
+        assertDoesNotThrow(() -> panelCompositionService.getRoleTypes(caseData));
     }
 
-    @DisplayName("createPanelCompositionFromJohTiers should return fqpm and disability expert when present")
+    @DisplayName("getJohTiersFromPanelComposition should return fqpm and disability expert when present")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnFqpmAndDisabilityList() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
@@ -223,8 +197,11 @@ public class PanelMemberCompositionServiceTest {
                 ).build();
         caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder()
                 .reservedDistrictTribunalJudge(YES).build());
-        List<String> result = getJohTiersFromPanelComposition(panelMemberComposition,caseData);
-        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef(),
+        caseData.setPanelMemberComposition(panelMemberComposition);
+
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+
+        assertThat(result).containsAll(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef(),
                 TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()));
     }
 
