@@ -8,6 +8,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBU
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.getPanelMemberType;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getReferenceData;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -56,8 +57,10 @@ public class PanelCompositionService {
                 ? "2" : "1" : null;
         String isFqpm =
                 nonNull(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
+        String isMedicalMember =
+                isYes(caseData.getIsMedicalMemberRequired()) ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         return defaultPanelCompositions.stream()
-                .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm)::equals)
+                .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                 .findFirst().orElse(null);
     }
 

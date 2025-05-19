@@ -5427,4 +5427,144 @@
   "benefitIssueCode" : "099WB",
   "category" : "N/A",
   "johTiers" : [ ]
+}, {
+  "benefitIssueCode" : "093DD",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093DD",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093DD",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093DD",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093CE",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093CE",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093CE",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093CE",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093RA",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093RA",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093RA",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093RA",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093OS",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093OS",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093OS",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093OS",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093OX",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093OX",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093OX",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093OX",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093SP",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093SP",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093SP",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093SP",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
+}, {
+  "benefitIssueCode" : "093SD",
+  "category" : "8",
+  "johTiers" : [ "84" ]
+}, {
+  "benefitIssueCode" : "093SD",
+  "category" : "8",
+  "fqpm" : "yes",
+  "johTiers" : [ "84", "50" ]
+}, {
+  "benefitIssueCode" : "093SD",
+  "category" : "8",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "093SD",
+  "category" : "8",
+  "fqpm" : "yes",
+  "medicalMember" : "yes",
+  "johTiers" : [ "84", "50", "58" ]
 } ]

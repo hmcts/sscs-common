@@ -16,12 +16,14 @@ public class DefaultPanelComposition {
     private String category;
     private String specialismCount;
     private String fqpm;
+    private String medicalMember;
     private List<String> johTiers;
 
-    public DefaultPanelComposition(String benefitIssueCode, String specialismCount, String fqpm) {
+    public DefaultPanelComposition(String benefitIssueCode, String specialismCount, String fqpm, String medicalMember) {
         this.benefitIssueCode = benefitIssueCode;
         this.specialismCount = specialismCount;
         this.fqpm = fqpm;
+        this.medicalMember = medicalMember;
     }
 
     @Override
@@ -34,8 +36,9 @@ public class DefaultPanelComposition {
         }
         DefaultPanelComposition that = (DefaultPanelComposition) o;
         return Objects.equals(benefitIssueCode, that.benefitIssueCode)
-                && Objects.equals(specialismCount, that.specialismCount)
-                && Objects.equals(fqpm, that.fqpm);
+            && Objects.equals(specialismCount, that.specialismCount)
+            && Objects.equals(fqpm, that.fqpm)
+            && Objects.equals(medicalMember, that.medicalMember);
     }
 
     @Override

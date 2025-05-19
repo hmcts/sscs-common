@@ -23,7 +23,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 
 public class PanelMemberCompositionServiceTest {
 
@@ -67,6 +66,26 @@ public class PanelMemberCompositionServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
+    }
+
+    @Test
+    @DisplayName("Call to getPanelCategory with medical member should return correct johTier")
+    public void getPanelCategoryWithMedicalMember() {
+        var result = panelCompositionService.getRoleTypes(
+                SscsCaseData.builder().benefitCode("093").issueCode("CE").isMedicalMemberRequired(YES).build());
+        assertThat(result).isNotNull();
+        assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
+    }
+
+    @Test
+    @DisplayName("Call to getPanelCategory with FQPM and medical member should return correct johTier")
+    public void getPanelCategoryWithFqpmAndMedicalMember() {
+        var result = panelCompositionService.getRoleTypes(
+                SscsCaseData.builder().benefitCode("093").issueCode("CE")
+                        .isFqpmRequired(YES).isMedicalMemberRequired(YES).build());
+        assertThat(result).isNotNull();
+        assertThat(result).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
+        assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
     }
 
     @DisplayName("Call to getRoleTypes with specialism should return correct johTier")
