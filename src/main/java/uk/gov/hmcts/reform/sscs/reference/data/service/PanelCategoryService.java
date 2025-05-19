@@ -38,7 +38,8 @@ public class PanelCategoryService {
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
         String isFqpm =  isYes(caseData.getIsFqpmRequired()) ? "true" : null;
-        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialismCount, isFqpm);
+        String isMedicalMember =  isYes(caseData.getIsMedicalMemberRequired()) ? "true" : null;
+        PanelCategory panelCategorySelection = new PanelCategory(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         return panelCategories.stream()
                 .filter(panelCategorySelection::equals)
                 .findFirst().orElse(null);
