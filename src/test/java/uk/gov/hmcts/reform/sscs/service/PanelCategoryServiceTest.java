@@ -18,6 +18,7 @@ public class PanelCategoryServiceTest {
     private final PanelCategoryService panelCategoryService = new PanelCategoryService();
     private static final String TRIBUNAL_MEMBER_MEDICAL = "58";
     private static final String TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED = "50";
+    private static final String TRIBUNALS_JUDGE = "84";
     private SscsCaseData caseData;
 
 
@@ -39,6 +40,34 @@ public class PanelCategoryServiceTest {
         assertThat(result.getBenefitIssueCode()).isEqualTo("001AD");
         assertThat(result.getJohTiers()).isNotEmpty();
         assertThat(result.getJohTiers().get(0)).isEqualTo("84");
+    }
+
+    @Test
+    @DisplayName("Valid call to getPanelCategory should extract fqpm and medicalmember from case data and return correct johTier")
+    public void getPanelCategoryFromCaseDataWithMedicalMemberAndFQPM(){
+        caseData.setBenefitCode("093");
+        caseData.setIssueCode("DD");
+        caseData.setIsFqpmRequired(YesNo.YES);
+        caseData.setIsMedicalMemberRequired(YesNo.YES);
+        PanelCategory result = panelCategoryService.getPanelCategoryFromCaseData(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result.getBenefitIssueCode()).isEqualTo("093DD");
+        assertThat(result.getJohTiers()).isNotEmpty();
+        assertThat(result.getJohTiers()).contains(TRIBUNALS_JUDGE, TRIBUNALS_MEMBER_FINANCIALLY_QUALIFIED, TRIBUNAL_MEMBER_MEDICAL);
+    }
+
+    @Test
+    @DisplayName("Valid call to getPanelCategory should specialisms from case data and return correct johTier")
+    public void getPanelCategoryFromCaseDataWithSpecialism(){
+        caseData.setBenefitCode("067");
+        caseData.setIssueCode("CB");
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("cardiologist");
+        caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("eyeSurgeon");
+        PanelCategory result = panelCategoryService.getPanelCategoryFromCaseData(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result.getBenefitIssueCode()).isEqualTo("067CB");
+        assertThat(result.getJohTiers()).isNotEmpty();
+        assertThat(result.getJohTiers()).contains(TRIBUNAL_MEMBER_MEDICAL, TRIBUNAL_MEMBER_MEDICAL);
     }
 
     @Test
