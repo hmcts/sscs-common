@@ -163,4 +163,18 @@ public class PanelCategoryServiceTest {
         assertThat(result.stream().anyMatch(TRIBUNAL_MEMBER_MEDICAL::equals)).isTrue();
     }
 
+    @DisplayName("IsValidBenefitIssueCode should return true when benefit issue code is in panel map")
+    @Test
+    public void testIsValidBenefitIssueCode() {
+        boolean result = panelCategoryService.isBenefitIssueCodeValid("001AD");
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("IsValidBenefitIssueCode should return false when benefit issue code is not in panel map")
+    @Test
+    public void testIsValidBenefitIssueCodeForInvalidBenefitIssueCode() {
+        boolean result = panelCategoryService.isBenefitIssueCodeValid("00000");
+        assertThat(result).isFalse();
+    }
+
 }
