@@ -57,7 +57,7 @@ public class PanelCategoryServiceTest {
     }
 
     @Test
-    @DisplayName("Valid call to getPanelCategory should specialisms from case data and return correct johTier")
+    @DisplayName("Valid call to getPanelCategory should extract specialisms from case data and return correct johTier")
     public void getPanelCategoryFromCaseDataWithSpecialism(){
         caseData.setBenefitCode("067");
         caseData.setIssueCode("CB");
@@ -67,7 +67,7 @@ public class PanelCategoryServiceTest {
         assertThat(result).isNotNull();
         assertThat(result.getBenefitIssueCode()).isEqualTo("067CB");
         assertThat(result.getJohTiers()).isNotEmpty();
-        assertThat(result.getJohTiers()).contains(TRIBUNAL_MEMBER_MEDICAL, TRIBUNAL_MEMBER_MEDICAL);
+        assertThat(result.getJohTiers()).contains(TRIBUNALS_JUDGE, TRIBUNAL_MEMBER_MEDICAL, TRIBUNAL_MEMBER_MEDICAL);
     }
 
     @Test
