@@ -45,6 +45,10 @@ public class PanelCategoryService {
                 .findFirst().orElse(null);
     }
 
+    public boolean isBenefitIssueCodeValid(String benefitIssueCode) {
+        return panelCategories.stream().anyMatch(panelCategory -> panelCategory.getBenefitIssueCode().equals(benefitIssueCode));
+    }
+
     public List<String> getRoleTypes(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
