@@ -74,15 +74,15 @@ public class PanelCompositionService {
         String specialismCount = getSpecialismCount(caseData);
 
         if ("1".equals(specialismCount)) {
-            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(null);
         } else if ("2".equals(specialismCount)) {
-            boolean medicalMember1 = isNull(panelMemberComposition.getPanelCompositionMemberMedical1()) ?
-                    roleTypes.add(TRIBUNAL_MEMBER_MEDICAL.toRef()) : roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical1());
-            roleTypes.add(TRIBUNAL_MEMBER_MEDICAL.toRef());
-        } else {
-            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
-            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
+            if (isNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
+                caseData.getPanelMemberComposition().setPanelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
+            }
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
         }
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
 
         if(nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
             roleTypes.addAll(panelMemberComposition.getPanelCompositionDisabilityAndFqMember());
