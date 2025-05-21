@@ -52,9 +52,7 @@ public class PanelCompositionService {
 
     private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
-        String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
-                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
-                ? "2" : "1" : null;
+        String specialismCount = getSpecialismCount(caseData);
         String isFqpm =
                 isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
@@ -64,7 +62,7 @@ public class PanelCompositionService {
                 .findFirst().orElse(null);
     }
 
-    private static List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
+    private List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
         List<String> roleTypes = new ArrayList<>();
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         if (reserveTo != null && YesNo.YES.equals(reserveTo.getReservedDistrictTribunalJudge())) {
@@ -72,8 +70,17 @@ public class PanelCompositionService {
         } else {
             addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
         }
-        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
-        addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
+        String specialismCount = getSpecialismCount(caseData);
+
+        if ("1".equals(specialismCount)) {
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+        } else if ("2".equals(specialismCount)) {
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+            roleTypes.add(TRIBUNAL_MEMBER_MEDICAL.toRef());
+        } else {
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
+        }
 
         if(nonNull(panelMemberComposition.getPanelCompositionDisabilityAndFqMember())) {
             roleTypes.addAll(panelMemberComposition.getPanelCompositionDisabilityAndFqMember());
@@ -115,5 +122,11 @@ public class PanelCompositionService {
     private boolean isDtjSelected(SscsCaseData caseData) {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
+    }
+
+    private String getSpecialismCount(SscsCaseData caseData) {
+        return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
     }
 }
