@@ -311,4 +311,20 @@ public class PanelMemberCompositionServiceTest {
         assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
         assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
     }
+
+
+    @DisplayName("IsValidBenefitIssueCode should return true when benefit issue code is in panel map")
+    @Test
+    public void testIsValidBenefitIssueCode() {
+        boolean result = panelCompositionService.isBenefitIssueCodeValid("001", "AD");
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("IsValidBenefitIssueCode should return false when benefit issue code is not in panel map")
+    @Test
+    public void testIsValidBenefitIssueCodeForInvalidBenefitIssueCode() {
+        boolean result = panelCompositionService.isBenefitIssueCodeValid("000", "00");
+        assertThat(result).isFalse();
+    }
+
 }

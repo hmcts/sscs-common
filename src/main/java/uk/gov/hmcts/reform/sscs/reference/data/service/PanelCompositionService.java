@@ -116,4 +116,9 @@ public class PanelCompositionService {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
+
+    public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
+        return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
+    }
+
 }
