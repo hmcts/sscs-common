@@ -28,6 +28,6 @@ public class PanelMemberComposition {
         return isNull(panelCompositionJudge) &&
                 isNull(panelCompositionMemberMedical1) &&
                 isNull(panelCompositionMemberMedical2) &&
-                panelCompositionDisabilityAndFqMember.isEmpty();
+                ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
     }
 }
