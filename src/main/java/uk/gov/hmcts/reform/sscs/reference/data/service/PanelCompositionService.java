@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Collections.frequency;
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
 import static org.springframework.util.CollectionUtils.isEmpty;
@@ -75,7 +76,8 @@ public class PanelCompositionService {
         if ("1".equals(specialismCount)) {
             addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
         } else if ("2".equals(specialismCount)) {
-            addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
+            boolean medicalMember1 = isNull(panelMemberComposition.getPanelCompositionMemberMedical1()) ?
+                    roleTypes.add(TRIBUNAL_MEMBER_MEDICAL.toRef()) : roleTypes.add(panelMemberComposition.getPanelCompositionMemberMedical1());
             roleTypes.add(TRIBUNAL_MEMBER_MEDICAL.toRef());
         } else {
             addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
