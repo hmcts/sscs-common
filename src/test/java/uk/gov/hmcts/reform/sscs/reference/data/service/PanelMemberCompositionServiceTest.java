@@ -16,6 +16,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -178,7 +179,8 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
         var caseData = buildCaseData();
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
@@ -188,7 +190,8 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("getRoleType should return default values when there is nothing to map")
     @Test
     public void getRoleTypeShouldNotReturnEmptyListWhenPanelCompositionFieldsAreEmpty() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotNull();
@@ -198,7 +201,8 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("getRoleTypes should return an empty list when there is nothing to map")
     @Test
     public void getRoleTypesShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
         caseData.getSchedulingAndListingFields()
                 .setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
         caseData.setPanelMemberComposition(panelMemberComposition);
