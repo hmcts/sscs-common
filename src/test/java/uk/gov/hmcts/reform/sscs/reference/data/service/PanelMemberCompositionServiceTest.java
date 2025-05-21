@@ -12,6 +12,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_JUDGE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_DISABILITY;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
@@ -69,7 +70,7 @@ public class PanelMemberCompositionServiceTest {
     }
 
     @Test
-    @DisplayName("Call to getPanelCategory with medical member should return correct johTier")
+    @DisplayName("Call to getRoleTypes with medical member should return correct johTier")
     public void getPanelCategoryWithMedicalMember() {
         var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("093").issueCode("CE").isMedicalMemberRequired(YES).build());
@@ -78,13 +79,24 @@ public class PanelMemberCompositionServiceTest {
     }
 
     @Test
-    @DisplayName("Call to getPanelCategory with FQPM and medical member should return correct johTier")
+    @DisplayName("Call to getRoleTypes with FQPM and medical member should return correct johTier")
     public void getPanelCategoryWithFqpmAndMedicalMember() {
         var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("093").issueCode("CE")
                         .isFqpmRequired(YES).isMedicalMemberRequired(YES).build());
         assertThat(result).isNotNull();
         assertThat(result).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
+        assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
+    }
+
+    @Test
+    @DisplayName("Call to getRoleTypes with no FQPM and medical member should return correct johTier")
+    public void getPanelCategoryWithNoFqpmAndMedicalMember() {
+        var result = panelCompositionService.getRoleTypes(
+                SscsCaseData.builder().benefitCode("093").issueCode("CE")
+                        .isFqpmRequired(NO).isMedicalMemberRequired(YES).build());
+        assertThat(result).isNotNull();
+        assertThat(result).doesNotContain(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
         assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
     }
 
@@ -183,13 +195,16 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).isEqualTo(List.of("84"));
     }
 
-    @DisplayName("getRoleType should return an empty list when there is nothing to map")
+    @DisplayName("getRoleTypes should return an empty list when there is nothing to map")
     @Test
-    public void getRoleTypeShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
+    public void getRoleTypesShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+        caseData.getSchedulingAndListingFields()
+                .setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
         caseData.setPanelMemberComposition(panelMemberComposition);
+
         List<String> result = panelCompositionService.getRoleTypes(caseData);
+
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(List.of("90000"));
     }

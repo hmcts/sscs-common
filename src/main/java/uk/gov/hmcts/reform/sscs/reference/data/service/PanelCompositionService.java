@@ -56,9 +56,9 @@ public class PanelCompositionService {
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
         String isFqpm =
-                nonNull(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
-        String isMedicalMember =
-                isYes(caseData.getIsMedicalMemberRequired()) ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
+                isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
+        String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
+                ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         return defaultPanelCompositions.stream()
                 .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                 .findFirst().orElse(null);
