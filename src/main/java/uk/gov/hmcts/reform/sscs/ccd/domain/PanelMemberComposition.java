@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +28,6 @@ public class PanelMemberComposition {
         return isNull(panelCompositionJudge) &&
                 isNull(panelCompositionMemberMedical1) &&
                 isNull(panelCompositionMemberMedical2) &&
-                ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
+                panelCompositionDisabilityAndFqMember.isEmpty();
     }
 }
