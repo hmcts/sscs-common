@@ -20,6 +20,8 @@ import org.springframework.util.ObjectUtils;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PanelMemberComposition {
     private static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
+    private static final String TRIBUNAL_MEDICAL_MEMBER_REF = PanelMemberType.TRIBUNAL_MEMBER_MEDICAL.toRef();
+    private static final String REGIONAL_MEDICAL_MEMBER_REF = PanelMemberType.REGIONAL_MEDICAL_MEMBER.toRef();
 
     private String panelCompositionJudge;
     private String panelCompositionMemberMedical1;
@@ -54,5 +56,28 @@ public class PanelMemberComposition {
         if (nonNull(panelCompositionDisabilityAndFqMember) && panelCompositionDisabilityAndFqMember.contains(FQPM_REF)) {
             panelCompositionDisabilityAndFqMember.remove(FQPM_REF);
         }
+    }
+
+    @JsonIgnore
+    public boolean hasMedicalMember() {
+        return (!isNull(panelCompositionMemberMedical1)
+            && (panelCompositionMemberMedical1.equals(TRIBUNAL_MEDICAL_MEMBER_REF)
+            || panelCompositionMemberMedical1.equals(REGIONAL_MEDICAL_MEMBER_REF)))
+            || (!isNull(panelCompositionMemberMedical2)
+            && (panelCompositionMemberMedical2.equals(TRIBUNAL_MEDICAL_MEMBER_REF)
+            || panelCompositionMemberMedical2.equals(REGIONAL_MEDICAL_MEMBER_REF)));
+    }
+
+    @JsonIgnore
+    public void updateToTribunalMedicalMember() {
+        if (!hasMedicalMember()) {
+            panelCompositionMemberMedical1 = TRIBUNAL_MEDICAL_MEMBER_REF;
+        }
+    }
+
+    @JsonIgnore
+    public void clearMedicalMembers() {
+        panelCompositionMemberMedical1 = null;
+        panelCompositionMemberMedical2 = null;
     }
 }
