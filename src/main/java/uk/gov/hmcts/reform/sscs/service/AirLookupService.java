@@ -69,7 +69,7 @@ public class AirLookupService {
     @Value("${feature.ibc-ni-postcodes.enabled:true}") boolean allowNIPostcodes;
 
     public String getPathForAirLookup() {
-        return allowNIPostcodes ? AIR_LOOKUP_FILE_V2 : AIR_LOOKUP_FILE;
+        return AIR_LOOKUP_FILE_V2;
     }
 
     public String lookupRegionalCentre(String postcode) {
@@ -154,7 +154,7 @@ public class AirLookupService {
      *
      * @param wb the file on classpath
      */
-    private void parseAirLookupData(Workbook wb) {
+    public void parseAirLookupData(Workbook wb) {
         for (Sheet sheet : wb) {
             if (sheet.getSheetName().equalsIgnoreCase("All")) {
                 parseLookupDataRows(sheet);

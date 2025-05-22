@@ -38,12 +38,6 @@ public class AirLookupServiceTest {
         assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
     }
 
-    @Test
-    void shouldReturnOldFileWhenAllowNIPostcodesIsFalse() throws Exception {
-        setAllowNIPostcodes(false);
-        assertEquals("reference-data/AIRLookup_23.1.xlsx", airLookupService.getPathForAirLookup());
-    }
-
     @ParameterizedTest
     @CsvSource({
             "BR3 8JK, Sutton",
@@ -96,22 +90,35 @@ public class AirLookupServiceTest {
 
     @ParameterizedTest
     @CsvSource({
-            "BT3 9EP",
-            "BT1 3WH"
-    })
-    public void lookupIbcNIPostcodeOldAirlookup(String postcode) throws Exception {
-        setAllowNIPostcodes(false);
-        airLookupService.init(); // reinitialize to load the old file
-        assertNull(airLookupService.lookupIbcRegionalCentre(postcode));
-    }
-    @ParameterizedTest
-    @CsvSource({
             "BT3 9EP, Glasgow",
             "BT1 3WH, Glasgow"
     })
     public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) throws Exception {
         setAllowNIPostcodes(true);
         assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Truro Hearing Centre, 1155",
+            "Worle, 1159",
+            "Llanelli, 1186",
+            "Derby, 1216",
+            "Belfast RCJ, 1270"
+    })
+    public void getLookupVenueIdByAirVenueNameReturnsExpected(String processingVenue, String expVenueId) throws Exception {
+        org.springframework.core.io.ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("reference-data/AIRLookup_23.2.xlsx");
+        try (org.apache.poi.ss.usermodel.Workbook wb2 = org.apache.poi.ss.usermodel.WorkbookFactory.create(classPathResource.getInputStream())) {
+            airLookupService.parseAirLookupData(wb2);
+            org.apache.poi.ss.usermodel.Sheet sheet = wb2.getSheet(AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV);
+
+            if (sheet == null) {
+                throw new IllegalStateException("Sheet with name '" + AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV + "' not found in the workbook.");
+            }
+        }
+        String venueId = String.valueOf(airLookupService.getLookupVenueIdByAirVenueName().get(processingVenue));
+        assertNotNull(venueId, "Venue ID should not be null");
+        assertEquals(expVenueId, venueId);
     }
 
     @ParameterizedTest
@@ -441,6 +448,16 @@ public class AirLookupServiceTest {
     public void checkAirPostcodeWithNoPipReturnsBirmingham() {
         //n1w1 is a sorting office
         assertEquals(DEFAULT_VENUE, airLookupService.lookupAirVenueNameByPostCode("n1w1"));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "BT3 9EP",
+            "BT1 3WH",
+            "bt12 7sl"
+    })
+    public void checkLookupAirVenueNameByPostCodeReturnsBelfastforNIPostcodesWhenIBC(String postcode) {
+        assertEquals("Belfast RCJ", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("infectedBloodCompensation").build()));
     }
 
     @Test

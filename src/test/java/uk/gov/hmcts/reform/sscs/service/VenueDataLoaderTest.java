@@ -34,19 +34,12 @@ public class VenueDataLoaderTest {
     @BeforeEach
     public void setUp() throws Exception {
         venueDataLoader = new VenueDataLoader();
-        setVenueConfig(true);
         venueDataLoader.init();
     }
 
     @Test
     void shouldReturnNewFileWhenConfigIsTrue() {
         assertEquals("reference-data/sscs-venues-v2.csv", venueDataLoader.getPathForScssVenues());
-    }
-
-    @Test
-    void shouldReturnOldFileWhenConfigIsFalse() throws Exception {
-        setVenueConfig(false);
-        assertEquals("reference-data/sscs-venues.csv", venueDataLoader.getPathForScssVenues());
     }
 
     @ParameterizedTest
@@ -192,16 +185,5 @@ public class VenueDataLoaderTest {
         assertNotNull(result);
         assertEquals("1270", result.getVenueId());
         assertEquals("SC400", result.getThreeDigitReference());
-    }
-
-    @DisplayName("VenueDataLoader doesn't provide Belfast court details when using the old file")
-    @Test
-    public void testGetVenueReturnsNullForBelfastIDWhenUsingOldFile() throws Exception {
-        venueDataLoader = new VenueDataLoader();
-        setVenueConfig(false);
-        venueDataLoader.init();
-
-        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("778899");
-        assertNull(result, "Belfast court details should not be present when using the old file");
     }
 }
