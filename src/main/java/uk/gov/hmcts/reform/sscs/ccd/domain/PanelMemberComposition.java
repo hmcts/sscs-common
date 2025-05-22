@@ -60,12 +60,10 @@ public class PanelMemberComposition {
 
     @JsonIgnore
     public boolean hasMedicalMember() {
-        return (!isNull(panelCompositionMemberMedical1)
-            && (panelCompositionMemberMedical1.equals(TRIBUNAL_MEDICAL_MEMBER_REF)
-            || panelCompositionMemberMedical1.equals(REGIONAL_MEDICAL_MEMBER_REF)))
-            || (!isNull(panelCompositionMemberMedical2)
-            && (panelCompositionMemberMedical2.equals(TRIBUNAL_MEDICAL_MEMBER_REF)
-            || panelCompositionMemberMedical2.equals(REGIONAL_MEDICAL_MEMBER_REF)));
+        return TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1)
+            || TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical2)
+            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1)
+            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical2);
     }
 
     @JsonIgnore

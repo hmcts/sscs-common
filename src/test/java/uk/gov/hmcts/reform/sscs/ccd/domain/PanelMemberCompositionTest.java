@@ -8,11 +8,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class PanelMemberCompositionTest {
 
     private static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
+    private static final String TRIBUNAL_MEDICAL_MEMBER_REF = PanelMemberType.TRIBUNAL_MEMBER_MEDICAL.toRef();
+    private static final String REGIONAL_MEDICAL_MEMBER_REF = PanelMemberType.REGIONAL_MEDICAL_MEMBER.toRef();
 
     static Stream<List<String>> listsWithoutFqpm() {
         return Stream.of(
@@ -89,5 +92,86 @@ class PanelMemberCompositionTest {
 
         assertThat(panelComposition.getPanelCompositionDisabilityAndFqMember())
             .doesNotContain(FQPM_REF);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "null, null",
+        "null, 84",
+        "84, null",
+        "84, 50"
+    })
+    void hasMedicalMember_shouldReturnFalse_whenNoMedicalMemberSelected(String member1, String member2) {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+            .panelCompositionMemberMedical1("null".equals(member1) ? null : member1)
+            .panelCompositionMemberMedical2("null".equals(member2) ? null : member2)
+            .build();
+
+        assertThat(panelMemberComposition.hasMedicalMember()).isFalse();
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "58, null",
+        "null, 69",
+        "58, 69"
+    })
+    void hasMedicalMember_shouldReturnTrue_whenAnyMedicalMemberSelected(String member1, String member2) {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+            .panelCompositionMemberMedical1("null".equals(member1) ? null : member1)
+            .panelCompositionMemberMedical2("null".equals(member2) ? null : member2)
+            .build();
+
+        assertThat(panelMemberComposition.hasMedicalMember()).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "null, null",
+        "null, 84",
+        "84, null",
+        "84, 50"
+    })
+    void updateToTribunalMedicalMember_shouldSetMedical1_whenNoMedicalMember(String member1, String member2) {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+            .panelCompositionMemberMedical1("null".equals(member1) ? null : member1)
+            .panelCompositionMemberMedical2("null".equals(member2) ? null : member2)
+            .build();
+
+        panelMemberComposition.updateToTribunalMedicalMember();
+
+        assertThat(panelMemberComposition.getPanelCompositionMemberMedical1())
+            .isEqualTo(TRIBUNAL_MEDICAL_MEMBER_REF);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "58, 84",
+        "84, 69",
+        "58, 69"
+    })
+    void updateToTribunalMedicalMember_shouldNotOverwriteRecognizedValue(String member1, String member2) {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+            .panelCompositionMemberMedical1(member1)
+            .panelCompositionMemberMedical2(member2)
+            .build();
+
+        panelMemberComposition.updateToTribunalMedicalMember();
+
+        assertThat(panelMemberComposition.getPanelCompositionMemberMedical1()).isEqualTo(member1);
+        assertThat(panelMemberComposition.getPanelCompositionMemberMedical2()).isEqualTo(member2);
+    }
+
+    @Test
+    void clearMedicalMembers_shouldSetBothFieldsToNull() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+            .panelCompositionMemberMedical1(FQPM_REF)
+            .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER_REF)
+            .build();
+
+        panelMemberComposition.clearMedicalMembers();
+
+        assertThat(panelMemberComposition.getPanelCompositionMemberMedical1()).isNull();
+        assertThat(panelMemberComposition.getPanelCompositionMemberMedical2()).isNull();
     }
 }
