@@ -163,10 +163,12 @@ public class PanelMemberCompositionServiceTest {
     public void getJohTiersFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
                 .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
                 .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("Dummy");
+        caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("Dummy");
 
         List<String> roleTypes = panelCompositionService.getRoleTypes(caseData);
 

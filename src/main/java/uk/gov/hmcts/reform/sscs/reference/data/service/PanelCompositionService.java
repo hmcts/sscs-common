@@ -43,6 +43,7 @@ public class PanelCompositionService {
     public List<String> getRoleTypes(SscsCaseData caseData) {
         if (nonNull(caseData.getPanelMemberComposition()) &&
                 (!caseData.getPanelMemberComposition().isEmpty() || isDtjSelected(caseData))) {
+            updatePanelCompositionWithSpecialismCount(caseData);
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
@@ -70,16 +71,6 @@ public class PanelCompositionService {
             roleTypes.add(DISTRICT_TRIBUNAL_JUDGE.toRef());
         } else {
             addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionJudge());
-        }
-        String specialismCount = getSpecialismCount(caseData);
-
-        if ("1".equals(specialismCount)) {
-            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(null);
-        } else if ("2".equals(specialismCount)) {
-            if (isNull(panelMemberComposition.getPanelCompositionMemberMedical1())) {
-                caseData.getPanelMemberComposition().setPanelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
-            }
-            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
         }
         addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical1());
         addIgnoreNull(roleTypes, panelMemberComposition.getPanelCompositionMemberMedical2());
@@ -124,6 +115,19 @@ public class PanelCompositionService {
     private boolean isDtjSelected(SscsCaseData caseData) {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
+    }
+
+    private void updatePanelCompositionWithSpecialismCount(SscsCaseData caseData) {
+        String specialismCount = getSpecialismCount(caseData);
+
+        if ("2".equals(specialismCount)) {
+            if (isNull(caseData.getPanelMemberComposition().getPanelCompositionMemberMedical1())) {
+                caseData.getPanelMemberComposition().setPanelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
+            }
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
+        } else {
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(null);
+        }
     }
 
     private String getSpecialismCount(SscsCaseData caseData) {
