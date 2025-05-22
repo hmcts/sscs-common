@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 import static java.util.Collections.frequency;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
-import static org.springframework.util.CollectionUtils.isEmpty;
+import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
@@ -45,9 +45,18 @@ public class PanelCompositionService {
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
-            return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())
+
+            return nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
+    }
+
+    public PanelMemberComposition createPanelComposition(SscsCaseData caseData) {
+        DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
+        List<String> defaultJohTiers =
+                nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
+                        ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
+        return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
     private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
