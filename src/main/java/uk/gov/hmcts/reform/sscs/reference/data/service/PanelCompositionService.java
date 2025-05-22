@@ -43,7 +43,7 @@ public class PanelCompositionService {
     public List<String> getRoleTypes(SscsCaseData caseData) {
         if (nonNull(caseData.getPanelMemberComposition()) &&
                 (!caseData.getPanelMemberComposition().isEmpty() || isDtjSelected(caseData))) {
-            updatePanelCompositionWithSpecialismCount(caseData);
+            updatePanelCompositionFromSpecialismCount(caseData);
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
@@ -117,7 +117,7 @@ public class PanelCompositionService {
         return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 
-    private void updatePanelCompositionWithSpecialismCount(SscsCaseData caseData) {
+    private void updatePanelCompositionFromSpecialismCount(SscsCaseData caseData) {
         String specialismCount = getSpecialismCount(caseData);
 
         if ("2".equals(specialismCount)) {
