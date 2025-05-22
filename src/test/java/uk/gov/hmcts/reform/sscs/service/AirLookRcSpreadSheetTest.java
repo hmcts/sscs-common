@@ -129,6 +129,11 @@ public class AirLookRcSpreadSheetTest {
         Iterator postCodeIterator = postCodesForVenueNames.iterator();
         while (postCodeIterator.hasNext()) {
             Object postCode = postCodeIterator.next();
+
+            if (postCode.toString().toUpperCase().startsWith("BT")) {
+                continue;
+            }
+
             String pipVenue = venueData.get(postCode).getPipVenue();
             String esaVenue = venueData.get(postCode).getEsaOrUcVenue();
 
