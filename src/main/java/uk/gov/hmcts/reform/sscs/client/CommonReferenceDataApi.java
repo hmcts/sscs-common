@@ -21,7 +21,7 @@ public interface CommonReferenceDataApi {
 
     @RequestMapping(
         method = RequestMethod.GET,
-        value = {"refdata/commondata/lov/categories", "refdata/commondata/lov/categories/{categoryId}"},
+        value = {"refdata/commondata/lov/categories/{categoryId}"},
         headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
     )
     ResponseEntity<Categories> retrieveListOfValuesByCategoryId(
@@ -34,7 +34,7 @@ public interface CommonReferenceDataApi {
 
     @RequestMapping(
         method = RequestMethod.GET,
-        value = {"refdata/commondata/caseflags", "refdata/commondata/caseflags/service-id={service-id}"},
+        value = {"refdata/commondata/caseflags/service-id={service-id}"},
         headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
     )
     ResponseEntity<CaseFlag> retrieveCaseFlagsByServiceId(
