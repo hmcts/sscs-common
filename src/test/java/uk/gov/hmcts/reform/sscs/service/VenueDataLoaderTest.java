@@ -180,7 +180,7 @@ public class VenueDataLoaderTest {
     @DisplayName("VenueDataLoader provides Belfast court details when using the new file")
     @Test
     public void testGetVenueReturnsBelfastCourtWhenUsingNewFile() {
-        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("366559");
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("824367");
 
         assertNotNull(result);
         assertEquals("1270", result.getVenueId());

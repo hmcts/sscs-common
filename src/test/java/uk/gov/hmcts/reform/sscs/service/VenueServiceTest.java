@@ -110,7 +110,7 @@ public class VenueServiceTest {
         venueService = new VenueService(venueDataLoader, airLookupService); // Inject the real VenueDataLoader
 
         String venueId = "1270";
-        String expectedEpimsId = "366559";
+        String expectedEpimsId = "824367";
 
         String result = venueService.getEpimsIdForVenueId(venueId);
         assertThat(result).isEqualTo(expectedEpimsId);
