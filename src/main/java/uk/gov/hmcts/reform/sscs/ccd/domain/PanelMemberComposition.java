@@ -67,13 +67,6 @@ public class PanelMemberComposition {
     }
 
     @JsonIgnore
-    public void updateToTribunalMedicalMember() {
-        if (!hasMedicalMember()) {
-            panelCompositionMemberMedical1 = TRIBUNAL_MEDICAL_MEMBER_REF;
-        }
-    }
-
-    @JsonIgnore
     public void clearMedicalMembers() {
         panelCompositionMemberMedical1 = null;
         panelCompositionMemberMedical2 = null;
