@@ -59,7 +59,7 @@ public class PanelCompositionService {
         return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
-    private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
+    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
