@@ -12,9 +12,11 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_JUDGE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_DISABILITY;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -50,11 +52,28 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).containsOnly("84");
     }
 
+    @DisplayName("Should return correct panelComposition for valid issue benefit code combination")
+    @Test
+    public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
+        var result = panelCompositionService
+                .createPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+
+        assertThat(result).isNotNull();
+        assertEquals(TRIBUNAL_JUDGE.toRef(), result.getPanelCompositionJudge());
+    }
+
     @DisplayName("Invalid call to gerRoleTypes should return null")
     @Test
     public void getDefaultPanelCompositionWithInvalidParameters() {
         var result = panelCompositionService.getRoleTypes(buildCaseData());
         assertThat(result).isEmpty();
+    }
+
+    @DisplayName("should return emptyPanelComposition")
+    @Test
+    public void shouldReturnEmptyPanelComposition() {
+        var result = panelCompositionService.createPanelComposition(buildCaseData());
+        assertTrue(result.isEmpty());
     }
 
     @DisplayName("Call to getRoleTypes with FQPM should return correct johTier")
@@ -69,7 +88,7 @@ public class PanelMemberCompositionServiceTest {
     }
 
     @Test
-    @DisplayName("Call to getPanelCategory with medical member should return correct johTier")
+    @DisplayName("Call to getRoleTypes with medical member should return correct johTier")
     public void getPanelCategoryWithMedicalMember() {
         var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("093").issueCode("CE").isMedicalMemberRequired(YES).build());
@@ -78,13 +97,24 @@ public class PanelMemberCompositionServiceTest {
     }
 
     @Test
-    @DisplayName("Call to getPanelCategory with FQPM and medical member should return correct johTier")
+    @DisplayName("Call to getRoleTypes with FQPM and medical member should return correct johTier")
     public void getPanelCategoryWithFqpmAndMedicalMember() {
         var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("093").issueCode("CE")
                         .isFqpmRequired(YES).isMedicalMemberRequired(YES).build());
         assertThat(result).isNotNull();
         assertThat(result).contains(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
+        assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
+    }
+
+    @Test
+    @DisplayName("Call to getRoleTypes with no FQPM and medical member should return correct johTier")
+    public void getPanelCategoryWithNoFqpmAndMedicalMember() {
+        var result = panelCompositionService.getRoleTypes(
+                SscsCaseData.builder().benefitCode("093").issueCode("CE")
+                        .isFqpmRequired(NO).isMedicalMemberRequired(YES).build());
+        assertThat(result).isNotNull();
+        assertThat(result).doesNotContain(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef());
         assertThat(result).contains(TRIBUNAL_MEMBER_MEDICAL.toRef());
     }
 
@@ -166,7 +196,8 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("createPanelCompositionFromJohTiers should return an empty list when there is nothing to map")
     @Test
     public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
         var caseData = buildCaseData();
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
@@ -176,20 +207,25 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("getRoleType should return default values when there is nothing to map")
     @Test
     public void getRoleTypeShouldNotReturnEmptyListWhenPanelCompositionFieldsAreEmpty() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(List.of("84"));
     }
 
-    @DisplayName("getRoleType should return an empty list when there is nothing to map")
+    @DisplayName("getRoleTypes should return an empty list when there is nothing to map")
     @Test
-    public void getRoleTypeShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
-        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().build();
-        caseData.getSchedulingAndListingFields().setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
+    public void getRoleTypesShouldReturnDtjWhenPanelCompositionFieldsAreEmptyButReserveTpDistrictJudgeSelected() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
+        caseData.getSchedulingAndListingFields()
+                .setReserveTo(ReserveTo.builder().reservedDistrictTribunalJudge(YES).build());
         caseData.setPanelMemberComposition(panelMemberComposition);
+
         List<String> result = panelCompositionService.getRoleTypes(caseData);
+
         assertThat(result).isNotNull();
         assertThat(result).isEqualTo(List.of("90000"));
     }

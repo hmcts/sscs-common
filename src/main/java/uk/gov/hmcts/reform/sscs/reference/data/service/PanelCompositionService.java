@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 import static java.util.Collections.frequency;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
-import static org.springframework.util.CollectionUtils.isEmpty;
+import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
@@ -45,20 +45,29 @@ public class PanelCompositionService {
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
-            return nonNull(defaultPanelComposition) && !isEmpty(defaultPanelComposition.getJohTiers())
+
+            return nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
     }
 
-    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
+    public PanelMemberComposition createPanelComposition(SscsCaseData caseData) {
+        DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
+        List<String> defaultJohTiers =
+                nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
+                        ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
+        return createPanelCompositionFromJohTiers(defaultJohTiers);
+    }
+
+    private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
         String isFqpm =
-                nonNull(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
-        String isMedicalMember =
-                isYes(caseData.getIsMedicalMemberRequired()) ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
+                isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
+        String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
+                ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         return defaultPanelCompositions.stream()
                 .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                 .findFirst().orElse(null);

@@ -3,12 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import static java.util.Objects.isNull;
@@ -29,6 +27,6 @@ public class PanelMemberComposition {
         return isNull(panelCompositionJudge) &&
                 isNull(panelCompositionMemberMedical1) &&
                 isNull(panelCompositionMemberMedical2) &&
-                CollectionUtils.isEmpty(panelCompositionDisabilityAndFqMember);
+                ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
     }
 }
