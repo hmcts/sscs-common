@@ -56,7 +56,7 @@ public class PanelCompositionService {
         }
     }
   
-  public PanelMemberComposition createPanelComposition(SscsCaseData caseData) {
+    public PanelMemberComposition createPanelComposition(SscsCaseData caseData) {
         DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
         List<String> defaultJohTiers =
                 nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
