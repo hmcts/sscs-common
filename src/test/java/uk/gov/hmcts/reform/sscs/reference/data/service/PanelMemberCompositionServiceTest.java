@@ -52,11 +52,28 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).containsOnly("84");
     }
 
+    @DisplayName("Should return correct panelComposition for valid issue benefit code combination")
+    @Test
+    public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
+        var result = panelCompositionService
+                .createPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+
+        assertThat(result).isNotNull();
+        assertEquals(TRIBUNAL_JUDGE.toRef(), result.getPanelCompositionJudge());
+    }
+
     @DisplayName("Invalid call to gerRoleTypes should return null")
     @Test
     public void getDefaultPanelCompositionWithInvalidParameters() {
         var result = panelCompositionService.getRoleTypes(buildCaseData());
         assertThat(result).isEmpty();
+    }
+
+    @DisplayName("should return emptyPanelComposition")
+    @Test
+    public void shouldReturnEmptyPanelComposition() {
+        var result = panelCompositionService.createPanelComposition(buildCaseData());
+        assertTrue(result.isEmpty());
     }
 
     @DisplayName("Call to getRoleTypes with FQPM should return correct johTier")
