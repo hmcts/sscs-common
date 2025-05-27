@@ -348,7 +348,6 @@ public class PanelMemberCompositionServiceTest {
         assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
     }
 
-
     @DisplayName("IsValidBenefitIssueCode should return true when benefit issue code is in panel map")
     @Test
     public void testIsValidBenefitIssueCode() {
@@ -362,5 +361,4 @@ public class PanelMemberCompositionServiceTest {
         boolean result = panelCompositionService.isBenefitIssueCodeValid("000", "00");
         assertThat(result).isFalse();
     }
-
 }
