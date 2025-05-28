@@ -19,7 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMember;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
@@ -128,6 +130,10 @@ public class PanelCompositionService {
 
     public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
         return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
+    }
+
+    public boolean containsAnyPanelMember(DefaultPanelComposition defaultPanelComposition, List<PanelMemberType> panelMembers) {
+        return panelMembers.stream().anyMatch(panelMember -> defaultPanelComposition.getJohTiers().contains(panelMember.getReference()));
     }
 
 }
