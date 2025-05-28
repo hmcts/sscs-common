@@ -28,6 +28,7 @@ public class AirLookRcSpreadSheetTest {
     private static final Logger LOG = getLogger(AirLookRcSpreadSheetTest.class);
     AirLookupService airLookupService;
     Map<String, String> lookupData;
+    Map<String, String> lookupIbcData;
     Map<String, AirlookupBenefitToVenue> venueData;
     Map<String, Integer> lookupVenueIdByAirLookupName;
 
@@ -37,6 +38,7 @@ public class AirLookRcSpreadSheetTest {
         airLookupService.init();
 
         lookupData = airLookupService.getLookupRegionalCentreByPostcode();
+        lookupIbcData = airLookupService.getLookupIbcRegionalCentreByPostcode();
         venueData = airLookupService.getLookupAirVenueNameByPostcode();
         lookupVenueIdByAirLookupName = airLookupService.getLookupVenueIdByAirVenueName();
     }
@@ -159,7 +161,7 @@ public class AirLookRcSpreadSheetTest {
      */
     @Test
     public void testAllUkPostcodes() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodesNI.csv");
+        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodes.csv");
 
         CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
         try {
@@ -176,6 +178,47 @@ public class AirLookRcSpreadSheetTest {
             int counterOut = 0;
             for (String postcode : allUkPostcodes) {
                 if (!lookupData.containsKey(postcode.toLowerCase().trim())) {
+                    //we don't
+                    counterOut++;
+                    System.out.println(postcode.trim());
+                }
+            }
+            System.out.println("Total postcodes missing is: " + counterOut);
+            if (counterOut > 0) {
+                fail("The postcodes above are missing from the spreadsheet");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CsvException e) {
+            LOG.error("Error occurred while testing all Uk postcodes {}", String.valueOf(e));
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Test
+    public void testAllUkPostcodesNI() throws IOException {
+        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodesNI.csv");
+
+        CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
+        try {
+
+            List<String> allUkPostcodes = new ArrayList<>();
+            //read the headers in
+            reader.readNext();
+
+            List<String[]> linesList = reader.readAll();
+            linesList.forEach(line ->
+                allUkPostcodes.add(line[0])
+            );
+
+            int counterOut = 0;
+            for (String postcode : allUkPostcodes) {
+                if (!lookupIbcData.containsKey(postcode.toLowerCase().trim())) {
                     //we don't
                     counterOut++;
                     System.out.println(postcode.trim());

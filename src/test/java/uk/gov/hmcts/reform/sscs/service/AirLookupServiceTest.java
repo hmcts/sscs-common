@@ -20,7 +20,7 @@ public class AirLookupServiceTest {
     private AirLookupService airLookupService;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         airLookupService = new AirLookupService();
         airLookupService.init();
     }
@@ -80,7 +80,7 @@ public class AirLookupServiceTest {
             "BT3 9EP, Glasgow",
             "BT1 3WH, Glasgow"
     })
-    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) throws Exception {
+    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) {
         assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 
@@ -442,7 +442,21 @@ public class AirLookupServiceTest {
             "BT1 3WH",
             "bt12 7sl"
     })
-    public void checkLookupAirVenueNameByPostCodeReturnsBelfastforNIPostcodesWhenIBC(String postcode) {
+    public void checkLookupAirVenueNameByPostCodeReturnsEmptyForNIPostcodesWhenNotIBC(String postcode) {
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("PIP").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("JSA").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("ESA").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("childSupport").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("industrialInjuriesDisablement").build()));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "BT3 9EP",
+        "BT1 3WH",
+        "bt12 7sl"
+    })
+    public void checkLookupAirVenueNameByPostCodeReturnsBelfastForNIPostcodesWhenIBC(String postcode) {
         assertEquals("Belfast RCJ", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("infectedBloodCompensation").build()));
     }
 
