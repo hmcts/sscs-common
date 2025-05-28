@@ -164,7 +164,7 @@ public class AirLookRcSpreadSheetTest {
      */
     @Test
     public void testAllUkPostcodes() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodes.csv");
+        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodesNI.csv");
 
         CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
         try {
