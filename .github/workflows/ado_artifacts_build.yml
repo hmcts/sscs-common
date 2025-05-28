@@ -1,12 +1,10 @@
 name: Publish to Azure Artifacts
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - '*'
-    tags:
-      - '*'
+    tags: ["*"]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   PublishToAzureArtifacts:
@@ -25,10 +23,14 @@ jobs:
           java-version: 17
           cache: 'gradle'
 
-      - name: Get the commit hash
-        id: get_hash
+      - name: Determine release version
+        id: version
         run: |
-          echo "sha_short=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            echo "release_version=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+          else
+            echo "release_version=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+          fi
 
       - name: Publish to Azure DevOps Artifacts
         run: |
@@ -37,5 +39,5 @@ jobs:
         env:
           AZURE_DEVOPS_ARTIFACT_USERNAME: ${{ secrets.AZURE_DEVOPS_ARTIFACT_USERNAME }}
           AZURE_DEVOPS_ARTIFACT_TOKEN: ${{ secrets.AZURE_DEVOPS_ARTIFACT_TOKEN }}
-          RELEASE_VERSION: ${{ steps.get_hash.outputs.sha_short }}
+          RELEASE_VERSION: ${{ steps.version.outputs.release_version }}
           shell: bash
