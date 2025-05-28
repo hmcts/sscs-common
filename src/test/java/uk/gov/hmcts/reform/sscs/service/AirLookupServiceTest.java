@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
@@ -20,22 +19,10 @@ public class AirLookupServiceTest {
 
     private AirLookupService airLookupService;
 
-    private void setAllowNIPostcodes(Boolean value) throws Exception {
-        java.lang.reflect.Field allowNIPostcodesField = AirLookupService.class.getDeclaredField("allowNIPostcodes");
-        allowNIPostcodesField.setAccessible(true);
-        allowNIPostcodesField.set(airLookupService, value);
-    }
     @BeforeEach
     void setUp() throws Exception {
         airLookupService = new AirLookupService();
-        setAllowNIPostcodes(true);
         airLookupService.init();
-    }
-
-    @Test
-    void shouldReturnNewFileWhenAllowNIPostcodesIsTrue() throws Exception {
-        setAllowNIPostcodes(true);
-        assertEquals("reference-data/AIRLookup_23.2.xlsx", airLookupService.getPathForAirLookup());
     }
 
     @ParameterizedTest
@@ -94,7 +81,6 @@ public class AirLookupServiceTest {
             "BT1 3WH, Glasgow"
     })
     public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) throws Exception {
-        setAllowNIPostcodes(true);
         assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 

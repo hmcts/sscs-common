@@ -23,7 +23,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
@@ -48,9 +47,7 @@ public class AirLookupService {
                     .csaVenue("Birmingham")
                     .ibcVenue("Birmingham")
                     .build();
-    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_23.1.xlsx";
-    static final String AIR_LOOKUP_FILE_V2 = "reference-data/AIRLookup_23.2.xlsx";
-
+    static final String AIR_LOOKUP_FILE = "reference-data/AIRLookup_23.2.xlsx";
     static final String AIR_LOOKUP_VENUE_IDS_CSV = "airLookupVenueIds.csv";
     private static final int POSTCODE_COLUMN = 0;
     private static final int REGIONAL_CENTRE_COLUMN = 8;
@@ -65,12 +62,6 @@ public class AirLookupService {
     private Map<String, String> lookupIbcRegionalCentreByPostcode;
     private Map<String, AirlookupBenefitToVenue> lookupAirVenueNameByPostcode;
     private Map<String, Integer> lookupVenueIdByAirVenueName;
-
-    @Value("${feature.ibc-ni-postcodes.enabled:true}") boolean allowNIPostcodes;
-
-    public String getPathForAirLookup() {
-        return AIR_LOOKUP_FILE_V2;
-    }
 
     public String lookupRegionalCentre(String postcode) {
         if (isPortOfEntryCode(postcode)) {
@@ -134,18 +125,16 @@ public class AirLookupService {
     }
 
     private void logErrorWithAirLookup(IOException e) {
-        String message = "Unable to read in spreadsheet with post code data: " + getPathForAirLookup();
+        String message = "Unable to read in spreadsheet with post code data: " + AIR_LOOKUP_FILE;
         AirLookupServiceException ex = new AirLookupServiceException(e);
         log.error(message, ex);
     }
 
     private void loadAndParseAirLookupFile() throws IOException {
-        ClassPathResource classPathResource = new ClassPathResource(getPathForAirLookup());
+        ClassPathResource classPathResource = new ClassPathResource(AIR_LOOKUP_FILE);
         Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream());
-
         parseAirLookupData(wb2);
         parseVenueData(wb2);
-
         log.debug("Successfully loaded lookup data for postcode endpoint");
     }
 
@@ -174,6 +163,7 @@ public class AirLookupService {
     private void populateLookupData(Row row) {
         Cell postcodeCell = row.getCell(POSTCODE_COLUMN);
         Cell adminGroupCell = row.getCell(REGIONAL_CENTRE_COLUMN);
+
         if (postcodeCell != null && adminGroupCell != null
                 && postcodeCell.getCellType() == CellType.STRING
                 && adminGroupCell.getCellType() == CellType.STRING) {
@@ -225,7 +215,6 @@ public class AirLookupService {
 
         for (Sheet sheet : wb) {
             if (sheet.getSheetName().equalsIgnoreCase(AIR_LOOKUP_VENUE_IDS_CSV)) {
-
                 populateVenueDataRow(sheet);
             }
         }

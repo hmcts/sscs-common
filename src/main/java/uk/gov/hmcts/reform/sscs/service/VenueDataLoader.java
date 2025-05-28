@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Venue;
 import uk.gov.hmcts.reform.sscs.model.VenueDetails;
@@ -24,24 +23,16 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 @Slf4j
 public class VenueDataLoader {
 
-    private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
-    private static final String CSV_FILE_PATH_V2 = "reference-data/sscs-venues-v2.csv";
-
+    private static final String CSV_FILE_PATH = "reference-data/sscs-venues-v2.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByPostcode = newHashMap();
     private final Map<String, List<VenueDetails>> activeVenueEpimsIdsMapByRpc = newHashMap();
 
-    @Value("${feature.ibc-ni-postcodes.enabled:true}") boolean allowNIPostcodes;
-
-    public String getPathForScssVenues() {
-        return CSV_FILE_PATH_V2;
-    }
     @PostConstruct
     protected void init() {
-        String csvFilePath = getPathForScssVenues();
-        InputStream is = getClass().getClassLoader().getResourceAsStream(csvFilePath);
+        InputStream is = getClass().getClassLoader().getResourceAsStream(CSV_FILE_PATH);
         try (CSVReader reader = new CSVReader(new InputStreamReader(is))) {
 
             List<String[]> linesList = reader.readAll();
@@ -80,7 +71,7 @@ public class VenueDataLoader {
                             Collectors.toList())));
 
         } catch (IOException | CsvException  e) {
-            log.error("Error occurred while loading the sscs venues reference data file: " + csvFilePath + e);
+            log.error("Error occurred while loading the sscs venues reference data file: " + CSV_FILE_PATH + e);
         }
     }
 
