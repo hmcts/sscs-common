@@ -29,7 +29,8 @@ jobs:
           if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
             echo "release_version=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
           else
-            echo "release_version=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+            sha="${{github.event.pull_request.head.sha}}"
+            echo "release_version=${sha::7}" >> $GITHUB_OUTPUT
           fi
 
       - name: Publish to Azure DevOps Artifacts
