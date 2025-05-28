@@ -132,8 +132,5 @@ public class PanelCompositionService {
         return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
     }
 
-    public boolean containsAnyPanelMember(DefaultPanelComposition defaultPanelComposition, List<PanelMemberType> panelMembers) {
-        return panelMembers.stream().anyMatch(panelMember -> defaultPanelComposition.getJohTiers().contains(panelMember.getReference()));
-    }
 
 }

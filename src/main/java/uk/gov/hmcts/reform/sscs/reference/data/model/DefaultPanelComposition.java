@@ -6,6 +6,7 @@ import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
@@ -44,6 +45,10 @@ public class DefaultPanelComposition {
     @Override
     public int hashCode() {
         return Objects.hash(benefitIssueCode, specialismCount, fqpm);
+    }
+
+    public boolean containsAnyPanelMember(List<PanelMemberType> panelMembers) {
+        return panelMembers.stream().anyMatch(panelMember -> johTiers.contains(panelMember.getReference()));
     }
 
 }

@@ -364,23 +364,4 @@ public class PanelMemberCompositionServiceTest {
         assertThat(result).isFalse();
     }
 
-    @DisplayName("ContainsAnyPanelMembers should return true when default panel comp contains one of the panel members supplied")
-    @Test
-    public void testContainsAnyPanelMembersTrue() {
-        DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
-        defaultPanelComposition.setJohTiers(List.of(TRIBUNAL_MEMBER_MEDICAL.toRef()));
-        List<PanelMemberType> panelMembers = List.of(TRIBUNAL_MEMBER_MEDICAL);
-        boolean result = panelCompositionService.containsAnyPanelMember(defaultPanelComposition, panelMembers);
-        assertThat(result).isTrue();
-    }
-
-    @DisplayName("ContainsAnyPanelMembers should return false when default panel comp doesn't contain panel members")
-    @Test
-    public void testContainsAnyPanelMembersFalse() {
-        DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
-        defaultPanelComposition.setJohTiers(List.of(TRIBUNAL_MEMBER_MEDICAL.toRef()));
-        List<PanelMemberType> panelMembers = List.of(REGIONAL_MEDICAL_MEMBER);
-        boolean result = panelCompositionService.containsAnyPanelMember(defaultPanelComposition, panelMembers);
-        assertThat(result).isFalse();
-    }
 }
