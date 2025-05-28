@@ -47,7 +47,7 @@ public class DefaultPanelComposition {
         return Objects.hash(benefitIssueCode, specialismCount, fqpm);
     }
 
-    public boolean containsAnyPanelMember(List<PanelMemberType> panelMembers) {
+    public boolean containsAnyPanelMembers(List<PanelMemberType> panelMembers) {
         return panelMembers.stream().anyMatch(panelMember -> johTiers.contains(panelMember.getReference()));
     }
 
