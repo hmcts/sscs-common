@@ -7,6 +7,7 @@ import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,9 +17,10 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
 
 public class AirLookupServiceTest {
 
-    private static final AirLookupService airLookupService;
+    private AirLookupService airLookupService;
 
-    static {
+    @BeforeEach
+    void setUp() {
         airLookupService = new AirLookupService();
         airLookupService.init();
     }
@@ -71,6 +73,38 @@ public class AirLookupServiceTest {
             expectedAdminGroup = null;
         }
         assertEquals(expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "BT3 9EP, Glasgow",
+            "BT1 3WH, Glasgow"
+    })
+    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) {
+        assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Truro Hearing Centre, 1155",
+            "Worle, 1159",
+            "Llanelli, 1186",
+            "Derby, 1216",
+            "Belfast RCJ, 1270"
+    })
+    public void getLookupVenueIdByAirVenueNameReturnsExpected(String processingVenue, String expVenueId) throws Exception {
+        org.springframework.core.io.ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("reference-data/AIRLookup_23.2.xlsx");
+        try (org.apache.poi.ss.usermodel.Workbook wb2 = org.apache.poi.ss.usermodel.WorkbookFactory.create(classPathResource.getInputStream())) {
+            airLookupService.parseAirLookupData(wb2);
+            org.apache.poi.ss.usermodel.Sheet sheet = wb2.getSheet(AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV);
+
+            if (sheet == null) {
+                throw new IllegalStateException("Sheet with name '" + AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV + "' not found in the workbook.");
+            }
+        }
+        String venueId = String.valueOf(airLookupService.getLookupVenueIdByAirVenueName().get(processingVenue));
+        assertNotNull(venueId, "Venue ID should not be null");
+        assertEquals(expVenueId, venueId);
     }
 
     @ParameterizedTest
@@ -400,6 +434,30 @@ public class AirLookupServiceTest {
     public void checkAirPostcodeWithNoPipReturnsBirmingham() {
         //n1w1 is a sorting office
         assertEquals(DEFAULT_VENUE, airLookupService.lookupAirVenueNameByPostCode("n1w1"));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "BT3 9EP",
+            "BT1 3WH",
+            "bt12 7sl"
+    })
+    public void checkLookupAirVenueNameByPostCodeReturnsEmptyForNIPostcodesWhenNotIBC(String postcode) {
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("PIP").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("JSA").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("ESA").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("childSupport").build()));
+        assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("industrialInjuriesDisablement").build()));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "BT3 9EP",
+        "BT1 3WH",
+        "bt12 7sl"
+    })
+    public void checkLookupAirVenueNameByPostCodeReturnsBelfastForNIPostcodesWhenIBC(String postcode) {
+        assertEquals("Belfast RCJ", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("infectedBloodCompensation").build()));
     }
 
     @Test

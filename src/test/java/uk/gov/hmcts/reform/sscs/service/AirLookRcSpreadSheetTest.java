@@ -1,18 +1,16 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import com.opencsv.exceptions.CsvValidationException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,9 +25,10 @@ import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
  * and our list of venues.
  */
 public class AirLookRcSpreadSheetTest {
-    private static final Logger LOG = getLogger(RegionalProcessingCenterService.class);
+    private static final Logger LOG = getLogger(AirLookRcSpreadSheetTest.class);
     AirLookupService airLookupService;
     Map<String, String> lookupData;
+    Map<String, String> lookupIbcData;
     Map<String, AirlookupBenefitToVenue> venueData;
     Map<String, Integer> lookupVenueIdByAirLookupName;
 
@@ -39,6 +38,7 @@ public class AirLookRcSpreadSheetTest {
         airLookupService.init();
 
         lookupData = airLookupService.getLookupRegionalCentreByPostcode();
+        lookupIbcData = airLookupService.getLookupIbcRegionalCentreByPostcode();
         venueData = airLookupService.getLookupAirVenueNameByPostcode();
         lookupVenueIdByAirLookupName = airLookupService.getLookupVenueIdByAirVenueName();
     }
@@ -103,49 +103,51 @@ public class AirLookRcSpreadSheetTest {
         List<String> missingPipVenuePostcodes = new ArrayList<>();
 
         Set<String> rcKeys = lookupData.keySet();
-        Iterator<String> iterator = rcKeys.iterator();
-        while (iterator.hasNext()) {
-            String postcode = iterator.next();
-            if (!venueData.keySet().contains(postcode) && !lookupData.get(postcode).equals("Glasgow")) {
-                if (!realPostcodesWithNoVenue.contains(postcode)  && !notRealPostcodes.contains(postcode)) {
+        for (String postcode : rcKeys) {
+            if (!venueData.containsKey(postcode) && !lookupData.get(postcode).equals("Glasgow")) {
+                if (!realPostcodesWithNoVenue.contains(postcode) && !notRealPostcodes.contains(postcode)) {
                     missingPipVenuePostcodes.add(postcode);
                 }
             }
         }
 
-        assertTrue(missingPipVenuePostcodes.size() == 0,
-            missingPipVenuePostcodes + " of " + lookupData.size()
-                        + " post codes do not have a PIP entry: "
-                        + Arrays.toString(missingPipVenuePostcodes.toArray()));
+        assertEquals(0, missingPipVenuePostcodes.size(), missingPipVenuePostcodes + " of " + lookupData.size()
+            + " post codes do not have a PIP entry: "
+            + Arrays.toString(missingPipVenuePostcodes.toArray()));
     }
 
     @Test
-    public void testAllPipsAndEsasMapToVenueId() {
+    public void testAllPipEsaUcIbcMapToVenueId() {
         Set<String> postCodesForVenueNames = venueData.keySet();
 
         Set<String> missingAirLookupNames = new HashSet<>();
         Set<String> workingAirLookupNames = new HashSet<>();
 
-        Iterator postCodeIterator = postCodesForVenueNames.iterator();
-        while (postCodeIterator.hasNext()) {
-            Object postCode = postCodeIterator.next();
+        for (String postCode : postCodesForVenueNames) {
+            if (postCode.toUpperCase().startsWith("BT")) {
+                String ibcVenue = venueData.get(postCode).getIbcVenue();
+                checkVenueExists(missingAirLookupNames, workingAirLookupNames, ibcVenue);
+                continue;
+            }
+
             String pipVenue = venueData.get(postCode).getPipVenue();
             String esaVenue = venueData.get(postCode).getEsaOrUcVenue();
+            String ibcVenue = venueData.get(postCode).getIbcVenue();
 
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, pipVenue);
             checkVenueExists(missingAirLookupNames, workingAirLookupNames, esaVenue);
+            checkVenueExists(missingAirLookupNames, workingAirLookupNames, ibcVenue);
         }
 
-        assertTrue(missingAirLookupNames.size() == 0,
-            missingAirLookupNames.size() + " airLookupNames don't map to a venueId"
-                        + "\nMissing: " + Arrays.toString(missingAirLookupNames.toArray())
-                        + "\nWorking: " + Arrays.toString(workingAirLookupNames.toArray()));
+        assertEquals(0, missingAirLookupNames.size(), missingAirLookupNames.size() + " airLookupNames don't map to a venueId"
+            + "\nMissing: " + Arrays.toString(missingAirLookupNames.toArray())
+            + "\nWorking: " + Arrays.toString(workingAirLookupNames.toArray()));
     }
 
     private void checkVenueExists(Set<String> missingAirLookupNames, Set<String> workingAirLookupNames, String venue) {
         Integer venueId = lookupVenueIdByAirLookupName.get(venue);
 
-        if (venueId == null || venueId.intValue() == 0) {
+        if (venueId == null || venueId == 0) {
             missingAirLookupNames.add(venue);
         } else {
             workingAirLookupNames.add(venue);
@@ -164,7 +166,7 @@ public class AirLookRcSpreadSheetTest {
         CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
         try {
 
-            List<String> allUkPostcodes = new ArrayList();
+            List<String> allUkPostcodes = new ArrayList<>();
             //read the headers in
             reader.readNext();
 
@@ -173,13 +175,9 @@ public class AirLookRcSpreadSheetTest {
                     allUkPostcodes.add(line[0])
             );
 
-            int counterIn = 0;
             int counterOut = 0;
             for (String postcode : allUkPostcodes) {
-                if (lookupData.containsKey(postcode.toLowerCase().trim())) {
-                    //we have it
-                    counterIn++;
-                } else {
+                if (!lookupData.containsKey(postcode.toLowerCase().trim())) {
                     //we don't
                     counterOut++;
                     System.out.println(postcode.trim());
@@ -191,10 +189,49 @@ public class AirLookRcSpreadSheetTest {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (CsvValidationException e) {
-            LOG.error("Error occurred while testing all Uk postcodes "  + e);
         } catch (CsvException e) {
-            LOG.error("Error occurred while testing all Uk postcodes "  + e);
+            LOG.error("Error occurred while testing all Uk postcodes {}", String.valueOf(e));
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Test
+    public void testAllUkPostcodesNI() throws IOException {
+        ClassPathResource classPathResource = new ClassPathResource("AllUkPostcodesNI.csv");
+
+        CSVReader reader = new CSVReader(new InputStreamReader(classPathResource.getInputStream()));
+        try {
+
+            List<String> allUkPostcodes = new ArrayList<>();
+            //read the headers in
+            reader.readNext();
+
+            List<String[]> linesList = reader.readAll();
+            linesList.forEach(line ->
+                allUkPostcodes.add(line[0])
+            );
+
+            int counterOut = 0;
+            for (String postcode : allUkPostcodes) {
+                if (!lookupIbcData.containsKey(postcode.toLowerCase().trim())) {
+                    //we don't
+                    counterOut++;
+                    System.out.println(postcode.trim());
+                }
+            }
+            System.out.println("Total postcodes missing is: " + counterOut);
+            if (counterOut > 0) {
+                fail("The postcodes above are missing from the spreadsheet");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CsvException e) {
+            LOG.error("Error occurred while testing all Uk postcodes {}", String.valueOf(e));
         } finally {
             try {
                 reader.close();
