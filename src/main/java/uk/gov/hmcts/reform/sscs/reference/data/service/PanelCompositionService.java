@@ -157,7 +157,7 @@ public class PanelCompositionService {
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
             if (nonNull(issueCodePanelComposition) && nonNull(issueCodePanelComposition.getJohTiers())
-                    && !defaultPanelComposition.getJohTiers().equals(issueCodePanelComposition.getJohTiers())) {
+                    && !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers())) {
                 for (String johTier: issueCodePanelComposition.getJohTiers()) {
                     if(!defaultPanelComposition.getJohTiers().contains(johTier)){
                         defaultPanelComposition.getJohTiers().add(johTier);
