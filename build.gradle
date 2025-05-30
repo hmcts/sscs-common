@@ -8,7 +8,7 @@ plugins {
     id 'org.owasp.dependencycheck' version '12.1.1'
 }
 
-def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
+def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
 
 group 'com.github.hmcts'
 // Do not change this version number
@@ -24,6 +24,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven { url 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1' }
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
@@ -123,6 +124,17 @@ publishing {
             version project.version
         }
     }
+
+    repositories {
+        maven {
+            name = "AzureArtifacts"
+            url = uri("https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1")
+            credentials {
+                username = System.getenv("AZURE_DEVOPS_ARTIFACT_USERNAME")
+                password = System.getenv("AZURE_DEVOPS_ARTIFACT_TOKEN")
+            }
+        }
+    }
 }
 
 tasks.register('installLocalGitHook', Copy) {
@@ -190,9 +202,9 @@ dependencies {
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.11'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
-    implementation group: 'com.github.hmcts', name: 'java-logging', version: '6.1.9'
+    implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
 
-    implementation group: 'com.github.hmcts', name: 'ccd-client', version: '5.1.0'
+    implementation group: 'com.github.hmcts', name: 'core-case-data-store-client', version: '5.1.0'
 
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
