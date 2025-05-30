@@ -1,35 +1,39 @@
-## Sscs-common
+# SSCS - Common Library
 
-This is the common code library for sscs. Currently it contains:
+A shared library for SSCS projects, providing utilities for interacting with CCD, Idam, and other services.
 
-- CCD domain objects
-- Create, Update and Search for cases in CCD
-- Idam OAuth and service authorization tokens
-- Airlookup service
+## Table of Contents
+- [Background](#background)
+- [Build](#build)
+- [Usage](#usage)
+- [Utility](#utility)
+- [JitPack Integration](#jitpack-integration)
 
-### Build
+## Background
 
-To build run
+The SSCS Common Library is part of the SSCS ecosystem, offering reusable components for managing cases, authentication, and service integrations. It includes CCD domain objects, case operations, and token generation utilities.
+
+## Build
+
+To build the library locally:
 
 ```bash
 ./gradlew publishToMavenLocal
 ```
-This will create a jar file in the projects build libs directory with a version of DEV-SNAPSHOT.
-If you want to then depend on this without publishing it you can add the following to your build.gradle file
-in the dependencies section.
+
+This will create a JAR file in the project's `build/libs` directory with the version `DEV-SNAPSHOT`. To use this locally without publishing, add the following to your `build.gradle` file:
 
 ```gradle
-compile group: 'com.github.hmcts', name: 'sscs-common', version: 'DEV-SNAPSHOT'
+dependencies {
+    compile group: 'com.github.hmcts', name: 'sscs-common', version: 'DEV-SNAPSHOT'
+}
 ```
 
-### Usage
+## Usage
 
-To use this you will need to have setup the following properties in your application.yaml.
+To use this library, configure the following properties in your `application.yaml`:
 
-Dependent projects must implement the Spring Annotation ```@EnableScheduling``` on the
-class which is defined as the ```@SpringBootApplication```.
-
-```$yaml
+```yaml
 idam:
   s2s-auth:
     totp_secret: ${IDAM.S2S-AUTH.TOTP_SECRET:AAAAAAAAAAAAAAAC}
@@ -51,21 +55,38 @@ core_case_data:
   jurisdictionId: SSCS
 ```
 
-### Utility
+Dependent projects must implement the Spring annotation `@EnableScheduling` on the class defined as the `@SpringBootApplication`.
 
-#### Panel category map generation
+## Utility
 
-The `PanelCategoryMapParser` utility class reads data from `JOHTier_PanelMemberComposition_1.2.csv` file, converts it
-into JSON and overwrites `panel-category-map.json`. It does not rely on CSV headers, but instead maps data
-based on column indexes. Do not edit `panel-category-map.json` manually — any changes will be overwritten during regeneration.
+### Panel Category Map Generation
 
-To run
+The `PanelCategoryMapParser` utility reads data from the `JOHTier_PanelMemberComposition_1.2.csv` file, converts it into JSON, and overwrites `panel-category-map.json`. Do not manually edit `panel-category-map.json` as changes will be overwritten during regeneration.
+
+To generate the panel category map:
+
 ```bash
 ./gradlew generatePanelCategoryMap
 ```
 
-File locations: 
+File locations:
+- `src/main/resources/reference-data/JOHTier_PanelMemberComposition_1.2.csv`
+- `src/main/resources/reference-data/panel-category-map.json`
+
+## JitPack Integration
+
+This library is currently available via [JitPack](https://jitpack.io). To use it in other projects, add the following repository and dependency to any `build.gradle` file using this service:
+
+```gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.hmcts:sscs-common:<VERSION>'
+}
 ```
-src/main/resources/reference-data/JOHTier_PanelMemberComposition_1.2.csv
-src/main/resources/reference-data/panel-category-map.json
-```
+
+Replace `<VERSION>` with the desired release or commit hash.
+
+**Note:** There are plans to eventually move away from JitPack to a more stable and centralized solution. Updates will be provided in future releases.
