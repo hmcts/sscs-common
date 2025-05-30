@@ -14,11 +14,16 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -68,9 +73,13 @@ public class PanelCompositionService {
                 isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
-        return defaultPanelCompositions.stream()
-                .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
-                .findFirst().orElse(null);
+        if (Benefit.UC.getBenefitCode().equals(caseData.getBenefitCode())) {
+            return getUniversalCreditDefaultPanelComposition(caseData);
+        } else {
+            return defaultPanelCompositions.stream()
+                    .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
+                    .findFirst().orElse(null);
+        }
     }
 
     private static List<String> getJohTiersFromPanelComposition(PanelMemberComposition panelMemberComposition, SscsCaseData caseData) {
@@ -123,6 +132,74 @@ public class PanelCompositionService {
 
     private boolean isDtjSelected(SscsCaseData caseData) {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
-        return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
+        return nonNull(reserveTo) && isYes(reserveTo.getReservedDistrictTribunalJudge());
+    }
+
+    private String getSpecialismCount(SscsCaseData caseData) {
+        return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
+    }
+
+    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData) {
+        List<String> elementsDisputed = getElementsDisputed(caseData);
+        List<Issue> issues = getIssues(elementsDisputed);
+        String specialismCount = getSpecialismCount(caseData);
+        String isFqpm =
+                isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
+        String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
+                ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
+        DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
+        for (Issue issue : issues ) {
+            DefaultPanelComposition issueCodePanelComposition;
+            String benefitIssueCode = caseData.getBenefitCode() + issue.toString();
+            issueCodePanelComposition =  defaultPanelCompositions.stream()
+                    .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
+                    .findFirst().orElse(null);
+            if (nonNull(issueCodePanelComposition) && nonNull(issueCodePanelComposition.getJohTiers())
+                    && !defaultPanelComposition.getJohTiers().equals(issueCodePanelComposition.getJohTiers())) {
+                for (String johTier: issueCodePanelComposition.getJohTiers()) {
+                    if(!defaultPanelComposition.getJohTiers().contains(johTier)){
+                        defaultPanelComposition.getJohTiers().add(johTier);
+                    }
+                }
+            }
+
+        }
+        return defaultPanelComposition;
+    }
+
+//    move to commons?
+    public List<String> getElementsDisputed(SscsCaseData caseData) {
+        List<ElementDisputed> elementDisputed = new ArrayList<>();
+
+        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
+        elementsToCheck.add(caseData.getElementsDisputedGeneral());
+        elementsToCheck.add(caseData.getElementsDisputedSanctions());
+        elementsToCheck.add(caseData.getElementsDisputedOverpayment());
+        elementsToCheck.add(caseData.getElementsDisputedHousing());
+        elementsToCheck.add(caseData.getElementsDisputedChildCare());
+        elementsToCheck.add(caseData.getElementsDisputedCare());
+        elementsToCheck.add(caseData.getElementsDisputedChildElement());
+        elementsToCheck.add(caseData.getElementsDisputedChildDisabled());
+        elementsToCheck.add(caseData.getElementsDisputedLimitedWork());
+
+        elementsToCheck.forEach((List<ElementDisputed> list) -> {
+            if (isNotEmpty(list)) {
+                elementDisputed.addAll(list);
+            }
+        });
+
+        return elementDisputed.stream()
+                .map(ElementDisputed::getValue)
+                .map(ElementDisputedDetails::getIssueCode)
+                .collect(Collectors.toList());
+    }
+
+    //    move to commons?
+    public List<Issue> getIssues(List<String> elements) {
+        return elements.stream()
+                .map(Issue::getIssue)
+                .collect(Collectors.toList());
     }
 }
