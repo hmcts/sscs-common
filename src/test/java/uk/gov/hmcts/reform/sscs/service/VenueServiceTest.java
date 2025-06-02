@@ -103,6 +103,19 @@ public class VenueServiceTest {
         assertThat(result).isEqualTo("233333");
     }
 
+    @Test
+    public void getEpimsIdForVenueId_shouldReturnEpimsIdForBelfast() {
+        venueDataLoader = new VenueDataLoader();
+        venueDataLoader.init();
+        venueService = new VenueService(venueDataLoader, airLookupService); // Inject the real VenueDataLoader
+
+        String venueId = "1270";
+        String expectedEpimsId = "824367";
+
+        String result = venueService.getEpimsIdForVenueId(venueId);
+        assertThat(result).isEqualTo(expectedEpimsId);
+    }
+
     private void setupVenueMaps() {
         Map<String, Integer> venueIdMap = Map.of(PROCESSING_VENUE_1,
             68, PROCESSING_VENUE_2, 2);

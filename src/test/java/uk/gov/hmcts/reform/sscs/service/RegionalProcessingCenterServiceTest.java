@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -183,6 +184,22 @@ public class RegionalProcessingCenterServiceTest {
         RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, true);
 
         assertEquals("CARDIFF", rpc.getName());
+    }
+
+    @Test
+    public void getIbcNiRegionalProcessingCentreFromPostcode() {
+        String somePostcode = "BT1 1AB";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, true);
+
+        assertEquals("GLASGOW", rpc.getName());
+    }
+
+    @Test
+    public void shouldNotGetNonIbcNiRegionalProcessingCentreFromPostcode() {
+        String somePostcode = "BT1 1AB";
+        RegionalProcessingCenter rpc = regionalProcessingCenterService.getByPostcode(somePostcode, false);
+
+        assertNull(rpc);
     }
 
     @Test
