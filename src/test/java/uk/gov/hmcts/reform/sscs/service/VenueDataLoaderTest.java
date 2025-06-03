@@ -27,7 +27,7 @@ public class VenueDataLoaderTest {
             "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
         venueDataLoader = new VenueDataLoader();
         venueDataLoader.init();
     }
@@ -165,5 +165,15 @@ public class VenueDataLoaderTest {
     public void testActiveVenueEpimsIdsMapByRpcReturnsNullOnErroneousInput() {
         List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Newcastle");
         assertNull(result);
+    }
+
+    @DisplayName("VenueDataLoader provides Belfast court details when using the new file")
+    @Test
+    public void testGetVenueReturnsBelfastCourtWhenUsingNewFile() {
+        VenueDetails result = venueDataLoader.getActiveVenueDetailsMapByEpimsId().get("824367");
+
+        assertNotNull(result);
+        assertEquals("1270", result.getVenueId());
+        assertEquals("SC400", result.getThreeDigitReference());
     }
 }
