@@ -209,7 +209,7 @@ dependencies {
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.55'
 
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
-    implementation group: 'com.opencsv', name: 'opencsv', version: '5.11', {
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.11.1', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
     implementation group: 'org.apache.commons', name: 'commons-text', version: '1.13.1'
