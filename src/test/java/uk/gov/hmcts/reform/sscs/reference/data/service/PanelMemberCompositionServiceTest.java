@@ -22,9 +22,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
+import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 public class PanelMemberCompositionServiceTest {
 
@@ -387,4 +389,19 @@ public class PanelMemberCompositionServiceTest {
         assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
         assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
     }
+
+    @DisplayName("IsValidBenefitIssueCode should return true when benefit issue code is in panel map")
+    @Test
+    public void testIsValidBenefitIssueCode() {
+        boolean result = panelCompositionService.isBenefitIssueCodeValid("001", "AD");
+        assertThat(result).isTrue();
+    }
+
+    @DisplayName("IsValidBenefitIssueCode should return false when benefit issue code is not in panel map")
+    @Test
+    public void testIsValidBenefitIssueCodeForInvalidBenefitIssueCode() {
+        boolean result = panelCompositionService.isBenefitIssueCodeValid("000", "00");
+        assertThat(result).isFalse();
+    }
+
 }
