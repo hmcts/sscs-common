@@ -138,12 +138,6 @@ public class PanelCompositionService {
         return nonNull(reserveTo) && isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 
-    private String getSpecialismCount(SscsCaseData caseData) {
-        return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
-                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
-                ? "2" : "1" : null;
-    }
-
     private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData) {
         List<String> elementsDisputed = getElementsDisputed(caseData);
         List<Issue> issues = getIssues(elementsDisputed);
