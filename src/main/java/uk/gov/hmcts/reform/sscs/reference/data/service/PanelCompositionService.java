@@ -163,7 +163,9 @@ public class PanelCompositionService {
             if (nonNull(issueCodePanelComposition) && nonNull(issueCodePanelComposition.getJohTiers())
                     && !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers())) {
                 for (String johTier: issueCodePanelComposition.getJohTiers()) {
-                    if(!defaultPanelComposition.getJohTiers().contains(johTier)){
+                    if(isNull(defaultPanelComposition.getJohTiers())) {
+                        defaultPanelComposition.getJohTiers().add(johTier);
+                    } else if(!defaultPanelComposition.getJohTiers().contains(johTier)){
                         defaultPanelComposition.getJohTiers().add(johTier);
                     }
                 }
