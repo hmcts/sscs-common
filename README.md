@@ -73,20 +73,18 @@ File locations:
 - `src/main/resources/reference-data/JOHTier_PanelMemberComposition_1.2.csv`
 - `src/main/resources/reference-data/panel-category-map.json`
 
-## JitPack Integration
+## Azure DevOps Artifacts Integration
 
-This library is currently available via [JitPack](https://jitpack.io). To use it in other projects, add the following repository and dependency to any `build.gradle` file using this service:
+This library is hosted on Azure DevOps Artifacts and can be used in your project by adding the following to your `build.gradle` file:
 
-```gradle
+ ```gradle
 repositories {
-    maven { url 'https://jitpack.io' }
+  maven {
+    url = uri('https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1')
+  }
 }
 
-dependencies {
-    implementation 'com.github.hmcts:sscs-common:<VERSION>'
-}
-```
-
-Replace `<VERSION>` with the desired release or commit hash.
-
-**Note:** There are plans to eventually move away from JitPack to a more stable and centralized solution. Updates will be provided in future releases.
+ dependencies {
+   implementation 'com.github.hmcts:sscs-common:LATEST_TAG'
+ }
+ ```
