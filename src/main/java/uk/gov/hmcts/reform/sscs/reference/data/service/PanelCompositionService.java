@@ -68,6 +68,7 @@ public class PanelCompositionService {
         List<String> defaultJohTiers =
                 nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
                         ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
+        log.info("{} defaultJohTiers: {} ", caseData.getCcdCaseId(), defaultJohTiers.toString());
         return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
@@ -108,6 +109,7 @@ public class PanelCompositionService {
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
         panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
+            log.info(" ** joh tier {}", johTier);
             switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
                 case TRIBUNAL_MEMBER_DISABILITY:
