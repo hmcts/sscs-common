@@ -15,7 +15,9 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -77,7 +79,7 @@ public class PanelCompositionService {
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         if (Benefit.UC.getBenefitCode().equals(caseData.getBenefitCode())) {
-            return getUniversalCreditDefaultPanelComposition(caseData);
+            return getUniversalCreditDefaultPanelComposition(caseData, specialismCount, isFqpm, isMedicalMember);
         } else {
             return defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
@@ -138,44 +140,28 @@ public class PanelCompositionService {
         return nonNull(reserveTo) && isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 
-    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData) {
+    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String specialismCount,String isFqpm,String isMedicalMember) {
         List<String> elementsDisputed = getElementsDisputed(caseData);
         List<Issue> issues = getIssues(elementsDisputed);
-        String specialismCount = getSpecialismCount(caseData);
-        String isFqpm =
-                isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
-        String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
-                ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
+        Set<String> johTiers = new HashSet<>();
         for (Issue issue : issues ) {
-            DefaultPanelComposition issueCodePanelComposition;
             String benefitIssueCode = caseData.getBenefitCode() + issue.toString();
-            issueCodePanelComposition =  defaultPanelCompositions.stream()
+            DefaultPanelComposition issueCodePanelComposition =  defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
             log.info("{}, Issue code Panel Composition: {}", caseData.getCcdCaseId(), issueCodePanelComposition);
-            log.info("{}, nonNull(issueCodePanelComposition): {}, nonNull(issueCodePanelComposition.getJohTiers(): {}," +
-                            "equals? : {}",
-                    caseData.getCcdCaseId(),
-                    nonNull(issueCodePanelComposition),
-                    nonNull(issueCodePanelComposition.getJohTiers()),
-                    !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers()));
-            if (nonNull(issueCodePanelComposition) && nonNull(issueCodePanelComposition.getJohTiers())
-                    && !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers())) {
-                for (String johTier: issueCodePanelComposition.getJohTiers()) {
-                    if(isNull(defaultPanelComposition.getJohTiers())) {
-                        defaultPanelComposition.setJohTiers(List.of(johTier));
-                    } else if(!defaultPanelComposition.getJohTiers().contains(johTier)){
-                        defaultPanelComposition.getJohTiers().add(johTier);
-                    }
-                }
+            if (nonNull(issueCodePanelComposition)) {
+                johTiers.addAll(issueCodePanelComposition.getJohTiers());
             }
-
         }
+        log.info("{} johtiers: {}", caseData.getCcdCaseId(), johTiers);
+        defaultPanelComposition.setJohTiers(List.of(johTiers.toString()));
+        log.info("{} default panel composition: {}", caseData.getCcdCaseId(), defaultPanelComposition);
         return defaultPanelComposition;
     }
 
-//    move to commons?
+//    move to own file?
     public List<String> getElementsDisputed(SscsCaseData caseData) {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
 
