@@ -1,8 +1,10 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Collections.frequency;
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
+import static org.springframework.util.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
@@ -44,6 +46,9 @@ public class PanelCompositionService {
     public List<String> getRoleTypes(SscsCaseData caseData) {
         if (nonNull(caseData.getPanelMemberComposition()) &&
                 (!caseData.getPanelMemberComposition().isEmpty() || isDtjSelected(caseData))) {
+
+            updatePanelCompositionFromSpecialismCount(caseData);
+
             return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
@@ -52,7 +57,7 @@ public class PanelCompositionService {
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
     }
-
+  
     public PanelMemberComposition createPanelComposition(SscsCaseData caseData) {
         DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
         List<String> defaultJohTiers =
@@ -63,9 +68,7 @@ public class PanelCompositionService {
 
     public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
-        String specialismCount = caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
-                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
-                ? "2" : "1" : null;
+        String specialismCount = getSpecialismCount(caseData);
         String isFqpm =
                 isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
@@ -132,5 +135,22 @@ public class PanelCompositionService {
         return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
     }
 
+    private void updatePanelCompositionFromSpecialismCount(SscsCaseData caseData) {
+        String specialismCount = getSpecialismCount(caseData);
 
+        if ("2".equals(specialismCount)) {
+            if (isNull(caseData.getPanelMemberComposition().getPanelCompositionMemberMedical1())) {
+                caseData.getPanelMemberComposition().setPanelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef());
+            }
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef());
+        } else {
+            caseData.getPanelMemberComposition().setPanelCompositionMemberMedical2(null);
+        }
+    }
+
+    private String getSpecialismCount(SscsCaseData caseData) {
+        return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
+    }
 }
