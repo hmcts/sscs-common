@@ -153,6 +153,13 @@ public class PanelCompositionService {
             issueCodePanelComposition =  defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
+            log.info("{}, Issue code Panel Composition: {}", caseData.getCcdCaseId(), issueCodePanelComposition);
+            log.info("{}, nonNull(issueCodePanelComposition): {}, nonNull(issueCodePanelComposition.getJohTiers(): {}," +
+                            "equals? : {}",
+                    caseData.getCcdCaseId(),
+                    nonNull(issueCodePanelComposition),
+                    nonNull(issueCodePanelComposition.getJohTiers()),
+                    !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers()));
             if (nonNull(issueCodePanelComposition) && nonNull(issueCodePanelComposition.getJohTiers())
                     && !issueCodePanelComposition.getJohTiers().equals(defaultPanelComposition.getJohTiers())) {
                 for (String johTier: issueCodePanelComposition.getJohTiers()) {
