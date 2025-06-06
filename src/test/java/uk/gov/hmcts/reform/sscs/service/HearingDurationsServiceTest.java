@@ -227,44 +227,6 @@ public class HearingDurationsServiceTest {
         assertThat(result).isEqualTo(DURATION_PAPER);
     }
 
-    @DisplayName("getElementsDisputed returns empty list when elementDisputed is Null")
-    @Test
-    public void getElementsDisputedNull() {
-        SscsCaseData caseData = SscsCaseData.builder().build();
-
-        List<String> result = hearingDurations.getElementsDisputed(caseData);
-
-        assertThat(result).isEmpty();
-    }
-
-    @DisplayName("getElementsDisputed returns a List of elements of all elements in "
-            + "each of the elementDisputed fields in SscsCaseData")
-    @Test
-    public void getElementsDisputed() {
-        ElementDisputed elementDisputed = ElementDisputed.builder()
-                .value(ElementDisputedDetails.builder()
-                        .issueCode("WC")
-                        .outcome("Test")
-                        .build())
-                .build();
-        SscsCaseData caseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(List.of(elementDisputed))
-                .elementsDisputedSanctions(List.of(elementDisputed))
-                .elementsDisputedOverpayment(List.of(elementDisputed))
-                .elementsDisputedHousing(List.of(elementDisputed))
-                .elementsDisputedChildCare(List.of(elementDisputed))
-                .elementsDisputedCare(List.of(elementDisputed))
-                .elementsDisputedChildElement(List.of(elementDisputed))
-                .elementsDisputedChildDisabled(List.of(elementDisputed))
-                .elementsDisputedLimitedWork(List.of(elementDisputed))
-                .build();
-        List<String> result = hearingDurations.getElementsDisputed(caseData);
-
-        assertThat(result)
-                .hasSize(9)
-                .containsOnly("WC");
-    }
-
     @DisplayName("When wantsToAttend for the Appeal is Yes "
             + "getHearingDurationBenefitIssueCodes return the correct interpreter durations")
     @Test

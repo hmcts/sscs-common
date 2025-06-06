@@ -4,7 +4,6 @@ import static java.util.Collections.frequency;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.collections4.CollectionUtils.addIgnoreNull;
-import static org.springframework.util.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
@@ -25,8 +24,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
@@ -68,7 +65,6 @@ public class PanelCompositionService {
         List<String> defaultJohTiers =
                 nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
                         ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
-        log.info("{} defaultJohTiers: {} ", caseData.getCcdCaseId(), defaultJohTiers.toString());
         return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
@@ -80,7 +76,7 @@ public class PanelCompositionService {
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         if (Benefit.UC.getBenefitCode().equals(caseData.getBenefitCode())) {
-            return getUniversalCreditDefaultPanelComposition(caseData, specialismCount, isFqpm, isMedicalMember);
+            return getUniversalCreditDefaultPanelComposition(caseData, benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         } else {
             return defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
@@ -109,7 +105,6 @@ public class PanelCompositionService {
         PanelMemberComposition panelMemberComposition = new PanelMemberComposition();
         panelMemberComposition.setPanelCompositionDisabilityAndFqMember(new ArrayList<>());
         for (String johTier : johTiers) {
-            log.info(" ** joh tier {}", johTier);
             switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
                 case TRIBUNAL_MEMBER_DISABILITY:
@@ -142,59 +137,22 @@ public class PanelCompositionService {
         return nonNull(reserveTo) && isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 
-    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String specialismCount,String isFqpm,String isMedicalMember) {
-        List<String> elementsDisputed = getElementsDisputed(caseData);
+    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String benefitIssueCode, String specialismCount,String isFqpm,String isMedicalMember) {
+        List<String> elementsDisputed = caseData.getAllElementsDisputed();
         List<Issue> issues = getIssues(elementsDisputed);
-        DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
+        DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         Set<String> johTiersSet = new HashSet<>();
         for (Issue issue : issues ) {
-            String benefitIssueCode = caseData.getBenefitCode() + issue.toString();
+            String individualUcBenefitIssueCode = caseData.getBenefitCode() + issue.toString();
             DefaultPanelComposition issueCodePanelComposition =  defaultPanelCompositions.stream()
-                    .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
+                    .filter(new DefaultPanelComposition(individualUcBenefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
-            log.info("{}, Issue code Panel Composition: {}", caseData.getCcdCaseId(), issueCodePanelComposition);
             if (nonNull(issueCodePanelComposition)) {
                 johTiersSet.addAll(issueCodePanelComposition.getJohTiers());
             }
         }
-        log.info("{} johtiers: {}", caseData.getCcdCaseId(), johTiersSet);
         defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
-        log.info("{} default panel composition: {}", caseData.getCcdCaseId(), defaultPanelComposition);
         return defaultPanelComposition;
-    }
-
-//    move to own file?
-    public List<String> getElementsDisputed(SscsCaseData caseData) {
-        List<ElementDisputed> elementDisputed = new ArrayList<>();
-
-        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
-        elementsToCheck.add(caseData.getElementsDisputedGeneral());
-        elementsToCheck.add(caseData.getElementsDisputedSanctions());
-        elementsToCheck.add(caseData.getElementsDisputedOverpayment());
-        elementsToCheck.add(caseData.getElementsDisputedHousing());
-        elementsToCheck.add(caseData.getElementsDisputedChildCare());
-        elementsToCheck.add(caseData.getElementsDisputedCare());
-        elementsToCheck.add(caseData.getElementsDisputedChildElement());
-        elementsToCheck.add(caseData.getElementsDisputedChildDisabled());
-        elementsToCheck.add(caseData.getElementsDisputedLimitedWork());
-
-        elementsToCheck.forEach((List<ElementDisputed> list) -> {
-            if (isNotEmpty(list)) {
-                elementDisputed.addAll(list);
-            }
-        });
-
-        return elementDisputed.stream()
-                .map(ElementDisputed::getValue)
-                .map(ElementDisputedDetails::getIssueCode)
-                .collect(Collectors.toList());
-    }
-
-    //    move to commons?
-    public List<Issue> getIssues(List<String> elements) {
-        return elements.stream()
-                .map(Issue::getIssue)
-                .collect(Collectors.toList());
     }
 
     private void updatePanelCompositionFromSpecialismCount(SscsCaseData caseData) {
@@ -214,5 +172,11 @@ public class PanelCompositionService {
         return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
+    }
+
+    public static List<Issue> getIssues(List<String> elements) {
+        return elements.stream()
+                .map(Issue::getIssue)
+                .collect(Collectors.toList());
     }
 }
