@@ -146,7 +146,7 @@ public class PanelCompositionService {
         List<String> elementsDisputed = getElementsDisputed(caseData);
         List<Issue> issues = getIssues(elementsDisputed);
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition();
-        Set<String> johTiers = new HashSet<>();
+        Set<String> johTiersSet = new HashSet<>();
         for (Issue issue : issues ) {
             String benefitIssueCode = caseData.getBenefitCode() + issue.toString();
             DefaultPanelComposition issueCodePanelComposition =  defaultPanelCompositions.stream()
@@ -154,11 +154,11 @@ public class PanelCompositionService {
                     .findFirst().orElse(null);
             log.info("{}, Issue code Panel Composition: {}", caseData.getCcdCaseId(), issueCodePanelComposition);
             if (nonNull(issueCodePanelComposition)) {
-                johTiers.addAll(issueCodePanelComposition.getJohTiers());
+                johTiersSet.addAll(issueCodePanelComposition.getJohTiers());
             }
         }
-        log.info("{} johtiers: {}", caseData.getCcdCaseId(), johTiers);
-        defaultPanelComposition.setJohTiers(List.of(johTiers.toString()));
+        log.info("{} johtiers: {}", caseData.getCcdCaseId(), johTiersSet);
+        defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
         log.info("{} default panel composition: {}", caseData.getCcdCaseId(), defaultPanelComposition);
         return defaultPanelComposition;
     }
