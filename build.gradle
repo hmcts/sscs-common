@@ -150,7 +150,7 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 def versions = [
         springboot   : '3.4.4',
         jackson      : '2.19.0',
-        junitjupiter : '5.13.0',
+        junitjupiter : '5.13.1',
         lombok       : '1.18.38'
 ]
 
@@ -232,7 +232,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junitjupiter
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.1'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.18.0'
 
