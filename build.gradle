@@ -149,7 +149,7 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 
 def versions = [
         springboot   : '3.4.4',
-        jackson      : '2.19.0',
+        jackson      : '2.19.1',
         junitjupiter : '5.13.1',
         lombok       : '1.18.38'
 ]
