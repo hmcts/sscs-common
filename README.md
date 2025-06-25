@@ -7,7 +7,7 @@ A shared library for SSCS projects, providing utilities for interacting with CCD
 - [Build](#build)
 - [Usage](#usage)
 - [Utility](#utility)
-- [JitPack Integration](#Azure-DevOps-Artifacts-Integration)
+- [Azure DevOps Artifacts Integration](#Azure-DevOps-Artifacts-Integration)
 
 ## Background
 
