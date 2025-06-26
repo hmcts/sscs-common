@@ -35,9 +35,9 @@ public class PanelMemberCompositionServiceTest {
     public void setUp() throws Exception {
         caseData = SscsCaseData.builder()
                 .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build())
-                .benefitCode("001")
+                .benefitCode("002")
                 .ccdCaseId("1234")
-                .issueCode("AD")
+                .issueCode("EI")
                 .build();
     }
 
@@ -45,7 +45,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void getDefaultPanelComposition(){
         var result = panelCompositionService
-                .getRoleTypes(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+                .getRoleTypes(SscsCaseData.builder().benefitCode("002").issueCode("EI").build());
 
         assertThat(result).isNotNull();
         assertThat(result).isNotEmpty();
@@ -56,7 +56,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
         var result = panelCompositionService
-                .createPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+                .createPanelComposition(SscsCaseData.builder().benefitCode("002").issueCode("EI").build());
 
         assertThat(result).isNotNull();
         assertEquals(TRIBUNAL_JUDGE.toRef(), result.getPanelCompositionJudge());
