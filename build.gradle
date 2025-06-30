@@ -225,7 +225,7 @@ dependencies {
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.7'
+    implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.8'
 
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
