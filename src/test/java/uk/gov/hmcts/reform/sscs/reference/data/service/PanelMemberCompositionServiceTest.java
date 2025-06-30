@@ -21,6 +21,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -60,6 +62,45 @@ public class PanelMemberCompositionServiceTest {
 
         assertThat(result).isNotNull();
         assertEquals(TRIBUNAL_JUDGE.toRef(), result.getPanelCompositionJudge());
+    }
+
+    @DisplayName("Should return correct panelComposition for single UC issue benefit code combination")
+    @Test
+    public void shouldReturnPanelCompositionForValidSingleUcIssueBenefitCode(){
+
+        ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
+                .build();
+
+        var result = panelCompositionService
+                .createPanelComposition(SscsCaseData.builder()
+                        .elementsDisputedGeneral(List.of(disputedElement1))
+                        .benefitCode("001").issueCode("US").build());
+
+        assertThat(result).isNotNull();
+        assertThat(result.getPanelCompositionJudge()).isEqualTo(TRIBUNAL_JUDGE.toRef());
+        assertThat(result.getPanelCompositionMemberMedical1()).isNull();
+        assertThat(result.getPanelCompositionDisabilityAndFqMember()).isEmpty();
+    }
+
+
+    @DisplayName("Should return correct panelComposition for multiple UC issue benefit code combination")
+    @Test
+    public void shouldReturnPanelCompositionForValidMultipleUcIssueBenefitCode(){
+
+        ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
+                .build();
+        ElementDisputed disputedElement2 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("SG").build())
+                .build();
+
+        var result = panelCompositionService
+                .createPanelComposition(SscsCaseData.builder()
+                        .elementsDisputedGeneral(List.of(disputedElement1, disputedElement2))
+                        .benefitCode("001").issueCode("US").build());
+
+        assertThat(result).isNotNull();
+        assertThat(result.getPanelCompositionJudge()).isEqualTo(TRIBUNAL_JUDGE.toRef());
+        assertThat(result.getPanelCompositionMemberMedical1()).isEqualTo(TRIBUNAL_MEMBER_MEDICAL.toRef());
+        assertThat(result.getPanelCompositionDisabilityAndFqMember()).isEmpty();
     }
 
     @DisplayName("Invalid call to gerRoleTypes should return null")
