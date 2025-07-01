@@ -43,7 +43,7 @@ public class PanelCompositionServiceTest {
                 .build();
     }
 
-    @DisplayName("Valid call to gerRoleTypes should return correct johTier")
+    @DisplayName("Valid call to getRoleTypes should return correct johTier")
     @Test
     public void getDefaultPanelComposition(){
         var result = panelCompositionService
@@ -106,7 +106,7 @@ public class PanelCompositionServiceTest {
         assertThat(result.getPanelCompositionDisabilityAndFqMember()).isEmpty();
     }
 
-    @DisplayName("Invalid call to gerRoleTypes should return null")
+    @DisplayName("Invalid call to getRoleTypes should return null")
     @Test
     public void getDefaultPanelCompositionWithInvalidParameters() {
         var result = panelCompositionService.getRoleTypes(buildCaseData());

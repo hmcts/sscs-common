@@ -48,13 +48,15 @@ public class PanelCompositionService {
     public List<String> getRoleTypes(SscsCaseData caseData) {
         if (nonNull(caseData.getPanelMemberComposition()) &&
                 (!caseData.getPanelMemberComposition().isEmpty() || isDtjSelected(caseData))) {
-
             updatePanelCompositionFromSpecialismCount(caseData);
-
-            return getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
+            List<String> johTiersFromExistingPanelComposition = getJohTiersFromPanelComposition(caseData.getPanelMemberComposition(), caseData);
+            log.info("Existing Panel Composition for case id: {} has joh tiers: {} ",
+                    caseData.getCcdCaseId(), johTiersFromExistingPanelComposition);
+            return johTiersFromExistingPanelComposition;
         } else {
             DefaultPanelComposition defaultPanelComposition = getDefaultPanelComposition(caseData);
-
+            log.info("Default Panel Composition for case id {} has been calculated as : {}",
+                    caseData.getCcdCaseId(), defaultPanelComposition);
             return nonNull(defaultPanelComposition) && isNotEmpty(defaultPanelComposition.getJohTiers())
                     ? defaultPanelComposition.getJohTiers() : new ArrayList<>();
         }
