@@ -28,7 +28,7 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 
-public class PanelMemberCompositionServiceTest {
+public class PanelCompositionServiceTest {
 
     private final PanelCompositionService panelCompositionService = new PanelCompositionService();
     private SscsCaseData caseData;
@@ -91,11 +91,14 @@ public class PanelMemberCompositionServiceTest {
                 .build();
         ElementDisputed disputedElement2 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("SG").build())
                 .build();
+        ElementDisputed disputedElement3 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("HT").build())
+                .build();
 
         var result = panelCompositionService
                 .createPanelComposition(SscsCaseData.builder()
                         .elementsDisputedGeneral(List.of(disputedElement1, disputedElement2))
-                        .benefitCode("001").issueCode("US").build());
+                        .elementsDisputedHousing(List.of(disputedElement3))
+                        .benefitCode("001").issueCode("UM").build());
 
         assertThat(result).isNotNull();
         assertThat(result.getPanelCompositionJudge()).isEqualTo(TRIBUNAL_JUDGE.toRef());
