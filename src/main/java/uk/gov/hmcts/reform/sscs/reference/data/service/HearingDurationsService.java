@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.ObjectUtils.isEmpty;
-import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
@@ -13,7 +12,6 @@ import static uk.gov.hmcts.reform.sscs.utility.HearingChannelUtil.isInterpreterR
 import static uk.gov.hmcts.reform.sscs.utility.HearingChannelUtil.isPaperCase;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -76,39 +74,12 @@ public class HearingDurationsService {
                     duration,
                     hearingDuration.getBenefitCode(),
                     hearingDuration.getIssue(),
-                    getElementsDisputed(caseData));
+                    caseData.getAllElementsDisputed());
         } else if (isPaperCase(caseData)) {
             return hearingDuration.getDurationPaper();
         }
 
         return DURATION_DEFAULT;
-    }
-
-    @SuppressWarnings({"PMD.CyclomaticComplexity", "PMD.NPathComplexity"})
-    public List<String> getElementsDisputed(SscsCaseData caseData) {
-        List<ElementDisputed> elementDisputed = new ArrayList<>();
-
-        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
-        elementsToCheck.add(caseData.getElementsDisputedGeneral());
-        elementsToCheck.add(caseData.getElementsDisputedSanctions());
-        elementsToCheck.add(caseData.getElementsDisputedOverpayment());
-        elementsToCheck.add(caseData.getElementsDisputedHousing());
-        elementsToCheck.add(caseData.getElementsDisputedChildCare());
-        elementsToCheck.add(caseData.getElementsDisputedCare());
-        elementsToCheck.add(caseData.getElementsDisputedChildElement());
-        elementsToCheck.add(caseData.getElementsDisputedChildDisabled());
-        elementsToCheck.add(caseData.getElementsDisputedLimitedWork());
-
-        elementsToCheck.forEach((List<ElementDisputed> list) -> {
-            if (isNotEmpty(list)) {
-                elementDisputed.addAll(list);
-            }
-        });
-
-        return elementDisputed.stream()
-                .map(ElementDisputed::getValue)
-                .map(ElementDisputedDetails::getIssueCode)
-                .collect(Collectors.toList());
     }
 
     public List<Issue> getIssues(List<String> elements) {
