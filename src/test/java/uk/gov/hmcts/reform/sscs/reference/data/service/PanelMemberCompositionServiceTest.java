@@ -180,10 +180,12 @@ public class PanelMemberCompositionServiceTest {
     public void getJohTiersFromPanelCompositionShouldExtractPanelCompositionIntoListOfStringsFromPanelComposition() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
                 .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
-                .panelCompositionMemberMedical1(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompositionMemberMedical2(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
+                .panelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
                 .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("Dummy");
+        caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("Dummy");
 
         List<String> roleTypes = panelCompositionService.getRoleTypes(caseData);
 
@@ -339,6 +341,44 @@ public class PanelMemberCompositionServiceTest {
         var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
 
         assertEqualsPanelComposition(panelComposition, result);
+    }
+
+    @Test
+    public void resetMedicalMembersWhenSpecialismCountIsChangedFromTwoToOne() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().panelCompositionJudge("84")
+                .panelCompositionMemberMedical1("58")
+                .panelCompositionMemberMedical2("58")
+                .panelCompositionDisabilityAndFqMember(List.of("44")).build();
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("dummy");
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(List.of("84","58","44"));
+    }
+
+    @Test
+    public void resetMedicalMembersWhenSpecialismCountIsChangedFromOneToTwo() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().panelCompositionJudge("84")
+                .panelCompositionMemberMedical1("58")
+                .panelCompositionDisabilityAndFqMember(List.of("44")).build();
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("dummy");
+        caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("dummy");
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(List.of("84","58","58","44"));
+    }
+
+    @Test
+    public void resetMedicalMembersWhenSpecialismCountIsChangedFromOneToTwoWithNoMedicalMember() {
+        PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder().panelCompositionJudge("84")
+                .panelCompositionDisabilityAndFqMember(List.of("44")).build();
+        caseData.setPanelMemberComposition(panelMemberComposition);
+        caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("dummy");
+        caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("dummy");
+        List<String> result = panelCompositionService.getRoleTypes(caseData);
+        assertThat(result).isNotNull();
+        assertThat(result).isEqualTo(List.of("84","58","58","44"));
     }
 
     private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {

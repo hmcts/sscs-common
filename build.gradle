@@ -5,10 +5,10 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '12.1.1'
+    id 'org.owasp.dependencycheck' version '12.1.3'
 }
 
-def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
+def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
 
 group 'com.github.hmcts'
 // Do not change this version number
@@ -16,14 +16,14 @@ version buildNumber
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1' }
     maven {
         url 'https://repo.spring.io/libs-milestone'
     }
@@ -32,11 +32,11 @@ repositories {
 // region static code analysis
 
 checkstyle {
-    toolVersion = "10.25.0"
+    toolVersion = "10.26.1"
 }
 
 pmd {
-    toolVersion = "7.14.0"
+    toolVersion = "7.15.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
     reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
@@ -123,6 +123,17 @@ publishing {
             version project.version
         }
     }
+
+    repositories {
+        maven {
+            name = "AzureArtifacts"
+            url = uri("https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1")
+            credentials {
+                username = System.getenv("AZURE_DEVOPS_ARTIFACT_USERNAME")
+                password = System.getenv("AZURE_DEVOPS_ARTIFACT_TOKEN")
+            }
+        }
+    }
 }
 
 tasks.register('installLocalGitHook', Copy) {
@@ -148,9 +159,9 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 }
 
 def versions = [
-        springboot   : '3.4.4',
-        jackson      : '2.19.0',
-        junitjupiter : '5.13.0',
+        springboot   : '3.5.3',
+        jackson      : '2.19.1',
+        junitjupiter : '5.13.2',
         lombok       : '1.18.38'
 ]
 
@@ -161,7 +172,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.5'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.8'
 
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
@@ -181,19 +192,15 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
-    implementation group: 'com.github.everit-org.json-schema', name: 'org.everit.json.schema', version: '1.14.4', {
-        exclude group: 'commons-collections', module: 'commons-collections'
-    }
+    implementation group: 'org.json', name: 'json', version: '20250517'
 
-    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.18.2'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.18.3'
 
-    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.11'
+    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.12'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
-    implementation group: 'com.github.hmcts', name: 'java-logging', version: '6.1.9'
-
-    implementation group: 'com.github.hmcts', name: 'ccd-client', version: '5.1.0'
-
+    implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
+    implementation group: 'com.github.hmcts', name: 'core-case-data-store-client', version: '5.1.1'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
 
@@ -201,7 +208,7 @@ dependencies {
 
     implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.4'
 
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.2.1'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.3.0'
 
     implementation group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
@@ -209,7 +216,7 @@ dependencies {
     implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.13.55'
 
     // https://mvnrepository.com/artifact/com.opencsv/opencsv
-    implementation group: 'com.opencsv', name: 'opencsv', version: '5.11.1', {
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.11.2', {
         exclude group: 'commons-collections', module: 'commons-collections'
     }
     implementation group: 'org.apache.commons', name: 'commons-text', version: '1.13.1'
@@ -218,7 +225,7 @@ dependencies {
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation group: "com.networknt", name: "json-schema-validator", version: "1.5.7"
+    implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.8'
 
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
@@ -232,7 +239,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junitjupiter
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.2'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.18.0'
 
@@ -246,7 +253,7 @@ dependencies {
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
     // CVE-2023-24998
-    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
 
     // CVE-2024-25710
     implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.27.1'
