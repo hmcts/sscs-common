@@ -62,8 +62,7 @@ public class PanelMemberComposition {
     public boolean hasMedicalMember() {
         return TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1)
             || TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical2)
-            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1)
-            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical2);
+            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1);
     }
 
     @JsonIgnore
