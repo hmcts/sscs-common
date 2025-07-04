@@ -98,7 +98,8 @@ class PanelMemberCompositionTest {
         "null, null",
         "null, 84",
         "84, null",
-        "84, 50"
+        "84, 50",
+        "84, 69"
     })
     void hasMedicalMember_shouldReturnFalse_whenNoMedicalMemberSelected(String member1, String member2) {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
