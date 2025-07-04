@@ -1,4 +1,4 @@
-name: Publish to Azure Artifacts
+name: Check and Publish to Azure Artifacts
 
 on:
   push:
