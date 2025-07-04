@@ -72,7 +72,7 @@ class PanelMemberCompositionTest {
     @MethodSource("listsWithoutFqpm")
     void removeFqpm_shouldNotChangeList_whenFqpmNotPresent(List<String> disabilityAndFqpm) {
         PanelMemberComposition panelComposition = PanelMemberComposition.builder()
-            .panelCompositionDisabilityAndFqMember(disabilityAndFqpm == null ? null : new ArrayList<>(disabilityAndFqpm))
+            .panelCompositionDisabilityAndFqMember(disabilityAndFqpm == null ? null : List.copyOf(disabilityAndFqpm))
             .build();
 
         panelComposition.removeFqpm();
