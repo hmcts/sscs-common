@@ -53,7 +53,7 @@ public class PanelMemberComposition {
 
     @JsonIgnore
     public void removeFqpm() {
-        if (nonNull(panelCompositionDisabilityAndFqMember) && panelCompositionDisabilityAndFqMember.contains(FQPM_REF)) {
+        if (nonNull(panelCompositionDisabilityAndFqMember)) {
             panelCompositionDisabilityAndFqMember.remove(FQPM_REF);
         }
     }
