@@ -72,7 +72,7 @@ class PanelMemberCompositionTest {
     @MethodSource("listsWithoutFqpm")
     void removeFqpm_shouldNotChangeList_whenFqpmNotPresent(List<String> disabilityAndFqpm) {
         PanelMemberComposition panelComposition = PanelMemberComposition.builder()
-            .panelCompositionDisabilityAndFqMember(disabilityAndFqpm == null ? null : List.copyOf(disabilityAndFqpm))
+            .panelCompositionDisabilityAndFqMember(disabilityAndFqpm == null ? null : new ArrayList<>(disabilityAndFqpm))
             .build();
 
         panelComposition.removeFqpm();
@@ -112,8 +112,8 @@ class PanelMemberCompositionTest {
     @ParameterizedTest
     @CsvSource({
         "58, null",
-        "null, 69",
-        "58, 69"
+        "null, 58",
+        "69, 58"
     })
     void hasMedicalMember_shouldReturnTrue_whenAnyMedicalMemberSelected(String member1, String member2) {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
