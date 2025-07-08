@@ -21,6 +21,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
@@ -57,8 +58,9 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("Should return correct panelComposition for valid issue benefit code combination")
     @Test
     public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
-        var result = panelCompositionService
-                .createPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+        var defaultJohTiers = panelCompositionService
+                .getDefaultJohTiers(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+        var result = new PanelMemberComposition(defaultJohTiers);
 
         assertThat(result).isNotNull();
         assertEquals(TRIBUNAL_JUDGE.toRef(), result.getPanelCompositionJudge());
@@ -74,7 +76,7 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("should return emptyPanelComposition")
     @Test
     public void shouldReturnEmptyPanelComposition() {
-        var result = panelCompositionService.createPanelComposition(buildCaseData());
+        var result = panelCompositionService.getDefaultJohTiers(buildCaseData());
         assertTrue(result.isEmpty());
     }
 
@@ -154,7 +156,7 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void testGetRolesWithSavePanelComposition() {
         var updatedPanelMemberComposition =
-                panelCompositionService.createPanelCompositionFromJohTiers(List.of(TRIBUNAL_JUDGE.toRef()));
+                new PanelMemberComposition(List.of(TRIBUNAL_JUDGE.toRef()));
 
         assertEquals(TRIBUNAL_JUDGE.toRef(), updatedPanelMemberComposition.getPanelCompositionJudge());
     }
@@ -287,7 +289,7 @@ public class PanelMemberCompositionServiceTest {
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
-        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+        var result = new PanelMemberComposition(roleTypes);
 
         assertEqualsPanelComposition(panelComposition, result);
     }
@@ -304,7 +306,7 @@ public class PanelMemberCompositionServiceTest {
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
-        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+        var result = new PanelMemberComposition(roleTypes);
 
         assertEqualsPanelComposition(panelComposition, result);
     }
@@ -322,7 +324,7 @@ public class PanelMemberCompositionServiceTest {
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
-        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+        var result = new PanelMemberComposition(roleTypes);
 
         assertEqualsPanelComposition(panelComposition, result);
     }
@@ -340,7 +342,7 @@ public class PanelMemberCompositionServiceTest {
                         List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
 
-        var result = panelCompositionService.createPanelCompositionFromJohTiers(roleTypes);
+        var result = new PanelMemberComposition(roleTypes);
 
         assertEqualsPanelComposition(panelComposition, result);
     }
