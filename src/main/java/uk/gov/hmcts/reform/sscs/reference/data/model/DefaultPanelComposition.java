@@ -1,18 +1,21 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
 @Data
 @Slf4j
 public class DefaultPanelComposition {
+
     private String benefitIssueCode;
     private String category;
     private String specialismCount;
@@ -20,11 +23,22 @@ public class DefaultPanelComposition {
     private String medicalMember;
     private List<String> johTiers;
 
-    public DefaultPanelComposition(String benefitIssueCode, String specialismCount, String fqpm, String medicalMember) {
-        this.benefitIssueCode = benefitIssueCode;
-        this.specialismCount = specialismCount;
-        this.fqpm = fqpm;
-        this.medicalMember = medicalMember;
+    public DefaultPanelComposition(SscsCaseData caseData) {
+        this.benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
+        this.specialismCount = getSpecialismCount(caseData);
+        this.fqpm = isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;;
+        this.medicalMember = isYes(caseData.getIsMedicalMemberRequired())
+                ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
+    }
+
+    public DefaultPanelComposition() {
+        this.johTiers = new ArrayList<>();
+    }
+
+    private String getSpecialismCount(SscsCaseData caseData) {
+        return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
+                ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
+                ? "2" : "1" : null;
     }
 
     @Override
