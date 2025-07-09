@@ -19,9 +19,7 @@ import org.springframework.util.ObjectUtils;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PanelMemberComposition {
-    private static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
-    private static final String TRIBUNAL_MEDICAL_MEMBER_REF = PanelMemberType.TRIBUNAL_MEMBER_MEDICAL.toRef();
-    private static final String REGIONAL_MEDICAL_MEMBER_REF = PanelMemberType.REGIONAL_MEDICAL_MEMBER.toRef();
+    protected static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
 
     private String panelCompositionJudge;
     private String panelCompositionMemberMedical1;
@@ -60,9 +58,7 @@ public class PanelMemberComposition {
 
     @JsonIgnore
     public boolean hasMedicalMember() {
-        return TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1)
-            || TRIBUNAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical2)
-            || REGIONAL_MEDICAL_MEMBER_REF.equals(panelCompositionMemberMedical1);
+        return nonNull(panelCompositionMemberMedical1) || nonNull(panelCompositionMemberMedical2);
     }
 
     @JsonIgnore

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition.FQPM_REF;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class PanelMemberCompositionTest {
 
-    private static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
     private static final String REGIONAL_MEDICAL_MEMBER_REF = PanelMemberType.REGIONAL_MEDICAL_MEMBER.toRef();
 
     static Stream<List<String>> listsWithoutFqpm() {
@@ -93,18 +93,11 @@ class PanelMemberCompositionTest {
             .doesNotContain(FQPM_REF);
     }
 
-    @ParameterizedTest
-    @CsvSource({
-        "null, null",
-        "null, 84",
-        "84, null",
-        "84, 50",
-        "84, 69"
-    })
-    void hasMedicalMember_shouldReturnFalse_whenNoMedicalMemberSelected(String member1, String member2) {
+    @Test
+    void hasMedicalMember_shouldReturnFalse_whenNoMedicalMemberSelected() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
-            .panelCompositionMemberMedical1("null".equals(member1) ? null : member1)
-            .panelCompositionMemberMedical2("null".equals(member2) ? null : member2)
+            .panelCompositionMemberMedical1(null)
+            .panelCompositionMemberMedical2(null)
             .build();
 
         assertThat(panelMemberComposition.hasMedicalMember()).isFalse();
@@ -114,7 +107,8 @@ class PanelMemberCompositionTest {
     @CsvSource({
         "58, null",
         "null, 58",
-        "69, 58"
+        "69, 58",
+        "69, null"
     })
     void hasMedicalMember_shouldReturnTrue_whenAnyMedicalMemberSelected(String member1, String member2) {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
