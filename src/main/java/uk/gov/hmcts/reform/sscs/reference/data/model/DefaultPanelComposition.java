@@ -35,7 +35,7 @@ public class DefaultPanelComposition {
         this.johTiers = new ArrayList<>();
     }
 
-    private String getSpecialismCount(SscsCaseData caseData) {
+    public static String getSpecialismCount(SscsCaseData caseData) {
         return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
