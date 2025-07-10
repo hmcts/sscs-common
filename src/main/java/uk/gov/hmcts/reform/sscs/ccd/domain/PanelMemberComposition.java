@@ -78,6 +78,7 @@ public class PanelMemberComposition {
     @JsonIgnore
     public boolean isEmpty() {
         return isNull(panelCompositionJudge) &&
+                isNull(districtTribunalJudge) &&
                 isNull(panelCompositionMemberMedical1) &&
                 isNull(panelCompositionMemberMedical2) &&
                 ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
