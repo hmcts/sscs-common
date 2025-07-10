@@ -70,7 +70,7 @@ public class PanelCompositionService {
         return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
-    private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
+    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = getSpecialismCount(caseData);
         String isFqpm =
@@ -155,6 +155,10 @@ public class PanelCompositionService {
         }
         defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
         return defaultPanelComposition;
+    }
+
+    public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
+        return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
     }
 
     private void updatePanelCompositionFromSpecialismCount(SscsCaseData caseData) {

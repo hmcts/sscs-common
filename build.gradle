@@ -159,9 +159,9 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 }
 
 def versions = [
-        springboot   : '3.4.4',
+        springboot   : '3.5.3',
         jackson      : '2.19.1',
-        junitjupiter : '5.13.2',
+        junitjupiter : '5.13.3',
         lombok       : '1.18.38'
 ]
 
@@ -172,7 +172,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.5'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.8'
 
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
@@ -196,7 +196,7 @@ dependencies {
 
     implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '8.18.3'
 
-    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.11'
+    implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.12'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
     implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
@@ -204,11 +204,11 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
 
-    implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: '5.3.2'
+    implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: '5.3.3'
 
     implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.4'
 
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.2.1'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.3.0'
 
     implementation group: 'com.github.sps.junidecode', name: 'junidecode', version: '0.3'
 
@@ -239,7 +239,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junitjupiter
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.2'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.13.3'
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.18.0'
 
