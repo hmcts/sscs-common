@@ -21,7 +21,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMember;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
+import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
@@ -64,7 +66,7 @@ public class PanelCompositionService {
         return createPanelCompositionFromJohTiers(defaultJohTiers);
     }
 
-    private DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
+    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         String benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
         String specialismCount = getSpecialismCount(caseData);
         String isFqpm =
@@ -127,6 +129,10 @@ public class PanelCompositionService {
     private boolean isDtjSelected(SscsCaseData caseData) {
         ReserveTo reserveTo = caseData.getSchedulingAndListingFields().getReserveTo();
         return nonNull(reserveTo) && YesNo.isYes(reserveTo.getReservedDistrictTribunalJudge());
+    }
+
+    public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
+        return defaultPanelCompositions.stream().anyMatch(panelComposition -> panelComposition.getBenefitIssueCode().equals(benefitCode + issueCode));
     }
 
     private void updatePanelCompositionFromSpecialismCount(SscsCaseData caseData) {
