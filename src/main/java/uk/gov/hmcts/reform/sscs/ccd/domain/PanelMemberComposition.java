@@ -23,6 +23,8 @@ import org.springframework.util.ObjectUtils;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PanelMemberComposition {
 
+    protected static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
+
     private String districtTribunalJudge;
     private String panelCompositionJudge;
     private String panelCompositionMemberMedical1;
@@ -82,5 +84,38 @@ public class PanelMemberComposition {
                 isNull(panelCompositionMemberMedical1) &&
                 isNull(panelCompositionMemberMedical2) &&
                 ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
+    }
+
+    @JsonIgnore
+    public boolean hasFqpm() {
+        return nonNull(panelCompositionDisabilityAndFqMember)
+            && panelCompositionDisabilityAndFqMember.contains(FQPM_REF);
+    }
+
+    @JsonIgnore
+    public void addFqpm() {
+        if (isNull(panelCompositionDisabilityAndFqMember)) {
+            panelCompositionDisabilityAndFqMember = new ArrayList<>(List.of(FQPM_REF));
+        } else if (!panelCompositionDisabilityAndFqMember.contains(FQPM_REF)) {
+            panelCompositionDisabilityAndFqMember.add(FQPM_REF);
+        }
+    }
+
+    @JsonIgnore
+    public void removeFqpm() {
+        if (nonNull(panelCompositionDisabilityAndFqMember)) {
+            panelCompositionDisabilityAndFqMember.remove(FQPM_REF);
+        }
+    }
+
+    @JsonIgnore
+    public boolean hasMedicalMember() {
+        return nonNull(panelCompositionMemberMedical1) || nonNull(panelCompositionMemberMedical2);
+    }
+
+    @JsonIgnore
+    public void clearMedicalMembers() {
+        panelCompositionMemberMedical1 = null;
+        panelCompositionMemberMedical2 = null;
     }
 }
