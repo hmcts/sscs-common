@@ -23,7 +23,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
@@ -77,7 +76,7 @@ public class PanelCompositionService {
                 isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
-        if (Benefit.UC.getBenefitCode().equals(caseData.getBenefitCode())) {
+        if (List.of("UM","US").contains(caseData.getIssueCode())) {
             return getUniversalCreditDefaultPanelComposition(caseData, benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         } else {
             return defaultPanelCompositions.stream()

@@ -14,7 +14,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
-import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +23,9 @@ import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
-import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
-import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 public class PanelCompositionServiceTest {
 
@@ -111,14 +108,14 @@ public class PanelCompositionServiceTest {
     @DisplayName("Invalid call to getRoleTypes should return null")
     @Test
     public void getDefaultPanelCompositionWithInvalidParameters() {
-        var result = panelCompositionService.getRoleTypes(buildCaseData());
+        var result = panelCompositionService.getRoleTypes(SscsCaseData.builder().issueCode("DD").build());
         assertThat(result).isEmpty();
     }
 
     @DisplayName("should return emptyPanelComposition")
     @Test
     public void shouldReturnEmptyPanelComposition() {
-        var result = panelCompositionService.createPanelComposition(buildCaseData());
+        var result = panelCompositionService.createPanelComposition(SscsCaseData.builder().issueCode("DD").build());
         assertTrue(result.isEmpty());
     }
 
@@ -246,7 +243,7 @@ public class PanelCompositionServiceTest {
     public void getJohTiersFromPanelCompositionShouldReturnEmptyListWhenFieldsAreEmpty() {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
                 .panelCompositionDisabilityAndFqMember(new ArrayList<>()).build();
-        var caseData = buildCaseData();
+        var caseData = SscsCaseData.builder().issueCode("DD").build();
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isEmpty();
