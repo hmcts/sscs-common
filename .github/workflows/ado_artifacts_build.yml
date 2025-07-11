@@ -1,4 +1,4 @@
-name: Publish to Azure Artifacts
+name: Check and Publish to Azure Artifacts
 
 on:
   push:
@@ -10,7 +10,26 @@ on:
   workflow_dispatch:
 
 jobs:
+  check:
+    name: Run Gradle Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Run Gradle Check
+        run: ./gradlew check
+
   PublishToAzureArtifacts:
+    name: Publish to Azure Artifacts
+    needs: check
     runs-on: ubuntu-latest
 
     steps:
