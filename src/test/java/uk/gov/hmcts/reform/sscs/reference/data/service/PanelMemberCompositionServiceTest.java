@@ -23,11 +23,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
-import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
-import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 public class PanelMemberCompositionServiceTest {
 
@@ -59,7 +57,8 @@ public class PanelMemberCompositionServiceTest {
     @Test
     public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
         var defaultJohTiers = panelCompositionService
-                .getDefaultJohTiers(SscsCaseData.builder().benefitCode("001").issueCode("AD").build());
+                .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("001").issueCode("AD").build())
+                .getJohTiers();
         var result = new PanelMemberComposition(defaultJohTiers);
 
         assertThat(result).isNotNull();
@@ -76,7 +75,8 @@ public class PanelMemberCompositionServiceTest {
     @DisplayName("should return emptyPanelComposition")
     @Test
     public void shouldReturnEmptyPanelComposition() {
-        var result = panelCompositionService.getDefaultJohTiers(buildCaseData());
+        var result = panelCompositionService.getDefaultPanelComposition(buildCaseData())
+                .getJohTiers();
         assertTrue(result.isEmpty());
     }
 
