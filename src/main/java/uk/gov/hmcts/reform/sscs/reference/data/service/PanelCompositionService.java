@@ -33,15 +33,14 @@ public class PanelCompositionService {
         if (nonNull(caseData.getPanelMemberComposition()) && !caseData.getPanelMemberComposition().isEmpty()) {
             return caseData.getPanelMemberComposition().getJohTiers();
         } else {
-            return getDefaultJohTiers(caseData);
+            return getDefaultPanelComposition(caseData).getJohTiers();
         }
     }
 
-    public List<String> getDefaultJohTiers(SscsCaseData caseData) {
+    public DefaultPanelComposition getDefaultPanelComposition(SscsCaseData caseData) {
         return defaultPanelCompositions.stream()
                 .filter(new DefaultPanelComposition(caseData)::equals)
-                .findFirst().orElse(new DefaultPanelComposition())
-                .getJohTiers();
+                .findFirst().orElse(new DefaultPanelComposition());
     }
 
     public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData, SscsCaseData caseDataBefore) {
