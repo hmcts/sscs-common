@@ -70,15 +70,18 @@ public class PanelCompositionServiceTest {
         ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
                 .build();
 
-        var result = panelCompositionService
-                .createPanelComposition(SscsCaseData.builder()
-                        .elementsDisputedGeneral(List.of(disputedElement1))
-                        .benefitCode("001").issueCode("US").build());
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .elementsDisputedGeneral(List.of(disputedElement1))
+                .benefitCode("001").issueCode("US").build();
+
+        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
+        var result = panelCompositionService.createPanelComposition(sscsCaseData);
 
         assertThat(result).isNotNull();
         assertThat(result.getPanelCompositionJudge()).isEqualTo(TRIBUNAL_JUDGE.toRef());
         assertThat(result.getPanelCompositionMemberMedical1()).isNull();
         assertThat(result.getPanelCompositionDisabilityAndFqMember()).isEmpty();
+        assertThat(defaultPanelComposition.getCategory()).isEqualTo("1");
     }
 
 
@@ -93,16 +96,19 @@ public class PanelCompositionServiceTest {
         ElementDisputed disputedElement3 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("HT").build())
                 .build();
 
-        var result = panelCompositionService
-                .createPanelComposition(SscsCaseData.builder()
-                        .elementsDisputedGeneral(List.of(disputedElement1, disputedElement2))
-                        .elementsDisputedHousing(List.of(disputedElement3))
-                        .benefitCode("001").issueCode("UM").build());
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+                .elementsDisputedGeneral(List.of(disputedElement1, disputedElement2))
+                .elementsDisputedHousing(List.of(disputedElement3))
+                .benefitCode("001").issueCode("UM").build();
+
+        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
+        var result = panelCompositionService.createPanelComposition(sscsCaseData);
 
         assertThat(result).isNotNull();
         assertThat(result.getPanelCompositionJudge()).isEqualTo(TRIBUNAL_JUDGE.toRef());
         assertThat(result.getPanelCompositionMemberMedical1()).isEqualTo(TRIBUNAL_MEMBER_MEDICAL.toRef());
         assertThat(result.getPanelCompositionDisabilityAndFqMember()).isEmpty();
+        assertThat(defaultPanelComposition.getCategory()).isEqualTo("4");
     }
 
     @DisplayName("Invalid call to getRoleTypes should return null")

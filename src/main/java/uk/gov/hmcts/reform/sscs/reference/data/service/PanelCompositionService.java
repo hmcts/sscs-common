@@ -14,6 +14,7 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -144,6 +145,7 @@ public class PanelCompositionService {
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         log.info("case {}, UC first at panel comp: {}", caseData.getCcdCaseId(), defaultPanelComposition);
         Set<String> johTiersSet = new HashSet<>();
+        Set<String> sessionCategorySet = new HashSet<>();
         for (Issue issue : issues ) {
             String individualUcBenefitIssueCode = caseData.getBenefitCode() + issue.toString();
             DefaultPanelComposition issueCodePanelComposition =  defaultPanelCompositions.stream()
@@ -151,9 +153,11 @@ public class PanelCompositionService {
                     .findFirst().orElse(null);
             if (nonNull(issueCodePanelComposition)) {
                 johTiersSet.addAll(issueCodePanelComposition.getJohTiers());
+                sessionCategorySet.add(issueCodePanelComposition.getCategory());
             }
         }
         defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
+        defaultPanelComposition.setCategory(Collections.max(sessionCategorySet));
         return defaultPanelComposition;
     }
 
