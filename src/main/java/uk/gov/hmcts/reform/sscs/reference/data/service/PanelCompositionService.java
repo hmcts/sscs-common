@@ -78,8 +78,10 @@ public class PanelCompositionService {
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         if (List.of("UM","US").contains(caseData.getIssueCode())) {
+            log.info("Using UC panel calculator for case {}", caseData.getCcdCaseId());
             return getUniversalCreditDefaultPanelComposition(caseData, benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         } else {
+            log.info("Using standard panel calculator for case {}", caseData.getCcdCaseId());
             return defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
