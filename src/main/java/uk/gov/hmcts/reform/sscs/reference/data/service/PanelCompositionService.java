@@ -142,6 +142,7 @@ public class PanelCompositionService {
         List<String> elementsDisputed = caseData.getAllElementsDisputed();
         List<Issue> issues = getIssues(elementsDisputed);
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
+        log.info("UC first at panel comp: {}", defaultPanelComposition);
         Set<String> johTiersSet = new HashSet<>();
         for (Issue issue : issues ) {
             String individualUcBenefitIssueCode = caseData.getBenefitCode() + issue.toString();
