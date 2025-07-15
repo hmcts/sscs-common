@@ -78,10 +78,10 @@ public class PanelCompositionService {
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         if (List.of("UM","US").contains(caseData.getIssueCode())) {
-            log.info("Using UC panel calculator for case {}", caseData.getCcdCaseId());
+            log.info("Using Universal Credit default panel composition calculator for case {}", caseData.getCcdCaseId());
             return getUniversalCreditDefaultPanelComposition(caseData, benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         } else {
-            log.info("Using standard panel calculator for case {}", caseData.getCcdCaseId());
+            log.info("Using default panel composition calculator for case {}", caseData.getCcdCaseId());
             return defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
@@ -141,11 +141,10 @@ public class PanelCompositionService {
         return nonNull(reserveTo) && isYes(reserveTo.getReservedDistrictTribunalJudge());
     }
 
-    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String benefitIssueCode, String specialismCount,String isFqpm,String isMedicalMember) {
+    private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String benefitIssueCode, String specialismCount, String isFqpm, String isMedicalMember) {
         List<String> elementsDisputed = caseData.getAllElementsDisputed();
         List<Issue> issues = getIssues(elementsDisputed);
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
-        log.info("case {}, UC first at panel comp: {}", caseData.getCcdCaseId(), defaultPanelComposition);
         Set<String> johTiersSet = new HashSet<>();
         Set<String> sessionCategorySet = new HashSet<>();
         for (Issue issue : issues ) {
