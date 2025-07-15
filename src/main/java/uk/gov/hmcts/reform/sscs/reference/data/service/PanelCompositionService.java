@@ -155,10 +155,15 @@ public class PanelCompositionService {
             if (nonNull(issueCodePanelComposition)) {
                 johTiersSet.addAll(issueCodePanelComposition.getJohTiers());
                 sessionCategorySet.add(issueCodePanelComposition.getCategory());
+                if (issue.equals(Issue.SG) || issue.equals(Issue.WC)) {
+                    defaultPanelComposition.setCategory(issueCodePanelComposition.getCategory());
+                }
             }
         }
         defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
-        defaultPanelComposition.setCategory(Collections.max(sessionCategorySet));
+        if (isNull(defaultPanelComposition.getCategory())) {
+            defaultPanelComposition.setCategory(sessionCategorySet.stream().findAny().get());
+        }
         return defaultPanelComposition;
     }
 
