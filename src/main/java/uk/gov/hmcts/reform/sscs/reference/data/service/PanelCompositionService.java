@@ -14,7 +14,6 @@ import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -77,7 +76,7 @@ public class PanelCompositionService {
                 isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         String isMedicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
-        if (List.of("UM","US").contains(caseData.getIssueCode())) {
+        if (List.of(Issue.UM.toString(), Issue.US.toString()).contains(caseData.getIssueCode())) {
             log.info("Using Universal Credit default panel composition calculator for case {}", caseData.getCcdCaseId());
             return getUniversalCreditDefaultPanelComposition(caseData, benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         } else {
