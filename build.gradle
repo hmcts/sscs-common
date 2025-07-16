@@ -168,7 +168,7 @@ def versions = [
 dependencies {
 
     api group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
-    api group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
+    api group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
