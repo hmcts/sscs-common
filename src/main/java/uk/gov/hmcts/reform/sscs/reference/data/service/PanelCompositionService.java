@@ -141,20 +141,22 @@ public class PanelCompositionService {
     }
 
     private DefaultPanelComposition getUniversalCreditDefaultPanelComposition(SscsCaseData caseData, String benefitIssueCode, String specialismCount, String isFqpm, String isMedicalMember) {
-        List<String> elementsDisputed = caseData.getAllElementsDisputed();
-        List<Issue> issues = getIssues(elementsDisputed);
+        List<String> issueCodesForAllElementsDisputed = caseData.getIssueCodesForAllElementsDisputed();
         DefaultPanelComposition defaultPanelComposition = new DefaultPanelComposition(benefitIssueCode, specialismCount, isFqpm, isMedicalMember);
         Set<String> johTiersSet = new HashSet<>();
         Set<String> sessionCategorySet = new HashSet<>();
-        for (Issue issue : issues ) {
-            String individualUcBenefitIssueCode = caseData.getBenefitCode() + issue.toString();
+        if (issueCodesForAllElementsDisputed.isEmpty()) {
+            log.info("Case {} has no Elements Disputed onCase", caseData.getCcdCaseId());
+        }
+        for (String issueCode : issueCodesForAllElementsDisputed ) {
+            String individualUcBenefitIssueCode = caseData.getBenefitCode() + issueCode;
             DefaultPanelComposition issueCodePanelComposition =  defaultPanelCompositions.stream()
                     .filter(new DefaultPanelComposition(individualUcBenefitIssueCode, specialismCount, isFqpm, isMedicalMember)::equals)
                     .findFirst().orElse(null);
             if (nonNull(issueCodePanelComposition)) {
                 johTiersSet.addAll(issueCodePanelComposition.getJohTiers());
                 sessionCategorySet.add(issueCodePanelComposition.getCategory());
-                if (issue.equals(Issue.SG) || issue.equals(Issue.WC)) {
+                if (Issue.SG.toString().equals(issueCode) || (Issue.WC.toString().equals(issueCode))) {
                     defaultPanelComposition.setCategory(issueCodePanelComposition.getCategory());
                 }
             }
@@ -187,11 +189,5 @@ public class PanelCompositionService {
         return caseData.getSscsIndustrialInjuriesData().getPanelDoctorSpecialism() != null
                 ? caseData.getSscsIndustrialInjuriesData().getSecondPanelDoctorSpecialism() != null
                 ? "2" : "1" : null;
-    }
-
-    public static List<Issue> getIssues(List<String> elements) {
-        return elements.stream()
-                .map(Issue::getIssue)
-                .collect(Collectors.toList());
     }
 }

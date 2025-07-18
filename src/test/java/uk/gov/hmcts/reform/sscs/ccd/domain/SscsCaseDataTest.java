@@ -1013,7 +1013,7 @@ public class SscsCaseDataTest {
     public void givenElementsDisputedNull_thenGetAllElementsDisputedReturnsEmptyList() {
         SscsCaseData caseData = SscsCaseData.builder().build();
 
-        List<String> result = caseData.getAllElementsDisputed();
+        List<String> result = caseData.getIssueCodesForAllElementsDisputed();
 
         assertThat(result).isEmpty();
     }
@@ -1037,7 +1037,7 @@ public class SscsCaseDataTest {
                 .elementsDisputedChildDisabled(List.of(elementDisputed))
                 .elementsDisputedLimitedWork(List.of(elementDisputed))
                 .build();
-        List<String> result = caseData.getAllElementsDisputed();
+        List<String> result = caseData.getIssueCodesForAllElementsDisputed();
 
         assertThat(result)
                 .hasSize(9)

@@ -74,7 +74,7 @@ public class HearingDurationsService {
                     duration,
                     hearingDuration.getBenefitCode(),
                     hearingDuration.getIssue(),
-                    caseData.getAllElementsDisputed());
+                    caseData.getIssueCodesForAllElementsDisputed());
         } else if (isPaperCase(caseData)) {
             return hearingDuration.getDurationPaper();
         }

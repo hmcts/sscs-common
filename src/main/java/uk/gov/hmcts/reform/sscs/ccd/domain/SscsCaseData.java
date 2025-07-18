@@ -859,7 +859,7 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public List<String> getAllElementsDisputed() {
+    public List<String> getIssueCodesForAllElementsDisputed() {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
 
         List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
