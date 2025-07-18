@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -162,7 +161,7 @@ public class PanelCompositionService {
             }
         }
         defaultPanelComposition.setJohTiers(new ArrayList<>(johTiersSet));
-        if (isNull(defaultPanelComposition.getCategory())) {
+        if (isNull(defaultPanelComposition.getCategory()) && !sessionCategorySet.isEmpty()) {
             defaultPanelComposition.setCategory(sessionCategorySet.stream().findAny().get());
         }
         return defaultPanelComposition;
