@@ -1010,7 +1010,7 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenElementsDisputedNull_thenGetAllElementsDisputedReturnsEmptyList() {
+    public void givenElementsDisputedNull_thenGetIssueCodesForAllElementsDisputedReturnsEmptyList() {
         SscsCaseData caseData = SscsCaseData.builder().build();
 
         List<String> result = caseData.getIssueCodesForAllElementsDisputed();
@@ -1019,7 +1019,7 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void givenElementsDisputed_thenGetAllElementsDisputedReturnsListOfElements() {
+    public void givenElementsDisputed_thenGetIssueCodesForAllElementsDisputedReturnsListOfElements() {
         ElementDisputed elementDisputed = ElementDisputed.builder()
                 .value(ElementDisputedDetails.builder()
                         .issueCode("WC")
