@@ -146,7 +146,7 @@ public class PanelCompositionService {
         Set<String> johTiersSet = new HashSet<>();
         Set<String> sessionCategorySet = new HashSet<>();
         if (issueCodesForAllElementsDisputed.isEmpty()) {
-            log.info("Case {} has no Elements Disputed onCase", caseData.getCcdCaseId());
+            log.info("Case {} has no elements disputed", caseData.getCcdCaseId());
         }
         for (String issueCode : issueCodesForAllElementsDisputed ) {
             String individualUcBenefitIssueCode = caseData.getBenefitCode() + issueCode;
