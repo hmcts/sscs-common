@@ -39,6 +39,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
@@ -855,5 +856,32 @@ public class SscsCaseData implements CaseData {
 
     public boolean isBenefitType(Benefit benefitType) {
         return getBenefitType().filter(benefitType::equals).isPresent();
+    }
+
+    @JsonIgnore
+    public List<String> getIssueCodesForAllElementsDisputed() {
+        List<ElementDisputed> elementDisputed = new ArrayList<>();
+
+        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
+        elementsToCheck.add(elementsDisputedGeneral);
+        elementsToCheck.add(elementsDisputedSanctions);
+        elementsToCheck.add(elementsDisputedOverpayment);
+        elementsToCheck.add(elementsDisputedHousing);
+        elementsToCheck.add(elementsDisputedChildCare);
+        elementsToCheck.add(elementsDisputedCare);
+        elementsToCheck.add(elementsDisputedChildElement);
+        elementsToCheck.add(elementsDisputedChildDisabled);
+        elementsToCheck.add(elementsDisputedLimitedWork);
+
+        elementsToCheck.forEach((List<ElementDisputed> list) -> {
+            if (CollectionUtils.isNotEmpty(list)) {
+                elementDisputed.addAll(list);
+            }
+        });
+
+        return elementDisputed.stream()
+                .map(ElementDisputed::getValue)
+                .map(ElementDisputedDetails::getIssueCode)
+                .collect(Collectors.toList());
     }
 }
