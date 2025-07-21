@@ -1,13 +1,19 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 
@@ -23,12 +29,13 @@ public class DefaultPanelComposition {
     private String medicalMember;
     private List<String> johTiers;
 
-    public DefaultPanelComposition(SscsCaseData caseData) {
-        this.benefitIssueCode = caseData.getBenefitCode() + caseData.getIssueCode();
+    public DefaultPanelComposition(String issueCode, SscsCaseData caseData) {
+        this.benefitIssueCode = caseData.getBenefitCode() + issueCode;
         this.specialismCount = getSpecialismCount(caseData);
         this.fqpm = isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;;
         this.medicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
+        this.johTiers = new ArrayList<>();
     }
 
     public DefaultPanelComposition() {

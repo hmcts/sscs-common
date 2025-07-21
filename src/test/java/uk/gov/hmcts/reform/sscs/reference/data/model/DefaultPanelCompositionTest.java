@@ -49,7 +49,7 @@ public class DefaultPanelCompositionTest {
                 .isMedicalMemberRequired(NO)
                 .build();
 
-        var actual  = new DefaultPanelComposition(caseData);
+        var actual  = new DefaultPanelComposition(caseData.getIssueCode(), caseData);
 
         assertEquals("022RA", actual.getBenefitIssueCode());
         assertEquals("1", actual.getSpecialismCount());
@@ -68,7 +68,7 @@ public class DefaultPanelCompositionTest {
                 .isMedicalMemberRequired(YES)
                 .build();
 
-        var actual  = new DefaultPanelComposition(caseData);
+        var actual  = new DefaultPanelComposition(caseData.getIssueCode(), caseData);
 
         assertEquals("022RA", actual.getBenefitIssueCode());
         assertEquals("2", actual.getSpecialismCount());
