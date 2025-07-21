@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_USING_TO_STRING;
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -1006,5 +1007,40 @@ public class SscsCaseDataTest {
                 .benefitCode(benefitCode).build();
 
         assertFalse(sscsCaseData.isIbcCase());
+    }
+
+    @Test
+    public void givenElementsDisputedNull_thenGetIssueCodesForAllElementsDisputedReturnsEmptyList() {
+        SscsCaseData caseData = SscsCaseData.builder().build();
+
+        List<String> result = caseData.getIssueCodesForAllElementsDisputed();
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    public void givenElementsDisputed_thenGetIssueCodesForAllElementsDisputedReturnsListOfElements() {
+        ElementDisputed elementDisputed = ElementDisputed.builder()
+                .value(ElementDisputedDetails.builder()
+                        .issueCode("WC")
+                        .outcome("Test")
+                        .build())
+                .build();
+        SscsCaseData caseData = SscsCaseData.builder()
+                .elementsDisputedGeneral(List.of(elementDisputed))
+                .elementsDisputedSanctions(List.of(elementDisputed))
+                .elementsDisputedOverpayment(List.of(elementDisputed))
+                .elementsDisputedHousing(List.of(elementDisputed))
+                .elementsDisputedChildCare(List.of(elementDisputed))
+                .elementsDisputedCare(List.of(elementDisputed))
+                .elementsDisputedChildElement(List.of(elementDisputed))
+                .elementsDisputedChildDisabled(List.of(elementDisputed))
+                .elementsDisputedLimitedWork(List.of(elementDisputed))
+                .build();
+        List<String> result = caseData.getIssueCodesForAllElementsDisputed();
+
+        assertThat(result)
+                .hasSize(9)
+                .containsOnly("WC");
     }
 }
