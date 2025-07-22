@@ -64,13 +64,11 @@ public class PanelCompositionService {
         }
         Set<String> allElementsJohTiers = new HashSet<>();
         caseData.getIssueCodesForAllElementsDisputed().forEach(issueCode -> {
-            DefaultPanelComposition issueCodePanelComposition =  findDefaultPanelCompForIssueCode(issueCode, caseData);
-            if (nonNull(issueCodePanelComposition)) {
-                allElementsJohTiers.addAll(issueCodePanelComposition.getJohTiers());
-                if (Issue.SG.toString().equals(issueCode) || Issue.WC.toString().equals(issueCode)
-                        || isNull(defaultPanelComposition.getCategory())) {
-                    defaultPanelComposition.setCategory(issueCodePanelComposition.getCategory());
-                }
+            DefaultPanelComposition ucElementPanelComposition =  findDefaultPanelCompForIssueCode(issueCode, caseData);
+            allElementsJohTiers.addAll(ucElementPanelComposition.getJohTiers());
+            if (Issue.SG.toString().equals(issueCode) || Issue.WC.toString().equals(issueCode)
+                    || isNull(defaultPanelComposition.getCategory())) {
+                defaultPanelComposition.setCategory(ucElementPanelComposition.getCategory());
             }
         });
         defaultPanelComposition.setJohTiers(new ArrayList<>(allElementsJohTiers));
@@ -84,10 +82,11 @@ public class PanelCompositionService {
     }
 
     public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData, SscsCaseData caseDataBefore) {
-        boolean hasIssueCodeChanged = !caseData.getIssueCode().equals(caseDataBefore.getIssueCode());
+        boolean hasBenefitCodeChanged = !Objects.equals(caseData.getBenefitCode(), caseDataBefore.getBenefitCode());
+        boolean hasIssueCodeChanged = !Objects.equals(caseData.getIssueCode(), caseDataBefore.getIssueCode());
         boolean hasSpecialismCountChanged =
                 !Objects.equals(getSpecialismCount(caseData), getSpecialismCount(caseDataBefore));
-        return hasIssueCodeChanged || hasSpecialismCountChanged
+        return hasBenefitCodeChanged || hasIssueCodeChanged || hasSpecialismCountChanged
                 ? new PanelMemberComposition() : caseData.getPanelMemberComposition();
     }
 
