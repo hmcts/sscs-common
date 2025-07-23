@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
+import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Slf4j
@@ -96,7 +97,8 @@ public class DefaultPanelCompositionParser {
     private String yesOrNull(String value) {
         return Optional.ofNullable(value)
             .map(String::trim)
-            .filter("yes"::equalsIgnoreCase)
+            .filter(YesNo::isYes)
+            .map(yesValue -> YesNo.YES.getValue())
             .orElse(null);
     }
 }
