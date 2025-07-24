@@ -39,6 +39,7 @@ public enum EventType {
     ADMIN_UPDATE_EVENT("adminUpdateEvent", 0, false),
     AMEND_DUE_DATE("amendDueDate", 0, false),
     AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false),
+    AMEND_SPECIALISM("panelDoctorSpecialismAmend", 0, false),
     APPEAL_RECEIVED("appealReceived", "appealReceived", 1, true),
     APPEAL_TO_PROCEED("appealToProceed", 0, false),
     ASSIGN_TO_JUDGE("assignToJudge", 0, false),

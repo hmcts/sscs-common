@@ -228,7 +228,7 @@ public class EventTypeTest {
 
     @Test
     public void eventNameIsCorrect() {
-        List<EventType> exceptions = Arrays.asList(DWP_RESPOND, ADJOURNED,
+        List<EventType> exceptions = Arrays.asList(AMEND_SPECIALISM, DWP_RESPOND, ADJOURNED,
                 LAPSED_REVISED, WITHDRAWN, POSTPONED, DORMANT, CLOSED, DWP_RESPOND_OVERDUE,
                 SYA_APPEAL_CREATED, FIRST_HEARING_HOLDING_REMINDER, FINAL_DECISION, COH_ONLINE_HEARING_RELISTED,
                 SENT_TO_DWP_ERROR, REQUEST_FOR_INFORMATION, CREATE_APPEAL_PDF, RESEND_CASE_TO_GAPS2, ADD_SC_NUMBER,
