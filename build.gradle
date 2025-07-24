@@ -154,7 +154,8 @@ tasks.register('runGitPreCommitTasks') {
 tasks.register('generatePanelCategoryMap', JavaExec) {
     mainClass = "uk.gov.hmcts.reform.sscs.utility.DefaultPanelCompositionParser"
     group = "utility"
-    description = "Runs the sscs.utility.PanelCategoryMapParser class"
+    description = "Runs the sscs.utility.DefaultPanelCompositionParser class " +
+            "to create panel-category-map.json using CSV_JOHTier_PanelMemberComposition_1.3.csv"
     classpath = sourceSets.main.runtimeClasspath
 }
 
