@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.utility;
 
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.reform.sscs.ccd.domain.YesNo;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
@@ -62,24 +65,21 @@ public class DefaultPanelCompositionParser {
 
     public List<DefaultPanelComposition> createJson(File csvFile) throws IOException {
         log.info("Reading and parsing CSV file: {}", csvFile.getAbsolutePath());
-
-        try (MappingIterator<DefaultPanelComposition> panelCompositionsIterator = csvMapper
-            .readerFor(DefaultPanelComposition.class)
-            .with(schema)
-            .readValues(csvFile)) {
-
-            List<DefaultPanelComposition> defaultPanelCompositions = panelCompositionsIterator.readAll();
-
-            defaultPanelCompositions.forEach(this::processPanelCompositionConfig);
-
-            return defaultPanelCompositions;
+        try (MappingIterator<DefaultPanelComposition> panelCompositionsIterator =
+                     csvMapper.readerFor(DefaultPanelComposition.class).with(schema)
+                             .readValues(csvFile)) {
+            return panelCompositionsIterator.readAll()
+                    .stream()
+                    .map(this::processPanelCompositionConfig)
+                    .toList();
         }
     }
 
-    private void processPanelCompositionConfig(DefaultPanelComposition defaultPanelComposition) {
+    private DefaultPanelComposition processPanelCompositionConfig(DefaultPanelComposition defaultPanelComposition) {
         defaultPanelComposition.setFqpm(yesOrNull(defaultPanelComposition.getFqpm()));
         defaultPanelComposition.setMedicalMember(yesOrNull(defaultPanelComposition.getMedicalMember()));
         defaultPanelComposition.setSpecialismCount(blankToNull(defaultPanelComposition.getSpecialismCount()));
+        return defaultPanelComposition;
     }
 
     public void writeToJson(List<DefaultPanelComposition> panelCategories, File jsonFile) throws IOException {
@@ -90,7 +90,7 @@ public class DefaultPanelCompositionParser {
     private String blankToNull(String value) {
         return Optional.ofNullable(value)
             .map(String::trim)
-            .filter(trimmed -> !trimmed.isEmpty())
+            .filter(StringUtils::isNotEmpty)
             .orElse(null);
     }
 
@@ -98,7 +98,7 @@ public class DefaultPanelCompositionParser {
         return Optional.ofNullable(value)
             .map(String::trim)
             .filter(YesNo::isYes)
-            .map(yesValue -> YesNo.YES.getValue())
+            .map(yesValue -> YES.getValue().toLowerCase())
             .orElse(null);
     }
 }
