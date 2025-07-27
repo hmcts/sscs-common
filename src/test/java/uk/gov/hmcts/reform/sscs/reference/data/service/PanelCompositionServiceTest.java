@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static java.util.Collections.EMPTY_LIST;
 import static java.util.Collections.frequency;
+import static java.util.List.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,7 +75,7 @@ public class PanelCompositionServiceTest {
                 .build();
 
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(List.of(disputedElement1))
+                .elementsDisputedGeneral(of(disputedElement1))
                 .benefitCode("001").issueCode("US").build();
 
         var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
@@ -100,8 +101,8 @@ public class PanelCompositionServiceTest {
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("HT").build()).build();
 
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(List.of(disputedElement1, disputedElement2))
-                .elementsDisputedHousing(List.of(disputedElement3))
+                .elementsDisputedGeneral(of(disputedElement1, disputedElement2))
+                .elementsDisputedHousing(of(disputedElement3))
                 .benefitCode("001").issueCode("UM").build();
 
         var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
@@ -216,7 +217,7 @@ public class PanelCompositionServiceTest {
                 .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef()).build());
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotEmpty();
-        assertThat(result).isEqualTo(List.of(REGIONAL_MEDICAL_MEMBER.toRef()));
+        assertThat(result).isEqualTo(of(REGIONAL_MEDICAL_MEMBER.toRef()));
     }
 
     @DisplayName("createPanelCompositionFromJohTiers should extract the JOHTiers within panelComposition object")
@@ -226,7 +227,7 @@ public class PanelCompositionServiceTest {
                 .panelCompositionJudge(TRIBUNAL_JUDGE.toRef())
                 .panelCompositionMemberMedical1(REGIONAL_MEDICAL_MEMBER.toRef())
                 .panelCompositionMemberMedical2(TRIBUNAL_MEMBER_MEDICAL.toRef())
-                .panelCompositionDisabilityAndFqMember(List.of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
+                .panelCompositionDisabilityAndFqMember(of(TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
         caseData.getSscsIndustrialInjuriesData().setPanelDoctorSpecialism("Dummy");
         caseData.getSscsIndustrialInjuriesData().setSecondPanelDoctorSpecialism("Dummy");
@@ -235,7 +236,7 @@ public class PanelCompositionServiceTest {
 
         assertThat(roleTypes).isNotEmpty();
         assertThat(roleTypes)
-                .containsAll(List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
+                .containsAll(of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
                         REGIONAL_MEDICAL_MEMBER.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()));
     }
 
@@ -258,7 +259,7 @@ public class PanelCompositionServiceTest {
         caseData.setPanelMemberComposition(panelMemberComposition);
         List<String> result = panelCompositionService.getRoleTypes(caseData);
         assertThat(result).isNotNull();
-        assertThat(result).isEqualTo(List.of("84"));
+        assertThat(result).isEqualTo(of("84"));
     }
 
     @DisplayName("createPanelCompositionFromJohTiers should return a district tribunal judge when they are reserved")
@@ -270,7 +271,7 @@ public class PanelCompositionServiceTest {
 
         List<String> result = panelCompositionService.getRoleTypes(caseData);
 
-        assertThat(result).isEqualTo(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
+        assertThat(result).isEqualTo(of(DISTRICT_TRIBUNAL_JUDGE.toRef()));
     }
 
     @DisplayName("should not throw exception if reservedDistrictTribunalJudge is null")
@@ -290,13 +291,13 @@ public class PanelCompositionServiceTest {
         PanelMemberComposition panelMemberComposition = PanelMemberComposition.builder()
                 .districtTribunalJudge(DISTRICT_TRIBUNAL_JUDGE.toRef())
                 .panelCompositionDisabilityAndFqMember(
-                        List.of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
+                        of(TRIBUNAL_MEMBER_DISABILITY.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef())
                 ).build();
         caseData.setPanelMemberComposition(panelMemberComposition);
 
         List<String> result = panelCompositionService.getRoleTypes(caseData);
 
-        assertThat(result).containsAll(List.of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef(),
+        assertThat(result).containsAll(of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef(),
                 TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef()));
     }
 
@@ -305,7 +306,7 @@ public class PanelCompositionServiceTest {
     public void getDefaultPanelCompositionShouldReturnCorrectJohTiers() {
         caseData.setBenefitCode("002");
         caseData.setIssueCode("LC");
-        var johTiers = List.of("84", "58", "44" );
+        var johTiers = of("84", "58", "44" );
 
         var result = panelCompositionService.getDefaultPanelComposition(caseData);
 
@@ -377,7 +378,35 @@ public class PanelCompositionServiceTest {
 
         var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, sscsCaseDataBefore);
 
-        assertThat(result.getJohTiers()).containsAll(List.of("84", "58"));
+        assertThat(result.getJohTiers()).containsAll(of("84", "58"));
+    }
+
+    @DisplayName("should reset panelComp if UC elements change")
+    @Test
+    public void resetPanelCompositionIfUcElementsChange() {
+        var sscsCaseData = SscsCaseData.builder().elementsDisputedGeneral(of(getElement("CC"))).build();
+        var sscsCaseDataBefore = SscsCaseData.builder().elementsDisputedCare(of(getElement("RA"))).build();
+
+        var result = panelCompositionService.resetPanelCompIfElementsChanged(sscsCaseData, sscsCaseDataBefore);
+
+        assertEquals(EMPTY_LIST, result.getJohTiers());
+    }
+
+    @DisplayName("should not reset panelComp if nothing changes")
+    @Test
+    public void shouldNotResetPanelCompositionIfUcElementsChangeDontChange() {
+        var sscsCaseData = SscsCaseData.builder()
+                .elementsDisputedCare(of(getElement("CC"), getElement("UC")))
+                .elementsDisputedGeneral(of(getElement("RA"))).build();
+        var sscsCaseDataBefore = SscsCaseData.builder()
+                .elementsDisputedCare(of(getElement("UC"), getElement("RA")))
+                .elementsDisputedGeneral(of(getElement("CC"))).build();
+        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
+                .panelCompositionJudge("84").panelCompositionMemberMedical1("58").build());
+
+        var result = panelCompositionService.resetPanelCompIfElementsChanged(sscsCaseData, sscsCaseDataBefore);
+
+        assertThat(result.getJohTiers()).containsAll(of("84", "58"));
     }
 
     @DisplayName("IsValidBenefitIssueCode should return true when benefit issue code is in panel map")
@@ -392,6 +421,10 @@ public class PanelCompositionServiceTest {
     public void testIsValidBenefitIssueCodeForInvalidBenefitIssueCode() {
         boolean result = panelCompositionService.isBenefitIssueCodeValid("000", "00");
         assertThat(result).isFalse();
+    }
+
+    private ElementDisputed getElement(String issueCode) {
+        return ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode(issueCode).build()).build();
     }
 
 }

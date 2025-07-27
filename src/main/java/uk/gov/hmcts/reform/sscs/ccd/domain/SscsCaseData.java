@@ -882,6 +882,7 @@ public class SscsCaseData implements CaseData {
         return elementDisputed.stream()
                 .map(ElementDisputed::getValue)
                 .map(ElementDisputedDetails::getIssueCode)
+                .sorted()
                 .collect(Collectors.toList());
     }
 }

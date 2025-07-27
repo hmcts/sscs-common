@@ -90,6 +90,12 @@ public class PanelCompositionService {
                 ? new PanelMemberComposition() : caseData.getPanelMemberComposition();
     }
 
+    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData, SscsCaseData caseDataBefore) {
+        return Objects.equals(caseData.getIssueCodesForAllElementsDisputed(),
+                caseDataBefore.getIssueCodesForAllElementsDisputed())
+                ? caseData.getPanelMemberComposition() : new PanelMemberComposition();
+    }
+
     public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
         return defaultPanelCompositions.stream()
                 .anyMatch(panelComposition ->
