@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
@@ -861,23 +862,15 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public List<String> getIssueCodesForAllElementsDisputed() {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
-
-        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
-        elementsToCheck.add(elementsDisputedGeneral);
-        elementsToCheck.add(elementsDisputedSanctions);
-        elementsToCheck.add(elementsDisputedOverpayment);
-        elementsToCheck.add(elementsDisputedHousing);
-        elementsToCheck.add(elementsDisputedChildCare);
-        elementsToCheck.add(elementsDisputedCare);
-        elementsToCheck.add(elementsDisputedChildElement);
-        elementsToCheck.add(elementsDisputedChildDisabled);
-        elementsToCheck.add(elementsDisputedLimitedWork);
-
-        elementsToCheck.forEach((List<ElementDisputed> list) -> {
-            if (CollectionUtils.isNotEmpty(list)) {
-                elementDisputed.addAll(list);
-            }
-        });
+        elementDisputed.addAll(ofNullable(elementsDisputedGeneral).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedSanctions).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedOverpayment).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedHousing).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildCare).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedCare).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildElement).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildDisabled).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedLimitedWork).orElse(emptyList()));
 
         return elementDisputed.stream()
                 .map(ElementDisputed::getValue)
