@@ -318,12 +318,12 @@ public class PanelCompositionServiceTest {
     @DisplayName("resetPanelCompositionIfStale should reset panelComp if benefitCode changes")
     @Test
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfBenefitCodeChanges() {
-        var sscsCaseData = SscsCaseData.builder().benefitCode("022").build();
-        var sscsCaseDataBefore = SscsCaseData.builder().benefitCode("002").build();
-        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompositionJudge("84").build());
+        var caseDetailsBefore = SscsCaseDetails.builder()
+                .data(SscsCaseData.builder().benefitCode("002").build()).build();
+        var sscsCaseData = SscsCaseData.builder().benefitCode("022")
+                .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
 
-        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, sscsCaseDataBefore);
+        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
         assertEquals(EMPTY_LIST, result.getJohTiers());
     }
@@ -331,12 +331,11 @@ public class PanelCompositionServiceTest {
     @DisplayName("resetPanelCompositionIfStale should reset panelComp if issueCode changes")
     @Test
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfIssueCodeChanges() {
-        var sscsCaseData = SscsCaseData.builder().issueCode("RA").build();
-        var sscsCaseDataBefore = SscsCaseData.builder().issueCode("CC").build();
-        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompositionJudge("84").build());
+        var sscsCaseData = SscsCaseData.builder().issueCode("RA")
+                .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
+        var caseDetailsBefore = SscsCaseDetails.builder().data(SscsCaseData.builder().issueCode("CC").build()).build();
 
-        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, sscsCaseDataBefore);
+        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
         assertEquals(EMPTY_LIST, result.getJohTiers());
     }
@@ -345,12 +344,11 @@ public class PanelCompositionServiceTest {
     @Test
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfSpecialismChanges() {
         var sscsCaseData = SscsCaseData.builder().sscsIndustrialInjuriesData(
-                SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor").build()).build();
-        var sscsCaseDataBefore = SscsCaseData.builder().build();
-        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompositionJudge("84").build());
+                SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor").build())
+                .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
+        var caseDetailsBefore = SscsCaseDetails.builder().data(SscsCaseData.builder().build()).build();
 
-        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, sscsCaseDataBefore);
+        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
         assertEquals(EMPTY_LIST, result.getJohTiers());
     }
@@ -358,16 +356,17 @@ public class PanelCompositionServiceTest {
     @DisplayName("resetPanelCompositionIfStale should not reset panelComp if nothing changes")
     @Test
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfNothingChanges() {
-        var sscsCaseData = SscsCaseData.builder().isFqpmRequired(YES).benefitCode("022").issueCode("RA")
-                .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor")
-                        .build()).build();
+        var sscsCaseData = SscsCaseData.builder()
+                .isFqpmRequired(YES).benefitCode("022").issueCode("RA")
+                .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doc").build())
+                .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84")
+                        .panelCompositionMemberMedical1("58").build()).build();
         var sscsCaseDataBefore = SscsCaseData.builder().isFqpmRequired(NO).benefitCode("022").issueCode("RA")
                 .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor")
                         .build()).build();
-        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
-                .panelCompositionJudge("84").panelCompositionMemberMedical1("58").build());
+        var caseDetailsBefore = SscsCaseDetails.builder().data(sscsCaseDataBefore).build();
 
-        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, sscsCaseDataBefore);
+        var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
         assertThat(result.getJohTiers()).containsAll(of("84", "58"));
     }

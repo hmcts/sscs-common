@@ -83,7 +83,11 @@ public class PanelCompositionService {
                 .findFirst().orElse(new DefaultPanelComposition());
     }
 
-    public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData, SscsCaseData caseDataBefore) {
+    public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData,
+                                                               Optional<SscsCaseDetails> caseDetailsBefore) {
+        var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
+                        new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
+                .getData();
         boolean hasBenefitCodeChanged = !Objects.equals(caseData.getBenefitCode(), caseDataBefore.getBenefitCode());
         boolean hasIssueCodeChanged = !Objects.equals(caseData.getIssueCode(), caseDataBefore.getIssueCode());
         boolean hasSpecialismCountChanged =
@@ -92,7 +96,8 @@ public class PanelCompositionService {
                 ? new PanelMemberComposition() : caseData.getPanelMemberComposition();
     }
 
-    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData, Optional<SscsCaseDetails> caseDetailsBefore) {
+    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData,
+                                                                  Optional<SscsCaseDetails> caseDetailsBefore) {
         var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
                 new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
                 .getData();
