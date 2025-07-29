@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Getter
@@ -90,7 +92,10 @@ public class PanelCompositionService {
                 ? new PanelMemberComposition() : caseData.getPanelMemberComposition();
     }
 
-    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData, SscsCaseData caseDataBefore) {
+    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData, Optional<SscsCaseDetails> caseDetailsBefore) {
+        var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
+                new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
+                .getData();
         return Objects.equals(caseData.getIssueCodesForAllElementsDisputed(),
                 caseDataBefore.getIssueCodesForAllElementsDisputed())
                 ? caseData.getPanelMemberComposition() : new PanelMemberComposition();

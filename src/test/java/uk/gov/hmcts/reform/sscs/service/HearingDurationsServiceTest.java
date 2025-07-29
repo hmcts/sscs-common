@@ -1,11 +1,17 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.PIP_NEW_CLAIM;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.*;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -37,19 +43,12 @@ public class HearingDurationsServiceTest {
     @BeforeEach
     public void setup() {
         hearingDurations = new HearingDurationsService();
-
-        caseData = SscsCaseData.builder()
-            .benefitCode(BENEFIT_CODE)
-            .issueCode(ISSUE_CODE)
-            .appeal(Appeal.builder()
-                .hearingOptions(HearingOptions.builder()
-                    .build())
-                .build())
-            .schedulingAndListingFields(SchedulingAndListingFields.builder()
-                .overrideFields(OverrideFields.builder()
-                    .build())
-                .build())
-            .build();
+        caseData = new SscsCaseData();
+        caseData.setBenefitCode(BENEFIT_CODE);
+        caseData.setIssueCode(ISSUE_CODE);
+        caseData.setAppeal(Appeal.builder().hearingOptions(HearingOptions.builder().build()).build());
+        caseData.setSchedulingAndListingFields(SchedulingAndListingFields.builder()
+                .overrideFields(OverrideFields.builder().build()).build());
     }
 
     @DisplayName("There should be no duplicate hearing durations")
@@ -71,7 +70,7 @@ public class HearingDurationsServiceTest {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
+        assertThat(result.getIssue()).isEqualTo(LE);
         assertThat(result.getDurationFaceToFace()).isEqualTo(60);
     }
 
@@ -82,7 +81,7 @@ public class HearingDurationsServiceTest {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
+        assertThat(result.getIssue()).isEqualTo(LE);
         assertThat(result.getDurationInterpreter()).isEqualTo(90);
     }
 
@@ -93,7 +92,7 @@ public class HearingDurationsServiceTest {
         HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
 
         assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
+        assertThat(result.getIssue()).isEqualTo(LE);
         assertThat(result.getDurationPaper()).isEqualTo(30);
     }
 
@@ -232,6 +231,7 @@ public class HearingDurationsServiceTest {
     @Test
     public void getHearingDurationBenefitIssueCodesInterpreter() {
         setupHearingDurationMap();
+
         caseData.getAppeal().getHearingOptions().setWantsToAttend("Yes");
         caseData.getAppeal().getHearingOptions().setLanguageInterpreter("Yes");
 
@@ -241,15 +241,11 @@ public class HearingDurationsServiceTest {
     }
 
     private void setupHearingDurationMap() {
-        HashMap<HearingDuration, HearingDuration> hearingDurationsMap = new HashMap<>();
-        hearingDurationsMap.put(new HearingDuration(BenefitCode.getBenefitCode(BENEFIT_CODE), Issue.getIssue(ISSUE_CODE)),
-                new HearingDuration(
-                        BenefitCode.PIP_NEW_CLAIM,
-                        Issue.DD,
-                        DURATION_FACE_TO_FACE,
-                        DURATION_INTERPRETER,
-                        DURATION_PAPER
-                ));
+        Map<HearingDuration, HearingDuration> hearingDurationsMap = new HashMap<>();
+        hearingDurationsMap.put(
+                new HearingDuration(BenefitCode.getBenefitCode(BENEFIT_CODE), getIssue(ISSUE_CODE)),
+                new HearingDuration(PIP_NEW_CLAIM, DD, DURATION_FACE_TO_FACE, DURATION_INTERPRETER, DURATION_PAPER)
+        );
         ReflectionTestUtils.setField(hearingDurations, "hearingDurationsHashMap", hearingDurationsMap);
     }
 }

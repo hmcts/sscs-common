@@ -242,7 +242,16 @@
       "libertyToApplyBodyContent": null,
       "directionNoticeContent": null,
       "signedBy": null,
-      "signedRole": null
+      "signedRole": null,
+      "elementsDisputedGeneral": [],
+      "elementsDisputedSanctions": [],
+      "elementsDisputedOverpayment": [],
+      "elementsDisputedHousing": [],
+      "elementsDisputedChildCare": [],
+      "elementsDisputedCare": [],
+      "elementsDisputedChildElement": [],
+      "elementsDisputedChildDisabled": [],
+      "elementsDisputedLimitedWork": []
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -1031,7 +1040,16 @@
       "libertyToApplyBodyContent": null,
       "directionNoticeContent": null,
       "signedBy": null,
-      "signedRole": null
+      "signedRole": null,
+      "elementsDisputedGeneral": [],
+      "elementsDisputedSanctions": [],
+      "elementsDisputedOverpayment": [],
+      "elementsDisputedHousing": [],
+      "elementsDisputedChildCare": [],
+      "elementsDisputedCare": [],
+      "elementsDisputedChildElement": [],
+      "elementsDisputedChildDisabled": [],
+      "elementsDisputedLimitedWork": []
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",

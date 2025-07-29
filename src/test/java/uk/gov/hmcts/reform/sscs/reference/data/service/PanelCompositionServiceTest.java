@@ -19,6 +19,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,21 +28,23 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 
 public class PanelCompositionServiceTest {
 
     private final PanelCompositionService panelCompositionService = new PanelCompositionService();
     private SscsCaseData caseData;
+    private SscsCaseData caseDataBefore;
 
     @BeforeEach
     public void setUp() throws Exception {
-        caseData = SscsCaseData.builder()
-                .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build())
-                .benefitCode("002")
-                .ccdCaseId("1234")
-                .issueCode("EI")
-                .build();
+        caseData = new SscsCaseData();
+        caseData.setSscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().build());
+        caseData.setBenefitCode("002");
+        caseData.setIssueCode("EI");
+        caseData.setCcdCaseId("1234");
+        caseDataBefore = new SscsCaseData();
     }
 
     @DisplayName("Valid call to getRoleTypes should return correct johTier")
@@ -70,15 +73,11 @@ public class PanelCompositionServiceTest {
     @DisplayName("Should return correct panelComposition for single UC issue benefit code combination")
     @Test
     public void shouldReturnPanelCompositionForValidSingleUcIssueBenefitCode(){
+        caseData.getElementsDisputedGeneral().add(getElement("CX"));
+        caseData.setBenefitCode("001");
+        caseData.setIssueCode("US");
 
-        ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
-                .build();
-
-        SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(of(disputedElement1))
-                .benefitCode("001").issueCode("US").build();
-
-        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
+        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(caseData);
         var result = new PanelMemberComposition(defaultPanelComposition.getJohTiers());
 
         assertThat(result).isNotNull();
@@ -92,20 +91,12 @@ public class PanelCompositionServiceTest {
     @DisplayName("Should return correct panelComposition for multiple UC issue benefit code combination")
     @Test
     public void shouldReturnPanelCompositionForValidMultipleUcIssueBenefitCode(){
+        caseData.getElementsDisputedGeneral().addAll(of(getElement("CX"), getElement("SG")));
+        caseData.getElementsDisputedHousing().add(getElement("HT"));
+        caseData.setBenefitCode("001");
+        caseData.setIssueCode("UM");
 
-        var disputedElement1 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build()).build();
-        var disputedElement2 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("SG").build()).build();
-        var disputedElement3 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("HT").build()).build();
-
-        SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(of(disputedElement1, disputedElement2))
-                .elementsDisputedHousing(of(disputedElement3))
-                .benefitCode("001").issueCode("UM").build();
-
-        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
+        var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(caseData);
         var result = new PanelMemberComposition(defaultPanelComposition.getJohTiers());
 
         assertThat(result).isNotNull();
@@ -384,10 +375,12 @@ public class PanelCompositionServiceTest {
     @DisplayName("should reset panelComp if UC elements change")
     @Test
     public void resetPanelCompositionIfUcElementsChange() {
-        var sscsCaseData = SscsCaseData.builder().elementsDisputedGeneral(of(getElement("CC"))).build();
-        var sscsCaseDataBefore = SscsCaseData.builder().elementsDisputedCare(of(getElement("RA"))).build();
+        caseData.getElementsDisputedGeneral().add(getElement("CC"));
+        caseDataBefore.getElementsDisputedCare().add(getElement("RA"));
+        var caseDetailsBefore = SscsCaseDetails.builder().data(caseDataBefore).build();
 
-        var result = panelCompositionService.resetPanelCompIfElementsChanged(sscsCaseData, sscsCaseDataBefore);
+        var result =
+                panelCompositionService.resetPanelCompIfElementsChanged(caseData, Optional.of(caseDetailsBefore));
 
         assertEquals(EMPTY_LIST, result.getJohTiers());
     }
@@ -395,16 +388,16 @@ public class PanelCompositionServiceTest {
     @DisplayName("should not reset panelComp if nothing changes")
     @Test
     public void shouldNotResetPanelCompositionIfUcElementsChangeDontChange() {
-        var sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedCare(of(getElement("CC"), getElement("UC")))
-                .elementsDisputedGeneral(of(getElement("RA"))).build();
-        var sscsCaseDataBefore = SscsCaseData.builder()
-                .elementsDisputedCare(of(getElement("UC"), getElement("RA")))
-                .elementsDisputedGeneral(of(getElement("CC"))).build();
-        sscsCaseData.setPanelMemberComposition(PanelMemberComposition.builder()
+        caseData.getElementsDisputedCare().addAll(of(getElement("CC"), getElement("UC")));
+        caseData.getElementsDisputedGeneral().add(getElement("RA"));
+        caseDataBefore.getElementsDisputedCare().addAll(of(getElement("UC"), getElement("RA")));
+        caseDataBefore.getElementsDisputedGeneral().add(getElement("CC"));
+        caseData.setPanelMemberComposition(PanelMemberComposition.builder()
                 .panelCompositionJudge("84").panelCompositionMemberMedical1("58").build());
+        var caseDetailsBefore = SscsCaseDetails.builder().data(caseDataBefore).build();
 
-        var result = panelCompositionService.resetPanelCompIfElementsChanged(sscsCaseData, sscsCaseDataBefore);
+        var result =
+                panelCompositionService.resetPanelCompIfElementsChanged(caseData, Optional.of(caseDetailsBefore));
 
         assertThat(result.getJohTiers()).containsAll(of("84", "58"));
     }
