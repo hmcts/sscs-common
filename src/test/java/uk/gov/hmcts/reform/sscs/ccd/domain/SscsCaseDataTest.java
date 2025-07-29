@@ -1011,7 +1011,7 @@ public class SscsCaseDataTest {
 
     @Test
     public void givenElementsDisputedNull_thenGetIssueCodesForAllElementsDisputedReturnsEmptyList() {
-        SscsCaseData caseData = SscsCaseData.builder().build();
+        SscsCaseData caseData = new SscsCaseData();
 
         List<String> result = caseData.getIssueCodesForAllElementsDisputed();
 
