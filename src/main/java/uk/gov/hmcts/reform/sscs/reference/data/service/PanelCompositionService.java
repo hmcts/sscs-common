@@ -16,10 +16,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Getter
@@ -84,10 +84,10 @@ public class PanelCompositionService {
     }
 
     public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData,
-                                                               Optional<SscsCaseDetails> caseDetailsBefore) {
+                                                               Optional<CaseDetails<SscsCaseData>> caseDetailsBefore) {
         var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
                         new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
-                .getData();
+                .getCaseData();
         boolean hasBenefitCodeChanged = !Objects.equals(caseData.getBenefitCode(), caseDataBefore.getBenefitCode());
         boolean hasIssueCodeChanged = !Objects.equals(caseData.getIssueCode(), caseDataBefore.getIssueCode());
         boolean hasSpecialismCountChanged =
@@ -97,10 +97,11 @@ public class PanelCompositionService {
     }
 
     public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData,
-                                                                  Optional<SscsCaseDetails> caseDetailsBefore) {
+                                                                  Optional<CaseDetails<SscsCaseData>> caseDetailsBefore
+    ) {
         var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
                 new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
-                .getData();
+                .getCaseData();
         return Objects.equals(caseData.getIssueCodesForAllElementsDisputed(),
                 caseDataBefore.getIssueCodesForAllElementsDisputed())
                 ? caseData.getPanelMemberComposition() : new PanelMemberComposition();

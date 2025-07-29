@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
+import static java.time.LocalDateTime.now;
 import static java.util.Collections.EMPTY_LIST;
 import static java.util.Collections.frequency;
 import static java.util.List.of;
@@ -14,6 +15,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_JUDGE
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_DISABILITY;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.TRIBUNAL_MEMBER_MEDICAL;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.State.READY_TO_LIST;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
@@ -23,12 +25,12 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReserveTo;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
 
 public class PanelCompositionServiceTest {
@@ -318,8 +320,9 @@ public class PanelCompositionServiceTest {
     @DisplayName("resetPanelCompositionIfStale should reset panelComp if benefitCode changes")
     @Test
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfBenefitCodeChanges() {
-        var caseDetailsBefore = SscsCaseDetails.builder()
-                .data(SscsCaseData.builder().benefitCode("002").build()).build();
+        var caseData = SscsCaseData.builder().benefitCode("002").build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, caseData, now(), "Benefit");
         var sscsCaseData = SscsCaseData.builder().benefitCode("022")
                 .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
 
@@ -333,7 +336,9 @@ public class PanelCompositionServiceTest {
     public void resetPanelCompositionIfStaleShouldResetPanelCompIfIssueCodeChanges() {
         var sscsCaseData = SscsCaseData.builder().issueCode("RA")
                 .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
-        var caseDetailsBefore = SscsCaseDetails.builder().data(SscsCaseData.builder().issueCode("CC").build()).build();
+        var caseDataBefore = SscsCaseData.builder().issueCode("CC").build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, caseDataBefore, now(), "Benefit");
 
         var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
@@ -346,7 +351,8 @@ public class PanelCompositionServiceTest {
         var sscsCaseData = SscsCaseData.builder().sscsIndustrialInjuriesData(
                 SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor").build())
                 .panelMemberComposition(PanelMemberComposition.builder().panelCompositionJudge("84").build()).build();
-        var caseDetailsBefore = SscsCaseDetails.builder().data(SscsCaseData.builder().build()).build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, caseDataBefore, now(), "Benefit");
 
         var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
@@ -364,7 +370,8 @@ public class PanelCompositionServiceTest {
         var sscsCaseDataBefore = SscsCaseData.builder().isFqpmRequired(NO).benefitCode("022").issueCode("RA")
                 .sscsIndustrialInjuriesData(SscsIndustrialInjuriesData.builder().panelDoctorSpecialism("doctor")
                         .build()).build();
-        var caseDetailsBefore = SscsCaseDetails.builder().data(sscsCaseDataBefore).build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, sscsCaseDataBefore, now(), "Benefit");
 
         var result = panelCompositionService.resetPanelCompositionIfStale(sscsCaseData, Optional.of(caseDetailsBefore));
 
@@ -376,7 +383,8 @@ public class PanelCompositionServiceTest {
     public void resetPanelCompositionIfUcElementsChange() {
         caseData.getElementsDisputedGeneral().add(getElement("CC"));
         caseDataBefore.getElementsDisputedCare().add(getElement("RA"));
-        var caseDetailsBefore = SscsCaseDetails.builder().data(caseDataBefore).build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, caseDataBefore, now(), "Benefit");
 
         var result =
                 panelCompositionService.resetPanelCompIfElementsChanged(caseData, Optional.of(caseDetailsBefore));
@@ -393,7 +401,8 @@ public class PanelCompositionServiceTest {
         caseDataBefore.getElementsDisputedGeneral().add(getElement("CC"));
         caseData.setPanelMemberComposition(PanelMemberComposition.builder()
                 .panelCompositionJudge("84").panelCompositionMemberMedical1("58").build());
-        var caseDetailsBefore = SscsCaseDetails.builder().data(caseDataBefore).build();
+        var caseDetailsBefore =
+                new CaseDetails<>(1234L, "SSCS", READY_TO_LIST, caseDataBefore, now(), "Benefit");
 
         var result =
                 panelCompositionService.resetPanelCompIfElementsChanged(caseData, Optional.of(caseDetailsBefore));
