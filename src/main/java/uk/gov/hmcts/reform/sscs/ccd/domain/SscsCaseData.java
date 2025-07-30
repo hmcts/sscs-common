@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
@@ -39,6 +40,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
@@ -264,15 +266,15 @@ public class SscsCaseData implements CaseData {
     @JsonProperty("languagePreferenceWelsh")
     private String languagePreferenceWelsh;
     private List<String> elementsDisputedList;
-    private List<ElementDisputed> elementsDisputedGeneral = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedSanctions = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedOverpayment = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedHousing = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildCare = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedCare = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildElement = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedChildDisabled = new ArrayList<>();
-    private List<ElementDisputed> elementsDisputedLimitedWork = new ArrayList<>();
+    private List<ElementDisputed> elementsDisputedGeneral;
+    private List<ElementDisputed> elementsDisputedSanctions;
+    private List<ElementDisputed> elementsDisputedOverpayment;
+    private List<ElementDisputed> elementsDisputedHousing;
+    private List<ElementDisputed> elementsDisputedChildCare;
+    private List<ElementDisputed> elementsDisputedCare;
+    private List<ElementDisputed> elementsDisputedChildElement;
+    private List<ElementDisputed> elementsDisputedChildDisabled;
+    private List<ElementDisputed> elementsDisputedLimitedWork;
     private String elementsDisputedIsDecisionDisputedByOthers;
     private String elementsDisputedLinkedAppealRef;
     private List<CcdValue<OtherParty>> otherParties;
@@ -860,15 +862,15 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public List<String> getIssueCodesForAllElementsDisputed() {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
-        elementDisputed.addAll(elementsDisputedGeneral);
-        elementDisputed.addAll(elementsDisputedSanctions);
-        elementDisputed.addAll(elementsDisputedOverpayment);
-        elementDisputed.addAll(elementsDisputedHousing);
-        elementDisputed.addAll(elementsDisputedChildCare);
-        elementDisputed.addAll(elementsDisputedCare);
-        elementDisputed.addAll(elementsDisputedChildElement);
-        elementDisputed.addAll(elementsDisputedChildDisabled);
-        elementDisputed.addAll(elementsDisputedLimitedWork);
+        elementDisputed.addAll(ofNullable(elementsDisputedGeneral).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedSanctions).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedOverpayment).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedHousing).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildCare).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedCare).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildElement).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedChildDisabled).orElse(emptyList()));
+        elementDisputed.addAll(ofNullable(elementsDisputedLimitedWork).orElse(emptyList()));
 
         return elementDisputed.stream()
                 .map(ElementDisputed::getValue)
