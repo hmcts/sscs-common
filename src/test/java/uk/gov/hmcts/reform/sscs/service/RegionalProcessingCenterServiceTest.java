@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.sscs.service.RegionalProcessingCenterService.*;
 
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -203,7 +202,7 @@ public class RegionalProcessingCenterServiceTest {
     }
 
     @Test
-    public void regionalProcessingCentreNameScotlandFromGBLocationCodeReturnGlasgowRpc() {
+    public void regionalProcessingCentreNameScotlandFromGbLocationCodeReturnGlasgowRpc() {
         RegionalProcessingCenterService regionalProcessingCenterServiceMockedAirLookup = new RegionalProcessingCenterService(mockedAirLookupService);
         regionalProcessingCenterServiceMockedAirLookup.init();
         when(mockedAirLookupService.lookupRegionalCentre(anyString())).thenReturn("Scotland");
@@ -212,7 +211,7 @@ public class RegionalProcessingCenterServiceTest {
     }
 
     @Test
-    public void ibcRegionalProcessingCentreNameScotlandFromGBLocationCodeReturnGlasgowRpc() {
+    public void ibcRegionalProcessingCentreNameScotlandFromGbLocationCodeReturnGlasgowRpc() {
         RegionalProcessingCenterService regionalProcessingCenterServiceMockedAirLookup = new RegionalProcessingCenterService(mockedAirLookupService);
         regionalProcessingCenterServiceMockedAirLookup.init();
         when(mockedAirLookupService.lookupIbcRegionalCentre(anyString())).thenReturn("Scotland");

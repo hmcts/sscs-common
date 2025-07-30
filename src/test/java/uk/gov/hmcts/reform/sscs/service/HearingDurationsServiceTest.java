@@ -5,10 +5,14 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -241,7 +245,7 @@ public class HearingDurationsServiceTest {
     }
 
     private void setupHearingDurationMap() {
-        HashMap<HearingDuration, HearingDuration> hearingDurationsMap = new HashMap<>();
+        Map<HearingDuration, HearingDuration> hearingDurationsMap = new HashMap<>();
         hearingDurationsMap.put(new HearingDuration(BenefitCode.getBenefitCode(BENEFIT_CODE), Issue.getIssue(ISSUE_CODE)),
                 new HearingDuration(
                         BenefitCode.PIP_NEW_CLAIM,

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -81,7 +80,7 @@ public class AirLookupServiceTest {
         "BT3 9EP, Glasgow",
         "BT1 3WH, Glasgow"
     })
-    public void lookupIbcNIPostcode(String postcode, String expectedAdminGroup) {
+    public void lookupIbcNiPostcode(String postcode, String expectedAdminGroup) {
         assertEquals("null".equals(expectedAdminGroup) ? null : expectedAdminGroup, airLookupService.lookupIbcRegionalCentre(postcode));
     }
 
@@ -439,11 +438,11 @@ public class AirLookupServiceTest {
 
     @ParameterizedTest
     @CsvSource({
-            "BT3 9EP",
-            "BT1 3WH",
-            "bt12 7sl"
+        "BT3 9EP",
+        "BT1 3WH",
+        "bt12 7sl"
     })
-    public void checkLookupAirVenueNameByPostCodeReturnsEmptyForNIPostcodesWhenNotIBC(String postcode) {
+    public void checkLookupAirVenueNameByPostCodeReturnsEmptyForNiPostcodesWhenNotIbc(String postcode) {
         assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("PIP").build()));
         assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("JSA").build()));
         assertEquals("", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("ESA").build()));
@@ -457,7 +456,7 @@ public class AirLookupServiceTest {
         "BT1 3WH",
         "bt12 7sl"
     })
-    public void checkLookupAirVenueNameByPostCodeReturnsBelfastForNIPostcodesWhenIBC(String postcode) {
+    public void checkLookupAirVenueNameByPostCodeReturnsBelfastForNiPostcodesWhenIbc(String postcode) {
         assertEquals("Belfast RCJ", airLookupService.lookupAirVenueNameByPostCode(postcode, BenefitType.builder().code("infectedBloodCompensation").build()));
     }
 

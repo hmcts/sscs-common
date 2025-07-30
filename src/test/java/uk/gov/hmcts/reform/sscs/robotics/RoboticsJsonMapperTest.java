@@ -97,10 +97,8 @@ public class RoboticsJsonMapperTest {
         assertEquals("No", roboticsJson.get("dwpUcb"));
         assertEquals("Yes", roboticsJson.get("wantsHearingTypeTelephone"));
 
-        assertEquals(
-            11,
-            roboticsJson.getJSONObject("appointee").length(),
-           "If this fails, add an assertion below, do not just increment the number :)"
+        assertEquals(11, roboticsJson.getJSONObject("appointee").length(),
+                "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));

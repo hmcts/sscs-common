@@ -74,13 +74,8 @@ public class PanelCompositionServiceTest {
     @DisplayName("Should return correct panelComposition for single UC issue benefit code combination")
     @Test
     public void shouldReturnPanelCompositionForValidSingleUcIssueBenefitCode() {
-
-        ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
-                .build();
-
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(of(disputedElement1))
-                .benefitCode("001").issueCode("US").build();
+                .elementsDisputedGeneral(of(getElement("CX"))).benefitCode("001").issueCode("US").build();
 
         var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
         var result = new PanelMemberComposition(defaultPanelComposition.getJohTiers());
@@ -96,17 +91,9 @@ public class PanelCompositionServiceTest {
     @DisplayName("Should return correct panelComposition for multiple UC issue benefit code combination")
     @Test
     public void shouldReturnPanelCompositionForValidMultipleUcIssueBenefitCode() {
-
-        var disputedElement1 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build()).build();
-        var disputedElement2 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("SG").build()).build();
-        var disputedElement3 =
-                ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("HT").build()).build();
-
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(of(disputedElement1, disputedElement2))
-                .elementsDisputedHousing(of(disputedElement3))
+                .elementsDisputedGeneral(of(getElement("CX"), getElement("SG")))
+                .elementsDisputedHousing(of(getElement("HT")))
                 .benefitCode("001").issueCode("UM").build();
 
         var defaultPanelComposition = panelCompositionService.getDefaultPanelComposition(sscsCaseData);
@@ -136,7 +123,7 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("Call to getRoleTypes with FQPM should return correct johTier")
     @Test
-    public void getDefaultPanelCompositionWithFQPM() {
+    public void getDefaultPanelCompositionWithFqpm() {
         var result = panelCompositionService.getRoleTypes(
                 SscsCaseData.builder().benefitCode("016").issueCode("CC").isFqpmRequired(YES).build()
         );
@@ -310,7 +297,7 @@ public class PanelCompositionServiceTest {
     public void getDefaultPanelCompositionShouldReturnCorrectJohTiers() {
         caseData.setBenefitCode("002");
         caseData.setIssueCode("LC");
-        var johTiers = of("84", "58", "44" );
+        var johTiers = of("84", "58", "44");
 
         var result = panelCompositionService.getDefaultPanelComposition(caseData);
 
