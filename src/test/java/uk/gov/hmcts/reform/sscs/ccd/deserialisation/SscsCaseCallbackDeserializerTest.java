@@ -55,6 +55,7 @@ public class SscsCaseCallbackDeserializerTest {
 
     @BeforeEach
     public void setUp() {
+
         Jackson2ObjectMapperBuilder objectMapperBuilder =
             new Jackson2ObjectMapperBuilder()
                 .featuresToEnable(READ_ENUMS_USING_TO_STRING)

@@ -2,11 +2,11 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.identity;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.ConvertGroup;
+import java.time.LocalDate;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;

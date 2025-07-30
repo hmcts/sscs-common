@@ -1,8 +1,8 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
-import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
@@ -862,15 +862,15 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public List<String> getIssueCodesForAllElementsDisputed() {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
-        elementDisputed.addAll(ofNullable(elementsDisputedGeneral).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedSanctions).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedOverpayment).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedHousing).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedChildCare).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedCare).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedChildElement).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedChildDisabled).orElse(emptyList()));
-        elementDisputed.addAll(ofNullable(elementsDisputedLimitedWork).orElse(emptyList()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedGeneral, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedSanctions, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedOverpayment, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedHousing, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildCare, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedCare, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildElement, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildDisabled, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedLimitedWork, List.of()));
 
         return elementDisputed.stream()
                 .map(ElementDisputed::getValue)
