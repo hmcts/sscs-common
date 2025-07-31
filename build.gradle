@@ -257,7 +257,7 @@ dependencies {
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
 
     // CVE-2024-25710
-    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.27.1'
+    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.28.0'
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
