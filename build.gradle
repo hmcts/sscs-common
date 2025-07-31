@@ -249,7 +249,7 @@ dependencies {
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
     testRuntimeOnly group: 'org.glassfish', name: 'jakarta.el', version: '4.0.2'
-    testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.5.Final'
+    testRuntimeOnly group: 'org.hibernate.validator', name: 'hibernate-validator', version: '9.0.1.Final'
     testImplementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
