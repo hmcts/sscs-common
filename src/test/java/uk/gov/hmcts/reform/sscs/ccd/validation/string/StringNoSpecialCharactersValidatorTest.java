@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.string;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;
 

@@ -35,7 +35,7 @@ public class AddressTest {
     }
 
     @Test
-    public void givenAnNonUKAddressWithNoValuesEntered_thenReturnFalseForEmptyAddress() {
+    public void givenAnNonUkAddressWithNoValuesEntered_thenReturnFalseForEmptyAddress() {
         Address address = Address.builder().portOfEntry("GB000461").inMainlandUk(NO).build();
 
         assertFalse(address.isAddressEmpty());

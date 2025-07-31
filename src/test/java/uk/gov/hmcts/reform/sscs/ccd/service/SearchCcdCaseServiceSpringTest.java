@@ -76,13 +76,10 @@ public class SearchCcdCaseServiceSpringTest {
 
         @MockBean
         public CcdRequestDetails ccdRequestDetails;
-
         @MockBean
         public CoreCaseDataApi coreCaseDataApi;
-
         @MockBean
         public CcdClient ccdClient;
-
         @MockBean
         public ReadCcdCaseService readCcdCaseService;
 

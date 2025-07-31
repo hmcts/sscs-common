@@ -3,10 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.validation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 
 public class ValidatorTestBase {
