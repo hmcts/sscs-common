@@ -29,11 +29,9 @@ public class PanelMemberComposition {
     private String panelCompositionJudge;
     private String panelCompositionMemberMedical1;
     private String panelCompositionMemberMedical2;
-    private List<String> panelCompositionDisabilityAndFqMember;
-
+    private List<String> panelCompositionDisabilityAndFqMember = new ArrayList<>();
 
     public PanelMemberComposition(List<String> johTiers) {
-        this.panelCompositionDisabilityAndFqMember = new ArrayList<>();
         for (String johTier : johTiers) {
             switch (getPanelMemberType(johTier)) {
                 case TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED:
