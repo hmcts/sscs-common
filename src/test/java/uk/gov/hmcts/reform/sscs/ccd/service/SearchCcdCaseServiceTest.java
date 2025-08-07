@@ -14,7 +14,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.State.DRAFT_ARCHIVED;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsCcdConvertService.normaliseNino;
 import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySingleField;
 
-import java.util.Collections;
 import java.util.List;
 import org.assertj.core.util.Lists;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -92,7 +91,8 @@ public class SearchCcdCaseServiceTest {
     public void shouldReturnNullIfNoCaseExistsForGiveCaseRef() {
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
-        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
+        when(ccdClient.searchCases(idamTokens, query.toString()))
+                .thenReturn(SearchResult.builder().cases(emptyList()).build());
 
         SscsCaseDetails caseByCaseRef = searchCcdCaseService.findCaseByCaseRef(CASE_REF, idamTokens);
 
@@ -232,7 +232,8 @@ public class SearchCcdCaseServiceTest {
 
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
-        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
+        when(ccdClient.searchCases(idamTokens, query.toString()))
+                .thenReturn(SearchResult.builder().cases(emptyList()).build());
 
         when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(sscsCaseDetails);
 
@@ -249,7 +250,8 @@ public class SearchCcdCaseServiceTest {
 
         SearchSourceBuilder query = findCaseBySingleField("data.caseReference", CASE_REF);
 
-        when(ccdClient.searchCases(idamTokens, query.toString())).thenReturn(SearchResult.builder().cases(Collections.EMPTY_LIST).build());
+        when(ccdClient.searchCases(idamTokens, query.toString()))
+                .thenReturn(SearchResult.builder().cases(emptyList()).build());
 
         when(readCcdCaseService.getByCaseId(1L, idamTokens)).thenReturn(sscsCaseDetails);
 

@@ -40,7 +40,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -551,7 +550,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     private boolean stringToBoolean(String value) {
-        return StringUtils.equalsIgnoreCase("yes", value);
+        return "yes".equalsIgnoreCase(value);
     }
 
     @JsonIgnore
