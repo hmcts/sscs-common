@@ -41,12 +41,12 @@ public class PanelMemberComposition {
                     this.panelCompositionDisabilityAndFqMember.add(johTier);
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL:
-                    if(nonNull(this.panelCompositionMemberMedical1)) {
+                    if (nonNull(this.panelCompositionMemberMedical1)) {
                         this.panelCompositionMemberMedical2 = johTier;
                     } else {
                         this.panelCompositionMemberMedical1 = johTier;
                     }
-                break;
+                    break;
                 case REGIONAL_MEDICAL_MEMBER:
                     if (nonNull(this.panelCompositionMemberMedical1)) {
                         this.panelCompositionMemberMedical2 = TRIBUNAL_MEMBER_MEDICAL.toRef();
@@ -71,7 +71,7 @@ public class PanelMemberComposition {
         addIgnoreNull(roleTypes, this.panelCompositionJudge);
         addIgnoreNull(roleTypes, this.panelCompositionMemberMedical1);
         addIgnoreNull(roleTypes, this.panelCompositionMemberMedical2);
-        if(nonNull(this.panelCompositionDisabilityAndFqMember)) {
+        if (nonNull(this.panelCompositionDisabilityAndFqMember)) {
             roleTypes.addAll(this.panelCompositionDisabilityAndFqMember);
         }
         return roleTypes;

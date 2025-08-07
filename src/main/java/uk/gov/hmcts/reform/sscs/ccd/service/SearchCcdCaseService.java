@@ -104,7 +104,7 @@ public class SearchCcdCaseService {
         SscsCaseDetails sscsCaseDetails = null;
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
             sscsCaseDetails = this.findCaseByCaseRef(caseData.getCaseReference(), idamTokens);
-            if (sscsCaseDetails != null){
+            if (sscsCaseDetails != null) {
                 sscsCaseDetails = readCcdCaseService.getByCaseId(sscsCaseDetails.getId(), idamTokens);
             }
         }

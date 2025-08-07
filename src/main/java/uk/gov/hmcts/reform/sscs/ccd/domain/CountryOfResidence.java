@@ -266,6 +266,7 @@ public enum CountryOfResidence {
 
     private final String label;
     private final String officialName;
+
     CountryOfResidence(String label, String officialName) {
         this.label = label;
         this.officialName = officialName;

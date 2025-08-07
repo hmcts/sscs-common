@@ -47,6 +47,37 @@ public class UpdateCcdCaseService {
         });
     }
 
+    /**
+     * Update a case while making correct use of CCD's optimistic locking.
+     * Changes can be made to case data by the provided consumer which will always be provided
+     * the current version of case data from CCD's start event.
+     */
+    @Retryable
+    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
+        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
+        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
+        SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
+        SscsCaseData data = caseDetails.getData();
+
+        /**
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
+        data.setCcdCaseId(caseId.toString());
+        data.sortCollections();
+
+        var result = mutator.apply(caseDetails);
+        SscsCaseData sscsCaseData = caseDetails.getData();
+        if (result.sscsCaseDetails != null) {
+            log.info("Result contains sscsCaseDetails for caseId {}", caseId);
+            sscsCaseData = result.sscsCaseDetails.getData();
+        }
+
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
+
+        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+    }
+
     @Retryable
     public SscsCaseDetails updateCaseV2WithUnaryFunction(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
@@ -80,37 +111,6 @@ public class UpdateCcdCaseService {
         public UpdateResult(String summary, String description) {
             this(null, summary, description);
         }
-    }
-
-    /**
-     * Update a case while making correct use of CCD's optimistic locking.
-     * Changes can be made to case data by the provided consumer which will always be provided
-     * the current version of case data from CCD's start event.
-     */
-    @Retryable
-    public SscsCaseDetails updateCaseV2(Long caseId, String eventType, IdamTokens idamTokens, Function<SscsCaseDetails, UpdateResult> mutator) {
-        log.info("UpdateCaseV2 for caseId {} and eventType {}", caseId, eventType);
-        StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        SscsCaseDetails caseDetails = sscsCcdConvertService.getCaseDetails(startEventResponse);
-        SscsCaseData data = caseDetails.getData();
-
-        /**
-         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
-         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
-         */
-        data.setCcdCaseId(caseId.toString());
-        data.sortCollections();
-
-        var result = mutator.apply(caseDetails);
-        SscsCaseData sscsCaseData = caseDetails.getData();
-        if (result.sscsCaseDetails != null) {
-            log.info("Result contains sscsCaseDetails for caseId {}", caseId);
-            sscsCaseData = result.sscsCaseDetails.getData();
-        }
-
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
-
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
     public record ConditionalUpdateResult(String summary, String description, Boolean willCommit) { }
@@ -182,7 +182,7 @@ public class UpdateCcdCaseService {
 
             latestLastModified = latestCaseDetails.getLastModified();
 
-            if (!initialLastModified.isEqual(latestLastModified)){
+            if (!initialLastModified.isEqual(latestLastModified)) {
                 throw new RuntimeException();
             }
 
@@ -242,12 +242,12 @@ public class UpdateCcdCaseService {
     }
 
     /**
-     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException
+     * Need to provide this so that recoverable/non-recoverable exception doesn't get wrapped in an IllegalArgumentException.
      */
     @Recover
     public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
         log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
-       throw exception;
+        throw exception;
     }
 
 }

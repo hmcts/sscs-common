@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
@@ -69,7 +69,7 @@ public class VenueDataLoaderTest {
                         assertTrue(
                             venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"),
                             format("%s is incorrect", venueDetails.getVenueId()))
-                );
+        );
     }
 
     @Test

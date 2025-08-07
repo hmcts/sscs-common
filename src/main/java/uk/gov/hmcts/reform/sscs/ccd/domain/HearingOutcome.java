@@ -13,5 +13,7 @@ public class HearingOutcome {
     private HearingOutcomeDetails value;
 
     @JsonCreator
-    public HearingOutcome(@JsonProperty("value") HearingOutcomeDetails value) { this.value = value; }
+    public HearingOutcome(@JsonProperty("value") HearingOutcomeDetails value) {
+        this.value = value;
+    }
 }
