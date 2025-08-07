@@ -11,14 +11,14 @@ class LanguageTest {
     void shouldGetFullReference_GivenNullMrdAndDialectReference() {
         var language = new Language("ara", null);
 
-        assertEquals(language.getFullReference(), "ara");
+        assertEquals("ara", language.getFullReference());
     }
 
     @Test
     void shouldGetFullReference_GivenDialectReference() {
         var language = new Language("ara", "syrian");
 
-        assertEquals(language.getFullReference(), "ara-syrian");
+        assertEquals("ara-syrian", language.getFullReference());
     }
 
     @Test
@@ -26,7 +26,7 @@ class LanguageTest {
         var language = new Language("slo", null);
         ReflectionTestUtils.setField(language, "mrdReference", "slk");
 
-        assertEquals(language.getFullReference(), "slk");
+        assertEquals("slk", language.getFullReference());
     }
 
     @Test
@@ -35,7 +35,7 @@ class LanguageTest {
         ReflectionTestUtils.setField(language, "dialectEn", "syrian");
         ReflectionTestUtils.setField(language, "nameEn", "arabic");
 
-        assertEquals(language.getName(), "arabic");
+        assertEquals("arabic", language.getName());
     }
 
     @Test
@@ -44,6 +44,6 @@ class LanguageTest {
         ReflectionTestUtils.setField(language, "dialectEn", "egyptian");
         ReflectionTestUtils.setField(language, "nameEn", "arabic");
 
-        assertEquals(language.getName(), "egyptian");
+        assertEquals("egyptian", language.getName());
     }
 }

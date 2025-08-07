@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.validation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -19,7 +18,7 @@ public class ValidatorTestBase {
     }
 
     protected <B> void assertSingleViolationWithMessage(Set<ConstraintViolation<B>> violations, String expectedMessage) {
-        assertTrue(violations.size() == 1);
-        assertEquals(expectedMessage, violations.stream().map(v -> v.getMessage()).findFirst().orElse(""));
+        assertEquals(1, violations.size());
+        assertEquals(expectedMessage, violations.stream().map(ConstraintViolation::getMessage).findFirst().orElse(""));
     }
 }

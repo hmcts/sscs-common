@@ -26,7 +26,7 @@ public class DefaultPanelComposition {
     public DefaultPanelComposition(String issueCode, SscsCaseData caseData) {
         this.benefitIssueCode = caseData.getBenefitCode() + issueCode;
         this.specialismCount = getSpecialismCount(caseData);
-        this.fqpm = isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;;
+        this.fqpm = isYes(caseData.getIsFqpmRequired()) ? caseData.getIsFqpmRequired().getValue().toLowerCase() : null;
         this.medicalMember = isYes(caseData.getIsMedicalMemberRequired())
                 ? caseData.getIsMedicalMemberRequired().getValue().toLowerCase() : null;
         this.johTiers = new ArrayList<>();
