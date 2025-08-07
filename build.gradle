@@ -262,5 +262,5 @@ dependencies {
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
     checkstyle group: 'com.google.guava', name: 'guava', version: '33.4.8-jre'
+    checkstyle group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
 }
-
