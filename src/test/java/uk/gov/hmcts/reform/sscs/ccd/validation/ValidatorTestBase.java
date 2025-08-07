@@ -19,7 +19,7 @@ public class ValidatorTestBase {
     }
 
     protected <B> void assertSingleViolationWithMessage(Set<ConstraintViolation<B>> violations, String expectedMessage) {
-        assertTrue(violations.size() == 1);
+        assertEquals(1, violations.size());
         assertEquals(expectedMessage, violations.stream().map(v -> v.getMessage()).findFirst().orElse(""));
     }
 }

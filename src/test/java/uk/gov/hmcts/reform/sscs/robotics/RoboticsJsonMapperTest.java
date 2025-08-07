@@ -2,27 +2,57 @@ package uk.gov.hmcts.reform.sscs.robotics;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.MockitoAnnotations.openMocks;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.*;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.GUARDIANS_ALLOWANCE;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.util.CaseDataUtils.buildCaseData;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
-import uk.gov.hmcts.reform.sscs.ccd.domain.*;
+import org.mockito.junit.jupiter.MockitoExtension;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Appointee;
+import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Contact;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DateRange;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DatedRequestOutcome;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DynamicList;
+import uk.gov.hmcts.reform.sscs.ccd.domain.DynamicListItem;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputed;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ExcludeDate;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingOptions;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingSubtype;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Identity;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Name;
+import uk.gov.hmcts.reform.sscs.ccd.domain.OtherParty;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Representative;
+import uk.gov.hmcts.reform.sscs.ccd.domain.RequestOutcome;
+import uk.gov.hmcts.reform.sscs.ccd.domain.Role;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.service.AirLookupService;
 import uk.gov.hmcts.reform.sscs.service.DwpAddressLookupService;
 
+@ExtendWith(MockitoExtension.class)
 public class RoboticsJsonMapperTest {
 
     private static final String caseId = "12345678";
@@ -41,15 +71,16 @@ public class RoboticsJsonMapperTest {
     private RoboticsJsonMapper roboticsJsonMapper;
     private RoboticsWrapper roboticsWrapper;
     private JSONObject roboticsJson;
+    private SscsCaseData sscsCaseData;
+
     @Mock
     private AirLookupService airLookupService;
 
     @BeforeEach
     public void setup() {
-        openMocks(this);
         roboticsJsonMapper = new RoboticsJsonMapper(dwpAddressLookupService, airLookupService);
 
-        SscsCaseData sscsCaseData = buildCaseData();
+        sscsCaseData = buildCaseData();
         sscsCaseData.getAppeal().getAppellant().setIsAppointee("Yes");
         roboticsWrapper = RoboticsWrapper
                 .builder()
@@ -57,12 +88,11 @@ public class RoboticsJsonMapperTest {
                 .ccdCaseId(123L).evidencePresent("Yes")
                 .state(State.APPEAL_CREATED)
                 .build();
-
-        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
     }
 
     @Test
     public void mapsAppealToRoboticsJson() {
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
         String date = LocalDate.now().toString();
         roboticsWrapper.getSscsCaseData().setDwpResponseDate(date);
 
@@ -71,8 +101,8 @@ public class RoboticsJsonMapperTest {
         roboticsJsonValidator.validate(roboticsJson, caseId);
 
         assertEquals(
-            roboticsJson.length(),
-            25,
+                25,
+                roboticsJson.length(),
             "If this fails, add an assertion below, do not just increment the number :)"
         );
 
@@ -440,6 +470,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void findVenueHandleValidFields() {
+        given(airLookupService.lookupAirVenueNameByPostCode(anyString(), eq(sscsCaseData.getAppeal().getBenefitType()))).willReturn("Bromley");
         Optional<String> venue = roboticsJsonMapper.findVenueName(roboticsWrapper.getSscsCaseData());
         assertTrue(venue.isPresent());
     }
@@ -513,8 +544,8 @@ public class RoboticsJsonMapperTest {
         DynamicListItem value = new DynamicListItem("DWP PIP (AE)", "DWP PIP (AE)");
 
         roboticsWrapper.setState(State.READY_TO_LIST);
-        roboticsWrapper.getSscsCaseData().setDwpOriginatingOffice(new DynamicList(value, Collections.singletonList(value)));
-        roboticsWrapper.getSscsCaseData().setDwpPresentingOffice(new DynamicList(value, Collections.singletonList(value)));
+        roboticsWrapper.getSscsCaseData().setDwpOriginatingOffice(new DynamicList(value, List.of(value)));
+        roboticsWrapper.getSscsCaseData().setDwpPresentingOffice(new DynamicList(value, List.of(value)));
         roboticsWrapper.getSscsCaseData().setDwpIsOfficerAttending("Yes");
         roboticsWrapper.getSscsCaseData().setDwpUcb("Yes");
 
@@ -647,7 +678,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenElementContainsMultipleIssues_thenCheckMultipleIssuesTransformedToArray() {
-        elementsDisputedGeneralList.addAll(Arrays.asList(
+        elementsDisputedGeneralList.addAll(List.of(
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("firstIssueElementsDisputedGeneral").build()).build(),
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("secondIssueElementsDisputedGeneral").build()).build(),
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("thirdIssueElementsDisputedGeneral").build()).build()));

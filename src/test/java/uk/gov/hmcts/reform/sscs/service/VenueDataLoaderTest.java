@@ -43,7 +43,7 @@ public class VenueDataLoaderTest {
         "1183", "1185", "1189", "1192", "1193", "1194", "1195", "1196", "1197", "1198", "1199", "1200", "1201", "1202", "1203",
         "1207", "1208", "1212", "1214", "1217", "1218", "1220", "1224", "1232", "1239", "1253", "1261"})
     public void venuesShouldNotBeActive(String id) {
-        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("No"));
+        assertEquals("No", venueDataLoader.getVenueDetailsMap().get(id).getActive());
     }
 
     @ParameterizedTest
@@ -57,7 +57,7 @@ public class VenueDataLoaderTest {
         "1219", "1221", "1222", "1223", "1225", "1226", "1227", "1228", "1229", "1230", "1233", "1234", "1235", "1236",
         "1237", "1238", "1240", "1241", "1248", "1249", "1254", "1250", "1256", "1257", "1259"})
     public void venuesShouldBeActiveAndHaveAGoogleLink(String id) {
-        assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("Yes"));
+        assertEquals("Yes", venueDataLoader.getVenueDetailsMap().get(id).getActive());
         assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getUrl().contains("https://"));
         assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getUrl().contains("goo"));
     }
@@ -89,19 +89,22 @@ public class VenueDataLoaderTest {
 
     @Test
     public void venuesThatAreActiveTheirThreeDigitReferenceShouldBeUnique() {
-        long maxSize = venueDataLoader.getVenueDetailsMap().values().stream().filter(v -> v.getActive().equals("Yes")).count();
-        long distinctSize = venueDataLoader.getVenueDetailsMap().values().stream().filter(v -> v.getActive().equals("Yes")).map(v -> v.getThreeDigitReference()).distinct().count();
+        long maxSize = venueDataLoader.getVenueDetailsMap().values()
+                .stream().filter(v -> v.getActive().equals("Yes")).count();
+        long distinctSize = venueDataLoader.getVenueDetailsMap().values().stream()
+                .filter(v -> v.getActive().equals("Yes")).map(VenueDetails::getThreeDigitReference)
+                .distinct().count();
 
         long adjustForDuplicateSc238 = 2;
 
-        assertTrue(maxSize == distinctSize + adjustForDuplicateSc238);
+        assertEquals(maxSize, distinctSize + adjustForDuplicateSc238);
     }
 
     @Test
     public void venuesShouldHaveGapsVenueName() {
-        venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails -> {
-            assertNotNull(format("%s is not null", venueDetails.getVenueId()), venueDetails.getGapsVenName());
-        });
+        venueDataLoader.getVenueDetailsMap().values().forEach(venueDetails ->
+                assertNotNull(format("%s is not null", venueDetails.getVenueId()), venueDetails.getGapsVenName())
+        );
     }
 
     @Test

@@ -40,7 +40,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
@@ -421,7 +420,7 @@ public class SscsCaseData implements CaseData {
 
     @JsonIgnore
     private EventDetails getLatestEvent() {
-        return events != null && !events.isEmpty() ? events.get(0).getValue() : null;
+        return events != null && !events.isEmpty() ? events.getFirst().getValue() : null;
     }
 
     public ExtendedSscsCaseData getExtendedSscsCaseData() {
@@ -448,7 +447,7 @@ public class SscsCaseData implements CaseData {
         if (isNotEmpty(hearings)) {
             List<Hearing> sortedHearings = new ArrayList<>(hearings);
             sortedHearings.sort(Collections.reverseOrder());
-            return sortedHearings.get(0);
+            return sortedHearings.getFirst();
         }
         return null;
     }
@@ -558,7 +557,7 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public SscsDocument getLatestDocumentForDocumentType(DocumentType documentType) {
 
-        if (getSscsDocument() != null && getSscsDocument().size() > 0) {
+        if (getSscsDocument() != null && !getSscsDocument().isEmpty()) {
             Stream<SscsDocument> filteredStream = getSscsDocument().stream()
                     .filter(f -> documentType.getValue().equals(f.getValue().getDocumentType()));
 
@@ -573,10 +572,10 @@ public class SscsCaseData implements CaseData {
                     return -1;
                 }
                 return -1 * one.getValue().getDocumentDateAdded().compareTo(two.getValue().getDocumentDateAdded());
-            }).collect(Collectors.toList());
+            }).toList();
 
             if (!filteredList.isEmpty()) {
-                return filteredList.get(0);
+                return filteredList.getFirst();
             }
         }
         return null;
