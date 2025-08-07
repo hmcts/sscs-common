@@ -29,11 +29,7 @@ public enum CaseOutcomeMap {
             .collect(Collectors.toMap(CaseOutcomeMap::getOutcomeKey, Function.identity()));
 
     public static String getCaseOutcomeByOutcome(String outcomeKey) {
-        CaseOutcomeMap mapping = LOOKUP_BY_KEY.get(outcomeKey);
-        if (isNull(mapping)) {
-            throw new IllegalArgumentException("Invalid Outcome: " + outcomeKey);
-        }
-
-        return mapping.getCaseOutcomeCode();
+        CaseOutcomeMap caseOutcomeMap = LOOKUP_BY_KEY.get(outcomeKey);
+        return isNull(caseOutcomeMap) ? null : caseOutcomeMap.getCaseOutcomeCode();
     }
 }
