@@ -3,9 +3,11 @@ package uk.gov.hmcts.reform.sscs.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
-import java.util.*;
-import org.junit.jupiter.api.Test;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SessionCategory;
