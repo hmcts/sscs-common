@@ -45,7 +45,7 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("Valid call to getRoleTypes should return correct johTier")
     @Test
-    public void getDefaultPanelComposition(){
+    public void getDefaultPanelComposition() {
         var result = panelCompositionService
                 .getRoleTypes(SscsCaseData.builder().benefitCode("002").issueCode("EI").build());
 
@@ -56,7 +56,7 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("Should return correct panelComposition for valid issue benefit code combination")
     @Test
-    public void shouldReturnPanelCompositionForValidIssueBenefitCode(){
+    public void shouldReturnPanelCompositionForValidIssueBenefitCode() {
         var defaultJohTiers = panelCompositionService
                 .getDefaultPanelComposition(SscsCaseData.builder().benefitCode("002").issueCode("EI").build())
                 .getJohTiers();
@@ -68,7 +68,7 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("Should return correct panelComposition for single UC issue benefit code combination")
     @Test
-    public void shouldReturnPanelCompositionForValidSingleUcIssueBenefitCode(){
+    public void shouldReturnPanelCompositionForValidSingleUcIssueBenefitCode() {
 
         ElementDisputed disputedElement1 = ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build())
                 .build();
@@ -90,7 +90,7 @@ public class PanelCompositionServiceTest {
 
     @DisplayName("Should return correct panelComposition for multiple UC issue benefit code combination")
     @Test
-    public void shouldReturnPanelCompositionForValidMultipleUcIssueBenefitCode(){
+    public void shouldReturnPanelCompositionForValidMultipleUcIssueBenefitCode() {
 
         var disputedElement1 =
                 ElementDisputed.builder().value(ElementDisputedDetails.builder().issueCode("CX").build()).build();
@@ -305,7 +305,7 @@ public class PanelCompositionServiceTest {
     public void getDefaultPanelCompositionShouldReturnCorrectJohTiers() {
         caseData.setBenefitCode("002");
         caseData.setIssueCode("LC");
-        var johTiers = List.of("84", "58", "44" );
+        var johTiers = List.of("84", "58", "44");
 
         var result = panelCompositionService.getDefaultPanelComposition(caseData);
 

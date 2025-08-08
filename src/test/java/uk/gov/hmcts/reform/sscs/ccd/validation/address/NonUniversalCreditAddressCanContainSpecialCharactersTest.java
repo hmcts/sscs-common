@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.address;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Valid;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Address;
 import uk.gov.hmcts.reform.sscs.ccd.validation.ValidatorTestBase;

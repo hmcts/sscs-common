@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.CHILD_BENEFIT_LONE_PARENT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.CHILD_TAX_CREDIT;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.CREDITS_APPROVED_TRAINING;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.COEG;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.CREDITS_APPROVED_TRAINING;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.GUARDIANS_ALLOWANCE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.HRP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.IBC;

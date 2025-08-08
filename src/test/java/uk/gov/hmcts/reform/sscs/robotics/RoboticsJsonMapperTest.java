@@ -100,7 +100,7 @@ public class RoboticsJsonMapperTest {
         assertEquals(
             11,
             roboticsJson.getJSONObject("appointee").length(),
-           "If this fails, add an assertion below, do not just increment the number :)"
+            "If this fails, add an assertion below, do not just increment the number :)"
         );
 
         assertEquals("Mrs", roboticsJson.getJSONObject("appointee").get("title"));
