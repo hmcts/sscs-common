@@ -40,11 +40,11 @@ public class JudicialRefDataServiceTest {
             .sidamIds(List.of(idamId)).build();
 
     @ParameterizedTest
-    @ValueSource( strings = {"Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
-            "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
-            "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
-            "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
-            "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
+    @ValueSource(strings = {"Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
+        "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
+        "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
+        "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
+        "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
     void getJudicialUserByPersonalCodeElinksV1(String judicialUserDataString) {
         String[] judicalUserDataArray = judicialUserDataString.split("\\s*,\\s*");
 
@@ -69,12 +69,12 @@ public class JudicialRefDataServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource( strings = {
-                    "Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
-                    "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
-                    "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
-                    "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
-                    "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
+    @ValueSource(strings = {
+        "Dr Verity Gill Bloggs, Dr, VGB, Bloggs, V G",
+        "Mr Fitz-William Darcy, Mr, FWD, Darcy, F",
+        "Ms Ali Hazelwood, Ms, AH, Hazelwood, A",
+        "Mr Chadwick T'Challa Boseman, Mr, CTCB, Boseman, C T",
+        "Miss Amelia Mignonette Thermopolis Renaldi, Miss, AMTR, Renaldi, A M"})
     void getJudicialUserByPersonalCodeElinksV2(String judicialUserDataString) {
         String[] judicalUserDataArray = judicialUserDataString.split("\\s*,\\s*");
 

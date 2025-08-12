@@ -15,6 +15,7 @@ public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails
     public SscsWelshDocument(@JsonProperty("value") SscsWelshDocumentDetails value) {
         super(value);
     }
+
     @JsonCreator
     public SscsWelshDocument(@JsonProperty("id") String id, @JsonProperty("value") SscsWelshDocumentDetails value) {
         super(id, value);

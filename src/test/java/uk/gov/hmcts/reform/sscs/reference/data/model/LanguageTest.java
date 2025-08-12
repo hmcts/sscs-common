@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.sscs.reference.data.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LanguageTest {
 

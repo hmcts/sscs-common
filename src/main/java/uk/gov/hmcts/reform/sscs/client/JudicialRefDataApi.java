@@ -28,8 +28,8 @@ public interface JudicialRefDataApi {
             method = RequestMethod.POST,
             value = "refdata/judicial/users/search",
             headers = {
-                    CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
-                    ACCEPT + "=" + ACCEPT_HEADER_STRING
+                CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
+                ACCEPT + "=" + ACCEPT_HEADER_STRING
             }
     )
     List<JudicialUserSearch> searchUsersBySearchString(
@@ -42,8 +42,8 @@ public interface JudicialRefDataApi {
             method = RequestMethod.POST,
             value = "refdata/judicial/users",
             headers = {
-                    CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
-                    ACCEPT + "=" + ACCEPT_HEADER_STRING
+                CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE,
+                ACCEPT + "=" + ACCEPT_HEADER_STRING
             }
     )
     List<JudicialUser> getJudicialUsers(

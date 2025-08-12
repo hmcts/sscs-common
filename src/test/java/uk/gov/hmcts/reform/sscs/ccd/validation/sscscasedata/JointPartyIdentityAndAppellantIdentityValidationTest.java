@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.sscs.ccd.validation.sscscasedata;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import jakarta.validation.ConstraintViolation;
 import java.time.LocalDate;
 import java.util.Set;
-import jakarta.validation.ConstraintViolation;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Appeal;
