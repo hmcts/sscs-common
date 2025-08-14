@@ -15,7 +15,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.service.SscsQueryBuilder.findCaseBySi
 
 import java.util.Collections;
 import java.util.List;
-
 import org.assertj.core.util.Lists;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.junit.jupiter.api.BeforeEach;

@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
@@ -861,27 +862,20 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public List<String> getIssueCodesForAllElementsDisputed() {
         List<ElementDisputed> elementDisputed = new ArrayList<>();
-
-        List<List<ElementDisputed>> elementsToCheck = new ArrayList<>();
-        elementsToCheck.add(elementsDisputedGeneral);
-        elementsToCheck.add(elementsDisputedSanctions);
-        elementsToCheck.add(elementsDisputedOverpayment);
-        elementsToCheck.add(elementsDisputedHousing);
-        elementsToCheck.add(elementsDisputedChildCare);
-        elementsToCheck.add(elementsDisputedCare);
-        elementsToCheck.add(elementsDisputedChildElement);
-        elementsToCheck.add(elementsDisputedChildDisabled);
-        elementsToCheck.add(elementsDisputedLimitedWork);
-
-        elementsToCheck.forEach((List<ElementDisputed> list) -> {
-            if (CollectionUtils.isNotEmpty(list)) {
-                elementDisputed.addAll(list);
-            }
-        });
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedGeneral, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedSanctions, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedOverpayment, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedHousing, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildCare, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedCare, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildElement, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedChildDisabled, List.of()));
+        elementDisputed.addAll(requireNonNullElse(elementsDisputedLimitedWork, List.of()));
 
         return elementDisputed.stream()
                 .map(ElementDisputed::getValue)
                 .map(ElementDisputedDetails::getIssueCode)
+                .sorted()
                 .collect(Collectors.toList());
     }
 }

@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Issue;
 import uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
@@ -81,13 +83,28 @@ public class PanelCompositionService {
                 .findFirst().orElse(new DefaultPanelComposition());
     }
 
-    public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData, SscsCaseData caseDataBefore) {
+    public PanelMemberComposition resetPanelCompositionIfStale(SscsCaseData caseData,
+                                                               Optional<CaseDetails<SscsCaseData>> caseDetailsBefore) {
+        var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
+                        new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
+                .getCaseData();
         boolean hasBenefitCodeChanged = !Objects.equals(caseData.getBenefitCode(), caseDataBefore.getBenefitCode());
         boolean hasIssueCodeChanged = !Objects.equals(caseData.getIssueCode(), caseDataBefore.getIssueCode());
         boolean hasSpecialismCountChanged =
                 !Objects.equals(getSpecialismCount(caseData), getSpecialismCount(caseDataBefore));
         return hasBenefitCodeChanged || hasIssueCodeChanged || hasSpecialismCountChanged
                 ? new PanelMemberComposition() : caseData.getPanelMemberComposition();
+    }
+
+    public PanelMemberComposition resetPanelCompIfElementsChanged(SscsCaseData caseData,
+                                                                  Optional<CaseDetails<SscsCaseData>> caseDetailsBefore
+    ) {
+        var caseDataBefore = caseDetailsBefore.orElseThrow(() ->
+                new RuntimeException("CaseDetailsBefore is null for case id " + caseData.getCcdCaseId()))
+                .getCaseData();
+        return Objects.equals(caseData.getIssueCodesForAllElementsDisputed(),
+                caseDataBefore.getIssueCodesForAllElementsDisputed())
+                ? caseData.getPanelMemberComposition() : new PanelMemberComposition();
     }
 
     public boolean isBenefitIssueCodeValid(String benefitCode, String issueCode) {
