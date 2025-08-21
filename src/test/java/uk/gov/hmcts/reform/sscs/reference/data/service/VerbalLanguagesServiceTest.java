@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 
 public class VerbalLanguagesServiceTest {
@@ -49,5 +51,13 @@ public class VerbalLanguagesServiceTest {
                 .withFailMessage("There are the following duplicates:\n%s",
                         getDuplicates(referencesList))
                 .hasSameSizeAs(referencesList);
+    }
+
+    @DisplayName("There should be an entry for every language")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/verbalLanguageList.csv")
+    public void testVerbalLanguagesMap(String language) {
+        Language languageResult = languagesService.getVerbalLanguage(language);
+        assertThat(languageResult).isNotNull();
     }
 }
