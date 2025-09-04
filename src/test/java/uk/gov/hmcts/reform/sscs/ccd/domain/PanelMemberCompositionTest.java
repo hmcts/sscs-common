@@ -123,15 +123,6 @@ class PanelMemberCompositionTest {
         assertEqualsPanelComposition(panelComposition, result);
     }
 
-    private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {
-        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
-        assertEquals(expected.getDistrictTribunalJudge(), actual.getDistrictTribunalJudge());
-        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
-        assertEquals(expected.getPanelCompositionMemberMedical1(), actual.getPanelCompositionMemberMedical1());
-        assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
-        assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
-    }
-
     @ParameterizedTest
     @MethodSource("listsWithoutFqpm")
     void hasFqpm_shouldReturnFalse_whenFqpmNotPresent(List<String> disabilityAndFqpm) {
@@ -238,6 +229,110 @@ class PanelMemberCompositionTest {
 
         assertThat(panelMemberComposition.getPanelCompositionMemberMedical1()).isNull();
         assertThat(panelMemberComposition.getPanelCompositionMemberMedical2()).isNull();
+    }
+
+    @Test
+    void equals_shouldReturnTrueForIdenticalObjects() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .panelCompositionJudge("judge")
+                .panelCompositionMemberMedical1("med1")
+                .panelCompositionMemberMedical2("med2")
+                .panelCompositionDisabilityAndFqMember(List.of("dis1", "fq1"))
+                .build();
+
+        PanelMemberComposition b = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .panelCompositionJudge("judge")
+                .panelCompositionMemberMedical1("med1")
+                .panelCompositionMemberMedical2("med2")
+                .panelCompositionDisabilityAndFqMember(List.of("dis1", "fq1"))
+                .build();
+
+        assertThat(a.equals(b)).isTrue();
+    }
+
+    @Test
+    void equals_shouldReturnFalseForDifferentFields() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .panelCompositionJudge("judge")
+                .panelCompositionMemberMedical1("med1")
+                .panelCompositionMemberMedical2("med2")
+                .panelCompositionDisabilityAndFqMember(List.of("dis1", "fq1"))
+                .build();
+
+        PanelMemberComposition b = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj2")
+                .panelCompositionJudge("judge")
+                .panelCompositionMemberMedical1("med1")
+                .panelCompositionMemberMedical2("med2")
+                .panelCompositionDisabilityAndFqMember(List.of("dis1", "fq1"))
+                .build();
+
+        assertThat(a.equals(b)).isFalse();
+    }
+
+    @Test
+    void equals_shouldReturnTrueForSameReference() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .build();
+
+        assertThat(a.equals(a)).isTrue();
+    }
+
+    @Test
+    void equals_shouldReturnFalseForNull() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .build();
+
+        assertThat(a.equals(null)).isFalse();
+    }
+
+    @Test
+    void equals_shouldReturnFalseForDifferentClass() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .districtTribunalJudge("dtj")
+                .build();
+
+        assertThat(a.equals("not a PanelMemberComposition")).isFalse();
+    }
+
+    @Test
+    void equals_shouldIgnoreOrderOfDisabilityAndFqMember() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(List.of("a", "b"))
+                .build();
+
+        PanelMemberComposition b = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(List.of("b", "a"))
+                .build();
+
+        assertThat(a.equals(b)).isTrue();
+    }
+
+    @Test
+    void equals_shouldReturnTrueForBothEmptyDisabilityAndFqMember() {
+        PanelMemberComposition a = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>())
+                .build();
+
+        PanelMemberComposition b = PanelMemberComposition.builder()
+                .panelCompositionDisabilityAndFqMember(new ArrayList<>())
+                .build();
+
+        assertThat(a.equals(b)).isTrue();
+    }
+
+    private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {
+        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
+        assertEquals(expected.getDistrictTribunalJudge(), actual.getDistrictTribunalJudge());
+        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
+        assertEquals(expected.getPanelCompositionMemberMedical1(), actual.getPanelCompositionMemberMedical1());
+        assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
+        assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
     }
 
     private static Stream<List<String>> listsWithoutFqpm() {

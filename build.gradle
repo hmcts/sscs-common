@@ -32,7 +32,7 @@ repositories {
 // region static code analysis
 
 checkstyle {
-    toolVersion = "11.0.0"
+    toolVersion = "11.0.1"
 }
 
 pmd {
@@ -231,7 +231,7 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.4'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.5'
 
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: versions.springboot
     testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: versions.springboot
