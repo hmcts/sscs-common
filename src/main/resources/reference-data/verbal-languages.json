@@ -69,14 +69,14 @@
    "nameEn": "Arabic",
    "dialectReference": "ame",
    "dialectEn": "Middle Eastern",
-   "ccdReferences": ["arabicMiddleEastern","Arabic (Middle Eastern)", "Arabic Middle Eastern"]
+   "ccdReferences": ["arabicMiddleEastern","Arabic (Middle Eastern)",  "Arabic Middle Eastern", "Middle Eastern"]
  },
  {
    "reference": "ara",
    "nameEn": "Arabic",
    "dialectReference": "ana",
    "dialectEn": "North African",
-   "ccdReferences": ["arabicNorthAfrican","Arabic (North African)", "Arabic North African"]
+   "ccdReferences": ["arabicNorthAfrican","Arabic (North African)", "Arabic North African", "North African"]
  },
  {
    "reference": "arm",
@@ -308,7 +308,7 @@
    "nameEn": "French",
    "dialectReference": "faf",
    "dialectEn": "African",
-   "ccdReferences": ["French (African)", "French African"]
+   "ccdReferences": ["French (African)", "French African", "African"]
  },
  {
    "reference": "fra",
@@ -597,7 +597,7 @@
    "nameEn": "Luo",
    "dialectReference": "lky",
    "dialectEn": "Kenyan",
-   "ccdReferences": ["luoKenyan", "Luo (Kenyan)", "Luo Kenyan"]
+   "ccdReferences": ["luoKenyan", "Luo (Kenyan)", "Luo Kenyan", "Kenyan"]
  },
  {
    "reference": "luo",
@@ -739,7 +739,7 @@
    "nameEn": "Punjabi",
    "dialectReference": "pji",
    "dialectEn": "Indian",
-   "ccdReferences": ["punjabiIndian", "Punjabi (Indian)","Punjabi Indian"]
+   "ccdReferences": ["punjabiIndian", "Punjabi (Indian)", "Punjabi Indian", "Indian"]
  },
  {
    "reference": "pan",
