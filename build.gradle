@@ -163,7 +163,7 @@ def versions = [
         springboot   : '3.5.4',
         jackson      : '2.19.2',
         junitjupiter : '5.13.4',
-        lombok       : '1.18.38'
+        lombok       : '1.18.40'
 ]
 
 dependencies {
