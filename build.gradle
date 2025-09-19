@@ -244,7 +244,7 @@ dependencies {
 
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.19.0'
 
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.4'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.5'
     testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.3'
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
