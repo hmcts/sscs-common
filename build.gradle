@@ -161,7 +161,7 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 
 def versions = [
         springboot   : '3.5.5',
-        jackson      : '2.19.2',
+        jackson      : '2.20.0',
         junitjupiter : '5.13.4',
         lombok       : '1.18.42'
 ]
@@ -226,7 +226,7 @@ dependencies {
 
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.8'
+    implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.9'
 
     implementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
