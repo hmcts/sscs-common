@@ -5570,97 +5570,97 @@
 }, {
     "benefitIssueCode" : "015CE",
     "category" : "1",
-    "johTiers" : [ ]
+    "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015DD",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015CC",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015EC",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015EX",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015LE",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015RA",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015RC",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015DQ",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015FX",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "030OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "034OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "050OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "054VW",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "055OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057EC",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057EX",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057LE",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057OI",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057RA",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057RC",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057DQ",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "057FX",
   "category" : "1",
-  "johTiers" : [ ]
+  "johTiers" : [ "84" ]
 } ]
