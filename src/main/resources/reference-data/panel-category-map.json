@@ -5568,9 +5568,9 @@
   "medicalMember" : "yes",
   "johTiers" : [ "84", "50", "58" ]
 }, {
-    "benefitIssueCode" : "015CE",
-    "category" : "1",
-    "johTiers" : [ "84" ]
+  "benefitIssueCode" : "015CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015DD",
   "category" : "1",
