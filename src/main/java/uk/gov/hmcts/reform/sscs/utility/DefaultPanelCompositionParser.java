@@ -21,8 +21,10 @@ import uk.gov.hmcts.reform.sscs.reference.data.model.DefaultPanelComposition;
 
 @Slf4j
 public class DefaultPanelCompositionParser {
-    private static final String JOH_TIER_CSV_FILE = "src/main/resources/reference-data/CSV_JOHTier_PanelMemberComposition_1.3.csv";
-    private static final String PANEL_CATEGORY_MAP_JSON_FILE = "src/main/resources/reference-data/panel-category-map.json";
+    private static final String JOH_TIER_CSV_FILE =
+            "src/main/resources/reference-data/CSV_JOHTier_PanelMemberComposition_1.3.csv";
+    private static final String PANEL_CATEGORY_MAP_JSON_FILE =
+            "src/main/resources/reference-data/panel-category-map.json";
 
     private final CsvMapper csvMapper;
     private final CsvSchema schema;
