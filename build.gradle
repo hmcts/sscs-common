@@ -189,8 +189,8 @@ dependencies {
 
     implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.48'
 
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.18'
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.18'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.19'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.19'
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
     implementation group: 'org.json', name: 'json', version: '20250517'
