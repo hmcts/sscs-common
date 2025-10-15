@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.reference.data.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
 import java.util.Collection;
@@ -13,6 +16,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
 import uk.gov.hmcts.reform.sscs.reference.data.model.Language;
 
 public class VerbalLanguagesServiceTest {
@@ -59,5 +63,26 @@ public class VerbalLanguagesServiceTest {
     public void testVerbalLanguagesMap(String language) {
         Language languageResult = languagesService.getVerbalLanguage(language);
         assertThat(languageResult).isNotNull();
+    }
+
+    @DisplayName("NameEn should not be used for lookup when Dialect exists")
+    @Test
+    public void shouldNotFindLanguageUsingNameEnIfDialectExists() {
+        assertNull(languagesService.getVerbalLanguage("Kurdish"));
+    }
+
+    @DisplayName("Dialect should be used for lookup when it exists")
+    @ParameterizedTest
+    @CsvSource({
+            "Bardini, kur-kbr", "Kurdish (Bardini), kur-kbr", "Kurdish Bardini, kur-kbr",
+            "Kurmanji, kur-kkr", "Kurdish (Kurmanji), kur-kkr", "Kurdish Kurmanji, kur-kkr",
+            "Sorani, kur-ksr", "Kurdish (Sorani), kur-ksr", "Kurdish Sorani, kur-ksr",
+            "Latvian, lav", "Lithuanian, lit", "Macedonian, mkd", "Flemish, nld-nfl"
+    })
+    public void shouldOnlyFindLanguageUsingDialectWhenItExists(String ccdRef, String hmcRef) {
+        var language = languagesService.getVerbalLanguage(ccdRef);
+
+        assertNotNull(language);
+        assertEquals(hmcRef, language.getFullReference());
     }
 }
