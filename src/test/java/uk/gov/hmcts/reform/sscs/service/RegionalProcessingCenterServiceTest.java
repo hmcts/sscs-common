@@ -38,7 +38,7 @@ public class RegionalProcessingCenterServiceTest {
     public void givenVenuesCvsFile_shouldLoadSccodeToRpcMap() {
         Map<String, String> sccodeRegionalProcessingCentermap
             = regionalProcessingCenterService.getSccodeRegionalProcessingCentermap();
-        assertEquals(248, sccodeRegionalProcessingCentermap.size());
+        assertEquals(250, sccodeRegionalProcessingCentermap.size());
         assertEquals("SSCS Birmingham", sccodeRegionalProcessingCentermap.get("SC049"));
         assertEquals("SSCS Leeds", sccodeRegionalProcessingCentermap.get("SC001"));
         assertEquals("SSCS Cardiff", sccodeRegionalProcessingCentermap.get("SC293"));
