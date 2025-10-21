@@ -93,7 +93,7 @@ public class AirLookupServiceTest {
         "Belfast RCJ, 1270"
     })
     public void getLookupVenueIdByAirVenueNameReturnsExpected(String processingVenue, String expVenueId) throws Exception {
-        org.springframework.core.io.ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("reference-data/AIRLookup_23.2.xlsx");
+        org.springframework.core.io.ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("reference-data/AIRLookup_24.2.xlsx");
         try (org.apache.poi.ss.usermodel.Workbook wb2 = org.apache.poi.ss.usermodel.WorkbookFactory.create(classPathResource.getInputStream())) {
             airLookupService.parseAirLookupData(wb2);
             org.apache.poi.ss.usermodel.Sheet sheet = wb2.getSheet(AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV);
