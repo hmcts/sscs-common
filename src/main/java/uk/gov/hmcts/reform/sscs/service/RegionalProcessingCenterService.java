@@ -27,7 +27,7 @@ public class RegionalProcessingCenterService {
     private static final Logger LOG = getLogger(RegionalProcessingCenterService.class);
 
     public static final String RPC_DATA_JSON = "reference-data/rpc-data.json";
-    private static final String CSV_FILE_PATH = "reference-data/sscs-venues-v2.csv";
+    private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     public static final char SEPARATOR_CHAR = '/';
     public static final String SSCS_BIRMINGHAM = "SSCS Birmingham";
 
