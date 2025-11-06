@@ -23,7 +23,7 @@ import uk.gov.hmcts.reform.sscs.model.VenueDetails;
 @Slf4j
 public class VenueDataLoader {
 
-    private static final String CSV_FILE_PATH = "reference-data/sscs-venues-v2.csv";
+    private static final String CSV_FILE_PATH = "reference-data/sscs-venues.csv";
     private final Map<String, VenueDetails> venueDetailsMap = newHashMap();
     private final Map<String, VenueDetails> venueDetailsMapByVenueName = newHashMap();
     private final Map<String, VenueDetails> activeVenueDetailsMapByEpimsId = newHashMap();
@@ -52,14 +52,15 @@ public class VenueDataLoader {
                         .url(line[11])
                         .active(line[12])
                         .gapsVenName(line[13])
-                        .comments(line[14])
-                        .epimsId(line[15])
+                        .legacyVenue(line[14])
+                        .comments(line[15])
+                        .epimsId(line[16])
                         .build();
                 venueDetailsMap.put(line[0], venueDetails);
                 venueDetailsMapByVenueName.put(line[3] + line[8], venueDetails);
                 if (isYes(venueDetails.getActive())) {
                     activeVenueDetailsMapByPostcode.put(line[8], venueDetails);
-                    activeVenueDetailsMapByEpimsId.put(line[15], venueDetails);
+                    activeVenueDetailsMapByEpimsId.put(line[16], venueDetails);
                 }
             });
             activeVenueEpimsIdsMapByRpc.putAll(

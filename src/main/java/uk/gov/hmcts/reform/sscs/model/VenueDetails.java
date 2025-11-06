@@ -20,6 +20,7 @@ public class VenueDetails {
     private String url;
     private String active;
     private String gapsVenName;
+    private String legacyVenue;
     private String comments;
     private String epimsId;
 }

@@ -55,7 +55,7 @@ public class VenueDataLoaderTest {
         "1131", "1132", "1135", "1136", "1139", "1143", "1146", "1148", "1150", "1151", "1152", "1153", "1154", "1155",
         "1159", "1161", "1182", "1184", "1186", "1188", "1190", "1209", "1210", "1211", "1213", "1215", "1216",
         "1219", "1221", "1222", "1223", "1225", "1226", "1227", "1228", "1229", "1230", "1233", "1234", "1235", "1236",
-        "1237", "1238", "1240", "1241", "1248", "1249", "1254", "1250", "1256", "1257", "1259"})
+        "1237", "1238", "1240", "1241", "1248", "1249", "1254", "1250", "1256", "1257", "1259", "1260"})
     public void venuesShouldBeActiveAndHaveAGoogleLink(String id) {
         assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getActive().equals("Yes"));
         assertTrue(venueDataLoader.getVenueDetailsMap().get(id).getUrl().contains("https://"));

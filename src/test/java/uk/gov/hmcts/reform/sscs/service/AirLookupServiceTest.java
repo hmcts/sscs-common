@@ -3,14 +3,19 @@ package uk.gov.hmcts.reform.sscs.service;
 import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static uk.gov.hmcts.reform.sscs.service.AirLookupService.AIR_LOOKUP_FILE;
 import static uk.gov.hmcts.reform.sscs.service.AirLookupService.DEFAULT_VENUE;
 
 import java.util.Optional;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.core.io.ClassPathResource;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 import uk.gov.hmcts.reform.sscs.model.AirlookupBenefitToVenue;
@@ -93,10 +98,10 @@ public class AirLookupServiceTest {
         "Belfast RCJ, 1270"
     })
     public void getLookupVenueIdByAirVenueNameReturnsExpected(String processingVenue, String expVenueId) throws Exception {
-        org.springframework.core.io.ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("reference-data/AIRLookup_23.2.xlsx");
-        try (org.apache.poi.ss.usermodel.Workbook wb2 = org.apache.poi.ss.usermodel.WorkbookFactory.create(classPathResource.getInputStream())) {
+        ClassPathResource classPathResource = new ClassPathResource(AIR_LOOKUP_FILE);
+        try (Workbook wb2 = WorkbookFactory.create(classPathResource.getInputStream())) {
             airLookupService.parseAirLookupData(wb2);
-            org.apache.poi.ss.usermodel.Sheet sheet = wb2.getSheet(AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV);
+            Sheet sheet = wb2.getSheet(AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV);
 
             if (sheet == null) {
                 throw new IllegalStateException("Sheet with name '" + AirLookupService.AIR_LOOKUP_VENUE_IDS_CSV + "' not found in the workbook.");
@@ -217,7 +222,7 @@ public class AirLookupServiceTest {
         "GBSTLIV02,Liverpool,Liverpool",
         "GBSTLLA01,Prestatyn,Cardiff",
         "GBSTSWA00,Llanelli,Cardiff",
-        "GBSTLON03,Fox Court (S),Sutton",
+        "GBSTLON03,London Tribunals,Sutton",
         "GBSTLGP00,Basildon CC,Bradford",
         "GBSTLOW00,Norwich,Bradford",
         "GBSTSTN00,Southampton Magistrates Court,Cardiff",
@@ -281,7 +286,7 @@ public class AirLookupServiceTest {
         "GBSTSWA01,Port Talbot CJC,Cardiff",
         "GBSTMID01,Teesside JC,Leeds",
         "GBSTTNM02,Newton Abbot,Cardiff",
-        "GBSTLON06,Fox Court (S),Sutton",
+        "GBSTLON06,London Tribunals,Sutton",
         "GBSTTEP00,East London (S),Sutton",
         "GBSTTHP00,Chatham,Bradford",
         "GBSTEXE02,Exeter,Cardiff",
