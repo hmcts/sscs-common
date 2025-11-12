@@ -16,4 +16,6 @@ import lombok.NoArgsConstructor;
 public class ExtendedSscsCaseData {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo selectNextHmcHearingType;
+
+    private YesNo documentMovedOrDeleted;
 }
