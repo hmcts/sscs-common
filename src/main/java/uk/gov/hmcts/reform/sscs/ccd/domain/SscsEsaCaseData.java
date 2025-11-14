@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,6 +43,7 @@ public class SscsEsaCaseData {
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
+    private DynamicList whichEsaRegulationsApply;
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
@@ -61,4 +62,11 @@ public class SscsEsaCaseData {
         }
         return null;
     }
+
+    @JsonIgnore
+    public DynamicList defaultEsaRegulationsYears() {
+        final DynamicListItem dynamicListItem2008 = new DynamicListItem("2013", "2013");
+        return new DynamicList(dynamicListItem2008, List.of(new DynamicListItem("2008", "2008"), dynamicListItem2008));
+    }
+
 }
