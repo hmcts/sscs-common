@@ -15,13 +15,13 @@ class SscsEsaCaseDataTest {
 
     @Test
     void shouldCreateDynamicEsaRegulationYears() {
-        final DynamicRadioList dynamicList = data.defaultEsaRegulationsYears();
+        final DynamicRadioList dynamicRadioList = data.defaultEsaRegulationsYears();
 
-        assertThat(dynamicList.getListItems()).hasSize(2);
-        assertThat(dynamicList.getListItems().getFirst().getCode()).isEqualTo("2008");
-        assertThat(dynamicList.getListItems().getFirst().getLabel()).isEqualTo("2008");
-        assertThat(dynamicList.getListItems().get(1).getCode()).isEqualTo("2013");
-        assertThat(dynamicList.getListItems().get(1).getLabel()).isEqualTo("2013");
+        assertThat(dynamicRadioList.getListItems()).hasSize(2);
+        assertThat(dynamicRadioList.getListItems().getFirst().getCode()).isEqualTo("2008");
+        assertThat(dynamicRadioList.getListItems().getFirst().getLabel()).isEqualTo("2008");
+        assertThat(dynamicRadioList.getListItems().get(1).getCode()).isEqualTo("2013");
+        assertThat(dynamicRadioList.getListItems().get(1).getLabel()).isEqualTo("2013");
     }
 
     @ParameterizedTest
