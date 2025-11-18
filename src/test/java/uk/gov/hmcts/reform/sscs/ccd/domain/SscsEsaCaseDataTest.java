@@ -15,7 +15,7 @@ class SscsEsaCaseDataTest {
 
     @Test
     void shouldCreateDynamicEsaRegulationYears() {
-        final DynamicList dynamicList = data.defaultEsaRegulationsYears();
+        final DynamicRadioList dynamicList = data.defaultEsaRegulationsYears();
 
         assertThat(dynamicList.getListItems()).hasSize(2);
         assertThat(dynamicList.getListItems().getFirst().getCode()).isEqualTo("2008");

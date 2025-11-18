@@ -43,7 +43,7 @@ public class SscsEsaCaseData {
     private YesNo showRegulation29Page;
     private YesNo showSchedule3ActivitiesPage;
     private YesNo doesRegulation35Apply;
-    private DynamicList whichEsaRegulationsApply;
+    private DynamicRadioList whichEsaRegulationsApply;
 
     @JsonIgnore
     public YesNo getRegulation35Selection() {
@@ -64,9 +64,9 @@ public class SscsEsaCaseData {
     }
 
     @JsonIgnore
-    public DynamicList defaultEsaRegulationsYears() {
-        final DynamicListItem dynamicListItem2013 = new DynamicListItem("2013", "2013");
-        return new DynamicList(dynamicListItem2013, List.of(new DynamicListItem("2008", "2008"), dynamicListItem2013));
+    public DynamicRadioList defaultEsaRegulationsYears() {
+        final DynamicRadioListElement dynamicListItem2013 = new DynamicRadioListElement("2013", "2013");
+        return new DynamicRadioList(dynamicListItem2013, List.of(new DynamicRadioListElement("2008", "2008"), dynamicListItem2013));
     }
 
 }
