@@ -36,8 +36,8 @@ class SscsEsaCaseDataTest {
     }
 
     @ParameterizedTest
-    @MethodSource("schedule35Selection")
-    void shouldReturnWhetherSchedule35SelectionApplies(String schedule3ActivitiesApply, List<String> expected) {
+    @MethodSource("schedule3Selection")
+    void shouldReturnWhetherSchedule3SelectionApplies(String schedule3ActivitiesApply, List<String> expected) {
         data.setEsaWriteFinalDecisionSchedule3ActivitiesQuestion(List.of("test_data"));
         data.setEsaWriteFinalDecisionSchedule3ActivitiesApply(schedule3ActivitiesApply);
 
@@ -53,7 +53,7 @@ class SscsEsaCaseDataTest {
         );
     }
 
-    private static Stream<Arguments> schedule35Selection() {
+    private static Stream<Arguments> schedule3Selection() {
         return Stream.of(
             Arguments.of("Yes", List.of("test_data")),
             Arguments.of("No", List.of()),

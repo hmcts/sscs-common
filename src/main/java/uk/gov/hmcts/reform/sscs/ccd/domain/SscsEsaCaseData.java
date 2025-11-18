@@ -65,8 +65,8 @@ public class SscsEsaCaseData {
 
     @JsonIgnore
     public DynamicList defaultEsaRegulationsYears() {
-        final DynamicListItem dynamicListItem2008 = new DynamicListItem("2013", "2013");
-        return new DynamicList(dynamicListItem2008, List.of(new DynamicListItem("2008", "2008"), dynamicListItem2008));
+        final DynamicListItem dynamicListItem2013 = new DynamicListItem("2013", "2013");
+        return new DynamicList(dynamicListItem2013, List.of(new DynamicListItem("2008", "2008"), dynamicListItem2013));
     }
 
 }
