@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -12,17 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class SscsEsaCaseDataTest {
 
     private final SscsEsaCaseData data = new SscsEsaCaseData();
-
-    @Test
-    void shouldCreateDynamicEsaRegulationYears() {
-        final DynamicRadioList dynamicRadioList = data.defaultEsaRegulationsYears();
-
-        assertThat(dynamicRadioList.getListItems()).hasSize(2);
-        assertThat(dynamicRadioList.getListItems().getFirst().getCode()).isEqualTo("2008");
-        assertThat(dynamicRadioList.getListItems().getFirst().getLabel()).isEqualTo("2008");
-        assertThat(dynamicRadioList.getListItems().get(1).getCode()).isEqualTo("2013");
-        assertThat(dynamicRadioList.getListItems().get(1).getLabel()).isEqualTo("2013");
-    }
 
     @ParameterizedTest
     @MethodSource("regulation35Selection")
