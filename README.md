@@ -88,3 +88,15 @@ repositories {
    implementation 'com.github.hmcts:sscs-common:LATEST_TAG'
  }
  ```
+
+## Updating dependants
+
+Each update to this library must be reflected in all dependent projects regardless of the change. The current dependants are:
+
+* sscs-tribunals-case-api
+* sscs-case-loader
+* sscs-ccd-case-migration
+
+Prior to releasing a new version of this library, changes can be tested in dependents across non-prod environments using the build tag that the Jenkins build produces (update the sscs-common version in the dependant build.gradle file). 
+
+When ready to release, sscs-common should be released first and all dependants updated with the actual release version
