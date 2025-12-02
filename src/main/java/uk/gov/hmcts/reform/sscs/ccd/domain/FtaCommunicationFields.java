@@ -18,6 +18,8 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FtaCommunicationFields {
 
+    private String latestFtaCommunicationId;
+    
     private List<CommunicationRequest> ftaCommunications;
     private FtaRequestType ftaRequestType;
     private DynamicList ftaRequestsDl;
