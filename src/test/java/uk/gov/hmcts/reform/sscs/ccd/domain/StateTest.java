@@ -5,32 +5,36 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_DWP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.State.WITH_UT;
 
-import java.util.Arrays;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
-public class StateTest {
+import java.util.Arrays;
+import java.util.Optional;
+
+class StateTest {
     // copied from the State TAB in the CCD Definition file
-    private static final String ALL_STATES = "appealCreated\n" +
-            "closed\n" +
-            "dormantAppealState\n" +
-            "draft\n" +
-            "draftArchived\n" +
-            "hearing\n" +
-            "incompleteApplication\n" +
-            "incompleteApplicationInformationReqsted\n" +
-            "interlocutoryReviewState\n" +
-            "listingError\n" +
-            "notListable\n" +
-            "readyToList\n" +
-            "responseReceived\n" +
-            "validAppeal\n" +
-            "voidState\n" +
-            "withDwp\n" +
-            "withUT";
+    private static final String ALL_STATES = """
+        appealCreated
+        closed
+        dormantAppealState
+        draft
+        draftArchived
+        hearing
+        incompleteApplication
+        incompleteApplicationInformationReqsted
+        interlocutoryReviewState
+        listingError
+        notListable
+        readyToList
+        responseReceived
+        validAppeal
+        voidState
+        withDwp
+        withUT
+        awaitOtherPartyData
+        """;
 
     @Test
-    public void hasAllStatesDefinedInCcdDefinitionFile() {
+    void hasAllStatesDefinedInCcdDefinitionFile() {
         String[] allStateIds = ALL_STATES.split("\n");
         State[] allStatesActual = State.values();
 
@@ -41,12 +45,12 @@ public class StateTest {
     }
 
     @Test
-    public void getStateById() {
+    void getStateById() {
         assertEquals(WITH_DWP, State.getById("withDwp"));
     }
 
     @Test
-    public void getwithUtId() {
+    void getwithUtId() {
         assertEquals(WITH_UT, State.getById("withUT"));
     }
 
