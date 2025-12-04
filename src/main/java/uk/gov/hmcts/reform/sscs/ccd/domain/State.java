@@ -31,6 +31,7 @@ public enum State {
     WITHDRAWN_REVISED_STRUCK_OUT_LAPSED_STATE("withdrawnRevisedStruckOutLapsedState"),
     WITH_DWP("withDwp"),
     WITH_UT("withUT"),
+    AWAIT_OTHER_PARTY_DATA("awaitOtherPartyData"),
     @JsonEnumDefaultValue
     UNKNOWN("unknown");
 
