@@ -40,6 +40,7 @@ public class IdamService {
     // Tactical idam token caching solution implemented
     // SSCS-5895 - will deliver the strategic caching solution
     private String cachedToken;
+    private String cachedWaToken;
 
     @Autowired
     IdamService(AuthTokenGenerator authTokenGenerator, IdamClient idamClient) {
@@ -97,10 +98,17 @@ public class IdamService {
         }
     }
 
+    @Retryable
+    public String getWaIdamOauth2Token() {
+        cachedWaToken = getOpenAccessTokenForWaUser();
+        return cachedWaToken;
+    }
+
     @Scheduled(fixedRate = ONE_HOUR)
     public void evictCacheAtIntervals() {
         log.info("Evicting idam token cache");
         cachedToken = null;
+        cachedWaToken = null;
     }
 
     @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
@@ -115,6 +123,31 @@ public class IdamService {
             atomicInteger.set(1);
             log.info("Using cached IDAM token.");
             idamOauth2Token =  cachedToken;
+        }
+
+        UserDetails userDetails = getUserDetails(idamOauth2Token);
+
+        return IdamTokens.builder()
+                .idamOauth2Token(idamOauth2Token)
+                .serviceAuthorization(generateServiceAuthorization())
+                .userId(userDetails.getId())
+                .email(userDetails.getEmail())
+                .roles(userDetails.getRoles())
+                .build();
+    }
+
+    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
+    public IdamTokens getIdamWaTokens() {
+        String idamOauth2Token;
+
+        if (StringUtils.isEmpty(cachedWaToken)) {
+            log.info("No cached IDAM token found, requesting from IDAM service.");
+            log.info("Attempting to obtain token, retry attempt {}", atomicInteger.getAndIncrement());
+            idamOauth2Token =  getWaIdamOauth2Token();
+        } else {
+            atomicInteger.set(1);
+            log.info("Using cached IDAM token.");
+            idamOauth2Token =  cachedWaToken;
         }
 
         UserDetails userDetails = getUserDetails(idamOauth2Token);
