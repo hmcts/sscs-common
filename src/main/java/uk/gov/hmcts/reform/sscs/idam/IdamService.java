@@ -31,6 +31,12 @@ public class IdamService {
     @Value("${idam.oauth2.user.password}")
     private String idamOauth2UserPassword;
 
+    @Value("${idam.oauth2.waUser.email}")
+    private String idamOauth2WaUserEmail;
+
+    @Value("${idam.oauth2.waUser.password}")
+    private String idamOauth2WaUserPassword;
+
     // Tactical idam token caching solution implemented
     // SSCS-5895 - will deliver the strategic caching solution
     private String cachedToken;
@@ -70,6 +76,19 @@ public class IdamService {
         try {
             log.info("Requesting idam access token from Open End Point");
             String accessToken = idamClient.getAccessToken(idamOauth2UserEmail, idamOauth2UserPassword);
+            log.info("Requesting idam access token successful");
+            return accessToken;
+        } catch (Exception e) {
+            log.error("Requesting idam token failed: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    @Retryable
+    public String getOpenAccessTokenForWaUser() {
+        try {
+            log.info("Requesting idam access token from Open End Point");
+            String accessToken = idamClient.getAccessToken(idamOauth2WaUserEmail, idamOauth2WaUserPassword);
             log.info("Requesting idam access token successful");
             return accessToken;
         } catch (Exception e) {
