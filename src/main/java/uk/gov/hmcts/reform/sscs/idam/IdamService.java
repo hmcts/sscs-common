@@ -73,6 +73,12 @@ public class IdamService {
     }
 
     @Retryable
+    public String getWaIdamOauth2Token() {
+        cachedWaToken = getOpenAccessTokenForWaUser();
+        return cachedWaToken;
+    }
+
+    @Retryable
     public String getOpenAccessToken() {
         try {
             log.info("Requesting idam access token from Open End Point");
@@ -88,20 +94,14 @@ public class IdamService {
     @Retryable
     public String getOpenAccessTokenForWaUser() {
         try {
-            log.info("Requesting idam access token from Open End Point");
+            log.info("Requesting Wa idam access token from Open End Point");
             String accessToken = idamClient.getAccessToken(idamOauth2WaUserEmail, idamOauth2WaUserPassword);
-            log.info("Requesting idam access token successful");
+            log.info("Requesting Wa idam access token successful");
             return accessToken;
         } catch (Exception e) {
-            log.error("Requesting idam token failed: " + e.getMessage());
+            log.error("Requesting Wa idam token failed: " + e.getMessage());
             throw e;
         }
-    }
-
-    @Retryable
-    public String getWaIdamOauth2Token() {
-        cachedWaToken = getOpenAccessTokenForWaUser();
-        return cachedWaToken;
     }
 
     @Scheduled(fixedRate = ONE_HOUR)
@@ -138,26 +138,26 @@ public class IdamService {
 
     @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
     public IdamTokens getIdamWaTokens() {
-        String idamOauth2Token;
+        String WaIdamOauth2Token;
 
         if (StringUtils.isEmpty(cachedWaToken)) {
-            log.info("No cached IDAM token found, requesting from IDAM service.");
-            log.info("Attempting to obtain token, retry attempt {}", atomicInteger.getAndIncrement());
-            idamOauth2Token =  getWaIdamOauth2Token();
+            log.info("No cached Wa IDAM token found, requesting from IDAM service.");
+            log.info("Attempting to obtain Wa token, retry attempt {}", atomicInteger.getAndIncrement());
+            WaIdamOauth2Token =  getWaIdamOauth2Token();
         } else {
             atomicInteger.set(1);
-            log.info("Using cached IDAM token.");
-            idamOauth2Token =  cachedWaToken;
+            log.info("Using cached Wa IDAM token.");
+            WaIdamOauth2Token =  cachedWaToken;
         }
 
-        UserDetails userDetails = getUserDetails(idamOauth2Token);
+        UserDetails waUserDetails = getUserDetails(WaIdamOauth2Token);
 
         return IdamTokens.builder()
-                .idamOauth2Token(idamOauth2Token)
+                .idamOauth2Token(WaIdamOauth2Token)
                 .serviceAuthorization(generateServiceAuthorization())
-                .userId(userDetails.getId())
-                .email(userDetails.getEmail())
-                .roles(userDetails.getRoles())
+                .userId(waUserDetails.getId())
+                .email(waUserDetails.getEmail())
+                .roles(waUserDetails.getRoles())
                 .build();
     }
 }
