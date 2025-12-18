@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -43,6 +44,8 @@ public class SscsUcCaseData {
     private YesNo showSchedule8Paragraph4Page;
     private YesNo showSchedule7ActivitiesPage;
     private YesNo doesSchedule9Paragraph4Apply;
+    @LocalDateMustNotBeInFuture(message = "Start date must not be in the future")
+    private String ucWriteFinalDecisionWorkCapabilityAssessmentStartDate;
 
     @JsonIgnore
     public YesNo getSchedule9Paragraph4Selection() {
