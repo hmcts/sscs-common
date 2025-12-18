@@ -89,7 +89,7 @@ repositories {
  }
  ```
 
-## Updating dependants
+## Updating dependent repositories
 
 Each update to this library must be reflected in all dependent projects regardless of the change. The current dependants are:
 
