@@ -160,7 +160,7 @@ public enum EventType {
     NON_COMPLIANT_SEND_TO_INTERLOC("nonCompliantSendToInterloc", 0, false),
     NOTIFICATION_SENT("notificationSent", 0, false),
     NOT_LISTABLE("notListable", 0, false),
-    OVERDUE_RESPONSE("overdueResponse", 0, false),
+    OVERDUE_FTA_RESPONSE("overdueFtaResponse", 0, false),
     PANEL_UPDATE("panelUpdate", 0, false),
     PAST_HEARING_BOOKED("pastHearingBooked", "pastHearingBooked", 10, true),
     PERMISSION_TO_APPEAL_GRANTED("permissionToAppealGranted", 0, true),
