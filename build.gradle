@@ -224,6 +224,9 @@ dependencies {
 
     implementation group: 'commons-io', name: 'commons-io', version: '2.20.0'
 
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.12.0'
+    implementation group: 'net.objectlab.kit', name: 'datecalc-jdk8', version: '1.4.8'
+
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
     implementation group: 'com.networknt', name: 'json-schema-validator', version: '1.5.8'
