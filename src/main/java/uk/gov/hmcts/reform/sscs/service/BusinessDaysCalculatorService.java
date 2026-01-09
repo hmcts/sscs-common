@@ -33,6 +33,11 @@ public class BusinessDaysCalculatorService {
         return calculateBusinessDay(date, numberOfBusinessDays);
     }
 
+    public LocalDate getBusinessDayInPast(LocalDate date, int numberOfBusinessDays) throws IOException {
+        initialiseHolidays();
+        return calculateBusinessDayInPast(date, numberOfBusinessDays);
+    }
+
     private void initialiseHolidays() throws IOException {
         Set<LocalDate> holidays = cachedHolidayClient.getHolidays();
         DefaultHolidayCalendar<LocalDate> ukCalendar = new DefaultHolidayCalendar<>();
