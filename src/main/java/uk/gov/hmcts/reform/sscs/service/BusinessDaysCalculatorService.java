@@ -63,7 +63,7 @@ public class BusinessDaysCalculatorService {
     private LocalDate calculateBusinessDayInPast(LocalDate startDate, int numberOfBusinessDays) {
         return LocalDateKitCalculatorsFactory.backwardCalculator("UK")
                 .setStartDate(startDate)
-                .moveByBusinessDays(numberOfBusinessDays)
+                .moveByBusinessDays(-numberOfBusinessDays)
                 .getCurrentBusinessDate();
     }
 }

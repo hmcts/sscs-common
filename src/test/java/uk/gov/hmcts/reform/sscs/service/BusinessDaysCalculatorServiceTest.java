@@ -60,6 +60,16 @@ class BusinessDaysCalculatorServiceTest {
     }
 
     @Test
+    void shouldReturnCorrectBusinessDayInPastWithLocalDate() throws IOException {
+        LocalDate startDate = LocalDate.of(2026, 1, 6);
+
+        assertEquals(LocalDate.of(2026, 1, 5),
+                businessDaysCalculatorService.getBusinessDayInPast(startDate, 1));
+        assertEquals(LocalDate.of(2026, 1, 2),
+                businessDaysCalculatorService.getBusinessDayInPast(startDate, 2));
+    }
+
+    @Test
     void shouldInitializeHolidaysCorrectly() {
         Set<LocalDate> holidays = new HashSet<>();
         holidays.add(LocalDate.of(2023, 12, 25));
