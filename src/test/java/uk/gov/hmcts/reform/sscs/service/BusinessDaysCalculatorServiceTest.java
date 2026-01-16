@@ -15,7 +15,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import uk.gov.hmcts.reform.sscs.client.CachedHolidayClient;
+import uk.gov.hmcts.reform.sscs.calendar.BusinessDaysCalculatorService;
+import uk.gov.hmcts.reform.sscs.calendar.CachedHolidayClient;
 
 class BusinessDaysCalculatorServiceTest {
 

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.service;
+package uk.gov.hmcts.reform.sscs.calendar;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,7 +9,6 @@ import net.objectlab.kit.datecalc.common.DefaultHolidayCalendar;
 import net.objectlab.kit.datecalc.jdk8.LocalDateKitCalculatorsFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.sscs.client.CachedHolidayClient;
 
 @Slf4j
 @Service
