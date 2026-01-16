@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.sscs.calendar;
+package uk.gov.hmcts.reform.sscs.utility.calendar;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
