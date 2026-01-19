@@ -24,7 +24,7 @@ public class CachedHolidayClient {
         this.httpClient = httpClient;
     }
 
-    public synchronized Set<LocalDate> getHolidays() throws IOException {
+    public Set<LocalDate> getHolidays() throws IOException {
         if (cachedHolidays == null) {
             cachedHolidays = fetchHolidaysFromApi();
         }
