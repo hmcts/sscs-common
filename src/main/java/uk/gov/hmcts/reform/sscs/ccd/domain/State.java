@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 public enum State {
     APPEAL_CREATED("appealCreated"),
     AWAIT_CONFIDENTIALITY_REQUIREMENTS("awaitConfidentialityRequirements"),
-
     AWAIT_OTHER_PARTY_DATA("awaitOtherPartyData"),
     CLOSED("closed"),
     DORMANT_APPEAL_STATE("dormantAppealState"),
