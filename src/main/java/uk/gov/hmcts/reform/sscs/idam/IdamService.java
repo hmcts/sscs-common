@@ -100,28 +100,12 @@ public class IdamService {
 
     @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
     public IdamTokens getIdamTokens() {
-        return getIdamTokens(cachedToken, false);
-    }
-
-    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
-    public IdamTokens getIdamWaTokens() {
-        return getIdamTokens(cachedWaToken, true);
-    }
-
-    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
-    private IdamTokens getIdamTokens(String cachedToken, boolean isWa) {
         String idamOauth2Token;
 
         if (StringUtils.isEmpty(cachedToken)) {
             log.info("No cached IDAM token found, requesting from IDAM service.");
             log.info("Attempting to obtain token, retry attempt {}", atomicInteger.getAndIncrement());
-
-            if (isWa) {
-                log.info("Requesting WA idam access token");
-                idamOauth2Token =  getWaIdamOauth2Token();
-            } else {
-                idamOauth2Token = getIdamOauth2Token();
-            }
+            idamOauth2Token =  getIdamOauth2Token();
 
         } else {
             atomicInteger.set(1);
@@ -137,6 +121,31 @@ public class IdamService {
                 .userId(userDetails.getId())
                 .email(userDetails.getEmail())
                 .roles(userDetails.getRoles())
+                .build();
+    }
+
+    @Retryable(backoff = @Backoff(delay = 15000L, multiplier = 1.0, random = true))
+    public IdamTokens getIdamWaTokens() {
+        String WaIdamOauth2Token;
+
+        if (StringUtils.isEmpty(cachedWaToken)) {
+            log.info("No cached Wa IDAM token found, requesting from IDAM service.");
+            log.info("Attempting to obtain Wa token, retry attempt {}", atomicInteger.getAndIncrement());
+            WaIdamOauth2Token =  getWaIdamOauth2Token();
+        } else {
+            atomicInteger.set(1);
+            log.info("Using cached Wa IDAM token.");
+            WaIdamOauth2Token =  cachedWaToken;
+        }
+
+        UserDetails waUserDetails = getUserDetails(WaIdamOauth2Token);
+
+        return IdamTokens.builder()
+                .idamOauth2Token(WaIdamOauth2Token)
+                .serviceAuthorization(generateServiceAuthorization())
+                .userId(waUserDetails.getId())
+                .email(waUserDetails.getEmail())
+                .roles(waUserDetails.getRoles())
                 .build();
     }
 }
