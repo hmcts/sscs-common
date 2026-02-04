@@ -789,6 +789,18 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public Optional<Appellant> getAppellant() {
+        return Optional.ofNullable(getAppeal())
+                .map(Appeal::getAppellant);
+    }
+
+    @JsonIgnore
+    public Optional<YesNo> getAppellantConfidentialityRequired() {
+        return getAppellant()
+                .map(Appellant::getConfidentialityRequired);
+    }
+
+    @JsonIgnore
     public boolean isIbcCase() {
         if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
             return true;
