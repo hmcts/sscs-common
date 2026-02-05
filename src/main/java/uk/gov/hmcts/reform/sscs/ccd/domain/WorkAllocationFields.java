@@ -28,4 +28,6 @@ public class WorkAllocationFields {
     private List<String> previouslyAssignedCaseRoles;
 
     private Integer daysToHearing;
+
+    private Boolean ftaResponseReviewRequired;
 }
