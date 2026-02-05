@@ -29,5 +29,5 @@ public class WorkAllocationFields {
 
     private Integer daysToHearing;
 
-    private boolean ftaResponseReviewRequired;
+    private Boolean ftaResponseReviewRequired;
 }
