@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ConfidentialityTabEntry {
+public class ConfidentialitySummaryEntry {
     private String name;
     private String role;
     private String confidentialityRequired;

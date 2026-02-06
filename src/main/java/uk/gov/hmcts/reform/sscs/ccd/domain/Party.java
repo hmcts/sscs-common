@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +26,6 @@ public abstract class Party extends Entity {
     private String ibcRole;
 
     private YesNo confidentialityRequired;
-    private String confidentialityRequiredChangedDate;
+    private LocalDateTime confidentialityRequiredChangedDate;
 
 }

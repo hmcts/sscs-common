@@ -13,7 +13,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.views.ConfidentialityTab.getConfidentialityTabEntries;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.views.ConfidentialitySummary.getConfidentialitySummaryEntries;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -511,8 +511,8 @@ public class SscsCaseData implements CaseData {
 
     @JsonProperty(value = "confidentialityTab", access = JsonProperty.Access.READ_ONLY)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public List<CcdValue<ConfidentialityTabEntry>> getConfidentialityTab() {
-        return getConfidentialityTabEntries(otherParties, appeal);
+    public List<CcdValue<ConfidentialitySummaryEntry>> getConfidentialityTab() {
+        return getConfidentialitySummaryEntries(otherParties, appeal);
     }
 
     @SuppressWarnings("unused")
