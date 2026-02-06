@@ -64,7 +64,7 @@ public class ConfidentialitySummary {
             return null;
         }
         final Appellant appellant = appeal.getAppellant();
-        return ConfidentialitySummaryEntry.builder().name(extractFullName(appellant.getName())).role("Appellant")
+        return ConfidentialitySummaryEntry.builder().name(extractFullName(appellant.getName())).party("Appellant")
             .confidentialityRequired(getConfidentialityStatus(appellant.getConfidentialityRequired()))
             .confidentialityRequiredChangedDate(formatDate(appellant.getConfidentialityRequiredChangedDate())).build();
     }
@@ -76,7 +76,7 @@ public class ConfidentialitySummary {
         }
         final Appointee appointee = appeal.getAppellant().getAppointee();
 
-        return ConfidentialitySummaryEntry.builder().name(extractFullName(appointee.getName())).role("Appointee")
+        return ConfidentialitySummaryEntry.builder().name(extractFullName(appointee.getName())).party("Appointee")
             .confidentialityRequired(getConfidentialityStatus(appeal.getAppellant().getConfidentialityRequired()))
             .confidentialityRequiredChangedDate(formatDate(appeal.getAppellant().getConfidentialityRequiredChangedDate()))
             .build();
@@ -92,7 +92,7 @@ public class ConfidentialitySummary {
 
     private static ConfidentialitySummaryEntry buildOtherPartyEntry(OtherParty otherParty, int displayIndex) {
         return ConfidentialitySummaryEntry.builder().name(extractFullName(otherParty.getName()))
-            .role("Other Party #" + displayIndex)
+            .party("Other Party #" + displayIndex)
             .confidentialityRequired(getConfidentialityStatus(otherParty.getConfidentialityRequired()))
             .confidentialityRequiredChangedDate(formatDate(otherParty.getConfidentialityRequiredChangedDate())).build();
     }

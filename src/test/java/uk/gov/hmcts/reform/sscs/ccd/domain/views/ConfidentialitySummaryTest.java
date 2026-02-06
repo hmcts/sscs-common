@@ -130,7 +130,7 @@ class ConfidentialitySummaryTest {
             appeal);
 
         assertThat(results).hasSize(1);
-        assertThat(results.getFirst().getValue().getRole()).isEqualTo("Appellant");
+        assertThat(results.getFirst().getValue().getParty()).isEqualTo("Appellant");
     }
 
     @Test
@@ -139,7 +139,7 @@ class ConfidentialitySummaryTest {
             childSupportAppeal(appellantWithName()));
 
         assertThat(results).hasSize(1);
-        assertThat(results.getFirst().getValue().getRole()).isEqualTo("Appellant");
+        assertThat(results.getFirst().getValue().getParty()).isEqualTo("Appellant");
     }
 
     private static Appeal childSupportAppeal(Appellant appellant) {
@@ -184,7 +184,7 @@ class ConfidentialitySummaryTest {
     private void assertEntry(ConfidentialitySummaryEntry entry, String expectedName, String expectedRole,
         String expectedConfidentiality, String expectedDate) {
         assertThat(entry.getName()).isEqualTo(expectedName);
-        assertThat(entry.getRole()).isEqualTo(expectedRole);
+        assertThat(entry.getParty()).isEqualTo(expectedRole);
         assertThat(entry.getConfidentialityRequired()).isEqualTo(expectedConfidentiality);
         assertThat(entry.getConfidentialityRequiredChangedDate()).isEqualTo(expectedDate);
     }

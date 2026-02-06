@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ConfidentialitySummaryEntry {
     private String name;
-    private String role;
+    private String party;
     private String confidentialityRequired;
     private String confidentialityRequiredChangedDate;
 }
