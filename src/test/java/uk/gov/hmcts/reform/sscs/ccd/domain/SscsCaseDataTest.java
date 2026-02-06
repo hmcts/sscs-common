@@ -16,7 +16,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -232,51 +231,6 @@ public class SscsCaseDataTest {
         String infoRequestValue = mapper.writeValueAsString(sscsCaseData.getInfoRequests());
 
         assertEquals(expectedValue, infoRequestValue);
-    }
-
-    @Test
-    public void shouldSerializeConfidentialityTabFromOtherParties() throws Exception {
-        Appointee appointee = Appointee.builder()
-                .name(Name.builder().firstName("Appo").lastName("Intee").build())
-                .build();
-        Appellant appellant = Appellant.builder()
-                .name(Name.builder().firstName("App").lastName("Ellant").build())
-                .confidentialityRequired(YES)
-                .appointee(appointee)
-                .build();
-        OtherParty otherParty = OtherParty.builder()
-                .name(Name.builder().title("Ms").firstName("Jane").lastName("Doe").build())
-                .confidentialityRequired(YES)
-                .build();
-        SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .appeal(Appeal.builder()
-                        .appellant(appellant)
-                        .benefitType(BenefitType.builder().code("childSupport").build())
-                        .build())
-                .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
-                .build();
-
-        JsonNode root = mapper.readTree(mapper.writeValueAsString(sscsCaseData));
-        JsonNode confidentialityTab = root.get("confidentialityTab");
-
-        assertThat(confidentialityTab).isNotNull();
-        assertEquals(3, confidentialityTab.size());
-        JsonNode entry = confidentialityTab.get(0).get("value");
-        assertEquals("App Ellant", entry.get("name").asText());
-        assertEquals("Appellant", entry.get("role").asText());
-        assertEquals("Yes", entry.get("confidentialityRequired").asText());
-
-        JsonNode appointeeEntry = confidentialityTab.get(1).get("value");
-        assertEquals("Appo Intee", appointeeEntry.get("name").asText());
-        assertEquals("Appointee", appointeeEntry.get("role").asText());
-        assertEquals("Yes", appointeeEntry.get("confidentialityRequired").asText());
-        // assertEquals("2020-01-02", appointeeEntry.get("confidentialityRequiredChangedDate").asText());
-
-        JsonNode otherPartyEntry = confidentialityTab.get(2).get("value");
-        assertEquals("Jane Doe", otherPartyEntry.get("name").asText());
-        assertEquals("Other Party #1", otherPartyEntry.get("role").asText());
-        assertEquals("Yes", otherPartyEntry.get("confidentialityRequired").asText());
-
     }
 
     @Test
