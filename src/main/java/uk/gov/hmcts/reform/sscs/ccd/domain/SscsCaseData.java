@@ -509,9 +509,9 @@ public class SscsCaseData implements CaseData {
         return isLanguagePreferenceWelsh() ? LanguagePreference.WELSH : LanguagePreference.ENGLISH;
     }
 
-    @JsonProperty(value = "confidentialityTab", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "getConfidentialitySummary", access = JsonProperty.Access.READ_ONLY)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public List<CcdValue<ConfidentialitySummaryEntry>> getConfidentialityTab() {
+    public List<CcdValue<ConfidentialitySummaryEntry>> getConfidentialitySummary() {
         return getConfidentialitySummaryEntries(otherParties, appeal);
     }
 
