@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
+import feign.FeignException;
+import feign.RetryableException;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
@@ -8,6 +10,7 @@ import java.util.function.Function;
 import java.util.function.UnaryOperator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Recover;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
@@ -39,6 +42,7 @@ public class UpdateCcdCaseService {
         this.readCcdCaseService = readCcdCaseService;
     }
 
+    //TODO could modify this to use the new updateCaseV2Internal to avoid duplication
     @Retryable
     public SscsCaseDetails updateCaseV2(Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, Consumer<SscsCaseDetails> mutator) {
         return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
@@ -55,12 +59,70 @@ public class UpdateCcdCaseService {
         });
     }
 
+    @Retryable(
+        retryFor = {FeignException.Conflict.class, FeignException.FeignServerException.class, RetryableException.class},
+        maxAttemptsExpression = "${ccd.retry.backoff.maxAttempts:5}",
+        backoff = @Backoff(
+            delayExpression = "${ccd.retry.backoff.delay:500}",
+            multiplierExpression = "${ccd.retry.backoff.multiplier:2}",
+            maxDelayExpression = "${ccd.retry.backoff.maxDelay:10000}",
+            random = true
+        )
+    )
+    public SscsCaseDetails updateCaseV2WithBackoff(
+        Long caseId,
+        String eventType,
+        String summary,
+        String description,
+        IdamTokens idamTokens,
+        Consumer<SscsCaseDetails> mutator) {
+
+        return updateCaseV2Internal(
+            caseId,
+            eventType,
+            summary,
+            description,
+            idamTokens,
+            mutator
+        );
+    }
+
+    private SscsCaseDetails updateCaseV2Internal(
+        Long caseId,
+        String eventType,
+        String summary,
+        String description,
+        IdamTokens idamTokens,
+        Consumer<SscsCaseDetails> mutator) {
+
+        return updateCaseV2(caseId, eventType, idamTokens, caseDetails -> {
+            mutator.accept(caseDetails);
+            return new UpdateResult(summary, description);
+        });
+
+    }
+
+    @Recover
+    public SscsCaseDetails recoverUpdateCaseV2WithBackoff(FeignException exception,
+                                                          Long caseId,
+                                                          String eventType,
+                                                          String summary,
+                                                          String description,
+                                                          IdamTokens idamTokens,
+                                                          Consumer<SscsCaseDetails> mutator) {
+        log.error("Retries exhausted for updateCaseV2WithBackoff for caseId {} and eventType {}",
+            caseId,
+            eventType,
+            exception);
+        throw exception;
+    }
+
     @Recover
     public SscsCaseDetails recoverUpdateCaseV2WithUnaryFunction(RuntimeException exception, Long caseId, String eventType, String summary, String description, IdamTokens idamTokens, UnaryOperator<SscsCaseDetails> mutator) {
         log.error("In recover method(updateCaseV2WithUnaryFunction) for caseId {} and eventType {}",
-                caseId,
-                eventType,
-                exception);
+            caseId,
+            eventType,
+            exception);
         throw exception;
     }
 
@@ -108,12 +170,15 @@ public class UpdateCcdCaseService {
             sscsCaseData = result.sscsCaseDetails.getData();
         }
 
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse, result.summary, result.description);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(sscsCaseData, startEventResponse,
+            result.summary, result.description);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        return sscsCcdConvertService.getCaseDetails(
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
-    public record ConditionalUpdateResult(String summary, String description, Boolean willCommit) { }
+    public record ConditionalUpdateResult(String summary, String description, Boolean willCommit) {
+    }
 
     /**
      * Conditionally update a case, by passing a boolean parameter as part of the mutator
@@ -137,14 +202,17 @@ public class UpdateCcdCaseService {
 
         var result = mutator.apply(caseDetails);
         if (result.willCommit()) {
-            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(), startEventResponse, result.summary, result.description);
-            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseDetails.getData(),
+                startEventResponse, result.summary, result.description);
+            return Optional.of(sscsCcdConvertService.getCaseDetails(
+                ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
         } else {
             return Optional.empty();
         }
     }
 
-    public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) { }
+    public record DynamicEventUpdateResult(String summary, String description, Boolean willCommit, String eventType) {
+    }
 
     // prob of a concurrency event happening * prob of that event or data changes the postponement field in case data (potentially resulting in different event)
 
@@ -162,9 +230,9 @@ public class UpdateCcdCaseService {
         SscsCaseData caseData = initialCaseDetails.getData();
 
         /**
-          * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
-          * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
-        */
+         * @see uk.gov.hmcts.reform.sscs.ccd.deserialisation.SscsCaseCallbackDeserializer#deserialize(String)
+         * setCcdCaseId & sortCollections are called above, so this functionality has been replicated here preserving existing logic
+         */
         caseData.setCcdCaseId(caseId.toString());
         caseData.sortCollections();
 
@@ -182,12 +250,14 @@ public class UpdateCcdCaseService {
 
             latestLastModified = latestCaseDetails.getLastModified();
 
-            if (!initialLastModified.isEqual(latestLastModified)){
+            if (!initialLastModified.isEqual(latestLastModified)) {
                 throw new RuntimeException();
             }
 
-            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, dynamicEventUpdateResult.summary, dynamicEventUpdateResult.description);
-            return Optional.of(sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
+            CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse,
+                dynamicEventUpdateResult.summary, dynamicEventUpdateResult.description);
+            return Optional.of(sscsCcdConvertService.getCaseDetails(
+                ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent)));
         } else {
             return Optional.empty();
         }
@@ -199,18 +269,22 @@ public class UpdateCcdCaseService {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse,
+            summary, description);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        return sscsCcdConvertService.getCaseDetails(
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
     @Deprecated(since = "since 18/10/2024, use updateCaseV2 instead", forRemoval = true)
     public SscsCaseDetails updateCase(SscsCaseData caseData, Long caseId, String eventId, String eventToken, String eventType, String summary,
                                       String description, IdamTokens idamTokens) {
         log.info("UpdateCase for caseId {} eventToken {} and eventType {}", caseId, eventToken, eventType);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData, summary, description);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(eventToken, eventId, caseData,
+            summary, description);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        return sscsCcdConvertService.getCaseDetails(
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
     @Deprecated(since = "since 18/10/2024, use updateCaseV2WithoutRetry instead", forRemoval = true)
@@ -218,9 +292,11 @@ public class UpdateCcdCaseService {
         log.info("UpdateCase for caseId {} and eventType {}", caseId, eventType);
 
         StartEventResponse startEventResponse = ccdClient.startEvent(idamTokens, caseId, eventType);
-        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
+        CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse,
+            summary, description);
 
-        return sscsCcdConvertService.getCaseDetails(ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
+        return sscsCcdConvertService.getCaseDetails(
+            ccdClient.submitEventForCaseworker(idamTokens, caseId, caseDataContent));
     }
 
     @Recover
@@ -247,7 +323,7 @@ public class UpdateCcdCaseService {
     @Recover
     public SscsCaseDetails recoverUpdateCaseV2(RuntimeException exception, Long caseId, String eventType) {
         log.error("In recover method(recoverUpdateCaseV2) for caseId {} and eventType {}", caseId, eventType);
-       throw exception;
+        throw exception;
     }
 
 }
