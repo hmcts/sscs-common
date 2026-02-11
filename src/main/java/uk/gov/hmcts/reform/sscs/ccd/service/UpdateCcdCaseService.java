@@ -77,6 +77,7 @@ public class UpdateCcdCaseService {
         IdamTokens idamTokens,
         Consumer<SscsCaseDetails> mutator) {
 
+        log.info("updateCaseV2WithBackoff for caseId {} and eventType {}", caseId, eventType);
         return updateCaseV2Internal(
             caseId,
             eventType,
