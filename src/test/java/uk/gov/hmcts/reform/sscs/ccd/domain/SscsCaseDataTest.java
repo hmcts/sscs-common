@@ -38,7 +38,7 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
 public class SscsCaseDataTest {
 
-    private LocalDate now = LocalDate.now();
+    private final LocalDate now = LocalDate.now();
     private ObjectMapper mapper;
 
     @BeforeEach
@@ -635,37 +635,37 @@ public class SscsCaseDataTest {
     @Test
     public void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(null).build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.FALSE);
+        assertEquals(Boolean.FALSE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.TRUE);
+        assertEquals(Boolean.TRUE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
-        assertEquals(sscsCaseData.isLanguagePreferenceWelsh(), Boolean.FALSE);
+        assertEquals(Boolean.FALSE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(null).build();
-        assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.ENGLISH);
+        assertEquals(LanguagePreference.ENGLISH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
-        assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.ENGLISH);
+        assertEquals(LanguagePreference.ENGLISH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
     public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
-        assertEquals(sscsCaseData.getLanguagePreference(), LanguagePreference.WELSH);
+        assertEquals(LanguagePreference.WELSH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
@@ -1043,4 +1043,46 @@ public class SscsCaseDataTest {
                 .hasSize(9)
                 .containsOnly("WC");
     }
+
+    @Test
+    public void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
+        List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
+        documentSelection.add(CcdValue.<DocumentSelectionDetails>builder()
+                .value(DocumentSelectionDetails.builder()
+                        .documentsList(new DynamicList(new DynamicListItem("doc1", "Document 1"), new ArrayList<>()))
+                        .build())
+                .build());
+
+        List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = new ArrayList<>();
+        otherPartySelection.add(CcdValue.<OtherPartySelectionDetails>builder()
+                .value(OtherPartySelectionDetails.builder()
+                        .otherPartiesList(new DynamicList(new DynamicListItem("party1", "Party 1"), new ArrayList<>()))
+                        .build())
+                .build());
+
+        SscsCaseData caseData = SscsCaseData.builder()
+                .genericLetterText("Some letter text")
+                .sendToAllParties(YES)
+                .sendToApellant(YES)
+                .sendToJointParty(YES)
+                .sendToOtherParties(YES)
+                .sendToRepresentative(YES)
+                .addDocuments(YES)
+                .documentSelection(documentSelection)
+                .otherPartySelection(otherPartySelection)
+                .build();
+
+        caseData.clearNotificationFields();
+
+        assertThat(caseData.getGenericLetterText()).isEmpty();
+        assertThat(caseData.getSendToAllParties()).isNull();
+        assertThat(caseData.getSendToApellant()).isNull();
+        assertThat(caseData.getSendToJointParty()).isNull();
+        assertThat(caseData.getSendToOtherParties()).isNull();
+        assertThat(caseData.getSendToRepresentative()).isNull();
+        assertThat(caseData.getAddDocuments()).isNull();
+        assertThat(caseData.getDocumentSelection()).isEmpty();
+        assertThat(caseData.getOtherPartySelection()).isEmpty();
+    }
+    
 }

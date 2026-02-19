@@ -40,6 +40,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -876,5 +877,26 @@ public class SscsCaseData implements CaseData {
                 .map(ElementDisputedDetails::getIssueCode)
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
+    public void clearNotificationFields() {
+        setGenericLetterText("");
+        setSendToAllParties(null);
+        setSendToApellant(null);
+        setSendToJointParty(null);
+        setSendToOtherParties(null);
+        setSendToRepresentative(null);
+        setAddDocuments(null);
+
+        List<CcdValue<DocumentSelectionDetails>> documentSelection = getDocumentSelection();
+        if (CollectionUtils.isNotEmpty(documentSelection)) {
+            documentSelection.clear();
+        }
+
+        List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = getOtherPartySelection();
+        if (CollectionUtils.isNotEmpty(otherPartySelection)) {
+            otherPartySelection.clear();
+        }
     }
 }
