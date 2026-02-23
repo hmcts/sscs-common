@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum State {
     APPEAL_CREATED("appealCreated"),
+    AWAIT_OTHER_PARTY_DATA("awaitOtherPartyData"),
     CLOSED("closed"),
     DORMANT_APPEAL_STATE("dormantAppealState"),
     DRAFT("draft"),
