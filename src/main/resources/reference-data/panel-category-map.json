@@ -3312,10 +3312,6 @@
   "category" : "4",
   "johTiers" : [ "84", "58" ]
 }, {
-  "benefitIssueCode" : "062SV",
-  "category" : "4",
-  "johTiers" : [ "84", "58" ]
-}, {
   "benefitIssueCode" : "062TP",
   "category" : "1",
   "johTiers" : [ "84" ]
