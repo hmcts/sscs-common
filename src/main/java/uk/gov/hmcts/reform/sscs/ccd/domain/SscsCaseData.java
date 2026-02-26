@@ -889,14 +889,14 @@ public class SscsCaseData implements CaseData {
         setSendToRepresentative(null);
         setAddDocuments(null);
 
-        List<CcdValue<DocumentSelectionDetails>> documentSelection = getDocumentSelection();
-        if (CollectionUtils.isNotEmpty(documentSelection)) {
-            documentSelection.clear();
+        List<CcdValue<DocumentSelectionDetails>> docSelection = getDocumentSelection();
+        if (CollectionUtils.isNotEmpty(docSelection)) {
+            docSelection.clear();
         }
 
-        List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = getOtherPartySelection();
-        if (CollectionUtils.isNotEmpty(otherPartySelection)) {
-            otherPartySelection.clear();
+        List<CcdValue<OtherPartySelectionDetails>> otherPartiesSelection = getOtherPartySelection();
+        if (CollectionUtils.isNotEmpty(otherPartiesSelection)) {
+            otherPartiesSelection.clear();
         }
     }
 }
