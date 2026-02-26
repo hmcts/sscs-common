@@ -13,38 +13,37 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.OtherPartySelectionDetails;
 class SelectionValidatorTest {
 
     @Test
-    void givenNullOtherPartySelection_thenReturnsEmpty() {
-        assertThat(SelectionValidator.validateOtherPartySelection(null)).isEmpty();
+    void givenNullOtherPartySelection_thenReturnsFalse() {
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(null)).isFalse();
     }
 
     @Test
-    void givenEmptyOtherPartySelection_thenReturnsEmpty() {
-        assertThat(SelectionValidator.validateOtherPartySelection(List.of())).isEmpty();
+    void givenEmptyOtherPartySelection_thenReturnsFalse() {
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(List.of())).isFalse();
     }
 
     @Test
-    void givenOtherPartySelectionWithNoDuplicates_thenReturnsEmpty() {
+    void givenOtherPartySelectionWithNoDuplicates_thenReturnsFalse() {
         final List<CcdValue<OtherPartySelectionDetails>> selection = List.of(
             otherPartySelectionEntry("party1"),
             otherPartySelectionEntry("party2")
         );
 
-        assertThat(SelectionValidator.validateOtherPartySelection(selection)).isEmpty();
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(selection)).isFalse();
     }
 
     @Test
-    void givenOtherPartySelectionWithDuplicates_thenReturnsError() {
+    void givenOtherPartySelectionWithDuplicates_thenReturnsTrue() {
         final List<CcdValue<OtherPartySelectionDetails>> selection = List.of(
             otherPartySelectionEntry("party1"),
             otherPartySelectionEntry("party1")
         );
 
-        assertThat(SelectionValidator.validateOtherPartySelection(selection))
-            .contains("Other parties cannot be selected more than once");
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(selection)).isTrue();
     }
 
     @Test
-    void givenOtherPartySelectionWithNullDynamicList_thenIgnoresNullsAndReturnsEmpty() {
+    void givenOtherPartySelectionWithNullDynamicList_thenIgnoresNullsAndReturnsFalse() {
         final List<CcdValue<OtherPartySelectionDetails>> selection = List.of(
             CcdValue.<OtherPartySelectionDetails>builder()
                 .value(OtherPartySelectionDetails.builder().otherPartiesList(null).build())
@@ -52,11 +51,11 @@ class SelectionValidatorTest {
             otherPartySelectionEntry("party1")
         );
 
-        assertThat(SelectionValidator.validateOtherPartySelection(selection)).isEmpty();
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(selection)).isFalse();
     }
 
     @Test
-    void givenOtherPartySelectionWithNullDynamicListValue_thenIgnoresNullsAndReturnsEmpty() {
+    void givenOtherPartySelectionWithNullDynamicListValue_thenIgnoresNullsAndReturnsFalse() {
         final List<CcdValue<OtherPartySelectionDetails>> selection = List.of(
             CcdValue.<OtherPartySelectionDetails>builder()
                 .value(OtherPartySelectionDetails.builder()
@@ -66,42 +65,41 @@ class SelectionValidatorTest {
             otherPartySelectionEntry("party1")
         );
 
-        assertThat(SelectionValidator.validateOtherPartySelection(selection)).isEmpty();
+        assertThat(SelectionValidator.otherPartySelectionContainsDuplicates(selection)).isFalse();
     }
 
     @Test
-    void givenNullDocumentSelection_thenReturnsEmpty() {
-        assertThat(SelectionValidator.validateDocumentSelection(null)).isEmpty();
+    void givenNullDocumentSelection_thenReturnsFalse() {
+        assertThat(SelectionValidator.documentSelectionContainsDuplicates(null)).isFalse();
     }
 
     @Test
-    void givenEmptyDocumentSelection_thenReturnsEmpty() {
-        assertThat(SelectionValidator.validateDocumentSelection(List.of())).isEmpty();
+    void givenEmptyDocumentSelection_thenReturnsFalse() {
+        assertThat(SelectionValidator.documentSelectionContainsDuplicates(List.of())).isFalse();
     }
 
     @Test
-    void givenDocumentSelectionWithNoDuplicates_thenReturnsEmpty() {
+    void givenDocumentSelectionWithNoDuplicates_thenReturnsFalse() {
         final List<CcdValue<DocumentSelectionDetails>> selection = List.of(
             documentSelectionEntry("doc1"),
             documentSelectionEntry("doc2")
         );
 
-        assertThat(SelectionValidator.validateDocumentSelection(selection)).isEmpty();
+        assertThat(SelectionValidator.documentSelectionContainsDuplicates(selection)).isFalse();
     }
 
     @Test
-    void givenDocumentSelectionWithDuplicates_thenReturnsError() {
+    void givenDocumentSelectionWithDuplicates_thenReturnsTrue() {
         final List<CcdValue<DocumentSelectionDetails>> selection = List.of(
             documentSelectionEntry("doc1"),
             documentSelectionEntry("doc1")
         );
 
-        assertThat(SelectionValidator.validateDocumentSelection(selection))
-            .contains("The same document cannot be selected more than once");
+        assertThat(SelectionValidator.documentSelectionContainsDuplicates(selection)).isTrue();
     }
 
     @Test
-    void givenDocumentSelectionWithNullDynamicList_thenIgnoresNullsAndReturnsEmpty() {
+    void givenDocumentSelectionWithNullDynamicList_thenIgnoresNullsAndReturnsFalse() {
         final List<CcdValue<DocumentSelectionDetails>> selection = List.of(
             CcdValue.<DocumentSelectionDetails>builder()
                 .value(DocumentSelectionDetails.builder().documentsList(null).build())
@@ -109,7 +107,7 @@ class SelectionValidatorTest {
             documentSelectionEntry("doc1")
         );
 
-        assertThat(SelectionValidator.validateDocumentSelection(selection)).isEmpty();
+        assertThat(SelectionValidator.documentSelectionContainsDuplicates(selection)).isFalse();
     }
 
     private CcdValue<OtherPartySelectionDetails> otherPartySelectionEntry(final String code) {

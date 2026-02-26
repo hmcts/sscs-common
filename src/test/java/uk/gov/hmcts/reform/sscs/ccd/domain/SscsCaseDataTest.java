@@ -1045,7 +1045,7 @@ public class SscsCaseDataTest {
     }
 
     @Test
-    public void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
+    void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
         List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
         documentSelection.add(CcdValue.<DocumentSelectionDetails>builder()
                 .value(DocumentSelectionDetails.builder()
@@ -1084,5 +1084,5 @@ public class SscsCaseDataTest {
         assertThat(caseData.getDocumentSelection()).isEmpty();
         assertThat(caseData.getOtherPartySelection()).isEmpty();
     }
-    
+
 }

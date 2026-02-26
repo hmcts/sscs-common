@@ -899,4 +899,5 @@ public class SscsCaseData implements CaseData {
             otherPartiesSelection.clear();
         }
     }
+
 }

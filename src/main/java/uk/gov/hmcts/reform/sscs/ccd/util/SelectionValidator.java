@@ -1,11 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.util;
 
-import static org.apache.commons.collections4.CollectionUtils.isNotEmpty;
+import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Function;
 import lombok.experimental.UtilityClass;
 import uk.gov.hmcts.reform.sscs.ccd.domain.CcdValue;
@@ -17,29 +16,22 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.OtherPartySelectionDetails;
 @UtilityClass
 public final class SelectionValidator {
 
-    public static Optional<String> validateOtherPartySelection(
+    public static boolean otherPartySelectionContainsDuplicates(
         final List<CcdValue<OtherPartySelectionDetails>> otherPartySelection) {
-        return validateNoDuplicateCodes(
-            otherPartySelection,
-            OtherPartySelectionDetails::getOtherPartiesList,
-            "Other parties cannot be selected more than once");
+        return containsDuplicateCodes(otherPartySelection, OtherPartySelectionDetails::getOtherPartiesList);
     }
 
-    public static Optional<String> validateDocumentSelection(
+    public static boolean documentSelectionContainsDuplicates(
         final List<CcdValue<DocumentSelectionDetails>> documentSelection) {
-        return validateNoDuplicateCodes(
-            documentSelection,
-            DocumentSelectionDetails::getDocumentsList,
-            "The same document cannot be selected more than once");
+        return containsDuplicateCodes(documentSelection, DocumentSelectionDetails::getDocumentsList);
     }
 
-    private static <T> Optional<String> validateNoDuplicateCodes(
+    private static <T> boolean containsDuplicateCodes(
         final List<CcdValue<T>> items,
-        final Function<T, DynamicList> dynamicListExtractor,
-        final String errorMessage) {
+        final Function<T, DynamicList> dynamicListExtractor) {
 
-        if (!isNotEmpty(items)) {
-            return Optional.empty();
+        if (isEmpty(items)) {
+            return false;
         }
 
         final List<String> codes = items.stream()
@@ -51,8 +43,6 @@ public final class SelectionValidator {
             .map(DynamicListItem::getCode)
             .toList();
 
-        return codes.size() != new HashSet<>(codes).size()
-            ? Optional.of(errorMessage)
-            : Optional.empty();
+        return codes.size() != new HashSet<>(codes).size();
     }
 }
