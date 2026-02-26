@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
@@ -900,14 +901,12 @@ public class SscsCaseData implements CaseData {
         setSendToRepresentative(null);
         setAddDocuments(null);
 
-        List<CcdValue<DocumentSelectionDetails>> docSelection = getDocumentSelection();
-        if (CollectionUtils.isNotEmpty(docSelection)) {
-            docSelection.clear();
+        if (nonNull(documentSelection)) {
+            documentSelection.clear();
         }
 
-        List<CcdValue<OtherPartySelectionDetails>> otherPartiesSelection = getOtherPartySelection();
-        if (CollectionUtils.isNotEmpty(otherPartiesSelection)) {
-            otherPartiesSelection.clear();
+        if (nonNull(otherPartySelection)) {
+            otherPartySelection.clear();
         }
     }
 
