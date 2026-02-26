@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
@@ -39,6 +40,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -888,4 +890,24 @@ public class SscsCaseData implements CaseData {
                 .sorted()
                 .collect(toList());
     }
+
+    @JsonIgnore
+    public void clearNotificationFields() {
+        setGenericLetterText("");
+        setSendToAllParties(null);
+        setSendToApellant(null);
+        setSendToJointParty(null);
+        setSendToOtherParties(null);
+        setSendToRepresentative(null);
+        setAddDocuments(null);
+
+        if (nonNull(documentSelection)) {
+            documentSelection.clear();
+        }
+
+        if (nonNull(otherPartySelection)) {
+            otherPartySelection.clear();
+        }
+    }
+
 }
