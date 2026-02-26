@@ -119,6 +119,10 @@
   "category" : "1",
   "johTiers" : [ "84" ]
 }, {
+  "benefitIssueCode" : "001SV",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
   "benefitIssueCode" : "001SX",
   "category" : "1",
   "johTiers" : [ "84" ]
@@ -2804,6 +2808,10 @@
   "category" : "4",
   "johTiers" : [ "84", "58" ]
 }, {
+  "benefitIssueCode" : "051SV",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
   "benefitIssueCode" : "051TL",
   "category" : "1",
   "johTiers" : [ "84" ]
@@ -3301,6 +3309,10 @@
   "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "062SG",
+  "category" : "4",
+  "johTiers" : [ "84", "58" ]
+}, {
+  "benefitIssueCode" : "062SV",
   "category" : "4",
   "johTiers" : [ "84", "58" ]
 }, {
@@ -5568,9 +5580,9 @@
   "medicalMember" : "yes",
   "johTiers" : [ "84", "50", "58" ]
 }, {
-    "benefitIssueCode" : "015CE",
-    "category" : "1",
-    "johTiers" : [ "84" ]
+  "benefitIssueCode" : "015CE",
+  "category" : "1",
+  "johTiers" : [ "84" ]
 }, {
   "benefitIssueCode" : "015DD",
   "category" : "1",
