@@ -127,6 +127,7 @@ public enum Issue {
     SR("Second Adult Rebate"),
     SS("Self Employed - Straightforward"),
     SU("Suspensions"),
+    SV("Severe Conditions"),
     SX("Self Employed - Complex"),
     TB("Termination Of Benefit - Failure To Provide Furthe"),
     TD("Third Party Deduction"),
