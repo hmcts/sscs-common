@@ -32,7 +32,8 @@ public enum InterlocReferralReason {
     REVIEW_LIBERTY_TO_APPLY_APPLICATION("reviewLibertyToApplyApplication", "Review liberty to apply application"),
     REVIEW_UPPER_TRIBUNAL_DECISION("reviewUpperTribunalDecision", "Review upper tribunal decision"),
     REVIEW_REINSTATEMENT_REQUEST("reviewReinstatementRequest", "Review reinstatement request"),
-    REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", "Review confidentiality request");
+    REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", "Review confidentiality request"),
+    CONFIDENTIALITY("confidentiality", "Confidentiality");
 
     private final String ccdDefinition;
     private final String description;
