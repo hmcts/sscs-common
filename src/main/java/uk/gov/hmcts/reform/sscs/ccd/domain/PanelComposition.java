@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum PanelComposition {
     JUDGE_DOCTOR_AND_DISABILITY_EXPERT("judge, doctor and disability expert", "barnwr, meddyg ac arbenigwr anableddau"),
     JUDGE_AND_A_DOCTOR("judge and a doctor", "barnwr a meddyg"),
+    JUDGE_AND_DOCTOR_IF_APPLICABLE("judge and doctor (if applicable)", "barnwr a meddyg (os yw’n berthnasol)"),
     JUDGE("judge", "barnwr"),
     JUDGE_DOCTOR_AND_DISABILITY_EXPERT_IF_APPLICABLE("judge, doctor and disability expert (if applicable)", "barnwr, meddyg ac arbenigwr anabledd (os yw’n berthnasol)"),
     JUDGE_AND_ONE_OR_TWO_DOCTORS("judge and 1 or 2 doctors", "barnwr ac 1 neu 2 feddyg"),
