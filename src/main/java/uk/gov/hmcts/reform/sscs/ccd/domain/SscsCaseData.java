@@ -4,6 +4,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
+import static java.util.stream.Collectors.toList;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
@@ -12,7 +13,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -30,7 +30,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import jakarta.validation.Valid;
 import jakarta.validation.groups.ConvertGroup;
@@ -790,6 +789,18 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
+    public Optional<Appellant> getAppellant() {
+        return Optional.ofNullable(getAppeal())
+                .map(Appeal::getAppellant);
+    }
+
+    @JsonIgnore
+    public Optional<YesNo> getAppellantConfidentialityRequired() {
+        return getAppellant()
+                .map(Appellant::getConfidentialityRequired);
+    }
+
+    @JsonIgnore
     public boolean isIbcCase() {
         if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
             return true;
@@ -876,7 +887,7 @@ public class SscsCaseData implements CaseData {
                 .map(ElementDisputed::getValue)
                 .map(ElementDisputedDetails::getIssueCode)
                 .sorted()
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @JsonIgnore
