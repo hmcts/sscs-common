@@ -950,6 +950,43 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void givenNullAppeal_thenGetAppellantOptionalReturnsEmpty() {
+        var caseData = SscsCaseData.builder().build();
+
+        assertTrue(caseData.getAppellant().isEmpty());
+    }
+
+    @Test
+    public void givenNullAppellant_thenGetAppellantOptionalReturnsEmpty() {
+        var caseData = SscsCaseData.builder().appeal(Appeal.builder().build()).build();
+
+        assertTrue(caseData.getAppellant().isEmpty());
+    }
+
+    @Test
+    public void givenAppellant_thenGetAppellantOptionalReturnsAppellant() {
+        var appellant = Appellant.builder().build();
+        var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
+
+        assertEquals(appellant, caseData.getAppellant().orElseThrow());
+    }
+
+    @Test
+    public void givenNullAppeal_thenGetAppellantConfidentialityRequiredReturnsEmpty() {
+        var caseData = SscsCaseData.builder().build();
+
+        assertTrue(caseData.getAppellantConfidentialityRequired().isEmpty());
+    }
+
+    @Test
+    public void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
+        var appellant = Appellant.builder().confidentialityRequired(YES).build();
+        var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
+
+        assertEquals(YES, caseData.getAppellantConfidentialityRequired().orElseThrow());
+    }
+
+    @Test
     public void givenHasJointPartyIsYes_thenIsThereAJointPartyIsTrue() {
         var jointParty = JointParty.builder().hasJointParty(YES).build();
         var caseData = SscsCaseData.builder().jointParty(jointParty).build();

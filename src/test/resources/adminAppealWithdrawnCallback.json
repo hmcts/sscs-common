@@ -111,6 +111,7 @@
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
+          "confidentialityRequiredChangedDate": null,
           "role": null,
           "ibcRole": null
         },
@@ -918,6 +919,7 @@
           "isAppointee": null,
           "isAddressSameAsAppointee": null,
           "confidentialityRequired": null,
+          "confidentialityRequiredChangedDate": null,
           "role": null,
           "ibcRole": null
         },
