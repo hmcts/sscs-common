@@ -64,6 +64,7 @@ public enum EventType {
     COH_QUESTION_DEADLINE_EXTENSION_GRANTED("cohQuestionDeadlineExtensionGranted", 0, false),
     COH_QUESTION_DEADLINE_REMINDER("cohQuestionDeadlineReminder", 0, false),
     COH_QUESTION_ROUND_ISSUED("cohQuestionRoundIssued", 0, false),
+    CONFIDENTIALITY_CONFIRMED("confidentialityConfirmed", 0, false),
     CONFIRM_LAPSED("confirmLapsed", 0, false),
     CONFIRM_PANEL_COMPOSITION("confirmPanelComposition", 0, false),
     CONFIRM_PO_ATTENDANCE("confirmPoAttendance", 0, false),
