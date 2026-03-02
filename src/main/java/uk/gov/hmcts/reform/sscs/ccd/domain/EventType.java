@@ -6,6 +6,7 @@ import com.google.common.base.CaseFormat;
 import java.util.Arrays;
 
 public enum EventType {
+
     ABATE_CASE("abateCase", 0, false),
     ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
     ACTION_HEARING_RECORDING_REQUEST("actionHearingRecordingRequest", 0, false),
@@ -15,7 +16,6 @@ public enum EventType {
     ADD_HEARING("addHearing", 0, false),
     ADD_NOTE("addNote", 0, false),
     ADD_OTHER_PARTY_DATA("addOtherPartyData", 0, false),
-    ADD_OTHER_PARTY_DATA_UC("addOtherPartyDataUC", 0, false),
     ADD_REPRESENTATIVE("addRepresentative", 0, false),
     ADD_SC_NUMBER("addSCnumber", 0, false),
     ADJOURNED("adjourned", "hearingAdjourned", 5, true),
@@ -120,6 +120,7 @@ public enum EventType {
     FTA_COMMUNICATION("ftaCommunication", 0, false),
     FURTHER_EVIDENCE_HANDLED_OFFLINE("furtherEvidenceHandledOffline", 0, false),
     GENERATE_COVERSHEET("generateCoversheet", 0, false),
+    GET_CASE_CALLBACK("GetCaseCallback", 0, false),
     HANDLE_EVIDENCE("handleEvidence", 0, false),
     HANDLING_ERROR("handlingError", 0, false),
     HEARING("hearing", "hearing", 4, false),
