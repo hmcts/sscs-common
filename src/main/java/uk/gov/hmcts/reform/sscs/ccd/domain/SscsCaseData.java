@@ -105,8 +105,7 @@ public class SscsCaseData implements CaseData {
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
     private DynamicList processAudioVideoAction;
-    private DynamicList selectedParty;
-//    private DynamicList originalSender;
+    private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
     private DynamicList selectedAudioVideoEvidence;
@@ -430,6 +429,14 @@ public class SscsCaseData implements CaseData {
             extendedSscsCaseData = new ExtendedSscsCaseData();
         }
         return extendedSscsCaseData;
+    }
+
+    public DynamicList getSelectedParty() {
+        return getExtendedSscsCaseData().getSelectedParty();
+    }
+
+    public void setSelectedParty(DynamicList selectedParty) {
+        getExtendedSscsCaseData().setSelectedParty(selectedParty);
     }
 
     /**
