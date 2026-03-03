@@ -105,7 +105,8 @@ public class SscsCaseData implements CaseData {
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
     private DynamicList processAudioVideoAction;
-    private DynamicList originalSender;
+    private DynamicList selectedParty;
+//    private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
     private DynamicList selectedAudioVideoEvidence;
