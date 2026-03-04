@@ -431,12 +431,12 @@ public class SscsCaseData implements CaseData {
         return extendedSscsCaseData;
     }
 
-    public DynamicList getSelectedParty() {
-        return getExtendedSscsCaseData().getSelectedParty();
+    public DynamicList getSelectedConfidentialityParty() {
+        return getExtendedSscsCaseData().getSelectedConfidentialityParty();
     }
 
-    public void setSelectedParty(DynamicList selectedParty) {
-        getExtendedSscsCaseData().setSelectedParty(selectedParty);
+    public void setSelectedConfidentialityParty(DynamicList selectedConfidentialityParty) {
+        getExtendedSscsCaseData().setSelectedConfidentialityParty(selectedConfidentialityParty);
     }
 
     /**
