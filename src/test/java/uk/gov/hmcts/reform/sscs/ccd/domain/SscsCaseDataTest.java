@@ -38,7 +38,7 @@ import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
 public class SscsCaseDataTest {
 
-    private LocalDate now = LocalDate.now();
+    private final LocalDate now = LocalDate.now();
     private ObjectMapper mapper;
 
     @BeforeEach
@@ -1079,5 +1079,30 @@ public class SscsCaseDataTest {
         assertThat(result)
                 .hasSize(9)
                 .containsOnly("WC");
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        ", NO",
+        "NO, NO",
+        "YES, YES"
+    })
+    void showConfidentialityTabReturnsCorrectValue(YesNo showConfidentialityTab, YesNo expected) {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+            .extendedSscsCaseData(ExtendedSscsCaseData.builder()
+                .showConfidentialityTab(showConfidentialityTab)
+                .build())
+            .build();
+
+        assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(expected);
+    }
+
+    @Test
+    void showConfidentialityTabReturnsNoWhenExtendedSscsCaseDataIsNull() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+            .extendedSscsCaseData(null)
+            .build();
+
+        assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(NO);
     }
 }
