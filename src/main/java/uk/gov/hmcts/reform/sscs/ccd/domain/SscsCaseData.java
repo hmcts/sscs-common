@@ -105,10 +105,7 @@ public class SscsCaseData implements CaseData {
     private String hmctsDwpState;
     private String dwpFurtherEvidenceStates;
     private DynamicList processAudioVideoAction;
-    // TEMP: commented out to keep constructor parameter count within limit while selectedConfidentialityParty is top-level.
-    // Revisit after model flattening/constructor strategy is refactored.
-    // private DynamicList originalSender;
-    private DynamicList selectedConfidentialityParty;
+    private DynamicList originalSender;
     private DynamicList furtherEvidenceAction;
     private List<ScannedDocument> scannedDocuments;
     private DynamicList selectedAudioVideoEvidence;
@@ -434,14 +431,14 @@ public class SscsCaseData implements CaseData {
         return extendedSscsCaseData;
     }
 
-    // TEMP compatibility shim while originalSender backing field is disabled.
-    public DynamicList getOriginalSender() {
-        return null;
+    @JsonProperty("selectedConfidentialityParty")
+    public DynamicList getSelectedConfidentialityParty() {
+        return getExtendedSscsCaseData().getSelectedConfidentialityParty();
     }
 
-    // TEMP compatibility shim while originalSender backing field is disabled.
-    public void setOriginalSender(DynamicList originalSender) {
-        // no-op
+    @JsonProperty("selectedConfidentialityParty")
+    public void setSelectedConfidentialityParty(DynamicList selectedConfidentialityParty) {
+        getExtendedSscsCaseData().setSelectedConfidentialityParty(selectedConfidentialityParty);
     }
 
     /**
