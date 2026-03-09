@@ -2266,6 +2266,13 @@
   },
   {
     "benefitCode": "ESA",
+    "issue": "SV",
+    "durationFaceToFace": 45,
+    "durationInterpreter": 75,
+    "durationPaper": 30
+  },
+  {
+    "benefitCode": "ESA",
     "issue": "TL",
     "durationFaceToFace": 45,
     "durationInterpreter": 75,
