@@ -1,8 +1,11 @@
 package uk.gov.hmcts.reform.sscs.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.UC;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.BenefitCode.getBenefitCode;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.US;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Issue.getIssue;
 import static uk.gov.hmcts.reform.sscs.reference.data.helper.ReferenceDataHelper.getDuplicates;
 
 import java.util.HashMap;
@@ -70,35 +73,38 @@ public class HearingDurationsServiceTest {
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Face To Face mapping is returned")
-    @Test
-    public void testGHearingDurationFaceToFace() {
-        HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
+    @ParameterizedTest
+    @CsvSource({"003,LE,60", "051,SV,45"})
+    public void testGHearingDurationFaceToFace(String benefitCode, String issueCode, int expectedDuration) {
+        HearingDuration result = hearingDurations.getHearingDuration(benefitCode, issueCode);
 
-        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
-        assertThat(result.getDurationFaceToFace()).isEqualTo(60);
+        assertEquals(getBenefitCode(benefitCode), result.getBenefitCode());
+        assertEquals(getIssue(issueCode), result.getIssue());
+        assertEquals(expectedDuration, result.getDurationFaceToFace());
     }
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Interpreter mapping is returned")
-    @Test
-    public void testGHearingDurationInterpreter() {
-        HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
+    @ParameterizedTest
+    @CsvSource({"003,LE,90", "051,SV,75"})
+    public void testGHearingDurationInterpreter(String benefitCode, String issueCode, int expectedDuration) {
+        HearingDuration result = hearingDurations.getHearingDuration(benefitCode, issueCode);
 
-        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
-        assertThat(result.getDurationInterpreter()).isEqualTo(90);
+        assertEquals(getBenefitCode(benefitCode), result.getBenefitCode());
+        assertEquals(getIssue(issueCode), result.getIssue());
+        assertEquals(expectedDuration, result.getDurationInterpreter());
     }
 
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Paper mapping is returned")
-    @Test
-    public void testGHearingDurationPaper() {
-        HearingDuration result = hearingDurations.getHearingDuration("003", "LE");
+    @ParameterizedTest
+    @CsvSource({"003,LE", "051,SV"})
+    public void testGHearingDurationPaper(String benefitCode, String issueCode) {
+        HearingDuration result = hearingDurations.getHearingDuration(benefitCode, issueCode);
 
-        assertThat(result.getBenefitCode()).isEqualTo(BenefitCode.PIP_REASSESSMENT_CASE);
-        assertThat(result.getIssue()).isEqualTo(Issue.LE);
-        assertThat(result.getDurationPaper()).isEqualTo(30);
+        assertEquals(getBenefitCode(benefitCode), result.getBenefitCode());
+        assertEquals(getIssue(issueCode), result.getIssue());
+        assertEquals(30, result.getDurationPaper());
     }
 
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
