@@ -9,6 +9,7 @@ import lombok.Getter;
 public enum InterlocReviewState {
     AWAITING_ADMIN_ACTION("awaitingAdminAction"),
     AWAITING_INFORMATION("awaitingInformation"),
+    HEF_ISSUED("hefIssued"),
     NONE("none"),
     REVIEW_BY_JUDGE("reviewByJudge"),
     REVIEW_BY_TCW("reviewByTcw"),
