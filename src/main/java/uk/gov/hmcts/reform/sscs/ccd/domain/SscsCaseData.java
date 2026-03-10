@@ -431,16 +431,6 @@ public class SscsCaseData implements CaseData {
         return extendedSscsCaseData;
     }
 
-    @JsonProperty("selectedConfidentialityParty")
-    public DynamicList getSelectedConfidentialityParty() {
-        return getExtendedSscsCaseData().getSelectedConfidentialityParty();
-    }
-
-    @JsonProperty("selectedConfidentialityParty")
-    public void setSelectedConfidentialityParty(DynamicList selectedConfidentialityParty) {
-        getExtendedSscsCaseData().setSelectedConfidentialityParty(selectedConfidentialityParty);
-    }
-
     /**
      * Returns the "latest" hearing.
      * "Latest" in this case is defined as:
