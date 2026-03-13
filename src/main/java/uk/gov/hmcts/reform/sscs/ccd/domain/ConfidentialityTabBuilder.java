@@ -78,7 +78,7 @@ public final class ConfidentialityTabBuilder {
     }
 
     private static boolean missingAppellant(final Appeal appeal) {
-        return appeal.getAppellant() == null;
+        return appeal == null || appeal.getAppellant() == null;
     }
 
     private static String formatDate(final LocalDateTime dateTime) {
