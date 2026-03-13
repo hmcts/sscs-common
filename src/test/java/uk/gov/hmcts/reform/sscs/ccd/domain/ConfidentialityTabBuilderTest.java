@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
@@ -17,7 +20,7 @@ class ConfidentialityTabBuilderTest {
     void shouldNotIncludePartyRowsWhenAppellantIsNull() {
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualTo("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -31,7 +34,7 @@ class ConfidentialityTabBuilderTest {
         final Appellant appellant = Appellant.builder().build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -49,7 +52,7 @@ class ConfidentialityTabBuilderTest {
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -61,12 +64,10 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowNoWhenAppellantHasNoConfidentiality() {
-        final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequired(NO)
-                                             .build();
+        final Appellant appellant = Appellant.builder().confidentialityRequired(NO).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -78,12 +79,10 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowFormattedDateWhenAppellantHasDate() {
-        final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequiredChangedDate(DATE)
-                                             .build();
+        final Appellant appellant = Appellant.builder().confidentialityRequiredChangedDate(DATE).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -95,9 +94,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowAppointeeRowWhenIsAppointeeYes() {
-        final Appointee appointee = Appointee.builder()
-                                             .name(Name.builder().firstName("App").lastName("Ointee").build())
-                                             .build();
+        final Appointee appointee = Appointee.builder().name(Name.builder().firstName("App").lastName("Ointee").build()).build();
         final Appellant appellant = Appellant.builder()
                                              .confidentialityRequired(YES)
                                              .isAppointee("Yes")
@@ -105,7 +102,7 @@ class ConfidentialityTabBuilderTest {
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -119,13 +116,10 @@ class ConfidentialityTabBuilderTest {
     @Test
     void shouldNotIncludeAppointeeRowWhenIsAppointeeNo() {
         final Appointee appointee = Appointee.builder().build();
-        final Appellant appellant = Appellant.builder()
-                                             .isAppointee("No")
-                                             .appointee(appointee)
-                                             .build();
+        final Appellant appellant = Appellant.builder().isAppointee("No").appointee(appointee).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -137,13 +131,10 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldNotIncludeAppointeeRowWhenAppointeeIsNull() {
-        final Appellant appellant = Appellant.builder()
-                                             .isAppointee("Yes")
-                                             .appointee(null)
-                                             .build();
+        final Appellant appellant = Appellant.builder().isAppointee("Yes").appointee(null).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -161,7 +152,7 @@ class ConfidentialityTabBuilderTest {
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
             List.of(CcdValue.<OtherParty>builder().value(otherParty).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
@@ -182,11 +173,9 @@ class ConfidentialityTabBuilderTest {
                                                  .build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
-            List.of(
-                CcdValue.<OtherParty>builder().value(otherParty1).build(),
-                CcdValue.<OtherParty>builder().value(otherParty2).build()
-            ));
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
+            List.of(CcdValue.<OtherParty>builder().value(otherParty1).build(),
+                CcdValue.<OtherParty>builder().value(otherParty2).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -204,11 +193,8 @@ class ConfidentialityTabBuilderTest {
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
-            Arrays.asList(
-                null,
-                CcdValue.<OtherParty>builder().value(otherParty).build()
-            ));
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
+            Arrays.asList(null, CcdValue.<OtherParty>builder().value(otherParty).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -220,12 +206,10 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowEmptyNameInRowWhenOtherPartyHasNullName() {
-        final OtherParty otherParty = OtherParty.builder()
-                                                .confidentialityRequired(NO)
-                                                .build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequired(NO).build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
             List.of(CcdValue.<OtherParty>builder().value(otherParty).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
@@ -238,12 +222,10 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowFormattedDateWhenOtherPartyHasDate() {
-        final OtherParty otherParty = OtherParty.builder()
-                                                .confidentialityRequiredChangedDate(DATE)
-                                                .build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequiredChangedDate(DATE).build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
             List.of(CcdValue.<OtherParty>builder().value(otherParty).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
@@ -256,9 +238,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowFormattedDateWhenAppointeeHasDate() {
-        final Appointee appointee = Appointee.builder()
-                                             .name(Name.builder().firstName("Joe").lastName("App").build())
-                                             .build();
+        final Appointee appointee = Appointee.builder().name(Name.builder().firstName("Joe").lastName("App").build()).build();
         final Appellant appellant = Appellant.builder()
                                              .isAppointee("Yes")
                                              .appointee(appointee)
@@ -266,7 +246,7 @@ class ConfidentialityTabBuilderTest {
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal, null);
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
 
         assertThat(result).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
@@ -279,12 +259,11 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldIncludeAllRowsWhenAllPartiesArePresent() {
-        final Appointee appointee = Appointee.builder()
-                                             .name(Name.builder().firstName("Ap").lastName("Pointee").build())
-                                             .build();
+        final Appointee appointee = Appointee.builder().name(Name.builder().firstName("Ap").lastName("Pointee").build()).build();
         final Appellant appellant = Appellant.builder()
                                              .name(Name.builder().firstName("App").lastName("Ellant").build())
-                                             .confidentialityRequired(YES).confidentialityRequiredChangedDate(DATE)
+                                             .confidentialityRequired(YES)
+                                             .confidentialityRequiredChangedDate(DATE)
                                              .isAppointee("Yes")
                                              .appointee(appointee)
                                              .build();
@@ -294,7 +273,7 @@ class ConfidentialityTabBuilderTest {
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
-        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(appeal,
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
             List.of(CcdValue.<OtherParty>builder().value(otherParty).build()));
 
         assertThat(result).isEqualToIgnoringWhitespace("""
@@ -303,7 +282,45 @@ class ConfidentialityTabBuilderTest {
             Appellant | App Ellant | Yes | 20 Jan 2024, 9:05:03 am
             Appointee | Ap Pointee | Yes | 20 Jan 2024, 9:05:03 am
             Other Party 1 | Other Guy | No |
-            
+
+            """);
+    }
+
+    @Test
+    void shouldBuildTabWhenBenefitIsUc() {
+        final Appellant appellant = Appellant.builder()
+                                             .confidentialityRequired(YES)
+                                             .name(Name.builder().firstName("Uc").lastName("User").build())
+                                             .build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(UC, appeal, null);
+
+        assertThat(result).isEqualToIgnoringWhitespace("""
+            Party | Name | Confidentiality Status | Confidentiality Status Confirmed
+            -|-|-|-
+            Appellant | Uc User | Yes |
+
+            """);
+    }
+
+    @Test
+    void shouldReturnNullWhenBenefitIsNotChildSupport() {
+        final Appeal appeal = Appeal.builder().appellant(null).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(INFECTED_BLOOD_COMPENSATION, appeal, null);
+
+        assertThat(result).isNull();
+    }
+
+    @Test
+    void shouldNotIncludePartyRowsWhenAppealIsNull() {
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, null, null);
+
+        assertThat(result).isEqualTo("""
+            Party | Name | Confidentiality Status | Confidentiality Status Confirmed
+            -|-|-|-
+
             """);
     }
 }

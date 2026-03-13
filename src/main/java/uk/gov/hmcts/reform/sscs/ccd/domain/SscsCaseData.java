@@ -42,7 +42,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -912,9 +911,10 @@ public class SscsCaseData implements CaseData {
         }
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty(value = "confidentialityTab", access = READ_ONLY)
     public String getConfidentialityTab() {
-        return buildConfidentialityTab(appeal, otherParties);
+        return buildConfidentialityTab(getBenefitType().orElse(null), appeal, otherParties);
     }
 
 }

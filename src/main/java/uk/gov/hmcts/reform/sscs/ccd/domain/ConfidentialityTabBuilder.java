@@ -17,7 +17,13 @@ public final class ConfidentialityTabBuilder {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm:ss a", Locale.UK);
 
-    public static String buildConfidentialityTab(final Appeal appeal, final List<CcdValue<OtherParty>> otherParties) {
+    public static String buildConfidentialityTab(Benefit benefit, final Appeal appeal,
+        final List<CcdValue<OtherParty>> otherParties) {
+
+        if (benefit != Benefit.CHILD_SUPPORT && benefit != Benefit.UC) {
+            return null;
+        }
+
         final List<CcdValue<ConfidentialitySummaryEntry>> results = new ArrayList<>();
 
         addIfNotNull(results, buildAppellantConfidentialityTabEntry(appeal));
@@ -27,7 +33,8 @@ public final class ConfidentialityTabBuilder {
 
         emptyIfNull(otherParties).stream().filter(Objects::nonNull).map(CcdValue::getValue)
                                  .map(otherParty -> buildOtherPartyEntry(otherParty, atomicInteger.getAndIncrement()))
-                                 .forEach(entry -> results.add(CcdValue.<ConfidentialitySummaryEntry>builder().value(entry).build()));
+                                 .forEach(
+                                     entry -> results.add(CcdValue.<ConfidentialitySummaryEntry>builder().value(entry).build()));
 
         final var confidentialityMarkdown = new StringBuilder();
         results.forEach(entry -> confidentialityMarkdown.append(
@@ -41,7 +48,8 @@ public final class ConfidentialityTabBuilder {
             """.formatted(confidentialityMarkdown.toString());
     }
 
-    private static void addIfNotNull(final List<CcdValue<ConfidentialitySummaryEntry>> list, final ConfidentialitySummaryEntry entry) {
+    private static void addIfNotNull(final List<CcdValue<ConfidentialitySummaryEntry>> list,
+        final ConfidentialitySummaryEntry entry) {
         if (entry != null) {
             list.add(CcdValue.<ConfidentialitySummaryEntry>builder().value(entry).build());
         }
@@ -53,8 +61,10 @@ public final class ConfidentialityTabBuilder {
         }
         final Appellant appellant = appeal.getAppellant();
         return ConfidentialitySummaryEntry.builder().name(extractFullName(appellant.getName())).party("Appellant")
-                                          .confidentialityRequired(getConfidentialityStatus(appellant.getConfidentialityRequired()))
-                                          .confidentialityRequiredChangedDate(formatDate(appellant.getConfidentialityRequiredChangedDate())).build();
+                                          .confidentialityRequired(
+                                              getConfidentialityStatus(appellant.getConfidentialityRequired()))
+                                          .confidentialityRequiredChangedDate(
+                                              formatDate(appellant.getConfidentialityRequiredChangedDate())).build();
     }
 
     private static ConfidentialitySummaryEntry buildAppellantAppointeeConfidentialityTabEntry(final Appeal appeal) {
@@ -65,16 +75,20 @@ public final class ConfidentialityTabBuilder {
         final Appointee appointee = appeal.getAppellant().getAppointee();
 
         return ConfidentialitySummaryEntry.builder().name(extractFullName(appointee.getName())).party("Appointee")
-                                          .confidentialityRequired(getConfidentialityStatus(appeal.getAppellant().getConfidentialityRequired()))
-                                          .confidentialityRequiredChangedDate(formatDate(appeal.getAppellant().getConfidentialityRequiredChangedDate()))
+                                          .confidentialityRequired(
+                                              getConfidentialityStatus(appeal.getAppellant().getConfidentialityRequired()))
+                                          .confidentialityRequiredChangedDate(
+                                              formatDate(appeal.getAppellant().getConfidentialityRequiredChangedDate()))
                                           .build();
     }
 
     private static ConfidentialitySummaryEntry buildOtherPartyEntry(final OtherParty otherParty, final int displayIndex) {
         return ConfidentialitySummaryEntry.builder().name(extractFullName(otherParty.getName()))
                                           .party("Other Party " + displayIndex)
-                                          .confidentialityRequired(getConfidentialityStatus(otherParty.getConfidentialityRequired()))
-                                          .confidentialityRequiredChangedDate(formatDate(otherParty.getConfidentialityRequiredChangedDate())).build();
+                                          .confidentialityRequired(
+                                              getConfidentialityStatus(otherParty.getConfidentialityRequired()))
+                                          .confidentialityRequiredChangedDate(
+                                              formatDate(otherParty.getConfidentialityRequiredChangedDate())).build();
     }
 
     private static boolean missingAppellant(final Appeal appeal) {
