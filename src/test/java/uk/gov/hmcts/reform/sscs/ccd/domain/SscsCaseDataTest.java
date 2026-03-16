@@ -9,7 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
@@ -26,11 +28,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
@@ -1120,6 +1126,26 @@ public class SscsCaseDataTest {
         assertThat(caseData.getAddDocuments()).isNull();
         assertThat(caseData.getDocumentSelection()).isEmpty();
         assertThat(caseData.getOtherPartySelection()).isEmpty();
+    }
+
+    @Test
+    void getConfidentialityTabShouldReturnTableWhenBenefitIsChildSupport() {
+        final Appellant appellant = Appellant.builder()
+            .name(Name.builder().firstName("John").lastName("Doe").build())
+            .confidentialityRequired(YES)
+            .build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.getConfidentialityTab()).isEqualToIgnoringWhitespace("""
+            Party | Name | Confidentiality Status | Confidentiality Status Confirmed
+            -|-|-|-
+            Appellant | John Doe | Yes |
+            """);
     }
 
 }
