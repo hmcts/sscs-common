@@ -868,6 +868,12 @@ public class SscsCaseData implements CaseData {
         setPresentingOfficersHearingLink(null);
     }
 
+    @JsonIgnore
+    public YesNo showConfidentialityTab() {
+        final YesNo showConfidentialityTab = this.getExtendedSscsCaseData().getShowConfidentialityTab();
+        return isNull(showConfidentialityTab) || showConfidentialityTab == YesNo.NO ? NO : YES;
+    }
+
     public boolean isBenefitType(Benefit benefitType) {
         return getBenefitType().filter(benefitType::equals).isPresent();
     }
