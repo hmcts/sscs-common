@@ -1081,6 +1081,31 @@ public class SscsCaseDataTest {
                 .containsOnly("WC");
     }
 
+    @ParameterizedTest
+    @CsvSource({
+        ", NO",
+        "NO, NO",
+        "YES, YES"
+    })
+    void showConfidentialityTabReturnsCorrectValue(YesNo showConfidentialityTab, YesNo expected) {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+            .extendedSscsCaseData(ExtendedSscsCaseData.builder()
+                .showConfidentialityTab(showConfidentialityTab)
+                .build())
+            .build();
+
+        assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(expected);
+    }
+
+    @Test
+    void showConfidentialityTabReturnsNoWhenExtendedSscsCaseDataIsNull() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder()
+            .extendedSscsCaseData(null)
+            .build();
+
+        assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(NO);
+    }
+
     @Test
     void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
         List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
