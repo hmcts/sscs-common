@@ -6,6 +6,7 @@ import com.google.common.base.CaseFormat;
 import java.util.Arrays;
 
 public enum EventType {
+
     ABATE_CASE("abateCase", 0, false),
     ACTION_FURTHER_EVIDENCE("actionFurtherEvidence", 0, false),
     ACTION_HEARING_RECORDING_REQUEST("actionHearingRecordingRequest", 0, false),
