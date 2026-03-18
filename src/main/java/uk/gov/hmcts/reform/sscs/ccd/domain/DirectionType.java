@@ -32,7 +32,13 @@ public enum DirectionType {
     REFUSE_URGENT_HEARING("refuseUrgentHearing", "Refuse urgent hearing"),
 
     @JsonProperty("refuseHearingRecordingRequest")
-    REFUSE_HEARING_RECORDING_REQUEST("refuseHearingRecordingRequest", "Refuse hearing recording request");
+    REFUSE_HEARING_RECORDING_REQUEST("refuseHearingRecordingRequest", "Refuse hearing recording request"),
+
+    @JsonProperty("confidentialityGrantedSendToAdmin")
+    CONFIDENTIALITY_GRANTED_SEND_TO_ADMIN("confidentialityGrantedSendToAdmin", "Confidentiality Granted – Send to Admin"),
+
+    @JsonProperty("confidentialityRefusedSendToAdmin")
+    CONFIDENTIALITY_REFUSED_SEND_TO_ADMIN("confidentialityRefusedSendToAdmin", "Confidentiality Refused – Send to Admin");
 
     // needed only for the toString method
     private final String id;
