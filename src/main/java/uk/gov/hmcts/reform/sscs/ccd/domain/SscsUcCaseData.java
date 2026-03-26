@@ -44,6 +44,7 @@ public class SscsUcCaseData {
     private YesNo showSchedule8Paragraph4Page;
     private YesNo showSchedule7ActivitiesPage;
     private YesNo doesSchedule9Paragraph4Apply;
+    private YesNo ucWriteFinalDecisionHasSVIssueCode;
     @LocalDateMustNotBeInFuture(message = "Start date must not be in the future")
     private String ucWriteFinalDecisionWorkCapabilityAssessmentStartDate;
 
