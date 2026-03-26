@@ -160,9 +160,9 @@ tasks.register('generatePanelCategoryMap', JavaExec) {
 }
 
 def versions = [
-        springboot   : '3.5.10',
+        springboot   : '3.5.12',
         jackson      : '2.19.2',
-        junitjupiter : '5.14.0',
+        junitjupiter : '5.14.3',
         lombok       : '1.18.42'
 ]
 
@@ -173,7 +173,7 @@ dependencies {
 
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: versions.springboot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.15'
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.17'
 
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
@@ -189,8 +189,8 @@ dependencies {
 
     implementation group: 'com.nimbusds', name: 'nimbus-jose-jwt', version: '9.48'
 
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.26'
-    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.26'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.5.32'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.5.32'
     implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: '7.4'
 
     implementation group: 'org.json', name: 'json', version: '20250517'
@@ -207,7 +207,7 @@ dependencies {
 
     implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: '5.3.3'
 
-    implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.4'
+    implementation group: 'com.github.hmcts', name: 'idam-java-client', version: '3.0.5'
 
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.3.1'
 
@@ -240,11 +240,11 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junitjupiter
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junitjupiter
-    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.14.0'
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.14.3'
 
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.20.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.23.0'
 
-    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.6'
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.27.7'
     testImplementation group: 'org.skyscreamer', name: 'jsonassert', version: '1.5.3'
     testImplementation group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
