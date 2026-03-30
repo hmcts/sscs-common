@@ -22,7 +22,16 @@ public class ExtendedSscsCaseData {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo awareOfAnyAdditionalOtherParties;
-
+  
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DynamicList selectedConfidentialityParty;
+  
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo showConfidentialityTab;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo writeFinalDecisionSevereYesNo;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo writeFinalDecisionSevereCriteriaApply;
 }
