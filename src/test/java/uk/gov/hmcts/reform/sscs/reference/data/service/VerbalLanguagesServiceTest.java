@@ -74,10 +74,10 @@ public class VerbalLanguagesServiceTest {
     @DisplayName("Dialect should be used for lookup when it exists")
     @ParameterizedTest
     @CsvSource({
-            "Bardini, kur-kbr", "Kurdish (Bardini), kur-kbr", "Kurdish Bardini, kur-kbr",
-            "Kurmanji, kur-kkr", "Kurdish (Kurmanji), kur-kkr", "Kurdish Kurmanji, kur-kkr",
-            "Sorani, kur-ksr", "Kurdish (Sorani), kur-ksr", "Kurdish Sorani, kur-ksr",
-            "Latvian, lav", "Lithuanian, lit", "Macedonian, mkd", "Flemish, nld-nfl"
+        "Bardini, kur-kbr", "Kurdish (Bardini), kur-kbr", "Kurdish Bardini, kur-kbr",
+        "Kurmanji, kur-kkr", "Kurdish (Kurmanji), kur-kkr", "Kurdish Kurmanji, kur-kkr",
+        "Sorani, kur-ksr", "Kurdish (Sorani), kur-ksr", "Kurdish Sorani, kur-ksr",
+        "Latvian, lav", "Lithuanian, lit", "Macedonian, mkd", "Flemish, nld-nfl"
     })
     public void shouldOnlyFindLanguageUsingDialectWhenItExists(String ccdRef, String hmcRef) {
         var language = languagesService.getVerbalLanguage(ccdRef);
