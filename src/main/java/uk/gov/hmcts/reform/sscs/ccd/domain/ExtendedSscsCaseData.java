@@ -24,6 +24,9 @@ public class ExtendedSscsCaseData {
     private DynamicList selectedConfidentialityParty;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DynamicList selectedConfidentialityParty;
+  
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo showConfidentialityTab;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
