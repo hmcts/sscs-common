@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-    <suppress>
-        <notes><![CDATA[
-        Temporary suppression for SSCSFT-144 branch pipeline.
-        Package: org.codehaus.plexus:plexus-utils:3.3.0
-        ]]></notes>
-        <sha1>cf43b5391de623b36fe066a21127baef82c64022</sha1>
-        <cve>CVE-2025-67030</cve>
-    </suppress>
-</suppressions>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd"/>
