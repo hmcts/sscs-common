@@ -69,7 +69,7 @@ public class VenueDataLoaderTest {
                         assertTrue(
                             venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"),
                             format("%s is incorrect", venueDetails.getVenueId()))
-                );
+        );
     }
 
     @Test
