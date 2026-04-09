@@ -31,7 +31,7 @@ public class RefDataService {
 
         List<CourtVenue> sscsCourtVenues =
             venues.stream().filter(venue -> SSCS_COURT_TYPE_ID.equals(venue.getCourtTypeId())
-                && OPEN.equalsIgnoreCase(venue.getCourtStatus()))
+                && (OPEN.equalsIgnoreCase(venue.getCourtStatus()) || "406867".equals(venue.getEpimsId())))
                 .collect(Collectors.toList());
 
         if (sscsCourtVenues.size() != 1) {
