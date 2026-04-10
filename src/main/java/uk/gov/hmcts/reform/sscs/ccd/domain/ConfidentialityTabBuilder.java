@@ -20,7 +20,7 @@ public final class ConfidentialityTabBuilder {
     public static String buildConfidentialityTab(Benefit benefit, final Appeal appeal,
         final List<CcdValue<OtherParty>> otherParties) {
 
-        if (benefit != Benefit.CHILD_SUPPORT && benefit != Benefit.UC) {
+        if (Benefit.CHILD_SUPPORT != benefit && Benefit.UC != benefit) {
             return null;
         }
 
