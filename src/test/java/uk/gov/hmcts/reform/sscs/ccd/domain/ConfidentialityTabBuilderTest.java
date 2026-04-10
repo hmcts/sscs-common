@@ -282,7 +282,7 @@ class ConfidentialityTabBuilderTest {
             Appellant | App Ellant | Yes | 20 Jan 2024, 9:05:03 am
             Appointee | Ap Pointee | Yes | 20 Jan 2024, 9:05:03 am
             Other Party 1 | Other Guy | No |
-
+            
             """);
     }
 
@@ -300,7 +300,7 @@ class ConfidentialityTabBuilderTest {
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
             -|-|-|-
             Appellant | Uc User | Yes |
-
+            
             """);
     }
 
@@ -320,7 +320,17 @@ class ConfidentialityTabBuilderTest {
         assertThat(result).isEqualTo("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
             -|-|-|-
-
+            
             """);
     }
+
+    @Test
+    void shouldReturnNullWhenBenefitIsNull() {
+        final Appeal appeal = Appeal.builder().appellant(null).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(null, appeal, null);
+
+        assertThat(result).isNull();
+    }
+
 }
