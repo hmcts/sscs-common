@@ -18,6 +18,9 @@ public class ExtendedSscsCaseData {
     private YesNo selectNextHmcHearingType;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String confidentialityTab;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo awareOfAnyAdditionalOtherParties;
   
     @JsonInclude(JsonInclude.Include.NON_NULL)
