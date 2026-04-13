@@ -31,4 +31,7 @@ public class ExtendedSscsCaseData {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo writeFinalDecisionSevereCriteriaApply;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo esaWriteFinalDecisionSevereCriteriaApply;
 }
