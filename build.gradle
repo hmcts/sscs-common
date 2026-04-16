@@ -36,7 +36,7 @@ checkstyle {
 }
 
 pmd {
-    toolVersion = "7.17.0"
+    toolVersion = "7.22.0"
     ignoreFailures = true
     sourceSets = [sourceSets.main, sourceSets.test]
     reportsDir = layout.buildDirectory.dir("reports/pmd").get().asFile
@@ -200,7 +200,7 @@ dependencies {
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: '2.0.12'
     implementation group: 'io.github.openfeign.form', name: 'feign-form', version: '3.8.0'
 
-    implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
+    implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '8.0.0'
     implementation group: 'com.github.hmcts', name: 'core-case-data-store-client', version: '5.2.0'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: versions.springboot
@@ -253,14 +253,21 @@ dependencies {
     testImplementation group: 'org.projectlombok', name: 'lombok', version: versions.lombok
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: versions.lombok
 
-    // CVE-2023-24998
-    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
+    constraints {
+        // CVE-2023-24998
+        implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.6.0'
 
-    // CVE-2024-25710
-    implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.28.0'
+        // CVE-2024-25710
+        implementation group: 'org.apache.commons', name: 'commons-compress', version: '1.28.0'
 
-    // CVE-2023-2976, CVE-2020-8908
-    checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
-    checkstyle group: 'com.google.guava', name: 'guava', version: '33.5.0-jre'
-    checkstyle group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
+        // CVE-2025-48924
+        checkstyle group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
+
+        // CVE-2025-67030
+        checkstyle group: 'org.codehaus.plexus', name: 'plexus-utils', version: '4.0.3'
+
+        // CVE-2025-68161
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.25.3'
+        implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.25.3'
+    }
 }
