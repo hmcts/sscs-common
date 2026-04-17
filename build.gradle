@@ -32,7 +32,7 @@ repositories {
 // region static code analysis
 
 checkstyle {
-    toolVersion = "13.4.0"
+    toolVersion = "11.1.0"
 }
 
 pmd {
