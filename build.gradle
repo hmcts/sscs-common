@@ -261,6 +261,7 @@ dependencies {
 
     // CVE-2023-2976, CVE-2020-8908
     checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: checkstyle.toolVersion
+    checkstyle group: 'org.codehaus.plexus', name: 'plexus-utils', version: '4.0.3'
     checkstyle group: 'com.google.guava', name: 'guava', version: '33.5.0-jre'
     checkstyle group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
 }
