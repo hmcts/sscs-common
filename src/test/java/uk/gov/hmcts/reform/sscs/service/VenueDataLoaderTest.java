@@ -64,11 +64,12 @@ public class VenueDataLoaderTest {
 
     @Test
     public void venuesShouldEitherBeActiveOrNotActive() {
-        venueDataLoader.getVenueDetailsMap()
-               .values()
-               .forEach(venueDetails -> assertTrue(
-                   venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"),
-                   format("%s is incorrect", venueDetails.getVenueId())));
+        venueDataLoader.getVenueDetailsMap().values()
+                .forEach(venueDetails ->
+                        assertTrue(
+                            venueDetails.getActive().contains(venueDetails.getComments().isEmpty() ? "Yes" : "No"),
+                            format("%s is incorrect", venueDetails.getVenueId()))
+                );
     }
 
     @Test
