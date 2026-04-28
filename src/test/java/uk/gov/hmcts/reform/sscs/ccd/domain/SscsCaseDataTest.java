@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
@@ -1145,6 +1146,26 @@ public class SscsCaseDataTest {
         assertThat(caseData.getAddDocuments()).isNull();
         assertThat(caseData.getDocumentSelection()).isEmpty();
         assertThat(caseData.getOtherPartySelection()).isEmpty();
+    }
+
+    @Test
+    void getConfidentialityTabShouldReturnTableWhenBenefitIsChildSupport() {
+        final Appellant appellant = Appellant.builder()
+            .name(Name.builder().firstName("John").lastName("Doe").build())
+            .confidentialityRequired(YES)
+            .build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.getConfidentialityTab()).isEqualToIgnoringWhitespace("""
+            Party | Name | Confidentiality Status | Confidentiality Status Confirmed
+            -|-|-|-
+            Appellant | John Doe | Yes |
+            """);
     }
 
 }
