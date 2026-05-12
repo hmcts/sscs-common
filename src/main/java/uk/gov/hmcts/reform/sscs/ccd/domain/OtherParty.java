@@ -40,6 +40,9 @@ public class OtherParty extends Party {
     private ReasonableAdjustmentDetails appointeeReasonableAdjustment;
     private ReasonableAdjustmentDetails repReasonableAdjustment;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNoUnknown domesticViolenceMarker;
+
     @JsonIgnore
     public boolean hasAppointee() {
         return nonNull(getAppointee()) && isYes(getIsAppointee());
