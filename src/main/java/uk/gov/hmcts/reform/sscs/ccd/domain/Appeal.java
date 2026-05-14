@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +31,7 @@ public class Appeal {
                   @JsonProperty("hearingType") String hearingType,
                   @JsonProperty("hearingSubtype") HearingSubtype hearingSubtype,
                   @JsonProperty("receivedVia") String receivedVia,
-                  @JsonInclude(JsonInclude.Include.NON_NULL) YesNo isOtherPartyAddedForChildMaintUCCase) {
+                  @JsonProperty("isOtherPartyAddedForChildMaintUCCase") YesNo isOtherPartyAddedForChildMaintUCCase) {
         this.mrnDetails = mrnDetails;
         this.appellant = appellant;
         this.benefitType = benefitType;
