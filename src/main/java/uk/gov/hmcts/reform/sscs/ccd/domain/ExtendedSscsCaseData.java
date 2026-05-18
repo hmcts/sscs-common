@@ -18,11 +18,11 @@ public class ExtendedSscsCaseData {
     private YesNo selectNextHmcHearingType;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String confidentialityTab;
+    private YesNo awareOfAnyAdditionalOtherParties;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private YesNo awareOfAnyAdditionalOtherParties;
-  
+    private DynamicList selectedConfidentialityParty;
+
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo showConfidentialityTab;
 
