@@ -125,20 +125,12 @@ public class HearingDurationsServiceTest {
         assertThat(result).isEqualTo(30);
     }
 
-    @DisplayName("When a list with the elements Disputed WorkCapability that give extra time are given to getDurationFaceToFace "
-            + "the valid duration with extra time is returned")
-    @Test
-    public void testAddExtraTimeCorrectWc() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("WC"));
-
-        assertThat(result).isEqualTo(45);
-    }
-
-    @DisplayName("When a list with the elements Disputed SupportGroup that give extra time are given to getDurationFaceToFace "
-            + "the valid duration with extra time is returned")
-    @Test
-    public void testAddExtraTimeCorrectSg() {
-        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of("SG"));
+    @DisplayName("When a list with the elements Disputed SupportGroup, Disputed WorkCapability, or Severe Conditions "
+            + "that give extra time are given to getDurationFaceToFace the valid duration with extra time is returned")
+    @ParameterizedTest
+    @CsvSource({"WC", "SG", "SV"})
+    public void testAddExtraTimeCorrectSg(String issueCode) {
+        int result = hearingDurations.addExtraTimeIfNeeded(30, UC, US, List.of(issueCode));
 
         assertThat(result).isEqualTo(45);
     }
