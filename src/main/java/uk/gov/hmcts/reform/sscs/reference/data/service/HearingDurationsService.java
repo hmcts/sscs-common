@@ -52,7 +52,7 @@ public class HearingDurationsService {
         }
 
         if (isUniversalCreditAndSingleOrMultipleIssues(benefitCode, issue)
-                && isIssueWorkCapabilityAssessmentOrIsSupportGroup(getIssues(elements))) {
+                && isIssueWorkCapabilityAssessmentOrIsSupportGroupOrIsSevereConditions(getIssues(elements))) {
             return initialDuration + MULTIPLE_ISSUES_EXTRA_TIME;
         }
 
@@ -88,9 +88,10 @@ public class HearingDurationsService {
                 .collect(Collectors.toList());
     }
 
-    public boolean isIssueWorkCapabilityAssessmentOrIsSupportGroup(List<Issue> issues) {
+    public boolean isIssueWorkCapabilityAssessmentOrIsSupportGroupOrIsSevereConditions(List<Issue> issues) {
         return isIssueWorkCapabilityAssessment(issues)
-                || isSupportGroupPlacement(issues);
+                || isSupportGroupPlacement(issues)
+                || isSevereConditions(issues);
     }
 
     public boolean isSupportGroupPlacement(List<Issue> issues) {
@@ -99,6 +100,10 @@ public class HearingDurationsService {
 
     public boolean isIssueWorkCapabilityAssessment(List<Issue> issues) {
         return issues.contains(WC);
+    }
+
+    public boolean isSevereConditions(List<Issue> issues) {
+        return issues.contains(SV);
     }
 
     public boolean isUniversalCreditAndSingleOrMultipleIssues(BenefitCode benefitCode, Issue issue) {
