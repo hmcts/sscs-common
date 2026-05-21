@@ -15,7 +15,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ConfidentialityTabBuilder {
 
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm:ss a", Locale.UK);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm:ss a", Locale.UK);
 
     public static String buildConfidentialityTab(Benefit benefit, final Appeal appeal,
         final List<CcdValue<OtherParty>> otherParties) {

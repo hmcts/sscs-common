@@ -1,7 +1,10 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +32,13 @@ public abstract class Party extends Entity {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDateTime confidentialityRequiredChangedDate;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonProperty(value = "confidentialityRequiredChangedDateLabel", access = READ_ONLY)
+    public String getConfidentialityRequiredChangedDateLabel() {
+        return confidentialityRequiredChangedDate != null
+            ? confidentialityRequiredChangedDate.format(ConfidentialityTabBuilder.FORMATTER)
+            : "";
+    }
 
 }
