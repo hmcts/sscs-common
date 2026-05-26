@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 @Builder(toBuilder = true)
 public class Appeal {
@@ -21,6 +20,8 @@ public class Appeal {
     private String hearingType;
     private HearingSubtype hearingSubtype;
     private String receivedVia;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo isOtherPartyAddedForChildMaintUCCase;
 
     public Appeal(@JsonProperty("mrnDetails") MrnDetails mrnDetails,
