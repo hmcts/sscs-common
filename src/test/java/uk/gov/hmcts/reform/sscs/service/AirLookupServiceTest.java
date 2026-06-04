@@ -325,7 +325,7 @@ public class AirLookupServiceTest {
         "GBSTGRK06,Ayr,Glasgow",
         "GBSTAYR01,Ayr,Glasgow",
         "GBSTGLW01,Glasgow,Glasgow",
-        "GBSTGRG02,Stirling,Glasgow",
+        "GBSTGRG02,Glasgow,Glasgow",
         "GBSTGRK07,Greenock,Glasgow",
         "GBSTHPT00,Dunfermline,Glasgow",
         "GBSTGRK08,Ayr,Glasgow",
