@@ -18,6 +18,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 @ExtendWith(MockitoExtension.class)
 public class RefDataServiceTest {
 
+    private static final String SSCS_COURT_TYPE_ID = "31";
     private static final String SSCS_SERVICE_CODE = "BBA3";
     private static final String EPIMS_ID = "314125";
     @Mock
@@ -34,13 +35,21 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .courtStatus("Open")
                 .venueName("sscs_venue_name")
                 .build(),
             CourtVenue.builder()
                 .epimsId(EPIMS_ID)
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .courtStatus("Closed")
                 .venueName("sscs_venue_name_closed")
+                .build(),
+            CourtVenue.builder()
+                .epimsId("232341")
+                .courtTypeId("22")
+                .courtStatus("Open")
+                .venueName("other_venue_name")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
@@ -60,11 +69,13 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .venueName("venue_name")
                 .courtStatus("Open")
                 .build(),
             CourtVenue.builder()
                 .epimsId("epims_id")
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .venueName("not_venue_name")
                 .courtStatus("Open")
                 .build());
