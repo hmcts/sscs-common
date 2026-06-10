@@ -33,13 +33,11 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .serviceCode(SSCS_SERVICE_CODE)
                 .courtStatus("Open")
                 .venueName("sscs_venue_name")
                 .build(),
             CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .serviceCode(SSCS_SERVICE_CODE)
                 .courtStatus("Closed")
                 .venueName("sscs_venue_name_closed")
                 .build(),
@@ -66,11 +64,9 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .serviceCode(SSCS_SERVICE_CODE)
                 .venueName("venue_name")
                 .build(),
             CourtVenue.builder()
-                .serviceCode(SSCS_SERVICE_CODE)
                 .epimsId("epims_id")
                 .venueName("not_venue_name")
                 .build());

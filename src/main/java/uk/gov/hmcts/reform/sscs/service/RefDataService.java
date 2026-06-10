@@ -30,8 +30,7 @@ public class RefDataService {
             idamTokens.getServiceAuthorization(), SSCS_SERVICE_CODE, epimsId);
 
         List<CourtVenue> sscsCourtVenues =
-            venues.stream().filter(venue -> SSCS_SERVICE_CODE.equals(venue.getServiceCode())
-                && OPEN.equalsIgnoreCase(venue.getCourtStatus()))
+            venues.stream().filter(venue -> OPEN.equalsIgnoreCase(venue.getCourtStatus()))
                 .collect(Collectors.toList());
 
         if (sscsCourtVenues.size() != 1) {
