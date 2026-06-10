@@ -17,7 +17,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 @ExtendWith(MockitoExtension.class)
 public class RefDataServiceTest {
 
-    private static final String SSCS_COURT_TYPE_ID = "31";
+    private static final String SSCS_SERVICE_CODE = "BBA3";
     private static final String EPIMS_ID = "314125";
     @Mock
     private IdamService idamService;
@@ -33,24 +33,25 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .serviceCode(SSCS_SERVICE_CODE)
                 .courtStatus("Open")
                 .venueName("sscs_venue_name")
                 .build(),
             CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .serviceCode(SSCS_SERVICE_CODE)
                 .courtStatus("Closed")
                 .venueName("sscs_venue_name_closed")
                 .build(),
             CourtVenue.builder()
                 .epimsId("232341")
                 .courtTypeId("22")
+                .serviceCode("BBA1")
                 .venueName("other_venue_name")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", SSCS_SERVICE_CODE, EPIMS_ID))
             .thenReturn(courtVenue);
 
         CourtVenue venue = refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID);
@@ -65,17 +66,17 @@ public class RefDataServiceTest {
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
-                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .serviceCode(SSCS_SERVICE_CODE)
                 .venueName("venue_name")
                 .build(),
             CourtVenue.builder()
-                .courtTypeId(SSCS_COURT_TYPE_ID)
+                .serviceCode(SSCS_SERVICE_CODE)
                 .epimsId("epims_id")
                 .venueName("not_venue_name")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", SSCS_SERVICE_CODE, EPIMS_ID))
             .thenReturn(courtVenue);
 
         assertThrows(IllegalStateException.class,
