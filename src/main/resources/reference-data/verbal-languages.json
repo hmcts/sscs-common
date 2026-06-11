@@ -12,21 +12,25 @@
   {
     "reference": "acc-fey",
     "nameEn": "Feyli",
+    "mrdReference": "kur-fey",
     "ccdReferences": ["Feyli"]
   },
   {
     "reference": "acc-hki",
     "nameEn": "Hokkien",
+    "mrdReference": "zho-hok",
     "ccdReferences": ["Hokkien"]
   },
   {
     "reference": "acc-kgc",
     "nameEn": "Kichagga",
+    "mrdReference": "bnt-kic",
     "ccdReferences": ["Kichagga"]
   },
   {
     "reference": "acc-mhh",
     "nameEn": "Maghreb",
+    "mrdReference": "ara-mag",
     "ccdReferences": ["Maghreb"]
   },
   {
@@ -52,6 +56,7 @@
  {
    "reference": "alb",
    "nameEn": "Albanian",
+   "mrdReference": "sqi",
    "ccdReferences": ["albanian"]
  },
  {
@@ -225,6 +230,7 @@
  {
    "reference": "cze",
    "nameEn": "Czech",
+   "mrdReference": "ces",
    "ccdReferences": ["Czech"]
  },
  {
@@ -336,6 +342,7 @@
  {
    "reference": "ger",
    "nameEn": "German",
+   "mrdReference": "deu",
    "ccdReferences": ["German"]
  },
  {
@@ -432,6 +439,7 @@
  {
    "reference": "isn",
    "nameEn": "Esan",
+   "mrdReference": "ish",
    "ccdReferences": ["Esan"]
  },
  {
