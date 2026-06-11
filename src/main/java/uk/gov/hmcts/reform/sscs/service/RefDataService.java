@@ -41,12 +41,4 @@ public class RefDataService {
 
         return sscsCourtVenues.get(0);
     }
-
-    public List<CourtVenue> getCourtVenues() {
-        log.info("Requesting court venues for SSCS");
-        IdamTokens idamTokens = idamService.getIdamTokens();
-
-        return refDataApi.courtVenues(idamTokens.getIdamOauth2Token(),
-            idamTokens.getServiceAuthorization(), SSCS_SERVICE_CODE);
-    }
 }

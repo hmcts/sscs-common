@@ -23,16 +23,6 @@ public interface RefDataApi {
         value = "refdata/location/court-venues",
         headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
     )
-    List<CourtVenue> courtVenues(
-        @RequestHeader(AUTHORIZATION) String authorisation,
-        @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-        @RequestParam(SERVICE_CODE) String serviceCode
-    );
-
-    @GetMapping(
-        value = "refdata/location/court-venues",
-        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
-    )
     List<CourtVenue> courtVenueByEpimsId(
         @RequestHeader(AUTHORIZATION) String authorisation,
         @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
