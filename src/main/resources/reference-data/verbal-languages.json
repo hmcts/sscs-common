@@ -36,6 +36,7 @@
   {
     "reference": "acc-wol",
     "nameEn": "Senegal (French)",
+    "mrdReference": "wol",
     "ccdReferences": ["senegalFrench","Senegal French","Senegal (French)","Senegal (French) Olof Dialect","Senegal French Olof Dialect"]
   },
  {
