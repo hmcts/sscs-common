@@ -815,7 +815,7 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public Optional<YesNoUnknown> getAppellantConfidentialityRequired() {
         return getAppellant()
-                .map(Appellant::getConfidentialityRequirement);
+                .map(Appellant::getConfidentialityRequiredAnswer);
     }
 
     @JsonIgnore

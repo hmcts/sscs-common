@@ -1152,7 +1152,7 @@ class SscsCaseDataTest {
 
     @Test
     void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
-        var appellant = Appellant.builder().confidentialityRequirement(YesNoUnknown.YES).build();
+        var appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString())))).build();
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
 
         assertThat(caseData.getAppellantConfidentialityRequired()).contains(YesNoUnknown.YES);
@@ -1357,7 +1357,7 @@ class SscsCaseDataTest {
     void getConfidentialityTabShouldReturnTableWhenBenefitIsChildSupport() {
         final Appellant appellant = Appellant.builder()
                                              .name(Name.builder().firstName("John").lastName("Doe").build())
-                                             .confidentialityRequirement(YesNoUnknown.YES)
+                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
                                              .build();
         final SscsCaseData caseData = SscsCaseData.builder()
                                                   .appeal(Appeal.builder()
