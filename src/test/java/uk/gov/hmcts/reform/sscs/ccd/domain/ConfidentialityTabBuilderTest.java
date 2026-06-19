@@ -45,7 +45,7 @@ class ConfidentialityTabBuilderTest {
     @Test
     void shouldShowYesWhenAppellantHasYesConfidentiality() {
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
+                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
                                              .name(Name.builder().firstName("John").lastName("Doe").build())
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
@@ -62,7 +62,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowNoWhenAppellantHasNoConfidentiality() {
-        final Appellant appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString())))).build();
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString())))).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
         final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
@@ -77,7 +77,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowUndeterminedStatusWhenAppellantHasUnknownConfidentiality() {
-        final Appellant appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.UNKNOWN.toString(), YesNoUnknown.UNKNOWN.toString()), List.of(new DynamicListItem(YesNoUnknown.UNKNOWN.toString(), YesNoUnknown.UNKNOWN.toString())))).build();
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.UNKNOWN.name(), YesNoUnknown.UNKNOWN.toString()), List.of(new DynamicListItem(YesNoUnknown.UNKNOWN.name(), YesNoUnknown.UNKNOWN.toString())))).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
         final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
@@ -109,7 +109,7 @@ class ConfidentialityTabBuilderTest {
     void shouldShowAppointeeRowWhenIsAppointeeYes() {
         final Appointee appointee = Appointee.builder().name(Name.builder().firstName("App").lastName("Ointee").build()).build();
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
+                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
                                              .isAppointee("Yes")
                                              .appointee(appointee)
                                              .build();
@@ -161,7 +161,7 @@ class ConfidentialityTabBuilderTest {
     void shouldShowOtherParty1WhenSingleOtherPartyExists() {
         final OtherParty otherParty = OtherParty.builder()
                                                 .name(Name.builder().firstName("Other").lastName("Person").build())
-                                                .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
+                                                .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
@@ -219,7 +219,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowEmptyNameInRowWhenOtherPartyHasNullName() {
-        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString())))).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString())))).build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
         final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
@@ -275,14 +275,14 @@ class ConfidentialityTabBuilderTest {
         final Appointee appointee = Appointee.builder().name(Name.builder().firstName("Ap").lastName("Pointee").build()).build();
         final Appellant appellant = Appellant.builder()
                                              .name(Name.builder().firstName("App").lastName("Ellant").build())
-                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
+                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
                                              .confidentialityRequiredChangedDate(DATE)
                                              .isAppointee("Yes")
                                              .appointee(appointee)
                                              .build();
         final OtherParty otherParty = OtherParty.builder()
                                                 .name(Name.builder().firstName("Other").lastName("Guy").build())
-                                                .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.toString(), YesNoUnknown.NO.toString()))))
+                                                .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString()), List.of(new DynamicListItem(YesNoUnknown.NO.name(), YesNoUnknown.NO.toString()))))
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
@@ -302,7 +302,7 @@ class ConfidentialityTabBuilderTest {
     @Test
     void shouldBuildTabWhenBenefitIsUc() {
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.toString(), YesNoUnknown.YES.toString()))))
+                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
                                              .name(Name.builder().firstName("Uc").lastName("User").build())
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();

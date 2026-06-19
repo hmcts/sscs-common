@@ -30,15 +30,6 @@ public abstract class Party extends Entity {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String ibcRole;
 
-    // /**
-    //  * @deprecated since 2026-06-18
-    //  * Use {@link #confidentialityRequirement} instead. This field has been replaced
-    //  * with a more comprehensive enum that supports Yes/No/Unknown states.
-    //  */
-    // @Deprecated(since = "2026-06-18")
-    // @JsonInclude(JsonInclude.Include.NON_NULL)
-    // private YesNo confidentialityRequired;
-
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private DynamicList confidentialityRequirement;
 
@@ -48,12 +39,13 @@ public abstract class Party extends Entity {
 
     @JsonIgnore
     public YesNoUnknown getConfidentialityRequiredAnswer() {
-        return (nonNull(confidentialityRequirement)) ? YesNoUnknown.valueOf(
-            confidentialityRequirement.getValue().getCode()) : null;
+        return (nonNull(confidentialityRequirement) && nonNull(confidentialityRequirement.getValue())
+            && nonNull(confidentialityRequirement.getValue().getCode()))
+            ? YesNoUnknown.valueOf(confidentialityRequirement.getValue().getCode()) : null;
     }
 
     @JsonIgnore
-    public void setConfidentialityRequiredAnswer(YesNoUnknown confidentialityRequiredAnswer) {
+    public void setConfidentialityRequiredAnswer(final YesNoUnknown confidentialityRequiredAnswer) {
         if (isNull(this.confidentialityRequirement)) {
             setConfidentialityRequirement(nonNull(confidentialityRequiredAnswer) ? new DynamicList(
                 new DynamicListItem(confidentialityRequiredAnswer.name(), confidentialityRequiredAnswer.toString()),

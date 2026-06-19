@@ -13,43 +13,43 @@ public enum YesNoUnknown {
     YES("Yes"), NO("No"), UNKNOWN("Unknown");
     private final String value;
 
-    public static boolean isYes(YesNoUnknown yesNo) {
+    public static boolean isYes(final YesNoUnknown yesNo) {
         return YES.equals(yesNo);
     }
 
-    public static boolean isYes(String yesNo) {
+    public static boolean isYes(final String yesNo) {
         return nonNull(yesNo) && YES.getValue().equalsIgnoreCase(yesNo);
     }
 
-    public static boolean isNo(YesNoUnknown yesNo) {
+    public static boolean isNo(final YesNoUnknown yesNo) {
         return NO.equals(yesNo);
     }
 
-    public static boolean isNo(String yesNo) {
+    public static boolean isNo(final String yesNo) {
         return nonNull(yesNo) && NO.getValue().equalsIgnoreCase(yesNo);
     }
 
-    public static boolean isNoOrNull(YesNoUnknown yesNo) {
+    public static boolean isNoOrNull(final YesNoUnknown yesNo) {
         return isNull(yesNo) || NO.equals(yesNo);
     }
 
-    public static boolean isNoOrNull(String yesNo) {
+    public static boolean isNoOrNull(final String yesNo) {
         return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo);
     }
 
-    public static boolean isNoOrNullOrUnknown(YesNoUnknown yesNo) {
+    public static boolean isNoOrNullOrUnknown(final YesNoUnknown yesNo) {
         return isNull(yesNo) || NO.equals(yesNo) || UNKNOWN.equals(yesNo);
     }
 
-    public static boolean isNoOrNullOrUnknown(String yesNo) {
+    public static boolean isNoOrNullOrUnknown(final String yesNo) {
         return isNull(yesNo) || NO.getValue().equalsIgnoreCase(yesNo) || UNKNOWN.getValue().equalsIgnoreCase(yesNo);
     }
 
-    public static boolean isNoOrUnknown(YesNoUnknown yesNo) {
+    public static boolean isNoOrUnknown(final YesNoUnknown yesNo) {
         return nonNull(yesNo) && (NO.equals(yesNo) || UNKNOWN.equals(yesNo));
     }
 
-    public static boolean isNoOrUnknown(String yesNo) {
+    public static boolean isNoOrUnknown(final String yesNo) {
         return nonNull(yesNo) && (NO.getValue().equalsIgnoreCase(yesNo) || UNKNOWN.getValue().equalsIgnoreCase(yesNo));
     }
 
