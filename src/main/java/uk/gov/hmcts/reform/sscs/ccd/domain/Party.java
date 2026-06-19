@@ -27,7 +27,17 @@ public abstract class Party extends Entity {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String ibcRole;
 
-    private YesNo confidentialityRequired;
+    // /**
+    //  * @deprecated since 2026-06-18
+    //  * Use {@link #confidentialityRequirement} instead. This field has been replaced
+    //  * with a more comprehensive enum that supports Yes/No/Unknown states.
+    //  */
+    // @Deprecated(since = "2026-06-18")
+    // @JsonInclude(JsonInclude.Include.NON_NULL)
+    // private YesNo confidentialityRequired;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNoUnknown confidentialityRequirement;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("confidentialityRequiredConfirmedDate")

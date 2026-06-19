@@ -62,7 +62,7 @@ public final class ConfidentialityTabBuilder {
         final Appellant appellant = appeal.getAppellant();
         return ConfidentialitySummaryEntry.builder().name(extractFullName(appellant.getName())).party("Appellant")
                                           .confidentialityRequired(
-                                              getConfidentialityStatus(appellant.getConfidentialityRequired()))
+                                              getConfidentialityStatus(appellant.getConfidentialityRequirement()))
                                           .confidentialityRequiredChangedDate(
                                               formatDate(appellant.getConfidentialityRequiredChangedDate())).build();
     }
@@ -76,7 +76,7 @@ public final class ConfidentialityTabBuilder {
 
         return ConfidentialitySummaryEntry.builder().name(extractFullName(appointee.getName())).party("Appointee")
                                           .confidentialityRequired(
-                                              getConfidentialityStatus(appeal.getAppellant().getConfidentialityRequired()))
+                                              getConfidentialityStatus(appeal.getAppellant().getConfidentialityRequirement()))
                                           .confidentialityRequiredChangedDate(
                                               formatDate(appeal.getAppellant().getConfidentialityRequiredChangedDate()))
                                           .build();
@@ -86,7 +86,7 @@ public final class ConfidentialityTabBuilder {
         return ConfidentialitySummaryEntry.builder().name(extractFullName(otherParty.getName()))
                                           .party("Other Party " + displayIndex)
                                           .confidentialityRequired(
-                                              getConfidentialityStatus(otherParty.getConfidentialityRequired()))
+                                              getConfidentialityStatus(otherParty.getConfidentialityRequirement()))
                                           .confidentialityRequiredChangedDate(
                                               formatDate(otherParty.getConfidentialityRequiredChangedDate())).build();
     }
@@ -99,8 +99,8 @@ public final class ConfidentialityTabBuilder {
         return dateTime != null ? dateTime.format(FORMATTER) : "";
     }
 
-    private static String getConfidentialityStatus(final YesNo confidentialityRequired) {
-        return confidentialityRequired != null ? confidentialityRequired.getValue() : "Undetermined";
+    private static String getConfidentialityStatus(final YesNoUnknown confidentialityRequired) {
+        return confidentialityRequired != null && confidentialityRequired != YesNoUnknown.UNKNOWN ? confidentialityRequired.getValue() : "Undetermined";
     }
 
     private static String extractFullName(final Name name) {

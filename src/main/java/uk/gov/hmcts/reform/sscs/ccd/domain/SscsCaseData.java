@@ -300,7 +300,13 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
-    private YesNo isConfidentialCase;
+    /**
+     * @deprecated since 2026-06-18
+     * Use {@link #confidentialCaseStatus} instead. This field has been replaced
+     * with a more comprehensive enum that supports Yes/No/Unknown states.
+     */
+    // @Deprecated(since = "2026-06-18")
+    // private YesNo isConfidentialCase;
     private YesNo isInc5249521;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
@@ -797,9 +803,19 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public Optional<YesNo> getAppellantConfidentialityRequired() {
+    public YesNoUnknown getConfidentialCaseStatus() {
+        return this.getExtendedSscsCaseData().getConfidentialCaseStatus();
+    }
+
+    @JsonIgnore
+    public void setConfidentialCaseStatus(YesNoUnknown confidentialCaseStatus) {
+        this.getExtendedSscsCaseData().setConfidentialCaseStatus(confidentialCaseStatus);
+    }
+
+    @JsonIgnore
+    public Optional<YesNoUnknown> getAppellantConfidentialityRequired() {
         return getAppellant()
-                .map(Appellant::getConfidentialityRequired);
+                .map(Appellant::getConfidentialityRequirement);
     }
 
     @JsonIgnore
