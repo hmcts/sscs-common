@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FtaCommunicationFields {
 
+    private String waTaskFtaCommunicationId;
     private List<CommunicationRequest> ftaCommunications;
     private FtaRequestType ftaRequestType;
     private DynamicList ftaRequestsDl;
