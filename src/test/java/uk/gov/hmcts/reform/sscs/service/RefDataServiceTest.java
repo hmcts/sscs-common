@@ -1,7 +1,8 @@
 package uk.gov.hmcts.reform.sscs.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 public class RefDataServiceTest {
 
     private static final String SSCS_COURT_TYPE_ID = "31";
+    private static final String SSCS_SERVICE_CODE = "BBA3";
     private static final String EPIMS_ID = "314125";
     @Mock
     private IdamService idamService;
@@ -46,49 +48,63 @@ public class RefDataServiceTest {
             CourtVenue.builder()
                 .epimsId("232341")
                 .courtTypeId("22")
+                .courtStatus("Open")
                 .venueName("other_venue_name")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", SSCS_SERVICE_CODE, EPIMS_ID))
             .thenReturn(courtVenue);
 
         CourtVenue venue = refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID);
 
-        assertNotNull(venue);
-        assertEquals(venue.getEpimsId(), EPIMS_ID);
+        assertThat(venue).isNotNull();
+        assertThat(venue.getEpimsId()).isEqualTo(EPIMS_ID);
+        assertThat(venue.getVenueName()).isEqualTo("sscs_venue_name");
     }
 
     @Test
-    public void getCourtVenueRefDataByEpimsIdWrongNumberOfReturnedCourtVenues() {
+    public void getCourtVenueRefDataByEpimsIdWrongNumberOfReturnedOpenCourtVenues() {
         IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
 
         List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
                 .epimsId(EPIMS_ID)
                 .courtTypeId(SSCS_COURT_TYPE_ID)
                 .venueName("venue_name")
+                .courtStatus("Open")
                 .build(),
             CourtVenue.builder()
-                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .epimsId("epims_id")
+                .courtTypeId(SSCS_COURT_TYPE_ID)
                 .venueName("not_venue_name")
+                .courtStatus("Open")
                 .build());
 
         when(idamService.getIdamTokens()).thenReturn(idamTokens);
-        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", EPIMS_ID))
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", SSCS_SERVICE_CODE, EPIMS_ID))
             .thenReturn(courtVenue);
 
-        assertThrows(IllegalStateException.class,
-            () -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID));
+        assertThatThrownBy(() -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID))
+            .isInstanceOfAny(IllegalStateException.class)
+            .hasMessageContaining("Exactly one SSCS court venue is required for epims ID: " + EPIMS_ID);
     }
 
     @Test
-    public void getCourtVenueRefDataByEpimsIdNoCourtVenue() {
+    public void getCourtVenueRefDataByEpimsIdNoOpenCourtsReturned() {
         IdamTokens idamTokens = IdamTokens.builder().idamOauth2Token("auth2").serviceAuthorization("s2s").build();
 
-        when(idamService.getIdamTokens()).thenReturn(idamTokens);
+        List<CourtVenue> courtVenue = List.of(CourtVenue.builder()
+                        .epimsId(EPIMS_ID)
+                        .venueName("venue_name")
+                        .courtStatus("Closed")
+                        .build());
 
-        assertThrows(IllegalStateException.class,
-            () -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID));
+        when(idamService.getIdamTokens()).thenReturn(idamTokens);
+        when(refDataApi.courtVenueByEpimsId("auth2", "s2s", SSCS_SERVICE_CODE, EPIMS_ID))
+                .thenReturn(courtVenue);
+
+        assertThatThrownBy(() -> refDataService.getCourtVenueRefDataByEpimsId(EPIMS_ID))
+                .isInstanceOfAny(IllegalStateException.class)
+                .hasMessageContaining("Exactly one SSCS court venue is required for epims ID: " + EPIMS_ID);
     }
 }

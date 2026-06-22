@@ -17,16 +17,7 @@ import uk.gov.hmcts.reform.sscs.model.CourtVenue;
 )
 public interface RefDataApi {
     String SERVICE_AUTHORIZATION = "serviceAuthorization";
-
-    @GetMapping(
-        value = "refdata/location/court-venues",
-        headers = CONTENT_TYPE + "=" + APPLICATION_JSON_VALUE
-    )
-    List<CourtVenue> courtVenues(
-        @RequestHeader(AUTHORIZATION) String authorisation,
-        @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
-        @RequestParam("court_type_id") String courtTypeId
-    );
+    String SERVICE_CODE = "service_code";
 
     @GetMapping(
         value = "refdata/location/court-venues",
@@ -35,6 +26,7 @@ public interface RefDataApi {
     List<CourtVenue> courtVenueByEpimsId(
         @RequestHeader(AUTHORIZATION) String authorisation,
         @RequestHeader(SERVICE_AUTHORIZATION) String serviceAuthorization,
+        @RequestParam(SERVICE_CODE) String serviceCode,
         @RequestParam("epimms_id") String epimsId
     );
 }
