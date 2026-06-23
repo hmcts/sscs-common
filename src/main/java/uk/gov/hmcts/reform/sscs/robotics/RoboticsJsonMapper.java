@@ -424,7 +424,7 @@ public class RoboticsJsonMapper {
     private void setConfidentialFlag(RoboticsWrapper roboticsWrapper, JSONObject obj) {
         if ((roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeAppellant().getRequestOutcome()))
                 || (roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty() != null && RequestOutcome.GRANTED.equals(roboticsWrapper.getSscsCaseData().getConfidentialityRequestOutcomeJointParty().getRequestOutcome()))
-                || (isSscs2Or5Type(roboticsWrapper.getSscsCaseData().getBenefitType()) && YesNoUnknown.YES.equals(roboticsWrapper.getSscsCaseData().getConfidentialCaseStatus()))) {
+                || (isSscs2Or5Type(roboticsWrapper.getSscsCaseData().getBenefitType()) && YesNoUndetermined.YES.equals(roboticsWrapper.getSscsCaseData().getConfidentialCaseStatus()))) {
             obj.put("isConfidential", YES);
         }
     }

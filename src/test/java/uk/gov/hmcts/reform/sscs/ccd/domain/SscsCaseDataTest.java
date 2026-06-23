@@ -1147,24 +1147,24 @@ class SscsCaseDataTest {
     void givenNullAppeal_thenGetAppellantConfidentialityRequiredReturnsEmpty() {
         var caseData = SscsCaseData.builder().build();
 
-        assertThat(caseData.getAppellantConfidentialityRequired()).isEmpty();
+        assertThat(caseData.getAppellant().map(Party::getConfidentialityRequirement)).isEmpty();
     }
 
     @Test
     void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
-        var appellant = Appellant.builder().confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString())))).build();
+        var appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
 
-        assertThat(caseData.getAppellantConfidentialityRequired()).contains(YesNoUnknown.YES);
+        assertThat(caseData.getAppellant().map(Party::getConfidentialityRequirement)).contains(YesNoUndetermined.YES);
     }
 
     @Test
     void givenConfidentialCaseStatusIsSet_thenGetConfidentialCaseStatusReturnsValue() {
         var caseData = SscsCaseData.builder().build();
 
-        caseData.setConfidentialCaseStatus(YesNoUnknown.YES);
+        caseData.setConfidentialCaseStatus(YesNoUndetermined.YES);
 
-        assertThat(caseData.getConfidentialCaseStatus()).isEqualTo(YesNoUnknown.YES);
+        assertThat(caseData.getConfidentialCaseStatus()).isEqualTo(YesNoUndetermined.YES);
     }
 
     @Test
@@ -1357,7 +1357,7 @@ class SscsCaseDataTest {
     void getConfidentialityTabShouldReturnTableWhenBenefitIsChildSupport() {
         final Appellant appellant = Appellant.builder()
                                              .name(Name.builder().firstName("John").lastName("Doe").build())
-                                             .confidentialityRequirement(new DynamicList(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()), List.of(new DynamicListItem(YesNoUnknown.YES.name(), YesNoUnknown.YES.toString()))))
+                                             .confidentialityRequirement(YesNoUndetermined.YES)
                                              .build();
         final SscsCaseData caseData = SscsCaseData.builder()
                                                   .appeal(Appeal.builder()

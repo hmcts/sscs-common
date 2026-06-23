@@ -36,5 +36,5 @@ public class ExtendedSscsCaseData {
     private YesNo esaWriteFinalDecisionSevereCriteriaApply;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private YesNoUnknown confidentialCaseStatus;
+    private YesNoUndetermined confidentialCaseStatus;
 }

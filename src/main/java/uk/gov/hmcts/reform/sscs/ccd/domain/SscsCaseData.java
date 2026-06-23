@@ -16,6 +16,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import jakarta.validation.Valid;
+import jakarta.validation.groups.ConvertGroup;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -34,8 +37,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-import jakarta.validation.Valid;
-import jakarta.validation.groups.ConvertGroup;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -305,8 +306,8 @@ public class SscsCaseData implements CaseData {
      * Use {@link #confidentialCaseStatus} instead. This field has been replaced
      * with a more comprehensive enum that supports Yes/No/Unknown states.
      */
-    // @Deprecated(since = "2026-06-18")
-    // private YesNo isConfidentialCase;
+    @Deprecated(since = "2026-06-18")
+    private YesNo isConfidentialCase;
     private YesNo isInc5249521;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
     private DatedRequestOutcome confidentialityRequestOutcomeJointParty;
@@ -803,19 +804,13 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public YesNoUnknown getConfidentialCaseStatus() {
+    public YesNoUndetermined getConfidentialCaseStatus() {
         return this.getExtendedSscsCaseData().getConfidentialCaseStatus();
     }
 
     @JsonIgnore
-    public void setConfidentialCaseStatus(YesNoUnknown confidentialCaseStatus) {
+    public void setConfidentialCaseStatus(YesNoUndetermined confidentialCaseStatus) {
         this.getExtendedSscsCaseData().setConfidentialCaseStatus(confidentialCaseStatus);
-    }
-
-    @JsonIgnore
-    public Optional<YesNoUnknown> getAppellantConfidentialityRequired() {
-        return getAppellant()
-                .map(Appellant::getConfidentialityRequiredAnswer);
     }
 
     @JsonIgnore
@@ -937,6 +932,11 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "confidentialityTab", access = READ_ONLY)
     public String getConfidentialityTab() {
         return buildConfidentialityTab(getBenefitType().orElse(null), appeal, otherParties);
+    }
+
+    @JsonIgnore
+    public Optional<YesNoUndetermined> getAppellantConfidentiality() {
+        return getAppellant().map(Party::getConfidentialityRequirement);
     }
 
 }
