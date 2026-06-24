@@ -14,7 +14,7 @@ public enum YesNoUndetermined {
     private final String value;
 
     public static boolean isYes(final YesNoUndetermined yesNo) {
-        return YES.equals(yesNo);
+        return YES == yesNo;
     }
 
     public static boolean isYes(final String yesNo) {
@@ -22,7 +22,7 @@ public enum YesNoUndetermined {
     }
 
     public static boolean isNo(final YesNoUndetermined yesNo) {
-        return NO.equals(yesNo);
+        return NO == yesNo;
     }
 
     public static boolean isNo(final String yesNo) {
@@ -30,7 +30,7 @@ public enum YesNoUndetermined {
     }
 
     public static boolean isNoOrNull(final YesNoUndetermined yesNo) {
-        return isNull(yesNo) || NO.equals(yesNo);
+        return isNull(yesNo) || NO == yesNo;
     }
 
     public static boolean isNoOrNull(final String yesNo) {
@@ -38,7 +38,7 @@ public enum YesNoUndetermined {
     }
 
     public static boolean isNoOrNullOrUndetermined(final YesNoUndetermined yesNo) {
-        return isNull(yesNo) || NO.equals(yesNo) || UNDETERMINED.equals(yesNo);
+        return isNull(yesNo) || NO == yesNo || UNDETERMINED == yesNo;
     }
 
     public static boolean isNoOrNullOrUndetermined(final String yesNo) {
@@ -46,7 +46,7 @@ public enum YesNoUndetermined {
     }
 
     public static boolean isNoOrUndetermined(final YesNoUndetermined yesNo) {
-        return nonNull(yesNo) && (NO.equals(yesNo) || UNDETERMINED.equals(yesNo));
+        return nonNull(yesNo) && (NO == yesNo || UNDETERMINED == yesNo);
     }
 
     public static boolean isNoOrUndetermined(final String yesNo) {
