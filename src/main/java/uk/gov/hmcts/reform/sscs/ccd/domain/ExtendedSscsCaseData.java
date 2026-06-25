@@ -27,6 +27,9 @@ public class ExtendedSscsCaseData {
     private YesNo showConfidentialityTab;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo sendDirectionNoticeToOtherPartyAllowed;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo writeFinalDecisionSevereYesNo;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
