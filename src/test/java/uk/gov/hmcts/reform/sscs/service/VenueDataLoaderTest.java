@@ -24,7 +24,7 @@ public class VenueDataLoaderTest {
 
     private static final List<String> venueDetailsByLeedsRpc = Arrays.asList(
             "517400", "449358", "563156", "45900", "744412", "572158", "288691", "562808", "720624", "427519",
-            "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113");
+            "366796", "107581", "495952", "852649", "491107", "195520", "641199", "574546", "320113", "698118");
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -157,7 +157,7 @@ public class VenueDataLoaderTest {
     public void testActiveVenueEpimsIdsMapByRpcReturnsVenues() {
         List<VenueDetails> result = venueDataLoader.getActiveVenueEpimsIdsMapByRpc().get("SSCS Leeds");
         assertFalse(result.isEmpty());
-        assertEquals(19, result.size());
+        assertEquals(20, result.size());
         result.forEach(vd -> assertTrue(venueDetailsByLeedsRpc.contains(vd.getEpimsId())));
     }
 
