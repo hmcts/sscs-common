@@ -212,7 +212,8 @@
       "directionNoticeContent": null,
       "signedBy": null,
       "signedRole": null,
-      "confidentialityTab" : "Party | Name | Confidentiality Status | Confidentiality Status Confirmed\n-|-|-|-\nAppellant | AN Test | Undetermined | \r\n\n"
+      "confidentialityTab" : "Party | Name | Confidentiality Status | Confidentiality Status Confirmed\n-|-|-|-\nAppellant | AN Test | Undetermined | \r\n\n",
+      "hasUndeterminedPartyConfidentiality": "No"
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
@@ -813,7 +814,8 @@
       "directionNoticeContent": null,
       "signedBy": null,
       "signedRole": null,
-      "confidentialityTab" : "Party | Name | Confidentiality Status | Confidentiality Status Confirmed\n-|-|-|-\nAppellant | AN Test | Undetermined | \r\n\n"
+      "confidentialityTab" : "Party | Name | Confidentiality Status | Confidentiality Status Confirmed\n-|-|-|-\nAppellant | AN Test | Undetermined | \r\n\n",
+      "hasUndeterminedPartyConfidentiality": "No"
     },
     "data_classification": {
       "evidencePresent": "PUBLIC",
