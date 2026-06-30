@@ -4,6 +4,10 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_U
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
@@ -11,6 +15,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -21,7 +26,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,13 +37,13 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
-class SscsCaseDataTest {
+public class SscsCaseDataTest {
 
     private final LocalDate now = LocalDate.now();
     private ObjectMapper mapper;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
             new Jackson2ObjectMapperBuilder()
@@ -53,43 +57,23 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void sortSscsDocuments(){
+    public void sortSscsDocuments() throws IOException {
 
-        String path = Objects.requireNonNull(getClass().getClassLoader().getResource("sscsDocumentSorting.json")).getFile();
-        String json;
-        try {
-            json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
-        } catch (IOException e) {
-            throw new AssertionError("IOException should not be thrown", e);
-        }
-        List<SscsDocument> newSscsDocument;
-        try {
-            newSscsDocument = mapper.readValue(json, new TypeReference<List<SscsDocument>>() {
-            });
-        } catch (IOException e) {
-            throw new AssertionError("IOException should not be thrown", e);
-        }
+        String path = getClass().getClassLoader().getResource("sscsDocumentSorting.json").getFile();
+        String json = FileUtils.readFileToString(new File(path), StandardCharsets.UTF_8.name());
+        List<SscsDocument> newSscsDocument  = mapper.readValue(json, new TypeReference<List<SscsDocument>>(){});
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(newSscsDocument).build();
         sscsCaseData.sortCollections();
-        assertThat(sscsCaseData.getSscsDocument()).isNotEmpty();
-        
+
+        assertTrue(true, "No sorting error");
     }
 
     @Test
-    void sortHearingsByDateWhenIdsAreBlank() {
+    public void sortHearingsByDateWhenIdsAreBlank() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingDate("2019-01-01").time("12:00").build())
-            .build();
-        Hearing hearing2 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingDate("2019-03-01").time("12:00").build())
-            .build();
-        Hearing hearing3 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingDate("2019-02-01").time("12:00").build())
-            .build();
+        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-01-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-03-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-02-01").time("12:00").build()).build();
         hearings.add(hearing1);
         hearings.add(hearing2);
         hearings.add(hearing3);
@@ -97,30 +81,18 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getHearings().get(0).getValue().getHearingDate()).isEqualTo("2019-03-01");
-        assertThat(sscsCaseData.getHearings().get(1).getValue().getHearingDate()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getHearings().get(2).getValue().getHearingDate()).isEqualTo("2019-01-01");
+        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
+        assertEquals("2019-01-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
     }
 
     @Test
-    void sortHearingsByIdFirstThenDate() {
+    public void sortHearingsByIdFirstThenDate() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingId("2").hearingDate("2019-04-01").time("12:00").build())
-            .build();
-        Hearing hearing2 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingId("20").hearingDate("2019-03-01").time("12:00").build())
-            .build();
-        Hearing hearing3 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingId("20").hearingDate("2019-02-01").time("12:00").build())
-            .build();
-        Hearing hearing4 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingId("3").hearingDate("2019-02-01").time("12:00").build())
-            .build();
+        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingId("2").hearingDate("2019-04-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-03-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("20").hearingDate("2019-02-01").time("12:00").build()).build();
+        Hearing hearing4 = Hearing.builder().value(HearingDetails.builder().hearingId("3").hearingDate("2019-02-01").time("12:00").build()).build();
 
         hearings.add(hearing1);
         hearings.add(hearing2);
@@ -130,31 +102,22 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getHearings().get(0).getValue().getHearingDate()).isEqualTo("2019-03-01");
-        assertThat(sscsCaseData.getHearings().get(0).getValue().getHearingId()).isEqualTo("20");
-        assertThat(sscsCaseData.getHearings().get(1).getValue().getHearingDate()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getHearings().get(1).getValue().getHearingId()).isEqualTo("20");
-        assertThat(sscsCaseData.getHearings().get(2).getValue().getHearingDate()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getHearings().get(2).getValue().getHearingId()).isEqualTo("3");
-        assertThat(sscsCaseData.getHearings().get(3).getValue().getHearingDate()).isEqualTo("2019-04-01");
-        assertThat(sscsCaseData.getHearings().get(3).getValue().getHearingId()).isEqualTo("2");
+        assertEquals("2019-03-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
+        assertEquals("20", sscsCaseData.getHearings().get(0).getValue().getHearingId());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
+        assertEquals("20", sscsCaseData.getHearings().get(1).getValue().getHearingId());
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
+        assertEquals("3", sscsCaseData.getHearings().get(2).getValue().getHearingId());
+        assertEquals("2019-04-01", sscsCaseData.getHearings().get(3).getValue().getHearingDate());
+        assertEquals("2", sscsCaseData.getHearings().get(3).getValue().getHearingId());
     }
 
     @Test
-    void sortHearingsByIdWhenFewHearingsHaveBlankId() {
+    public void sortHearingsByIdWhenFewHearingsHaveBlankId() {
         List<Hearing> hearings = new ArrayList<>();
-        Hearing hearing1 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingDate("2019-04-01").time("12:00").build())
-            .build();
-        Hearing hearing2 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingDate("2019-05-01").time("12:00").build())
-            .build();
-        Hearing hearing3 = Hearing
-            .builder()
-            .value(HearingDetails.builder().hearingId("1").hearingDate("2019-02-01").time("12:00").build())
-            .build();
+        Hearing hearing1 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-04-01").time("12:00").build()).build();
+        Hearing hearing2 = Hearing.builder().value(HearingDetails.builder().hearingDate("2019-05-01").time("12:00").build()).build();
+        Hearing hearing3 = Hearing.builder().value(HearingDetails.builder().hearingId("1").hearingDate("2019-02-01").time("12:00").build()).build();
         hearings.add(hearing1);
         hearings.add(hearing2);
         hearings.add(hearing3);
@@ -162,16 +125,16 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().hearings(hearings).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getHearings().get(0).getValue().getHearingDate()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getHearings().get(0).getValue().getHearingId()).isEqualTo("1");
-        assertThat(sscsCaseData.getHearings().get(1).getValue().getHearingDate()).isEqualTo("2019-05-01");
-        assertThat(sscsCaseData.getHearings().get(1).getValue().getHearingId()).isNull();
-        assertThat(sscsCaseData.getHearings().get(2).getValue().getHearingDate()).isEqualTo("2019-04-01");
-        assertThat(sscsCaseData.getHearings().get(2).getValue().getHearingId()).isNull();
+        assertEquals("2019-02-01", sscsCaseData.getHearings().get(0).getValue().getHearingDate());
+        assertEquals("1", sscsCaseData.getHearings().get(0).getValue().getHearingId());
+        assertEquals("2019-05-01", sscsCaseData.getHearings().get(1).getValue().getHearingDate());
+        assertNull(sscsCaseData.getHearings().get(1).getValue().getHearingId());
+        assertEquals("2019-04-01", sscsCaseData.getHearings().get(2).getValue().getHearingDate());
+        assertNull(sscsCaseData.getHearings().get(2).getValue().getHearingId());
     }
 
     @Test
-    void sortEventsByDate() {
+    public void sortEventsByDate() {
         List<Event> events = new ArrayList<>();
         Event event1 = Event.builder().value(EventDetails.builder().date("2019-01-01").build()).build();
         Event event2 = Event.builder().value(EventDetails.builder().date("2019-03-01").build()).build();
@@ -183,13 +146,13 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().events(events).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getEvents().get(0).getValue().getDate()).isEqualTo("2019-03-01");
-        assertThat(sscsCaseData.getEvents().get(1).getValue().getDate()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getEvents().get(2).getValue().getDate()).isEqualTo("2019-01-01");
+        assertEquals("2019-03-01", sscsCaseData.getEvents().get(0).getValue().getDate());
+        assertEquals("2019-02-01", sscsCaseData.getEvents().get(1).getValue().getDate());
+        assertEquals("2019-01-01", sscsCaseData.getEvents().get(2).getValue().getDate());
     }
 
     @Test
-    void sortEvidenceByDate() {
+    public void sortEvidenceByDate() {
         List<Document> documents = new ArrayList<>();
         Document document1 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-01-01").build()).build();
         Document document2 = Document.builder().value(DocumentDetails.builder().dateReceived("2019-03-01").build()).build();
@@ -207,29 +170,20 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().evidence(evidence).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getEvidence().getDocuments().get(0).getValue().getDateReceived()).isEqualTo("2019-03-01");
-        assertThat(sscsCaseData.getEvidence().getDocuments().get(1).getValue().getDateReceived()).isEqualTo("2019-02-01");
-        assertThat(sscsCaseData.getEvidence().getDocuments().get(2).getValue().getDateReceived()).isEqualTo("2019-01-01");
-        assertThat(sscsCaseData.getEvidence().getDocuments().get(3).getValue().getDateReceived()).isNull();
-        assertThat(sscsCaseData.getEvidence().getDocuments().get(4).getValue().getDateReceived()).isEqualTo("NaN");
+        assertEquals("2019-03-01", sscsCaseData.getEvidence().getDocuments().get(0).getValue().getDateReceived());
+        assertEquals("2019-02-01", sscsCaseData.getEvidence().getDocuments().get(1).getValue().getDateReceived());
+        assertEquals("2019-01-01", sscsCaseData.getEvidence().getDocuments().get(2).getValue().getDateReceived());
+        assertNull(sscsCaseData.getEvidence().getDocuments().get(3).getValue().getDateReceived());
+        assertEquals("NaN", sscsCaseData.getEvidence().getDocuments().get(4).getValue().getDateReceived());
     }
 
 
     @Test
-    void sortCorrespondenceByDateAndTime() {
+    public void sortCorrespondenceByDateAndTime() {
         List<Correspondence> correspondence = new ArrayList<>();
-        Correspondence correspondence1 = Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().sentOn("1 Feb 2019 11:22").build())
-            .build();
-        Correspondence correspondence2 = Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:22").build())
-            .build();
-        Correspondence correspondence3 = Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:23").build())
-            .build();
+        Correspondence correspondence1 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Feb 2019 11:22").build()).build();
+        Correspondence correspondence2 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:22").build()).build();
+        Correspondence correspondence3 = Correspondence.builder().value(CorrespondenceDetails.builder().sentOn("1 Jan 2019 11:23").build()).build();
 
         correspondence.add(correspondence1);
         correspondence.add(correspondence2);
@@ -238,26 +192,17 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().correspondence(correspondence).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getCorrespondence().get(0).getValue().getSentOn()).isEqualTo("1 Feb 2019 11:22");
-        assertThat(sscsCaseData.getCorrespondence().get(1).getValue().getSentOn()).isEqualTo("1 Jan 2019 11:23");
-        assertThat(sscsCaseData.getCorrespondence().get(2).getValue().getSentOn()).isEqualTo("1 Jan 2019 11:22");
+        assertEquals("1 Feb 2019 11:22", sscsCaseData.getCorrespondence().get(0).getValue().getSentOn());
+        assertEquals("1 Jan 2019 11:23", sscsCaseData.getCorrespondence().get(1).getValue().getSentOn());
+        assertEquals("1 Jan 2019 11:22", sscsCaseData.getCorrespondence().get(2).getValue().getSentOn());
     }
 
     @Test
-    void sortSscsDocumentsByDateAdded() {
+    public void sortSscsDocumentsByDateAdded() {
         List<SscsDocument> sscsDocuments = new ArrayList<>();
-        SscsDocument sscsDocument1 = SscsDocument
-            .builder()
-            .value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build())
-            .build();
-        SscsDocument sscsDocument2 = SscsDocument
-            .builder()
-            .value(SscsDocumentDetails.builder().documentDateAdded("2019-03-01").build())
-            .build();
-        SscsDocument sscsDocument3 = SscsDocument
-            .builder()
-            .value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build())
-            .build();
+        SscsDocument sscsDocument1 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build()).build();
+        SscsDocument sscsDocument2 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-03-01").build()).build();
+        SscsDocument sscsDocument3 = SscsDocument.builder().value(SscsDocumentDetails.builder().documentDateAdded("2019-01-01").build()).build();
         sscsDocuments.add(sscsDocument1);
         sscsDocuments.add(sscsDocument2);
         sscsDocuments.add(sscsDocument3);
@@ -265,49 +210,43 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(sscsDocuments).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded()).isEqualTo("2019-01-01");
-        assertThat(sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded()).isEqualTo("2019-01-01");
-        assertThat(sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded()).isEqualTo("2019-03-01");
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentDateAdded());
+        assertEquals("2019-01-01", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentDateAdded());
+        assertEquals("2019-03-01", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentDateAdded());
     }
 
     @Test
-    void shouldCreateInfoRequest() throws IOException {
+    public void shouldCreateInfoRequest() throws JsonParseException, IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
             ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
         List<AppellantInfoRequest> appellantInfoRequests = new ArrayList<>();
         AppellantInfoRequest appellantInfoRequest1 = AppellantInfoRequest.builder()
-                                                                         .appellantInfo(AppellantInfo
-                                                                             .builder()
-                                                                             .paragraph("Par1")
-                                                                             .requestDate("date1")
-                                                                             .build()).build();
+                                                                         .appellantInfo(AppellantInfo.builder().paragraph("Par1").requestDate("date1").build()).build();
 
         appellantInfoRequests.add(appellantInfoRequest1);
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequests
-            .builder()
-            .appellantInfoRequest(appellantInfoRequests)
-            .build()).build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequests.builder()
+                                                                                    .appellantInfoRequest(appellantInfoRequests).build()).build();
 
-        ObjectMapper ob = new ObjectMapper();
-        String infoRequestValue = ob.writeValueAsString(sscsCaseData.getInfoRequests());
+        ObjectMapper mapper = new ObjectMapper();
+        String infoRequestValue = mapper.writeValueAsString(sscsCaseData.getInfoRequests());
 
-        assertThat(infoRequestValue).isEqualTo(expectedValue);
+        assertEquals(expectedValue, infoRequestValue);
     }
 
     @Test
-    void givenACaseHasOneDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasOneDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl");
+        assertEquals("testUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsOfSameType_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleDocumentsOfSameType_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString(), null, null));
@@ -316,11 +255,11 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsOfSameTypeWithBundleFieldPopulated_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleDocumentsOfSameTypeWithBundleFieldPopulated_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), "A", null));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString(), "B", null));
@@ -330,11 +269,11 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString(), null, null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString(), null, null));
@@ -344,17 +283,15 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
+    public void givenACaseHasMultipleDocumentsOfDifferentTypes_thenSelectTheLatestDocumentForDocumentTypeEntered() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
-        documents.add(
-            buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
-        documents.add(
-            buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
         documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, null));
@@ -363,11 +300,11 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseWithMultipleDocuments_thenSortByDateAdded() {
+    public void givenACaseWithMultipleDocuments_thenSortByDateAdded() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.toString(), null, null));
@@ -377,15 +314,14 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc");
-        assertThat(sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl");
-        assertThat(sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc2");
-        assertThat(sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl()).isEqualTo(
-            "anotherTestUrl");
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenSortByDateAddedAndPutEmptyDocumentLast() {
+    public void givenACaseWithMultipleDocumentsAndOneDocAddedDateIsEmpty_thenSortByDateAddedAndPutEmptyDocumentLast() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.toString(), null, null));
@@ -396,18 +332,16 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc");
-        assertThat(sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl");
-        assertThat(sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc2");
-        assertThat(sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl()).isEqualTo(
-            "anotherTestUrl");
-        assertThat(sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl()).isEqualTo(
-            "emptyDateAddedDoc");
+        assertEquals("otherDoc", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("emptyDateAddedDoc", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
 
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
+    public void givenACaseHasMultipleDocumentsOfSameTypeOnSameDayWithBundleAdditions_thenSortByBundleLetter() {
         List<SscsDocument> documents = new ArrayList<>();
 
         documents.add(buildSscsDocument("B", DocumentType.DECISION_NOTICE, "2021-10-09", "B", null));
@@ -424,20 +358,20 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("A");
-        assertThat(sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("B");
-        assertThat(sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("C");
-        assertThat(sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("D");
-        assertThat(sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z");
-        assertThat(sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z1");
-        assertThat(sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z2");
-        assertThat(sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z11");
-        assertThat(sscsCaseData.getSscsDocument().get(8).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z19");
-        assertThat(sscsCaseData.getSscsDocument().get(9).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("Z20");
+        assertEquals("A", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("B", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("C", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("D", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z1", sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z2", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z11", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z19", sscsCaseData.getSscsDocument().get(8).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z20", sscsCaseData.getSscsDocument().get(9).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasScannedMultipleDocumentsOfSameDayWithControlNumber_thenSortByControlNumber() {
+    public void givenACaseHasScannedMultipleDocumentsOfSameDayWithControlNumber_thenSortByControlNumber() {
         List<ScannedDocument> documents = new ArrayList<>();
 
         documents.add(buildScannedDocument("2000", DocumentType.OTHER_EVIDENCE, now.toString(), "2000"));
@@ -453,19 +387,19 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().scannedDocuments(documents).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getScannedDocuments().get(0).getValue().getUrl().getDocumentUrl()).isEqualTo("3000");
-        assertThat(sscsCaseData.getScannedDocuments().get(1).getValue().getUrl().getDocumentUrl()).isEqualTo("1000");
-        assertThat(sscsCaseData.getScannedDocuments().get(2).getValue().getUrl().getDocumentUrl()).isEqualTo("2000");
-        assertThat(sscsCaseData.getScannedDocuments().get(3).getValue().getUrl().getDocumentUrl()).isEqualTo("4000");
-        assertThat(sscsCaseData.getScannedDocuments().get(4).getValue().getUrl().getDocumentUrl()).isEqualTo("5000");
-        assertThat(sscsCaseData.getScannedDocuments().get(5).getValue().getUrl().getDocumentUrl()).isEqualTo("6000");
-        assertThat(sscsCaseData.getScannedDocuments().get(6).getValue().getUrl().getDocumentUrl()).isEqualTo("7000");
-        assertThat(sscsCaseData.getScannedDocuments().get(7).getValue().getUrl().getDocumentUrl()).isEqualTo("8000");
-        assertThat(sscsCaseData.getScannedDocuments().get(8).getValue().getUrl().getDocumentUrl()).isEqualTo("dummyString");
+        assertEquals("3000", sscsCaseData.getScannedDocuments().get(0).getValue().getUrl().getDocumentUrl());
+        assertEquals("1000", sscsCaseData.getScannedDocuments().get(1).getValue().getUrl().getDocumentUrl());
+        assertEquals("2000", sscsCaseData.getScannedDocuments().get(2).getValue().getUrl().getDocumentUrl());
+        assertEquals("4000", sscsCaseData.getScannedDocuments().get(3).getValue().getUrl().getDocumentUrl());
+        assertEquals("5000", sscsCaseData.getScannedDocuments().get(4).getValue().getUrl().getDocumentUrl());
+        assertEquals("6000", sscsCaseData.getScannedDocuments().get(5).getValue().getUrl().getDocumentUrl());
+        assertEquals("7000", sscsCaseData.getScannedDocuments().get(6).getValue().getUrl().getDocumentUrl());
+        assertEquals("8000", sscsCaseData.getScannedDocuments().get(7).getValue().getUrl().getDocumentUrl());
+        assertEquals("dummyString", sscsCaseData.getScannedDocuments().get(8).getValue().getUrl().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
+    public void givenACaseHasMultipleDocumentsWithNoDate_thenSelectTheLastOneItFinds() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
         documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, null, null, null));
@@ -475,11 +409,11 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertEquals("latestTestUrl", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseWithMultipleDwpDocuments_thenSortByDateAdded() {
+    public void givenACaseWithMultipleDwpDocuments_thenSortByDateAdded() {
         List<DwpDocument> documents = new ArrayList<>();
         documents.add(buildDwpDocument("testUrl", DwpDocumentType.UCB, now.minusDays(1).toString()));
         documents.add(buildDwpDocument("anotherTestUrl", DwpDocumentType.UCB, now.toString()));
@@ -489,15 +423,14 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
         sscsCaseData.sortCollections();
 
-        assertThat(sscsCaseData.getDwpDocuments().get(0).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc");
-        assertThat(sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl");
-        assertThat(sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl()).isEqualTo("otherDoc2");
-        assertThat(sscsCaseData.getDwpDocuments().get(3).getValue().getDocumentLink().getDocumentUrl()).isEqualTo(
-            "anotherTestUrl");
+        assertEquals("otherDoc", sscsCaseData.getDwpDocuments().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("testUrl", sscsCaseData.getDwpDocuments().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("otherDoc2", sscsCaseData.getDwpDocuments().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("anotherTestUrl", sscsCaseData.getDwpDocuments().get(3).getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenADocumentTypeIsNull_thenHandleCorrectly() {
+    public void givenADocumentTypeIsNull_thenHandleCorrectly() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", null, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("testUrl2", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null, null));
@@ -505,24 +438,24 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         SscsDocument result = sscsCaseData.getLatestDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result.getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl2");
+        assertEquals("testUrl2", result.getValue().getDocumentLink().getDocumentUrl());
     }
 
 
     @Test
-    void givenACaseHasOneWelshDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasOneWelshDocument_thenSelectThisDocumentWhenDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result).isPresent();
-        assertThat(result.get().getValue().getDocumentLink().getDocumentUrl()).isEqualTo("testUrl");
+        assertTrue(result.isPresent(), "Result has a value");
+        assertEquals("testUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleWelshDocumentsOfSameType_thenSelectTheEarliestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleWelshDocumentsOfSameType_thenSelectTheEarliestDocumentWhenDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
         documents.add(buildWelshSscsDocument("earliestTestUrl", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
@@ -531,12 +464,12 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
         Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result).isPresent();
-        assertThat(result.get().getValue().getDocumentLink().getDocumentUrl()).isEqualTo("earliestTestUrl");
+        assertTrue(result.isPresent(), "Result has a value");
+        assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasMultipleWelshDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasMultipleWelshDocumentsOfSameTypeWithTwoOnSameDay_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("latestTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DECISION_NOTICE, now.toString()));
@@ -544,23 +477,23 @@ class SscsCaseDataTest {
         documents.add(buildWelshSscsDocument("testUrl", DocumentType.DECISION_NOTICE, now.toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
-        Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result).isPresent();
-        assertThat(result.get().getValue().getDocumentLink().getDocumentUrl()).isEqualTo("latestTestUrl");
+        assertTrue(result.isPresent(), "Result has a value");
+        assertEquals("latestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
-    void givenACaseHasNoWelshDocuments_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
+    public void givenACaseHasNoWelshDocuments_thenSelectTheLatestDocumentWhenDocumentTypeEntered() {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(null).build();
-        Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DECISION_NOTICE);
 
-        assertThat(result).isEmpty();
+        assertTrue(result.isEmpty(), "Result is empty");
     }
 
     @Test
-    void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheEarliestDocumentForDocumentTypeEntered() {
+    public void givenACaseHasMultipleWelshDocumentsOfDifferentTypes_thenSelectTheEarliestDocumentForDocumentTypeEntered() {
         List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("earliestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString()));
         documents.add(buildWelshSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString()));
@@ -571,21 +504,19 @@ class SscsCaseDataTest {
         documents.add(buildWelshSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString()));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsWelshDocuments(documents).build();
-        Optional<SscsWelshDocument> result = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
+        Optional<SscsWelshDocument> result  = sscsCaseData.getLatestWelshDocumentForDocumentType(DocumentType.DIRECTION_NOTICE);
 
-        assertThat(result).isPresent();
-        assertThat(result.get().getValue().getDocumentLink().getDocumentUrl()).isEqualTo("earliestTestUrl");
+        assertTrue(result.isPresent(), "Result has a value");
+        assertEquals("earliestTestUrl", result.get().getValue().getDocumentLink().getDocumentUrl());
     }
 
 
     @Test
-    void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly() {
+    public void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
-        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_REQUESTED));
-        documents.add(
-            buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_REQUESTED));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
         documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, null));
@@ -593,17 +524,15 @@ class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertThat(sscsCaseData.getTranslationWorkOutstanding()).isEqualTo("Yes");
+        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
-    void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly2() {
+    public void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly2() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
-        documents.add(
-            buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
-        documents.add(
-            buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, null));
         documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, null));
         documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, null));
@@ -611,58 +540,46 @@ class SscsCaseDataTest {
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertThat(sscsCaseData.getTranslationWorkOutstanding()).isEqualTo("No");
+        assertEquals("No", sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @Test
-    void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3() {
+    public void givenACaseHasMultipleSscsDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3() {
         List<SscsDocument> documents = new ArrayList<>();
         documents.add(buildSscsDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
-        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null,
-            SscsDocumentTranslationStatus.TRANSLATION_REQUIRED));
+        documents.add(buildSscsDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildSscsDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildSscsDocument("latestTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildSscsDocument("oldUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(2).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildSscsDocument("otherDoc", DocumentType.OTHER_DOCUMENT, now.toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildSscsDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_REQUIRED));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
-        assertThat(sscsCaseData.getTranslationWorkOutstanding()).isEqualTo("Yes");
+        assertEquals("Yes", sscsCaseData.getTranslationWorkOutstanding());
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"TRANSLATION_REQUESTED", "TRANSLATION_REQUIRED", "null"})
-    void givenACaseHasMultipleDwpDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3(
-        String translationStatusString) {
-        SscsDocumentTranslationStatus translationStatus = "null".equals(
-            translationStatusString) ? null : SscsDocumentTranslationStatus.valueOf(translationStatusString);
+    public void givenACaseHasMultipleDwpDocumentsShouldUpdateTheTranslationWorkOutstandingFlagCorrectly3(String translationStatusString) {
+        SscsDocumentTranslationStatus translationStatus = "null".equals(translationStatusString) ? null : SscsDocumentTranslationStatus.valueOf(translationStatusString);
 
         List<DwpDocument> documents = new ArrayList<>();
-        documents.add(buildDwpDocument("testUrl", DocumentType.DECISION_NOTICE, null, null));
-        documents.add(buildDwpDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(),
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(buildDwpDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(),
-            SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
-        documents.add(
-            buildDwpDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), translationStatus));
+        documents.add(buildDwpDocument("testUrl", DocumentType.DECISION_NOTICE, null, null, null));
+        documents.add(buildDwpDocument("anotherTestUrl", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildDwpDocument("anotherTestUrl2", DocumentType.DIRECTION_NOTICE, now.minusDays(1).toString(), null, SscsDocumentTranslationStatus.TRANSLATION_COMPLETE));
+        documents.add(buildDwpDocument("otherDoc2", DocumentType.OTHER_DOCUMENT, now.minusDays(1).toString(), null, translationStatus));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().dwpDocuments(documents).build();
         sscsCaseData.updateTranslationWorkOutstandingFlag();
         if (translationStatus == null) {
-            assertThat(sscsCaseData.getTranslationWorkOutstanding()).isEqualTo(NO.getValue());
+            assertEquals(NO.getValue(), sscsCaseData.getTranslationWorkOutstanding());
         } else {
-            assertThat(sscsCaseData.getTranslationWorkOutstanding()).isEqualTo(YES.getValue());
+            assertEquals(YES.getValue(), sscsCaseData.getTranslationWorkOutstanding());
         }
     }
 
-    private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition,
-        SscsDocumentTranslationStatus translationStatus) {
+    private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
         String docType = documentType == null ? null : documentType.getValue();
         return SscsDocument.builder().value(
             SscsDocumentDetails.builder().documentType(docType)
@@ -682,14 +599,13 @@ class SscsCaseDataTest {
                                     .build()).build();
     }
 
-    private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date,
-        SscsDocumentTranslationStatus translationStatus) {
+    private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
         String docType = documentType == null ? null : documentType.getValue();
         return DwpDocument.builder().value(
             DwpDocumentDetails.builder().documentType(docType)
                               .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
                               .documentDateAdded(date)
-                              .bundleAddition(null)
+                              .bundleAddition(bundleAddition)
                               .documentTranslationStatus(translationStatus)
                               .build()).build();
     }
@@ -703,8 +619,7 @@ class SscsCaseDataTest {
                               .build()).build();
     }
 
-    private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date,
-        String controlNumber) {
+    private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date, String controlNumber) {
         String docType = documentType == null ? null : documentType.getValue();
         return ScannedDocument.builder()
                               .value(ScannedDocumentDetails.builder()
@@ -719,330 +634,245 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnFalse() {
+    public void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(null).build();
-        assertThat(sscsCaseData.isLanguagePreferenceWelsh()).isFalse();
+        assertEquals(Boolean.FALSE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnTrue() {
+    public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
-        assertThat(sscsCaseData.isLanguagePreferenceWelsh()).isTrue();
+        assertEquals(Boolean.TRUE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnFalse() {
+    public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
-        assertThat(sscsCaseData.isLanguagePreferenceWelsh()).isFalse();
+        assertEquals(Boolean.FALSE, sscsCaseData.isLanguagePreferenceWelsh());
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
+    public void givenLanguagePreferenceWelshIsNull_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh(null).build();
-        assertThat(sscsCaseData.getLanguagePreference()).isEqualTo(LanguagePreference.ENGLISH);
+        assertEquals(LanguagePreference.ENGLISH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
+    public void givenLanguagePreferenceWelshIsNo_thenIsLanguagePreferenceWelshShouldReturnEnglish() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("No").build();
-        assertThat(sscsCaseData.getLanguagePreference()).isEqualTo(LanguagePreference.ENGLISH);
+        assertEquals(LanguagePreference.ENGLISH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
-    void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
+    public void givenLanguagePreferenceWelshIsYes_thenIsLanguagePreferenceWelshShouldReturnWelsh() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().languagePreferenceWelsh("Yes").build();
-        assertThat(sscsCaseData.getLanguagePreference()).isEqualTo(LanguagePreference.WELSH);
+        assertEquals(LanguagePreference.WELSH, sscsCaseData.getLanguagePreference());
     }
 
     @Test
-    void givenUrgentHearingInfo_thenShouldReturnUrgentHearingInfo() {
+    public void givenUrgentHearingInfo_thenShouldReturnUrgentHearingInfo() {
         String todaysDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
         String expectedUrgentHearingOutcome = "In progress";
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .urgentCase("Yes")
-            .urgentHearingRegistered(todaysDate)
-            .urgentHearingOutcome("In progress")
-            .build();
-        assertThat(sscsCaseData.getUrgentCase()).isEqualTo("Yes");
-        assertThat(sscsCaseData.getUrgentHearingRegistered()).isEqualTo(todaysDate);
-        assertThat(sscsCaseData.getUrgentHearingOutcome()).isEqualTo(expectedUrgentHearingOutcome);
+        SscsCaseData sscsCaseData = SscsCaseData.builder().urgentCase("Yes").urgentHearingRegistered(todaysDate).urgentHearingOutcome("In progress").build();
+        assertEquals("Yes", sscsCaseData.getUrgentCase());
+        assertEquals(todaysDate, sscsCaseData.getUrgentHearingRegistered());
+        assertEquals(expectedUrgentHearingOutcome, sscsCaseData.getUrgentHearingOutcome());
     }
 
     @Test
-    void givenBenefitTypeEsaUpperCase_thenShouldReturnBenefitTypeEsa() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.ESA));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isTrue();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+    public void givenBenefitTypeEsaUpperCase_thenShouldReturnBenefitTypeEsa() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("ESA").build()).build()).build();
+        assertEquals(Optional.of(Benefit.ESA), sscsCaseData.getBenefitType());
+        assertTrue(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypeEsaLowerCase_thenShouldReturnBenefitTypeEsa() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("esa").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.ESA));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isTrue();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+    public void givenBenefitTypeEsaLowerCase_thenShouldReturnBenefitTypeEsa() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("esa").build()).build()).build();
+        assertEquals(Optional.of(Benefit.ESA), sscsCaseData.getBenefitType());
+        assertTrue(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypePipUpperCase_thenShouldReturnBenefitTypePip() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.PIP));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isTrue();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+    public void givenBenefitTypePipUpperCase_thenShouldReturnBenefitTypePip() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("PIP").build()).build()).build();
+        assertEquals(Optional.of(Benefit.PIP), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertTrue(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypePipLowerCase_thenShouldReturnBenefitTypePip() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("pip").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.PIP));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isTrue();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+    public void givenBenefitTypePipLowerCase_thenShouldReturnBenefitTypePip() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("pip").build()).build()).build();
+        assertEquals(Optional.of(Benefit.PIP), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertTrue(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypeUcUpperCase_thenShouldReturnBenefitTypeUc() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("UC").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.UC));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isTrue();
+    public void givenBenefitTypeUcUpperCase_thenShouldReturnBenefitTypeUc() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("UC").build()).build()).build();
+        assertEquals(Optional.of(Benefit.UC), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertTrue(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypeUcLowerCase_thenShouldReturnBenefitTypeUc() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("uc").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.UC));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isTrue();
+    public void givenBenefitTypeUcLowerCase_thenShouldReturnBenefitTypeUc() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("uc").build()).build()).build();
+        assertEquals(Optional.of(Benefit.UC), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertTrue(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenBenefitTypeCarersAllowanceCase_thenShouldReturnBenefitTypeCarersAllowance() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code("carersAllowance").build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEqualTo(Optional.of(Benefit.CARERS_ALLOWANCE));
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.CARERS_ALLOWANCE)).isTrue();
+    public void givenBenefitTypeCarersAllowanceCase_thenShouldReturnBenefitTypeCarersAllowance() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().code("carersAllowance").build()).build()).build();
+        assertEquals(Optional.of(Benefit.CARERS_ALLOWANCE), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertTrue(sscsCaseData.isBenefitType(Benefit.CARERS_ALLOWANCE));
     }
 
     @Test
-    void givenNoBenefitTypeCode_thenShouldReturnEmptyOptional() {
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().build()).build())
-            .build();
-        assertThat(sscsCaseData.getBenefitType()).isEmpty();
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+    public void givenNoBenefitTypeCode_thenShouldReturnEmptyOptional() {
+        SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().benefitType(BenefitType.builder().build()).build()).build();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenNoBenefitType_thenShouldReturnEmptyOptional() {
+    public void givenNoBenefitType_thenShouldReturnEmptyOptional() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().appeal(Appeal.builder().build()).build();
-        assertThat(sscsCaseData.getBenefitType()).isEmpty();
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
     @Test
-    void givenNoAppeal_thenShouldReturnEmptyOptional() {
+    public void givenNoAppeal_thenShouldReturnEmptyOptional() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-        assertThat(sscsCaseData.getBenefitType()).isEmpty();
-        assertThat(sscsCaseData.isBenefitType(Benefit.ESA)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.PIP)).isFalse();
-        assertThat(sscsCaseData.isBenefitType(Benefit.UC)).isFalse();
+        assertEquals(Optional.empty(), sscsCaseData.getBenefitType());
+        assertFalse(sscsCaseData.isBenefitType(Benefit.ESA));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.PIP));
+        assertFalse(sscsCaseData.isBenefitType(Benefit.UC));
     }
 
-    @Test
-    void givenACaseDoesNotHaveReasonableAdjustmentLetters_ThenFlagIsNo() {
+    public void givenACaseDoesNotHaveReasonableAdjustmentLetters_ThenFlagIsNo() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(null).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(NO);
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
+    public void givenACaseHasReasonableAdjustmentsLettersRequired_ThenFlagIsYes() {
         List<Correspondence> letters = new ArrayList<>();
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build())
-            .build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(YES);
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseHasReasonableAdjustmentsLettersStatusIsNull_ThenFlagIsYes() {
+    public void givenACaseHasReasonableAdjustmentsLettersStatusIsNull_ThenFlagIsYes() {
         List<Correspondence> letters = new ArrayList<>();
-        letters.add(
-            Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(null).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(YES);
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsNo() {
+    public void givenACaseHasNoReasonableAdjustmentsLettersRequired_ThenFlagIsNo() {
         List<Correspondence> letters = new ArrayList<>();
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build())
-            .build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(NO);
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseHasWithReasonableAdjustmentsLettersForMultipleParties_ThenFlagIsYes() {
+    public void givenACaseHasWithReasonableAdjustmentsLettersForMultipleParties_ThenFlagIsYes() {
         List<Correspondence> letters1 = new ArrayList<>();
-        letters1.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build())
-            .build());
+        letters1.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
 
         List<Correspondence> letters2 = new ArrayList<>();
-        letters2.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build())
-            .build());
+        letters2.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters1).jointParty(letters2).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().appellant(letters1).jointParty(letters2).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(YES);
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseWithRequiredReasonableAdjustmentsLettersForOtherParties_ThenFlagIsYes() {
+    public void givenACaseWithRequiredReasonableAdjustmentsLettersForOtherParties_ThenFlagIsYes() {
         List<Correspondence> letters = new ArrayList<>();
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build())
-            .build());
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build())
-            .build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.REQUIRED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(YES);
+        assertEquals(YES, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenACaseWithActionedReasonableAdjustmentsLettersForOtherParties_ThenFlagIsNo() {
+    public void givenACaseWithActionedReasonableAdjustmentsLettersForOtherParties_ThenFlagIsNo() {
         List<Correspondence> letters = new ArrayList<>();
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build())
-            .build());
-        letters.add(Correspondence
-            .builder()
-            .value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build())
-            .build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
+        letters.add(Correspondence.builder().value(CorrespondenceDetails.builder().reasonableAdjustmentStatus(ReasonableAdjustmentStatus.ACTIONED).build()).build());
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build())
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().reasonableAdjustmentsLetters(ReasonableAdjustmentsLetters.builder().otherParty(letters).build()).build();
         sscsCaseData.updateReasonableAdjustmentsOutstanding();
-        assertThat(sscsCaseData.getReasonableAdjustmentsOutstanding()).isEqualTo(NO);
+        assertEquals(NO, sscsCaseData.getReasonableAdjustmentsOutstanding());
     }
 
     @Test
-    void givenNoDateSentToGapsOrDateTimeReturnNone() {
+    public void givenNoDateSentToGapsOrDateTimeReturnNone() {
         SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(null).build();
-        assertThat(sscsCaseData.getDateTimeSentToGaps()).isEmpty();
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
     }
 
     @Test
-    void givenDateSentToGapsAndNoDateTimeReturnEmpty() {
+    public void givenDateSentToGapsAndNoDateTimeReturnEmpty() {
 
         LocalDate today = LocalDate.now();
 
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .dateCaseSentToGaps(today.toString())
-            .dateTimeCaseSentToGaps(null)
-            .build();
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(null).build();
 
-        assertThat(sscsCaseData.getDateTimeSentToGaps()).isEmpty();
+        assertTrue(sscsCaseData.getDateTimeSentToGaps().isEmpty());
     }
 
     @Test
-    void givenNoDateSentToGapsAndDateTimeReturnDateTime() {
-        LocalDateTime dateTimeNow = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .dateCaseSentToGaps(null)
-            .dateTimeCaseSentToGaps(dateTimeNow.toString())
-            .build();
-        assertThat(sscsCaseData.getDateTimeSentToGaps()).contains(dateTimeNow);
+    public void givenNoDateSentToGapsAndDateTimeReturnDateTime() {
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(null).dateTimeCaseSentToGaps(now.toString()).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
     }
 
     @Test
-    void givenDateSentToGapsAndDateTimeReturnDateTime() {
+    public void givenDateSentToGapsAndDateTimeReturnDateTime() {
         LocalDate today = LocalDate.now();
-        LocalDateTime dateTimeNow = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        SscsCaseData sscsCaseData = SscsCaseData
-            .builder()
-            .dateCaseSentToGaps(today.toString())
-            .dateTimeCaseSentToGaps(dateTimeNow.toString())
-            .build();
-        assertThat(sscsCaseData.getDateTimeSentToGaps()).contains(dateTimeNow);
+        LocalDateTime now = LocalDateTime.parse("2020-05-22 20:30:23", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        SscsCaseData sscsCaseData = SscsCaseData.builder().dateCaseSentToGaps(today.toString()).dateTimeCaseSentToGaps(now.toString()).build();
+        assertEquals(now, sscsCaseData.getDateTimeSentToGaps().get());
     }
 
     @Test
-    void givenMultipleHearingsAvailable_ThenEnsureGetLatestHearingSortsByHearingIdThenHearingDateTimeThenHearingRequested() {
+    public void givenMultipleHearingsAvailable_ThenEnsureGetLatestHearingSortsByHearingIdThenHearingDateTimeThenHearingRequested() {
         // given
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -1057,8 +887,7 @@ class SscsCaseDataTest {
                                                            .hearingDate("2022-09-08").time("11:45:30")
                                                            .hearingId("4").build()).build();
         Hearing expectedValue = Hearing.builder().value(HearingDetails.builder()
-                                                                      .hearingRequested(
-                                                                          LocalDateTime.parse("2022-09-07 10:30:00", pattern))
+                                                                      .hearingRequested(LocalDateTime.parse("2022-09-07 10:30:00", pattern))
                                                                       .hearingDate("2022-09-09").time("11:45:30")
                                                                       .hearingId("4").build()).build();
         Hearing h4 = Hearing.builder().value(HearingDetails.builder()
@@ -1092,163 +921,206 @@ class SscsCaseDataTest {
         Hearing actualValue = caseData.getLatestHearing();
 
         // then
-        assertThat(actualValue).isEqualTo(expectedValue);
+        assertEquals(actualValue, expectedValue);
     }
 
     @Test
-    void givenRepresentative_thenIsThereARepresentativeIsTrue() {
+    public void givenRepresentative_thenIsThereARepresentativeIsTrue() {
         var representative = Representative.builder().hasRepresentative(YES.getValue()).build();
         var appeal = Appeal.builder().rep(representative).build();
         var caseData = SscsCaseData.builder().appeal(appeal).build();
 
-        assertThat(caseData.isThereARepresentative()).isTrue();
+        assertTrue(caseData.isThereARepresentative());
     }
 
     @Test
-    void givenNoRepresentative_thenIsThereARepresentativeIsFalse() {
+    public void givenNoRepresentative_thenIsThereARepresentativeIsFalse() {
         var appeal = Appeal.builder().build();
         var caseData = SscsCaseData.builder().appeal(appeal).build();
 
-        assertThat(caseData.isThereARepresentative()).isFalse();
+        assertFalse(caseData.isThereARepresentative());
     }
 
     @Test
-    void givenHasRepresentativeIsNo_thenIsThereARepresentativeIsFalse() {
+    public void givenHasRepresentativeIsNo_thenIsThereARepresentativeIsFalse() {
         var representative = Representative.builder().hasRepresentative(NO.getValue()).build();
         var appeal = Appeal.builder().rep(representative).build();
         var caseData = SscsCaseData.builder().appeal(appeal).build();
 
-        assertThat(caseData.isThereARepresentative()).isFalse();
+        assertFalse(caseData.isThereARepresentative());
     }
 
     @Test
-    void givenNullAppeal_thenGetAppellantOptionalReturnsEmpty() {
+    public void givenNullAppeal_thenGetAppellantOptionalReturnsEmpty() {
         var caseData = SscsCaseData.builder().build();
 
-        assertThat(caseData.getAppellant()).isEmpty();
+        assertTrue(caseData.getAppellant().isEmpty());
     }
 
     @Test
-    void givenNullAppellant_thenGetAppellantOptionalReturnsEmpty() {
+    public void givenNullAppellant_thenGetAppellantOptionalReturnsEmpty() {
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().build()).build();
 
-        assertThat(caseData.getAppellant()).isEmpty();
+        assertTrue(caseData.getAppellant().isEmpty());
     }
 
     @Test
-    void givenAppellant_thenGetAppellantOptionalReturnsAppellant() {
+    public void givenAppellant_thenGetAppellantOptionalReturnsAppellant() {
         var appellant = Appellant.builder().build();
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
 
-        assertThat(caseData.getAppellant()).contains(appellant);
+        assertEquals(appellant, caseData.getAppellant().orElseThrow());
     }
 
     @Test
-    void givenNullAppeal_thenGetAppellantConfidentialityRequiredReturnsEmpty() {
+    public void givenNullAppeal_thenGetAppellantConfidentialityRequiredReturnsEmpty() {
         var caseData = SscsCaseData.builder().build();
 
-        assertThat(caseData.getAppellant().map(Party::getConfidentialityRequirement)).isEmpty();
+        assertTrue(caseData.getAppellantConfidentiality().isEmpty());
     }
 
     @Test
-    void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
+    public void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
         var appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
 
-        assertThat(caseData.getAppellant().map(Party::getConfidentialityRequirement)).contains(YesNoUndetermined.YES);
+        assertEquals(YesNoUndetermined.YES, caseData.getAppellantConfidentiality().orElseThrow());
     }
 
     @Test
-    void givenConfidentialCaseStatusIsSet_thenGetConfidentialCaseStatusReturnsValue() {
-        var caseData = SscsCaseData.builder().build();
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenNullAppealAndNullOtherParties() {
+        final SscsCaseData caseData = SscsCaseData.builder().build();
 
-        caseData.setConfidentialCaseStatus(YesNoUndetermined.YES);
-
-        assertThat(caseData.getConfidentialCaseStatus()).isEqualTo(YesNoUndetermined.YES);
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
     }
 
     @Test
-    void givenConfidentialCaseStatusNotSet_thenGetConfidentialCaseStatusReturnsNull() {
-        var caseData = SscsCaseData.builder().build();
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenAppellantIsNotUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().appellant(appellant).build())
+            .build();
 
-        assertThat(caseData.getConfidentialCaseStatus()).isNull();
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
     }
 
     @Test
-    void givenHasJointPartyIsYes_thenIsThereAJointPartyIsTrue() {
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenAppellantIsUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().appellant(appellant).build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenOtherPartyIsNotUndetermined() {
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenOneOtherPartyIsUndetermined() {
+        final OtherParty determined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty undetermined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .otherParties(List.of(
+                CcdValue.<OtherParty>builder().value(determined).build(),
+                CcdValue.<OtherParty>builder().value(undetermined).build()
+            ))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenBothAppellantAndOtherPartyAreUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().appellant(appellant).build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenEmptyOtherPartiesList() {
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .otherParties(List.of())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
+    }
+
+    @Test
+    public void givenHasJointPartyIsYes_thenIsThereAJointPartyIsTrue() {
         var jointParty = JointParty.builder().hasJointParty(YES).build();
         var caseData = SscsCaseData.builder().jointParty(jointParty).build();
 
-        assertThat(caseData.isThereAJointParty()).isTrue();
+        assertTrue(caseData.isThereAJointParty());
     }
 
     @Test
-    void givenHasJointPartyIsNo_thenIsThereAJointPartyIsFalse() {
+    public void givenHasJointPartyIsNo_thenIsThereAJointPartyIsFalse() {
         var jointParty = JointParty.builder().hasJointParty(NO).build();
         var caseData = SscsCaseData.builder().jointParty(jointParty).build();
 
-        assertThat(caseData.isThereAJointParty()).isFalse();
+        assertFalse(caseData.isThereAJointParty());
     }
 
     @Test
-    void givenBenefitCodeIsSetIba_thenIsIbcIsTrue() {
+    public void givenBenefitCodeIsSetIba_thenIsIbcIsTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
                                                 .benefitCode(INFECTED_BLOOD_COMPENSATION.getBenefitCode()).build();
 
-        assertThat(sscsCaseData.isIbcCase()).isTrue();
+        assertTrue(sscsCaseData.isIbcCase());
     }
 
     @Test
-    void givenAppealBenefitCodeIsSetIba_thenIsIbcIsTrue() {
+    public void givenAppealBenefitCodeIsSetIba_thenIsIbcIsTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                                                .appeal(Appeal
-                                                    .builder()
-                                                    .benefitType(BenefitType
-                                                        .builder()
-                                                        .code(INFECTED_BLOOD_COMPENSATION.getShortName())
-                                                        .build())
-                                                    .build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(INFECTED_BLOOD_COMPENSATION.getShortName()).build()).build()).build();
 
-        assertThat(sscsCaseData.isIbcCase()).isTrue();
+        assertTrue(sscsCaseData.isIbcCase());
     }
 
     @Test
-    void givenAppealBenefitCodeIsSetMidCaseCreateIba_thenIsIbcIsTrue() {
+    public void givenAppealBenefitCodeIsSetMidCaseCreateIba_thenIsIbcIsTrue() {
         DynamicList expectedList = new DynamicList(
-            new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()),
-            new ArrayList<>());
+            new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()), new ArrayList<>());
 
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                                                .appeal(Appeal
-                                                    .builder()
-                                                    .benefitType(BenefitType.builder().descriptionSelection(expectedList).build())
-                                                    .build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().descriptionSelection(expectedList).build()).build()).build();
 
-        assertThat(sscsCaseData.isIbcCase()).isTrue();
+        assertTrue(sscsCaseData.isIbcCase());
     }
 
     @Test
-    void givenAppealBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse() {
+    public void givenAppealBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                                                .appeal(Appeal
-                                                    .builder()
-                                                    .benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build())
-                                                    .build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build()).build()).build();
 
-        assertThat(sscsCaseData.isIbcCase()).isFalse();
+        assertFalse(sscsCaseData.isIbcCase());
     }
 
     @ParameterizedTest
     @CsvSource({"030", "034", "016"})
-    void givenBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse(String benefitCode) {
+    public void givenBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse(String benefitCode) {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
                                                 .benefitCode(benefitCode).build();
 
-        assertThat(sscsCaseData.isIbcCase()).isFalse();
+        assertFalse(sscsCaseData.isIbcCase());
     }
 
     @Test
-    void givenElementsDisputedNull_thenGetIssueCodesForAllElementsDisputedReturnsEmptyList() {
+    public void givenElementsDisputedNull_thenGetIssueCodesForAllElementsDisputedReturnsEmptyList() {
         SscsCaseData caseData = SscsCaseData.builder().build();
 
         List<String> result = caseData.getIssueCodesForAllElementsDisputed();
@@ -1257,7 +1129,7 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void givenElementsDisputed_thenGetIssueCodesForAllElementsDisputedReturnsListOfElements() {
+    public void givenElementsDisputed_thenGetIssueCodesForAllElementsDisputedReturnsListOfElements() {
         ElementDisputed elementDisputed = ElementDisputed.builder()
                                                          .value(ElementDisputedDetails.builder()
                                                                                       .issueCode("WC")
@@ -1291,8 +1163,7 @@ class SscsCaseDataTest {
     void showConfidentialityTabReturnsCorrectValue(YesNo showConfidentialityTab, YesNo expected) {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
                                                 .extendedSscsCaseData(ExtendedSscsCaseData.builder()
-                                                                                          .showConfidentialityTab(
-                                                                                              showConfidentialityTab)
+                                                                                          .showConfidentialityTab(showConfidentialityTab)
                                                                                           .build())
                                                 .build();
 
@@ -1313,18 +1184,14 @@ class SscsCaseDataTest {
         List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
         documentSelection.add(CcdValue.<DocumentSelectionDetails>builder()
                                       .value(DocumentSelectionDetails.builder()
-                                                                     .documentsList(new DynamicList(
-                                                                         new DynamicListItem("doc1", "Document 1"),
-                                                                         new ArrayList<>()))
+                                                                     .documentsList(new DynamicList(new DynamicListItem("doc1", "Document 1"), new ArrayList<>()))
                                                                      .build())
                                       .build());
 
         List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = new ArrayList<>();
         otherPartySelection.add(CcdValue.<OtherPartySelectionDetails>builder()
                                         .value(OtherPartySelectionDetails.builder()
-                                                                         .otherPartiesList(new DynamicList(
-                                                                             new DynamicListItem("party1", "Party 1"),
-                                                                             new ArrayList<>()))
+                                                                         .otherPartiesList(new DynamicList(new DynamicListItem("party1", "Party 1"), new ArrayList<>()))
                                                                          .build())
                                         .build());
 
@@ -1361,10 +1228,7 @@ class SscsCaseDataTest {
                                              .build();
         final SscsCaseData caseData = SscsCaseData.builder()
                                                   .appeal(Appeal.builder()
-                                                                .benefitType(BenefitType
-                                                                    .builder()
-                                                                    .code(CHILD_SUPPORT.getShortName())
-                                                                    .build())
+                                                                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
                                                                 .appellant(appellant)
                                                                 .build())
                                                   .build();

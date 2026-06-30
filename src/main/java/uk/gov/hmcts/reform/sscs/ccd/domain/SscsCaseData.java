@@ -301,12 +301,6 @@ public class SscsCaseData implements CaseData {
     private LocalDate reinstatementRegistered;
     private RequestOutcome reinstatementOutcome;
     private String welshInterlocNextReviewState;
-    /**
-     * @deprecated since 2026-06-18
-     * Use {@link #confidentialCaseStatus} instead. This field has been replaced
-     * with a more comprehensive enum that supports Yes/No/Unknown states.
-     */
-    @Deprecated(since = "2026-06-18")
     private YesNo isConfidentialCase;
     private YesNo isInc5249521;
     private DatedRequestOutcome confidentialityRequestOutcomeAppellant;
@@ -804,16 +798,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public YesNoUndetermined getConfidentialCaseStatus() {
-        return this.getExtendedSscsCaseData().getConfidentialCaseStatus();
-    }
-
-    @JsonIgnore
-    public void setConfidentialCaseStatus(YesNoUndetermined confidentialCaseStatus) {
-        this.getExtendedSscsCaseData().setConfidentialCaseStatus(confidentialCaseStatus);
-    }
-
-    @JsonIgnore
     public boolean isIbcCase() {
         if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
             return true;
@@ -937,6 +921,23 @@ public class SscsCaseData implements CaseData {
     @JsonIgnore
     public Optional<YesNoUndetermined> getAppellantConfidentiality() {
         return getAppellant().map(Party::getConfidentialityRequirement);
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty(value = "hasUndeterminedPartyConfidentiality", access = READ_ONLY)
+    public YesNo hasUndeterminedPartyConfidentiality() {
+
+        boolean appellantHasUndeterminedConfidentiality = getAppellant()
+            .map(Party::getConfidentialityRequirement)
+            .filter(conf -> conf == YesNoUndetermined.UNDETERMINED)
+            .isPresent();
+
+        boolean anyPartyHasUndeterminedConfidentiality = emptyIfNull(getOtherParties())
+            .stream()
+            .map(op -> op.getValue().getConfidentialityRequirement())
+            .anyMatch(conf -> conf == YesNoUndetermined.UNDETERMINED);
+
+        return appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality ? YES : NO;
     }
 
 }

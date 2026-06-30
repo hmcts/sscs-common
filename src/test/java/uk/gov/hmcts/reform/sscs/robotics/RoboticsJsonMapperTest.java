@@ -694,7 +694,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndChildSupportBenefit_thenSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().getExtendedSscsCaseData().setConfidentialCaseStatus(YesNoUndetermined.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(CHILD_SUPPORT.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -704,7 +704,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndSscs5Benefit_thenSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().getExtendedSscsCaseData().setConfidentialCaseStatus(YesNoUndetermined.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(GUARDIANS_ALLOWANCE.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
@@ -714,7 +714,7 @@ public class RoboticsJsonMapperTest {
 
     @Test
     public void givenConfidentialCaseAndNonChildSupportBenefit_thenDoNotSetIsConfidentialFlag() {
-        roboticsWrapper.getSscsCaseData().getExtendedSscsCaseData().setConfidentialCaseStatus(YesNoUndetermined.YES);
+        roboticsWrapper.getSscsCaseData().setIsConfidentialCase(YES);
         roboticsWrapper.getSscsCaseData().getAppeal().getBenefitType().setCode(PIP.getShortName());
 
         roboticsJson = roboticsJsonMapper.map(roboticsWrapper);
