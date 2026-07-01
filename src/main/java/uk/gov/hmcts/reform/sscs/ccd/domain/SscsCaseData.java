@@ -938,7 +938,7 @@ public class SscsCaseData implements CaseData {
         final YesNoUndetermined appellantConfidentialitySelection = getAppellant()
             .map(Party::getConfidentialityRequirement).orElse(null);
 
-        boolean anyPartyHasUndeterminedConfidentiality = emptyIfNull(getOtherParties())
+        final boolean anyPartyHasUndeterminedConfidentiality = emptyIfNull(getOtherParties())
             .stream()
             .map(op -> op.getValue().getConfidentialityRequirement())
             .anyMatch(conf -> isNull(conf) || conf == YesNoUndetermined.UNDETERMINED);

@@ -100,7 +100,7 @@ public final class ConfidentialityTabBuilder {
     }
 
     private static String getConfidentialityStatus(final YesNoUndetermined confidentialityRequired) {
-        return confidentialityRequired != null ? confidentialityRequired.getValue() : "Undetermined";
+        return confidentialityRequired != null ? confidentialityRequired.getValue() : YesNoUndetermined.UNDETERMINED.getValue();
     }
 
     private static String extractFullName(final Name name) {
