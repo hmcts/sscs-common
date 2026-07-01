@@ -935,17 +935,15 @@ public class SscsCaseData implements CaseData {
             return null;
         }
 
-        boolean appellantHasUndeterminedConfidentiality = getAppellant()
-            .map(Party::getConfidentialityRequirement)
-            .filter(conf -> conf == YesNoUndetermined.UNDETERMINED)
-            .isPresent();
+        final YesNoUndetermined appellantConfidentialitySelection = getAppellant()
+            .map(Party::getConfidentialityRequirement).orElse(null);
 
         boolean anyPartyHasUndeterminedConfidentiality = emptyIfNull(getOtherParties())
             .stream()
             .map(op -> op.getValue().getConfidentialityRequirement())
-            .anyMatch(conf -> conf == YesNoUndetermined.UNDETERMINED);
+            .anyMatch(conf -> isNull(conf) || conf == YesNoUndetermined.UNDETERMINED);
 
-        return appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality ? YES : NO;
+        return (isNull(appellantConfidentialitySelection) || appellantConfidentialitySelection == YesNoUndetermined.UNDETERMINED) || anyPartyHasUndeterminedConfidentiality ? YES : NO;
     }
 
 }

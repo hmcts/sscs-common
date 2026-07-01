@@ -989,6 +989,13 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenAppealIsNull() {
+        final SscsCaseData caseData = SscsCaseData.builder().build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
     void hasUndeterminedPartyConfidentiality_returnsNull_whenBenefitTypeIsNull() {
         final SscsCaseData caseData = SscsCaseData.builder()
             .appeal(Appeal.builder().build())
@@ -1033,10 +1040,27 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenAppellantConfidentialityRequirementIsNull() {
+        final Appellant appellant = Appellant.builder().build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
     void hasUndeterminedPartyConfidentiality_returnsNo_whenOtherPartyIsNotUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         final SscsCaseData caseData = SscsCaseData.builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build()).build())
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
             .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
             .build();
 
@@ -1044,11 +1068,30 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenOtherPartyConfidentialityRequirementIsNull() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty otherParty = OtherParty.builder().build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
     void hasUndeterminedPartyConfidentiality_returnsYes_whenOneOtherPartyIsUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         final OtherParty determined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         final OtherParty undetermined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
         final SscsCaseData caseData = SscsCaseData.builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build()).build())
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
             .otherParties(List.of(
                 CcdValue.<OtherParty>builder().value(determined).build(),
                 CcdValue.<OtherParty>builder().value(undetermined).build()
@@ -1075,8 +1118,12 @@ public class SscsCaseDataTest {
 
     @Test
     void hasUndeterminedPartyConfidentiality_returnsNo_whenEmptyOtherPartiesList() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         final SscsCaseData caseData = SscsCaseData.builder()
-            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build()).build())
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
             .otherParties(List.of())
             .build();
 
