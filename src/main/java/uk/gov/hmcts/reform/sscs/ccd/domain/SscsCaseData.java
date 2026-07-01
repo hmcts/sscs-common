@@ -7,15 +7,19 @@ import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
+
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.ConfidentialityTabBuilder.buildConfidentialityTab;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
+
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
+import static uk.gov.hmcts.reform.sscs.ccd.predicates.BenefitTypeConfidentialityPredicate.isValidBenefitTypeForConfidentiality;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,6 +28,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import jakarta.validation.Valid;
+import jakarta.validation.groups.ConvertGroup;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -33,9 +39,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import uk.gov.hmcts.reform.sscs.ccd.predicates.BenefitTypeConfidentialityPredicate;
 import java.util.stream.Stream;
-import jakarta.validation.Valid;
-import jakarta.validation.groups.ConvertGroup;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -797,12 +802,6 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public Optional<YesNo> getAppellantConfidentialityRequired() {
-        return getAppellant()
-                .map(Appellant::getConfidentialityRequired);
-    }
-
-    @JsonIgnore
     public boolean isIbcCase() {
         if (INFECTED_BLOOD_COMPENSATION.getBenefitCode().equals(benefitCode)) {
             return true;
@@ -921,6 +920,34 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "confidentialityTab", access = READ_ONLY)
     public String getConfidentialityTab() {
         return buildConfidentialityTab(getBenefitType().orElse(null), appeal, otherParties);
+    }
+
+    @JsonIgnore
+    public Optional<YesNoUndetermined> getAppellantConfidentiality() {
+        return getAppellant().map(Party::getConfidentialityRequirement);
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty(value = "hasUndeterminedPartyConfidentiality", access = READ_ONLY)
+    public YesNo hasUndeterminedPartyConfidentiality() {
+
+        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType())) {
+            return null;
+        }
+
+        final YesNoUndetermined appellantConfidentialitySelection = getAppellant()
+            .map(Party::getConfidentialityRequirement)
+            .orElse(null);
+
+        boolean anyPartyHasUndeterminedConfidentiality = emptyIfNull(getOtherParties())
+            .stream()
+            .map(op -> op.getValue().getConfidentialityRequirement())
+            .anyMatch(conf -> conf == null || conf == YesNoUndetermined.UNDETERMINED);
+
+        boolean appellantHasUndeterminedConfidentiality = appellantConfidentialitySelection == null
+            || appellantConfidentialitySelection == YesNoUndetermined.UNDETERMINED;
+
+        return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
     }
 
 }

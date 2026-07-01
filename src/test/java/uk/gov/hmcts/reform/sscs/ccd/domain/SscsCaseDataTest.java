@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
@@ -46,11 +47,11 @@ public class SscsCaseDataTest {
     public void setUp() {
 
         Jackson2ObjectMapperBuilder objectMapperBuilder =
-                new Jackson2ObjectMapperBuilder()
-                        .featuresToEnable(READ_ENUMS_USING_TO_STRING)
-                        .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
-                        .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
-                        .serializationInclusion(JsonInclude.Include.NON_ABSENT);
+            new Jackson2ObjectMapperBuilder()
+                .featuresToEnable(READ_ENUMS_USING_TO_STRING)
+                .featuresToEnable(READ_UNKNOWN_ENUM_VALUES_USING_DEFAULT_VALUE)
+                .featuresToEnable(WRITE_ENUMS_USING_TO_STRING)
+                .serializationInclusion(JsonInclude.Include.NON_ABSENT);
 
         mapper = objectMapperBuilder.createXmlMapper(false).build();
         mapper.findAndRegisterModules();
@@ -218,15 +219,15 @@ public class SscsCaseDataTest {
     @Test
     public void shouldCreateInfoRequest() throws JsonParseException, IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
-                ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
+            ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
         List<AppellantInfoRequest> appellantInfoRequests = new ArrayList<>();
         AppellantInfoRequest appellantInfoRequest1 = AppellantInfoRequest.builder()
-                .appellantInfo(AppellantInfo.builder().paragraph("Par1").requestDate("date1").build()).build();
+                                                                         .appellantInfo(AppellantInfo.builder().paragraph("Par1").requestDate("date1").build()).build();
 
         appellantInfoRequests.add(appellantInfoRequest1);
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequests.builder()
-                .appellantInfoRequest(appellantInfoRequests).build()).build();
+                                                                                    .appellantInfoRequest(appellantInfoRequests).build()).build();
 
         ObjectMapper mapper = new ObjectMapper();
         String infoRequestValue = mapper.writeValueAsString(sscsCaseData.getInfoRequests());
@@ -582,55 +583,55 @@ public class SscsCaseDataTest {
     private SscsDocument buildSscsDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
         String docType = documentType == null ? null : documentType.getValue();
         return SscsDocument.builder().value(
-                SscsDocumentDetails.builder().documentType(docType)
-                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .documentDateAdded(date)
-                        .bundleAddition(bundleAddition)
-                        .documentTranslationStatus(translationStatus)
-                        .build()).build();
+            SscsDocumentDetails.builder().documentType(docType)
+                               .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                               .documentDateAdded(date)
+                               .bundleAddition(bundleAddition)
+                               .documentTranslationStatus(translationStatus)
+                               .build()).build();
     }
 
     private SscsWelshDocument buildWelshSscsDocument(String documentUrl, DocumentType documentType, String date) {
         String docType = documentType == null ? null : documentType.getValue();
         return SscsWelshDocument.builder().value(
-                SscsWelshDocumentDetails.builder().documentType(docType)
-                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .documentDateAdded(date)
-                        .build()).build();
+            SscsWelshDocumentDetails.builder().documentType(docType)
+                                    .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                                    .documentDateAdded(date)
+                                    .build()).build();
     }
 
     private DwpDocument buildDwpDocument(String documentUrl, DocumentType documentType, String date, String bundleAddition, SscsDocumentTranslationStatus translationStatus) {
         String docType = documentType == null ? null : documentType.getValue();
         return DwpDocument.builder().value(
-                DwpDocumentDetails.builder().documentType(docType)
-                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .documentDateAdded(date)
-                        .bundleAddition(bundleAddition)
-                        .documentTranslationStatus(translationStatus)
-                        .build()).build();
+            DwpDocumentDetails.builder().documentType(docType)
+                              .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                              .documentDateAdded(date)
+                              .bundleAddition(bundleAddition)
+                              .documentTranslationStatus(translationStatus)
+                              .build()).build();
     }
 
     private DwpDocument buildDwpDocument(String documentUrl, DwpDocumentType documentType, String date) {
         String docType = documentType == null ? null : documentType.getValue();
         return DwpDocument.builder().value(
-                DwpDocumentDetails.builder().documentType(docType)
-                        .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
-                        .documentDateAdded(date)
-                        .build()).build();
+            DwpDocumentDetails.builder().documentType(docType)
+                              .documentLink(DocumentLink.builder().documentUrl(documentUrl).build())
+                              .documentDateAdded(date)
+                              .build()).build();
     }
 
     private ScannedDocument buildScannedDocument(String documentUrl, DocumentType documentType, String date, String controlNumber) {
         String docType = documentType == null ? null : documentType.getValue();
         return ScannedDocument.builder()
-                .value(ScannedDocumentDetails.builder()
-                        .type(docType)
-                        .url(DocumentLink.builder()
-                                .documentUrl(documentUrl)
-                                .build())
-                        .scannedDate(date)
-                        .controlNumber(controlNumber)
-                        .build())
-                .build();
+                              .value(ScannedDocumentDetails.builder()
+                                                           .type(docType)
+                                                           .url(DocumentLink.builder()
+                                                                            .documentUrl(documentUrl)
+                                                                            .build())
+                                                           .scannedDate(date)
+                                                           .controlNumber(controlNumber)
+                                                           .build())
+                              .build();
     }
 
     @Test
@@ -879,33 +880,33 @@ public class SscsCaseDataTest {
         ArrayList<Hearing> hearings = new ArrayList<>();
 
         Hearing h1 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-05 10:30:00", pattern))
-                .hearingDate("2022-09-01").time("11:45:30")
-                .hearingId("3").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-05 10:30:00", pattern))
+                                                           .hearingDate("2022-09-01").time("11:45:30")
+                                                           .hearingId("3").build()).build();
         Hearing h2 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-01 10:30:00", pattern))
-                .hearingDate("2022-09-08").time("11:45:30")
-                .hearingId("4").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-01 10:30:00", pattern))
+                                                           .hearingDate("2022-09-08").time("11:45:30")
+                                                           .hearingId("4").build()).build();
         Hearing expectedValue = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-07 10:30:00", pattern))
-                .hearingDate("2022-09-09").time("11:45:30")
-                .hearingId("4").build()).build();
+                                                                      .hearingRequested(LocalDateTime.parse("2022-09-07 10:30:00", pattern))
+                                                                      .hearingDate("2022-09-09").time("11:45:30")
+                                                                      .hearingId("4").build()).build();
         Hearing h4 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
-                .hearingDate("2022-09-09").time("11:45:30")
-                .hearingId("4").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                                                           .hearingDate("2022-09-09").time("11:45:30")
+                                                           .hearingId("4").build()).build();
         Hearing h5 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
-                .hearingDate("2022-09-08").time("11:45:30")
-                .hearingId("2").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                                                           .hearingDate("2022-09-08").time("11:45:30")
+                                                           .hearingId("2").build()).build();
         Hearing h6 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
-                .hearingDate("2022-09-08").time("11:45:30")
-                .hearingId("3").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                                                           .hearingDate("2022-09-08").time("11:45:30")
+                                                           .hearingId("3").build()).build();
         Hearing h7 = Hearing.builder().value(HearingDetails.builder()
-                .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
-                .hearingDate("2022-09-08").time("11:45:30")
-                .hearingId("1").build()).build();
+                                                           .hearingRequested(LocalDateTime.parse("2022-09-03 10:30:00", pattern))
+                                                           .hearingDate("2022-09-08").time("11:45:30")
+                                                           .hearingId("1").build()).build();
 
         hearings.add(h1);
         hearings.add(h2);
@@ -976,15 +977,157 @@ public class SscsCaseDataTest {
     public void givenNullAppeal_thenGetAppellantConfidentialityRequiredReturnsEmpty() {
         var caseData = SscsCaseData.builder().build();
 
-        assertTrue(caseData.getAppellantConfidentialityRequired().isEmpty());
+        assertTrue(caseData.getAppellantConfidentiality().isEmpty());
     }
 
     @Test
     public void givenAppellantConfidentialityRequired_thenGetAppellantConfidentialityRequiredReturnsValue() {
-        var appellant = Appellant.builder().confidentialityRequired(YES).build();
+        var appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
         var caseData = SscsCaseData.builder().appeal(Appeal.builder().appellant(appellant).build()).build();
 
-        assertEquals(YES, caseData.getAppellantConfidentialityRequired().orElseThrow());
+        assertEquals(YesNoUndetermined.YES, caseData.getAppellantConfidentiality().orElseThrow());
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenAppealIsNull() {
+        final SscsCaseData caseData = SscsCaseData.builder().build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenBenefitTypeIsNull() {
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenBenefitTypeIsNotValidForConfidentiality() {
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(PIP.getShortName()).build()).build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenAppellantIsNotUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenAppellantIsUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenAppellantConfidentialityRequirementIsNull() {
+        final Appellant appellant = Appellant.builder().build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenOtherPartyIsNotUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenOtherPartyConfidentialityRequirementIsNull() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty otherParty = OtherParty.builder().build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenOneOtherPartyIsUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty determined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty undetermined = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(
+                CcdValue.<OtherParty>builder().value(determined).build(),
+                CcdValue.<OtherParty>builder().value(undetermined).build()
+            ))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenBothAppellantAndOtherPartyAreUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenEmptyOtherPartiesList() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
     }
 
     @Test
@@ -1006,7 +1149,7 @@ public class SscsCaseDataTest {
     @Test
     public void givenBenefitCodeIsSetIba_thenIsIbcIsTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .benefitCode(INFECTED_BLOOD_COMPENSATION.getBenefitCode()).build();
+                                                .benefitCode(INFECTED_BLOOD_COMPENSATION.getBenefitCode()).build();
 
         assertTrue(sscsCaseData.isIbcCase());
     }
@@ -1014,7 +1157,7 @@ public class SscsCaseDataTest {
     @Test
     public void givenAppealBenefitCodeIsSetIba_thenIsIbcIsTrue() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(INFECTED_BLOOD_COMPENSATION.getShortName()).build()).build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(INFECTED_BLOOD_COMPENSATION.getShortName()).build()).build()).build();
 
         assertTrue(sscsCaseData.isIbcCase());
     }
@@ -1022,10 +1165,10 @@ public class SscsCaseDataTest {
     @Test
     public void givenAppealBenefitCodeIsSetMidCaseCreateIba_thenIsIbcIsTrue() {
         DynamicList expectedList = new DynamicList(
-                new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()), new ArrayList<>());
+            new DynamicListItem(INFECTED_BLOOD_COMPENSATION.getBenefitCode(), INFECTED_BLOOD_COMPENSATION.getShortName()), new ArrayList<>());
 
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .appeal(Appeal.builder().benefitType(BenefitType.builder().descriptionSelection(expectedList).build()).build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().descriptionSelection(expectedList).build()).build()).build();
 
         assertTrue(sscsCaseData.isIbcCase());
     }
@@ -1033,7 +1176,7 @@ public class SscsCaseDataTest {
     @Test
     public void givenAppealBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build()).build()).build();
+                                                .appeal(Appeal.builder().benefitType(BenefitType.builder().code(CHILD_BENEFIT.getShortName()).build()).build()).build();
 
         assertFalse(sscsCaseData.isIbcCase());
     }
@@ -1042,7 +1185,7 @@ public class SscsCaseDataTest {
     @CsvSource({"030", "034", "016"})
     public void givenBenefitCodeIsSetOnlyNonIba_thenIsIbcIsFalse(String benefitCode) {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-                .benefitCode(benefitCode).build();
+                                                .benefitCode(benefitCode).build();
 
         assertFalse(sscsCaseData.isIbcCase());
     }
@@ -1059,27 +1202,27 @@ public class SscsCaseDataTest {
     @Test
     public void givenElementsDisputed_thenGetIssueCodesForAllElementsDisputedReturnsListOfElements() {
         ElementDisputed elementDisputed = ElementDisputed.builder()
-                .value(ElementDisputedDetails.builder()
-                        .issueCode("WC")
-                        .outcome("Test")
-                        .build())
-                .build();
+                                                         .value(ElementDisputedDetails.builder()
+                                                                                      .issueCode("WC")
+                                                                                      .outcome("Test")
+                                                                                      .build())
+                                                         .build();
         SscsCaseData caseData = SscsCaseData.builder()
-                .elementsDisputedGeneral(List.of(elementDisputed))
-                .elementsDisputedSanctions(List.of(elementDisputed))
-                .elementsDisputedOverpayment(List.of(elementDisputed))
-                .elementsDisputedHousing(List.of(elementDisputed))
-                .elementsDisputedChildCare(List.of(elementDisputed))
-                .elementsDisputedCare(List.of(elementDisputed))
-                .elementsDisputedChildElement(List.of(elementDisputed))
-                .elementsDisputedChildDisabled(List.of(elementDisputed))
-                .elementsDisputedLimitedWork(List.of(elementDisputed))
-                .build();
+                                            .elementsDisputedGeneral(List.of(elementDisputed))
+                                            .elementsDisputedSanctions(List.of(elementDisputed))
+                                            .elementsDisputedOverpayment(List.of(elementDisputed))
+                                            .elementsDisputedHousing(List.of(elementDisputed))
+                                            .elementsDisputedChildCare(List.of(elementDisputed))
+                                            .elementsDisputedCare(List.of(elementDisputed))
+                                            .elementsDisputedChildElement(List.of(elementDisputed))
+                                            .elementsDisputedChildDisabled(List.of(elementDisputed))
+                                            .elementsDisputedLimitedWork(List.of(elementDisputed))
+                                            .build();
         List<String> result = caseData.getIssueCodesForAllElementsDisputed();
 
         assertThat(result)
-                .hasSize(9)
-                .containsOnly("WC");
+            .hasSize(9)
+            .containsOnly("WC");
     }
 
     @ParameterizedTest
@@ -1090,10 +1233,10 @@ public class SscsCaseDataTest {
     })
     void showConfidentialityTabReturnsCorrectValue(YesNo showConfidentialityTab, YesNo expected) {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-            .extendedSscsCaseData(ExtendedSscsCaseData.builder()
-                .showConfidentialityTab(showConfidentialityTab)
-                .build())
-            .build();
+                                                .extendedSscsCaseData(ExtendedSscsCaseData.builder()
+                                                                                          .showConfidentialityTab(showConfidentialityTab)
+                                                                                          .build())
+                                                .build();
 
         assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(expected);
     }
@@ -1101,8 +1244,8 @@ public class SscsCaseDataTest {
     @Test
     void showConfidentialityTabReturnsNoWhenExtendedSscsCaseDataIsNull() {
         SscsCaseData sscsCaseData = SscsCaseData.builder()
-            .extendedSscsCaseData(null)
-            .build();
+                                                .extendedSscsCaseData(null)
+                                                .build();
 
         assertThat(sscsCaseData.showConfidentialityTab()).isEqualTo(NO);
     }
@@ -1111,29 +1254,29 @@ public class SscsCaseDataTest {
     void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
         List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
         documentSelection.add(CcdValue.<DocumentSelectionDetails>builder()
-                .value(DocumentSelectionDetails.builder()
-                        .documentsList(new DynamicList(new DynamicListItem("doc1", "Document 1"), new ArrayList<>()))
-                        .build())
-                .build());
+                                      .value(DocumentSelectionDetails.builder()
+                                                                     .documentsList(new DynamicList(new DynamicListItem("doc1", "Document 1"), new ArrayList<>()))
+                                                                     .build())
+                                      .build());
 
         List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = new ArrayList<>();
         otherPartySelection.add(CcdValue.<OtherPartySelectionDetails>builder()
-                .value(OtherPartySelectionDetails.builder()
-                        .otherPartiesList(new DynamicList(new DynamicListItem("party1", "Party 1"), new ArrayList<>()))
-                        .build())
-                .build());
+                                        .value(OtherPartySelectionDetails.builder()
+                                                                         .otherPartiesList(new DynamicList(new DynamicListItem("party1", "Party 1"), new ArrayList<>()))
+                                                                         .build())
+                                        .build());
 
         SscsCaseData caseData = SscsCaseData.builder()
-                .genericLetterText("Some letter text")
-                .sendToAllParties(YES)
-                .sendToApellant(YES)
-                .sendToJointParty(YES)
-                .sendToOtherParties(YES)
-                .sendToRepresentative(YES)
-                .addDocuments(YES)
-                .documentSelection(documentSelection)
-                .otherPartySelection(otherPartySelection)
-                .build();
+                                            .genericLetterText("Some letter text")
+                                            .sendToAllParties(YES)
+                                            .sendToApellant(YES)
+                                            .sendToJointParty(YES)
+                                            .sendToOtherParties(YES)
+                                            .sendToRepresentative(YES)
+                                            .addDocuments(YES)
+                                            .documentSelection(documentSelection)
+                                            .otherPartySelection(otherPartySelection)
+                                            .build();
 
         caseData.clearNotificationFields();
 
@@ -1151,15 +1294,15 @@ public class SscsCaseDataTest {
     @Test
     void getConfidentialityTabShouldReturnTableWhenBenefitIsChildSupport() {
         final Appellant appellant = Appellant.builder()
-            .name(Name.builder().firstName("John").lastName("Doe").build())
-            .confidentialityRequired(YES)
-            .build();
+                                             .name(Name.builder().firstName("John").lastName("Doe").build())
+                                             .confidentialityRequirement(YesNoUndetermined.YES)
+                                             .build();
         final SscsCaseData caseData = SscsCaseData.builder()
-            .appeal(Appeal.builder()
-                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
-                .appellant(appellant)
-                .build())
-            .build();
+                                                  .appeal(Appeal.builder()
+                                                                .benefitType(BenefitType.builder().code(CHILD_SUPPORT.getShortName()).build())
+                                                                .appellant(appellant)
+                                                                .build())
+                                                  .build();
 
         assertThat(caseData.getConfidentialityTab()).isEqualToIgnoringWhitespace("""
             Party | Name | Confidentiality Status | Confidentiality Status Confirmed
