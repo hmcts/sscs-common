@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_BENEFIT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.PIP;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
@@ -1125,6 +1126,55 @@ public class SscsCaseDataTest {
                 .appellant(appellant)
                 .build())
             .otherParties(List.of())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenBenefitIsUcAndOtherPartiesIsNull() {
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(UC.getShortName()).build()).build())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNull_whenBenefitIsUcAndOtherPartiesIsEmpty() {
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder().benefitType(BenefitType.builder().code(UC.getShortName()).build()).build())
+            .otherParties(List.of())
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isNull();
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsYes_whenBenefitIsUcAndOtherPartyIsUndetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.UNDETERMINED).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(UC.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
+            .build();
+
+        assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(YES);
+    }
+
+    @Test
+    void hasUndeterminedPartyConfidentiality_returnsNo_whenBenefitIsUcAndAllPartiesAreDetermined() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(YesNoUndetermined.YES).build();
+        final SscsCaseData caseData = SscsCaseData.builder()
+            .appeal(Appeal.builder()
+                .benefitType(BenefitType.builder().code(UC.getShortName()).build())
+                .appellant(appellant)
+                .build())
+            .otherParties(List.of(CcdValue.<OtherParty>builder().value(otherParty).build()))
             .build();
 
         assertThat(caseData.hasUndeterminedPartyConfidentiality()).isEqualTo(NO);
