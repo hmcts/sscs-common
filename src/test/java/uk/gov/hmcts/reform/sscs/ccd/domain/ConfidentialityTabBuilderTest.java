@@ -79,6 +79,32 @@ class ConfidentialityTabBuilderTest {
     }
 
     @Test
+    void shouldShowYesWhenAppellantHasConfidentialityRequiredAsFallback() {
+        final Appellant appellant = Appellant.builder()
+            .confidentialityRequirement(null)
+            .confidentialityRequired(YesNo.YES)
+            .build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
+
+        assertThat(result).contains("Appellant |  | Yes |");
+    }
+
+    @Test
+    void shouldPreferConfidentialityRequirementOverConfidentialityRequired() {
+        final Appellant appellant = Appellant.builder()
+            .confidentialityRequirement(NO)
+            .confidentialityRequired(YesNo.YES)
+            .build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
+
+        assertThat(result).contains("Appellant |  | No |");
+    }
+
+    @Test
     void shouldShowUndeterminedStatusWhenAppellantHasUndeterminedConfidentiality() {
         final Appellant appellant = Appellant.builder().confidentialityRequirement(UNDETERMINED).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
