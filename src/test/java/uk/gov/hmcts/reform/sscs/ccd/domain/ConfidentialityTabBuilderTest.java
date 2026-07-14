@@ -4,8 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.CHILD_SUPPORT;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.INFECTED_BLOOD_COMPENSATION;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNoUndetermined.NO;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNoUndetermined.UNDETERMINED;
+import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNoUndetermined.YES;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -47,7 +48,7 @@ class ConfidentialityTabBuilderTest {
     @Test
     void shouldShowYesWhenAppellantHasYesConfidentiality() {
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequired(YES)
+                                             .confidentialityRequirement(YES)
                                              .name(Name.builder().firstName("John").lastName("Doe").build())
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
@@ -64,7 +65,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowNoWhenAppellantHasNoConfidentiality() {
-        final Appellant appellant = Appellant.builder().confidentialityRequired(NO).build();
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(NO).build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
         final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
@@ -74,6 +75,47 @@ class ConfidentialityTabBuilderTest {
             -|-|-|-
             Appellant |  | No |
             
+            """);
+    }
+
+    @Test
+    void shouldShowYesWhenAppellantHasConfidentialityRequiredAsFallback() {
+        final Appellant appellant = Appellant.builder()
+            .confidentialityRequirement(null)
+            .confidentialityRequired(YesNo.YES)
+            .build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
+
+        assertThat(result).contains("Appellant |  | Yes |");
+    }
+
+    @Test
+    void shouldPreferConfidentialityRequirementOverConfidentialityRequired() {
+        final Appellant appellant = Appellant.builder()
+            .confidentialityRequirement(NO)
+            .confidentialityRequired(YesNo.YES)
+            .build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
+
+        assertThat(result).contains("Appellant |  | No |");
+    }
+
+    @Test
+    void shouldShowUndeterminedStatusWhenAppellantHasUndeterminedConfidentiality() {
+        final Appellant appellant = Appellant.builder().confidentialityRequirement(UNDETERMINED).build();
+        final Appeal appeal = Appeal.builder().appellant(appellant).build();
+
+        final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal, null);
+
+        assertThat(result).isEqualToIgnoringWhitespace("""
+            Party | Name | Confidentiality Status | Confidentiality Status Confirmed
+            -|-|-|-
+            Appellant |  | Undetermined |
+
             """);
     }
 
@@ -96,7 +138,7 @@ class ConfidentialityTabBuilderTest {
     void shouldShowAppointeeRowWhenIsAppointeeYes() {
         final Appointee appointee = Appointee.builder().name(Name.builder().firstName("App").lastName("Ointee").build()).build();
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequired(YES)
+                                             .confidentialityRequirement(YES)
                                              .isAppointee("Yes")
                                              .appointee(appointee)
                                              .build();
@@ -148,7 +190,7 @@ class ConfidentialityTabBuilderTest {
     void shouldShowOtherParty1WhenSingleOtherPartyExists() {
         final OtherParty otherParty = OtherParty.builder()
                                                 .name(Name.builder().firstName("Other").lastName("Person").build())
-                                                .confidentialityRequired(YES)
+                                                .confidentialityRequirement(YES)
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
@@ -206,7 +248,7 @@ class ConfidentialityTabBuilderTest {
 
     @Test
     void shouldShowEmptyNameInRowWhenOtherPartyHasNullName() {
-        final OtherParty otherParty = OtherParty.builder().confidentialityRequired(NO).build();
+        final OtherParty otherParty = OtherParty.builder().confidentialityRequirement(NO).build();
         final Appeal appeal = Appeal.builder().appellant(null).build();
 
         final String result = ConfidentialityTabBuilder.buildConfidentialityTab(CHILD_SUPPORT, appeal,
@@ -262,14 +304,14 @@ class ConfidentialityTabBuilderTest {
         final Appointee appointee = Appointee.builder().name(Name.builder().firstName("Ap").lastName("Pointee").build()).build();
         final Appellant appellant = Appellant.builder()
                                              .name(Name.builder().firstName("App").lastName("Ellant").build())
-                                             .confidentialityRequired(YES)
+                                             .confidentialityRequirement(YES)
                                              .confidentialityRequiredChangedDate(DATE)
                                              .isAppointee("Yes")
                                              .appointee(appointee)
                                              .build();
         final OtherParty otherParty = OtherParty.builder()
                                                 .name(Name.builder().firstName("Other").lastName("Guy").build())
-                                                .confidentialityRequired(NO)
+                                                .confidentialityRequirement(NO)
                                                 .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
 
@@ -289,7 +331,7 @@ class ConfidentialityTabBuilderTest {
     @Test
     void shouldBuildTabWhenBenefitIsUc() {
         final Appellant appellant = Appellant.builder()
-                                             .confidentialityRequired(YES)
+                                             .confidentialityRequirement(YES)
                                              .name(Name.builder().firstName("Uc").lastName("User").build())
                                              .build();
         final Appeal appeal = Appeal.builder().appellant(appellant).build();
