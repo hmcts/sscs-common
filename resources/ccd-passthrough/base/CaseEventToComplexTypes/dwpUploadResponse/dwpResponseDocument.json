@@ -2,35 +2,25 @@
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "dwpResponseDocument",
   "ListElementCode" : "dwpResponseDocumentTitle",
-  "ID" : "dwpResponseDocumentDwpTitle",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "N"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "dwpResponseDocument",
   "ListElementCode" : "hmrcResponseDocumentTitle",
-  "ID" : "dwpResponseDocumentHmrcTitle",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "N"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "dwpResponseDocument",
   "ListElementCode" : "ibcaResponseDocumentTitle",
-  "ID" : "dwpResponseDocumentIbcaTitle",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "N"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "dwpResponseDocument",
   "ListElementCode" : "documentFileName",
-  "ID" : "dwpResponseDocumentDocumentFileName",
-  "FieldDisplayOrder" : 2,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "dwpResponseDocument",
   "ListElementCode" : "documentLink",
-  "ID" : "dwpResponseDocumentDocumentLink",
-  "FieldDisplayOrder" : 3,
   "ShowSummaryChangeOption" : "Y"
 } ]

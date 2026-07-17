@@ -2,7 +2,5 @@
   "CaseEventID" : "amendElementsIssues",
   "CaseFieldID" : "elementsDisputedLimitedWork",
   "ListElementCode" : "issueCode",
-  "ID" : "elementsDisputedLimitedWorkCode",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "Y"
 } ]

@@ -1,7 +1,0 @@
-[ {
-  "CaseEventID" : "postHearingRequest",
-  "CaseFieldID" : "statementOfReasons",
-  "ListElementCode" : "requestFormat",
-  "ID" : "postHearingRequestStatementOfReasonsRequestFormat",
-  "FieldDisplayOrder" : 1
-} ]

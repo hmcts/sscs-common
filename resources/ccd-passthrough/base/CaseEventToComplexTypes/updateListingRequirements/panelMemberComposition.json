@@ -2,33 +2,15 @@
   "CaseEventID" : "updateListingRequirements",
   "CaseFieldID" : "panelMemberComposition",
   "ListElementCode" : "panelCompositionJudge",
-  "ID" : "updateListingRequirementsPanelCompositionJudge",
-  "FieldDisplayOrder" : 1,
   "RetainHiddenValue" : "No"
 }, {
   "CaseEventID" : "updateListingRequirements",
   "CaseFieldID" : "panelMemberComposition",
   "ListElementCode" : "districtTribunalJudge",
-  "ID" : "updateListingRequirementsPanelCompositionDtj",
-  "FieldDisplayOrder" : 2,
   "RetainHiddenValue" : "Yes"
-}, {
-  "CaseEventID" : "updateListingRequirements",
-  "CaseFieldID" : "panelMemberComposition",
-  "ListElementCode" : "panelCompositionMemberMedical1",
-  "ID" : "updateListingRequirementsPanelCompositionMemberMedical1",
-  "FieldDisplayOrder" : 3
 }, {
   "CaseEventID" : "updateListingRequirements",
   "CaseFieldID" : "panelMemberComposition",
   "ListElementCode" : "panelCompositionMemberMedical2",
-  "ID" : "updateListingRequirementsPanelCompositionMemberMedical2",
-  "FieldDisplayOrder" : 4,
   "RetainHiddenValue" : "Yes"
-}, {
-  "CaseEventID" : "updateListingRequirements",
-  "CaseFieldID" : "panelMemberComposition",
-  "ListElementCode" : "panelCompositionDisabilityAndFqMember",
-  "ID" : "updateListingRequirementsPanelCompositionDisabilityAndFqMember",
-  "FieldDisplayOrder" : 5
 } ]

@@ -1,7 +1,0 @@
-[ {
-  "CaseEventID" : "postHearingReview",
-  "CaseFieldID" : "permissionToAppeal",
-  "ListElementCode" : "action",
-  "ID" : "postHearingReviewPermissionToAppealAction",
-  "FieldDisplayOrder" : 1
-} ]

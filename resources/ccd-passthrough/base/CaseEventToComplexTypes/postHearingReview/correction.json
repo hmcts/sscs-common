@@ -1,7 +1,0 @@
-[ {
-  "CaseEventID" : "postHearingReview",
-  "CaseFieldID" : "correction",
-  "ListElementCode" : "action",
-  "ID" : "postHearingReviewCorrectionAction",
-  "FieldDisplayOrder" : 1
-} ]

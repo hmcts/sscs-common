@@ -2,35 +2,25 @@
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyAddress",
   "ListElementCode" : "line1",
-  "ID" : "jointPartyAddressLine1",
-  "FieldDisplayOrder" : 2,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyAddress",
   "ListElementCode" : "line2",
-  "ID" : "jointPartyAddressLine2",
-  "FieldDisplayOrder" : 3,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyAddress",
   "ListElementCode" : "town",
-  "ID" : "jointPartyAddressTown",
-  "FieldDisplayOrder" : 4,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyAddress",
   "ListElementCode" : "county",
-  "ID" : "jointPartyAddressCounty",
-  "FieldDisplayOrder" : 5,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyAddress",
   "ListElementCode" : "postcode",
-  "ID" : "jointPartyAddressPostcode",
-  "FieldDisplayOrder" : 6,
   "ShowSummaryChangeOption" : "Y"
 } ]

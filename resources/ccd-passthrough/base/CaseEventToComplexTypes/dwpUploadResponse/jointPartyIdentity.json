@@ -2,20 +2,10 @@
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyIdentity",
   "ListElementCode" : "dob",
-  "ID" : "jointPartyIdentityDob",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "Y"
 }, {
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "jointPartyIdentity",
   "ListElementCode" : "nino",
-  "ID" : "jointPartyIdentityNino",
-  "FieldDisplayOrder" : 2,
   "ShowSummaryChangeOption" : "Y"
-}, {
-  "CaseEventID" : "dwpUploadResponse",
-  "CaseFieldID" : "jointPartyIdentity",
-  "ListElementCode" : "ibcaReference",
-  "ID" : "jointPartyIdentityIbcaReference",
-  "FieldDisplayOrder" : 3
 } ]

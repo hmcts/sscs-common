@@ -2,7 +2,5 @@
   "CaseEventID" : "amendElementsIssues",
   "CaseFieldID" : "elementsDisputedChildDisabled",
   "ListElementCode" : "issueCode",
-  "ID" : "elementsDisputedChildDisabledCode",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "Y"
 } ]

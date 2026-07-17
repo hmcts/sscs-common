@@ -2,7 +2,5 @@
   "CaseEventID" : "hmctsResponseReviewed",
   "CaseFieldID" : "elementsDisputedGeneral",
   "ListElementCode" : "issueCode",
-  "ID" : "elementsDisputedGeneralCode",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "Y"
 } ]

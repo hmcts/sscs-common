@@ -2,7 +2,5 @@
   "CaseEventID" : "dwpUploadResponse",
   "CaseFieldID" : "elementsDisputedHousing",
   "ListElementCode" : "issueCode",
-  "ID" : "elementsDisputedHousingCode",
-  "FieldDisplayOrder" : 1,
   "ShowSummaryChangeOption" : "Y"
 } ]
