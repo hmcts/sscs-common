@@ -1,0 +1,25 @@
+[ {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberExclusions",
+  "ListElementCode" : "arePanelMembersExcluded",
+  "ID" : "updateListingRequirementsArePanelMembersExclusions",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberExclusions",
+  "ListElementCode" : "excludedPanelMembers",
+  "ID" : "updateListingRequirementsExcludedPanelMembers",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberExclusions",
+  "ListElementCode" : "arePanelMembersReserved",
+  "ID" : "updateListingRequirementsArePanelMembersReserved",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberExclusions",
+  "ListElementCode" : "reservedPanelMembers",
+  "ID" : "updateListingRequirementsReservedPanelMembers",
+  "FieldDisplayOrder" : 4
+} ]

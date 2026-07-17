@@ -1,0 +1,7 @@
+[ {
+  "CaseEventID" : "postHearingRequest",
+  "CaseFieldID" : "libertyToApply",
+  "ListElementCode" : "requestFormat",
+  "ID" : "postHearingRequestLibertyToApplyRequestFormat",
+  "FieldDisplayOrder" : 1
+} ]

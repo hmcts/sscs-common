@@ -1,0 +1,7 @@
+[ {
+  "CaseFieldID" : "selectedAudioVideoEvidence",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

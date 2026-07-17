@@ -1,0 +1,6 @@
+[ {
+  "ID" : "draftToNonCompliant",
+  "CallBackURLAboutToSubmitEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdAboutToSubmit",
+  "CallBackURLSubmittedEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/send",
+  "RetriesTimeoutURLSubmittedEvent" : "5,5"
+} ]

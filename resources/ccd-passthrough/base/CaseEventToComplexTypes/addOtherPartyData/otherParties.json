@@ -1,0 +1,86 @@
+[ {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.title",
+  "ID" : "otherPartyTitle",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.firstName",
+  "ID" : "otherPartyFirstName",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.lastName",
+  "ID" : "otherPartyLastName",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "address.line1",
+  "ID" : "otherPartyAddressLine1",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "address.line2",
+  "ID" : "otherPartyAddressLine2",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "address.town",
+  "ID" : "otherPartyAddressTown",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "address.county",
+  "ID" : "otherPartyAddressCounty",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "address.postcode",
+  "ID" : "otherPartyAddressPostcode",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "contact.phone",
+  "ID" : "otherPartyPhone",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "contact.mobile",
+  "ID" : "otherPartyMobile",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "contact.email",
+  "ID" : "otherPartyEmail",
+  "FieldDisplayOrder" : 11
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "unacceptableCustomerBehaviour",
+  "ID" : "otherPartyUnacceptableCustomerBehaviour"
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "role.name",
+  "ID" : "otherPartyRoleName"
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "role.description",
+  "ID" : "otherPartyRoleDescription"
+}, {
+  "CaseEventID" : "addOtherPartyData",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "domesticViolenceMarker"
+} ]

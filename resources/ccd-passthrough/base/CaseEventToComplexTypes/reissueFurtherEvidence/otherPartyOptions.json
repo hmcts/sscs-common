@@ -1,0 +1,19 @@
+[ {
+  "CaseEventID" : "reissueFurtherEvidence",
+  "CaseFieldID" : "otherPartyOptions",
+  "ListElementCode" : "otherPartyOptionName",
+  "ID" : "otherPartyOptionsNameReissueEv",
+  "FieldDisplayOrder" : 50
+}, {
+  "CaseEventID" : "reissueFurtherEvidence",
+  "CaseFieldID" : "otherPartyOptions",
+  "ListElementCode" : "resendToOtherParty",
+  "ID" : "otherPartyOptionsResendReissueEv",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "reissueFurtherEvidence",
+  "CaseFieldID" : "otherPartyOptions",
+  "ListElementCode" : "otherPartyOptionId",
+  "ID" : "otherPartyIdReissueEv",
+  "FieldDisplayOrder" : 52
+} ]

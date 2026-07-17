@@ -1,0 +1,49 @@
+[ {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "type",
+  "ID" : "scannedDocumentType",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "url",
+  "ID" : "scannedDocumentUrl",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "editedUrl",
+  "ID" : "scannedDocumentEditedUrl",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "controlNumber",
+  "ID" : "scannedDocumentEditedUrl",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "fileName",
+  "ID" : "scannedDocumentFileName",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "scannedDate",
+  "ID" : "scannedDocumentScannedDate",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "exceptionRecordReference",
+  "ID" : "scannedDocumentExceptionRecordReference",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "attachScannedDocs",
+  "CaseFieldID" : "scannedDocuments",
+  "ListElementCode" : "subtype",
+  "ID" : "scannedDocumentSubtype",
+  "FieldDisplayOrder" : 8
+} ]

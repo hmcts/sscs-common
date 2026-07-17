@@ -1,0 +1,37 @@
+[ {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "documentType",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "documentLink",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "rip1Document",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "dateAdded",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "partyUploaded",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "processAudioVideo",
+  "CaseFieldID" : "selectedAudioVideoEvidenceDetails",
+  "ListElementCode" : "statementOfEvidencePdf",
+  "ID" : "selectedAudioVideoEvidenceDetails",
+  "FieldDisplayOrder" : 6
+} ]

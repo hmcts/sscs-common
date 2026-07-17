@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -14,7 +15,9 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
 public class CaseManagementLocation {
+    @CCD(label = "Region")
     private String region;
+    @CCD(label = "Base Location")
     private String baseLocation;
 
     @JsonCreator

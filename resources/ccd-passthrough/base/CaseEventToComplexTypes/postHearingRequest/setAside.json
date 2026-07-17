@@ -1,0 +1,7 @@
+[ {
+  "CaseEventID" : "postHearingRequest",
+  "CaseFieldID" : "setAside",
+  "ListElementCode" : "requestFormat",
+  "ID" : "postHearingRequestSetAsideRequestFormat",
+  "FieldDisplayOrder" : 1
+} ]

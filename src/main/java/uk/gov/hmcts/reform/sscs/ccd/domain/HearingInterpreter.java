@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -14,6 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude
 public class HearingInterpreter {
+    @CCD(label = "Is an interpreter wanted?", typeOverride = FieldType.YesOrNo)
     private YesNo isInterpreterWanted;
+    @CCD(label = "Interpreter Language", typeOverride = FieldType.DynamicList)
     private DynamicList interpreterLanguage;
 }

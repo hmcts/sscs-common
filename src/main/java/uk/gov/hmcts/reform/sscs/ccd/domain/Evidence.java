@@ -7,12 +7,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Evidence {
+    @CCD(label = "Evidence Documentation", typeOverride = FieldType.Collection, typeParameterOverride = "doc")
     private List<Document> documents;
 
     @JsonCreator

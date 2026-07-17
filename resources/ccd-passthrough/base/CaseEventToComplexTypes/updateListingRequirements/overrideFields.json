@@ -1,0 +1,67 @@
+[ {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "duration",
+  "ID" : "updateListingRequirementsOverrideFieldsDuration",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "updateListingRequirementsInterpreterDurationLabel",
+  "ID" : "updateListingRequirementsDurationLabel",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "appellantHearingChannel",
+  "ID" : "updateListingRequirementsOverrideFieldsAppellantHearingChannel",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "hmcHearingType",
+  "ID" : "updateListingRequirementsOverrideFieldsHmcHearingType",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "autoList",
+  "ID" : "updateListingRequirementsOverrideFieldsAutoList",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "appellantInterpreter.isInterpreterWanted",
+  "ID" : "updateListingRequirementsOverrideFieldsAppellantInterpreterIsInterpreterWanted",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "appellantInterpreter.interpreterLanguage",
+  "ID" : "updateListingRequirementsOverrideFieldsAppellantInterpreterInterpreterLanguage",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "hearingWindow.firstDateTimeMustBe",
+  "ID" : "updateListingRequirementsOverrideFieldsHearingWindowFirstDateTimeMustBe",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "hearingWindow.dateRangeStart",
+  "ID" : "updateListingRequirementsOverrideFieldsHearingWindowDateRangeStart",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "hearingWindow.dateRangeEnd",
+  "ID" : "updateListingRequirementsOverrideFieldsHearingWindowDateRangeEnd",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "overrideFields",
+  "ListElementCode" : "hearingVenueEpimsIds.value",
+  "ID" : "updateListingRequirementsOverrideFieldsHearingVenueEpimsIdsValue",
+  "FieldDisplayOrder" : 11
+} ]

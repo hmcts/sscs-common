@@ -1,0 +1,163 @@
+[ {
+  "CaseFieldID" : "appeal",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=typeOfAppeal"
+}, {
+  "CaseFieldID" : "pipWriteFinalDecisionDailyLivingQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=typeOfAward"
+}, {
+  "CaseFieldID" : "writeFinalDecisionStartDate",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=awardDates"
+}, {
+  "CaseFieldID" : "writeFinalDecisionDisabilityQualifiedPanelMemberName",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=panelMemberNames"
+}, {
+  "CaseFieldID" : "writeFinalDecisionDateOfDecision",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=decisionDate"
+}, {
+  "CaseFieldID" : "showWorkCapabilityAssessmentPage",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=workCapabilityAssessment"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionWorkCapabilityAssessmentStartDate",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=workCapabilityAssessment"
+}, {
+  "CaseFieldID" : "whichEsaRegulationsApply",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=workCapabilityAssessment"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionPhysicalDisabilitiesQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=schedule6"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionPhysicalDisabilitiesQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=esaDecisionNoticeOptions"
+}, {
+  "CaseFieldID" : "pipWriteFinalDecisionDailyLivingActivitiesQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=decisionNoticeOptions"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionMobilisingUnaidedQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=mobilisingUnaided"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionStandingAndSittingQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=standingAndSitting"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionReachingQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=reaching"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionPickingUpQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=pickingUp"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionManualDexterityQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=manualDexterity"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selfUnderstood"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionCommunicationQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=communication"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionNavigationQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=navigation"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionLossOfControlQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=lossOfControl"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionConsciousnessQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=consciousness"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionLearningTasksQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=learningTasks"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=awarenessOfHazards"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionPersonalActionQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=personalAction"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionCopingWithChangeQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=copingWithChange"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionGettingAboutQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=gettingAbout"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionSocialEngagementQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=socialEngagement"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=appropriatenessOfBehaviour"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionMobilisingUnaidedQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=mobilisingUnaidedUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionStandingAndSittingQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=standingAndSittingUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionReachingQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=reachingUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionPickingUpQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=pickingUpUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionManualDexterityQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=manualDexterityUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionMakingSelfUnderstoodQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selfUnderstoodUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionCommunicationQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=communicationUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionNavigationQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=navigationUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionLossOfControlQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=lossOfControlUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionConsciousnessQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=consciousnessUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionLearningTasksQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=learningTasksUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionAwarenessOfHazardsQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=awarenessOfHazardsUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionPersonalActionQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=personalActionUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionCopingWithChangeQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=copingWithChangeUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionGettingAboutQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=gettingAboutUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionSocialEngagementQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=socialEngagementUC"
+}, {
+  "CaseFieldID" : "ucWriteFinalDecisionAppropriatenessOfBehaviourQuestion",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=appropriatenessOfBehaviourUC"
+}, {
+  "CaseFieldID" : "showRegulation29Page",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=regulation29"
+}, {
+  "CaseFieldID" : "showSchedule3ActivitiesPage",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=schedule3Activities"
+}, {
+  "CaseFieldID" : "showSchedule8Paragraph4Page",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=schedule8Paragraph4"
+}, {
+  "CaseFieldID" : "showSchedule7ActivitiesPage",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=schedule7Activities"
+}, {
+  "CaseFieldID" : "writeFinalDecisionSevereCriteriaApply",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=severeCriteria"
+}, {
+  "CaseFieldID" : "esaWriteFinalDecisionSevereCriteriaApply",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=esaSevereCriteria"
+}, {
+  "CaseFieldID" : "writeFinalDecisionPageSectionReference",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=pageSectionReference"
+}, {
+  "CaseFieldID" : "writeFinalDecisionAnythingElse",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEventPreviewFinalDecision"
+}, {
+  "CaseFieldID" : "writeFinalDecisionPreviewDocument",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=previewDecisionNotice"
+} ]

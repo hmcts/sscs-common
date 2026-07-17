@@ -1,0 +1,16 @@
+[ {
+  "CaseFieldID" : "bodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateDocument"
+}, {
+  "CaseFieldID" : "correctionBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateDocument"
+}, {
+  "CaseFieldID" : "statementOfReasonsBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateDocument"
+}, {
+  "CaseFieldID" : "libertyToApplyBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateDocument"
+}, {
+  "CaseFieldID" : "permissionToAppealBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateDocument"
+} ]

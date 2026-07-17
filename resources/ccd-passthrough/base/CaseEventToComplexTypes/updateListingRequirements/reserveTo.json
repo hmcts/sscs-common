@@ -1,0 +1,13 @@
+[ {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "reserveTo",
+  "ListElementCode" : "reservedDistrictTribunalJudge",
+  "ID" : "updateListingRequirementsReserveToReservedDistrictTribunalJudge",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "reserveTo",
+  "ListElementCode" : "reservedJudge",
+  "ID" : "updateListingRequirementsReservedJudge",
+  "FieldDisplayOrder" : 2
+} ]

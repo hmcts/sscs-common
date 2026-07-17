@@ -9,13 +9,17 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 public class DatedRequestOutcome {
+    @CCD(label = "Request outcome", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_requestOutcomes")
     private RequestOutcome requestOutcome;
 
+    @CCD(label = "Request date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate date;

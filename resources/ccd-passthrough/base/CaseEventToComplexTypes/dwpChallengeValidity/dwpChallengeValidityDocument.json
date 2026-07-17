@@ -1,0 +1,36 @@
+[ {
+  "CaseEventID" : "dwpChallengeValidity",
+  "CaseFieldID" : "dwpChallengeValidityDocument",
+  "ListElementCode" : "dwpResponseDocumentTitle",
+  "ID" : "dwpChallengeValidityDocumentDwpTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "dwpChallengeValidity",
+  "CaseFieldID" : "dwpChallengeValidityDocument",
+  "ListElementCode" : "hmrcResponseDocumentTitle",
+  "ID" : "dwpChallengeValidityDocumentHmrcTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "dwpChallengeValidity",
+  "CaseFieldID" : "dwpChallengeValidityDocument",
+  "ListElementCode" : "ibcaResponseDocumentTitle",
+  "ID" : "dwpChallengeValidityDocumentIbcaTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "dwpChallengeValidity",
+  "CaseFieldID" : "dwpChallengeValidityDocument",
+  "ListElementCode" : "documentFileName",
+  "ID" : "dwpChallengeValidityDocumentDocumentFileName",
+  "FieldDisplayOrder" : 2,
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpChallengeValidity",
+  "CaseFieldID" : "dwpChallengeValidityDocument",
+  "ListElementCode" : "documentLink",
+  "ID" : "dwpChallengeValidityDocumentDocumentLink",
+  "FieldDisplayOrder" : 3,
+  "ShowSummaryChangeOption" : "Y"
+} ]

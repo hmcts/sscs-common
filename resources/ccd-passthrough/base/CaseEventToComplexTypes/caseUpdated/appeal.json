@@ -1,0 +1,609 @@
+[ {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "receivedVia",
+  "ID" : "appealReceivedVia",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType",
+  "ID" : "appealBenefitType",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType.code",
+  "ID" : "appealBenefitTypeCode",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType.description",
+  "ID" : "appealBenefitTypeDescription",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType.descriptionSelection",
+  "ID" : "appealBenefitTypeDescriptionSelection",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "mrnDetails",
+  "ID" : "appealMrnDetails",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "mrnDetails.dwpIssuingOffice",
+  "ID" : "appealMrnDetailsDwpIssuingOffice",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "mrnDetails.mrnDate",
+  "ID" : "appealMrnDetailsDate",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "mrnDetails.mrnLateReason",
+  "ID" : "appealMrnDetailsLateReason",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "mrnDetails.mrnMissingReason",
+  "ID" : "appealMrnDetailsMissingReason",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant",
+  "ID" : "appealAppellant",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.name",
+  "ID" : "appealAppellantName",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.name.title",
+  "ID" : "appealAppellantTitle",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.name.firstName",
+  "ID" : "appealAppellantFirstName",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.name.middleName",
+  "ID" : "appealAppellantMiddleName",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.name.lastName",
+  "ID" : "appealAppellantLastName",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.identity",
+  "ID" : "appealAppellantIdentity",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.identity.dob",
+  "ID" : "appealAppellantDob",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.identity.nino",
+  "ID" : "appealAppellantNino",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.identity.ibcaReference",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address",
+  "ID" : "appealAppellantAddress",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.line1",
+  "ID" : "appealAppellantAddressLine1",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.line2",
+  "ID" : "appealAppellantAddressLine2",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.town",
+  "ID" : "appealAppellantAddressTown",
+  "FieldDisplayOrder" : 12
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.county",
+  "ID" : "appealAppellantAddressCounty",
+  "FieldDisplayOrder" : 13
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.postcode",
+  "ID" : "appealAppellantAddressPostcode",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.country",
+  "FieldDisplayOrder" : 15
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.inMainlandUk",
+  "FieldDisplayOrder" : 16
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.address.ukPortOfEntryList",
+  "FieldDisplayOrder" : 17
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.contact",
+  "ID" : "appealAppellantContact",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.contact.phone",
+  "ID" : "appealAppellantPhone",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.contact.mobile",
+  "ID" : "appealAppellantMobile",
+  "FieldDisplayOrder" : 15
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.contact.email",
+  "ID" : "appealAppellantEmail",
+  "FieldDisplayOrder" : 16
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.isAppointee",
+  "ID" : "appealApellantIsAppointee",
+  "FieldDisplayOrder" : 17
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee",
+  "ID" : "appealAppointee",
+  "FieldDisplayOrder" : 18
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name",
+  "ID" : "appealAppointeeName",
+  "FieldDisplayOrder" : 19
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.title",
+  "ID" : "appealAppointeeTitle",
+  "FieldDisplayOrder" : 19
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.firstName",
+  "ID" : "appealAppointeeFirstName",
+  "FieldDisplayOrder" : 20
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.lastName",
+  "ID" : "appealAppointeeLastName",
+  "FieldDisplayOrder" : 21
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.identity",
+  "ID" : "appealAppointeeIdentity",
+  "FieldDisplayOrder" : 22
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.identity.dob",
+  "ID" : "appealAppointeeDob",
+  "FieldDisplayOrder" : 22
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.identity.nino",
+  "ID" : "appealAppointeeNino",
+  "FieldDisplayOrder" : 23
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address",
+  "ID" : "appealAppointeeAddress",
+  "FieldDisplayOrder" : 24
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.line1",
+  "ID" : "appealAppointeeAddressLine1",
+  "FieldDisplayOrder" : 24
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.line2",
+  "ID" : "appealAppointeeAddressLine2",
+  "FieldDisplayOrder" : 25
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.town",
+  "ID" : "appealAppointeeAddressTown",
+  "FieldDisplayOrder" : 26
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.county",
+  "ID" : "appealAppointeeAddressCounty",
+  "FieldDisplayOrder" : 27
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.postcode",
+  "ID" : "appealAppointeeAddressPostcode",
+  "FieldDisplayOrder" : 28
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact",
+  "ID" : "appealAppointeeContact",
+  "FieldDisplayOrder" : 29
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.phone",
+  "ID" : "appealAppointeePhone",
+  "FieldDisplayOrder" : 29
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.mobile",
+  "ID" : "appealAppointeeMobile",
+  "FieldDisplayOrder" : 30
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.email",
+  "ID" : "appealAppointeeEmail",
+  "FieldDisplayOrder" : 31
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingType",
+  "ID" : "appealHearingType",
+  "FieldDisplayOrder" : 33
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype",
+  "ID" : "appealHearingSubtype",
+  "FieldDisplayOrder" : 34
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeTelephone",
+  "ID" : "appealHearingSubtypeWantsHearingTypeTelephone",
+  "FieldDisplayOrder" : 35
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.hearingTelephoneNumber",
+  "ID" : "appealHearingSubtypeHearingTelephoneNumber",
+  "FieldDisplayOrder" : 36
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeVideo",
+  "ID" : "appealHearingSubtypeWantsHearingTypeVideo",
+  "FieldDisplayOrder" : 37
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.hearingVideoEmail",
+  "ID" : "appealHearingSubtypeHearingVideoEmail",
+  "FieldDisplayOrder" : 38
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeFaceToFace",
+  "ID" : "appealHearingSubtypeWantsHearingTypeFaceToFace",
+  "FieldDisplayOrder" : 39
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions",
+  "ID" : "appealHearingOptions",
+  "FieldDisplayOrder" : 40
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.wantsToAttend",
+  "ID" : "appealHearingOptionsWantsAttend",
+  "FieldDisplayOrder" : 40
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.wantsSupport",
+  "ID" : "appealHearingOptionsSupport",
+  "FieldDisplayOrder" : 41
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.languageInterpreter",
+  "ID" : "appealHearingOptionsLanguageInterpreter",
+  "FieldDisplayOrder" : 42
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.languagesList",
+  "ID" : "appealHearingOptionsLanguages",
+  "FieldDisplayOrder" : 43
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.signLanguageType",
+  "ID" : "appealHearingOptionsSignLanguageType",
+  "FieldDisplayOrder" : 44
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.arrangements",
+  "ID" : "appealHearingOptionsArrangements",
+  "FieldDisplayOrder" : 45
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.other",
+  "ID" : "appealHearingOptionsOther",
+  "FieldDisplayOrder" : 46
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.agreeLessNotice",
+  "ID" : "appealHearingOptionsAgreeLessNotice",
+  "FieldDisplayOrder" : 47
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.scheduleHearing",
+  "ID" : "appealHearingOptionsScheduleHearing",
+  "FieldDisplayOrder" : 48
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates",
+  "ID" : "appealHearingOptionsExcludeDates",
+  "FieldDisplayOrder" : 49
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates.start",
+  "ID" : "appealHearingOptionsExcludeDatesStart",
+  "FieldDisplayOrder" : 49
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates.end",
+  "ID" : "appealHearingOptionsExcludeDatesEnd",
+  "FieldDisplayOrder" : 50
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appealReasons",
+  "ID" : "appealAppealReasons",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appealReasons.reasons",
+  "ID" : "appealAppealReasonsReasons",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appealReasons.reasons.reason",
+  "ID" : "appealAppealReasonsReason",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appealReasons.reasons.description",
+  "ID" : "appealAppealReasonsDescription",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appealReasons.otherReasons",
+  "ID" : "appealAppealReasonsOtherReasons",
+  "FieldDisplayOrder" : 51
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep",
+  "ID" : "appealRep",
+  "FieldDisplayOrder" : 52
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.hasRepresentative",
+  "ID" : "appealRepHasRep",
+  "FieldDisplayOrder" : 52
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.organisation",
+  "ID" : "appealRepOrganisation",
+  "FieldDisplayOrder" : 53
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.title",
+  "ID" : "appealRepTitle",
+  "FieldDisplayOrder" : 54
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.firstName",
+  "ID" : "appealRepFirstName",
+  "FieldDisplayOrder" : 55
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.middleName",
+  "ID" : "appealRepMiddleName",
+  "FieldDisplayOrder" : 56
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.lastName",
+  "ID" : "appealRepLastName",
+  "FieldDisplayOrder" : 57
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name",
+  "ID" : "appealRepName",
+  "FieldDisplayOrder" : 58
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address",
+  "ID" : "appealRepAddress",
+  "FieldDisplayOrder" : 59
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.line1",
+  "ID" : "appealRepAddressLine1",
+  "FieldDisplayOrder" : 59
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.line2",
+  "ID" : "appealRepAddressLine2",
+  "FieldDisplayOrder" : 60
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.town",
+  "ID" : "appealRepAddressTown",
+  "FieldDisplayOrder" : 61
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.county",
+  "ID" : "appealRepAddressCounty",
+  "FieldDisplayOrder" : 62
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.postcode",
+  "ID" : "appealRepAddressPostcode",
+  "FieldDisplayOrder" : 63
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.country",
+  "ID" : "appealRepAddressCountry",
+  "FieldDisplayOrder" : 64
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.inMainlandUk",
+  "ID" : "appealRepAddressInMainlandUk",
+  "FieldDisplayOrder" : 65
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact",
+  "ID" : "appealRepContact",
+  "FieldDisplayOrder" : 66
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.phone",
+  "ID" : "appealRepContactPhone",
+  "FieldDisplayOrder" : 67
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.mobile",
+  "ID" : "appealRepContactMobile",
+  "FieldDisplayOrder" : 68
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.email",
+  "ID" : "appealRepContactEmail",
+  "FieldDisplayOrder" : 69
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.role",
+  "ID" : "appealAppellantRole",
+  "FieldDisplayOrder" : 70
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.role.name",
+  "ID" : "appealAppellantRole",
+  "FieldDisplayOrder" : 71
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.role.description",
+  "ID" : "appealAppellantRole",
+  "FieldDisplayOrder" : 72
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.ibcRole",
+  "FieldDisplayOrder" : 73
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.confidentialityRequired",
+  "CaseTypeID" : "Benefit",
+  "ID" : "appealAppellantConfidentiality",
+  "FieldDisplayOrder" : 16
+} ]

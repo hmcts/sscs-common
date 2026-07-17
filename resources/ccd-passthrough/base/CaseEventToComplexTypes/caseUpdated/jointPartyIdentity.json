@@ -1,0 +1,16 @@
+[ {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "jointPartyIdentity",
+  "ListElementCode" : "dob",
+  "FieldDisplayOrder" : 79
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "jointPartyIdentity",
+  "ListElementCode" : "nino",
+  "FieldDisplayOrder" : 80
+}, {
+  "CaseEventID" : "caseUpdated",
+  "CaseFieldID" : "jointPartyIdentity",
+  "ListElementCode" : "ibcaReference",
+  "FieldDisplayOrder" : 81
+} ]

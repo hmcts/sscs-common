@@ -1,0 +1,97 @@
+[ {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appellant.sentOn",
+  "ID" : "reasonableAdjustmentsLettersSentOn",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appellant.documentLink",
+  "ID" : "reasonableAdjustmentsLettersDocumentLink",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appellant.reasonableAdjustmentStatus",
+  "ID" : "reasonableAdjustmentsLettersStatus",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "representative.sentOn",
+  "ID" : "reasonableAdjustmentsLettersSentOn",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "representative.documentLink",
+  "ID" : "reasonableAdjustmentsLettersDocumentLink",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "representative.reasonableAdjustmentStatus",
+  "ID" : "reasonableAdjustmentsLettersStatus",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appointee.sentOn",
+  "ID" : "reasonableAdjustmentsLettersSentOn",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appointee.documentLink",
+  "ID" : "reasonableAdjustmentsLettersDocumentLink",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "appointee.reasonableAdjustmentStatus",
+  "ID" : "reasonableAdjustmentsLettersStatus",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "jointParty.sentOn",
+  "ID" : "reasonableAdjustmentsLettersSentOn",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "jointParty.documentLink",
+  "ID" : "reasonableAdjustmentsLettersDocumentLink",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "jointParty.reasonableAdjustmentStatus",
+  "ID" : "reasonableAdjustmentsLettersStatus",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "otherParty.to",
+  "ID" : "reasonableAdjustmentsLettersOtherPartyTo",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "otherParty.sentOn",
+  "ID" : "reasonableAdjustmentsLettersOtherPartySentOn",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "otherParty.documentLink",
+  "ID" : "reasonableAdjustmentsLettersOtherPartyDocumentLink",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "processReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustmentsLetters",
+  "ListElementCode" : "otherParty.reasonableAdjustmentStatus",
+  "ID" : "reasonableAdjustmentsLettersOtherPartyStatus",
+  "FieldDisplayOrder" : 4
+} ]

@@ -19,6 +19,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -28,31 +33,46 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 @EqualsAndHashCode(callSuper = true)
 public class JointParty extends Party {
 
+    @CCD(label = "Joint party id", access = {SscsCitizenCrudAccess.class, SuperuserSystemupdateCrudAccess.class})
     @Builder.Default
     @JsonProperty("jointPartyId")
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private String id = UUID.randomUUID().toString();
 
+    @CCD(label = "Joint party identity", access = {SscsCrudAccess.class})
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     @JsonProperty("jointPartyIdentity")
     private Identity identity;
 
+    @CCD(label = "Joint party address", access = {SscsCrudAccess.class})
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     @JsonProperty("jointPartyAddress")
     private Address address;
 
+    @CCD(label = "Joint party name", access = {SscsCrudAccess.class})
     @JsonProperty("jointPartyName")
     private Name name;
 
+    @CCD(
+            label = "Is there a joint party on this case?",
+            typeOverride = FieldType.YesOrNo,
+            access = {SscsCrudAccess.class}
+    )
     @JsonProperty("jointParty")
     private YesNo hasJointParty;
 
+    @CCD(label = "Joint party contact", access = {SscsCitizenCrudAccess.class, SuperuserSystemupdateCrudAccess.class})
     @JsonProperty("jointPartyContact")
     private Contact contact;
 
+    @CCD(
+            label = "Is their address the same as the appellant's?",
+            typeOverride = FieldType.YesOrNo,
+            access = {SscsCrudAccess.class}
+    )
     private YesNo jointPartyAddressSameAsAppellant;
 
     @Override

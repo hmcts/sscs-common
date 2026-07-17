@@ -1,0 +1,4 @@
+[ {
+  "CaseFieldID" : "showRip1DocPage",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

@@ -4,14 +4,17 @@ import com.fasterxml.jackson.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @SuperBuilder(toBuilder = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocument<D extends AbstractDocumentDetails> implements Comparable<AbstractDocument> {
 
+    @CCD(ignore = true)
     private String id;
 
+    @CCD(ignore = true)
     private D value;
 
     public AbstractDocument(@JsonProperty("value") D value) {

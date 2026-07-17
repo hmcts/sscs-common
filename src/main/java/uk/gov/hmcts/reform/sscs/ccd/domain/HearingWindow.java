@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -20,12 +21,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude
 public class HearingWindow {
+    @CCD(label = "Hearing must be on this Date and Time")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime firstDateTimeMustBe;
+    @CCD(label = "Hearing must be on or after this date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateRangeStart;
+    @CCD(label = "Hearing must be on or before this date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateRangeEnd;

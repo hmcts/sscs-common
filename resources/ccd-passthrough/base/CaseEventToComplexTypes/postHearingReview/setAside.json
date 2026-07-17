@@ -1,0 +1,13 @@
+[ {
+  "CaseEventID" : "postHearingReview",
+  "CaseFieldID" : "setAside",
+  "ListElementCode" : "action",
+  "ID" : "postHearingReviewSetAsideAction",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "postHearingReview",
+  "CaseFieldID" : "setAside",
+  "ListElementCode" : "requestStatementOfReasons",
+  "ID" : "postHearingReviewSetAsideRequestStatementOfReasons",
+  "FieldDisplayOrder" : 2
+} ]

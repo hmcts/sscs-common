@@ -1,0 +1,25 @@
+[ {
+  "CaseEventID" : "uploadWelshDocument",
+  "CaseFieldID" : "sscsWelshPreviewDocuments",
+  "ListElementCode" : "documentLink",
+  "ID" : "sscsWelshPreviewDocumentsDocumentLink",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "uploadWelshDocument",
+  "CaseFieldID" : "sscsWelshPreviewDocuments",
+  "ListElementCode" : "documentLanguage",
+  "ID" : "sscsWelshPreviewDocumentsDocumentLanguage",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "uploadWelshDocument",
+  "CaseFieldID" : "sscsWelshPreviewDocuments",
+  "ListElementCode" : "documentComment",
+  "ID" : "sscsWelshPreviewDocumentsDocumentComment",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "uploadWelshDocument",
+  "CaseFieldID" : "sscsWelshPreviewDocuments",
+  "ListElementCode" : "documentDateAdded",
+  "ID" : "sscsWelshPreviewDocumentsDocumentDateAdded",
+  "FieldDisplayOrder" : 4
+} ]

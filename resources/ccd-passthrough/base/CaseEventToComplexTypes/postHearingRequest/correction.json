@@ -1,0 +1,7 @@
+[ {
+  "CaseEventID" : "postHearingRequest",
+  "CaseFieldID" : "correction",
+  "ListElementCode" : "requestFormat",
+  "ID" : "postHearingRequestCorrectionRequestFormat",
+  "FieldDisplayOrder" : 1
+} ]

@@ -1,0 +1,57 @@
+[ {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "appellant.wantsReasonableAdjustment",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 5,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "appellant.reasonableAdjustmentRequirements",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 6,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "appointee.wantsReasonableAdjustment",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 7,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "appointee.reasonableAdjustmentRequirements",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 8,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "representative.wantsReasonableAdjustment",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 9,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "representative.reasonableAdjustmentRequirements",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 10,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "jointParty.wantsReasonableAdjustment",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 11,
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "reasonableAdjustments",
+  "ListElementCode" : "jointParty.reasonableAdjustmentRequirements",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 12,
+  "RetainHiddenValue" : "Yes"
+} ]

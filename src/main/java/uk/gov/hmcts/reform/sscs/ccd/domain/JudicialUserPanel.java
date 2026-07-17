@@ -14,6 +14,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -22,8 +24,10 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JudicialUserPanel {
+    @CCD(label = "Judge", typeOverride = FieldType.JudicialUser)
     @JsonProperty("assignedTo")
     private JudicialUserBase assignedTo;
+    @CCD(label = "Panel Members", typeOverride = FieldType.Collection, typeParameterOverride = "JudicialUser")
     @JsonProperty("panelMembers")
     private List<CollectionItem<JudicialUserBase>> panelMembers;
 

@@ -1,0 +1,17 @@
+[ {
+  "CaseEventID" : "writeFinalDecision",
+  "CaseFieldID" : "otherPartyAttendedQuestions",
+  "ListElementCode" : "otherPartyName",
+  "PageDisplayOrder" : 3,
+  "PageFieldDisplayOrder" : 4,
+  "PageLabel" : "Type of hearing",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "writeFinalDecision",
+  "CaseFieldID" : "otherPartyAttendedQuestions",
+  "ListElementCode" : "attendedOtherParty",
+  "PageDisplayOrder" : 3,
+  "PageFieldDisplayOrder" : 5,
+  "PageLabel" : "Type of hearing",
+  "ShowSummaryChangeOption" : "Y"
+} ]

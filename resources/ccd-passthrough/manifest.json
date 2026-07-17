@@ -1,0 +1,1213 @@
+[ {
+  "relativePath" : "CaseEventToComplexTypes/amendHearingOutcome/hearingOutcomes.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/caseUpdated/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/caseUpdated/jointPartyAddress.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/caseUpdated/jointPartyIdentity.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/caseUpdated/jointPartyContact.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpChallengeValidity/dwpChallengeValidityDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/dwpResponseDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/dwpEditedResponseDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedGeneral.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedSanctions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedHousing.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedChildCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedChildElement.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedChildDisabled.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedLimitedWork.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/jointPartyIdentity.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/jointPartyAddress.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/dwpUploadAudioVideoEvidence.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/otherParties.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/dwpResponseDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedGeneral.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedSanctions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedHousing.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedChildCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedChildElement.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedChildDisabled.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedLimitedWork.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/dwpEditedResponseDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/incompleteApplicationReceived/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/panelMemberComposition.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateOtherPartyData/otherParties.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateOtherPartyData/appeal.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/uploadDocument/sscsDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/uploadDocument/sscsInternalDocument.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedGeneral.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedSanctions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedHousing.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedChildCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedCare.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedChildElement.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedChildDisabled.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedLimitedWork.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/overrideFields.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/reserveTo.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/panelMemberExclusions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/addRepresentative/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/actionFurtherEvidence/scannedDocuments.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/attachScannedDocs/scannedDocuments.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/provideAppointeeDetails/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/deathOfAppellant/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/processAudioVideo/selectedAudioVideoEvidenceDetails.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/processReasonableAdjustment/reasonableAdjustmentsLetters.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateReasonableAdjustment/reasonableAdjustments.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateReasonableAdjustment/otherParties.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/uploadWelshDocument/sscsWelshPreviewDocuments.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/uploadHearingRecording/existingHearingRecordings.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/actionHearingRecordingRequest/processHearingRecordingRequest.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/actionHearingRecordingRequest/otherPartyHearingRecordingReqUi.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/subscriptionUpdated/otherParties.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/reissueDocument/otherPartyOptions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/reissueFurtherEvidence/otherPartyOptions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateHearingType/appeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/writeFinalDecision/otherPartyAttendedQuestions.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingReview/setAside.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingReview/correction.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingReview/statementOfReasons.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingRequest/setAside.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingRequest/correction.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingRequest/statementOfReasons.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/adminActionCorrection/correction.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingReview/permissionToAppeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingRequest/permissionToAppeal.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingReview/libertyToApply.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/postHearingRequest/libertyToApply.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/sendToFirstTier/sendToFirstTier.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/confirmPoAttendance/presentingOfficersDetails.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/addHearingOutcome/hearingOutcomeValue.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/addOtherPartyData/otherParties.json",
+  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ "FieldDisplayOrder" ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/addOtherPartyData/appeal.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/amendHearingOutcome.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/caseUpdated.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/dwpUploadResponse.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/ftaCommunication.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/hmctsResponseReviewed.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/incompleteApplicationReceived.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/tribunalCommunication.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/uploadDocument.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/adjournCase.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/writeFinalDecision.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/actionFurtherEvidence.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/dwpLapseCase.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/adminSendToInterlocutoryReviewState.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/uploadDocumentFurtherEvidence.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/issueFinalDecision.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/directionIssued.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/decisionIssued.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/validSendToInterloc.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/adminRestoreCases.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/amendElementsIssues.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/notListable.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/updateNotListable.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/postponementRequest.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/processAudioVideo.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/uploadHearingRecording.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/actionHearingRecordingRequest.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/actionPostponementRequest.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/dwpSupplementaryResponse.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/updateOtherPartyData.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/issueGenericLetter.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/postHearingReview.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/postHearingRequest.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/adminActionCorrection.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/sORWrite.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/confirmPoAttendance.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/setHearingRoute.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/addOtherPartyData.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/issueHearingEnquiryForm.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToFields/confidentialityConfirmed.json",
+  "primaryKeys" : [ "CaseFieldID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/newCaseRolesAssigned.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/postponementGranted.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/postponementRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/postponementSendToJudge.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/actionPostponementRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/interlocSendToTcw.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/actionPostponementRequestWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/manageWelshDocuments.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ],
+  "overlaySuffix" : "nonprod",
+  "envVar" : "CCD_DEF_ENV",
+  "value" : "prod",
+  "negated" : true
+}, {
+  "relativePath" : "CaseEvent/actionPostponementRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/interlocSendToTcw.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/actionPostponementRequestWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/abateCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/actionFurtherEvidence.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/actionHearingRecordingRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/actionStrikeOut.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/addNote.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/addRepresentative.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/addHearing.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/editBundle.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/amendElementsIssues.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/amendHearingOutcome.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/panelDoctorSpecialismAmend.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealCreated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealDormant.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealLapsed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealReceived.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealToProceed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/judgeDecisionAppealToProceed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/tcwDecisionAppealToProceed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/appealWithdrawn.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/assignToJudge.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/associateCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/attachScannedDocs.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpChallengeValidity.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/clearFailedFeFilter.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/cloneBundle.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/tribunalCommunication.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/ftaCommunication.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/confirmPanelComposition.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/confirmPoAttendance.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/createBundle.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/createEditedBundle.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/deathOfAppellant.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/deathOfAppellantActioned.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/draftToIncompleteApplication.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/draftToNonCompliant.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/draftToValidAppealCreated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpActionWithdrawal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpDirectionResponse.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpRaiseException.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/evidenceReceived.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/furtherEvidenceHandledOffline.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/feNoAction.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/createAppealPDF.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/generateCoversheet.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/hearingAdjourned.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/hearingBooked.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/hearingPostponed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/incompleteApplicationReceived.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/interlocInformationReceived.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueAdjournmentNotice.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/judgeDirectionIssued.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/tcwDirectionIssued.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueFurtherEvidence.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueGenericLetter.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/jointPartyAdded.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/hmctsLapseCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/linkACase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/uploadDocument.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/manageDwpDocuments.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/makeCaseUrgent.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/nonCompliant.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/notListable.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/postponementRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/processAudioVideo.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/processReasonableAdjustment.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/provideAppointeeDetails.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/corDecision.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reinstateAppeal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/readyToList.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reissueDocument.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reissueFurtherEvidence.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/removeLinkForCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/resendAppealCreated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/resendToDwp.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/responseReceived.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/hmctsResponseReviewed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reviewConfidentialityRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reviewPhmeRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sendToAdmin.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sendToDwp.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sendToDwpOffline.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/tcwReferToJudge.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/stopBulkPrintForReasonableAdjustment.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/struckOut.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpSupplementaryResponse.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateListingRequirements.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateNotListable.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateOtherPartyData.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateReasonableAdjustment.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/subscriptionUpdated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/caseUpdated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/uploadFurtherEvidence.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/uploadHearingRecording.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/validAppealCreated.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/interlocValidAppeal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/validAppeal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/voidCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adjournCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/createWelshNotice.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/cancelTranslations.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueAdjournmentNoticeWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueFinalDecisionWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/markDocumentsForTranslation.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/processAudioVideoWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/requestTranslationFromWLU.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateWelshPreference.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/uploadWelshDocument.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/postHearingRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/postHearingReview.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/correctionGranted.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/correctionRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sORExtendTime.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sORRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sORWrite.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/postHearingAppSorWritten.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/setAsideGranted.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/setAsideRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/setAsideRefusedSOR.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/setAsideRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/correctionRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sORRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminActionCorrection.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminCorrectionHeader.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/permissionToAppealRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/permissionToAppealGranted.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/permissionToAppealRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reviewAndSetAside.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/libertyToApplyRequest.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/libertyToApplyGranted.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/libertyToApplyRefused.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/reserveToInterlocJudge.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/sendToFirstTier.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/upperTribunalDecision.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/getFirstTierDocuments.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/bundleCreatedForUpperTribunal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/waCaseMigration.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/removeCaseOutcome.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/addOtherPartyData.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueHearingEnquiryForm.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminSendToDormantAppealState.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminSendToInterlocutoryReviewState.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminSendToValidAppeal.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminSendToVoidState.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminSendToWithDwp.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/adminAppealWithdrawn.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/confirmLapsed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpRequestHearingRecording.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/decisionIssued.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/directionIssued.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/issueFinalDecision.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpLapseCase.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/requestForInformation.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpRequestTimeExtension.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/resendCaseToGAPS2.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/validSendToInterloc.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/updateUCB.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/uploadDocumentFurtherEvidence.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/dwpUploadResponse.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/writeFinalDecision.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/decisionIssuedWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/directionIssuedWelsh.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/addHearingOutcome.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/nonCompliantSendToInterloc.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEvent/confidentialityConfirmed.json",
+  "primaryKeys" : [ "ID" ],
+  "overwriteColumns" : [ ]
+} ]

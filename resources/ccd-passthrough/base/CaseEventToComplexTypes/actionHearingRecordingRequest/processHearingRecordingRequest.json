@@ -1,0 +1,43 @@
+[ {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "hearingTitle",
+  "ID" : "processHearingRecordingRequesthearingTitle",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "hearingInformation",
+  "ID" : "processHearingRecordingRequestHearingInformation",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "recordings",
+  "ID" : "processHearingRecordingRequestRecordings",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "dwp",
+  "ID" : "processHearingRecordingRequestDwp",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "jointParty",
+  "ID" : "processHearingRecordingRequestJointParty",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "appellant",
+  "ID" : "processHearingRecordingRequestAppellant",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "ListElementCode" : "rep",
+  "ID" : "processHearingRecordingRequestRep",
+  "FieldDisplayOrder" : 7
+} ]

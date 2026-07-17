@@ -1,0 +1,121 @@
+[ {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingType",
+  "ID" : "updateHearingTypeAppealHearingType",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype",
+  "ID" : "updateHearingTypeAppealHearingSubType",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeTelephone",
+  "ID" : "updateHearingTypeAppealHearingSubTypeWantsHearingTypeTelephone",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.hearingTelephoneNumber",
+  "ID" : "updateHearingTypeAppealHearingSubTypeHearingTelephoneNumber",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeVideo",
+  "ID" : "updateHearingTypeAppealHearingSubTypeWantsHearingTypeVideo",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.hearingVideoEmail",
+  "ID" : "updateHearingTypeAppealHearingSubTypeHearingVideoEmail",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingSubtype.wantsHearingTypeFaceToFace",
+  "ID" : "updateHearingTypeAppealHearingSubTypeWantsHearingTypeFaceToFace",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions",
+  "ID" : "updateHearingTypeAppealHearingOptions",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.wantsToAttend",
+  "ID" : "updateHearingTypeAppealHearingOptionsWantsToAttend",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.wantsSupport",
+  "ID" : "updateHearingTypeAppealHearingOptionsWantsSupport",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.languageInterpreter",
+  "ID" : "updateHearingTypeAppealHearingOptionsLanguageInterpreter",
+  "FieldDisplayOrder" : 11
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.languages",
+  "ID" : "updateHearingTypeAppealHearingOptionsLanguages",
+  "FieldDisplayOrder" : 12
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.signLanguageType",
+  "ID" : "updateHearingTypeAppealHearingOptionsSignLanguageType",
+  "FieldDisplayOrder" : 13
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.arrangements",
+  "ID" : "updateHearingTypeAppealHearingOptionsArrangements",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.other",
+  "ID" : "updateHearingTypeAppealHearingOptionsOther",
+  "FieldDisplayOrder" : 15
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.agreeLessNotice",
+  "ID" : "updateHearingTypeAppealHearingOptionsAgreeLessNotice",
+  "FieldDisplayOrder" : 16
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.scheduleHearing",
+  "ID" : "updateHearingTypeAppealHearingOptionsScheduleHearing",
+  "FieldDisplayOrder" : 17
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates",
+  "ID" : "updateHearingTypeAppealHearingOptionsExcludeDates",
+  "FieldDisplayOrder" : 18
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates.start",
+  "ID" : "updateHearingTypeAppealHearingOptionsExcludeDatesStart",
+  "FieldDisplayOrder" : 19
+}, {
+  "CaseEventID" : "updateHearingType",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "hearingOptions.excludeDates.end",
+  "ID" : "updateHearingTypeAppealHearingOptionsExcludeDatesEnd",
+  "FieldDisplayOrder" : 20
+} ]

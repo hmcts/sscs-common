@@ -1,0 +1,16 @@
+[ {
+  "CaseFieldID" : "adjournCaseDirectionsDueDateDaysOffset",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEventAdjournCaseDirectionDueDate"
+}, {
+  "CaseFieldID" : "adjournCaseTypeOfNextHearing",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEventAdjournCasePopulateVenueDropdown"
+}, {
+  "CaseFieldID" : "adjournCaseNextHearingListingDuration",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/adjournCaseNextHearingListingDuration"
+}, {
+  "CaseFieldID" : "adjournCaseNextHearingDateType",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEventAdjournCaseNextHearing"
+}, {
+  "CaseFieldID" : "adjournCaseAdditionalDirections",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEventPreviewAdjournCase"
+} ]

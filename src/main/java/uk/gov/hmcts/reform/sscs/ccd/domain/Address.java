@@ -16,6 +16,8 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 import uk.gov.hmcts.reform.sscs.ccd.validation.string.StringNoSpecialCharacters;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -23,27 +25,42 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
 
+    @CCD(label = "Address Line 1")
     @StringNoSpecialCharacters(fieldName = "Line 1", groups = {UniversalCreditValidationGroup.class})
     private String line1;
+    @CCD(label = "Address Line 2")
     @StringNoSpecialCharacters(fieldName = "Line 2", groups = {UniversalCreditValidationGroup.class})
     private String line2;
+    @CCD(label = "Address Line 3")
+    @StringNoSpecialCharacters(fieldName = "Line 3", groups = {UniversalCreditValidationGroup.class})
+    private String line3;
+    @CCD(label = "Town")
     @StringNoSpecialCharacters(fieldName = "Town", groups = {UniversalCreditValidationGroup.class})
     private String town;
+    @CCD(label = "County")
     @StringNoSpecialCharacters(fieldName = "County", groups = {UniversalCreditValidationGroup.class})
     private String county;
+    @CCD(label = "Postcode")
     @Postcode(groups = {UniversalCreditValidationGroup.class})
     private String postcode;
+    @CCD(label = "postcodeLookup", showCondition = "postcodeLookup=\"AnyValueToFailThisCondition\"")
     private String postcodeLookup;
+    @CCD(label = "postcodeAddress", showCondition = "postcodeLookup=\"AnyValueToFailThisCondition\"")
     private String postcodeAddress;
+    @CCD(label = "Port of Entry Code")
     private String portOfEntry;
+    @CCD(label = "Country")
     private String country;
+    @CCD(label = "Living in England, Scotland, Wales or Northern Ireland", typeOverride = FieldType.YesOrNo)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo inMainlandUk;
+    @CCD(label = "Port of Entry", typeOverride = FieldType.DynamicList)
     private DynamicList ukPortOfEntryList;
 
     @JsonCreator
     public Address(@JsonProperty("line1") String line1,
                    @JsonProperty("line2") String line2,
+                   @JsonProperty("line3") String line3,
                    @JsonProperty("town") String town,
                    @JsonProperty("county") String county,
                    @JsonProperty("postcode") String postcode,
@@ -55,6 +72,7 @@ public class Address {
                    @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList) {
         this.line1 = line1;
         this.line2 = line2;
+        this.line3 = line3;
         this.town = town;
         this.county = county;
         this.postcode = postcode;
@@ -88,6 +106,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     county,
                     postcode)
@@ -97,6 +116,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     postcode,
                     country)
@@ -111,6 +131,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     county,
                     postcode).allMatch(StringUtils::isEmpty);
@@ -118,6 +139,7 @@ public class Address {
             return Stream.of(
                     line1,
                     line2,
+                    line3,
                     town,
                     country,
                     portOfEntry).allMatch(StringUtils::isEmpty);

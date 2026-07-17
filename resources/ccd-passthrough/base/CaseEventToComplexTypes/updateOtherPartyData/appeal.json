@@ -1,0 +1,19 @@
+[ {
+  "CaseEventID" : "updateOtherPartyData",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType",
+  "DisplayContext" : "READONLY",
+  "LiveFrom" : "01/01/2018",
+  "FieldDisplayOrder" : 4,
+  "PageID" : "1.0",
+  "FieldShowCondition" : "otherParties=\"DoNotShow\""
+}, {
+  "CaseEventID" : "updateOtherPartyData",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "benefitType.code",
+  "DisplayContext" : "READONLY",
+  "LiveFrom" : "01/01/2018",
+  "FieldDisplayOrder" : 1,
+  "PageID" : "1.0",
+  "FieldShowCondition" : "otherParties=\"DoNotShow\""
+} ]

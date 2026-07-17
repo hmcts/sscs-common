@@ -1,0 +1,36 @@
+[ {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "dwpResponseDocumentTitle",
+  "ID" : "hmctsResponseReviewedDwpEditedResponseDocumentDwpTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "hmrcResponseDocumentTitle",
+  "ID" : "hmctsResponseReviewedDwpEditedResponseDocumentHmrcTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "ibcaResponseDocumentTitle",
+  "ID" : "hmctsResponseReviewedDwpEditedResponseDocumentIbcaTitle",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "documentFileName",
+  "ID" : "hmctsResponseReviewedDwpEditedResponseDocumentDocumentFileName",
+  "FieldDisplayOrder" : 2,
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "documentLink",
+  "ID" : "hmctsResponseReviewedDwpEditedResponseDocumentDocumentLink",
+  "FieldDisplayOrder" : 3,
+  "ShowSummaryChangeOption" : "Y"
+} ]

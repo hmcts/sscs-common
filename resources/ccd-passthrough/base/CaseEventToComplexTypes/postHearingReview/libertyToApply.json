@@ -1,0 +1,7 @@
+[ {
+  "CaseEventID" : "postHearingReview",
+  "CaseFieldID" : "libertyToApply",
+  "ListElementCode" : "action",
+  "ID" : "postHearingReviewLibertyToApplyAction",
+  "FieldDisplayOrder" : 1
+} ]

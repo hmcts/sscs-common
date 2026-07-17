@@ -176,6 +176,8 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.19'
 
 
+    implementation group: 'com.github.hmcts', name: 'ccd-config-generator', version: 'json-definition-converter-95.1-52d004c0'
+
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jackson

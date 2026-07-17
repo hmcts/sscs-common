@@ -1,0 +1,7 @@
+[ {
+  "CaseEventID" : "adminActionCorrection",
+  "CaseFieldID" : "correction",
+  "ListElementCode" : "adminCorrectionType",
+  "ID" : "adminActionCorrectionAdminCorrectionType",
+  "FieldDisplayOrder" : 1
+} ]

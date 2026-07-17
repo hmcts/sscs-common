@@ -1,0 +1,19 @@
+[ {
+  "CaseFieldID" : "bodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateNotice"
+}, {
+  "CaseFieldID" : "correctionBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateNotice"
+}, {
+  "CaseFieldID" : "statementOfReasonsBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateNotice"
+}, {
+  "CaseFieldID" : "postHearingPreviewDocument",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=verifyNotice"
+}, {
+  "CaseFieldID" : "libertyToApplyBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateNotice"
+}, {
+  "CaseFieldID" : "permissionToAppealBodyContent",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=generateNotice"
+} ]

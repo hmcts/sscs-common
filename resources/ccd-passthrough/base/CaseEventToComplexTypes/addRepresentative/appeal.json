@@ -1,0 +1,109 @@
+[ {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep",
+  "ID" : "appealRep",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.hasRepresentative",
+  "ID" : "appealRepHasRepresentative",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.organisation",
+  "ID" : "appealRepHasOrganisation",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.title",
+  "ID" : "appealRepNameTitle",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.firstName",
+  "ID" : "appealRepNameFirstName",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.middleName",
+  "ID" : "appealRepNameMiddleName",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name.lastName",
+  "ID" : "appealRepNameLastName",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.name",
+  "ID" : "appealRepName",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address",
+  "ID" : "appealRepAddress",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.line1",
+  "ID" : "appealRepAddressLine1",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.line2",
+  "ID" : "appealRepAddressLine2",
+  "FieldDisplayOrder" : 11
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.town",
+  "ID" : "appealRepAddressTown",
+  "FieldDisplayOrder" : 12
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.county",
+  "ID" : "appealRepAddressCounty",
+  "FieldDisplayOrder" : 13
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.address.postcode",
+  "ID" : "appealRepAddressPostcode",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact",
+  "ID" : "appealRepContact",
+  "FieldDisplayOrder" : 15
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.phone",
+  "ID" : "appealRepContactPhone",
+  "FieldDisplayOrder" : 16
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.mobile",
+  "ID" : "appealRepContactMobile",
+  "FieldDisplayOrder" : 17
+}, {
+  "CaseEventID" : "addRepresentative",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "rep.contact.email",
+  "ID" : "appealRepContactEmail",
+  "FieldDisplayOrder" : 18
+} ]

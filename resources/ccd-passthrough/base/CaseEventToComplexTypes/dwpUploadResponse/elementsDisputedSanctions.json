@@ -1,0 +1,8 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "elementsDisputedSanctions",
+  "ListElementCode" : "issueCode",
+  "ID" : "elementsDisputedSanctionsCode",
+  "FieldDisplayOrder" : 1,
+  "ShowSummaryChangeOption" : "Y"
+} ]

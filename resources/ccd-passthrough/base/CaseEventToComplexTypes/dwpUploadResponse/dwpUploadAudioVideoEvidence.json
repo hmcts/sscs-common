@@ -1,0 +1,13 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "dwpUploadAudioVideoEvidence",
+  "ListElementCode" : "documentLink",
+  "ID" : "dwpAudioVideoDocumentLink",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "dwpUploadAudioVideoEvidence",
+  "ListElementCode" : "rip1Document",
+  "ID" : "dwpAudioVideoRip1Document",
+  "FieldDisplayOrder" : 4
+} ]

@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import lombok.Builder;
 import lombok.Value;
+import lombok.experimental.Delegate;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -15,6 +17,8 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ScannedDocument implements Comparable<ScannedDocument> {
 
+    @CCD(ignore = true)
+    @Delegate
     private ScannedDocumentDetails value;
 
     @JsonCreator

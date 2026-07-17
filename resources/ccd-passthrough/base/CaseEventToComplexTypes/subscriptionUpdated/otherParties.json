@@ -1,0 +1,283 @@
+[ {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "role",
+  "ID" : "role",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "role.name",
+  "ID" : "otherPartRoleName",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name",
+  "ID" : "otherPartyname",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.title",
+  "ID" : "otherPartyname",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.firstName",
+  "ID" : "otherPartyname",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "name.lastName",
+  "ID" : "otherPartyname",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription",
+  "ID" : "otherPartySubscription",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.wantSmsNotifications",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.tya",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.email",
+  "ID" : "appellantSubscriptionWantsSms",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.mobile",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 11
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.subscribeEmail",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 12
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.subscribeSms",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 13
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.reason",
+  "ID" : "otherPartySubscriptionWantsSms",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartySubscription.lastLoggedIntoMya",
+  "ID" : "otherPartySubscriptionMya",
+  "FieldDisplayOrder" : 15
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee",
+  "ID" : "appointee",
+  "FieldDisplayOrder" : 16
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.name",
+  "ID" : "appointeeName",
+  "FieldDisplayOrder" : 17
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.name.title",
+  "ID" : "appointeeNameTitle",
+  "FieldDisplayOrder" : 18
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.name.firstName",
+  "ID" : "appointeeNameFirstName",
+  "FieldDisplayOrder" : 19
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.name.lastName",
+  "ID" : "appointeeNameLastName",
+  "FieldDisplayOrder" : 20
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.address",
+  "ID" : "appointeeAddress",
+  "FieldDisplayOrder" : 21
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.contact",
+  "ID" : "appointeeContact",
+  "FieldDisplayOrder" : 22
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription",
+  "ID" : "opAppointeeSubscriptionSubscription",
+  "FieldDisplayOrder" : 23
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.wantSmsNotifications",
+  "ID" : "opAppointeeSubscriptionSubscriptionWantsSms",
+  "FieldDisplayOrder" : 24
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.tya",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 25
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.email",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 26
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.mobile",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 27
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.subscribeEmail",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 28
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.subscribeSms",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 29
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.reason",
+  "ID" : "opAppointeeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 30
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyAppointeeSubscription.lastLoggedIntoMya",
+  "ID" : "opAppointeeSubscriptionMya",
+  "FieldDisplayOrder" : 31
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep",
+  "ID" : "rep",
+  "FieldDisplayOrder" : 32
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.name",
+  "ID" : "repName",
+  "FieldDisplayOrder" : 33
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.name.title",
+  "ID" : "repNameTitle",
+  "FieldDisplayOrder" : 34
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.name.firstName",
+  "ID" : "repNameFirstName",
+  "FieldDisplayOrder" : 35
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.name.lastName",
+  "ID" : "repNameLastName",
+  "FieldDisplayOrder" : 36
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.address",
+  "ID" : "repAddress",
+  "FieldDisplayOrder" : 37
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.contact",
+  "ID" : "repContact",
+  "FieldDisplayOrder" : 38
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription",
+  "ID" : "opRepresentativeSubscriptionSubscription",
+  "FieldDisplayOrder" : 39
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.wantSmsNotifications",
+  "ID" : "opRepresentativeSubscriptionSubscriptionWantsSms",
+  "FieldDisplayOrder" : 40
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.tya",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 41
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.email",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 42
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.mobile",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 43
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.subscribeEmail",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 44
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.subscribeSms",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 44
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.reason",
+  "ID" : "opRepresentativeSubscriptionWantsSms",
+  "FieldDisplayOrder" : 45
+}, {
+  "CaseEventID" : "subscriptionUpdated",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "otherPartyRepresentativeSubscription.lastLoggedIntoMya",
+  "ID" : "opRepresentativeSubscriptionMya",
+  "FieldDisplayOrder" : 46
+} ]

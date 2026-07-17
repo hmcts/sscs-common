@@ -1,0 +1,7 @@
+[ {
+  "CaseFieldID" : "draftSscsFurtherEvidenceDocument",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "showRequestingPartyPage",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=hearingRequestPartyPage"
+} ]

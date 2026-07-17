@@ -1,0 +1,91 @@
+[ {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.isAppointee",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 1
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 2
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.title",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 3
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.firstName",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 4
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.name.lastName",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 5
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.identity.dob",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 6
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.identity.nino",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 7
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.line1",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.line2",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 9
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.town",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 10
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.county",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 11
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.address.postcode",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 12
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.phone",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 13
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.mobile",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 14
+}, {
+  "CaseEventID" : "deathOfAppellant",
+  "CaseFieldID" : "appeal",
+  "ListElementCode" : "appellant.appointee.contact.email",
+  "ID" : "appeal",
+  "FieldDisplayOrder" : 15
+} ]

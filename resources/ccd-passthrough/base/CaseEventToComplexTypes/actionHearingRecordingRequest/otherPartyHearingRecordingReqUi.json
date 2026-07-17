@@ -1,0 +1,13 @@
+[ {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "otherPartyHearingRecordingReqUi",
+  "ListElementCode" : "otherPartyName",
+  "ID" : "otherPartyName",
+  "FieldDisplayOrder" : 8
+}, {
+  "CaseEventID" : "actionHearingRecordingRequest",
+  "CaseFieldID" : "otherPartyHearingRecordingReqUi",
+  "ListElementCode" : "hearingRecordingStatus",
+  "ID" : "otherPartyHearingRecordingStatus",
+  "FieldDisplayOrder" : 9
+} ]
