@@ -1,0 +1,11 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyIdentity",
+  "ListElementCode" : "dob",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyIdentity",
+  "ListElementCode" : "nino",
+  "ShowSummaryChangeOption" : "Y"
+} ]

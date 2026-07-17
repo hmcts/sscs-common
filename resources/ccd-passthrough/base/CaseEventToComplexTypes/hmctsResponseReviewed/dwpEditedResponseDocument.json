@@ -1,0 +1,26 @@
+[ {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "dwpResponseDocumentTitle",
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "hmrcResponseDocumentTitle",
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "ibcaResponseDocumentTitle",
+  "ShowSummaryChangeOption" : "N"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "documentFileName",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "dwpEditedResponseDocument",
+  "ListElementCode" : "documentLink",
+  "ShowSummaryChangeOption" : "Y"
+} ]

@@ -1,0 +1,4 @@
+[ {
+  "CaseFieldID" : "dwpLT203",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

@@ -1,0 +1,6 @@
+[ {
+  "CaseEventID" : "hmctsResponseReviewed",
+  "CaseFieldID" : "elementsDisputedLimitedWork",
+  "ListElementCode" : "issueCode",
+  "ShowSummaryChangeOption" : "Y"
+} ]

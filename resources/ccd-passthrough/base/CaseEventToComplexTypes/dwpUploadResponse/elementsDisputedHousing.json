@@ -1,0 +1,6 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "elementsDisputedHousing",
+  "ListElementCode" : "issueCode",
+  "ShowSummaryChangeOption" : "Y"
+} ]

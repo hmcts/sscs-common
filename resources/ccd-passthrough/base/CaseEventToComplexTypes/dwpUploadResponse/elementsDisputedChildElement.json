@@ -1,0 +1,6 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "elementsDisputedChildElement",
+  "ListElementCode" : "issueCode",
+  "ShowSummaryChangeOption" : "Y"
+} ]

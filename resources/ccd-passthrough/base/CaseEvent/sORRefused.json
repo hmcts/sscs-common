@@ -1,0 +1,4 @@
+[ {
+  "ID" : "sORRefused",
+  "CallBackURLAboutToSubmitEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/send"
+} ]

@@ -1,0 +1,7 @@
+[ {
+  "CaseFieldID" : "selectHearingDetails",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selectHearing"
+}, {
+  "CaseFieldID" : "processHearingRecordingRequest",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=validateHearingRecordingRequest"
+} ]

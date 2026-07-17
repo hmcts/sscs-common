@@ -6,6 +6,8 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -13,9 +15,18 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsInterlocDecisionDocument {
 
+    @CCD(label = "Type", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_InterlocDecision")
     private String documentType;
+    @CCD(label = "File name")
     private String documentFileName;
+    @CCD(label = "Date added")
     private LocalDate documentDateAdded;
+    @CCD(
+            label = "Document Url",
+            hint = "All documents must be PDF formatted",
+            regex = ".pdf",
+            typeOverride = FieldType.Document
+    )
     private DocumentLink documentLink;
 
     @JsonCreator

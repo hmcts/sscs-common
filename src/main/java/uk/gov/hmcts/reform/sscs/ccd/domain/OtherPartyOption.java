@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
@@ -13,6 +14,7 @@ import lombok.Value;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OtherPartyOption {
 
+    @CCD(ignore = true)
     OtherPartyOptionDetails value;
 
     @JsonCreator

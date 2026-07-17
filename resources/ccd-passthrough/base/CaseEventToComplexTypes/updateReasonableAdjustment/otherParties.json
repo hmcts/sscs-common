@@ -1,0 +1,91 @@
+[ {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "isAppointee",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "reasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "reasonableAdjustment.wantsReasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "reasonableAdjustment.reasonableAdjustmentRequirements",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.name",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointeeReasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointeeReasonableAdjustment.wantsReasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointeeReasonableAdjustment.reasonableAdjustmentRequirements",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.address",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "appointee.contact",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.name",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "repReasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "repReasonableAdjustment.wantsReasonableAdjustment",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "repReasonableAdjustment.reasonableAdjustmentRequirements",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.address",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateReasonableAdjustment",
+  "CaseFieldID" : "otherParties",
+  "ListElementCode" : "rep.contact",
+  "RetainHiddenValue" : "Yes"
+} ]

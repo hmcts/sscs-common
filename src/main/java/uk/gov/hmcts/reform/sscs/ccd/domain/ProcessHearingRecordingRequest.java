@@ -7,19 +7,29 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.lang3.builder.CompareToBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 public class ProcessHearingRecordingRequest implements Comparable<ProcessHearingRecordingRequest> {
 
+    @CCD(label = "Hearing id")
     String hearingId;
+    @CCD(label = " ")
     String hearingTitle;
+    @CCD(label = " ")
     String hearingInformation;
+    @CCD(label = " ", typeOverride = FieldType.Collection, typeParameterOverride = "Document")
     List<CcdValue<DocumentLink>> recordings;
+    @CCD(label = "FTA", typeOverride = FieldType.DynamicList)
     DynamicList dwp;
+    @CCD(label = "Joint Party", typeOverride = FieldType.DynamicList)
     DynamicList jointParty;
+    @CCD(label = "Appellant", typeOverride = FieldType.DynamicList)
     DynamicList appellant;
+    @CCD(label = "Representative", typeOverride = FieldType.DynamicList)
     DynamicList rep;
 
     @JsonCreator

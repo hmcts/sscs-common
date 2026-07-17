@@ -1,0 +1,6 @@
+[ {
+  "CaseEventID" : "amendElementsIssues",
+  "CaseFieldID" : "elementsDisputedSanctions",
+  "ListElementCode" : "issueCode",
+  "ShowSummaryChangeOption" : "Y"
+} ]

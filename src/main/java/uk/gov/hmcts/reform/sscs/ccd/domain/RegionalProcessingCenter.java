@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @Value
 @Builder(toBuilder = true)
@@ -38,27 +40,39 @@ public class RegionalProcessingCenter {
         this.epimsId = epimsId;
     }
 
+    @CCD(label = "Fax Number")
     String faxNumber;
 
+    @CCD(label = "Address Line 4")
     String address4;
 
+    @CCD(label = "Phone Number")
     String phoneNumber;
 
+    @CCD(label = "Regional Processing Center Name")
     String name;
 
+    @CCD(label = "Address Line 1")
     String address1;
 
+    @CCD(label = "Address Line 2")
     String address2;
 
+    @CCD(label = "Address Line 3")
     String address3;
 
+    @CCD(label = "Postcode")
     String postcode;
 
+    @CCD(label = "City")
     String city;
 
+    @CCD(label = "Email")
     String email;
 
+    @CCD(label = "Hearing Route", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_hearingRoute")
     HearingRoute hearingRoute;
 
+    @CCD(label = "Epims ID")
     String epimsId;
 }

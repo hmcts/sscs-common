@@ -1,0 +1,26 @@
+[ {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyAddress",
+  "ListElementCode" : "line1",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyAddress",
+  "ListElementCode" : "line2",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyAddress",
+  "ListElementCode" : "town",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyAddress",
+  "ListElementCode" : "county",
+  "ShowSummaryChangeOption" : "Y"
+}, {
+  "CaseEventID" : "dwpUploadResponse",
+  "CaseFieldID" : "jointPartyAddress",
+  "ListElementCode" : "postcode",
+  "ShowSummaryChangeOption" : "Y"
+} ]

@@ -1,0 +1,16 @@
+[ {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberComposition",
+  "ListElementCode" : "panelCompositionJudge",
+  "RetainHiddenValue" : "No"
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberComposition",
+  "ListElementCode" : "districtTribunalJudge",
+  "RetainHiddenValue" : "Yes"
+}, {
+  "CaseEventID" : "updateListingRequirements",
+  "CaseFieldID" : "panelMemberComposition",
+  "ListElementCode" : "panelCompositionMemberMedical2",
+  "RetainHiddenValue" : "Yes"
+} ]
