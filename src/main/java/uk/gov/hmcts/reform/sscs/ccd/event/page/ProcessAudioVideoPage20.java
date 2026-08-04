@@ -31,7 +31,6 @@ public final class ProcessAudioVideoPage20 {
                     .readonly(AudioVideoEvidenceDetails::getDocumentLink)
                     .readonly(AudioVideoEvidenceDetails::getRip1Document)
                     .fieldShowCondition("showRip1DocPage=\"Yes\"")
-                    .noHintText()
                     .readonly(AudioVideoEvidenceDetails::getDateAdded)
                     .readonly(AudioVideoEvidenceDetails::getPartyUploaded)
                     .readonly(AudioVideoEvidenceDetails::getStatementOfEvidencePdf).done();

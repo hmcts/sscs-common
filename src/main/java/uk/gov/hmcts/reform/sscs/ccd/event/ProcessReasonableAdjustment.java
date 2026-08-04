@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
-import uk.gov.hmcts.reform.sscs.ccd.domain.Correspondence;
+import uk.gov.hmcts.reform.sscs.ccd.domain.CorrespondenceDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ReasonableAdjustmentsLetters;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
@@ -41,37 +41,37 @@ public class ProcessReasonableAdjustment implements CCDConfig<SscsCaseData, Stat
             .fields();
         fields.page("1.0");
         fields.complex(SscsCaseData::getReasonableAdjustmentsLetters)
-                    .complex(ReasonableAdjustmentsLetters::getAppellant, Correspondence.class)
-                    .readonly(Correspondence::getSentOn).done()
-                    .complex(ReasonableAdjustmentsLetters::getAppellant, Correspondence.class)
-                    .readonly(Correspondence::getDocumentLink).done()
-                    .complex(ReasonableAdjustmentsLetters::getAppellant, Correspondence.class)
-                    .mandatory(Correspondence::getReasonableAdjustmentStatus).done()
-                    .complex(ReasonableAdjustmentsLetters::getRepresentative, Correspondence.class)
-                    .readonly(Correspondence::getSentOn).done()
-                    .complex(ReasonableAdjustmentsLetters::getRepresentative, Correspondence.class)
-                    .readonly(Correspondence::getDocumentLink).done()
-                    .complex(ReasonableAdjustmentsLetters::getRepresentative, Correspondence.class)
-                    .mandatory(Correspondence::getReasonableAdjustmentStatus).done()
-                    .complex(ReasonableAdjustmentsLetters::getAppointee, Correspondence.class)
-                    .readonly(Correspondence::getSentOn).done()
-                    .complex(ReasonableAdjustmentsLetters::getAppointee, Correspondence.class)
-                    .readonly(Correspondence::getDocumentLink).done()
-                    .complex(ReasonableAdjustmentsLetters::getAppointee, Correspondence.class)
-                    .mandatory(Correspondence::getReasonableAdjustmentStatus).done()
-                    .complex(ReasonableAdjustmentsLetters::getJointParty, Correspondence.class)
-                    .readonly(Correspondence::getSentOn).done()
-                    .complex(ReasonableAdjustmentsLetters::getJointParty, Correspondence.class)
-                    .readonly(Correspondence::getDocumentLink).done()
-                    .complex(ReasonableAdjustmentsLetters::getJointParty, Correspondence.class)
-                    .mandatory(Correspondence::getReasonableAdjustmentStatus).done()
-                    .complex(ReasonableAdjustmentsLetters::getOtherParty, Correspondence.class)
-                    .readonly(Correspondence::getTo).done()
-                    .complex(ReasonableAdjustmentsLetters::getOtherParty, Correspondence.class)
-                    .readonly(Correspondence::getSentOn).done()
-                    .complex(ReasonableAdjustmentsLetters::getOtherParty, Correspondence.class)
-                    .readonly(Correspondence::getDocumentLink).done()
-                    .complex(ReasonableAdjustmentsLetters::getOtherParty, Correspondence.class)
-                    .mandatory(Correspondence::getReasonableAdjustmentStatus).done().done();
+                    .complex(ReasonableAdjustmentsLetters::getAppellant, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getSentOn).done()
+                    .complex(ReasonableAdjustmentsLetters::getAppellant, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getDocumentLink).done()
+                    .complex(ReasonableAdjustmentsLetters::getAppellant, CorrespondenceDetails.class)
+                    .mandatory(CorrespondenceDetails::getReasonableAdjustmentStatus).done()
+                    .complex(ReasonableAdjustmentsLetters::getRepresentative, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getSentOn).done()
+                    .complex(ReasonableAdjustmentsLetters::getRepresentative, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getDocumentLink).done()
+                    .complex(ReasonableAdjustmentsLetters::getRepresentative, CorrespondenceDetails.class)
+                    .mandatory(CorrespondenceDetails::getReasonableAdjustmentStatus).done()
+                    .complex(ReasonableAdjustmentsLetters::getAppointee, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getSentOn).done()
+                    .complex(ReasonableAdjustmentsLetters::getAppointee, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getDocumentLink).done()
+                    .complex(ReasonableAdjustmentsLetters::getAppointee, CorrespondenceDetails.class)
+                    .mandatory(CorrespondenceDetails::getReasonableAdjustmentStatus).done()
+                    .complex(ReasonableAdjustmentsLetters::getJointParty, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getSentOn).done()
+                    .complex(ReasonableAdjustmentsLetters::getJointParty, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getDocumentLink).done()
+                    .complex(ReasonableAdjustmentsLetters::getJointParty, CorrespondenceDetails.class)
+                    .mandatory(CorrespondenceDetails::getReasonableAdjustmentStatus).done()
+                    .complex(ReasonableAdjustmentsLetters::getOtherParty, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getTo).done()
+                    .complex(ReasonableAdjustmentsLetters::getOtherParty, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getSentOn).done()
+                    .complex(ReasonableAdjustmentsLetters::getOtherParty, CorrespondenceDetails.class)
+                    .readonly(CorrespondenceDetails::getDocumentLink).done()
+                    .complex(ReasonableAdjustmentsLetters::getOtherParty, CorrespondenceDetails.class)
+                    .mandatory(CorrespondenceDetails::getReasonableAdjustmentStatus).done().done();
     }
 }

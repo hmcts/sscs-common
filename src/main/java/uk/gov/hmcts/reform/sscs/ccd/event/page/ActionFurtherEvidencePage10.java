@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.JointParty;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ScannedDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ScannedDocumentDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
@@ -42,22 +42,22 @@ public final class ActionFurtherEvidencePage10 {
         fields.mandatory(SscsCaseData::getFurtherEvidenceAction);
         fields.mandatory(SscsCaseData::getOriginalSender);
         fields.complex(SscsCaseData::getScannedDocuments).done();
-        fields.complex(SscsCaseData::getScannedDocuments, ScannedDocument.class)
-                    .optional(ScannedDocument::getType)
-                    .mandatory(ScannedDocument::getUrl)
-                    .optional(ScannedDocument::getEditedUrl)
+        fields.complex(SscsCaseData::getScannedDocuments, ScannedDocumentDetails.class)
+                    .optional(ScannedDocumentDetails::getType)
+                    .mandatory(ScannedDocumentDetails::getUrl)
+                    .optional(ScannedDocumentDetails::getEditedUrl)
                     .fieldShowCondition("isConfidentialCase = \"Yes\"")
-                    .optional(ScannedDocument::getControlNumber)
-                    .mandatory(ScannedDocument::getFileName)
-                    .mandatory(ScannedDocument::getScannedDate)
-                    .optional(ScannedDocument::getExceptionRecordReference)
-                    .readonly(ScannedDocument::getOriginalSenderOtherPartyId)
+                    .optional(ScannedDocumentDetails::getControlNumber)
+                    .mandatory(ScannedDocumentDetails::getFileName)
+                    .mandatory(ScannedDocumentDetails::getScannedDate)
+                    .optional(ScannedDocumentDetails::getExceptionRecordReference)
+                    .readonly(ScannedDocumentDetails::getOriginalSenderOtherPartyId)
                     .fieldShowCondition("originalSenderOtherPartyId != \"\"")
-                    .readonly(ScannedDocument::getOriginalSenderOtherPartyName)
+                    .readonly(ScannedDocumentDetails::getOriginalSenderOtherPartyName)
                     .fieldShowCondition("originalSenderOtherPartyName != \"\"")
-                    .optional(ScannedDocument::getSubtype)
-                    .optional(ScannedDocument::getIncludeInBundle)
-                    .optional(ScannedDocument::getDocumentTabChoice)
+                    .optional(ScannedDocumentDetails::getSubtype)
+                    .optional(ScannedDocumentDetails::getIncludeInBundle)
+                    .optional(ScannedDocumentDetails::getDocumentTabChoice)
                     .fieldShowCondition("documentTabChoice!=\"DONOTSHOW\"").done();
         fields.optional(SscsCaseData::getDirectionDueDate);
     }

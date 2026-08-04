@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.*;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import lombok.experimental.Delegate;
 import lombok.experimental.SuperBuilder;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -20,11 +19,5 @@ public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
     @JsonCreator
     public SscsDocument(@JsonProperty("id") String id, @JsonProperty("value") SscsDocumentDetails value) {
         super(id, value);
-    }
-
-    @Delegate
-    @JsonIgnore
-    public SscsDocumentDetails delegateValue() {
-        return getValue();
     }
 }

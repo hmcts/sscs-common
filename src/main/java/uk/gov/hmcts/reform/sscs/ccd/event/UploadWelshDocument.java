@@ -5,7 +5,7 @@ import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
-import uk.gov.hmcts.reform.sscs.ccd.domain.SscsWelshDocuments;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsWelshDocumentDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 import uk.gov.hmcts.reform.sscs.ccd.domain.WorkAllocationFields;
@@ -47,10 +47,10 @@ public class UploadWelshDocument implements CCDConfig<SscsCaseData, State, UserR
                     .publishAs("scannedDocumentTypes").done();
         fields.optional(SscsCaseData::getOriginalDocuments);
         fields.complex(SscsCaseData::getSscsWelshPreviewDocuments).done();
-        fields.complex(SscsCaseData::getSscsWelshPreviewDocuments, SscsWelshDocuments.class)
-                    .mandatory(SscsWelshDocuments::getDocumentLink)
-                    .optional(SscsWelshDocuments::getDocumentLanguage)
-                    .optional(SscsWelshDocuments::getDocumentComment)
-                    .optional(SscsWelshDocuments::getDocumentDateAdded).done();
+        fields.complex(SscsCaseData::getSscsWelshPreviewDocuments, SscsWelshDocumentDetails.class)
+                    .mandatory(SscsWelshDocumentDetails::getDocumentLink)
+                    .optional(SscsWelshDocumentDetails::getDocumentLanguage)
+                    .optional(SscsWelshDocumentDetails::getDocumentComment)
+                    .optional(SscsWelshDocumentDetails::getDocumentDateAdded).done();
     }
 }

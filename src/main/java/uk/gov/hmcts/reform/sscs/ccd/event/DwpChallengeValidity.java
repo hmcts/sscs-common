@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DwpResponseDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
@@ -43,21 +42,7 @@ public class DwpChallengeValidity implements CCDConfig<SscsCaseData, State, User
         fields.pageLabel("Challenge validity");
         fields.readonlyNoSummary(SscsCaseData::getAppeal)
                     .fieldShowCondition("[STATE]=\"DoNotUse\"");
-        fields.complex(SscsCaseData::getDwpChallengeValidityDocument)
-                    .optional(DwpResponseDocument::getDwpResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code!=\"infectedBloodCompensation\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getHmrcResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"nationalInsuranceCredits\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getIbcaResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"infectedBloodCompensation\"")
-                    .pageId("1.0")
-                    .mandatory(DwpResponseDocument::getDocumentFileName)
-                    .pageId("1.0")
-                    .mandatory(DwpResponseDocument::getDocumentLink)
-                    .noHintText()
-                    .pageId("1.0").done();
+        fields.complex(SscsCaseData::getDwpChallengeValidityDocument).done();
         fields.mandatory(SscsCaseData::getDwpState);
     }
 }

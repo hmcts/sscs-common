@@ -1,18 +1,18 @@
 [ {
   "relativePath" : "CaseEventToComplexTypes/caseUpdated/appeal.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/dwpChallengeValidity/dwpChallengeValidityDocument.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/dwpResponseDocument.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/dwpEditedResponseDocument.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/dwpUploadResponse/elementsDisputedGeneral.json",
@@ -60,7 +60,7 @@
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/dwpResponseDocument.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/elementsDisputedGeneral.json",
@@ -96,7 +96,11 @@
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/hmctsResponseReviewed/dwpEditedResponseDocument.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/incompleteApplicationReceived/appeal.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/panelMemberComposition.json",
@@ -137,6 +141,14 @@
 }, {
   "relativePath" : "CaseEventToComplexTypes/amendElementsIssues/elementsDisputedLimitedWork.json",
   "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/updateListingRequirements/overrideFields.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
+  "overwriteColumns" : [ ]
+}, {
+  "relativePath" : "CaseEventToComplexTypes/addRepresentative/appeal.json",
+  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode" ],
   "overwriteColumns" : [ ]
 }, {
   "relativePath" : "CaseEventToComplexTypes/updateReasonableAdjustment/reasonableAdjustments.json",

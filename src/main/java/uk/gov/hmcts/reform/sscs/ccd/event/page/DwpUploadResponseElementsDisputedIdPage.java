@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.event.page;
 
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ElementAndIssueCode;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ElementDisputedDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
@@ -28,43 +28,43 @@ public final class DwpUploadResponseElementsDisputedIdPage {
         fields.showCondition("appeal.benefitType.code=\"UC\"");
         fields.complex(SscsCaseData::getElementsDisputedGeneral).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"general\"");
-        fields.complex(SscsCaseData::getElementsDisputedGeneral, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedGeneral, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedSanctions).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"standardAllowanceSanctions\"");
-        fields.complex(SscsCaseData::getElementsDisputedSanctions, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedSanctions, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedHousing).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"housing\"");
-        fields.complex(SscsCaseData::getElementsDisputedHousing, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedHousing, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedChildCare).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"childcare\"");
-        fields.complex(SscsCaseData::getElementsDisputedChildCare, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedChildCare, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedCare).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"carerElement\"");
-        fields.complex(SscsCaseData::getElementsDisputedCare, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedCare, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedChildElement).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"childElement\"");
-        fields.complex(SscsCaseData::getElementsDisputedChildElement, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedChildElement, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedChildDisabled).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"disabledChildren\"");
-        fields.complex(SscsCaseData::getElementsDisputedChildDisabled, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedChildDisabled, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
         fields.complex(SscsCaseData::getElementsDisputedLimitedWork).done()
                     .fieldShowCondition("elementsDisputedList CONTAINS \"limitedCapabilityWork\"");
-        fields.complex(SscsCaseData::getElementsDisputedLimitedWork, ElementAndIssueCode.class)
-                    .mandatory(ElementAndIssueCode::getIssueCode)
+        fields.complex(SscsCaseData::getElementsDisputedLimitedWork, ElementDisputedDetails.class)
+                    .mandatory(ElementDisputedDetails::getIssueCode)
                     .pageId("elementsDisputedId").done();
     }
 }

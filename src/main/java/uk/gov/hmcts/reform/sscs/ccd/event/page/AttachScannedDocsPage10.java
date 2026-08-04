@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.event.page;
 
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ScannedDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ScannedDocumentDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
@@ -29,14 +29,14 @@ public final class AttachScannedDocsPage10 {
                     .fieldShowCondition("[STATE]=\"doNotUse\"")
                     .retainHiddenValue();
         fields.complex(SscsCaseData::getScannedDocuments).done();
-        fields.complex(SscsCaseData::getScannedDocuments, ScannedDocument.class)
-                    .mandatory(ScannedDocument::getType)
-                    .mandatory(ScannedDocument::getUrl)
-                    .optional(ScannedDocument::getEditedUrl)
-                    .mandatory(ScannedDocument::getControlNumber)
-                    .mandatory(ScannedDocument::getFileName)
-                    .mandatory(ScannedDocument::getScannedDate)
-                    .mandatory(ScannedDocument::getExceptionRecordReference)
-                    .mandatory(ScannedDocument::getSubtype).done();
+        fields.complex(SscsCaseData::getScannedDocuments, ScannedDocumentDetails.class)
+                    .mandatory(ScannedDocumentDetails::getType)
+                    .mandatory(ScannedDocumentDetails::getUrl)
+                    .optional(ScannedDocumentDetails::getEditedUrl)
+                    .mandatory(ScannedDocumentDetails::getControlNumber)
+                    .mandatory(ScannedDocumentDetails::getFileName)
+                    .mandatory(ScannedDocumentDetails::getScannedDate)
+                    .mandatory(ScannedDocumentDetails::getExceptionRecordReference)
+                    .mandatory(ScannedDocumentDetails::getSubtype).done();
     }
 }

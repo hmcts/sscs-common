@@ -22,8 +22,6 @@ public class Appeal {
     private HearingOptions hearingOptions;
     @CCD(label = "Appeal Reasons")
     private AppealReasons appealReasons;
-    @CCD(label = "Supporter Details")
-    private Supporter supporter;
     @CCD(label = "Representative Details")
     private Representative rep;
     @CCD(label = "Signer")
@@ -44,7 +42,6 @@ public class Appeal {
                   @JsonProperty("benefitType") BenefitType benefitType,
                   @JsonProperty("hearingOptions") HearingOptions hearingOptions,
                   @JsonProperty("appealReasons") AppealReasons appealReasons,
-                  @JsonProperty("supporter") Supporter supporter,
                   @JsonProperty("rep") Representative rep,
                   @JsonProperty("signer") String signer,
                   @JsonProperty("hearingType") String hearingType,
@@ -56,7 +53,6 @@ public class Appeal {
         this.benefitType = benefitType;
         this.hearingOptions = hearingOptions;
         this.appealReasons = appealReasons;
-        this.supporter = supporter;
         this.rep = rep;
         this.signer = signer;
         this.hearingType = hearingType;

@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.sscs.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Adjournment;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DwpResponseDocument;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ExtendedSscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsIndustrialInjuriesData;
@@ -32,21 +31,7 @@ public final class HmctsResponseReviewedPage10 {
                     .fieldShowCondition("issueCode=\"doNotUse\"");
         fields.readonly(SscsCaseData::getCreatedInGapsFrom)
                     .fieldShowCondition("issueCode=\"doNotUse\"");
-        fields.complex(SscsCaseData::getDwpResponseDocument)
-                    .optional(DwpResponseDocument::getDwpResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code!=\"infectedBloodCompensation\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getHmrcResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"nationalInsuranceCredits\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getIbcaResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"infectedBloodCompensation\"")
-                    .pageId("1.0")
-                    .readonly(DwpResponseDocument::getDocumentFileName)
-                    .pageId("1.0")
-                    .readonly(DwpResponseDocument::getDocumentLink)
-                    .noHintText()
-                    .pageId("1.0").done();
+        fields.complex(SscsCaseData::getDwpResponseDocument).done();
         fields.readonly(SscsCaseData::getDwpAT38Document);
         fields.readonly(SscsCaseData::getDwpEvidenceBundleDocument);
         fields.optional(SscsCaseData::getDwpEditedEvidenceReason)
@@ -55,23 +40,7 @@ public final class HmctsResponseReviewedPage10 {
         fields.complex(SscsCaseData::getAdjournment)
                     .readonly(Adjournment::getDwpEditedEvidenceReasonLabel)
                     .fieldShowCondition("dwpEditedEvidenceReason!=\"\"").done();
-        fields.complex(SscsCaseData::getDwpEditedResponseDocument)
-                    .optional(DwpResponseDocument::getDwpResponseDocumentTitle)
-                    .fieldShowCondition("dwpEditedEvidenceReason!=\"\" AND appeal.benefitType.code!=\"infectedBloodCompensation\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getHmrcResponseDocumentTitle)
-                    .fieldShowCondition("dwpEditedEvidenceReason!=\"\" AND appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"nationalInsuranceCredits\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getIbcaResponseDocumentTitle)
-                    .fieldShowCondition("dwpEditedEvidenceReason!=\"\" AND appeal.benefitType.code=\"infectedBloodCompensation\"")
-                    .pageId("1.0")
-                    .readonly(DwpResponseDocument::getDocumentFileName)
-                    .fieldShowCondition("dwpEditedEvidenceReason!=\"\"")
-                    .pageId("1.0")
-                    .readonly(DwpResponseDocument::getDocumentLink)
-                    .fieldShowCondition("dwpEditedEvidenceReason!=\"\"")
-                    .noHintText()
-                    .pageId("1.0").done()
+        fields.complex(SscsCaseData::getDwpEditedResponseDocument).done()
                     .fieldShowCondition("dwpEditedEvidenceReason!=\"\"");
         fields.readonly(SscsCaseData::getDwpEditedEvidenceBundleDocument)
                     .fieldShowCondition("dwpEditedEvidenceReason!=\"\"");

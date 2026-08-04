@@ -19,19 +19,15 @@ public class Name {
     private String title;
     @CCD(label = "First Name")
     private String firstName;
-    @CCD(label = "Middle Name")
-    private String middleName;
     @CCD(label = "Last Name")
     private String lastName;
 
     @JsonCreator
     public Name(@JsonProperty("title") String title,
                 @JsonProperty("firstName") String firstName,
-                @JsonProperty("middleName") String middleName,
                 @JsonProperty("lastName") String lastName) {
         this.title = title;
         this.firstName = firstName;
-        this.middleName = middleName;
         this.lastName = lastName;
     }
 

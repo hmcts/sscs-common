@@ -2,8 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.event.page;
 
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
-import uk.gov.hmcts.reform.sscs.ccd.domain.AudioVideoEvidence;
-import uk.gov.hmcts.reform.sscs.ccd.domain.DwpResponseDocument;
+import uk.gov.hmcts.reform.sscs.ccd.domain.AudioVideoEvidenceDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
@@ -34,51 +33,20 @@ public final class DwpUploadResponsePage10 {
                     .fieldShowCondition("[STATE]=\"DoNotShow\"").done();
         fields.readonlyNoSummary(SscsCaseData::getAppeal)
                     .fieldShowCondition("dwpFurtherInfo=\"DoNotUse\"");
-        fields.complex(SscsCaseData::getDwpResponseDocument)
-                    .optional(DwpResponseDocument::getDwpResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code!=\"infectedBloodCompensation\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getHmrcResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"nationalInsuranceCredits\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getIbcaResponseDocumentTitle)
-                    .fieldShowCondition("appeal.benefitType.code=\"infectedBloodCompensation\"")
-                    .pageId("1.0")
-                    .mandatory(DwpResponseDocument::getDocumentFileName)
-                    .pageId("1.0")
-                    .mandatory(DwpResponseDocument::getDocumentLink)
-                    .noHintText()
-                    .pageId("1.0").done();
+        fields.complex(SscsCaseData::getDwpResponseDocument).done();
         fields.optional(SscsCaseData::getDwpAT38Document);
         fields.mandatory(SscsCaseData::getDwpEvidenceBundleDocument);
         fields.optional(SscsCaseData::getDwpEditedEvidenceReason);
-        fields.complex(SscsCaseData::getDwpEditedResponseDocument)
-                    .optional(DwpResponseDocument::getDwpResponseDocumentTitle)
-                    .fieldShowCondition("(dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\") AND appeal.benefitType.code!=\"infectedBloodCompensation\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getHmrcResponseDocumentTitle)
-                    .fieldShowCondition("(dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\") AND appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"nationalInsuranceCredits\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getIbcaResponseDocumentTitle)
-                    .fieldShowCondition("(dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\") AND appeal.benefitType.code=\"infectedBloodCompensation\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getDocumentFileName)
-                    .fieldShowCondition("dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\"")
-                    .pageId("1.0")
-                    .optional(DwpResponseDocument::getDocumentLink)
-                    .fieldShowCondition("dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\"")
-                    .noHintText()
-                    .pageId("1.0").done()
+        fields.complex(SscsCaseData::getDwpEditedResponseDocument).done()
                     .fieldShowCondition("dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\"");
         fields.optional(SscsCaseData::getDwpEditedEvidenceBundleDocument)
                     .fieldShowCondition("dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\"");
         fields.optional(SscsCaseData::getAppendix12Doc)
                     .fieldShowCondition("dwpEditedEvidenceReason=\"phme\" OR dwpEditedEvidenceReason=\"childSupportConfidentiality\"");
         fields.complex(SscsCaseData::getDwpUploadAudioVideoEvidence).done();
-        fields.complex(SscsCaseData::getDwpUploadAudioVideoEvidence, AudioVideoEvidence.class)
-                    .optional(AudioVideoEvidence::getDocumentLink)
-                    .optional(AudioVideoEvidence::getRip1Document)
-                    .noHintText().done();
+        fields.complex(SscsCaseData::getDwpUploadAudioVideoEvidence, AudioVideoEvidenceDetails.class)
+                    .optional(AudioVideoEvidenceDetails::getDocumentLink)
+                    .optional(AudioVideoEvidenceDetails::getRip1Document).done();
         fields.mandatory(SscsCaseData::getBenefitCode)
                     .fieldShowCondition("appeal.benefitType.code!=\"UC\" AND appeal.benefitType.code!=\"infectedBloodCompensation\"");
         fields.mandatory(SscsCaseData::getBenefitCodeIbcaOnly)
