@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,16 @@ public final class WriteFinalDecisionPanelMemberNamesPage {
         fields.page("panelMemberNames");
         fields.pageLabel("Panel members");
         fields.showCondition("writeFinalDecisionGenerateNotice = \"Yes\"");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .optional(SscsFinalDecisionCaseData::getWriteFinalDecisionDisabilityQualifiedPanelMemberName)
+                    .fieldShowCondition("appeal.benefitType.code!=\"ESA\" AND appeal.benefitType.code!=\"UC\" AND appeal.benefitType.code!=\"childSupport\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\"")
+                    .retainHiddenValue()
+                    .optional(SscsFinalDecisionCaseData::getWriteFinalDecisionOtherPanelMemberName)
+                    .fieldShowCondition("appeal.benefitType.code=\"ESA\" OR appeal.benefitType.code=\"UC\" OR appeal.benefitType.code=\"childSupport\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"nationalInsuranceCredits\"")
+                    .retainHiddenValue()
+                    .optional(SscsFinalDecisionCaseData::getWriteFinalDecisionMedicallyQualifiedPanelMemberName)
+                    .fieldShowCondition("appeal.benefitType.code!=\"childSupport\" AND appeal.benefitType.code!=\"taxCredit\" AND appeal.benefitType.code!=\"guardiansAllowance\" AND appeal.benefitType.code!=\"taxFreeChildcare\" AND appeal.benefitType.code!=\"homeResponsibilitiesProtection\" AND appeal.benefitType.code!=\"childBenefit\" AND appeal.benefitType.code!=\"thirtyHoursFreeChildcare\" AND appeal.benefitType.code!=\"guaranteedMinimumPension\" AND appeal.benefitType.code!=\"nationalInsuranceCredits\"")
+                    .optional(SscsFinalDecisionCaseData::getWriteFinalDecisionFinanciallyQualifiedPanelMemberName)
+                    .fieldShowCondition("appeal.benefitType.code=\"childSupport\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"nationalInsuranceCredits\"").done();
     }
 }

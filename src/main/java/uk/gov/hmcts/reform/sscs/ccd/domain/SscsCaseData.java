@@ -300,7 +300,6 @@ public class SscsCaseData implements CaseData {
     )
     private String isSaveAndReturn;
     @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
     private SscsDeprecatedFields sscsDeprecatedFields;
     @CCD(
             label = "Upload a response to a direction",
@@ -997,12 +996,10 @@ public class SscsCaseData implements CaseData {
     private String pcqId;
     //Final decision notice fields
     @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
     private SscsPipCaseData pipSscsCaseData;
     @Valid
     @ConvertGroup(to = UniversalCreditValidationGroup.class)
     @JsonUnwrapped
-    @Getter(AccessLevel.NONE)
     private SscsFinalDecisionCaseData finalDecisionCaseData;
     @CCD(label = "Issue final decision date", access = {SscsCrudAccess.class})
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

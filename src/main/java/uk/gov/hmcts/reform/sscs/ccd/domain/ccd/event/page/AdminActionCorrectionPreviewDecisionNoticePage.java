@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,8 @@ public final class AdminActionCorrectionPreviewDecisionNoticePage {
         fields.page("previewDecisionNotice");
         fields.pageLabel("Preview Decision Notice");
         fields.showCondition("correction.adminCorrectionType = \"headerCorrection\"");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionPreviewDocument)
+                    .caseEventFieldLabel("Corrected Document").done();
     }
 }

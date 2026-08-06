@@ -7,6 +7,7 @@ import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -41,5 +42,7 @@ public class IssueFinalDecision implements CCDConfig<SscsCaseData, State, UserRo
             .fields();
         fields.page("previewDecisionNotice");
         fields.pageLabel("Preview Decision Notice");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionPreviewDocument).done();
     }
 }

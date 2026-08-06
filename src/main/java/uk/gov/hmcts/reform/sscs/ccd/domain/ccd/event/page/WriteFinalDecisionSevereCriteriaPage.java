@@ -4,6 +4,7 @@ import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ExtendedSscsCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -26,6 +27,10 @@ public final class WriteFinalDecisionSevereCriteriaPage {
         fields.page("severeCriteria");
         fields.pageLabel("Severe Conditions Criteria");
         fields.showCondition("(showSchedule7ActivitiesPage = \"Yes\" AND ucWriteFinalDecisionSchedule7ActivitiesApply = \"Yes\" AND ucWriteFinalDecisionSchedule7ActivitiesQuestion !=\"\" AND writeFinalDecisionAllowedOrRefused = \"allowed\" AND writeFinalDecisionDateOfDecisionIsAfterSvDate=\"Yes\") OR (appeal.benefitType.code = \"UC\" AND writeFinalDecisionSevereYesNo = \"Yes\")");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .readonlyNoSummary(SscsFinalDecisionCaseData::getWriteFinalDecisionDateOfDecisionIsAfterSvDate)
+                    .fieldShowCondition("writeFinalDecisionGenerateNotice=\"DoNotUse\"")
+                    .retainHiddenValue().done();
         fields.complex(SscsCaseData::getExtendedSscsCaseData)
                     .mandatory(ExtendedSscsCaseData::getWriteFinalDecisionSevereCriteriaApply).done();
     }

@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsPipCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,7 @@ public final class WriteFinalDecisionMakingBudgetingDecisionsPage {
         fields.page("makingBudgetingDecisions");
         fields.pageLabel("Daily living: Making budgeting decisions");
         fields.showCondition("pipWriteFinalDecisionDailyLivingQuestion != \"notConsidered\" AND pipWriteFinalDecisionDailyLivingActivitiesQuestion CONTAINS \"budgetingDecisions\"");
+        fields.complex(SscsCaseData::getPipSscsCaseData)
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionBudgetingDecisionsQuestion).done();
     }
 }

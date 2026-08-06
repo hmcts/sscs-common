@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
+import uk.gov.hmcts.reform.sscs.ccd.domain.OtherPartyAttendedQuestionDetails;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page.WriteFinalDecisionAllowedOrRefusedPage;
@@ -176,5 +178,13 @@ public class WriteFinalDecision implements CCDConfig<SscsCaseData, State, UserRo
         WriteFinalDecisionReasonsPage.apply(fields);
         WriteFinalDecisionAnythingElsePage.apply(fields);
         WriteFinalDecisionPreviewDecisionNoticePage.apply(fields);
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .complex(SscsFinalDecisionCaseData::getOtherPartyAttendedQuestions, OtherPartyAttendedQuestionDetails.class)
+                    .readonly(OtherPartyAttendedQuestionDetails::getOtherPartyName)
+                    .fieldShowCondition("appeal.benefitType.code=\"childSupport\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"nationalInsuranceCredits\"")
+                    .pageId("typeOfHearing")
+                    .mandatory(OtherPartyAttendedQuestionDetails::getAttendedOtherParty)
+                    .fieldShowCondition("appeal.benefitType.code=\"childSupport\" OR appeal.benefitType.code=\"taxCredit\" OR appeal.benefitType.code=\"guardiansAllowance\" OR appeal.benefitType.code=\"taxFreeChildcare\" OR appeal.benefitType.code=\"homeResponsibilitiesProtection\" OR appeal.benefitType.code=\"childBenefit\" OR appeal.benefitType.code=\"thirtyHoursFreeChildcare\" OR appeal.benefitType.code=\"guaranteedMinimumPension\" OR appeal.benefitType.code=\"nationalInsuranceCredits\"")
+                    .pageId("typeOfHearing").done().done();
     }
 }

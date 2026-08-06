@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsPipCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,7 @@ public final class WriteFinalDecisionEngagingWithOtherPeoplePage {
         fields.page("engagingWithOtherPeople");
         fields.pageLabel("Daily living: Engaging with other people face to face");
         fields.showCondition("pipWriteFinalDecisionDailyLivingQuestion != \"notConsidered\" AND pipWriteFinalDecisionDailyLivingActivitiesQuestion CONTAINS \"engagingWithOthers\"");
+        fields.complex(SscsCaseData::getPipSscsCaseData)
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionEngagingWithOthersQuestion).done();
     }
 }

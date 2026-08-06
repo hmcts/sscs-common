@@ -4,6 +4,7 @@ import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Adjournment;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -27,6 +28,11 @@ public final class WriteFinalDecisionTypeOfAppealPage {
         fields.pageLabel("Type of appeal");
         fields.readonly(SscsCaseData::getAppeal)
                     .fieldShowCondition("writeFinalDecisionGenerateNotice=\"DoNotUse\"");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionIsDescriptorFlow)
+                    .fieldShowCondition("appeal.benefitType.code=\"PIP\"")
+                    .retainHiddenValue()
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionGenerateNotice).done();
         fields.complex(SscsCaseData::getAdjournment)
                     .readonly(Adjournment::getWriteFinalDecisionLabelCorrection)
                     .fieldShowCondition("[STATE]=\"dormantAppealState\" OR [STATE]=\"postHearing\"")

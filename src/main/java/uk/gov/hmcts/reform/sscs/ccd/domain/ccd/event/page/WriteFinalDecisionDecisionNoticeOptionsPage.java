@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsPipCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,12 @@ public final class WriteFinalDecisionDecisionNoticeOptionsPage {
         fields.page("decisionNoticeOptions");
         fields.pageLabel("Select activities");
         fields.showCondition("writeFinalDecisionIsDescriptorFlow = \"Yes\" AND writeFinalDecisionGenerateNotice = \"Yes\"");
+        fields.complex(SscsCaseData::getPipSscsCaseData)
+                    .optional(SscsPipCaseData::getPipWriteFinalDecisionDailyLivingActivitiesQuestion)
+                    .fieldShowCondition("pipWriteFinalDecisionDailyLivingQuestion != \"notConsidered\"")
+                    .retainHiddenValue()
+                    .optional(SscsPipCaseData::getPipWriteFinalDecisionMobilityActivitiesQuestion)
+                    .fieldShowCondition("pipWriteFinalDecisionMobilityQuestion != \"notConsidered\"")
+                    .retainHiddenValue().done();
     }
 }

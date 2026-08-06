@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,7 @@ public final class WriteFinalDecisionReasonsPage {
         fields.page("reasons");
         fields.pageLabel("Reasons for decision");
         fields.showCondition("writeFinalDecisionGenerateNotice = \"Yes\"");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionReasons).done();
     }
 }

@@ -6,6 +6,7 @@ import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDeprecatedFields;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -39,5 +40,9 @@ public class AssignToJudge implements CCDConfig<SscsCaseData, State, UserRole> {
             .fields();
         fields.page("1.0");
         fields.pageLabel("Assign to Disability Member");
+        fields.complex(SscsCaseData::getSscsDeprecatedFields)
+                    .optional(SscsDeprecatedFields::getAssignedToDisabilityMember)
+                    .mandatory(SscsDeprecatedFields::getAssignedToJudge)
+                    .optional(SscsDeprecatedFields::getAssignedToMedicalMember).done();
     }
 }

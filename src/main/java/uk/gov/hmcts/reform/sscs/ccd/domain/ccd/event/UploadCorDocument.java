@@ -6,6 +6,7 @@ import uk.gov.hmcts.ccd.sdk.api.CCDConfig;
 import uk.gov.hmcts.ccd.sdk.api.ConfigBuilder;
 import uk.gov.hmcts.ccd.sdk.api.Permission;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsDeprecatedFields;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -39,5 +40,7 @@ public class UploadCorDocument implements CCDConfig<SscsCaseData, State, UserRol
             .fields();
         fields.page("1.0");
         fields.pageLabel("Upload Cor documents");
+        fields.complex(SscsCaseData::getSscsDeprecatedFields)
+                    .optional(SscsDeprecatedFields::getCorDocument).done();
     }
 }

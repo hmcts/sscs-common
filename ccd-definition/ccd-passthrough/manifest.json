@@ -1,14 +1,4 @@
 [ {
-  "relativePath" : "CaseEventToComplexTypes/caseUpdated/appeal.json",
-  "primaryKeys" : [ "CaseEventID", "CaseFieldID", "ListElementCode", "FieldShowCondition" ],
-  "overwriteColumns" : [ ],
-  "columnsOnly" : false
-}, {
-  "relativePath" : "CaseEventToComplexTypes/writeFinalDecision/otherPartyAttendedQuestions.json",
-  "primaryKeys" : [ "ID", "CaseEventID", "CaseFieldID", "ListElementCode", "FieldShowCondition" ],
-  "overwriteColumns" : [ ],
-  "columnsOnly" : false
-}, {
   "relativePath" : "CaseEventToFields/amendHearingOutcome.json",
   "primaryKeys" : [ "CaseFieldID" ],
   "overwriteColumns" : [ ],

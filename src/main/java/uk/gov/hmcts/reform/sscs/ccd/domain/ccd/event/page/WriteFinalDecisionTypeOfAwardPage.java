@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsPipCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,14 @@ public final class WriteFinalDecisionTypeOfAwardPage {
         fields.page("typeOfAward");
         fields.pageLabel("Type of award");
         fields.showCondition("writeFinalDecisionIsDescriptorFlow = \"Yes\" AND writeFinalDecisionGenerateNotice = \"Yes\"");
+        fields.complex(SscsCaseData::getPipSscsCaseData)
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionDailyLivingQuestion)
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionComparedToDwpDailyLivingQuestion)
+                    .fieldShowCondition("pipWriteFinalDecisionDailyLivingQuestion != \"notConsidered\"")
+                    .retainHiddenValue()
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionMobilityQuestion)
+                    .mandatory(SscsPipCaseData::getPipWriteFinalDecisionComparedToDwpMobilityQuestion)
+                    .fieldShowCondition("pipWriteFinalDecisionMobilityQuestion != \"notConsidered\"")
+                    .retainHiddenValue().done();
     }
 }

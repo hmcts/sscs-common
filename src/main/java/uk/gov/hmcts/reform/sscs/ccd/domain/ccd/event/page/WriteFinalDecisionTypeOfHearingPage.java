@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain.ccd.event.page;
 import uk.gov.hmcts.ccd.sdk.api.Event;
 import uk.gov.hmcts.ccd.sdk.api.FieldCollection;
 import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseData;
+import uk.gov.hmcts.reform.sscs.ccd.domain.SscsFinalDecisionCaseData;
 import uk.gov.hmcts.reform.sscs.ccd.domain.State;
 import uk.gov.hmcts.reform.sscs.ccd.domain.UserRole;
 
@@ -25,5 +26,19 @@ public final class WriteFinalDecisionTypeOfHearingPage {
         fields.page("typeOfHearing");
         fields.pageLabel("Type of hearing");
         fields.showCondition("writeFinalDecisionGenerateNotice = \"Yes\"");
+        fields.complex(SscsCaseData::getFinalDecisionCaseData)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionTypeOfHearing)
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionPresentingOfficerAttendedQuestion)
+                    .fieldShowCondition("writeFinalDecisionTypeOfHearing = \"faceToFace\" OR writeFinalDecisionTypeOfHearing = \"telephone\" OR writeFinalDecisionTypeOfHearing = \"video\"")
+                    .retainHiddenValue()
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionAppellantAttendedQuestion)
+                    .fieldShowCondition("writeFinalDecisionTypeOfHearing = \"faceToFace\" OR writeFinalDecisionTypeOfHearing = \"telephone\" OR writeFinalDecisionTypeOfHearing = \"video\" AND appeal.appellant.isAppointee != \"Yes\"")
+                    .retainHiddenValue()
+                    .mandatory(SscsFinalDecisionCaseData::getWriteFinalDecisionAppointeeAttendedQuestion)
+                    .fieldShowCondition("writeFinalDecisionTypeOfHearing = \"faceToFace\" OR writeFinalDecisionTypeOfHearing = \"telephone\" OR writeFinalDecisionTypeOfHearing = \"video\" AND appeal.appellant.isAppointee = \"Yes\"")
+                    .retainHiddenValue()
+                    .optional(SscsFinalDecisionCaseData::getOtherPartyAttendedQuestions)
+                    .fieldShowCondition("writeFinalDecisionTypeOfHearing = \"faceToFace\" OR writeFinalDecisionTypeOfHearing = \"telephone\" OR writeFinalDecisionTypeOfHearing = \"video\"")
+                    .retainHiddenValue().done();
     }
 }
