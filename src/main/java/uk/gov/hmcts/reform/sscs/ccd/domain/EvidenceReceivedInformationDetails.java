@@ -5,13 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "evidenceReceivedInformation", generate = true)
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Builder(toBuilder = true)
 public class EvidenceReceivedInformationDetails {
 
+    @CCD(label = "Evidence received", typeOverride = FieldType.YesOrNo)
     private String evidenceReceivedBoolean;
+    @CCD(label = "Date evidence received", typeOverride = FieldType.Date)
     private String evidenceReceivedDate;
 
     @JsonCreator

@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -16,22 +18,39 @@ import org.apache.commons.lang3.math.NumberUtils;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocumentDetails {
 
+    @CCD(label = "Type", typeOverride = FieldType.FixedList, typeParameterOverride = "documentType")
     private String documentType;
+    @CCD(label = "File name")
     private String documentFileName;
+    @CCD(label = "Date added", typeOverride = FieldType.Date)
     private String documentDateAdded;
+    @CCD(label = "Comment")
     private String documentComment;
+    @CCD(label = "Original document URL", typeOverride = FieldType.Document)
     private DocumentLink documentLink;
     private DocumentLink editedDocumentLink;
+    @CCD(label = "Evidence issued", typeOverride = FieldType.YesOrNo)
     private String evidenceIssued;
+    @CCD(label = "Bundle addition")
     private String bundleAddition;
     private UploadParty partyUploaded;
     private String dateApproved;
+    @CCD(
+            label = "Translation status",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "documentTranslationStatus"
+    )
     private SscsDocumentTranslationStatus documentTranslationStatus;
+    @CCD(label = "Resized document URL", typeOverride = FieldType.Document)
     private DocumentLink resizedDocumentLink;
+    @CCD(label = "Audio/video document", typeOverride = FieldType.Document)
     private DocumentLink avDocumentLink;
     private String originalPartySender;
+    @CCD(label = "Original sender other party ID", showCondition = "documentType=\"AnyValueToFailThisCondition\"")
     private String originalSenderOtherPartyId;
+    @CCD(label = "Original sender other party name")
     private String originalSenderOtherPartyName;
+    @CCD(label = "Control number from Bulk Scan")
     private String controlNumber;
 
     @JsonCreator

@@ -7,15 +7,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.lang3.builder.CompareToBuilder;
-import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "AudioVideoEvidence", generate = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidence implements Comparable<AudioVideoEvidence> {
 
-    @CCD(ignore = true)
     AudioVideoEvidenceDetails value;
 
     @JsonCreator

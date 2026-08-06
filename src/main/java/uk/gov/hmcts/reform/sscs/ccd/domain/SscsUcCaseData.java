@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

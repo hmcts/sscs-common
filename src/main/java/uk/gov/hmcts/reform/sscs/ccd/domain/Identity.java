@@ -11,7 +11,9 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateYearMustBeInPa
 import uk.gov.hmcts.reform.sscs.ccd.validation.nino.NationalInsuranceNumber;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "identity", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)

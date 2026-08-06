@@ -8,8 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SystemupdateCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

@@ -10,13 +10,20 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "event", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 public class EventDetails {
+    @CCD(label = "Date")
     String date;
+    @CCD(label = "Event Type", typeOverride = FieldType.FixedList, typeParameterOverride = "eventType")
     String type;
+    @CCD(label = "Description")
     String description;
 
     @JsonCreator

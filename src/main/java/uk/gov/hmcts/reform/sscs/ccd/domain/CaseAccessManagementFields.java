@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 import org.apache.commons.text.CaseUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.GSProfileRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.CaseworkerWaTaskConfigurationRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.HmrcresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.GSProfileRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CaseworkerWaTaskConfigurationRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.HmrcresponsewriterCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

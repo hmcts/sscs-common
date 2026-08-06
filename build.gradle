@@ -6,6 +6,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '12.2.2'
+    id 'hmcts.ccd.sdk' version 'json-definition-converter-109.1-9afa6235'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
@@ -151,6 +152,45 @@ tasks.register('runGitPreCommitTasks') {
     dependsOn 'checkstyleTest'
 }
 
+// region CCD config generation (ccd-config-generator retrofit)
+
+// SscsCaseData carries ~1,100 fields once the definition-only fields are declared, so Lombok's
+// @Data generates a toString()/equals() as one deeply-nested binary expression. javac attributes
+// that expression recursively, which overflows the compiler thread's default stack. Fork javac
+// with a larger stack so the generated accessors attribute cleanly.
+tasks.withType(JavaCompile).configureEach {
+    options.fork = true
+    options.forkOptions.jvmArgs = (options.forkOptions.jvmArgs ?: []) + ['-Xss128m']
+}
+
+ccd {
+    configDir = file('build/ccd-definition')
+    rootPackage = 'uk.gov.hmcts.reform.sscs.ccd.domain.ccd'
+    caseType = 'Benefit'
+}
+
+// The generator's Spring context has no web tier, so run it with no embedded server on this
+// library's classpath (spring-webmvc and the actuator starter are both present).
+tasks.named('generateCCDConfig') {
+    systemProperty 'spring.main.web-application-type', 'none'
+}
+
+// A handful of definition columns and whole sheets have no SDK representation (see
+// ccd-definition/ccd-passthrough/manifest.json). They are merged into the generated output
+// after generation, because the generator recursively deletes its case-type output directory
+// on every run.
+tasks.register('mergeCcdPassthrough', JavaExec) {
+    dependsOn 'generateCCDConfig'
+    group = 'ccd'
+    description = 'Merges the passthrough definition content into the generated CCD definition'
+    mainClass = 'uk.gov.hmcts.ccd.sdk.converter.passthrough.PassthroughMerger'
+    classpath = configurations.ccdPassthrough
+    args file('ccd-definition/ccd-passthrough').absolutePath,
+         file('build/ccd-definition/Benefit').absolutePath
+}
+
+// endregion
+
 tasks.register('generatePanelCategoryMap', JavaExec) {
     mainClass = "uk.gov.hmcts.reform.sscs.utility.DefaultPanelCompositionParser"
     group = "utility"
@@ -166,7 +206,20 @@ def versions = [
         lombok       : '1.18.46'
 ]
 
+configurations {
+    // Isolated classpath for the post-generation passthrough merge, so the converter is not on
+    // the published library's compile or runtime classpath.
+    ccdPassthrough
+}
+
 dependencies {
+
+    ccdPassthrough group: 'com.github.hmcts', name: 'ccd-definition-converter', version: 'json-definition-converter-109.1-9afa6235'
+
+    // ccd-config-generator declares its Spring dependencies without versions, expecting a Spring
+    // Boot BOM. This project pins Spring versions individually rather than applying a Spring
+    // plugin, so supply the BOM explicitly at the same version pinned above.
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${versions.springboot}")
 
     api group: 'com.google.guava', name: 'guava', version: '33.6.0-jre'
     api group: 'org.apache.commons', name: 'commons-lang3', version: '3.18.0'
@@ -175,8 +228,6 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: versions.springboot
     implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.2.19'
 
-
-    implementation group: 'com.github.hmcts', name: 'ccd-config-generator', version: 'json-definition-converter-96.1-ff547414'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jackson
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jackson

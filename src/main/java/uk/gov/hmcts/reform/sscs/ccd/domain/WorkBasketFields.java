@@ -14,12 +14,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterHmrcresponsewriterCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.IbcaresponsewriterCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterHmrcresponsewriterCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.IbcaresponsewriterCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeCudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

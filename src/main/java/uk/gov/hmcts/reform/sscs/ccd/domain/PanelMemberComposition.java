@@ -19,7 +19,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "panelMemberComposition", generate = true)
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor

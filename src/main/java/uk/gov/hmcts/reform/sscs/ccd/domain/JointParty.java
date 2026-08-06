@@ -21,9 +21,9 @@ import lombok.experimental.SuperBuilder;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

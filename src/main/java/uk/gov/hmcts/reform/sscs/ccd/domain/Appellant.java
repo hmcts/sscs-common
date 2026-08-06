@@ -6,7 +6,9 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "appellant", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @SuperBuilder
@@ -19,6 +21,7 @@ public class Appellant extends Party {
     private String isAddressSameAsAppointee;
 
   // ==== ccd-definition-converter: synthesised definition-only fields (retrofit) ====
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   @CCD(label = "PCQ ID")
   private String pcqId;
   // ==== end synthesised definition-only fields ====

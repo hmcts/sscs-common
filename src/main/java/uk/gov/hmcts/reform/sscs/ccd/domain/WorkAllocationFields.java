@@ -9,13 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.ClerkSystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsRClerkCruSuperuserCruSystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkSystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRClerkCruSuperuserCruSystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

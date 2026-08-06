@@ -9,7 +9,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "name", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -25,10 +27,17 @@ public class Name {
     @JsonCreator
     public Name(@JsonProperty("title") String title,
                 @JsonProperty("firstName") String firstName,
-                @JsonProperty("lastName") String lastName) {
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("middleName") String middleName) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.middleName = middleName;
+    }
+
+    /** Retained so existing positional call sites still compile. */
+    public Name(String title, String firstName, String lastName) {
+        this(title, firstName, lastName, null);
     }
 
     @JsonIgnore
@@ -45,4 +54,9 @@ public class Name {
     public String getAbbreviatedFullName() {
         return title + " " + StringUtils.defaultIfBlank(StringUtils. substring(firstName, 0, 1), StringUtils.EMPTY) + " " + lastName;
     }
+
+  // ==== ccd-definition-converter: synthesised definition-only fields (retrofit) ====
+  @CCD(label = "Middle Name")
+  private String middleName;
+  // ==== end synthesised definition-only fields ====
 }

@@ -10,23 +10,52 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "AudioVideoEvidence", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AudioVideoEvidenceDetails {
+    @CCD(label = "Document Type")
     private String documentType;
+    @CCD(label = "Audio/video document url", regex = ".mp3,.mp4,.MP3,.MP4", typeOverride = FieldType.Document)
     private DocumentLink documentLink;
+    @CCD(
+            label = "RIP 1 document",
+            hint = "Document must be PDF formatted",
+            regex = ".pdf",
+            typeOverride = FieldType.Document
+    )
     private DocumentLink rip1Document;
+    @CCD(label = "File name")
     private String fileName;
+    @CCD(label = "Date added")
     private LocalDate dateAdded;
+    @CCD(label = "Date approved")
     private LocalDate dateApproved;
+    @CCD(
+            label = "Audio/video party uploaded",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_audioVideoPartyUploaded"
+    )
     private UploadParty partyUploaded;
+    @CCD(
+            label = "Audio/video processed action",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_audioVideoProcessedAction"
+    )
     private ProcessedAction processedAction;
+    @CCD(label = "Statement of evidence pdf", regex = ".pdf", typeOverride = FieldType.Document)
     private DocumentLink statementOfEvidencePdf;
+    @CCD(label = "Original Sender")
     private String originalPartySender;
+    @CCD(label = "Original sender other party ID", showCondition = "documentType=\"AnyValueToFailThisCondition\"")
     private String originalSenderOtherPartyId;
+    @CCD(label = "Original sender other party name")
     private String originalSenderOtherPartyName;
 
     @JsonCreator

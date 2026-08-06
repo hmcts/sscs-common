@@ -11,8 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -28,7 +28,7 @@ public class FtaCommunicationFields {
             typeParameterOverride = "ftaCommunicationRequest",
             access = {SscsCudAccess.class}
     )
-    private List<CommunicationRequest> ftaCommunications;
+    private List<FtaCommunicationRequest> ftaCommunications;
     @CCD(label = "Communication type", access = {SscsCrudAccess.class})
     private FtaRequestType ftaRequestType;
     @CCD(label = "FTA Communications", typeOverride = FieldType.DynamicList, access = {SscsCrudAccess.class})
@@ -42,7 +42,7 @@ public class FtaCommunicationFields {
             typeParameterOverride = "ftaCommunicationRequest",
             access = {SscsCudAccess.class}
     )
-    private List<CommunicationRequest> tribunalCommunications;
+    private List<FtaCommunicationRequest> tribunalCommunications;
     @CCD(label = "Communication type", access = {SscsCrudAccess.class})
     private TribunalRequestType tribunalRequestType;
     @CCD(label = "Tribunal Communications", typeOverride = FieldType.DynamicList, access = {SscsCrudAccess.class})
@@ -72,11 +72,11 @@ public class FtaCommunicationFields {
     @CCD(label = "Communication Requests", typeOverride = FieldType.DynamicList, access = {SscsCrudAccess.class})
     private DynamicList deleteCommRequestRadioDl;
     @CCD(label = "Communication Request", access = {SscsCrudAccess.class})
-    private CommunicationRequestDetails deleteCommRequestReadOnly;
+    private FtaCommunicationRequest deleteCommRequestReadOnly;
     @CCD(label = "Reason for deleting", max = 500, typeOverride = FieldType.TextArea, access = {SscsCrudAccess.class})
     private String deleteCommRequestTextArea;
     @CCD(label = " ", access = {SscsCrudAccess.class})
-    private CommunicationRequestDetails deleteCommRequestReadOnlyStored;
+    private FtaCommunicationRequest deleteCommRequestReadOnlyStored;
     @CCD(label = " ", typeOverride = FieldType.TextArea, access = {SscsCrudAccess.class})
     private String deleteCommRequestTextAreaStored;
 

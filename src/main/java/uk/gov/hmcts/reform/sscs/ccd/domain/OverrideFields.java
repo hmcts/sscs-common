@@ -16,7 +16,9 @@ import uk.gov.hmcts.ccd.sdk.type.FieldType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.AdjournCaseNextHearingDurationUnits2;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute2;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState2;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "overrideFields", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
