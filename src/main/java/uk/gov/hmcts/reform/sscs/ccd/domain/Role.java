@@ -3,14 +3,25 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "role", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Role {
 
+    @CCD(
+            label = "Role",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_roles",
+            typeParameterClass = Roles.class
+    )
     private String name;
+    @CCD(label = "Description", showCondition = "name=\"Other\"")
     private String description;
 
     @JsonCreator

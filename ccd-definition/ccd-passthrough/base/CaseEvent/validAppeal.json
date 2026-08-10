@@ -1,0 +1,7 @@
+[ {
+  "ID" : "validAppeal",
+  "CallBackURLAboutToSubmitEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/validate-record",
+  "CallBackURLSubmittedEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/send",
+  "RetriesTimeoutURLAboutToSubmitEvent" : "5,5",
+  "RetriesTimeoutURLSubmittedEvent" : "5,5"
+} ]

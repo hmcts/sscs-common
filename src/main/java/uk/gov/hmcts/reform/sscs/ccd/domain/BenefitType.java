@@ -6,13 +6,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "benefit", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 public class BenefitType {
+    @CCD(label = "Benefit Code", showCondition = "code=\"DO_NOT_SHOW\"")
     private String code;
+    @CCD(label = " ", showCondition = "code=\"DO_NOT_SHOW\"")
     private String description;
+    @CCD(label = "Benefit Description", typeOverride = FieldType.DynamicList)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private DynamicList descriptionSelection;
 

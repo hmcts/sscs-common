@@ -1,0 +1,10 @@
+[ {
+  "CaseFieldID" : "directionTypeDl",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "sscsInterlocDirectionDocument",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "dateAdded",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

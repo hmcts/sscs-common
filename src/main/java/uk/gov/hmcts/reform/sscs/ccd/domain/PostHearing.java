@@ -12,6 +12,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsJudgeCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -20,25 +28,57 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PostHearing {
+    @CCD(
+            label = "Post Hearing Request",
+            access = {DefaultAccess.class, SscsCitizenCrudAccess.class, DwpresponsewriterCrudAccess.class, JudgeCrudAccess.class}
+    )
     @JsonProperty("postHearingRequestType")
     private PostHearingRequestType requestType;
+    @CCD(
+            label = "Action Post Hearing Application",
+            access = {SscsSuperuserCrudAccess.class, JudgeSystemupdateCrudAccess.class}
+    )
     @JsonProperty("postHearingReviewType")
     private PostHearingReviewType reviewType;
+    @CCD(
+            label = "Set Aside",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("setAside")
     private SetAside setAside;
+    @CCD(
+            label = "Correction",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("correction")
     private Correction correction;
+    @CCD(
+            label = "Statement of Reasons",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("statementOfReasons")
     private StatementOfReasons statementOfReasons;
+    @CCD(
+            label = "Permission to Appeal",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("permissionToAppeal")
     private PermissionToAppeal permissionToAppeal;
+    @CCD(
+            label = "Liberty to Apply",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("libertyToApply")
     private LibertyToApply libertyToApply;
+    @CCD(
+            label = "Send to First Tier",
+            access = {DefaultAccess.class, SscsJudgeCrudAccess.class, DwpresponsewriterCrudAccess.class}
+    )
     @Getter(AccessLevel.NONE)
     @JsonProperty("sendToFirstTier")
     private SendToFirstTier sendToFirstTier;

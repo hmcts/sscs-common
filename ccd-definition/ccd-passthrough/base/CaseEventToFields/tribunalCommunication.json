@@ -1,0 +1,16 @@
+[ {
+  "CaseFieldID" : "tribunalRequestType",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selectTribunalCommunicationAction"
+}, {
+  "CaseFieldID" : "commRequestTopic",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=2.0"
+}, {
+  "CaseFieldID" : "tribunalRequestsDl",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selectTribunalRequest"
+}, {
+  "CaseFieldID" : "tribunalRequestNoResponseQuery",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=replyToTribunalQuery"
+}, {
+  "CaseFieldID" : "ftaRequestsToReviewDl",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=selectTribunalReply"
+} ]

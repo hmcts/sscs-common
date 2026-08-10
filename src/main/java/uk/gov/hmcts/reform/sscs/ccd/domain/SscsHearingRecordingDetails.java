@@ -8,18 +8,33 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "sscsHearingRecordingDetails", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode
 public class SscsHearingRecordingDetails {
+    @CCD(label = "Recordings", typeOverride = FieldType.Collection, typeParameterOverride = "Document")
     private List<HearingRecordingDetails> recordings;
+    @CCD(
+            label = "Hearing type",
+            typeOverride = FieldType.FixedRadioList,
+            typeParameterOverride = "FL_hearingRecordingType",
+            typeParameterClass = HearingRecordingType.class
+    )
     private String hearingType;
+    @CCD(label = "Hearing date and time")
     private String hearingDate;
+    @CCD(label = "Upload date and time")
     private String uploadDate;
+    @CCD(label = "Hearing ID")
     private String hearingId;
+    @CCD(label = "Venue")
     private String venue;
 
     @JsonCreator

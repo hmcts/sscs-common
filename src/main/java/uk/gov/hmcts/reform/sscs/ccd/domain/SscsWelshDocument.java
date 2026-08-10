@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "sscsWelshDocuments", generate = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @SuperBuilder(toBuilder = true)

@@ -6,7 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "hearingOutcomeValue", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -14,7 +18,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class HearingOutcomeValue {
+    @CCD(
+            label = "Hearing Outcome",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_caseOutcome",
+            typeParameterClass = CaseOutcome2.class
+    )
     private String hearingOutcomeId;
+    @CCD(label = "Did PO Attend?", typeOverride = FieldType.YesOrNo)
     private YesNo didPoAttendHearing;
+    @CCD(label = "Hearing", typeOverride = FieldType.DynamicList)
     private DynamicList completedHearings;
 }

@@ -17,7 +17,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "panelMemberComposition", generate = true)
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -27,10 +31,40 @@ public class PanelMemberComposition {
 
     protected static final String FQPM_REF = PanelMemberType.TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef();
 
+    @CCD(
+            label = "District Tribunal Judge",
+            typeOverride = FieldType.FixedRadioList,
+            typeParameterOverride = "FL_panelCompositionDtj",
+            typeParameterClass = PanelCompositionDtj.class
+    )
     private String districtTribunalJudge;
+    @CCD(
+            label = "Tribunal or Regional Judge",
+            typeOverride = FieldType.FixedRadioList,
+            typeParameterOverride = "FL_panelCompositionJudge",
+            typeParameterClass = PanelCompositionJudge.class
+    )
     private String panelCompositionJudge;
+    @CCD(
+            label = "Tribunal or Regional Medical member",
+            typeOverride = FieldType.FixedRadioList,
+            typeParameterOverride = "FL_panelCompositionMedical",
+            typeParameterClass = PanelCompositionMedical.class
+    )
     private String panelCompositionMemberMedical1;
+    @CCD(
+            label = "Additional Tribunal or Regional Medical member",
+            typeOverride = FieldType.FixedRadioList,
+            typeParameterOverride = "FL_panelCompositionMedical",
+            typeParameterClass = PanelCompositionMedical.class
+    )
     private String panelCompositionMemberMedical2;
+    @CCD(
+            label = "Tribunal member Disability or Financial",
+            typeOverride = FieldType.MultiSelectList,
+            typeParameterOverride = "FL_panelCompositionTribunalMember",
+            typeParameterClass = PanelCompositionTribunalMember.class
+    )
     private List<String> panelCompositionDisabilityAndFqMember = new ArrayList<>();
 
     @Override

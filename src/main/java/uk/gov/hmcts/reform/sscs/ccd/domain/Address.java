@@ -16,29 +16,44 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 import uk.gov.hmcts.reform.sscs.ccd.validation.string.StringNoSpecialCharacters;
 
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.*;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "address", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Address {
 
+    @CCD(label = "Address Line 1")
     @StringNoSpecialCharacters(fieldName = "Line 1", groups = {UniversalCreditValidationGroup.class})
     private String line1;
+    @CCD(label = "Address Line 2")
     @StringNoSpecialCharacters(fieldName = "Line 2", groups = {UniversalCreditValidationGroup.class})
     private String line2;
+    @CCD(label = "Town")
     @StringNoSpecialCharacters(fieldName = "Town", groups = {UniversalCreditValidationGroup.class})
     private String town;
+    @CCD(label = "County")
     @StringNoSpecialCharacters(fieldName = "County", groups = {UniversalCreditValidationGroup.class})
     private String county;
+    @CCD(label = "Postcode")
     @Postcode(groups = {UniversalCreditValidationGroup.class})
     private String postcode;
+    @CCD(label = "postcodeLookup", showCondition = "postcodeLookup=\"AnyValueToFailThisCondition\"")
     private String postcodeLookup;
+    @CCD(label = "postcodeAddress", showCondition = "postcodeLookup=\"AnyValueToFailThisCondition\"")
     private String postcodeAddress;
+    @CCD(label = "Port of Entry Code")
     private String portOfEntry;
+    @CCD(label = "Country")
     private String country;
+    @CCD(label = "Living in England, Scotland, Wales or Northern Ireland", typeOverride = FieldType.YesOrNo)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo inMainlandUk;
+    @CCD(label = "Port of Entry", typeOverride = FieldType.DynamicList)
     private DynamicList ukPortOfEntryList;
 
     @JsonCreator
@@ -52,7 +67,8 @@ public class Address {
                    @JsonProperty("ukPortOfEntry") String portOfEntry,
                    @JsonProperty("country") String country,
                    @JsonProperty("inMainlandUk") YesNo inMainlandUk,
-                   @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList) {
+                   @JsonProperty("ukPortOfEntryList") DynamicList ukPortOfEntryList,
+                   @JsonProperty("line3") String line3) {
         this.line1 = line1;
         this.line2 = line2;
         this.town = town;
@@ -64,6 +80,22 @@ public class Address {
         this.country = country;
         this.inMainlandUk = inMainlandUk;
         this.ukPortOfEntryList = ukPortOfEntryList;
+        this.line3 = line3;
+    }
+
+    /** Retained so existing positional call sites still compile. */
+    public Address(String line1,
+                   String line2,
+                   String town,
+                   String county,
+                   String postcode,
+                   String postcodeLookup,
+                   String postcodeAddress,
+                   String portOfEntry,
+                   String country,
+                   YesNo inMainlandUk,
+                   DynamicList ukPortOfEntryList) {
+        this(line1, line2, town, county, postcode, postcodeLookup, postcodeAddress, portOfEntry, country, inMainlandUk, ukPortOfEntryList, null);
     }
     
     public Address(@JsonProperty("line1") String line1,
@@ -72,7 +104,8 @@ public class Address {
                    @JsonProperty("county") String county,
                    @JsonProperty("postcode") String postcode,
                    @JsonProperty("postcodeLookup") String postcodeLookup,
-                   @JsonProperty("postcodeAddress") String postcodeAddress) {
+                   @JsonProperty("postcodeAddress") String postcodeAddress,
+                   @JsonProperty("line3") String line3) {
         this.line1 = line1;
         this.line2 = line2;
         this.town = town;
@@ -80,6 +113,18 @@ public class Address {
         this.postcode = postcode;
         this.postcodeLookup = postcodeLookup;
         this.postcodeAddress = postcodeAddress;
+        this.line3 = line3;
+    }
+
+    /** Retained so existing positional call sites still compile. */
+    public Address(String line1,
+                   String line2,
+                   String town,
+                   String county,
+                   String postcode,
+                   String postcodeLookup,
+                   String postcodeAddress) {
+        this(line1, line2, town, county, postcode, postcodeLookup, postcodeAddress, null);
     }
 
     @JsonIgnore
@@ -132,4 +177,8 @@ public class Address {
             .orElse(null);
     }
 
+  // ==== ccd-definition-converter: synthesised definition-only fields (retrofit) ====
+  @CCD(label = "Address Line 3")
+  private String line3;
+  // ==== end synthesised definition-only fields ====
 }

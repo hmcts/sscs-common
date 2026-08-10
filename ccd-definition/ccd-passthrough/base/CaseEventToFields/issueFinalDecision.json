@@ -1,0 +1,4 @@
+[ {
+  "CaseFieldID" : "writeFinalDecisionPreviewDocument",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=previewDecisionNotice"
+} ]

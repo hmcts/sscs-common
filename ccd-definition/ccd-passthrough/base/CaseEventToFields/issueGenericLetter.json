@@ -1,0 +1,7 @@
+[ {
+  "CaseFieldID" : "otherPartySelection",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "addDocuments",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

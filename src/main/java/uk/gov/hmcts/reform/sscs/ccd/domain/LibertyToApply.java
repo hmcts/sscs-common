@@ -5,13 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "libertyToApply", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class LibertyToApply {
+    @CCD(
+            label = "Action Liberty to Apply Application",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_actionLibertyToApply"
+    )
     private LibertyToApplyActions action;
+    @CCD(label = "Upload or enter details of your post hearing request")
     private RequestFormat requestFormat;
 }

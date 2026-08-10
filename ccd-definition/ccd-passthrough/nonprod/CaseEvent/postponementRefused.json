@@ -1,0 +1,4 @@
+[ {
+  "ID" : "postponementRefused",
+  "CallBackURLSubmittedEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/send"
+} ]

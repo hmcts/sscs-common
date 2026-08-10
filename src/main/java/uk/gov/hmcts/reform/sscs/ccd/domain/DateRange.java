@@ -11,12 +11,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import static java.util.Objects.isNull;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "dateRange", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 public class DateRange {
+    @CCD(label = "Start Date", typeOverride = FieldType.Date)
     String start;
+    @CCD(label = "End Date", typeOverride = FieldType.Date)
     String end;
 
     @JsonCreator

@@ -1,0 +1,13 @@
+[ {
+  "CaseFieldID" : "appeal",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "elementsDisputedGeneral",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "jointPartyIdentity",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+}, {
+  "CaseFieldID" : "jointPartyAddressSameAsAppellant",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

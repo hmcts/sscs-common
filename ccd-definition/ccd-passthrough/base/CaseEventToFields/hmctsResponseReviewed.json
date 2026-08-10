@@ -1,0 +1,7 @@
+[ {
+  "CaseFieldID" : "appeal",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent?pageId=hmctsResponseReviewed1.0"
+}, {
+  "CaseFieldID" : "elementsDisputedGeneral",
+  "CallBackURLMidEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdMidEvent"
+} ]

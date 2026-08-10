@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import lombok.Builder;
 import lombok.Value;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "ScannedDocument", generate = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)

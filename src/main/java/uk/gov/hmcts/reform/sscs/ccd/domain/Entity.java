@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -22,15 +23,21 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude
 public abstract class Entity {
 
+    @CCD(label = "Id", showCondition = "name=\"AnyValueToFailThisCondition\"")
     @Builder.Default
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private String id = UUID.randomUUID().toString();
+    @CCD(label = "Identity", showCondition = "hasRepresentative=\"Yes\"")
     private Identity identity;
 
+    @CCD(label = "Name", showCondition = "hasRepresentative=\"Yes\"")
     private Name name;
+    @CCD(label = "Address Details", showCondition = "hasRepresentative=\"Yes\"")
     private Address address;
+    @CCD(label = "Contact Details", showCondition = "hasRepresentative=\"Yes\"")
     private Contact contact;
+    @CCD(label = "Organisation", showCondition = "hasRepresentative=\"Yes\"")
     private String organisation;
 
     public String getId() {

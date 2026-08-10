@@ -6,7 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "setAside", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @Builder(toBuilder = true)
@@ -14,7 +18,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SetAside {
+    @CCD(
+            label = "Action Set Aside Application",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_actionSetAside",
+            typeParameterClass = ActionSetAside.class
+    )
     private SetAsideActions action;
+    @CCD(label = "Send to hearing Judge for statement of reasons?", typeOverride = FieldType.YesOrNo)
     private YesNo requestStatementOfReasons;
+    @CCD(label = "Upload or enter details of your post hearing request")
     private RequestFormat requestFormat;
 }

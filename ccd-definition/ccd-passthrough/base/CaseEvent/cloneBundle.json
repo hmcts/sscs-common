@@ -1,0 +1,4 @@
+[ {
+  "ID" : "cloneBundle",
+  "CallBackURLAboutToSubmitEvent" : "${CCD_DEF_EM_CCD_ORCHESTRATOR_URL}/api/clone-ccd-bundles"
+} ]

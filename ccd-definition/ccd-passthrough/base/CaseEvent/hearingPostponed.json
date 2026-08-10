@@ -1,0 +1,5 @@
+[ {
+  "ID" : "hearingPostponed",
+  "CallBackURLAboutToSubmitEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/send",
+  "CallBackURLSubmittedEvent" : "${CCD_DEF_TRIBUNALS_API_URL}/ccdSubmittedEvent"
+} ]
