@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.*;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "documentTranslationStatus", generate = true)

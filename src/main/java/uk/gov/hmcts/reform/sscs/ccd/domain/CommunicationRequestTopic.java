@@ -14,9 +14,11 @@ public enum CommunicationRequestTopic {
     @JsonProperty("appealType")
     APPEAL_TYPE("Appeal Type"),
 
+    @CCD(label = "Appellant personal information")
     @JsonProperty("appellantPersonalInfo")
     APPELLANT_PERSONAL_INFORMATION("Appellant personal information"),
 
+    @CCD(label = "Appointee personal information")
     @JsonProperty("appointeePersonalInfo")
     APPOINTEE_PERSONAL_INFORMATION("Appointee personal information"),
 
@@ -24,12 +26,15 @@ public enum CommunicationRequestTopic {
     @JsonProperty("issuingOffice")
     ISSUING_OFFICE("Issuing office"),
 
+    @CCD(label = "Joint party personal information")
     @JsonProperty("jointPartyPersonalInfo")
     JOINT_PARTY_PERSONAL_INFORMATION("Joint party personal information"),
 
+    @CCD(label = "MRN/Review Decision Notice Details")
     @JsonProperty("mrnDetails")
     MRN_REVIEW_DECISION_NOTICE_DETAILS("MRN/Review Decision Notice Details"),
 
+    @CCD(label = "Other party personal information")
     @JsonProperty("otherPartyPersonalInfo")
     OTHER_PARTY_PERSONAL_INFORMATION("Other party personal information");
 

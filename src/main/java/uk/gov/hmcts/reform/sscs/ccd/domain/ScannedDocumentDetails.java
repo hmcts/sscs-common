@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import uk.gov.hmcts.reform.sscs.ccd.callback.ScannedDocumentType;
 import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "ScannedDocument", generate = true)
@@ -20,7 +21,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @Builder(toBuilder = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ScannedDocumentDetails {
-    @CCD(label = "Document Type", typeOverride = FieldType.FixedList, typeParameterOverride = "ScannedDocumentType")
+    @CCD(
+            label = "Document Type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "ScannedDocumentType",
+            typeParameterClass = ScannedDocumentType.class
+    )
     private String type;
     @CCD(label = "Original document URL", regex = ".pdf", typeOverride = FieldType.Document)
     private DocumentLink url;
