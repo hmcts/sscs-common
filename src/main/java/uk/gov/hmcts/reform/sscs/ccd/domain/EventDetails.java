@@ -21,7 +21,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 public class EventDetails {
     @CCD(label = "Date")
     String date;
-    @CCD(label = "Event Type", typeOverride = FieldType.FixedList, typeParameterOverride = "eventType")
+    @CCD(
+            label = "Event Type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "eventType",
+            typeParameterClass = EventType2.class
+    )
     String type;
     @CCD(label = "Description")
     String description;

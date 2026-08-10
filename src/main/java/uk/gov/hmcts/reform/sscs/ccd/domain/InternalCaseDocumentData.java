@@ -31,7 +31,12 @@ public class InternalCaseDocumentData {
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<SscsDocument> sscsInternalDocument;
-    @CCD(label = " ", access = {DefaultAccess.class, RegistrarCrudAccess.class})
+    @CCD(
+            label = " ",
+            typeParameterOverride = "FL_moveDocumentTo",
+            typeParameterClass = MoveDocumentTo.class,
+            access = {DefaultAccess.class, RegistrarCrudAccess.class}
+    )
     @Getter
     private DocumentTabChoice moveDocumentTo;
     @CCD(

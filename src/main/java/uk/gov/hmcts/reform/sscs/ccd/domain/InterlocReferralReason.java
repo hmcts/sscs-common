@@ -26,9 +26,13 @@ public enum InterlocReferralReason {
     NO_RESPONSE_TO_DIRECTION("noResponseToDirection", "No response to a direction"),
     @CCD(label = "Other")
     OTHER("other", "Other"),
+    @CCD(label = "Over 13 months")
     OVER_13_MONTHS("over13months", "Over 13 months"),
+    @CCD(label = "Grounds for appeal missing")
     OVER_13_MONTHS_AND_GROUNDS_MISSING("over13MonthsAndGroundsMissing", "Grounds for appeal missing"),
+    @CCD(label = "Over 300 pages")
     OVER_300_PAGES("over300Pages", "Over 300 pages"),
+    @CCD(label = "PHE request")
     PHE_REQUEST("phmeRequest", "PHE request"),
     @CCD(label = "Reject hearing recording request")
     REJECT_HEARING_RECORDING_REQUEST("rejectHearingRecordingRequest", "Reject hearing recording request"),

@@ -50,7 +50,9 @@ public class ScannedDocumentDetails {
     private String originalSenderOtherPartyName;
     @CCD(
             label = "Should this document be stored in the Documents tab or the Tribunal internal documents tab?",
-            showCondition = "documentTabChoice=\"DONOTSHOW\""
+            showCondition = "documentTabChoice=\"DONOTSHOW\"",
+            typeParameterOverride = "FL_documentTabChoice",
+            typeParameterClass = DocumentTabChoice2.class
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private DocumentTabChoice documentTabChoice;

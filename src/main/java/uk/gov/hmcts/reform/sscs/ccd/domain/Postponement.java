@@ -28,6 +28,7 @@ public class Postponement {
             label = "Postponement Event Type",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "eventType",
+            typeParameterClass = EventType2.class,
             access = {SscsSuperuserCrudAccess.class, SystemupdateCrudAccess.class}
     )
     private EventType postponementEvent;

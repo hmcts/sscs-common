@@ -40,7 +40,8 @@ public class AudioVideoEvidenceDetails {
     @CCD(
             label = "Audio/video party uploaded",
             typeOverride = FieldType.FixedList,
-            typeParameterOverride = "FL_audioVideoPartyUploaded"
+            typeParameterOverride = "FL_audioVideoPartyUploaded",
+            typeParameterClass = AudioVideoPartyUploaded.class
     )
     private UploadParty partyUploaded;
     @CCD(

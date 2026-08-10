@@ -23,7 +23,8 @@ public class Correction {
     @CCD(
             label = "Action Correction Application",
             typeOverride = FieldType.FixedList,
-            typeParameterOverride = "FL_actionCorrection"
+            typeParameterOverride = "FL_actionCorrection",
+            typeParameterClass = ActionCorrection.class
     )
     private CorrectionActions action;
     @CCD(label = "Correction in progress?", typeOverride = FieldType.YesOrNo)

@@ -7,16 +7,11 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.SET_ASIDE_REFUSED_SO
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import uk.gov.hmcts.ccd.sdk.api.CCD;
-import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
-@ComplexType(name = "FL_actionSetAside", generate = true)
 @Getter
 @AllArgsConstructor
 public enum SetAsideActions implements CcdCallbackMap {
-    @CCD(label = "Grant Set Aside Application")
     GRANT("grant","Grant Set Aside Application", SET_ASIDE_GRANTED, "Set aside application granted", "Set aside application granted", DwpState.SET_ASIDE_GRANTED, InterlocReviewState.AWAITING_ADMIN_ACTION),
-    @CCD(label = "Refuse Set Aside Application")
     REFUSE("refuse","Refuse Set Aside Application", SET_ASIDE_REFUSED, "Set aside application refused", "Set aside application refused", DwpState.SET_ASIDE_REFUSED, InterlocReviewState.NONE),
     REFUSE_SOR("refuse","Refuse Set Aside Application and request statement of reasons", SET_ASIDE_REFUSED_SOR, "Set aside application refused & request statement of reasons", "Set aside application refused & request statement of reasons", DwpState.SET_ASIDE_REFUSED, InterlocReviewState.REVIEW_BY_JUDGE);
 

@@ -15,7 +15,7 @@ import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
 import uk.gov.hmcts.reform.sscs.ccd.domain.AdjournCaseNextHearingDurationUnits;
 import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState2;
 import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "overrideFields", generate = true)
@@ -51,7 +51,11 @@ public class OverrideFields {
     )
     @JsonInclude
     private List<CcdValue<CcdValue<String>>> hearingVenueEpimsIds;
-    @CCD(label = "Next hearing type")
+    @CCD(
+            label = "Next hearing type",
+            typeParameterOverride = "FL_hmcHearingType",
+            typeParameterClass = HmcHearingType2.class
+    )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
 
@@ -81,7 +85,7 @@ public class OverrideFields {
   @CCD(label = "Hearing Route")
   private HearingRoute hearingRoute;
   @CCD(label = "Hearing State", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_hearingState")
-  private HearingState hearingState;
+  private HearingState2 hearingState;
   @CCD(
           label = "If an interpreter is needed for the next hearing, please add an extra 30 minutes to the duration.",
           showCondition = "updateListingRequirementsInterpreterDurationLabel=\"DUMMY_VALUE_TO_HIDE_FIELD\"",

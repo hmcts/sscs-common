@@ -165,7 +165,7 @@ tasks.withType(JavaCompile).configureEach {
 
 ccd {
     configDir = file('build/ccd-definition')
-    rootPackage = 'uk.gov.hmcts.reform.sscs.ccd.domain.ccd'
+    rootPackage = 'uk.gov.hmcts.reform.sscs.ccd'
     caseType = 'Benefit'
 }
 

@@ -39,6 +39,7 @@ public class SchedulingAndListingFields {
             label = "Hearing State",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_hearingState",
+            typeParameterClass = HearingState2.class,
             access = {SscsCitizenCrudAccess.class, ClerkCudSuperuserCudSystemupdateCrudAccess.class, JudgeRegistrarCudAccess.class, DwpresponsewriterCrudAccess.class}
     )
     private HearingState hearingState;

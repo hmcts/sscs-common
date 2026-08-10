@@ -21,7 +21,8 @@ public class SetAside {
     @CCD(
             label = "Action Set Aside Application",
             typeOverride = FieldType.FixedList,
-            typeParameterOverride = "FL_actionSetAside"
+            typeParameterOverride = "FL_actionSetAside",
+            typeParameterClass = ActionSetAside.class
     )
     private SetAsideActions action;
     @CCD(label = "Send to hearing Judge for statement of reasons?", typeOverride = FieldType.YesOrNo)

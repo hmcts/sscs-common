@@ -56,7 +56,12 @@ public class HearingOptions {
     private HearingRoute hearingRoute;
     @CCD(label = "Other Information")
     private String other;
-    @CCD(label = "Next hearing type", showCondition = "hmcHearingType=\"*\"")
+    @CCD(
+            label = "Next hearing type",
+            showCondition = "hmcHearingType=\"*\"",
+            typeParameterOverride = "FL_hmcHearingType",
+            typeParameterClass = HmcHearingType2.class
+    )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HmcHearingType hmcHearingType;
 

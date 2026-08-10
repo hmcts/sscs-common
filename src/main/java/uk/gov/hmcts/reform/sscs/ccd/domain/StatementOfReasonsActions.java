@@ -13,6 +13,7 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @Getter
 @AllArgsConstructor
 public enum StatementOfReasonsActions implements CcdCallbackMap {
+    @CCD(label = "Extend Time")
     GRANT("extendTime","Grant Statement of Reasons Application", SOR_EXTEND_TIME, "Statement of reasons - Extend time and send to hearing Judge", "Statement of reasons - Extend time and send to hearing Judge", DwpState.STATEMENT_OF_REASONS_GRANTED, InterlocReviewState.REVIEW_BY_JUDGE),
     @CCD(label = "Refuse Statement of Reasons Application")
     REFUSE("refuse","Refuse Statement of Reasons Application", SOR_REFUSED, "Statement of reasons Refuse to extend time", "Statement of reasons Refuse to extend time", DwpState.STATEMENT_OF_REASONS_REFUSED, InterlocReviewState.NONE);

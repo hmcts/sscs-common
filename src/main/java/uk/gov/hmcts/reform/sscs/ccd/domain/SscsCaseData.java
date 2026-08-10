@@ -1497,6 +1497,8 @@ public class SscsCaseData implements CaseData {
 
     @CCD(
             label = "Next hearing type",
+            typeParameterOverride = "FL_hmcHearingType",
+            typeParameterClass = HmcHearingType2.class,
             access = {DefaultAccess.class, JudgeRegistrarTeamleaderCrudAccess.class, SscsRDwpresponsewriterCrudAccess.class, CitizenRAccess.class}
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)

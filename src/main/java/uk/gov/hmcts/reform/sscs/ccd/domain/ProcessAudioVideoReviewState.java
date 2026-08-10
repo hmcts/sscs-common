@@ -7,6 +7,7 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "FL_processAudioVideoReviewState", generate = true)
 public enum ProcessAudioVideoReviewState {
+    @CCD(label = "Awaiting Information")
     @JsonProperty("awaitingInfo")
     AWAITING_INFORMATION("awaitingInfo"),
     @CCD(label = "Awaiting Admin Action")
@@ -15,6 +16,7 @@ public enum ProcessAudioVideoReviewState {
     @CCD(label = "Review by Judge")
     @JsonProperty("reviewByJudge")
     REVIEW_BY_JUDGE("reviewByJudge"),
+    @CCD(label = "Clear Interloc Review State")
     @JsonProperty("clear")
     CLEAR_INTERLOC_REVIEW_STATE("clear");
 

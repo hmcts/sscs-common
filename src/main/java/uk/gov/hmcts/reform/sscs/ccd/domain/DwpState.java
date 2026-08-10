@@ -36,7 +36,6 @@ public enum DwpState {
     DIRECTION_ACTION_REQUIRED("directionActionRequired", "Direction - action req'd"),
     @CCD(label = "Direction - responded")
     DIRECTION_RESPONDED("directionResponded", "Direction - responded"),
-    @CCD(label = "Exception")
     EXCEPTION("Exception", "Exception"),
     @CCD(label = "Extension requested")
     EXTENSION_REQUESTED("extensionRequested", "Extension requested"),
@@ -74,7 +73,9 @@ public enum DwpState {
     PERMISSION_TO_APPEAL_REFUSED("permissionToAppealRefused", "Permission to Appeal Refused"),
     @CCD(label = "Permission to Appeal Requested")
     PERMISSION_TO_APPEAL_REQUESTED("permissionToAppealRequested", "Permission to Appeal Requested"),
+    @CCD(label = "PHE granted")
     PHE_GRANTED("phmeGranted", "PHE granted"),
+    @CCD(label = "PHE refused")
     PHE_REFUSED("phmeRefused", "PHE refused"),
     @CCD(label = "Appeal registered (FTA)")
     REGISTERED("Registered", "Appeal registered (FTA)"),
@@ -106,12 +107,12 @@ public enum DwpState {
     STRUCK_OUT("struckOut", "Struck out"),
     @CCD(label = "Supplementary response")
     SUPPLEMENTARY_RESPONSE("supplementaryResponse", "Supplementary response"),
+    @CCD(label = "Appeal to-be registered")
     UNREGISTERED("UnRegistered", "Appeal to-be registered"),
     @CCD(label = "Validity challenge")
     VALIDITY_CHALLENGE("validityChallenge", "Validity challenge"),
     @CCD(label = "Withdrawal received")
     WITHDRAWAL_RECEIVED("withdrawalReceived", "Withdrawal received"),
-    @CCD(label = "Withdrawn")
     WITHDRAWN("Withdrawn", "Withdrawn");
 
     private final String ccdDefinition;
