@@ -6,7 +6,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '12.2.2'
-    id 'hmcts.ccd.sdk' version 'sdk-migration-features-118.1-cff3b4a5'
+    id 'hmcts.ccd.sdk' version 'sdk-migration-features-121.1-f72e3c4b'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
