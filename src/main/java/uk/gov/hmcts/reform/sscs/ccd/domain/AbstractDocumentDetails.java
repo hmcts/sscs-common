@@ -18,22 +18,30 @@ import uk.gov.hmcts.ccd.sdk.type.FieldType;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocumentDetails {
 
-    @CCD(label = "Type", typeOverride = FieldType.FixedList, typeParameterOverride = "documentType")
+    @CCD(
+            label = "Document type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "documentTypeDwp",
+            typeParameterClass = DocumentTypeDwp.class
+    )
     private String documentType;
-    @CCD(label = "File name")
+    @CCD(label = "Document file name")
     private String documentFileName;
     @CCD(label = "Date added", typeOverride = FieldType.Date)
     private String documentDateAdded;
     @CCD(label = "Comment")
     private String documentComment;
-    @CCD(label = "Original document URL", typeOverride = FieldType.Document)
+    @CCD(label = "Original document Url", typeOverride = FieldType.Document)
     private DocumentLink documentLink;
+    @CCD(label = "Edited document URL", typeOverride = FieldType.Document)
     private DocumentLink editedDocumentLink;
     @CCD(label = "Evidence issued", typeOverride = FieldType.YesOrNo)
     private String evidenceIssued;
     @CCD(label = "Bundle addition")
     private String bundleAddition;
+    @CCD(label = "Party uploaded", typeOverride = FieldType.Text)
     private UploadParty partyUploaded;
+    @CCD(label = "Date approved", typeOverride = FieldType.Date)
     private String dateApproved;
     @CCD(
             label = "Translation status",
@@ -45,6 +53,7 @@ public class AbstractDocumentDetails {
     private DocumentLink resizedDocumentLink;
     @CCD(label = "Audio/video document", typeOverride = FieldType.Document)
     private DocumentLink avDocumentLink;
+    @CCD(ignore = true)
     private String originalPartySender;
     @CCD(label = "Original sender other party ID", showCondition = "documentType=\"AnyValueToFailThisCondition\"")
     private String originalSenderOtherPartyId;

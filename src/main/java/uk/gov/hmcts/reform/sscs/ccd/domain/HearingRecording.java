@@ -27,7 +27,8 @@ public class HearingRecording {
     @CCD(
             label = "Hearing type",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_hearingRecordingType"
+            typeParameterOverride = "FL_hearingRecordingType",
+            typeParameterClass = HearingRecordingType.class
     )
     private String hearingType;
     @CCD(ignore = true)

@@ -14,7 +14,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Role {
 
-    @CCD(label = "Role", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_roles")
+    @CCD(
+            label = "Role",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_roles",
+            typeParameterClass = Roles.class
+    )
     private String name;
     @CCD(label = "Description", showCondition = "name=\"Other\"")
     private String description;

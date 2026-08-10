@@ -8,8 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -22,6 +22,7 @@ public class CaseOutcome {
             label = "Case Outcome",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_caseOutcome",
+            typeParameterClass = CaseOutcome2.class,
             access = {SscsSuperuserCrudAccess.class, ClerkCrudAccess.class}
     )
     private String caseOutcome;

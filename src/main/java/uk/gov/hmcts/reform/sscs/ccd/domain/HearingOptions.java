@@ -33,7 +33,8 @@ public class HearingOptions {
             label = "Hearing arrangement options",
             showCondition = "wantsSupport=\"Yes\"",
             typeOverride = FieldType.MultiSelectList,
-            typeParameterOverride = "hearingArrangementOptions"
+            typeParameterOverride = "hearingArrangementOptions",
+            typeParameterClass = HearingArrangementOptions.class
     )
     private List<String> arrangements;
     @CCD(label = "Unavailable dates", showCondition = "wantsToAttend=\"Yes\"", typeOverride = FieldType.YesOrNo)

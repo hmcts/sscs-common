@@ -20,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,7 +36,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import uk.gov.hmcts.ccd.sdk.type.ListValue;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DwpDocumentType;
 
@@ -222,21 +219,18 @@ public class SscsCaseDataTest {
 
     @Test
     public void shouldCreateInfoRequest() throws JsonParseException, IOException {
-        String expectedValue = "{\"appellantInfoRequestCollection\":[{\"id\":null,\"value\":"
-            + "{\"appellantInfoParagraph\":\"Par1\",\"appellantInfoRequestDate\":\"2019-01-01\"}}]}";
-        List<ListValue<AppellantInfoRequestDetails>> appellantInfoRequests = new ArrayList<>();
-        appellantInfoRequests.add(ListValue.<AppellantInfoRequestDetails>builder()
-            .value(AppellantInfoRequestDetails.builder()
-                .appellantInfoParagraph("Par1")
-                .appellantInfoRequestDate(LocalDate.of(2019, 1, 1))
-                .build())
-            .build());
+        String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
+            ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
+        List<AppellantInfoRequest> appellantInfoRequests = new ArrayList<>();
+        AppellantInfoRequest appellantInfoRequest1 = AppellantInfoRequest.builder()
+                                                                         .appellantInfo(AppellantInfo.builder().paragraph("Par1").requestDate("date1").build()).build();
 
-        SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequestsCT.builder()
-                                                                                    .appellantInfoRequestCollection(appellantInfoRequests).build()).build();
+        appellantInfoRequests.add(appellantInfoRequest1);
 
-        ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        SscsCaseData sscsCaseData = SscsCaseData.builder().infoRequests(InfoRequests.builder()
+                                                                                    .appellantInfoRequest(appellantInfoRequests).build()).build();
+
+        ObjectMapper mapper = new ObjectMapper();
         String infoRequestValue = mapper.writeValueAsString(sscsCaseData.getInfoRequests());
 
         assertEquals(expectedValue, infoRequestValue);
@@ -1308,17 +1302,17 @@ public class SscsCaseDataTest {
 
     @Test
     void clearNotificationFieldsShouldResetFlagsAndClearSelectionLists() {
-        List<CcdValue<DocumentSelectionList>> documentSelection = new ArrayList<>();
-        documentSelection.add(CcdValue.<DocumentSelectionList>builder()
-                                      .value(DocumentSelectionList.builder()
-                                                                     .documentsList("doc1")
+        List<CcdValue<DocumentSelectionDetails>> documentSelection = new ArrayList<>();
+        documentSelection.add(CcdValue.<DocumentSelectionDetails>builder()
+                                      .value(DocumentSelectionDetails.builder()
+                                                                     .documentsList(new DynamicList(new DynamicListItem("doc1", "Document 1"), new ArrayList<>()))
                                                                      .build())
                                       .build());
 
-        List<CcdValue<OtherPartySelection>> otherPartySelection = new ArrayList<>();
-        otherPartySelection.add(CcdValue.<OtherPartySelection>builder()
-                                        .value(OtherPartySelection.builder()
-                                                                         .otherPartiesList("party1")
+        List<CcdValue<OtherPartySelectionDetails>> otherPartySelection = new ArrayList<>();
+        otherPartySelection.add(CcdValue.<OtherPartySelectionDetails>builder()
+                                        .value(OtherPartySelectionDetails.builder()
+                                                                         .otherPartiesList(new DynamicList(new DynamicListItem("party1", "Party 1"), new ArrayList<>()))
                                                                          .build())
                                         .build());
 

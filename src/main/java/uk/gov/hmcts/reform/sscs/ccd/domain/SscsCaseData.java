@@ -58,86 +58,86 @@ import uk.gov.hmcts.reform.sscs.model.PoDetails;
 import uk.gov.hmcts.reform.sscs.model.client.JudicialUserBase;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DefaultAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudJudgeCrudPanelmemberRCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterHmrcresponsewriterCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.RegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkRSuperuserCrudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.PanelmemberRRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterHmrcresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.IbcaresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.PcqextractorRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudPanelmemberRCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CaseworkerWaTaskConfigurationRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CallagentCruRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.AnonymouscitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SystemupdateCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarTeamleaderCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrPlus4RolesDetidgAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCruPlus4RolesOesmduAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.RegistrarCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.PanelmemberRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CallagentCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CallagentCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CitizenRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.IbcaresponsewriterRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCruSuperuserCrudSystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkSystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRIbcaresponsewriterCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.IbcaresponsewriterCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRIbcaresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudPlus9RolesJlkxvmAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRPlus9RolesXqaxtgAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.RegistrarCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRPlus6RolesJpbhhvAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkJudgeRegistrarSuperuserRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsDwpresponsewriterHmrcresponsewriterRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterCrudPlus5RolesIunvywAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRClerkCruSuperuserCruSystemupdateCruAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.TeamleaderRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterRuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.HmrcresponsewriterRuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.RegistrarRuAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.TeamleaderCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CallagentRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.HmrcresponsewriterRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsJudgeCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.PcqextractorCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.GSProfileRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CaseworkerRasValidationRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRDwpresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudJudgeCrudPanelmemberRCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterHmrcresponsewriterCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.RegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkRSuperuserCrudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.PanelmemberRRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterHmrcresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.IbcaresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.PcqextractorRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudPanelmemberRCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CaseworkerWaTaskConfigurationRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CallagentCruRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.AnonymouscitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SystemupdateCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarTeamleaderCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrPlus4RolesDetidgAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCruPlus4RolesOesmduAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.RegistrarCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.PanelmemberRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CallagentCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CallagentCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CitizenRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.IbcaresponsewriterRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCruSuperuserCrudSystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkSystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRIbcaresponsewriterCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.IbcaresponsewriterCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRIbcaresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudPlus9RolesJlkxvmAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRPlus9RolesXqaxtgAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.RegistrarCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRPlus6RolesJpbhhvAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkJudgeRegistrarSuperuserRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsDwpresponsewriterHmrcresponsewriterRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterCrudPlus5RolesIunvywAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRClerkCruSuperuserCruSystemupdateCruAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.TeamleaderRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterRuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.HmrcresponsewriterRuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.RegistrarRuAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.TeamleaderCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CallagentRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.HmrcresponsewriterRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsJudgeCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.PcqextractorCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.GSProfileRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CaseworkerRasValidationRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRDwpresponsewriterCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -167,7 +167,7 @@ public class SscsCaseData implements CaseData {
     )
     private String caseCreated;
     @CCD(label = "Info request", access = {ClerkRSuperuserCrudSystemupdateCrudAccess.class, SscsCrudAccess.class})
-    private InfoRequestsCT infoRequests;
+    private InfoRequests infoRequests;
     @CCD(
             label = "Regional Centre",
             access = {DefaultAccess.class, SscsCitizenCrudAccess.class, DwpresponsewriterHmrcresponsewriterCudAccess.class, PanelmemberRRegistrarCrudAccess.class, JudgeCudAccess.class}
@@ -305,7 +305,7 @@ public class SscsCaseData implements CaseData {
             label = "Upload a response to a direction",
             access = {ClerkCruPlus4RolesOesmduAccess.class, JudgeCruAccess.class, RegistrarCruAccess.class, SscsRAccess.class}
     )
-    private DirectionResponseColl directionResponse;
+    private DirectionResponse directionResponse;
     @CCD(
             label = "Evidence Present",
             typeOverride = FieldType.YesOrNo,
@@ -356,6 +356,7 @@ public class SscsCaseData implements CaseData {
             hint = "The state of a case after attempting to send to FTA",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_withDwpWorkflow",
+            typeParameterClass = WithDwpWorkflow.class,
             access = {DefaultAccess.class, JudgeRuAccess.class, SscsCrudAccess.class}
     )
     private String hmctsDwpState;
@@ -363,6 +364,7 @@ public class SscsCaseData implements CaseData {
             label = "FTA Further Evidence State",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_dwpFurtherEvidenceStates",
+            typeParameterClass = DwpFurtherEvidenceStates.class,
             access = {ClerkRSuperuserCrudSystemupdateCrudAccess.class, DwpresponsewriterHmrcresponsewriterCrudAccess.class, IbcaresponsewriterCrudAccess.class}
     )
     private String dwpFurtherEvidenceStates;
@@ -427,6 +429,7 @@ public class SscsCaseData implements CaseData {
             label = "Outcome",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_outcome",
+            typeParameterClass = Outcome2.class,
             access = {ClerkRSuperuserCrudSystemupdateCrudAccess.class, SscsCudCitizenCrudAccess.class, CallagentCrudAccess.class}
     )
     private String outcome;
@@ -453,14 +456,14 @@ public class SscsCaseData implements CaseData {
             typeParameterOverride = "otherPartySelection",
             access = {DefaultAccess.class}
     )
-    private List<CcdValue<OtherPartySelection>> otherPartySelection;
+    private List<CcdValue<OtherPartySelectionDetails>> otherPartySelection;
     @CCD(
             label = " ",
             typeOverride = FieldType.Collection,
             typeParameterOverride = "documentSelectionList",
             access = {DefaultAccess.class}
     )
-    private List<CcdValue<DocumentSelectionList>> documentSelection;
+    private List<CcdValue<DocumentSelectionDetails>> documentSelection;
     @CCD(ignore = true)
     private DynamicList letterAttachedDocuments;
     @CCD(label = "Add letter text", typeOverride = FieldType.TextArea, access = {DefaultAccess.class})
@@ -511,6 +514,7 @@ public class SscsCaseData implements CaseData {
             label = "Benefit code",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_benefitCodes",
+            typeParameterClass = BenefitCodes.class,
             access = {ClerkCruPlus4RolesOesmduAccess.class, SscsRIbcaresponsewriterCruAccess.class, RegistrarCrudAccess.class}
     )
     private String benefitCode;
@@ -518,6 +522,7 @@ public class SscsCaseData implements CaseData {
             label = "Benefit code",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_benefitCodesIbcaOnly",
+            typeParameterClass = BenefitCodesIbcaOnly.class,
             access = {DefaultAccess.class, IbcaresponsewriterRegistrarCrudAccess.class, SscsCrudAccess.class}
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -526,6 +531,7 @@ public class SscsCaseData implements CaseData {
             label = "Issue code",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_issueCodes",
+            typeParameterClass = IssueCodes.class,
             access = {ClerkCruPlus4RolesOesmduAccess.class, SscsRIbcaresponsewriterCruAccess.class, RegistrarCrudAccess.class}
     )
     private String issueCode;
@@ -533,6 +539,7 @@ public class SscsCaseData implements CaseData {
             label = "Issue code",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_issueCodesIbcaOnly",
+            typeParameterClass = IssueCodesIbcaOnly.class,
             access = {DefaultAccess.class, IbcaresponsewriterRegistrarCrudAccess.class, SscsCrudAccess.class}
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -617,6 +624,7 @@ public class SscsCaseData implements CaseData {
             label = "FTA Handling Office",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_dwpRegionalCentre",
+            typeParameterClass = DwpRegionalCentre.class,
             access = {DefaultAccess.class, DwpresponsewriterHmrcresponsewriterCudAccess.class, CitizenCrudAccess.class}
     )
     private String dwpRegionalCentre;
@@ -641,6 +649,7 @@ public class SscsCaseData implements CaseData {
             label = "Is a new digital case?",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_createdInGapsFrom",
+            typeParameterClass = CreatedInGapsFrom.class,
             access = {SscsSuperuserCrudAccess.class, RegistrarCrudAccess.class, SystemupdateCrudAccess.class}
     )
     private String createdInGapsFrom;
@@ -679,6 +688,7 @@ public class SscsCaseData implements CaseData {
             label = "Edited evidence reason",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_editedEvidenceReason",
+            typeParameterClass = EditedEvidenceReason.class,
             access = {DefaultAccess.class, JudgeRegistrarTeamleaderCrudAccess.class, DwpresponsewriterHmrcresponsewriterCrudAccess.class, IbcaresponsewriterCrudAccess.class}
     )
     private String dwpEditedEvidenceReason;
@@ -746,6 +756,7 @@ public class SscsCaseData implements CaseData {
             label = "Decision type",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_decisionTypes",
+            typeParameterClass = DecisionTypes.class,
             access = {ClerkRSuperuserCrudSystemupdateCrudAccess.class, JudgeRegistrarCrudAccess.class, TeamleaderRAccess.class, SscsRAccess.class}
     )
     private String decisionType;
@@ -753,6 +764,7 @@ public class SscsCaseData implements CaseData {
             label = "Select who should review this case",
             typeOverride = FieldType.DynamicList,
             typeParameterOverride = "FL_selectWhoReviewsCase",
+            typeParameterClass = SelectWhoReviewsCase.class,
             access = {DefaultAccess.class, DwpresponsewriterRuAccess.class, HmrcresponsewriterRuAccess.class, JudgeRuAccess.class, RegistrarRuAccess.class, TeamleaderRAccess.class}
     )
     private DynamicList selectWhoReviewsCase;
@@ -776,6 +788,7 @@ public class SscsCaseData implements CaseData {
             label = " ",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_confidentialityType",
+            typeParameterClass = ConfidentialityType2.class,
             access = {DefaultAccess.class, JudgeRegistrarTeamleaderCrudAccess.class, SscsCrudAccess.class}
     )
     private String confidentialityType;
@@ -860,11 +873,12 @@ public class SscsCaseData implements CaseData {
             access = {DefaultAccess.class, DwpresponsewriterHmrcresponsewriterCrudAccess.class, JudgeRAccess.class, SscsRAccess.class}
     )
     @JsonProperty("evidenceReceivedCF")
-    private EvidenceReceivedCollection evidenceReceived;
+    private EvidenceReceived evidenceReceived;
     @CCD(
             label = "Urgent case",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_isUrgent",
+            typeParameterClass = IsUrgent.class,
             access = {DefaultAccess.class, JudgeRegistrarCudAccess.class, TeamleaderCrudAccess.class, SscsCrudAccess.class}
     )
     private String urgentCase;
@@ -926,6 +940,7 @@ public class SscsCaseData implements CaseData {
             label = "Declaration",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_waiverDeclaration",
+            typeParameterClass = WaiverDeclaration.class,
             access = {DefaultAccess.class, SscsJudgeCrudAccess.class}
     )
     private List<String> waiverDeclaration;
@@ -933,6 +948,7 @@ public class SscsCaseData implements CaseData {
             label = "I have identified the following requirements as being non compliant:-",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_nonCompliantRequirements",
+            typeParameterClass = NonCompliantRequirements.class,
             access = {DefaultAccess.class, SscsJudgeCrudAccess.class}
     )
     private List<String> waiverReason;
@@ -946,6 +962,7 @@ public class SscsCaseData implements CaseData {
             label = "Delegated Authority",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_clerkDelegatedAuthority",
+            typeParameterClass = ClerkDelegatedAuthority.class,
             access = {DefaultAccess.class, SscsJudgeCrudAccess.class}
     )
     private List<String> clerkDelegatedAuthority;
@@ -953,6 +970,7 @@ public class SscsCaseData implements CaseData {
             label = "Clerk Appeal Satisfaction",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_clerkAppealSatisfactionText",
+            typeParameterClass = ClerkAppealSatisfactionText.class,
             access = {DefaultAccess.class, SscsJudgeCrudAccess.class}
     )
     private List<String> clerkAppealSatisfactionText;
@@ -1034,6 +1052,7 @@ public class SscsCaseData implements CaseData {
             label = "Who needs to review the case?",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_interlocNotListable",
+            typeParameterClass = InterlocNotListable.class,
             access = {SscsCrudAccess.class}
     )
     private String updateNotListableWhoReviewsCase;
@@ -1049,6 +1068,7 @@ public class SscsCaseData implements CaseData {
             label = "Where should case move to?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_notListableNextState",
+            typeParameterClass = NotListableNextState.class,
             access = {SscsCrudAccess.class}
     )
     private String updateNotListableWhereShouldCaseMoveTo;
@@ -1065,6 +1085,7 @@ public class SscsCaseData implements CaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_elementsDisputed",
+            typeParameterClass = ElementsDisputed.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> elementsDisputedList;
@@ -1184,6 +1205,7 @@ public class SscsCaseData implements CaseData {
             label = "Update reasonable adjustments",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_reasonableAdjustments",
+            typeParameterClass = ReasonableAdjustments2.class,
             access = {SscsCrudAccess.class}
     )
     private String reasonableAdjustmentChoice;
@@ -1214,7 +1236,7 @@ public class SscsCaseData implements CaseData {
             typeParameterOverride = "sscsWelshDocuments",
             access = {SscsCrudAccess.class}
     )
-    private List<SscsWelshDocuments> sscsWelshPreviewDocuments;
+    private List<SscsWelshDocument> sscsWelshPreviewDocuments;
     @CCD(label = "Welsh preview next event", access = {SscsCrudAccess.class})
     private String sscsWelshPreviewNextEvent;
     @CCD(label = "Original documents", typeOverride = FieldType.DynamicList, access = {SscsCrudAccess.class})
@@ -1258,6 +1280,7 @@ public class SscsCaseData implements CaseData {
             label = "What is the outcome of the Appellant's confidentiality request?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_grantOrRefuseConfidentiality",
+            typeParameterClass = GrantOrRefuseConfidentiality.class,
             access = {SscsCrudAccess.class}
     )
     private String confidentialityRequestAppellantGrantedOrRefused;
@@ -1265,6 +1288,7 @@ public class SscsCaseData implements CaseData {
             label = "What is the outcome of the Joint Party's confidentiality request?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_grantOrRefuseConfidentiality",
+            typeParameterClass = GrantOrRefuseConfidentiality.class,
             access = {SscsCrudAccess.class}
     )
     private String confidentialityRequestJointPartyGrantedOrRefused;
@@ -1291,6 +1315,7 @@ public class SscsCaseData implements CaseData {
             label = "When should FTA reassess the award?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_dwpReassessTheAward",
+            typeParameterClass = DwpReassessTheAward.class,
             access = {SscsCrudAccess.class}
     )
     private String dwpReassessTheAward;
@@ -1359,7 +1384,7 @@ public class SscsCaseData implements CaseData {
             typeParameterOverride = "draftSscsDocuments",
             access = {DefaultAccess.class, JudgeRegistrarTeamleaderCrudAccess.class, SscsCrPlus4RolesDetidgAccess.class}
     )
-    private List<DraftSscsDocuments> draftFurtherEvidenceDocuments;
+    private List<DraftSscsDocument> draftFurtherEvidenceDocuments;
     @CCD(label = "Alternative letter format", access = {SscsCrudAccess.class})
     private ReasonableAdjustments reasonableAdjustments;
     @CCD(
@@ -1371,7 +1396,7 @@ public class SscsCaseData implements CaseData {
     @CCD(label = "Show other party details", typeOverride = FieldType.YesOrNo, access = {SscsCrudAccess.class})
     private YesNo showOtherPartyDetails;
     @CCD(label = "Audio/Video evidence document for the bundle", access = {SscsCrudAccess.class})
-    private AudioVideoEvidenceBundleDocumentCT audioVideoEvidenceBundleDocument;
+    private AudioVideoEvidenceBundleDocument audioVideoEvidenceBundleDocument;
 
     @CCD(
             label = "Interloc Review State",

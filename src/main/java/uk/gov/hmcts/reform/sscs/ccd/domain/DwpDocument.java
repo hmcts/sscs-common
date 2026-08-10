@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "dwpDocuments", generate = false)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @SuperBuilder(toBuilder = true)

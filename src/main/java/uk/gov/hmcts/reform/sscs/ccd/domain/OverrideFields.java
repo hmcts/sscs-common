@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.reference.data.model.HearingChannel;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.AdjournCaseNextHearingDurationUnits2;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute2;
-import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState2;
+import uk.gov.hmcts.reform.sscs.ccd.domain.AdjournCaseNextHearingDurationUnits;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingRoute;
+import uk.gov.hmcts.reform.sscs.ccd.domain.HearingState;
 import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "overrideFields", generate = true)
@@ -75,13 +75,13 @@ public class OverrideFields {
           typeOverride = FieldType.FixedList,
           typeParameterOverride = "FL_adjournCaseNextHearingDurationUnits"
   )
-  private AdjournCaseNextHearingDurationUnits2 adjournCaseNextHearingListingDurationUnits;
+  private AdjournCaseNextHearingDurationUnits adjournCaseNextHearingListingDurationUnits;
   @CCD(label = "What language do they need to speak?", typeOverride = FieldType.DynamicList)
   private String adjournCaseInterpreterLanguageList;
   @CCD(label = "Hearing Route")
-  private HearingRoute2 hearingRoute;
+  private HearingRoute hearingRoute;
   @CCD(label = "Hearing State", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_hearingState")
-  private HearingState2 hearingState;
+  private HearingState hearingState;
   @CCD(
           label = "If an interpreter is needed for the next hearing, please add an extra 30 minutes to the duration.",
           showCondition = "updateListingRequirementsInterpreterDurationLabel=\"DUMMY_VALUE_TO_HIDE_FIELD\"",

@@ -3,7 +3,9 @@ package uk.gov.hmcts.reform.sscs.reference.data.model;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "FL_hearingChannel", generate = true)
 @Getter
 @RequiredArgsConstructor
 public enum HearingChannel {

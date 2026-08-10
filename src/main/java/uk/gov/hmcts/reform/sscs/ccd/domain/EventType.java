@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.google.common.base.CaseFormat;
 import java.util.Arrays;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "eventType", generate = true)
 public enum EventType {
 
     ABATE_CASE("abateCase", 0, false),
@@ -42,6 +45,7 @@ public enum EventType {
     AMEND_DUE_DATE("amendDueDate", 0, false),
     AMEND_ELEMENTS_ISSUES("amendElementsIssues", 0, false),
     AMEND_SPECIALISM("panelDoctorSpecialismAmend", 0, false),
+    @CCD(label = "Appeal Received")
     APPEAL_RECEIVED("appealReceived", "appealReceived", 1, true),
     APPEAL_TO_PROCEED("appealToProceed", 0, false),
     ASSIGN_TO_JUDGE("assignToJudge", 0, false),
@@ -112,7 +116,9 @@ public enum EventType {
     DWP_UPLOAD_RESPONSE("dwpUploadResponse", 0, false),
     EDIT_BUNDLE("editBundle", 0, false),
     EVENTS_UPDATES("eventsUpdates", 0, false),
+    @CCD(label = "Evidence Received")
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
+    @CCD(label = "Evidence Reminder")
     EVIDENCE_REMINDER("evidenceReminder", "evidenceReminder", -2, true),
     FE_NO_ACTION("feNoAction", 0, false),
     FINAL_DECISION("corDecision", 0, false),
@@ -124,7 +130,9 @@ public enum EventType {
     HANDLE_EVIDENCE("handleEvidence", 0, false),
     HANDLING_ERROR("handlingError", 0, false),
     HEARING("hearing", "hearing", 4, false),
+    @CCD(label = "Hearing Booked")
     HEARING_BOOKED("hearingBooked", "hearingBooked", 3, true),
+    @CCD(label = "Hearing Reminder")
     HEARING_REMINDER("hearingReminder", 0, true),
     HMCTS_LAPSE_CASE("hmctsLapseCase", 0, false),
     HMCTS_RESPONSE_REVIEWED("hmctsResponseReviewed", 0, false),
@@ -163,6 +171,7 @@ public enum EventType {
     NON_COMPLIANT("nonCompliant", 0, true),
     NON_COMPLIANT_SEND_TO_INTERLOC("nonCompliantSendToInterloc", 0, false),
     NOTIFICATION_SENT("notificationSent", 0, false),
+    @CCD(label = "Not Listable")
     NOT_LISTABLE("notListable", 0, false),
     PANEL_UPDATE("panelUpdate", 0, false),
     PAST_HEARING_BOOKED("pastHearingBooked", "pastHearingBooked", 10, true),
@@ -183,6 +192,7 @@ public enum EventType {
     PROCESS_AUDIO_VIDEO_WELSH("processAudioVideoWelsh", 0, false),
     PROCESS_REASONABLE_ADJUSTMENT("processReasonableAdjustment", 0, false),
     PROVIDE_APPOINTEE_DETAILS("provideAppointeeDetails", 0, false),
+    @CCD(label = "Ready to List")
     READY_TO_LIST("readyToList", 0, false),
     REINSTATE_APPEAL("reinstateAppeal", 0, false),
     REINSTATE_VOID_APPEAL("reinstateVoidAppeal", 0, false),

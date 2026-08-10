@@ -29,11 +29,21 @@ public class Appeal {
     private Representative rep;
     @CCD(label = "Signer")
     private String signer;
-    @CCD(label = "Hearing Type", typeOverride = FieldType.FixedList, typeParameterOverride = "hearingType")
+    @CCD(
+            label = "Hearing Type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "hearingType",
+            typeParameterClass = HearingType2.class
+    )
     private String hearingType;
     @CCD(label = "Hearing Subtype")
     private HearingSubtype hearingSubtype;
-    @CCD(label = "Channel of receipt", typeOverride = FieldType.FixedList, typeParameterOverride = "receivedVia")
+    @CCD(
+            label = "Channel of receipt",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "receivedVia",
+            typeParameterClass = ReceivedVia.class
+    )
     private String receivedVia;
 
     @CCD(label = "Show Appellant Confidentiality Required Option", typeOverride = FieldType.YesOrNo)

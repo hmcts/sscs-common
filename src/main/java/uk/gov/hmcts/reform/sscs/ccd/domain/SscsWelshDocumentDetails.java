@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "sscsWelshDocuments", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @SuperBuilder(toBuilder = true)
@@ -12,8 +16,16 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsWelshDocumentDetails extends AbstractDocumentDetails {
 
+    @CCD(label = "Original Document file name")
     private String originalDocumentFileName;
+    @CCD(label = "Comment")
     private String documentComment;
+    @CCD(
+            label = "Language",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "documentLanguage",
+            typeParameterClass = DocumentLanguage.class
+    )
     private String documentLanguage;
 
     @JsonCreator

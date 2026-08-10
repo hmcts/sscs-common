@@ -245,11 +245,11 @@ public class SscsCaseCallbackDeserializerTest {
 
         Callback<SscsCaseData> actualSscsCaseCallback = sscsCaseCallbackDeserializer.deserialize(json);
 
-        DirectionResponseColl directionResponse = actualSscsCaseCallback.getCaseDetails().getCaseData().getDirectionResponse();
+        DirectionResponse directionResponse = actualSscsCaseCallback.getCaseDetails().getCaseData().getDirectionResponse();
 
-        assertEquals("AdditionalEvidence.pdf", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getFilename());
-        assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getUrl());
-        assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390/binary", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getBinaryUrl());
+        assertEquals("AdditionalEvidence.pdf", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentFilename());
+        assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("http://dm-store:4506/documents/5f574d09-1590-446e-bc02-1f2437688390/binary", directionResponse.getDirectionResponses().get(0).getValue().getDocumentLink().getDocumentBinaryUrl());
         assertEquals(Optional.of(Benefit.PIP), actualSscsCaseCallback.getCaseDetails().getCaseData().getBenefitType());
         assertTrue(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(Benefit.PIP));
         assertFalse(actualSscsCaseCallback.getCaseDetails().getCaseData().isBenefitType(Benefit.ESA));

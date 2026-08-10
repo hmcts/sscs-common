@@ -3,7 +3,9 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "FL_hmcHearingType", generate = true)
 @Getter
 @RequiredArgsConstructor
 public enum HmcHearingType {

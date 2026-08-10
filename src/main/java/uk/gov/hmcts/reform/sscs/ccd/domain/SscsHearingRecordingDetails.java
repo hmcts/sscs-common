@@ -24,7 +24,8 @@ public class SscsHearingRecordingDetails {
     @CCD(
             label = "Hearing type",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_hearingRecordingType"
+            typeParameterOverride = "FL_hearingRecordingType",
+            typeParameterClass = HearingRecordingType.class
     )
     private String hearingType;
     @CCD(label = "Hearing date and time")

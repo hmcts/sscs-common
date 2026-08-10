@@ -52,7 +52,7 @@ public class FtaCommunicationRequest {
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_commRequestTopic"
     )
-    private CommRequestTopic requestTopic;
+    private CommunicationRequestTopic requestTopic;
 
     @CCD(
             label = "Request",

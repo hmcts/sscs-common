@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
 import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 @ComplexType(name = "name", generate = true)
@@ -17,7 +18,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 public class Name {
-    @CCD(label = "Title")
+    @CCD(
+            label = "Title",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_titles",
+            typeParameterClass = Titles.class
+    )
     private String title;
     @CCD(label = "First Name")
     private String firstName;

@@ -6,11 +6,15 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.EventType.CORRECTION_REFUSED;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "FL_actionCorrection", generate = true)
 @Getter
 @AllArgsConstructor
 public enum CorrectionActions implements CcdCallbackMap {
     GRANT("grant","Grant Correction Application", CORRECTION_GRANTED, "Correction application granted", "Correction application granted", DwpState.CORRECTION_GRANTED, InterlocReviewState.NONE),
+    @CCD(label = "Refuse Correction Application")
     REFUSE("refuse","Refuse Correction Application", CORRECTION_REFUSED, "Correction application Refused", "Correction application Refused", DwpState.CORRECTION_REFUSED, InterlocReviewState.NONE);
 
     private final String ccdDefinition;

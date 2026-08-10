@@ -13,13 +13,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DefaultAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsJudgeCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsJudgeCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

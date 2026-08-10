@@ -7,7 +7,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "audioVideoEvidenceBundleDocumentCT", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @SuperBuilder(toBuilder = true)
@@ -15,7 +19,12 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class AudioVideoEvidenceBundleDocument {
 
+    @CCD(label = "Select document", typeOverride = FieldType.Document)
     private DocumentLink documentLink;
+    @CCD(
+            label = "Audio video bundle document file name",
+            showCondition = "documentLink=\"AnyValueToFailThisCondition\""
+    )
     private String documentFileName;
 
     @JsonCreator

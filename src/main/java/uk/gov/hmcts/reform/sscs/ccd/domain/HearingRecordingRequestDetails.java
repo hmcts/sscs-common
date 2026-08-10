@@ -17,7 +17,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @Builder(toBuilder = true)
 @EqualsAndHashCode
 public class HearingRecordingRequestDetails {
-    @CCD(label = "Requesting Party", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_parties")
+    @CCD(
+            label = "Requesting Party",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_parties",
+            typeParameterClass = Parties.class
+    )
     private String requestingParty;
     @CCD(label = "Status")
     private String status;

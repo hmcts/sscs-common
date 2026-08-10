@@ -11,8 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -65,6 +65,7 @@ public class FtaCommunicationFields {
             label = " ",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_replyNoActionRequired",
+            typeParameterClass = ReplyNoActionRequired.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> commRequestResponseNoAction;

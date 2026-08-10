@@ -9,13 +9,20 @@ import java.time.format.DateTimeParseException;
 import lombok.Builder;
 import lombok.Value;
 import org.apache.commons.lang3.StringUtils;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "doc", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Value
 @Builder(toBuilder = true)
 public class DocumentDetails {
+    @CCD(label = "Date Received", typeOverride = FieldType.Date)
     private String dateReceived;
+    @CCD(label = "Evidence Type")
     private String evidenceType;
+    @CCD(label = "Evidence Provided By")
     private String evidenceProvidedBy;
 
     @JsonCreator

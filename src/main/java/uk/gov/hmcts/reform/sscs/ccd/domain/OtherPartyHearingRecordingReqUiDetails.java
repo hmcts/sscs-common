@@ -19,7 +19,12 @@ public class OtherPartyHearingRecordingReqUiDetails {
     String otherPartyName;
     @CCD(label = "Other party id")
     String otherPartyId;
-    @CCD(label = "Requesting Party", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_parties")
+    @CCD(
+            label = "Requesting Party",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_parties",
+            typeParameterClass = Parties.class
+    )
     String requestingParty;
     @CCD(label = "Status", typeOverride = FieldType.DynamicList)
     DynamicList hearingRecordingStatus;

@@ -12,8 +12,12 @@ import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.type.FieldType;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
 
+@ComplexType(name = "dwpDocuments", generate = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @SuperBuilder(toBuilder = true)
@@ -21,7 +25,14 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class DwpDocumentDetails extends AbstractDocumentDetails {
 
+    @CCD(label = "Date and time added")
     private final LocalDateTime documentDateTimeAdded;
+    @CCD(
+            label = "Edited evidence reason",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_editedEvidenceReason",
+            typeParameterClass = EditedEvidenceReason.class
+    )
     private String dwpEditedEvidenceReason;
 
     @JsonCreator

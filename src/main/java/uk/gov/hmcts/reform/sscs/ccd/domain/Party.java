@@ -28,7 +28,12 @@ public abstract class Party extends Entity {
     @CCD(label = "Appellant Role")
     private Role role;
 
-    @CCD(label = "Role", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_ibcRoles")
+    @CCD(
+            label = "Role",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_ibcRoles",
+            typeParameterClass = IbcRoles.class
+    )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String ibcRole;
 

@@ -31,7 +31,12 @@ public class HearingOutcomeDetails {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime hearingEndDateTime;
-    @CCD(label = "Hearing Outcome", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_caseOutcome")
+    @CCD(
+            label = "Hearing Outcome",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_caseOutcome",
+            typeParameterClass = CaseOutcome2.class
+    )
     private String hearingOutcomeId;
     @CCD(label = "Did PO Attend?", typeOverride = FieldType.YesOrNo)
     private YesNo didPoAttendHearing;

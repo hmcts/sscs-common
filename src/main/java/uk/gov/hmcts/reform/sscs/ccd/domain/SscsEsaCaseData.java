@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -26,6 +26,7 @@ public class SscsEsaCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_physicalDisabilities",
+            typeParameterClass = PhysicalDisabilities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> esaWriteFinalDecisionPhysicalDisabilitiesQuestion;
@@ -34,6 +35,7 @@ public class SscsEsaCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_mentalAssessment",
+            typeParameterClass = MentalAssessment.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> esaWriteFinalDecisionMentalAssessmentQuestion;
@@ -41,6 +43,7 @@ public class SscsEsaCaseData {
             label = "1. Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionMobilisingUnaidedQuestion",
+            typeParameterClass = EsaWriteFinalDecisionMobilisingUnaidedQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionMobilisingUnaidedQuestion;
@@ -48,6 +51,7 @@ public class SscsEsaCaseData {
             label = "2. Standing and sitting.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionStandingAndSittingQuestion",
+            typeParameterClass = EsaWriteFinalDecisionStandingAndSittingQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionStandingAndSittingQuestion;
@@ -55,6 +59,7 @@ public class SscsEsaCaseData {
             label = "3. Reaching.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionReachingQuestion",
+            typeParameterClass = EsaWriteFinalDecisionReachingQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionReachingQuestion;
@@ -62,6 +67,7 @@ public class SscsEsaCaseData {
             label = "4. Picking up and moving or transferring by the use of the upper body and arms.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionPickingUpQuestion",
+            typeParameterClass = EsaWriteFinalDecisionPickingUpQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionPickingUpQuestion;
@@ -69,6 +75,7 @@ public class SscsEsaCaseData {
             label = "5. Manual dexterity.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionManualDexterityQuestion",
+            typeParameterClass = EsaWriteFinalDecisionManualDexterityQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionManualDexterityQuestion;
@@ -76,6 +83,7 @@ public class SscsEsaCaseData {
             label = "6, Making self understood through speaking, writing, typing, or other means which are normally or could reasonably be used, unaided by another person.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionMakingSelfUnderstoodQuestion",
+            typeParameterClass = EsaWriteFinalDecisionMakingSelfUnderstoodQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionMakingSelfUnderstoodQuestion;
@@ -83,6 +91,7 @@ public class SscsEsaCaseData {
             label = "7. Understanding communication by: (i) verbal means (such as hearing or lip reading) alone; (ii) non-verbal means (such as reading 16 point print or Braille) alone;(iii) or a combination of sub-paragraphs (i) and (ii), using any aid that is normally or could reasonably be used, unaided by another person.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionCommunicationQuestion",
+            typeParameterClass = EsaWriteFinalDecisionCommunicationQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionCommunicationQuestion;
@@ -90,6 +99,7 @@ public class SscsEsaCaseData {
             label = "8. Navigation and maintaining safety using a guide dog or other aid if either or both are normally used or could reasonably be used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionNavigationQuestion",
+            typeParameterClass = EsaWriteFinalDecisionNavigationQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionNavigationQuestion;
@@ -97,6 +107,7 @@ public class SscsEsaCaseData {
             label = "9. Absence or loss of control whilst conscious leading to extensive evacuation of the bowel and/or bladder, other than enuresis (bed- wetting), despite the wearing or use of any aids or adaptations which are normally or could reasonably be worn or used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionLossOfControlQuestion",
+            typeParameterClass = EsaWriteFinalDecisionLossOfControlQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionLossOfControlQuestion;
@@ -104,6 +115,7 @@ public class SscsEsaCaseData {
             label = "10. Consciousness during waking moments.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionConsciousnessQuestion",
+            typeParameterClass = EsaWriteFinalDecisionConsciousnessQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionConsciousnessQuestion;
@@ -111,6 +123,7 @@ public class SscsEsaCaseData {
             label = "11. Learning tasks.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionLearningTasksQuestion",
+            typeParameterClass = EsaWriteFinalDecisionLearningTasksQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionLearningTasksQuestion;
@@ -118,6 +131,7 @@ public class SscsEsaCaseData {
             label = "12. Awareness of everyday hazards (such as boiling water or sharp objects).",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionAwarenessOfHazardsQuestion",
+            typeParameterClass = EsaWriteFinalDecisionAwarenessOfHazardsQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionAwarenessOfHazardsQuestion;
@@ -125,6 +139,7 @@ public class SscsEsaCaseData {
             label = "13. Initiating and completing personal action (which means planning, organisation, problem solving, prioritising or switching tasks).",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionPersonalActionQuestion",
+            typeParameterClass = EsaWriteFinalDecisionPersonalActionQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionPersonalActionQuestion;
@@ -132,6 +147,7 @@ public class SscsEsaCaseData {
             label = "14. Coping with change.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionCopingWithChangeQuestion",
+            typeParameterClass = EsaWriteFinalDecisionCopingWithChangeQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionCopingWithChangeQuestion;
@@ -139,6 +155,7 @@ public class SscsEsaCaseData {
             label = "15. Getting about.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionGettingAboutQuestion",
+            typeParameterClass = EsaWriteFinalDecisionGettingAboutQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionGettingAboutQuestion;
@@ -146,6 +163,7 @@ public class SscsEsaCaseData {
             label = "16. Coping with social engagement due to cognitive impairment or mental disorder.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionSocialEngagementQuestion",
+            typeParameterClass = EsaWriteFinalDecisionSocialEngagementQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionSocialEngagementQuestion;
@@ -153,6 +171,7 @@ public class SscsEsaCaseData {
             label = "17. Appropriateness of behaviour with other people, due to cognitive impairment or mental disorder.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaWriteFinalDecisionBehaviourQuestion",
+            typeParameterClass = EsaWriteFinalDecisionBehaviourQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
@@ -160,6 +179,7 @@ public class SscsEsaCaseData {
             label = "Do Schedule 3 Activities Apply?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_schedule3ActivitiesApply",
+            typeParameterClass = Schedule3ActivitiesApply.class,
             access = {SscsCrudAccess.class}
     )
     private String esaWriteFinalDecisionSchedule3ActivitiesApply;
@@ -168,6 +188,7 @@ public class SscsEsaCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_schedule3Activities",
+            typeParameterClass = Schedule3Activities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> esaWriteFinalDecisionSchedule3ActivitiesQuestion;
@@ -187,6 +208,7 @@ public class SscsEsaCaseData {
             label = "Which ESA Regulations apply?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_esaRegulationsYear",
+            typeParameterClass = EsaRegulationsYear.class,
             access = {SscsCrudAccess.class}
     )
     private String whichEsaRegulationsApply;

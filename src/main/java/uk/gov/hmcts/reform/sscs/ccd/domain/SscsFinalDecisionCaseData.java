@@ -18,7 +18,7 @@ import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationG
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -40,6 +40,7 @@ public class SscsFinalDecisionCaseData {
             label = "Is the appeal allowed or refused?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_allowedOrRefused",
+            typeParameterClass = AllowedOrRefused.class,
             access = {SscsCrudAccess.class}
     )
     private String writeFinalDecisionAllowedOrRefused;
@@ -47,6 +48,7 @@ public class SscsFinalDecisionCaseData {
             label = "What type of hearing was held?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipTypeOfHearing",
+            typeParameterClass = PipTypeOfHearing.class,
             access = {SscsCrudAccess.class}
     )
     private String writeFinalDecisionTypeOfHearing;
@@ -81,6 +83,7 @@ public class SscsFinalDecisionCaseData {
             label = "Does this award have an end date?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_endDateType",
+            typeParameterClass = EndDateType.class,
             access = {SscsCrudAccess.class}
     )
     private String writeFinalDecisionEndDateType;

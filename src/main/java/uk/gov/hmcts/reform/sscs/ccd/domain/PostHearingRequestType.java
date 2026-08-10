@@ -21,14 +21,22 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.InterlocReviewState.REVIEW_BY_
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "FL_postHearingRequestType", generate = true)
 @Getter
 @AllArgsConstructor
 public enum PostHearingRequestType implements CcdCallbackMap {
+    @CCD(label = "Correction")
     CORRECTION("correction","Correction", CORRECTION_REQUEST, "Correction Request Made", "Correction Request Made", CORRECTION_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_CORRECTION_APPLICATION),
+    @CCD(label = "Liberty to Apply")
     LIBERTY_TO_APPLY("libertyToApply","Liberty to Apply", LIBERTY_TO_APPLY_REQUEST, "Liberty to Apply Request Made", "Liberty to Apply Request Made", LIBERTY_TO_APPLY_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_LIBERTY_TO_APPLY_APPLICATION),
+    @CCD(label = "Permission to Appeal")
     PERMISSION_TO_APPEAL("permissionToAppeal","Permission to Appeal", PERMISSION_TO_APPEAL_REQUEST, "Permission to Appeal Request Made", "Permission to Appeal Request Made", PERMISSION_TO_APPEAL_REQUESTED, REVIEW_BY_JUDGE, REVIEW_PERMISSION_TO_APPEAL_APPLICATION),
+    @CCD(label = "Set Aside")
     SET_ASIDE("setAside","Set Aside", SET_ASIDE_REQUEST, "Set Aside Request Made", "Set Aside Request Made", SET_ASIDE_REQUESTED, AWAITING_ADMIN_ACTION, REVIEW_SET_ASIDE_APPLICATION),
+    @CCD(label = "Statement of Reasons")
     STATEMENT_OF_REASONS("statementOfReasons","Statement of Reasons", SOR_REQUEST, "Statement of Reasons Request Made", "Statement of Reasons Request Made", STATEMENT_OF_REASONS_REQUESTED, AWAITING_ADMIN_ACTION, STATEMENT_OF_REASONS_APPLICATION);
 
     private final String ccdDefinition;

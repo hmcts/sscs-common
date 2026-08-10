@@ -3,10 +3,14 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
+import uk.gov.hmcts.ccd.sdk.api.CCD;
+import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 
+@ComplexType(name = "FL_commRequestTopic", generate = true)
 @Getter
 public enum CommunicationRequestTopic {
 
+    @CCD(label = "Appeal Type")
     @JsonProperty("appealType")
     APPEAL_TYPE("Appeal Type"),
 
@@ -16,6 +20,7 @@ public enum CommunicationRequestTopic {
     @JsonProperty("appointeePersonalInfo")
     APPOINTEE_PERSONAL_INFORMATION("Appointee personal information"),
 
+    @CCD(label = "Issuing office")
     @JsonProperty("issuingOffice")
     ISSUING_OFFICE("Issuing office"),
 

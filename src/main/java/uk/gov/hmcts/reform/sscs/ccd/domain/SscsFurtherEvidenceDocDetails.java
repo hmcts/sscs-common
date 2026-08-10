@@ -17,7 +17,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsFurtherEvidenceDocDetails {
 
-    @CCD(label = "Type", typeOverride = FieldType.FixedList, typeParameterOverride = "documentTypeFE")
+    @CCD(
+            label = "Type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "documentTypeFE",
+            typeParameterClass = DocumentTypeFE.class
+    )
     private String documentType;
     @CCD(label = "File name")
     private String documentFileName;

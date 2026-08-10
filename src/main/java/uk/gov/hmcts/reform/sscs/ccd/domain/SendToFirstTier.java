@@ -13,14 +13,20 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SendToFirstTier {
-    @CCD(label = "Decision", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_actionSendToFirstTier")
+    @CCD(
+            label = "Decision",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_actionSendToFirstTier",
+            typeParameterClass = ActionSendToFirstTier.class
+    )
     private SendToFirstTierActions action;
     @CCD(
             label = "Decision Document",
             hint = "All documents must be PDF formatted",
             regex = ".pdf",
             typeOverride = FieldType.Document,
-            typeParameterOverride = "FL_actionSendToFirstTier"
+            typeParameterOverride = "FL_actionSendToFirstTier",
+            typeParameterClass = ActionSendToFirstTier.class
     )
     private DocumentLink decisionDocument;
 }

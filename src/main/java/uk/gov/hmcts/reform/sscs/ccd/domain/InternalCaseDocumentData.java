@@ -10,10 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DefaultAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.RegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.RegistrarCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -38,6 +38,7 @@ public class InternalCaseDocumentData {
             label = " ",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_uploadRemoveDocumentType",
+            typeParameterClass = UploadRemoveDocumentType.class,
             access = {DefaultAccess.class, RegistrarCrudAccess.class}
     )
     private String uploadRemoveDocumentType;
@@ -45,6 +46,7 @@ public class InternalCaseDocumentData {
             label = " ",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_uploadRemoveOrMoveDocument",
+            typeParameterClass = UploadRemoveOrMoveDocument.class,
             access = {DefaultAccess.class, RegistrarCrudAccess.class}
     )
     private String uploadRemoveOrMoveDocument;

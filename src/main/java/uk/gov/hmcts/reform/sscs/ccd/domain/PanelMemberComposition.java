@@ -34,31 +34,36 @@ public class PanelMemberComposition {
     @CCD(
             label = "District Tribunal Judge",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_panelCompositionDtj"
+            typeParameterOverride = "FL_panelCompositionDtj",
+            typeParameterClass = PanelCompositionDtj.class
     )
     private String districtTribunalJudge;
     @CCD(
             label = "Tribunal or Regional Judge",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_panelCompositionJudge"
+            typeParameterOverride = "FL_panelCompositionJudge",
+            typeParameterClass = PanelCompositionJudge.class
     )
     private String panelCompositionJudge;
     @CCD(
             label = "Tribunal or Regional Medical member",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_panelCompositionMedical"
+            typeParameterOverride = "FL_panelCompositionMedical",
+            typeParameterClass = PanelCompositionMedical.class
     )
     private String panelCompositionMemberMedical1;
     @CCD(
             label = "Additional Tribunal or Regional Medical member",
             typeOverride = FieldType.FixedRadioList,
-            typeParameterOverride = "FL_panelCompositionMedical"
+            typeParameterOverride = "FL_panelCompositionMedical",
+            typeParameterClass = PanelCompositionMedical.class
     )
     private String panelCompositionMemberMedical2;
     @CCD(
             label = "Tribunal member Disability or Financial",
             typeOverride = FieldType.MultiSelectList,
-            typeParameterOverride = "FL_panelCompositionTribunalMember"
+            typeParameterOverride = "FL_panelCompositionTribunalMember",
+            typeParameterClass = PanelCompositionTribunalMember.class
     )
     private List<String> panelCompositionDisabilityAndFqMember = new ArrayList<>();
 

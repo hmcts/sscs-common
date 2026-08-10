@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import uk.gov.hmcts.reform.sscs.ccd.validation.localdate.LocalDateMustNotBeInFuture;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -27,6 +27,7 @@ public class SscsUcCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_ucPhysicalDisabilities",
+            typeParameterClass = UcPhysicalDisabilities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> ucWriteFinalDecisionPhysicalDisabilitiesQuestion;
@@ -35,6 +36,7 @@ public class SscsUcCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_ucMentalAssessment",
+            typeParameterClass = UcMentalAssessment.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> ucWriteFinalDecisionMentalAssessmentQuestion;
@@ -42,6 +44,7 @@ public class SscsUcCaseData {
             label = "1. Mobilising unaided by another person with or without a walking stick, manual wheelchair or other aid if such aid is normally or could reasonably be worn or used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionMobilisingUnaidedQuestion",
+            typeParameterClass = UcWriteFinalDecisionMobilisingUnaidedQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionMobilisingUnaidedQuestion;
@@ -49,6 +52,7 @@ public class SscsUcCaseData {
             label = "2. Standing and sitting.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionStandingAndSittingQuestion",
+            typeParameterClass = UcWriteFinalDecisionStandingAndSittingQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionStandingAndSittingQuestion;
@@ -56,6 +60,7 @@ public class SscsUcCaseData {
             label = "3. Reaching.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionReachingQuestion",
+            typeParameterClass = UcWriteFinalDecisionReachingQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionReachingQuestion;
@@ -63,6 +68,7 @@ public class SscsUcCaseData {
             label = "4. Picking up and moving or transferring by the use of the upper body and arms.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionPickingUpQuestion",
+            typeParameterClass = UcWriteFinalDecisionPickingUpQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionPickingUpQuestion;
@@ -70,6 +76,7 @@ public class SscsUcCaseData {
             label = "5. Manual dexterity.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionManualDexterityQuestion",
+            typeParameterClass = UcWriteFinalDecisionManualDexterityQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionManualDexterityQuestion;
@@ -77,6 +84,7 @@ public class SscsUcCaseData {
             label = "6, Making self understood through speaking, writing, typing, or other means which are normally or could reasonably be used, unaided by another person.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionMakingSelfUnderstoodQuestion",
+            typeParameterClass = UcWriteFinalDecisionMakingSelfUnderstoodQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionMakingSelfUnderstoodQuestion;
@@ -84,6 +92,7 @@ public class SscsUcCaseData {
             label = "7. Understanding communication by: (i) verbal means (such as hearing or lip reading) alone; (ii) non-verbal means (such as reading 16 point print or Braille) alone;(iii) or a combination of sub-paragraphs (i) and (ii), using any aid that is normally or could reasonably be used, unaided by another person.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionCommunicationQuestion",
+            typeParameterClass = UcWriteFinalDecisionCommunicationQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionCommunicationQuestion;
@@ -91,6 +100,7 @@ public class SscsUcCaseData {
             label = "8. Navigation and maintaining safety using a guide dog or other aid if either or both are normally used or could reasonably be used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionNavigationQuestion",
+            typeParameterClass = UcWriteFinalDecisionNavigationQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionNavigationQuestion;
@@ -98,6 +108,7 @@ public class SscsUcCaseData {
             label = "9. Absence or loss of control whilst conscious leading to extensive evacuation of the bowel and/or bladder, other than enuresis (bed- wetting), despite the wearing or use of any aids or adaptations which are normally or could reasonably be worn or used.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionLossOfControlQuestion",
+            typeParameterClass = UcWriteFinalDecisionLossOfControlQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionLossOfControlQuestion;
@@ -105,6 +116,7 @@ public class SscsUcCaseData {
             label = "10. Consciousness during waking moments.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionConsciousnessQuestion",
+            typeParameterClass = UcWriteFinalDecisionConsciousnessQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionConsciousnessQuestion;
@@ -112,6 +124,7 @@ public class SscsUcCaseData {
             label = "11. Learning tasks.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionLearningTasksQuestion",
+            typeParameterClass = UcWriteFinalDecisionLearningTasksQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionLearningTasksQuestion;
@@ -119,6 +132,7 @@ public class SscsUcCaseData {
             label = "12. Awareness of everyday hazards (such as boiling water or sharp objects).",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionAwarenessOfHazardsQuestion",
+            typeParameterClass = UcWriteFinalDecisionAwarenessOfHazardsQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionAwarenessOfHazardsQuestion;
@@ -126,6 +140,7 @@ public class SscsUcCaseData {
             label = "13. Initiating and completing personal action (which means planning, organisation, problem solving, prioritising or switching tasks).",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionPersonalActionQuestion",
+            typeParameterClass = UcWriteFinalDecisionPersonalActionQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionPersonalActionQuestion;
@@ -133,6 +148,7 @@ public class SscsUcCaseData {
             label = "14. Coping with change.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionCopingWithChangeQuestion",
+            typeParameterClass = UcWriteFinalDecisionCopingWithChangeQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionCopingWithChangeQuestion;
@@ -140,6 +156,7 @@ public class SscsUcCaseData {
             label = "15. Getting about.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionGettingAboutQuestion",
+            typeParameterClass = UcWriteFinalDecisionGettingAboutQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionGettingAboutQuestion;
@@ -147,6 +164,7 @@ public class SscsUcCaseData {
             label = "16. Coping with social engagement due to cognitive impairment or mental disorder.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionSocialEngagementQuestion",
+            typeParameterClass = UcWriteFinalDecisionSocialEngagementQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionSocialEngagementQuestion;
@@ -154,6 +172,7 @@ public class SscsUcCaseData {
             label = "17. Appropriateness of behaviour with other people, due to cognitive impairment or mental disorder.",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_ucWriteFinalDecisionBehaviourQuestion",
+            typeParameterClass = UcWriteFinalDecisionBehaviourQuestion.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionAppropriatenessOfBehaviourQuestion;
@@ -161,6 +180,7 @@ public class SscsUcCaseData {
             label = "Do Schedule 7 Activities Apply?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_schedule7ActivitiesApply",
+            typeParameterClass = Schedule7ActivitiesApply.class,
             access = {SscsCrudAccess.class}
     )
     private String ucWriteFinalDecisionSchedule7ActivitiesApply;
@@ -169,6 +189,7 @@ public class SscsUcCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_schedule7Activities",
+            typeParameterClass = Schedule7Activities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> ucWriteFinalDecisionSchedule7ActivitiesQuestion;

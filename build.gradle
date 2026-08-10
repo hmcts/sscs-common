@@ -6,7 +6,7 @@ plugins {
     id 'pmd'
     id 'jacoco'
     id 'org.owasp.dependencycheck' version '12.2.2'
-    id 'hmcts.ccd.sdk' version 'json-definition-converter-110.1-dfc3c55b'
+    id 'hmcts.ccd.sdk' version 'json-definition-converter-114.1-bb854854'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
@@ -214,7 +214,7 @@ configurations {
 
 dependencies {
 
-    ccdPassthrough group: 'com.github.hmcts', name: 'ccd-definition-converter', version: 'json-definition-converter-110.1-dfc3c55b'
+    ccdPassthrough group: 'com.github.hmcts', name: 'ccd-definition-converter', version: 'json-definition-converter-114.1-bb854854'
 
     // ccd-config-generator declares its Spring dependencies without versions, expecting a Spring
     // Boot BOM. This project pins Spring versions individually rather than applying a Spring

@@ -9,12 +9,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkRSuperuserCrudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarTeamleaderCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRDwpresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DefaultAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkRSuperuserCrudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarTeamleaderCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRDwpresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsRAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

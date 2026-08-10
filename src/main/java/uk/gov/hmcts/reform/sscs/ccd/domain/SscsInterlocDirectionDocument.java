@@ -17,7 +17,12 @@ import uk.gov.hmcts.ccd.sdk.api.ComplexType;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SscsInterlocDirectionDocument {
 
-    @CCD(label = "Type", typeOverride = FieldType.FixedList, typeParameterOverride = "FL_InterlocDirection")
+    @CCD(
+            label = "Type",
+            typeOverride = FieldType.FixedList,
+            typeParameterOverride = "FL_InterlocDirection",
+            typeParameterClass = InterlocDirection.class
+    )
     private String documentType;
     @CCD(label = "File name")
     private String documentFileName;

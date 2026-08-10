@@ -10,16 +10,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DefaultAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.DwpresponsewriterHmrcresponsewriterCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.CitizenCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserSystemupdateCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkCudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DefaultAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.DwpresponsewriterHmrcresponsewriterCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCudSuperuserCudSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.CitizenCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserSystemupdateCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkCudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SystemupdateCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data

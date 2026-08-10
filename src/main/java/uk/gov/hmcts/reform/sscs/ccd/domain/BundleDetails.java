@@ -68,7 +68,8 @@ public class BundleDetails {
             label = "Pagination Style",
             showCondition = "title=\"AnyValueToFailThisCondition\"",
             typeOverride = FieldType.FixedList,
-            typeParameterOverride = "paginationStyle"
+            typeParameterOverride = "paginationStyle",
+            typeParameterClass = PaginationStyle.class
     )
     private String paginationStyle;
     @CCD(label = "Cover page template", showCondition = "title=\"AnyValueToFailThisCondition\"")
@@ -77,7 +78,8 @@ public class BundleDetails {
             label = "Page Number Format",
             showCondition = "title=\"AnyValueToFailThisCondition\"",
             typeOverride = FieldType.FixedList,
-            typeParameterOverride = "pageNumberFormat"
+            typeParameterOverride = "pageNumberFormat",
+            typeParameterClass = PageNumberFormat.class
     )
     private String pageNumberFormat;
 

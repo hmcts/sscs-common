@@ -8,10 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.ClerkSuperuserCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.JudgeRegistrarCrudAccess;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.ClerkSuperuserCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.JudgeRegistrarCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SuperuserCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -46,6 +46,7 @@ public class PostponementRequest {
             label = "Action postponement request",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_actionPostponementRequest",
+            typeParameterClass = ActionPostponementRequest.class,
             access = {JudgeRegistrarCrudAccess.class, SuperuserCrudAccess.class}
     )
     private String actionPostponementRequestSelected;
@@ -53,6 +54,7 @@ public class PostponementRequest {
             label = "Listing option",
             typeOverride = FieldType.FixedList,
             typeParameterOverride = "FL_actionPostponementRequestListing",
+            typeParameterClass = ActionPostponementRequestListing.class,
             access = {JudgeRegistrarCrudAccess.class, ClerkSuperuserCrudAccess.class}
     )
     private String listingOption;

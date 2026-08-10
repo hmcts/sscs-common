@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import uk.gov.hmcts.ccd.sdk.api.CCD;
 import uk.gov.hmcts.ccd.sdk.type.FieldType;
-import uk.gov.hmcts.reform.sscs.ccd.domain.ccd.access.SscsCrudAccess;
+import uk.gov.hmcts.reform.sscs.ccd.access.SscsCrudAccess;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -25,6 +25,7 @@ public class SscsPipCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_dailyLivingActivities",
+            typeParameterClass = DailyLivingActivities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> pipWriteFinalDecisionDailyLivingActivitiesQuestion;
@@ -33,6 +34,7 @@ public class SscsPipCaseData {
             hint = "(Select all that apply)",
             typeOverride = FieldType.MultiSelectList,
             typeParameterOverride = "FL_mobilityActivities",
+            typeParameterClass = MobilityActivities.class,
             access = {SscsCrudAccess.class}
     )
     private List<String> pipWriteFinalDecisionMobilityActivitiesQuestion;
@@ -40,6 +42,7 @@ public class SscsPipCaseData {
             label = "What are you considering awarding for daily living?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_rateAwarded",
+            typeParameterClass = RateAwarded.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionDailyLivingQuestion;
@@ -47,6 +50,7 @@ public class SscsPipCaseData {
             label = "How would this new award compare to the original FTA award for daily living?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_comparedToDWP",
+            typeParameterClass = ComparedToDWP.class,
             access = {SscsCrudAccess.class}
     )
     @JsonProperty("pipWriteFinalDecisionComparedToDWPDailyLivingQuestion")
@@ -55,6 +59,7 @@ public class SscsPipCaseData {
             label = "What are you considering awarding for mobility?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_rateAwarded",
+            typeParameterClass = RateAwarded.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionMobilityQuestion;
@@ -62,6 +67,7 @@ public class SscsPipCaseData {
             label = "How would this new award compare to the original FTA award for mobility?",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_comparedToDWP",
+            typeParameterClass = ComparedToDWP.class,
             access = {SscsCrudAccess.class}
     )
     @JsonProperty("pipWriteFinalDecisionComparedToDWPMobilityQuestion")
@@ -70,6 +76,7 @@ public class SscsPipCaseData {
             label = "Preparing food",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionPreparingFoodQuestions",
+            typeParameterClass = PipWriteFinalDecisionPreparingFoodQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionPreparingFoodQuestion;
@@ -77,6 +84,7 @@ public class SscsPipCaseData {
             label = "Taking nutrition",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionTakingNutritionQuestions",
+            typeParameterClass = PipWriteFinalDecisionTakingNutritionQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionTakingNutritionQuestion;
@@ -84,6 +92,7 @@ public class SscsPipCaseData {
             label = "Managing therapy or monitoring a health condition",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionManagingTherapyQuestions",
+            typeParameterClass = PipWriteFinalDecisionManagingTherapyQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionManagingTherapyQuestion;
@@ -91,6 +100,7 @@ public class SscsPipCaseData {
             label = "Washing and bathing",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionWashingAndBathingQuestions",
+            typeParameterClass = PipWriteFinalDecisionWashingAndBathingQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionWashAndBatheQuestion;
@@ -98,6 +108,7 @@ public class SscsPipCaseData {
             label = "Managing toilet needs or incontinence",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionManagingToiletNeedsQuestions",
+            typeParameterClass = PipWriteFinalDecisionManagingToiletNeedsQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionManagingToiletNeedsQuestion;
@@ -105,6 +116,7 @@ public class SscsPipCaseData {
             label = "Dressing and undressing",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionDressingAndUndressingQuestions",
+            typeParameterClass = PipWriteFinalDecisionDressingAndUndressingQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionDressingAndUndressingQuestion;
@@ -112,6 +124,7 @@ public class SscsPipCaseData {
             label = "Communicating",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionCommunicatingQuestions",
+            typeParameterClass = PipWriteFinalDecisionCommunicatingQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionCommunicatingQuestion;
@@ -119,6 +132,7 @@ public class SscsPipCaseData {
             label = "Reading and understanding signs, symbols and words",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionReadingUnderstandingQuestions",
+            typeParameterClass = PipWriteFinalDecisionReadingUnderstandingQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionReadingUnderstandingQuestion;
@@ -126,6 +140,7 @@ public class SscsPipCaseData {
             label = "Engaging with other people face to face",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionEngagingWithOthersQuestions",
+            typeParameterClass = PipWriteFinalDecisionEngagingWithOthersQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionEngagingWithOthersQuestion;
@@ -133,6 +148,7 @@ public class SscsPipCaseData {
             label = "Making budgeting decisions",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionBudgetingDecisionsQuestions",
+            typeParameterClass = PipWriteFinalDecisionBudgetingDecisionsQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionBudgetingDecisionsQuestion;
@@ -140,6 +156,7 @@ public class SscsPipCaseData {
             label = "Planning and following journeys",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionPlanningFollowingQuestions",
+            typeParameterClass = PipWriteFinalDecisionPlanningFollowingQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionPlanningAndFollowingQuestion;
@@ -147,6 +164,7 @@ public class SscsPipCaseData {
             label = "Moving around",
             typeOverride = FieldType.FixedRadioList,
             typeParameterOverride = "FL_pipWriteFinalDecisionMovingAroundQuestions",
+            typeParameterClass = PipWriteFinalDecisionMovingAroundQuestions.class,
             access = {SscsCrudAccess.class}
     )
     private String pipWriteFinalDecisionMovingAroundQuestion;
