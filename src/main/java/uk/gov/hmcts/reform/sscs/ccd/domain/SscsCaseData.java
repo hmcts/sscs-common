@@ -41,8 +41,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.util.CollectionUtils;
-import uk.gov.hmcts.reform.sscs.ccd.predicates.BenefitTypeConfidentialityPredicate;
 import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -934,7 +932,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "hasUndeterminedPartyConfidentiality", access = READ_ONLY)
     public YesNo hasUndeterminedPartyConfidentiality() {
 
-        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType()) || (isBenefitType(UC)
+        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType(), List.of(UC)) || (isBenefitType(UC)
             && isEmpty(getOtherParties()))) {
             return null;
         }
