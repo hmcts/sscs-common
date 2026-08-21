@@ -21,6 +21,7 @@ public enum EventType {
     ADJOURNED("adjourned", "hearingAdjourned", 5, true),
     ADJOURN_CASE("adjournCase", 0, false),
     ADMIN_ACTION_CORRECTION("adminActionCorrection", 0, false),
+    ADMIN_AMEND_LOCATION_DETAILS("adminAmendLocationDetails", 0, false),
     ADMIN_APPEAL_WITHDRAWN("adminAppealWithdrawn", 0, false),
     ADMIN_CORRECTION_BODY("adminCorrectionBody", 0, false),
     ADMIN_CORRECTION_HEADER("adminCorrectionHeader", 0, true),
