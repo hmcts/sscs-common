@@ -217,7 +217,8 @@ public class EventTypeTest {
         "sendToFirstTier",
         "upperTribunalDecision",
         "setHearingRoute",
-        "addOtherPartyData"
+        "addOtherPartyData",
+        "adminAmendLocationDetails"
     })
     public void hasAllEventTypesDefinedInCcdDefinitionFile(String eventType) {
         try {
@@ -238,7 +239,7 @@ public class EventTypeTest {
                 CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED, UPDATE_UCB,
                 STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT, CCD_ADMIN, SYSTEM_MAINTENANCE, UPLOAD_HEARING_RECORDING,
                 DWP_REQUEST_HEARING_RECORDING, CITIZEN_REQUEST_HEARING_RECORDING, SET_ASIDE_REFUSED_SOR, SOR_EXTEND_TIME,
-                SOR_REFUSED, SOR_WRITE, SOR_REQUEST, ADD_OTHER_PARTY_DATA);
+                SOR_REFUSED, SOR_WRITE, SOR_REQUEST, ADD_OTHER_PARTY_DATA, ADMIN_AMEND_LOCATION_DETAILS);
         for (EventType eventType : EventType.values()) {
             try {
                 if (!exceptions.contains(eventType)) {
