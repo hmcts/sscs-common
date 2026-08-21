@@ -1,16 +1,19 @@
 package uk.gov.hmcts.reform.sscs.ccd.predicates;
 
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toSet;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.SSCS2;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsType.SSCS5;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 import uk.gov.hmcts.reform.sscs.ccd.domain.Benefit;
 import uk.gov.hmcts.reform.sscs.ccd.domain.BenefitType;
 
-public class BenefitTypeConfidentialityPredicate implements Predicate<BenefitType> {
+public class BenefitTypeConfidentialityPredicate {
 
     public static final BenefitTypeConfidentialityPredicate INSTANCE = new BenefitTypeConfidentialityPredicate();
 
@@ -23,16 +26,31 @@ public class BenefitTypeConfidentialityPredicate implements Predicate<BenefitTyp
     private BenefitTypeConfidentialityPredicate() {
     }
 
-    @Override
+    public static boolean isValidBenefitTypeForConfidentiality(final BenefitType benefitType) {
+        return INSTANCE.test(benefitType);
+    }
+
+    public static boolean isValidBenefitTypeForConfidentiality(final BenefitType benefitType,
+        final List<Benefit> additionalBenefits) {
+        return INSTANCE.test(benefitType, additionalBenefits);
+    }
+
     public boolean test(final BenefitType benefitType) {
+        return test(benefitType, List.of());
+    }
+
+    public boolean test(final BenefitType benefitType, final List<Benefit> additionalBenefits) {
         if (benefitType == null) {
             return false;
         }
         final String benefitCode = benefitType.getCode();
-        return VALID_CONFIDENTIALITY_BENEFITS.contains(benefitCode) || Benefit.UC.getShortName().equals(benefitCode);
-    }
-
-    public static boolean isValidBenefitTypeForConfidentiality(final BenefitType benefitType) {
-        return INSTANCE.test(benefitType);
+        return VALID_CONFIDENTIALITY_BENEFITS.contains(benefitCode)
+            || Optional
+            .ofNullable(additionalBenefits)
+            .orElse(emptyList())
+            .stream()
+            .filter(Objects::nonNull)
+            .map(Benefit::getShortName)
+            .anyMatch(shortName -> shortName.equals(benefitCode));
     }
 }
