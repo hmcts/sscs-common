@@ -68,4 +68,8 @@ public class VenueService {
             });
     }
 
+    public Map<String, VenueDetails> getAllVenuesMap() {
+        return venueDataLoader.getVenueDetailsMap();
+    }
+
 }
