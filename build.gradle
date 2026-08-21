@@ -5,7 +5,7 @@ plugins {
     id 'checkstyle'
     id 'pmd'
     id 'jacoco'
-    id 'org.owasp.dependencycheck' version '12.2.2'
+    id 'org.owasp.dependencycheck' version '13.0.0'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION") ?: "DEV-SNAPSHOT"
@@ -32,7 +32,7 @@ repositories {
 // region static code analysis
 
 checkstyle {
-    toolVersion = "13.11.0"
+    toolVersion = "14.0.0"
 }
 
 pmd {
