@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,5 +35,17 @@ public class ExtendedSscsCaseData {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo esaWriteFinalDecisionSevereCriteriaApply;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<String> locationDetailsDefault;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DynamicList locationDetailsRpc;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DynamicList locationDetailsProcessingVenue;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DynamicList locationDetailsHearingVenue;
 
 }
