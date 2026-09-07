@@ -931,7 +931,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "hasUndeterminedPartyConfidentiality", access = READ_ONLY)
     public YesNo hasUndeterminedPartyConfidentiality() {
 
-        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType()) || (isBenefitType(UC)
+        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType(), List.of(UC)) || (isBenefitType(UC)
             && isEmpty(getOtherParties()))) {
             return null;
         }
