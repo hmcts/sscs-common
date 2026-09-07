@@ -540,7 +540,7 @@ public class SscsCaseData implements CaseData {
         }
 
         if (getSscsDocument() != null) {
-            Collections.sort(getSscsDocument());
+            getSscsDocument().sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
         }
 
         if (getScannedDocuments() != null) {
