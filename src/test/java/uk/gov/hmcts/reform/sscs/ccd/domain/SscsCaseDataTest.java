@@ -225,7 +225,7 @@ public class SscsCaseDataTest {
         documents.add(buildSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-        sscsCaseData.setSscsDocument(documents);
+        sscsCaseData.setAndSortSscsDocument(documents);
 
         assertEquals("newest", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("middle", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
@@ -240,7 +240,7 @@ public class SscsCaseDataTest {
         documents.add(buildSscsDocument("third", DocumentType.DECISION_NOTICE, now.toString(), null, null));
 
         SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-        sscsCaseData.setSscsDocument(documents);
+        sscsCaseData.setAndSortSscsDocument(documents);
 
         assertEquals("first", sscsCaseData.getSscsDocument().get(0).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("second", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
@@ -251,7 +251,7 @@ public class SscsCaseDataTest {
     public void setSscsDocumentAcceptsNullWithoutThrowing() {
         final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
 
-        sscsCaseData.setSscsDocument(null);
+        sscsCaseData.setAndSortSscsDocument(null);
 
         assertNull(sscsCaseData.getSscsDocument());
     }
@@ -260,7 +260,7 @@ public class SscsCaseDataTest {
     public void setSscsDocumentAcceptsEmptyListWithoutThrowing() {
         final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
 
-        sscsCaseData.setSscsDocument(List.of());
+        sscsCaseData.setAndSortSscsDocument(List.of());
 
         assertThat(sscsCaseData.getSscsDocument()).isEmpty();
     }
@@ -274,7 +274,7 @@ public class SscsCaseDataTest {
 
         final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
 
-        sscsCaseData.setSscsDocument(immutableDocuments);
+        sscsCaseData.setAndSortSscsDocument(immutableDocuments);
 
         assertThat(sscsCaseData.getSscsDocument())
             .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())

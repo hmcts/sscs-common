@@ -951,7 +951,8 @@ public class SscsCaseData implements CaseData {
         return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
     }
 
-    public void setSscsDocument(List<SscsDocument> sscsDocument) {
+    @JsonIgnore
+    public void setAndSortSscsDocument(List<SscsDocument> sscsDocument) {
         if (isNotEmpty(sscsDocument)) {
             final List<SscsDocument> sortedSscsDocument = new ArrayList<>(sscsDocument);
             sortedSscsDocument.sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
