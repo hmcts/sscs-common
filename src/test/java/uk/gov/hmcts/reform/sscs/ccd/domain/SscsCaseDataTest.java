@@ -248,6 +248,21 @@ public class SscsCaseDataTest {
     }
 
     @Test
+    public void setSscsDocumentSetterSortsByDocumentDateAddedDescending() {
+        final List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null, null));
+        documents.add(buildSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString(), null, null));
+        documents.add(buildSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
+
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        sscsCaseData.setSscsDocument(documents);
+
+        assertThat(sscsCaseData.getSscsDocument())
+            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
+            .containsExactly("newest", "middle", "oldest");
+    }
+
+    @Test
     public void setSscsDocumentAcceptsNullWithoutThrowing() {
         final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
 

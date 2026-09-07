@@ -951,6 +951,10 @@ public class SscsCaseData implements CaseData {
         return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
     }
 
+    public void setSscsDocument(List<SscsDocument> sscsDocument) {
+        setAndSortSscsDocument(sscsDocument);
+    }
+
     @JsonIgnore
     public void setAndSortSscsDocument(List<SscsDocument> sscsDocument) {
         if (isNotEmpty(sscsDocument)) {
