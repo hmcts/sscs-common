@@ -7,8 +7,15 @@ import uk.gov.hmcts.reform.sscs.model.client.JudicialUserSearch;
 
 public final class StringUtils {
 
+    public static final String MASKED_STRING_VALUE = "***";
+
     private StringUtils() {
         //
+    }
+
+    public static String getMaskedNino(String nino) {
+        return nino == null || nino.isEmpty() ? nino : nino.length() > 4
+                ? MASKED_STRING_VALUE + nino.substring(4) : MASKED_STRING_VALUE;
     }
 
     public static String getGramaticallyJoinedStrings(List<String> strings) {

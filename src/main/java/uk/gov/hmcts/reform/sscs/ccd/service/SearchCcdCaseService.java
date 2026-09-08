@@ -57,7 +57,7 @@ public class SearchCcdCaseService {
 
     @Retryable
     public List<SscsCaseDetails> findSubmittedCasesBySearchCriteria(String query, IdamTokens idamTokens) {
-        log.info("findCaseBySearchCriteria {}", query);
+        log.info("finding submitted cases by search criteria");
         return findCaseBySearchCriteriaRetryLogic(
                 query,
                 idamTokens,
@@ -67,7 +67,7 @@ public class SearchCcdCaseService {
 
     @Retryable
     public List<SscsCaseDetails> findAllCasesBySearchCriteria(String query, IdamTokens idamTokens) {
-        log.info("findCaseBySearchCriteria {}", query);
+        log.info("finding all cases by search criteria");
         return findCaseBySearchCriteriaRetryLogic(
                 query,
                 idamTokens,
@@ -104,7 +104,7 @@ public class SearchCcdCaseService {
         SscsCaseDetails sscsCaseDetails = null;
         if (StringUtils.isNotBlank(caseData.getCaseReference())) {
             sscsCaseDetails = this.findCaseByCaseRef(caseData.getCaseReference(), idamTokens);
-            if (sscsCaseDetails != null){
+            if (sscsCaseDetails != null) {
                 sscsCaseDetails = readCcdCaseService.getByCaseId(sscsCaseDetails.getId(), idamTokens);
             }
         }
