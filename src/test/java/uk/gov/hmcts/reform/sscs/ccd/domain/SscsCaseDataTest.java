@@ -218,6 +218,59 @@ class SscsCaseDataTest {
     }
 
     @Test
+    void setSscsDocumentSortsByDocumentDateAddedDescending() {
+        final List<SscsDocument> documents = new ArrayList<>();
+        documents.add(buildSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null, null));
+        documents.add(buildSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString(), null, null));
+        documents.add(buildSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
+
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        sscsCaseData.setSscsDocument(documents);
+
+        assertThat(sscsCaseData.getSscsDocument())
+            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
+            .containsExactly("newest", "middle", "oldest");
+    }
+
+    @Test
+    void setSscsDocumentAcceptsNullWithoutThrowing() {
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+
+        sscsCaseData.setSscsDocument(null);
+
+        assertThat(sscsCaseData.getSscsDocument()).isNull();
+    }
+
+    @Test
+    void setSscsDocumentAcceptsEmptyListWithoutThrowing() {
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+
+        sscsCaseData.setSscsDocument(List.of());
+
+        assertThat(sscsCaseData.getSscsDocument()).isEmpty();
+    }
+
+    @Test
+    void setSscsDocumentSortsAnImmutableListWithoutMutatingTheCallersList() {
+        final List<SscsDocument> immutableDocuments = List.of(
+            buildSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null, null),
+            buildSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString(), null, null),
+            buildSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
+
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+
+        sscsCaseData.setSscsDocument(immutableDocuments);
+
+        assertThat(sscsCaseData.getSscsDocument())
+            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
+            .containsExactly("newest", "middle", "oldest");
+        assertThat(immutableDocuments)
+            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
+            .as("the caller's original immutable list must not be reordered in place")
+            .containsExactly("oldest", "newest", "middle");
+    }
+
+    @Test
     void shouldCreateInfoRequest() throws IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
             ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
