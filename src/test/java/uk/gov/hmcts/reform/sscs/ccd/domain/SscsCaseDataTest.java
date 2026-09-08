@@ -218,30 +218,6 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void sortSscsDocumentByDateSortsDocumentsByDateAddedDescending() {
-        final List<SscsDocument> documents = new ArrayList<>();
-        documents.add(buildSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString(), null, null));
-        documents.add(buildSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString(), null, null));
-        documents.add(buildSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString(), null, null));
-
-        final SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
-        sscsCaseData.sortSscsDocumentByDate();
-
-        assertThat(sscsCaseData.getSscsDocument())
-            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
-            .containsExactly("newest", "middle", "oldest");
-    }
-
-    @Test
-    void sortSscsDocumentByDateDoesNothingWhenSscsDocumentIsNull() {
-        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
-
-        sscsCaseData.sortSscsDocumentByDate();
-
-        assertThat(sscsCaseData.getSscsDocument()).isNull();
-    }
-
-    @Test
     void shouldCreateInfoRequest() throws IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
             ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";
