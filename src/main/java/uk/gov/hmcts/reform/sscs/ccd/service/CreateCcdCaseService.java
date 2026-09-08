@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.service;
 
+import static uk.gov.hmcts.reform.sscs.utility.StringUtils.getMaskedNino;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.retry.annotation.Retryable;
@@ -14,7 +16,6 @@ import uk.gov.hmcts.reform.sscs.ccd.domain.SscsCaseDetails;
 import uk.gov.hmcts.reform.sscs.ccd.exception.CreateCcdCaseException;
 import uk.gov.hmcts.reform.sscs.idam.IdamService;
 import uk.gov.hmcts.reform.sscs.idam.IdamTokens;
-
 
 @Slf4j
 @Service
@@ -41,7 +42,7 @@ public class CreateCcdCaseService {
             throw new CreateCcdCaseException(String.format(
                     "Error found in the case creation or callback process for the ccd case "
                             + "with SC (%s) and ccdID (%s) and Nino (%s) and Benefit Type (%s) and exception: (%s) ",
-                    caseData.getCaseReference(), caseData.getCcdCaseId(), nino,
+                    caseData.getCaseReference(), caseData.getCcdCaseId(), getMaskedNino(nino),
                     caseData.getAppeal().getBenefitType().getCode(), e.getMessage()), e);
         }
     }
@@ -49,14 +50,14 @@ public class CreateCcdCaseService {
     private SscsCaseDetails createCaseInCcd(SscsCaseData caseData, String eventType, String summary, String description, IdamTokens idamTokens, String nino) {
         BenefitType benefitType = caseData.getAppeal() != null ? caseData.getAppeal().getBenefitType() : null;
 
-        log.info("Creating CCD case for Nino {} and benefit type {} with event {}", nino, benefitType, eventType);
+        log.info("Creating CCD case for Nino {} and benefit type {} with event {}", getMaskedNino(nino), benefitType, eventType);
 
         StartEventResponse startEventResponse = ccdClient.startCaseForCaseworker(idamTokens, eventType);
 
         CaseDataContent caseDataContent = sscsCcdConvertService.getCaseDataContent(caseData, startEventResponse, summary, description);
         CaseDetails caseDetails = ccdClient.submitForCaseworker(idamTokens, caseDataContent);
 
-        log.info("Case created with case id {} for nino {}", caseDetails.getId(), nino);
+        log.info("Case created with case id {} for nino {}", caseDetails.getId(), getMaskedNino(nino)); 
 
         return sscsCcdConvertService.getCaseDetails(caseDetails);
     }
