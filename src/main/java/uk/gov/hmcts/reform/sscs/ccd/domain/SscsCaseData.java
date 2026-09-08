@@ -539,9 +539,7 @@ public class SscsCaseData implements CaseData {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
 
-        if (getSscsDocument() != null) {
-            getSscsDocument().sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
-        }
+        sortSscsDocumentByDate();
 
         if (getScannedDocuments() != null) {
             Collections.sort(getScannedDocuments());
@@ -951,19 +949,10 @@ public class SscsCaseData implements CaseData {
         return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
     }
 
-    public void setSscsDocument(List<SscsDocument> sscsDocument) {
-        setAndSortSscsDocument(sscsDocument);
-    }
-
-    @JsonIgnore
-    public void setAndSortSscsDocument(List<SscsDocument> sscsDocument) {
-        if (isNotEmpty(sscsDocument)) {
-            final List<SscsDocument> sortedSscsDocument = new ArrayList<>(sscsDocument);
-            sortedSscsDocument.sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
-            this.sscsDocument = sortedSscsDocument;
-            return;
+    public void sortSscsDocumentByDate() {
+        if (getSscsDocument() != null) {
+            getSscsDocument().sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
         }
-        this.sscsDocument = sscsDocument;
     }
 
 }

@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Comparator.nullsFirst;
 import static java.util.Comparator.nullsLast;
 import static java.util.Comparator.reverseOrder;
 
@@ -21,10 +20,7 @@ import lombok.experimental.SuperBuilder;
 public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
 
     public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = Comparator
-        .comparing((final SscsDocument document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()))
-        .thenComparing(document -> document.getValue().getFirstHalfOfBundleAddition(), nullsFirst(String::compareToIgnoreCase))
-        .thenComparing(document -> document.getValue().getSecondHalfOfBundleAddition(), nullsFirst(Integer::compareTo))
-        .thenComparing(document -> document.getValue().getControlNumber(), nullsFirst(String::compareTo));
+        .comparing((final SscsDocument document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()));
 
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         super(value);
