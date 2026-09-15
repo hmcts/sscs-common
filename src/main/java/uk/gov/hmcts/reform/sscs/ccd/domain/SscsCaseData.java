@@ -15,7 +15,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.ConfidentialityTabBuilder.buildConfidentialityTab;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
-import static uk.gov.hmcts.reform.sscs.ccd.domain.SscsDocument.BY_DOCUMENT_DATE_ADDED_DESCENDING;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
@@ -539,7 +538,8 @@ public class SscsCaseData implements CaseData {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
 
-        updateSscsDocumentSortedByDate(getSscsDocument());
+        this.sscsDocument = sortDocumentsByDateAddedDescending(getSscsDocument());
+        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(getSscsWelshDocuments());
 
         if (getScannedDocuments() != null) {
             Collections.sort(getScannedDocuments());
@@ -950,17 +950,20 @@ public class SscsCaseData implements CaseData {
     }
 
     public void setSscsDocument(List<SscsDocument> sscsDocument) {
-        updateSscsDocumentSortedByDate(sscsDocument);
+        this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
     }
 
-    private void updateSscsDocumentSortedByDate(List<SscsDocument> sscsDocument) {
-        if (isNotEmpty(sscsDocument)) {
-            final List<SscsDocument> sortedSscsDocument = new ArrayList<>(sscsDocument);
-            sortedSscsDocument.sort(BY_DOCUMENT_DATE_ADDED_DESCENDING);
-            this.sscsDocument = sortedSscsDocument;
-        } else {
-            this.sscsDocument = sscsDocument;
+    public void setSscsWelshDocuments(List<SscsWelshDocument> sscsWelshDocuments) {
+        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
+    }
+
+    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
+        if (isNotEmpty(documents)) {
+            final List<T> sortedDocuments = new ArrayList<>(documents);
+            sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
+            return sortedDocuments;
         }
+        return documents;
     }
 
 }

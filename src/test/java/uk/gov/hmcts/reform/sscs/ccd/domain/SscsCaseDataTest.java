@@ -271,6 +271,21 @@ class SscsCaseDataTest {
     }
 
     @Test
+    void setSscsWelshDocumentsSortsByDocumentDateAddedDescending() {
+        final List<SscsWelshDocument> documents = new ArrayList<>();
+        documents.add(buildWelshSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
+        documents.add(buildWelshSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString()));
+        documents.add(buildWelshSscsDocument("middle", DocumentType.DECISION_NOTICE, now.minusDays(1).toString()));
+
+        final SscsCaseData sscsCaseData = SscsCaseData.builder().build();
+        sscsCaseData.setSscsWelshDocuments(documents);
+
+        assertThat(sscsCaseData.getSscsWelshDocuments())
+            .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
+            .containsExactly("newest", "middle", "oldest");
+    }
+
+    @Test
     void shouldCreateInfoRequest() throws IOException {
         String expectedValue = "{\"appellantInfoRequestCollection\":[{\"value\":{\"appellantInfoParagraph\"" +
             ":\"Par1\",\"appellantInfoRequestDate\":\"date1\"},\"id\":null}]}";

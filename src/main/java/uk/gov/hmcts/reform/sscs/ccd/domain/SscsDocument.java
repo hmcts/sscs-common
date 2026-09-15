@@ -1,8 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Comparator.nullsLast;
-import static java.util.Comparator.reverseOrder;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,8 +16,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
 
-    public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = Comparator
-        .comparing((final SscsDocument document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()));
+    public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDocumentDateAddedDescending();
 
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         super(value);
