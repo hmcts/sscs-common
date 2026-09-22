@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.sort;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
@@ -957,10 +958,21 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
     }
 
+    @JsonIgnore
     private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
         if (isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
             sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
+            return sortedDocuments;
+        }
+        return documents;
+    }
+
+    @JsonIgnore
+    public <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByBundle(final List<T> documents) {
+        if (isNotEmpty(documents)) {
+            final List<T> sortedDocuments = new ArrayList<>(documents);
+            sort(sortedDocuments);
             return sortedDocuments;
         }
         return documents;
