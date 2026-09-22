@@ -271,7 +271,7 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void setSscsWelshDocumentsSortsByDateAddedAscendingWhenNoBundleAddition() {
+    void setSscsWelshDocumentsSortsByDocumentDateAddedDescending() {
         final List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
         documents.add(buildWelshSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString()));
@@ -282,7 +282,7 @@ class SscsCaseDataTest {
 
         assertThat(sscsCaseData.getSscsWelshDocuments())
             .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
-            .containsExactly("oldest", "middle", "newest");
+            .containsExactly("newest", "middle", "oldest");
     }
 
     @Test
@@ -1466,29 +1466,32 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void setSscsDocumentBundleShouldSortDocumentsByDateAddedDescending() {
-        final SscsDocument documentJan = buildSscsDocumentWithDateAdded("2020-01-01");
-        final SscsDocument documentMar = buildSscsDocumentWithDateAdded("2020-03-01");
-        final List<SscsDocument> documents = new ArrayList<>(List.of(documentJan, documentMar));
+    void setSscsDocumentBundleShouldSortDocumentsByBundleAddition() {
+        final SscsDocument documentB1 = buildSscsDocumentWithBundleAddition("B1");
+        final SscsDocument documentA2 = buildSscsDocumentWithBundleAddition("A2");
+        final SscsDocument documentA10 = buildSscsDocumentWithBundleAddition("A10");
+        final List<SscsDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
         final SscsCaseData caseData = new SscsCaseData();
 
         caseData.setSscsDocumentBundle(documents);
 
-        assertThat(caseData.getSscsDocument()).containsExactly(documentMar, documentJan);
+        assertThat(caseData.getSscsDocument()).containsExactly(documentA2, documentA10, documentB1);
+        assertThat(documents).containsExactly(documentB1, documentA2, documentA10);
     }
 
     @Test
-    void setSscsWelshDocumentsShouldSortDocumentsByBundleAddition() {
-        final SscsWelshDocument documentB1 = buildSscsWelshDocumentWithBundleAddition("B1");
-        final SscsWelshDocument documentA2 = buildSscsWelshDocumentWithBundleAddition("A2");
-        final SscsWelshDocument documentA10 = buildSscsWelshDocumentWithBundleAddition("A10");
-        final List<SscsWelshDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
+    void setSscsWelshDocumentsShouldSortDocumentsByDateAddedDescending() {
+        final SscsWelshDocument documentJan = buildSscsWelshDocumentWithDateAdded("2020-01-01");
+        final SscsWelshDocument documentMar = buildSscsWelshDocumentWithDateAdded("2020-03-01");
+        final SscsWelshDocument documentFeb = buildSscsWelshDocumentWithDateAdded("2020-02-01");
+        final SscsWelshDocument documentNoDate = buildSscsWelshDocumentWithDateAdded(null);
+        final List<SscsWelshDocument> documents = new ArrayList<>(List.of(documentJan, documentMar, documentFeb, documentNoDate));
         final SscsCaseData caseData = new SscsCaseData();
 
         caseData.setSscsWelshDocuments(documents);
 
-        assertThat(caseData.getSscsWelshDocuments()).containsExactly(documentA2, documentA10, documentB1);
-        assertThat(documents).containsExactly(documentB1, documentA2, documentA10);
+        assertThat(caseData.getSscsWelshDocuments()).containsExactly(documentMar, documentFeb, documentJan, documentNoDate);
+        assertThat(documents).containsExactly(documentJan, documentMar, documentFeb, documentNoDate);
     }
 
     @Test
@@ -1528,9 +1531,21 @@ class SscsCaseDataTest {
             .build();
     }
 
+    private SscsWelshDocument buildSscsWelshDocumentWithDateAdded(final String documentDateAdded) {
+        return SscsWelshDocument.builder()
+            .value(SscsWelshDocumentDetails.builder().documentDateAdded(documentDateAdded).build())
+            .build();
+    }
+
     private SscsDocument buildSscsDocumentWithDateAdded(final String documentDateAdded) {
         return SscsDocument.builder()
             .value(SscsDocumentDetails.builder().documentDateAdded(documentDateAdded).build())
+            .build();
+    }
+
+    private SscsDocument buildSscsDocumentWithBundleAddition(final String bundleAddition) {
+        return SscsDocument.builder()
+            .value(SscsDocumentDetails.builder().bundleAddition(bundleAddition).build())
             .build();
     }
 

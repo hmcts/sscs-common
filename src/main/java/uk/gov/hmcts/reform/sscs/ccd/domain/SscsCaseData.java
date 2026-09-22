@@ -956,11 +956,11 @@ public class SscsCaseData implements CaseData {
     }
 
     public void setSscsDocumentBundle(List<SscsDocument> sscsDocument) {
-        this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
+        this.sscsDocument = sortDocumentsByBundle(sscsDocument);
     }
 
     public void setSscsWelshDocuments(List<SscsWelshDocument> sscsWelshDocuments) {
-        this.sscsWelshDocuments = sortDocumentsByBundle(sscsWelshDocuments);
+        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
     }
 
     public void setSscsWelshDocumentsBundle(List<SscsWelshDocument> sscsWelshDocuments) {
