@@ -955,12 +955,20 @@ public class SscsCaseData implements CaseData {
         this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
     }
 
+    public void setSscsDocumentBundle(List<SscsDocument> sscsDocument) {
+        this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
+    }
+
     public void setSscsWelshDocuments(List<SscsWelshDocument> sscsWelshDocuments) {
-        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
+        this.sscsWelshDocuments = sortDocumentsByBundle(sscsWelshDocuments);
+    }
+
+    public void setSscsWelshDocumentsBundle(List<SscsWelshDocument> sscsWelshDocuments) {
+        this.sscsWelshDocuments = sortDocumentsByBundle(sscsWelshDocuments);
     }
 
     @JsonIgnore
-    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
+    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
         if (CollectionUtils.isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
             sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
@@ -970,7 +978,7 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByBundle(final List<T> documents) {
+    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByBundle(final List<T> documents) {
         if (CollectionUtils.isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
             sort(sortedDocuments);

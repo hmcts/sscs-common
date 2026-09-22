@@ -271,7 +271,7 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void setSscsWelshDocumentsSortsByDocumentDateAddedDescending() {
+    void setSscsWelshDocumentsSortsByDateAddedAscendingWhenNoBundleAddition() {
         final List<SscsWelshDocument> documents = new ArrayList<>();
         documents.add(buildWelshSscsDocument("oldest", DocumentType.DECISION_NOTICE, now.minusDays(2).toString()));
         documents.add(buildWelshSscsDocument("newest", DocumentType.DECISION_NOTICE, now.toString()));
@@ -282,7 +282,7 @@ class SscsCaseDataTest {
 
         assertThat(sscsCaseData.getSscsWelshDocuments())
             .extracting(document -> document.getValue().getDocumentLink().getDocumentUrl())
-            .containsExactly("newest", "middle", "oldest");
+            .containsExactly("oldest", "middle", "newest");
     }
 
     @Test
@@ -1432,67 +1432,99 @@ class SscsCaseDataTest {
     }
 
     @Test
-    void sortDocumentsByDateAddedDescendingShouldReturnDocumentsSortedByDateDescendingWithNullsLast() {
+    void setSscsDocumentShouldSortDocumentsByDateAddedDescendingWithNullsLast() {
         final SscsDocument documentJan = buildSscsDocumentWithDateAdded("2020-01-01");
         final SscsDocument documentMar = buildSscsDocumentWithDateAdded("2020-03-01");
         final SscsDocument documentFeb = buildSscsDocumentWithDateAdded("2020-02-01");
         final SscsDocument documentNoDate = buildSscsDocumentWithDateAdded(null);
         final List<SscsDocument> documents = new ArrayList<>(List.of(documentJan, documentMar, documentFeb, documentNoDate));
+        final SscsCaseData caseData = new SscsCaseData();
 
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(documents);
+        caseData.setSscsDocument(documents);
 
-        assertThat(result).containsExactly(documentMar, documentFeb, documentJan, documentNoDate);
+        assertThat(caseData.getSscsDocument()).containsExactly(documentMar, documentFeb, documentJan, documentNoDate);
         assertThat(documents).containsExactly(documentJan, documentMar, documentFeb, documentNoDate);
     }
 
     @Test
-    void sortDocumentsByDateAddedDescendingShouldReturnNullWhenDocumentsIsNull() {
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(null);
+    void setSscsDocumentShouldSetNullWhenDocumentsIsNull() {
+        final SscsCaseData caseData = new SscsCaseData();
 
-        assertThat(result).isNull();
+        caseData.setSscsDocument(null);
+
+        assertThat(caseData.getSscsDocument()).isNull();
     }
 
     @Test
-    void sortDocumentsByDateAddedDescendingShouldReturnSameEmptyListWhenDocumentsIsEmpty() {
+    void setSscsDocumentShouldKeepSameEmptyListWhenDocumentsIsEmpty() {
         final List<SscsDocument> documents = new ArrayList<>();
+        final SscsCaseData caseData = new SscsCaseData();
 
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(documents);
+        caseData.setSscsDocument(documents);
 
-        assertThat(result).isSameAs(documents);
+        assertThat(caseData.getSscsDocument()).isSameAs(documents);
     }
 
     @Test
-    void sortDocumentsByBundleShouldReturnDocumentsSortedByBundleAddition() {
-        final SscsDocument documentB1 = buildSscsDocumentWithBundleAddition("B1");
-        final SscsDocument documentA2 = buildSscsDocumentWithBundleAddition("A2");
-        final SscsDocument documentA10 = buildSscsDocumentWithBundleAddition("A10");
-        final List<SscsDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
+    void setSscsDocumentBundleShouldSortDocumentsByDateAddedDescending() {
+        final SscsDocument documentJan = buildSscsDocumentWithDateAdded("2020-01-01");
+        final SscsDocument documentMar = buildSscsDocumentWithDateAdded("2020-03-01");
+        final List<SscsDocument> documents = new ArrayList<>(List.of(documentJan, documentMar));
+        final SscsCaseData caseData = new SscsCaseData();
 
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(documents);
+        caseData.setSscsDocumentBundle(documents);
 
-        assertThat(result).containsExactly(documentA2, documentA10, documentB1);
+        assertThat(caseData.getSscsDocument()).containsExactly(documentMar, documentJan);
+    }
+
+    @Test
+    void setSscsWelshDocumentsShouldSortDocumentsByBundleAddition() {
+        final SscsWelshDocument documentB1 = buildSscsWelshDocumentWithBundleAddition("B1");
+        final SscsWelshDocument documentA2 = buildSscsWelshDocumentWithBundleAddition("A2");
+        final SscsWelshDocument documentA10 = buildSscsWelshDocumentWithBundleAddition("A10");
+        final List<SscsWelshDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
+        final SscsCaseData caseData = new SscsCaseData();
+
+        caseData.setSscsWelshDocuments(documents);
+
+        assertThat(caseData.getSscsWelshDocuments()).containsExactly(documentA2, documentA10, documentB1);
         assertThat(documents).containsExactly(documentB1, documentA2, documentA10);
     }
 
     @Test
-    void sortDocumentsByBundleShouldReturnNullWhenDocumentsIsNull() {
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(null);
+    void setSscsWelshDocumentsShouldSetNullWhenDocumentsIsNull() {
+        final SscsCaseData caseData = new SscsCaseData();
 
-        assertThat(result).isNull();
+        caseData.setSscsWelshDocuments(null);
+
+        assertThat(caseData.getSscsWelshDocuments()).isNull();
     }
 
     @Test
-    void sortDocumentsByBundleShouldReturnSameEmptyListWhenDocumentsIsEmpty() {
-        final List<SscsDocument> documents = new ArrayList<>();
+    void setSscsWelshDocumentsShouldKeepSameEmptyListWhenDocumentsIsEmpty() {
+        final List<SscsWelshDocument> documents = new ArrayList<>();
+        final SscsCaseData caseData = new SscsCaseData();
 
-        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(documents);
+        caseData.setSscsWelshDocuments(documents);
 
-        assertThat(result).isSameAs(documents);
+        assertThat(caseData.getSscsWelshDocuments()).isSameAs(documents);
     }
 
-    private SscsDocument buildSscsDocumentWithBundleAddition(final String bundleAddition) {
-        return SscsDocument.builder()
-            .value(SscsDocumentDetails.builder().bundleAddition(bundleAddition).build())
+    @Test
+    void setSscsWelshDocumentsBundleShouldSortDocumentsByBundleAddition() {
+        final SscsWelshDocument documentB1 = buildSscsWelshDocumentWithBundleAddition("B1");
+        final SscsWelshDocument documentA2 = buildSscsWelshDocumentWithBundleAddition("A2");
+        final List<SscsWelshDocument> documents = new ArrayList<>(List.of(documentB1, documentA2));
+        final SscsCaseData caseData = new SscsCaseData();
+
+        caseData.setSscsWelshDocumentsBundle(documents);
+
+        assertThat(caseData.getSscsWelshDocuments()).containsExactly(documentA2, documentB1);
+    }
+
+    private SscsWelshDocument buildSscsWelshDocumentWithBundleAddition(final String bundleAddition) {
+        return SscsWelshDocument.builder()
+            .value(SscsWelshDocumentDetails.builder().bundleAddition(bundleAddition).build())
             .build();
     }
 
