@@ -1,8 +1,5 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import static java.util.Comparator.nullsLast;
-import static java.util.Comparator.reverseOrder;
-
 import com.fasterxml.jackson.annotation.*;
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -12,10 +9,6 @@ import lombok.experimental.SuperBuilder;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocument<D extends AbstractDocumentDetails> implements Comparable<AbstractDocument> {
-
-    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> Comparator<T> byDocumentDateAddedDescending() {
-        return Comparator.comparing((final T document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()));
-    }
 
     private String id;
 

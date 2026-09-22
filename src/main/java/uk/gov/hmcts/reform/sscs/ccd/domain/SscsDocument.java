@@ -1,10 +1,6 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Comparator;
+import com.fasterxml.jackson.annotation.*;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
@@ -15,8 +11,6 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(callSuper = false)
 public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
-
-    public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDocumentDateAddedDescending();
 
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         super(value);
