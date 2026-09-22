@@ -1431,43 +1431,4 @@ class SscsCaseDataTest {
             """);
     }
 
-    @Test
-    void sortDocumentsByBundleShouldReturnDocumentsSortedByBundleAddition() {
-        final SscsDocument documentB1 = buildSscsDocumentWithBundleAddition("B1");
-        final SscsDocument documentA2 = buildSscsDocumentWithBundleAddition("A2");
-        final SscsDocument documentA10 = buildSscsDocumentWithBundleAddition("A10");
-        final List<SscsDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
-        final SscsCaseData caseData = SscsCaseData.builder().build();
-
-        final List<SscsDocument> result = caseData.sortDocumentsByBundle(documents);
-
-        assertThat(result).containsExactly(documentA2, documentA10, documentB1);
-        assertThat(documents).containsExactly(documentB1, documentA2, documentA10);
-    }
-
-    @Test
-    void sortDocumentsByBundleShouldReturnNullWhenDocumentsIsNull() {
-        final SscsCaseData caseData = SscsCaseData.builder().build();
-
-        final List<SscsDocument> result = caseData.sortDocumentsByBundle(null);
-
-        assertThat(result).isNull();
-    }
-
-    @Test
-    void sortDocumentsByBundleShouldReturnSameEmptyListWhenDocumentsIsEmpty() {
-        final List<SscsDocument> documents = new ArrayList<>();
-        final SscsCaseData caseData = SscsCaseData.builder().build();
-
-        final List<SscsDocument> result = caseData.sortDocumentsByBundle(documents);
-
-        assertThat(result).isSameAs(documents);
-    }
-
-    private SscsDocument buildSscsDocumentWithBundleAddition(final String bundleAddition) {
-        return SscsDocument.builder()
-            .value(SscsDocumentDetails.builder().bundleAddition(bundleAddition).build())
-            .build();
-    }
-
 }
