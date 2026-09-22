@@ -33,23 +33,6 @@ public class PanelMemberComposition {
     private String panelCompositionMemberMedical2;
     private List<String> panelCompositionDisabilityAndFqMember = new ArrayList<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PanelMemberComposition that = (PanelMemberComposition) o;
-        return Objects.equals(districtTribunalJudge, that.districtTribunalJudge)
-                && Objects.equals(panelCompositionJudge, that.panelCompositionJudge)
-                && Objects.equals(panelCompositionMemberMedical1, that.panelCompositionMemberMedical1)
-                && Objects.equals(panelCompositionMemberMedical2, that.panelCompositionMemberMedical2)
-                && new HashSet<>(panelCompositionDisabilityAndFqMember)
-                .containsAll(that.panelCompositionDisabilityAndFqMember);
-    }
-
     public PanelMemberComposition(List<String> johTiers) {
         for (String johTier : johTiers) {
             switch (getPanelMemberType(johTier)) {
@@ -58,12 +41,12 @@ public class PanelMemberComposition {
                     this.panelCompositionDisabilityAndFqMember.add(johTier);
                     break;
                 case TRIBUNAL_MEMBER_MEDICAL:
-                    if(nonNull(this.panelCompositionMemberMedical1)) {
+                    if (nonNull(this.panelCompositionMemberMedical1)) {
                         this.panelCompositionMemberMedical2 = johTier;
                     } else {
                         this.panelCompositionMemberMedical1 = johTier;
                     }
-                break;
+                    break;
                 case REGIONAL_MEDICAL_MEMBER:
                     if (nonNull(this.panelCompositionMemberMedical1)) {
                         this.panelCompositionMemberMedical2 = TRIBUNAL_MEMBER_MEDICAL.toRef();
@@ -81,6 +64,23 @@ public class PanelMemberComposition {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PanelMemberComposition that = (PanelMemberComposition) o;
+        return Objects.equals(districtTribunalJudge, that.districtTribunalJudge)
+            && Objects.equals(panelCompositionJudge, that.panelCompositionJudge)
+            && Objects.equals(panelCompositionMemberMedical1, that.panelCompositionMemberMedical1)
+            && Objects.equals(panelCompositionMemberMedical2, that.panelCompositionMemberMedical2)
+            && new HashSet<>(panelCompositionDisabilityAndFqMember)
+            .containsAll(that.panelCompositionDisabilityAndFqMember);
+    }
+
     @JsonIgnore
     public List<String> getJohTiers() {
         List<String> roleTypes = new ArrayList<>();
@@ -88,7 +88,7 @@ public class PanelMemberComposition {
         addIgnoreNull(roleTypes, this.panelCompositionJudge);
         addIgnoreNull(roleTypes, this.panelCompositionMemberMedical1);
         addIgnoreNull(roleTypes, this.panelCompositionMemberMedical2);
-        if(nonNull(this.panelCompositionDisabilityAndFqMember)) {
+        if (nonNull(this.panelCompositionDisabilityAndFqMember)) {
             roleTypes.addAll(this.panelCompositionDisabilityAndFqMember);
         }
         return roleTypes;
@@ -97,10 +97,10 @@ public class PanelMemberComposition {
     @JsonIgnore
     public boolean isEmpty() {
         return isNull(panelCompositionJudge) &&
-                isNull(districtTribunalJudge) &&
-                isNull(panelCompositionMemberMedical1) &&
-                isNull(panelCompositionMemberMedical2) &&
-                ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
+            isNull(districtTribunalJudge) &&
+            isNull(panelCompositionMemberMedical1) &&
+            isNull(panelCompositionMemberMedical2) &&
+            ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
     }
 
     @JsonIgnore
@@ -134,5 +134,13 @@ public class PanelMemberComposition {
     public void clearMedicalMembers() {
         panelCompositionMemberMedical1 = null;
         panelCompositionMemberMedical2 = null;
+    }
+
+    @JsonIgnore
+    public boolean isJudgeOnly() {
+        return (nonNull(panelCompositionJudge) || nonNull(districtTribunalJudge))
+            && isNull(panelCompositionMemberMedical1)
+            && isNull(panelCompositionMemberMedical2)
+            && ObjectUtils.isEmpty(panelCompositionDisabilityAndFqMember);
     }
 }
