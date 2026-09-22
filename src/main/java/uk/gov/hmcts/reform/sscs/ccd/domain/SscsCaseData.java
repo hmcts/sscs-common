@@ -7,6 +7,7 @@ import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
+
 import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
@@ -15,6 +16,7 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.ConfidentialityTabBuilder.buildConfidentialityTab;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
+
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
@@ -538,8 +540,9 @@ public class SscsCaseData implements CaseData {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
 
-        this.sscsDocument = sortDocumentsByDateAddedDescending(getSscsDocument());
-        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(getSscsWelshDocuments());
+        if (getSscsDocument() != null) {
+            Collections.sort(getSscsDocument());
+        }
 
         if (getScannedDocuments() != null) {
             Collections.sort(getScannedDocuments());
@@ -947,23 +950,6 @@ public class SscsCaseData implements CaseData {
             || appellantConfidentialitySelection == YesNoUndetermined.UNDETERMINED;
 
         return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
-    }
-
-    public void setSscsDocument(List<SscsDocument> sscsDocument) {
-        this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
-    }
-
-    public void setSscsWelshDocuments(List<SscsWelshDocument> sscsWelshDocuments) {
-        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
-    }
-
-    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
-        if (isNotEmpty(documents)) {
-            final List<T> sortedDocuments = new ArrayList<>(documents);
-            sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
-            return sortedDocuments;
-        }
-        return documents;
     }
 
 }
