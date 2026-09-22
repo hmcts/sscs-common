@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.sort;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
@@ -46,6 +47,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -958,10 +960,20 @@ public class SscsCaseData implements CaseData {
     }
 
     @JsonIgnore
-    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
-        if (isNotEmpty(documents)) {
+    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
+        if (CollectionUtils.isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
             sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
+            return sortedDocuments;
+        }
+        return documents;
+    }
+
+    @JsonIgnore
+    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByBundle(final List<T> documents) {
+        if (CollectionUtils.isNotEmpty(documents)) {
+            final List<T> sortedDocuments = new ArrayList<>(documents);
+            sort(sortedDocuments);
             return sortedDocuments;
         }
         return documents;

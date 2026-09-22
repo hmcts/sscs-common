@@ -1431,4 +1431,75 @@ class SscsCaseDataTest {
             """);
     }
 
+    @Test
+    void sortDocumentsByDateAddedDescendingShouldReturnDocumentsSortedByDateDescendingWithNullsLast() {
+        final SscsDocument documentJan = buildSscsDocumentWithDateAdded("2020-01-01");
+        final SscsDocument documentMar = buildSscsDocumentWithDateAdded("2020-03-01");
+        final SscsDocument documentFeb = buildSscsDocumentWithDateAdded("2020-02-01");
+        final SscsDocument documentNoDate = buildSscsDocumentWithDateAdded(null);
+        final List<SscsDocument> documents = new ArrayList<>(List.of(documentJan, documentMar, documentFeb, documentNoDate));
+
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(documents);
+
+        assertThat(result).containsExactly(documentMar, documentFeb, documentJan, documentNoDate);
+        assertThat(documents).containsExactly(documentJan, documentMar, documentFeb, documentNoDate);
+    }
+
+    @Test
+    void sortDocumentsByDateAddedDescendingShouldReturnNullWhenDocumentsIsNull() {
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(null);
+
+        assertThat(result).isNull();
+    }
+
+    @Test
+    void sortDocumentsByDateAddedDescendingShouldReturnSameEmptyListWhenDocumentsIsEmpty() {
+        final List<SscsDocument> documents = new ArrayList<>();
+
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByDateAddedDescending(documents);
+
+        assertThat(result).isSameAs(documents);
+    }
+
+    @Test
+    void sortDocumentsByBundleShouldReturnDocumentsSortedByBundleAddition() {
+        final SscsDocument documentB1 = buildSscsDocumentWithBundleAddition("B1");
+        final SscsDocument documentA2 = buildSscsDocumentWithBundleAddition("A2");
+        final SscsDocument documentA10 = buildSscsDocumentWithBundleAddition("A10");
+        final List<SscsDocument> documents = new ArrayList<>(List.of(documentB1, documentA2, documentA10));
+
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(documents);
+
+        assertThat(result).containsExactly(documentA2, documentA10, documentB1);
+        assertThat(documents).containsExactly(documentB1, documentA2, documentA10);
+    }
+
+    @Test
+    void sortDocumentsByBundleShouldReturnNullWhenDocumentsIsNull() {
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(null);
+
+        assertThat(result).isNull();
+    }
+
+    @Test
+    void sortDocumentsByBundleShouldReturnSameEmptyListWhenDocumentsIsEmpty() {
+        final List<SscsDocument> documents = new ArrayList<>();
+
+        final List<SscsDocument> result = SscsCaseData.sortDocumentsByBundle(documents);
+
+        assertThat(result).isSameAs(documents);
+    }
+
+    private SscsDocument buildSscsDocumentWithBundleAddition(final String bundleAddition) {
+        return SscsDocument.builder()
+            .value(SscsDocumentDetails.builder().bundleAddition(bundleAddition).build())
+            .build();
+    }
+
+    private SscsDocument buildSscsDocumentWithDateAdded(final String documentDateAdded) {
+        return SscsDocument.builder()
+            .value(SscsDocumentDetails.builder().documentDateAdded(documentDateAdded).build())
+            .build();
+    }
+
 }
