@@ -957,6 +957,7 @@ public class SscsCaseData implements CaseData {
         this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
     }
 
+    @JsonIgnore
     private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
         if (isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
