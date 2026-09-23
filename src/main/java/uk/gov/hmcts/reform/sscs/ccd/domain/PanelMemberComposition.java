@@ -33,6 +33,23 @@ public class PanelMemberComposition {
     private String panelCompositionMemberMedical2;
     private List<String> panelCompositionDisabilityAndFqMember = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PanelMemberComposition that = (PanelMemberComposition) o;
+        return Objects.equals(districtTribunalJudge, that.districtTribunalJudge)
+            && Objects.equals(panelCompositionJudge, that.panelCompositionJudge)
+            && Objects.equals(panelCompositionMemberMedical1, that.panelCompositionMemberMedical1)
+            && Objects.equals(panelCompositionMemberMedical2, that.panelCompositionMemberMedical2)
+            && new HashSet<>(panelCompositionDisabilityAndFqMember)
+            .containsAll(that.panelCompositionDisabilityAndFqMember);
+    }
+
     public PanelMemberComposition(List<String> johTiers) {
         for (String johTier : johTiers) {
             switch (getPanelMemberType(johTier)) {
@@ -62,23 +79,6 @@ public class PanelMemberComposition {
                     break;
             }
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PanelMemberComposition that = (PanelMemberComposition) o;
-        return Objects.equals(districtTribunalJudge, that.districtTribunalJudge)
-            && Objects.equals(panelCompositionJudge, that.panelCompositionJudge)
-            && Objects.equals(panelCompositionMemberMedical1, that.panelCompositionMemberMedical1)
-            && Objects.equals(panelCompositionMemberMedical2, that.panelCompositionMemberMedical2)
-            && new HashSet<>(panelCompositionDisabilityAndFqMember)
-            .containsAll(that.panelCompositionDisabilityAndFqMember);
     }
 
     @JsonIgnore
