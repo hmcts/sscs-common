@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberComposition.FQPM_REF;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.DISTRICT_TRIBUNAL_JUDGE;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.PanelMemberType.REGIONAL_MEDICAL_MEMBER;
@@ -17,6 +16,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -26,7 +26,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Populate Panel composition from role types with No medical member")
     @Test
-    public void createPanelCompositionFromJohTiersNoMedicalMember() {
+    void createPanelCompositionFromJohTiersNoMedicalMember() {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -42,7 +42,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Populate Panel composition from role types with one medical member")
     @Test
-    public void createPanelCompositionFromJohTiersWithOneMedicalMember() {
+    void createPanelCompositionFromJohTiersWithOneMedicalMember() {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
                 TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -59,7 +59,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Get JOH tiers from panelComposition with tribunal judge")
     @Test
-    public void shouldGetJohTiersFromPanelCompositionWithTribunalJudge() {
+    void shouldGetJohTiersFromPanelCompositionWithTribunalJudge() {
         var johTiers = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_MEDICAL.toRef(),
                 TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -74,7 +74,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Get JOH tiers from panelComposition with dtj and no fqpm")
     @Test
-    public void shouldGetJohTiersFromPanelCompositionWithDtjAndNoFqpm() {
+    void shouldGetJohTiersFromPanelCompositionWithDtjAndNoFqpm() {
         var johTiers =
                 List.of(TRIBUNAL_MEMBER_MEDICAL.toRef(), DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -89,7 +89,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Populate Panel composition from role types with two medical members")
     @Test
-    public void createPanelCompositionFromJohTiersWithTwoMedicalMembers() {
+    void createPanelCompositionFromJohTiersWithTwoMedicalMembers() {
         var roleTypes = List.of(TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_MEDICAL.toRef(),TRIBUNAL_MEMBER_MEDICAL.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -107,7 +107,7 @@ class PanelMemberCompositionTest {
 
     @DisplayName("Populate Panel composition from role types with regional and tribunal medical members")
     @Test
-    public void createPanelCompositionFromJohTiersWithRegionalAndTribunalMedicalMembers() {
+    void createPanelCompositionFromJohTiersWithRegionalAndTribunalMedicalMembers() {
         var roleTypes = List.of(DISTRICT_TRIBUNAL_JUDGE.toRef(), TRIBUNAL_MEMBER_FINANCIALLY_QUALIFIED.toRef(),
                 TRIBUNAL_MEMBER_MEDICAL.toRef(),REGIONAL_MEDICAL_MEMBER.toRef(), TRIBUNAL_MEMBER_DISABILITY.toRef());
         var panelComposition = PanelMemberComposition.builder()
@@ -216,6 +216,26 @@ class PanelMemberCompositionTest {
             .build();
 
         assertThat(panelMemberComposition.hasMedicalMember()).isTrue();
+    }
+
+    @ParameterizedTest
+    @MethodSource("judgeOnlyScenarios")
+    void isJudgeOnly_shouldReturnExpectedResult(
+            final String judge,
+            final String districtTribunalJudge,
+            final String medical1,
+            final String medical2,
+            final List<String> disabilityAndFqMember,
+            final boolean expected) {
+        final PanelMemberComposition panelComposition = PanelMemberComposition.builder()
+            .panelCompositionJudge(judge)
+            .districtTribunalJudge(districtTribunalJudge)
+            .panelCompositionMemberMedical1(medical1)
+            .panelCompositionMemberMedical2(medical2)
+            .panelCompositionDisabilityAndFqMember(disabilityAndFqMember)
+            .build();
+
+        assertThat(panelComposition.isJudgeOnly()).isEqualTo(expected);
     }
 
     @Test
@@ -327,12 +347,29 @@ class PanelMemberCompositionTest {
     }
 
     private void assertEqualsPanelComposition(PanelMemberComposition expected, PanelMemberComposition actual) {
-        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
-        assertEquals(expected.getDistrictTribunalJudge(), actual.getDistrictTribunalJudge());
-        assertEquals(expected.getPanelCompositionJudge(), actual.getPanelCompositionJudge());
-        assertEquals(expected.getPanelCompositionMemberMedical1(), actual.getPanelCompositionMemberMedical1());
-        assertEquals(expected.getPanelCompositionMemberMedical2(), actual.getPanelCompositionMemberMedical2());
-        assertTrue(expected.getPanelCompositionDisabilityAndFqMember().containsAll(actual.getPanelCompositionDisabilityAndFqMember()));
+        assertSoftly(softly -> {
+            softly.assertThat(actual.getPanelCompositionJudge()).isEqualTo(expected.getPanelCompositionJudge());
+            softly.assertThat(actual.getDistrictTribunalJudge()).isEqualTo(expected.getDistrictTribunalJudge());
+            softly.assertThat(actual.getPanelCompositionMemberMedical1()).isEqualTo(expected.getPanelCompositionMemberMedical1());
+            softly.assertThat(actual.getPanelCompositionMemberMedical2()).isEqualTo(expected.getPanelCompositionMemberMedical2());
+            softly.assertThat(expected.getPanelCompositionDisabilityAndFqMember())
+                    .containsAll(actual.getPanelCompositionDisabilityAndFqMember());
+        });
+    }
+
+    private static Stream<Arguments> judgeOnlyScenarios() {
+        return Stream.of(
+                Arguments.of("judge", null, null, null, null, true),
+                Arguments.of("judge", null, null, null, new ArrayList<>(), true),
+                Arguments.of(null, "dtj", null, null, null, true),
+                Arguments.of("judge", "dtj", null, null, new ArrayList<>(), true),
+                Arguments.of(null, null, null, null, null, false),
+                Arguments.of(null, null, null, null, new ArrayList<>(), false),
+                Arguments.of("judge", null, "med1", null, null, false),
+                Arguments.of("judge", null, null, "med2", null, false),
+                Arguments.of("judge", null, null, null, List.of("58"), false),
+                Arguments.of(null, "dtj", "med1", "med2", List.of("58"), false)
+        );
     }
 
     private static Stream<List<String>> listsWithoutFqpm() {
