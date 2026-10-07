@@ -1,17 +1,17 @@
 package uk.gov.hmcts.reform.sscs.idam;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.StringContains.containsString;
-import static org.mockito.ArgumentMatchers.eq;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.atMostOnce;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +24,12 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.util.ReflectionTestUtils;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.idam.client.IdamClient;
 import uk.gov.hmcts.reform.idam.client.models.UserInfo;
 
 @ExtendWith(MockitoExtension.class)
-public class IdamServiceTest {
+class IdamServiceTest {
 
     @Mock
     private AuthTokenGenerator authTokenGenerator;
@@ -39,112 +38,115 @@ public class IdamServiceTest {
     private IdamClient idamClient;
 
     @Mock
-    private Appender mockAppender;
+    private Appender<ILoggingEvent> mockAppender;
 
     @Captor
-    private ArgumentCaptor captorLoggingEvent;
+    private ArgumentCaptor<ILoggingEvent> captorLoggingEvent;
 
     private Authorize authToken;
     private IdamService idamService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         authToken = new Authorize("redirect/", "authCode", "access");
         idamService = new IdamService(authTokenGenerator, idamClient);
 
-        ReflectionTestUtils.setField(idamService, "idamOauth2UserEmail", "email");
-        ReflectionTestUtils.setField(idamService, "idamOauth2UserPassword", "pass");
+        setField(idamService, "idamOauth2UserEmail", "email");
+        setField(idamService, "idamOauth2UserPassword", "pass");
 
         final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
         logger.addAppender(mockAppender);
     }
 
     @AfterEach
-    public void teardown() {
+    void teardown() {
         final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
         logger.detachAppender(mockAppender);
     }
 
     @Test
-    public void shouldReturnAuthTokenGivenNewRequestWithAppropriateLogMessages() {
-        String auth = "auth";
+    void shouldReturnAuthTokenGivenNewRequestWithAppropriateLogMessages() {
+        final String auth = "auth";
         when(authTokenGenerator.generate()).thenReturn(auth);
 
         when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
 
-        UserInfo expectedUserDetails =
+        final UserInfo expectedUserDetails =
                 new UserInfo("16", "16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
 
-        given(idamClient.getUserInfo(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+        given(idamClient.getUserInfo("Bearer " + authToken.getAccessToken())).willReturn(expectedUserDetails);
 
-        IdamTokens idamTokens = idamService.getIdamTokens();
-        assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
-        assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
+        final IdamTokens idamTokens = idamService.getIdamTokens();
+        assertIdamTokens(idamTokens, expectedUserDetails);
 
         verify(mockAppender, times(5)).doAppend(captorLoggingEvent.capture());
-        final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
+        List<ILoggingEvent> loggingEvent = captorLoggingEvent.getAllValues();
 
-        //Check the message being logged is correct
-        assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), containsString("Attempting to obtain token, retry attempt"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
-        assertThat(loggingEvent.get(3).getFormattedMessage(), is("Requesting idam access token successful"));
-        assertThat(loggingEvent.get(4).getFormattedMessage(), is("requesting user details"));
+        assertSoftly(softly -> {
+            softly.assertThat(loggingEvent.get(0).getFormattedMessage()).isEqualTo("No cached IDAM token found, requesting from IDAM service.");
+            softly.assertThat(loggingEvent.get(1).getFormattedMessage()).contains("Attempting to obtain token, retry attempt");
+            softly.assertThat(loggingEvent.get(2).getFormattedMessage()).isEqualTo("Requesting idam access token from Open End Point");
+            softly.assertThat(loggingEvent.get(3).getFormattedMessage()).isEqualTo("Requesting idam access token successful");
+            softly.assertThat(loggingEvent.get(4).getFormattedMessage()).isEqualTo("requesting user details");
+        });
     }
 
     @Test
-    public void shouldExceptionGivenErrorWithAppropriateLogMessages() {
+    void shouldExceptionGivenErrorWithAppropriateLogMessages() {
+        when(idamClient.getAccessToken("email", "pass")).thenThrow(new RuntimeException());
 
-        when(idamClient.getAccessToken("email", "pass")
-        ).thenThrow(new RuntimeException());
-
-        try {
-            IdamTokens idamTokens = idamService.getIdamTokens();
-        } catch (RuntimeException rte) {
-            // Ignore for the purposes of this test
-        }
+        assertThatThrownBy(() -> idamService.getIdamTokens()).isInstanceOf(RuntimeException.class);
 
         verify(mockAppender, times(4)).doAppend(captorLoggingEvent.capture());
-        final List<LoggingEvent> loggingEvent = (List<LoggingEvent>) captorLoggingEvent.getAllValues();
+        List<ILoggingEvent> loggingEvent = captorLoggingEvent.getAllValues();
 
-        //Check the message being logged is correct
-        assertThat(loggingEvent.get(0).getFormattedMessage(), is("No cached IDAM token found, requesting from IDAM service."));
-        assertThat(loggingEvent.get(1).getFormattedMessage(), containsString("Attempting to obtain token, retry attempt"));
-        assertThat(loggingEvent.get(2).getFormattedMessage(), is("Requesting idam access token from Open End Point"));
-        assertThat(loggingEvent.get(3).getFormattedMessage(), containsString("Requesting idam token failed:"));
+        assertSoftly(softly -> {
+            softly.assertThat(loggingEvent.get(0).getFormattedMessage()).isEqualTo("No cached IDAM token found, requesting from IDAM service.");
+            softly.assertThat(loggingEvent.get(1).getFormattedMessage()).contains("Attempting to obtain token, retry attempt");
+            softly.assertThat(loggingEvent.get(2).getFormattedMessage()).isEqualTo("Requesting idam access token from Open End Point");
+            softly.assertThat(loggingEvent.get(3).getFormattedMessage()).contains("Requesting idam token failed:");
+        });
     }
 
     @Test
-    public void shouldReturnCacheToken() {
-        String auth = "auth";
+    void shouldReturnCacheToken() {
+        final String auth = "auth";
         when(authTokenGenerator.generate()).thenReturn(auth);
 
         when(idamClient.getAccessToken("email", "pass")).thenReturn("Bearer " + authToken.getAccessToken());
 
-        UserInfo expectedUserDetails =
+        final UserInfo expectedUserDetails =
                 new UserInfo("16", "16", "dummy@email.com", "Peter", "Pan", new ArrayList<>());
 
-        given(idamClient.getUserInfo(eq("Bearer " + authToken.getAccessToken()))).willReturn(expectedUserDetails);
+        given(idamClient.getUserInfo("Bearer " + authToken.getAccessToken())).willReturn(expectedUserDetails);
 
-        // first time
-        IdamTokens idamTokens = idamService.getIdamTokens();
-
-        assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
-        assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
-
-        // second time
-        idamTokens = idamService.getIdamTokens();
-
-        assertThat(idamTokens.getServiceAuthorization(), is(auth));
-        assertThat(idamTokens.getUserId(), is(expectedUserDetails.getUid()));
-        assertThat(idamTokens.getEmail(), is(expectedUserDetails.getSub()));
-        assertThat(idamTokens.getIdamOauth2Token(), containsString("Bearer access"));
+        assertIdamTokens(idamService.getIdamTokens(), expectedUserDetails);
+        assertIdamTokens(idamService.getIdamTokens(), expectedUserDetails);
 
         verify(idamClient, atMostOnce()).getAccessToken("email", "pass");
+    }
 
+    @Test
+    void shouldReturnUserIdFromUserInfoUid() {
+        final String oauth2Token = "Bearer token";
+        final UserInfo userInfo = UserInfo.builder()
+                .sub("dummy@email.com")
+                .uid("user-id-123")
+                .build();
+        given(idamClient.getUserInfo(oauth2Token)).willReturn(userInfo);
+
+        final String userId = idamService.getUserId(oauth2Token);
+
+        assertThat(userId).isEqualTo("user-id-123");
+        verify(idamClient).getUserInfo(oauth2Token);
+    }
+
+    private void assertIdamTokens(final IdamTokens idamTokens, final UserInfo expectedUserDetails) {
+        assertSoftly(softly -> {
+            softly.assertThat(idamTokens.getServiceAuthorization()).isEqualTo("auth");
+            softly.assertThat(idamTokens.getUserId()).isEqualTo(expectedUserDetails.getUid());
+            softly.assertThat(idamTokens.getEmail()).isEqualTo(expectedUserDetails.getSub());
+            softly.assertThat(idamTokens.getIdamOauth2Token()).contains("Bearer access");
+        });
     }
 }
