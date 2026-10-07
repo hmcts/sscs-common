@@ -194,7 +194,7 @@ public enum EventType {
     REQUEST_TRANSLATION_FROM_WLU("requestTranslationFromWLU", 0, false),
     RESEND_APPEAL_CREATED("resendAppealCreated", 0, false),
     RESEND_CASE_TO_GAPS2("resendCaseToGAPS2", 0, false),
-    RESEND_HEARING_BOOKED("resendHearingBooked", "hearingBooked", 3, true),
+    RESEND_HEARING_BOOKED("resendHearingBooked", "resendHearingBooked", 3, true),
     RESEND_TO_DWP("resendToDwp", 0, false),
     RESERVE_TO_INTERLOC_JUDGE("reserveToInterlocJudge", 0, false),
     REVIEW_CONFIDENTIALITY_REQUEST("reviewConfidentialityRequest", 0, false),

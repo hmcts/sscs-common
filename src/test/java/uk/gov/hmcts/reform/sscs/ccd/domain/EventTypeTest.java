@@ -143,6 +143,7 @@ public class EventTypeTest {
         "removeLinkForCase",
         "resendAppealCreated",
         "resendCaseToGAPS2",
+        "resendHearingBooked",
         "resendToDwp",
         "responseReceived",
         "hmctsResponseReviewed",
@@ -237,7 +238,7 @@ public class EventTypeTest {
                 WRITE_FINAL_DECISION, UPLOAD_WELSH_DOCUMENT, REQUEST_TRANSLATION_FROM_WLU, UPDATE_WELSH_PREFERENCE,
                 CANCEL_TRANSLATIONS, CREATE_WELSH_NOTICE, MARK_DOCS_FOR_TRANSATION, JOINT_PARTY_ADDED, UPDATE_UCB,
                 STOP_BULK_PRINT_FOR_REASONABLE_ADJUSTMENT, CCD_ADMIN, SYSTEM_MAINTENANCE, UPLOAD_HEARING_RECORDING,
-                DWP_REQUEST_HEARING_RECORDING, CITIZEN_REQUEST_HEARING_RECORDING, RESEND_HEARING_BOOKED,
+                DWP_REQUEST_HEARING_RECORDING, CITIZEN_REQUEST_HEARING_RECORDING,
                 SET_ASIDE_REFUSED_SOR, SOR_EXTEND_TIME, SOR_REFUSED, SOR_WRITE, SOR_REQUEST, ADD_OTHER_PARTY_DATA);
         for (EventType eventType : EventType.values()) {
             try {
