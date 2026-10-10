@@ -114,6 +114,7 @@ public enum EventType {
     EVENTS_UPDATES("eventsUpdates", 0, false),
     EVIDENCE_RECEIVED("evidenceReceived", "evidenceReceived", -1, true),
     EVIDENCE_REMINDER("evidenceReminder", "evidenceReminder", -2, true),
+    FAILED_TO_RETRIEVE_CORRESPONDENCE("failedToRetrieveCorrespondence", 0, false),
     FE_NO_ACTION("feNoAction", 0, false),
     FINAL_DECISION("corDecision", 0, false),
     FINAL_HEARING_HOLDING_REMINDER("finalHearingHoldingReminder", 0, true),
