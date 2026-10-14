@@ -74,7 +74,7 @@ public class HearingDurationsServiceTest {
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Face To Face mapping is returned")
     @ParameterizedTest
-    @CsvSource({"003,LE,60", "051,SV,45"})
+    @CsvSource({"003,LE,45", "051,SV,60"})
     public void testGHearingDurationFaceToFace(String benefitCode, String issueCode, int expectedDuration) {
         HearingDuration result = hearingDurations.getHearingDuration(benefitCode, issueCode);
 
@@ -86,7 +86,7 @@ public class HearingDurationsServiceTest {
     @DisplayName("When valid Benefit Code and Issue Code is given to getHearingDuration "
             + "the valid Interpreter mapping is returned")
     @ParameterizedTest
-    @CsvSource({"003,LE,90", "051,SV,75"})
+    @CsvSource({"003,LE,75", "051,SV,90"})
     public void testGHearingDurationInterpreter(String benefitCode, String issueCode, int expectedDuration) {
         HearingDuration result = hearingDurations.getHearingDuration(benefitCode, issueCode);
 
@@ -104,7 +104,7 @@ public class HearingDurationsServiceTest {
 
         assertEquals(getBenefitCode(benefitCode), result.getBenefitCode());
         assertEquals(getIssue(issueCode), result.getIssue());
-        assertEquals(30, result.getDurationPaper());
+        assertEquals(45, result.getDurationPaper());
     }
 
     @DisplayName("When an empty list of elements Disputed is given to getDurationFaceToFace"
