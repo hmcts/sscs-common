@@ -96,6 +96,7 @@ Each update to this library must be reflected in all dependent projects regardle
 * sscs-tribunals-case-api
 * sscs-case-loader
 * sscs-ccd-case-migration
+* sscs-cron-trigger
 
 Any dependant not directly required as part of the change can be updated at the point that sscs-common is released and the required dependents are updated.
 
