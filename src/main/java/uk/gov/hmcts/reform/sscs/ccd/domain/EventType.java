@@ -162,6 +162,7 @@ public enum EventType {
     NEW_HEARING_BOOKED("newHearingBooked", "newHearingBooked", 9, true),
     NON_COMPLIANT("nonCompliant", 0, true),
     NON_COMPLIANT_SEND_TO_INTERLOC("nonCompliantSendToInterloc", 0, false),
+    NOTIFICATION_NOT_SAVED("notificationNotSaved", 0, false),
     NOTIFICATION_SENT("notificationSent", 0, false),
     NOT_LISTABLE("notListable", 0, false),
     PANEL_UPDATE("panelUpdate", 0, false),
