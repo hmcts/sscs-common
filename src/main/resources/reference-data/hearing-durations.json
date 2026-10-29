@@ -3052,8 +3052,6 @@
   {
     "benefitCode": "IIDB",
     "issue": "CE",
-    "durationFaceToFace": 45,
-    "durationInterpreter": 75,
     "durationPaper": 45
   },
   {
@@ -3084,8 +3082,6 @@
   {
     "benefitCode": "IIDB",
     "issue": "EC",
-    "durationFaceToFace": 45,
-    "durationInterpreter": 75,
     "durationPaper": 45
   },
   {
@@ -3101,8 +3097,6 @@
   {
     "benefitCode": "IIDB",
     "issue": "GC",
-    "durationFaceToFace": 45,
-    "durationInterpreter": 75,
     "durationPaper": 45
   },
   {
@@ -3118,8 +3112,6 @@
   {
     "benefitCode": "IIDB",
     "issue": "LE",
-    "durationFaceToFace": 45,
-    "durationInterpreter": 75,
     "durationPaper": 45
   },
   {
@@ -3145,8 +3137,6 @@
   {
     "benefitCode": "IIDB",
     "issue": "RA",
-    "durationFaceToFace": 45,
-    "durationInterpreter": 75,
     "durationPaper": 45
   },
   {
