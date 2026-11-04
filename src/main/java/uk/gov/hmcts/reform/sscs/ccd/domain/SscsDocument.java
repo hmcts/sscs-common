@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsDocument extends AbstractDocument<SscsDocumentDetails> {
 
-    public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDocumentDateAddedDescending();
+    public static final Comparator<SscsDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDateAddedThenBundleAdditionDescending();
 
     public SscsDocument(@JsonProperty("value") SscsDocumentDetails value) {
         super(value);
