@@ -971,7 +971,7 @@ public class SscsCaseData implements CaseData {
     private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
         if (CollectionUtils.isNotEmpty(documents)) {
             final List<T> sortedDocuments = new ArrayList<>(documents);
-            sortedDocuments.sort(AbstractDocument.byDocumentDateAddedDescending());
+            sortedDocuments.sort(AbstractDocument.byDateAddedThenBundleAdditionDescending());
             return sortedDocuments;
         }
         return documents;

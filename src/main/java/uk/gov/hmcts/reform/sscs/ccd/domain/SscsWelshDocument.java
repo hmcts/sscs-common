@@ -13,7 +13,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = false)
 public class SscsWelshDocument extends AbstractDocument<SscsWelshDocumentDetails> {
 
-    public static final Comparator<SscsWelshDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDocumentDateAddedDescending();
+    public static final Comparator<SscsWelshDocument> BY_DOCUMENT_DATE_ADDED_DESCENDING = byDateAddedThenBundleAdditionDescending();
 
     public SscsWelshDocument(@JsonProperty("value") SscsWelshDocumentDetails value) {
         super(value);
