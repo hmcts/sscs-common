@@ -3,7 +3,10 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 import static java.util.Comparator.nullsLast;
 import static java.util.Comparator.reverseOrder;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import lombok.experimental.SuperBuilder;
@@ -13,8 +16,11 @@ import lombok.experimental.SuperBuilder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AbstractDocument<D extends AbstractDocumentDetails> implements Comparable<AbstractDocument> {
 
-    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> Comparator<T> byDocumentDateAddedDescending() {
-        return Comparator.comparing((final T document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()));
+    public static <T extends AbstractDocument<? extends AbstractDocumentDetails>> Comparator<T> byDateAddedThenBundleAdditionDescending() {
+        return Comparator
+            .comparing((final T document) -> document.getValue().getDateTimeFormatted(), nullsLast(reverseOrder()))
+            .thenComparing((final T document) -> document.getValue().getFirstHalfOfBundleAddition(), nullsLast(reverseOrder()))
+            .thenComparing((final T document) -> document.getValue().getSecondHalfOfBundleAddition(), nullsLast(reverseOrder()));
     }
 
     private String id;
