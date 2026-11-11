@@ -427,16 +427,16 @@ class SscsCaseDataTest {
         SscsCaseData sscsCaseData = SscsCaseData.builder().sscsDocument(documents).build();
         sscsCaseData.sortCollections();
 
-        assertEquals("Z1", sscsCaseData.getSscsDocument().getFirst().getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z11", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z2", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z19", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("Z20", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z20", sscsCaseData.getSscsDocument().getFirst().getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z19", sscsCaseData.getSscsDocument().get(1).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z11", sscsCaseData.getSscsDocument().get(2).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z2", sscsCaseData.getSscsDocument().get(3).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("Z1", sscsCaseData.getSscsDocument().get(4).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("Z", sscsCaseData.getSscsDocument().get(5).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("B", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("D", sscsCaseData.getSscsDocument().get(6).getValue().getDocumentLink().getDocumentUrl());
         assertEquals("C", sscsCaseData.getSscsDocument().get(7).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("A", sscsCaseData.getSscsDocument().get(8).getValue().getDocumentLink().getDocumentUrl());
-        assertEquals("D", sscsCaseData.getSscsDocument().getLast().getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("B", sscsCaseData.getSscsDocument().get(8).getValue().getDocumentLink().getDocumentUrl());
+        assertEquals("A", sscsCaseData.getSscsDocument().getLast().getValue().getDocumentLink().getDocumentUrl());
     }
 
     @Test
