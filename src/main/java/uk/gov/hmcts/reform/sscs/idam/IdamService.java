@@ -49,7 +49,7 @@ public class IdamService {
     @Retryable
     public String getUserId(String oauth2Token) {
         log.info("get user Id");
-        return idamClient.getUserDetails(oauth2Token).getId();
+        return idamClient.getUserInfo(oauth2Token).getUid();
     }
 
     @Retryable

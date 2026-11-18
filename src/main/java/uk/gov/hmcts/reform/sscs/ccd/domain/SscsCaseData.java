@@ -2,12 +2,12 @@ package uk.gov.hmcts.reform.sscs.ccd.domain;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import static java.util.Collections.sort;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNullElse;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
-
 import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 import static org.apache.commons.collections4.ListUtils.emptyIfNull;
 import static org.apache.commons.lang3.ObjectUtils.isNotEmpty;
@@ -16,7 +16,6 @@ import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.UC;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.Benefit.findBenefitByShortName;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.ConfidentialityTabBuilder.buildConfidentialityTab;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.DwpState.FINAL_DECISION_ISSUED;
-
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.NO;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.YES;
 import static uk.gov.hmcts.reform.sscs.ccd.domain.YesNo.isYes;
@@ -41,8 +40,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.util.CollectionUtils;
-import uk.gov.hmcts.reform.sscs.ccd.predicates.BenefitTypeConfidentialityPredicate;
 import java.util.stream.Stream;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -50,6 +47,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.sscs.ccd.callback.DocumentType;
 import uk.gov.hmcts.reform.sscs.ccd.validation.groups.UniversalCreditValidationGroup;
@@ -542,9 +540,8 @@ public class SscsCaseData implements CaseData {
             getEvidence().getDocuments().sort(Collections.reverseOrder());
         }
 
-        if (getSscsDocument() != null) {
-            Collections.sort(getSscsDocument());
-        }
+        this.sscsDocument = sortDocumentsByDateAddedDescending(getSscsDocument());
+        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(getSscsWelshDocuments());
 
         if (getScannedDocuments() != null) {
             Collections.sort(getScannedDocuments());
@@ -934,7 +931,7 @@ public class SscsCaseData implements CaseData {
     @JsonProperty(value = "hasUndeterminedPartyConfidentiality", access = READ_ONLY)
     public YesNo hasUndeterminedPartyConfidentiality() {
 
-        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType()) || (isBenefitType(UC)
+        if (isNull(getAppeal()) || !isValidBenefitTypeForConfidentiality(getAppeal().getBenefitType(), List.of(UC)) || (isBenefitType(UC)
             && isEmpty(getOtherParties()))) {
             return null;
         }
@@ -952,6 +949,42 @@ public class SscsCaseData implements CaseData {
             || appellantConfidentialitySelection == YesNoUndetermined.UNDETERMINED;
 
         return (appellantHasUndeterminedConfidentiality || anyPartyHasUndeterminedConfidentiality) ? YES : NO;
+    }
+
+    public void setSscsDocument(List<SscsDocument> sscsDocument) {
+        this.sscsDocument = sortDocumentsByDateAddedDescending(sscsDocument);
+    }
+
+    public void setSscsDocumentBundle(List<SscsDocument> sscsDocument) {
+        this.sscsDocument = sortDocumentsByBundle(sscsDocument);
+    }
+
+    public void setSscsWelshDocuments(List<SscsWelshDocument> sscsWelshDocuments) {
+        this.sscsWelshDocuments = sortDocumentsByDateAddedDescending(sscsWelshDocuments);
+    }
+
+    public void setSscsWelshDocumentsBundle(List<SscsWelshDocument> sscsWelshDocuments) {
+        this.sscsWelshDocuments = sortDocumentsByBundle(sscsWelshDocuments);
+    }
+
+    @JsonIgnore
+    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByDateAddedDescending(final List<T> documents) {
+        if (CollectionUtils.isNotEmpty(documents)) {
+            final List<T> sortedDocuments = new ArrayList<>(documents);
+            sortedDocuments.sort(AbstractDocument.byDateAddedThenBundleAdditionDescending());
+            return sortedDocuments;
+        }
+        return documents;
+    }
+
+    @JsonIgnore
+    private <T extends AbstractDocument<? extends AbstractDocumentDetails>> List<T> sortDocumentsByBundle(final List<T> documents) {
+        if (CollectionUtils.isNotEmpty(documents)) {
+            final List<T> sortedDocuments = new ArrayList<>(documents);
+            sort(sortedDocuments);
+            return sortedDocuments;
+        }
+        return documents;
     }
 
 }

@@ -24,6 +24,9 @@ public class Appeal {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private YesNo isOtherPartyAddedForChildMaintUCCase;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private YesNo isValidSscs2OrSscs5Case;
+
     public Appeal(@JsonProperty("mrnDetails") MrnDetails mrnDetails,
                   @JsonProperty("appellant") Appellant appellant,
                   @JsonProperty("benefitType") BenefitType benefitType,
@@ -34,7 +37,8 @@ public class Appeal {
                   @JsonProperty("hearingType") String hearingType,
                   @JsonProperty("hearingSubtype") HearingSubtype hearingSubtype,
                   @JsonProperty("receivedVia") String receivedVia,
-                  @JsonProperty("isOtherPartyAddedForChildMaintUCCase") YesNo isOtherPartyAddedForChildMaintUCCase) {
+                  @JsonProperty("isOtherPartyAddedForChildMaintUCCase") YesNo isOtherPartyAddedForChildMaintUCCase,
+                  @JsonProperty("isValidSscs2OrSscs5Case") YesNo isValidSscs2OrSscs5Case) {
         this.mrnDetails = mrnDetails;
         this.appellant = appellant;
         this.benefitType = benefitType;
@@ -46,5 +50,6 @@ public class Appeal {
         this.hearingSubtype = hearingSubtype;
         this.receivedVia = receivedVia;
         this.isOtherPartyAddedForChildMaintUCCase = isOtherPartyAddedForChildMaintUCCase;
+        this.isValidSscs2OrSscs5Case = isValidSscs2OrSscs5Case;
     }
 }
