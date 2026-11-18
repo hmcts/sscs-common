@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -77,5 +78,20 @@ public class HearingOptions {
 
     public Boolean wantsAccessibleHearingRoom() {
         return arrangements != null && arrangements.contains("disabledAccess");
+    }
+
+    @JsonIgnore
+    public boolean wantsSupport() {
+        return Strings.CI.equals(wantsSupport, "yes");
+    }
+
+    @JsonIgnore
+    public boolean wantsInterpreter() {
+        return Strings.CI.equals(languageInterpreter, "yes");
+    }
+
+    @JsonIgnore
+    public boolean wantsToAttendWithInterpreterSupport() {
+        return isWantsToAttendHearing() && wantsSupport() && wantsInterpreter();
     }
 }
